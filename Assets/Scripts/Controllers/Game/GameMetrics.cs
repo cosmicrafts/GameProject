@@ -1,0 +1,124 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class GameMetrics : MonoBehaviour
+{
+    float EnergyUsed;
+    float EnergyGenerated;
+    float EnergyWasted;
+    float EnergyChargeRatePerSec;
+
+    float Damage;
+    int Kills;
+    int Deploys;
+    int SecRemaining;
+
+    int Score;
+
+    private void Awake()
+    {
+        GameMng.MT = this;
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        EnergyUsed = 0;
+        EnergyGenerated = 0;
+        EnergyWasted = 0;
+        EnergyChargeRatePerSec = 0f;
+
+        Damage = 0f;
+        Kills = 0;
+        Deploys = 0;
+        SecRemaining = 0;
+
+        Score = 0;
+    }
+
+    public void CalculateLastMetrics(Team winner)
+    {
+        EnergyWasted += GameMng.P.CurrentEnergy;
+        EnergyChargeRatePerSec = GameMng.P.SpeedEnergy;
+        SecRemaining = GameMng.GM.GetRemainingSecs();
+
+        Score = (int)Damage + (Kills * 10) + (Deploys * 10) + (SecRemaining * 3) + (int)EnergyUsed - (int) EnergyWasted;
+
+        if (winner == GameMng.P.MyTeam && !GameMng.GM.IsGameTutorial())
+        {
+#if UNITY_WEBGL
+            GameData.SaveScore(Score);
+#endif
+            Debug.Log("Save Score");
+        }
+    }
+
+    public void AddEnergyUsed(float value)
+    {
+        EnergyUsed += value;
+    }
+
+    public void AddEnergyGenerated(float value)
+    {
+        EnergyGenerated += value;
+    }
+
+    public void AddEnergyWasted(float value)
+    {
+        EnergyWasted += value;
+    }
+
+    public void AddDamage(float value)
+    {
+        Damage += value;
+    }
+
+    public void AddKills(int value)
+    {
+        Kills += value;
+    }
+
+    public void AddDeploys(int value)
+    {
+        Deploys += value;
+    }
+
+    public float GetEnergyUsed()
+    {
+        return EnergyUsed;
+    }
+    public float GetEnergyGenerated()
+    {
+        return EnergyGenerated;
+    }
+    public float GetEnergyWasted()
+    {
+        return EnergyWasted;
+    }
+    public float GetEnergyChargeRatePerSec()
+    {
+        return EnergyChargeRatePerSec;
+    }
+    public float GetDamage()
+    {
+        return Damage;
+    }
+    public int GetKills()
+    {
+        return Kills;
+    }
+    public int GetDeploys()
+    {
+        return Deploys;
+    }
+    public int GetSecRemaining()
+    {
+        return SecRemaining;
+    }
+    public int GetScore()
+    {
+        return Score;
+    }
+}

@@ -1,0 +1,195 @@
+﻿using SensorToolkit;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class Ship : Unit
+{
+    public SteeringRig MySt;
+
+    float Direction = 0;
+    float Speed = 0f;
+
+    [Range(0,99)]
+    public float Aceleration = 1f;
+    [Range(0,99)]
+    public float MaxSpeed = 10f;
+    [Range(0,99)]
+    public float DragSpeed = 1f;
+    [Range(0, 99)]
+    public float TurnSpeed = 5f;
+    [Range(0, 99)]
+    public float StopSpeed = 5f;
+    [Range(0, 10)]
+    public float StoppingDistance = 0.5f;
+    [Range(0, 50)]
+    public float AvoidanceRange = 3f;
+
+    Transform Target;
+    public RaySensor[] AvoidanceSensors;
+    public GameObject MainThruster;
+
+    [HideInInspector]
+    public bool CanMove = true;
+
+    Vector3 DeathRot;
+
+    protected override void Start()
+    {
+        base.Start();
+        Target = GameMng.GM.GetFinalTarget(MyTeam);
+        MySt.Destination = Target.position;
+        MySt.StoppingDistance = StoppingDistance;
+        foreach (RaySensor sensor in AvoidanceSensors)
+        {
+            sensor.Length = AvoidanceRange;
+        }
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        Move();
+    }
+
+    void Move()
+    {
+        if (IsDeath())
+        {
+            transform.Rotate(DeathRot, 100f * Time.deltaTime, Space.Self);
+            return;
+        }
+
+        if (InControl())
+        {
+            if (CanMove)
+            {
+                if (Speed < MaxSpeed)
+                {
+                    Speed += Aceleration * Time.deltaTime;
+                }
+                else
+                {
+                    Speed = MaxSpeed;
+                }
+
+                MySt.TurnForce = TurnSpeed * 100f;
+                MySt.StrafeForce = DragSpeed * 100f;
+                MySt.MoveForce = Speed * 100f;
+                MySt.StopSpeed = StopSpeed;
+            }
+            else
+            {
+                MySt.TurnForce = 0f;
+                MySt.MoveForce = 0f;
+                Speed = 0f;
+            }
+
+            if (MySt.hasReachedDestination() && MainThruster.activeSelf)
+            {
+                MainThruster.SetActive(false);
+            }
+            if (!MySt.hasReachedDestination() && !MainThruster.activeSelf)
+            {
+                MainThruster.SetActive(true);
+            }
+        } else if (MainThruster.activeSelf)
+        {
+            MainThruster.SetActive(false);
+            MySt.TurnForce = 0f;
+            MySt.MoveForce = 0f;
+            Speed = 0f;
+        }
+
+        //if (CanMove)
+        //{
+        //    if (getVelocity() < MaxSpeed)
+        //    {
+        //        addVelocity(Aceleration * Time.deltaTime);
+        //    }
+        //}
+        //else
+        //{
+        //    if (getVelocity() > 0f)
+        //    {
+        //        addVelocity(DragSpeed * Time.deltaTime * -1f);
+        //    }
+        //    else
+        //    {
+        //        setVelocity(0f);
+        //    }
+        //}
+    }
+
+    public void ResetDestination()
+    {
+        if (!InControl())
+            return;
+
+        MySt.Destination = Target.position;
+        MySt.StoppingDistance = StoppingDistance;
+    }
+
+    public void SetDestination(Vector3 des, float stopdistance)
+    {
+        MySt.Destination = des;
+        MySt.StoppingDistance = stopdistance;
+    }
+
+    void setVelocity(float velocity)
+    {
+        float x = Mathf.Sin(Direction * Mathf.Deg2Rad);
+        float z = Mathf.Cos(Direction * Mathf.Deg2Rad);
+        MyRb.velocity = new Vector3(x * velocity, 0, z * velocity);
+    }
+
+    void setDirection(float direction)
+    {
+        Direction = direction;
+        setVelocity(getVelocity());
+    }
+
+    void setVelocityDirection(float velocity, float direction)
+    {
+        Direction = direction;
+        setVelocity(velocity);
+    }
+
+    void addVelocity(float amount)
+    {
+        setVelocity(getVelocity() + amount);
+    }
+
+    float getVelocity()
+    {
+        return MyRb.velocity.magnitude;
+    }
+
+    protected override void CastComplete()
+    {
+        base.CastComplete();
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        MySt.enabled = false;
+        float AngleDeathRot = CMath.AngleBetweenVector2(LastImpact, transform.position);
+
+        float z = Mathf.Sin(AngleDeathRot * Mathf.Deg2Rad);
+        float x = Mathf.Cos(AngleDeathRot * Mathf.Deg2Rad);
+        DeathRot = new Vector3(x, 0, z);
+    }
+
+    public override void DisableUnit()
+    {
+        base.DisableUnit();
+    }
+
+    public override void EnableUnit()
+    {
+        base.EnableUnit();
+    }
+}
