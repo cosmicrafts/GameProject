@@ -18,6 +18,8 @@ public class UIGameMng : MonoBehaviour
     public Text EnergyLabel;
     public Image EnergyBar;
 
+    public GameObject AreaDeploy;
+
     public Text Txt_PlayerName;
     public Text Txt_WalletId;
 
@@ -74,6 +76,21 @@ public class UIGameMng : MonoBehaviour
     public void UpdateTimeOut(string newtime)
     {
         TimeOut.text = newtime;
+    }
+
+    public void SelectCard(int idc)
+    {
+        UIDeck[idc].SpIcon.color = Color.green;
+        AreaDeploy.SetActive(true);
+    }
+
+    public void DeselectCards()
+    {
+        foreach (UIGameCard card in UIDeck)
+        {
+            card.SpIcon.color = Color.white;
+        }
+        AreaDeploy.SetActive(false);
     }
 
     public void UpdateEnergy(float energy, float max)

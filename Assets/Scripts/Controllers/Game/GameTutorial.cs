@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameTutorial : MonoBehaviour
@@ -220,7 +221,7 @@ public class GameTutorial : MonoBehaviour
         {
             case 3:
                 {
-                    if (GameMng.P.IsDraging())
+                    if (GameMng.P.IsPreparingDeploy())
                     {
                         GoNextEvent();
                     }
@@ -370,5 +371,10 @@ public class GameTutorial : MonoBehaviour
         {
             unit.EnableUnit();
         }
+    }
+
+    public void EndTutorial()
+    {
+        SceneManager.LoadScene(0);
     }
 }

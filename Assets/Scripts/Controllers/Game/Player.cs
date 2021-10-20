@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     Mesh[] UnitsMeshs;
     Material[] UnitMaterials;
     GameCard DragingCard;
+    GameCard SelectedCard;
 
     [Range(0, 99)]
     public float CurrentEnergy = 5;
@@ -72,11 +73,23 @@ public class Player : MonoBehaviour
         AddEnergy(Time.deltaTime * SpeedEnergy);
     }
 
-    private void FixedUpdate()
+    public void SelectCard(int idu)
     {
-        if (UnitDrag.gameObject.activeSelf && DragingCard != null)
+        if (!InControl)
         {
-            UnitDrag.transform.position = CMath.GetMouseWorldPos();
+            return;
+        }
+
+        if (SelectedCard == GameCards[idu])
+        {
+            SelectedCard = null;
+            GameMng.UI.DeselectCards();
+            UnitDrag.gameObject.SetActive(false);
+        } else
+        {
+            SelectedCard = GameCards[idu];
+            GameMng.UI.SelectCard(idu);
+            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.EnergyCost);
         }
     }
 
@@ -88,9 +101,14 @@ public class Player : MonoBehaviour
         }
 
         DragingCard = GameCards[idu];
-        UnitDrag.gameObject.SetActive(true);
-        UnitDrag.SetMeshAndTexture(UnitsMeshs[idu], UnitMaterials[idu]);
-        UnitDrag.transform.position = CMath.GetMouseWorldPos();
+
+        if (SelectedCard != null && SelectedCard != DragingCard)
+        {
+            SelectedCard = null;
+            GameMng.UI.DeselectCards();
+        }
+
+        PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.EnergyCost);
     }
 
     public void DropDeckUnit()
@@ -100,16 +118,15 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (DragingCard.EnergyCost <= CurrentEnergy && UnitDrag.IsValid())
+        if (UnitDrag.IsValid() && (DragingCard != null || SelectedCard != null))
         {
-            Unit unit = Instantiate(DragingCard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
-            unit.MyTeam = MyTeam;
-            RestEnergy(DragingCard.EnergyCost);
-            GameMng.MT.AddDeploys(1);
+            DeplyUnit(DragingCard == null ? SelectedCard : DragingCard);
         }
 
         UnitDrag.gameObject.SetActive(false);
         DragingCard = null;
+        SelectedCard = null;
+        GameMng.UI.DeselectCards();
     }
 
     public void SetInControl(bool incontrol)
@@ -144,8 +161,27 @@ public class Player : MonoBehaviour
         GameMng.UI.UpdateEnergy(CurrentEnergy, MaxEnergy);
     }
 
-    public bool IsDraging()
+    public bool IsPreparingDeploy()
     {
-        return DragingCard != null;
+        return DragingCard != null || SelectedCard != null;
+    }
+
+    public void PrepareDeploy(Mesh mesh, Material mat, float cost)
+    {
+        UnitDrag.gameObject.SetActive(true);
+        UnitDrag.SetMeshAndTexture(mesh, mat);
+        UnitDrag.transform.position = CMath.GetMouseWorldPos();
+        UnitDrag.TargetCost = cost;
+    }
+
+    public void DeplyUnit(GameCard unitcard)
+    {
+        if (unitcard.EnergyCost <= CurrentEnergy)
+        {
+            Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
+            unit.MyTeam = MyTeam;
+            RestEnergy(unitcard.EnergyCost);
+            GameMng.MT.AddDeploys(1);
+        }
     }
 }

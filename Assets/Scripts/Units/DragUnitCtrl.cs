@@ -12,16 +12,31 @@ public class DragUnitCtrl : MonoBehaviour
     public MeshFilter MyMeshFilter;
     public Outlinable Outline;
 
+    public float TargetCost;
+
+    Color DefaultColor;
+
+    Player player;
+
     private void Start()
     {
         areas = 0;
         Outline.OutlineParameters.Color = Color.red;
         target = GameMng.GM.GetFinalTarget(GameMng.P.MyTeam).position;
+        DefaultColor = Color.green;
+        player = GameMng.P;
     }
 
     private void Update()
     {
-        //transform.LookAt(CMath.LookToY(transform.position, target));
+        DefaultColor = TargetCost > player.CurrentEnergy ? Color.blue : Color.green;
+        Outline.OutlineParameters.Color = areas > 0 ? DefaultColor : Color.red;
+    }
+
+    private void FixedUpdate()
+    {
+        transform.position = CMath.GetMouseWorldPos();
+        transform.LookAt(CMath.LookToY(transform.position, target));
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +44,6 @@ public class DragUnitCtrl : MonoBehaviour
         if (other.CompareTag("Spawnarea"))
         {
             areas++;
-            Outline.OutlineParameters.Color = Color.green;
         }
     }
 
@@ -38,10 +52,6 @@ public class DragUnitCtrl : MonoBehaviour
         if (other.CompareTag("Spawnarea"))
         {
             areas--;
-            if (areas == 0)
-            {
-                Outline.OutlineParameters.Color = Color.red;
-            }
         }
     }
 
@@ -49,6 +59,7 @@ public class DragUnitCtrl : MonoBehaviour
     {
         areas = 0;
         Outline.OutlineParameters.Color = Color.red;
+        DefaultColor = Color.green;
     }
 
     public bool IsValid()
