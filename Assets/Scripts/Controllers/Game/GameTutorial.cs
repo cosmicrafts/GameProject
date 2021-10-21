@@ -70,6 +70,8 @@ public class GameTutorial : MonoBehaviour
     WaitForSeconds alertDelay;
     WaitForSeconds deployDelay;
 
+    Unit EnemyUnit;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -89,9 +91,8 @@ public class GameTutorial : MonoBehaviour
         GameMng.P.CurrentEnergy = 10;
         GameMng.P.SetInControl(false);
         GameMng.GM.Targets[1].IsInmortal = true;
-        GameMng.GM.Targets[0].IsInmortal = true;
-        GameMng.GM.Targets[0].Mesh.SetActive(false);
-        GameMng.GM.Targets[0].UI.gameObject.SetActive(false);
+        EnemyUnit = GameMng.GM.Targets[0];
+        EnemyUnit.IsInmortal = true;
         alertDelay = new WaitForSeconds(3f);
         deployDelay = new WaitForSeconds(0.5f);
         Objectives[0].gameObject.SetActive(true);
@@ -157,12 +158,6 @@ public class GameTutorial : MonoBehaviour
                     Tips[2].SetActive(true);
                 }
                 break;
-            case 8:
-                {
-                    GameMng.GM.Targets[0].Mesh.SetActive(true);
-                    GameMng.GM.Targets[0].UI.gameObject.SetActive(true);
-                }
-                break;
             case 12:
                 {
                     Tips[3].SetActive(true);
@@ -208,7 +203,7 @@ public class GameTutorial : MonoBehaviour
                         objective.gameObject.SetActive(false);
                     }
 
-                    Animator anim = GameMng.GM.Targets[0].GetAnimator();
+                    Animator anim = EnemyUnit.GetAnimator();
                     anim.speed = 0;
                 }
                 break;
@@ -253,15 +248,23 @@ public class GameTutorial : MonoBehaviour
                 break;
             case 13:
                 {
-                    if (GameMng.MT.GetDeploys() > 5)
+                    if (EnemyUnit.HitPoints < EnemyUnit.GetMaxHitPoints() / 2)
                     {
+                        Unit[] units = FindObjectsOfType<Unit>();
+
+                        foreach (Unit unit in units)
+                        {
+                            unit.DisableUnit();
+                        }
+                        EnemyUnit.HitPoints = EnemyUnit.GetMaxHitPoints() / 2;
+                        EnemyUnit.Shield = EnemyUnit.GetMaxShield();
                         GoNextEvent();
                     }
                 }
                 break;
             case 18:
                 {
-                    if (GameMng.GM.Targets[0].HitPoints < 32)
+                    if (EnemyUnit.HitPoints < EnemyUnit.GetMaxHitPoints() / 4)
                     {
                         GoNextEvent();
                     }
