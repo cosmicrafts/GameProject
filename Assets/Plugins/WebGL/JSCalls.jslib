@@ -3,11 +3,14 @@
   // the event listeners name and make sure the
   // parameters match as well.
 
-  SaveScore: function (score) {
-    // Within the function we're going to trigger
-    // the event within the ReactUnityWebGL object
-    // which is exposed by the library to the window.
+    SaveScore: function (score) {
 
-    ReactUnityWebGL.SaveScore(score);
+        ReactUnityWebGL.SaveScore(score);
+  },
+
+    SendJson: function (json) {
+
+        ReactUnityWebGL.SendJson(Pointer_stringify(json));
+        console.log(Pointer_stringify(json));
   },
 });

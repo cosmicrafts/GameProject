@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,7 @@ public class GameMng : MonoBehaviour
     DateTime StartTime;
 
     public BoxCollider GridColl;
+    WaitForSeconds dnet;
 
     private void Awake()
     {
@@ -65,23 +67,31 @@ public class GameMng : MonoBehaviour
         StartTime = DateTime.Now;
         GridColl.size = new Vector3(MapWidth*2f, 0.1f, MapHeigth*2f);
 
-        if (GT != null)
+        switch(GameData.CurrentMatch)
         {
-            if (PlayerData.FirstGame)
-            {
-                GT.gameObject.SetActive(true);
-                P.DeckUnits = GT.DeckUnits;
-                RunTime = false;
-                UI.UpdateTimeOut("--");
-            }
-            else
-            {
-                Destroy(GT.gameObject);
-                if (BOT != null)
+            case Match.bots:
                 {
+                    Destroy(GT.gameObject);
                     BOT.gameObject.SetActive(true);
                 }
-            }
+                break;
+            case Match.tutorial:
+                {
+                    GT.gameObject.SetActive(true);
+                    P.DeckUnits = GT.DeckUnits;
+                    RunTime = false;
+                    UI.UpdateTimeOut("--");
+                    Destroy(BOT);
+                }
+                break;
+            case Match.multi:
+                {
+                    Destroy(BOT);
+                    Destroy(GT.gameObject);
+                    dnet = new WaitForSeconds(1f / 5f);
+                    StartCoroutine(GameNetAsync());
+                }
+                break;
         }
     }
 
@@ -124,6 +134,10 @@ public class GameMng : MonoBehaviour
         }
 
         UI.SetGameOver(Winner);
+        if (GameData.CurrentMatch == Match.multi)
+        {
+            StopCoroutine(GameNetAsync());
+        }
     }
 
     public bool IsGameOver()
@@ -196,5 +210,39 @@ public class GameMng : MonoBehaviour
     public void EndScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    IEnumerator GameNetAsync()
+    {
+        while (true)
+        {
+            yield return dnet;
+
+            try
+            {
+                GameNetwork.SendJson(JsonConvert.SerializeObject(new
+                {
+                    id = 15,
+                    type = 1,
+                    action = 5,
+                    date= DateTime.Now,
+                    param = new
+                    {
+                        x = 10,
+                        y = 0,
+                        rot = 60,
+                    }
+                }));
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+        }
+    }
+
+    public void GetJson(string json)
+    {
+        Debug.Log(json);
     }
 }
