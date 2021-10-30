@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIPTxtInfo : MonoBehaviour
@@ -8,7 +6,10 @@ public class UIPTxtInfo : MonoBehaviour
     public enum PlayerProperty
     {
         Name,
-        WalletId
+        WalletId,
+        Level,
+        Xp,
+        Xpbar
     }
 
     public PlayerProperty Property;
@@ -16,23 +17,44 @@ public class UIPTxtInfo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GameData.PlayerUser == null)
+        if (!GameData.UserIsInit())
         {
             return;
         }
 
-        Text mytext = GetComponent<Text>();
+        User user = GameData.GetUserData();
+        UserProgress userProgress = GameData.GetUserProgress();
+
         switch(Property)
         {
             case PlayerProperty.Name:
                 {
-                    mytext.text = GameData.PlayerUser.NikeName;
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = user.NikeName;
                 }break;
             case PlayerProperty.WalletId:
                 {
-                    mytext.text = Utils.GetWalletIDShort(GameData.PlayerUser.WalletId);
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = Utils.GetWalletIDShort(user.WalletId);
                 }
                 break;
+            case PlayerProperty.Level:
+                {
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = $"{Lang.GetText("mn_lvl")} {userProgress.GetLevel()}";
+                }
+                break;
+            case PlayerProperty.Xp:
+                {
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = $"{userProgress.GetXp()} {Lang.GetText("mn_xp")}";
+                }
+                break;
+            case PlayerProperty.Xpbar:
+                {
+                    Image myimage = GetComponent<Image>();
+                    myimage.fillAmount = (float)userProgress.GetXp() / (float)userProgress.GetNextXpGoal();
+                }break;
         }
     }
 }

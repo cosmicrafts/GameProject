@@ -42,7 +42,7 @@ public static class NetUserServices
 
     public static void LogOut()
     {
-        GameData.PlayerUser = null;
+        GameData.ClearUser();
     }
 
     public static async Task<NetResult> GetUsers(string query)

@@ -14,6 +14,9 @@ public class GameMng : MonoBehaviour
     public static GameMetrics MT;
     public static Config CONFIG;
     public static User PlayerData;
+    public static UserProgress PlayerProgress;
+    public static UserCollection PlayerCollection;
+    public static NFTsCharacter PlayerCharacter;
 
     public GameTutorial GT;
     public BotEnemy BOT;
@@ -51,6 +54,9 @@ public class GameMng : MonoBehaviour
         Units = new List<Unit>();
         CONFIG = GameData.GetConfig();
         PlayerData = GameData.GetUserData();
+        PlayerProgress = GameData.GetUserProgress();
+        PlayerCollection = GameData.GetUserCollection();
+        PlayerCharacter = GameData.GetUserCharacter();
     }
 
     // Start is called before the first frame update
@@ -136,7 +142,7 @@ public class GameMng : MonoBehaviour
         UI.SetGameOver(Winner);
         if (GameData.CurrentMatch == Match.multi)
         {
-            StopCoroutine(GameNetAsync());
+            //StopCoroutine(GameNetAsync());
         }
     }
 
@@ -220,6 +226,7 @@ public class GameMng : MonoBehaviour
 
             try
             {
+
                 GameNetwork.SendJson(JsonConvert.SerializeObject(new
                 {
                     id = 15,

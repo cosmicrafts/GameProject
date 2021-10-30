@@ -98,8 +98,14 @@ public static class NetClient
         HttpClient _client = new HttpClient();
         _client.Timeout = TimeSpan.FromSeconds(TimeOut);
         //Auth
-        if (GameData.PlayerUser != null)
-            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", GameData.PlayerUser.Token);
+        if (GameData.UserIsInit())
+        {
+            User user = GameData.GetUserData();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+        } else
+        {
+            return new NetResult { Response = "No user init", Status = EStatus.refuse };
+        }
 
         //Server Request
         try

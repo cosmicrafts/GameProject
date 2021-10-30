@@ -18,9 +18,6 @@ public class UIGameMng : MonoBehaviour
 
     public GameObject AreaDeploy;
 
-    public Text Txt_PlayerName;
-    public Text Txt_WalletId;
-
     public Text MTxtEnergyUsed;
     public Text MTxtEnergyGenerated;
     public Text MTxtEnergyWasted;
@@ -40,7 +37,7 @@ public class UIGameMng : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     public void SetGameOver(Team winner)

@@ -12,7 +12,7 @@ public class TestApiController : MonoBehaviour
 
     void Start()
     {
-        datauser.text = JsonConvert.SerializeObject(GameData.PlayerUser);
+        //datauser.text = JsonConvert.SerializeObject(GameData.PlayerUser);
     }
 
     // Update is called once per frame

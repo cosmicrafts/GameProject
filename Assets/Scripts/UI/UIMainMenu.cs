@@ -12,6 +12,11 @@ public class UIMainMenu : MonoBehaviour
     public GameObject MenuPanel;
     public GameObject MatchPanel;
 
+    public User PlayerUser;
+    public UserProgress PlayerProgress;
+    public UserCollection PlayerCollection;
+    public NFTsCharacter PlayerCharacter;
+
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
@@ -32,7 +37,10 @@ public class UIMainMenu : MonoBehaviour
 
         if (GameData.DebugMode)
         {
-            GameData.PlayerUser = new User() { NikeName = "Player", WalletId = "SomeWalletId" };
+            PlayerUser = GameData.GetUserData();
+            PlayerProgress = GameData.GetUserProgress();
+            PlayerCollection = GameData.GetUserCollection();
+            PlayerCharacter = GameData.GetUserCharacter();
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
         }
@@ -44,7 +52,7 @@ public class UIMainMenu : MonoBehaviour
         GameData.CurrentMatch = Match.none;
         //TimeMatch = new TimeSpan(0, 0, 5);
 
-        if (GameData.PlayerUser != null)
+        if (GameData.UserIsInit())
         {
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
@@ -61,7 +69,8 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetPlayerData(string jsonData)
     {
-        GameData.PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
+        PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
+        GameData.SetUser(PlayerUser);
         LoginPanel.SetActive(false);
         MenuPanel.SetActive(true);
     }
@@ -73,7 +82,7 @@ public class UIMainMenu : MonoBehaviour
             return;
         }
 
-        GameData.PlayerUser.FirstGame = false;
+        PlayerUser.FirstGame = false;
         GameData.CurrentMatch = Match.multi;
         
         MenuPanel.SetActive(false);
@@ -89,7 +98,7 @@ public class UIMainMenu : MonoBehaviour
             return;
         }
 
-        GameData.PlayerUser.FirstGame = true;
+        PlayerUser.FirstGame = true;
         GameData.CurrentMatch = Match.tutorial;
 
         MenuPanel.SetActive(false);

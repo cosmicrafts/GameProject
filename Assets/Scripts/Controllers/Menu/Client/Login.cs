@@ -40,7 +40,7 @@ public class Login : MonoBehaviour
     public void SuccessLogin(string jsonUser)
     {
         SetStatusText(string.Empty);
-        GameData.PlayerUser = JsonConvert.DeserializeObject<User>(jsonUser);
+        GameData.SetUser(JsonConvert.DeserializeObject<User>(jsonUser));
         //Photon.Pun.PhotonNetwork.NickName = GameData.PlayerUser.NikeName;
         //PHCtrl.ConnectPhotonServer();
         TestEndpoints.SetActive(true);

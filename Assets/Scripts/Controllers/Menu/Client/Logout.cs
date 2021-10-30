@@ -19,7 +19,7 @@ public class Logout : MonoBehaviour
 
     public void LogOut()
     {
-        GameData.PlayerUser = null;
+        GameData.ClearUser();
         LoginForm.SetActive(true);
         gameObject.SetActive(false);
     }

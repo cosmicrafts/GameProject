@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     GameCard[] GameCards;
     Mesh[] UnitsMeshs;
     Material[] UnitMaterials;
+    GameObject[] SpellPreviews;
     GameCard DragingCard;
     GameCard SelectedCard;
 
@@ -47,6 +48,7 @@ public class Player : MonoBehaviour
         }
 
         GameCards = new GameCard[8];
+        SpellPreviews = new GameObject[8];
         UnitsMeshs = new Mesh[8];
         UnitMaterials = new Material[8];
 
@@ -55,8 +57,18 @@ public class Player : MonoBehaviour
             if (DeckUnits[i] != null)
             {
                 GameCards[i] = DeckUnits[i].GetComponent<GameCard>();
-                UnitsMeshs[i] = GameCards[i].UnitMesh.GetComponent<MeshFilter>().sharedMesh;
-                UnitMaterials[i] = GameCards[i].UnitMesh.GetComponent<MeshRenderer>().sharedMaterial;
+
+                if (GameCards[i].cardType == CardType.Spell)
+                {
+                    SpellCard spell = GameCards[i] as SpellCard;
+                    SpellPreviews[i] = spell.PreviewEffect;
+
+                } else if (GameCards[i].cardType == CardType.Unit)
+                {
+                    UnitCard unit = GameCards[i] as UnitCard;
+                    UnitsMeshs[i] = unit.UnitMesh.GetComponent<MeshFilter>().sharedMesh;
+                    UnitMaterials[i] = unit.UnitMesh.GetComponent<MeshRenderer>().sharedMaterial;
+                }   
             }
         }
 
@@ -89,7 +101,14 @@ public class Player : MonoBehaviour
         {
             SelectedCard = GameCards[idu];
             GameMng.UI.SelectCard(idu);
-            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.EnergyCost);
+            if (DragingCard.cardType == CardType.Spell)
+            {
+                PrepareDeploy(SpellPreviews[idu], SelectedCard.EnergyCost);
+            }
+            else if (DragingCard.cardType == CardType.Unit)
+            {
+                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.EnergyCost);
+            }
         }
     }
 
@@ -108,7 +127,14 @@ public class Player : MonoBehaviour
             GameMng.UI.DeselectCards();
         }
 
-        PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.EnergyCost);
+        if (DragingCard.cardType == CardType.Spell)
+        {
+            PrepareDeploy(SpellPreviews[idu], DragingCard.EnergyCost);
+        } else if (DragingCard.cardType == CardType.Unit)
+        {
+            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.EnergyCost);
+        }
+        
     }
 
     public void DropDeckUnit()
@@ -169,7 +195,17 @@ public class Player : MonoBehaviour
     public void PrepareDeploy(Mesh mesh, Material mat, float cost)
     {
         UnitDrag.gameObject.SetActive(true);
+        UnitDrag.setMeshActive(true);
         UnitDrag.SetMeshAndTexture(mesh, mat);
+        UnitDrag.transform.position = CMath.GetMouseWorldPos();
+        UnitDrag.TargetCost = cost;
+    }
+
+    public void PrepareDeploy(GameObject preview, float cost)
+    {
+        UnitDrag.gameObject.SetActive(true);
+        UnitDrag.setMeshActive(false);
+        UnitDrag.CreatePreviewObj(preview);
         UnitDrag.transform.position = CMath.GetMouseWorldPos();
         UnitDrag.TargetCost = cost;
     }
