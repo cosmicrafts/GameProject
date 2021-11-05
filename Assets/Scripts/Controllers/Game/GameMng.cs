@@ -226,7 +226,6 @@ public class GameMng : MonoBehaviour
 
             try
             {
-
                 GameNetwork.SendJson(JsonConvert.SerializeObject(new
                 {
                     id = 15,

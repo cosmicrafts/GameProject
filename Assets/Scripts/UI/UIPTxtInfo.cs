@@ -9,7 +9,9 @@ public class UIPTxtInfo : MonoBehaviour
         WalletId,
         Level,
         Xp,
-        Xpbar
+        Xpbar,
+        Character,
+        Avatar
     }
 
     public PlayerProperty Property;
@@ -23,6 +25,7 @@ public class UIPTxtInfo : MonoBehaviour
         }
 
         User user = GameData.GetUserData();
+        NFTsCharacter nFTsCharacter = GameData.GetUserCharacter();
         UserProgress userProgress = GameData.GetUserProgress();
 
         switch(Property)
@@ -55,6 +58,18 @@ public class UIPTxtInfo : MonoBehaviour
                     Image myimage = GetComponent<Image>();
                     myimage.fillAmount = (float)userProgress.GetXp() / (float)userProgress.GetNextXpGoal();
                 }break;
+            case PlayerProperty.Character:
+                {
+                    Image myimage = GetComponent<Image>();
+                    myimage.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+                }
+                break;
+            case PlayerProperty.Avatar:
+                {
+                    Image myimage = GetComponent<Image>();
+                    myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
+                }
+                break;
         }
     }
 }

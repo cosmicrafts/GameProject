@@ -83,7 +83,7 @@ public class UIMainMenu : MonoBehaviour
         }
 
         PlayerUser.FirstGame = false;
-        GameData.CurrentMatch = Match.multi;
+        GameData.CurrentMatch = Match.bots;
         
         MenuPanel.SetActive(false);
         MatchPanel.SetActive(true);
