@@ -1,6 +1,6 @@
 ﻿
 
-public class NFTs
+public abstract class NFTs
 {
     public string KeyId { get; set; }
 

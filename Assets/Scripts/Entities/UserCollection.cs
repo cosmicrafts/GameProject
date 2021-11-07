@@ -19,7 +19,7 @@ public class UserCollection
         {
             NFTsCharacter default_character = new NFTsCharacter()
             {
-                KeyId = "chr1",
+                KeyId = "Chr_1",
                 Name = "Wegnar",
                 Icon = "Character_1"
             };
@@ -27,26 +27,43 @@ public class UserCollection
             GameData.SetUserCharacter(default_character);
             for(int i = 1; i<11; i++)
             {
-                Cards.Add(new NFTsCard()
+                Cards.Add(new NFTsUnit()
                 {
                     KeyId = $"Unit_{i}",
                     Name = $"Unit {i}",
                     EnergyCost = 3,
                     Icon = $"I_Ship_{i}",
-                    Rarity = 1
+                    Rarity = 1,
+                    HitPoints = 10,
+                    Shield = 5,
+                    Speed = 1,
+                    Dammage = 3
                 });
             }
             for (int i = 1; i < 2; i++)
             {
-                Cards.Add(new NFTsCard()
+                Cards.Add(new NFTsUnit()
                 {
                     KeyId = $"Station_{i}",
                     Name = $"Station {i}",
-                    EnergyCost = 3,
+                    EnergyCost = 5,
                     Icon = $"I_Sta_{i}",
-                    Rarity = 1
+                    Rarity = 3,
+                    HitPoints = 10,
+                    Shield = 5,
+                    Speed = 0,
+                    Dammage = 3,
+                    IsStation = true
                 });
             }
+            Cards.Add(new NFTsSpell()
+            {
+                KeyId = $"Skill_1",
+                Name = $"Skill 1",
+                EnergyCost = 10,
+                Icon = $"I_Skill_01",
+                Rarity = 5
+            });
             Deck = Cards.Take(8).ToList();
         }
     }

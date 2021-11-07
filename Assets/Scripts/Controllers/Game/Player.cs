@@ -45,6 +45,29 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Size of deck must equals 8");
             DeckUnits = new GameObject[8];
+            return;
+        }
+
+        if (GameData.CurrentMatch != Match.tutorial)
+        {
+            GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
+            if (Character != null)
+            {
+                Instantiate(Character, transform);
+            }
+
+            List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;
+
+            if (CollectionDeck != null)
+            {
+                if (CollectionDeck.Count == 8)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        DeckUnits[i] = ResourcesServices.LoadCardPrefab(CollectionDeck[i].KeyId, CollectionDeck[i] as NFTsSpell != null);
+                    }
+                }
+            }
         }
 
         GameCards = new GameCard[8];
@@ -214,10 +237,18 @@ public class Player : MonoBehaviour
     {
         if (unitcard.EnergyCost <= CurrentEnergy)
         {
-            Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
-            unit.MyTeam = MyTeam;
-            RestEnergy(unitcard.EnergyCost);
-            GameMng.MT.AddDeploys(1);
+            if (unitcard as UnitCard != null)
+            {
+                Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
+                unit.MyTeam = MyTeam;
+                RestEnergy(unitcard.EnergyCost);
+                GameMng.MT.AddDeploys(1);
+            } else
+            {
+                Spell spell = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Spell>();
+                spell.MyTeam = MyTeam;
+                RestEnergy(unitcard.EnergyCost);
+            }
         }
     }
 }

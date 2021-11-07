@@ -9,6 +9,13 @@ public enum Team
     Red
 }
 
+public enum TypeDmg
+{
+    Normal,
+    Direct,
+    Shield
+}
+
 public class Unit : MonoBehaviour
 {
     protected int PlayerId = 1;
@@ -138,7 +145,7 @@ public class Unit : MonoBehaviour
         }
     }
 
-    public void AddDmg(int dmg)
+    public void AddDmg(int dmg, TypeDmg typeDmg)
     {
         if (IsDeath() || !InControl())
             return;
@@ -148,7 +155,7 @@ public class Unit : MonoBehaviour
 
         int DirectDmg = 0;
 
-        if (Shield > 0)
+        if (Shield > 0 && typeDmg != TypeDmg.Direct)
         {
             Shield -= dmg;
             if (Shield < 0)
@@ -158,7 +165,7 @@ public class Unit : MonoBehaviour
                 Shield = 0;
             }
             UI.SetShieldBar((float)Shield / (float)MaxShield);
-        } else
+        } else if (typeDmg != TypeDmg.Shield)
         {
             HitPoints -= dmg;
             DirectDmg += dmg;
@@ -176,6 +183,11 @@ public class Unit : MonoBehaviour
         }
 
         UI.SetHPBar((float)HitPoints / (float)MaxHp);
+    }
+
+    public void AddDmg(int dmg)
+    {
+        AddDmg(dmg, TypeDmg.Normal);
     }
 
     protected virtual void Die()

@@ -8,9 +8,13 @@ using Newtonsoft.Json;
 
 public class UIMainMenu : MonoBehaviour
 {
+    public static UIMainMenu Menu;
+
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
+
+    public UICollection Collection;
 
     public User PlayerUser;
     public UserProgress PlayerProgress;
@@ -25,6 +29,8 @@ public class UIMainMenu : MonoBehaviour
 
     private void Awake()
     {
+        Menu = this;
+
         SaveData.LoadGameConfig();
 
         LoginPanel.SetActive(true);
