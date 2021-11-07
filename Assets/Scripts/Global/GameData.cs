@@ -66,7 +66,7 @@ public static class GameData
     {
         if (PlayerUser == null)
         {
-            PlayerUser = new User() {NikeName = "Player"};
+            PlayerUser = new User() {NikeName = "Player", Avatar = 1};
         }
 
         return PlayerUser;
@@ -98,7 +98,7 @@ public static class GameData
     {
         if (PlayerCharacter == null)
         {
-            PlayerCharacter = new NFTsCharacter() { Name = "Sotzeer" };
+            PlayerCharacter = new NFTsCharacter() { Name = "Sotzeer", Icon = "Character_1" };
         }
 
         return PlayerCharacter;

@@ -38,7 +38,7 @@ public class UIMainMenu : MonoBehaviour
 
         GameData.DebugMode = false;
 #if UNITY_EDITOR
-        GameData.DebugMode = true;
+        GameData.DebugMode = false;
 #endif
 
         if (GameData.DebugMode)
@@ -77,6 +77,10 @@ public class UIMainMenu : MonoBehaviour
     {
         PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
         GameData.SetUser(PlayerUser);
+        PlayerProgress = GameData.GetUserProgress();
+        PlayerCollection = GameData.GetUserCollection();
+        PlayerCollection.AddUnitsDefault();
+        PlayerCharacter = GameData.GetUserCharacter();
         LoginPanel.SetActive(false);
         MenuPanel.SetActive(true);
     }
@@ -115,7 +119,12 @@ public class UIMainMenu : MonoBehaviour
 
     public void GoLoginPage()
     {
+#if UNITY_EDITOR
+        User user = new User() { NikeName = "Player", Avatar = 1 };
+        SetPlayerData(JsonConvert.SerializeObject(user));
+#else
         Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
+#endif
     }
 
     public void ChangeLang(int lang)
