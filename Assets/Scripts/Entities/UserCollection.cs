@@ -25,7 +25,7 @@ public class UserCollection
             };
             Characters.Add(default_character);
             GameData.SetUserCharacter(default_character);
-            for(int i = 1; i<11; i++)
+            for(int i = 1; i<=11; i++)
             {
                 Cards.Add(new NFTsUnit()
                 {
