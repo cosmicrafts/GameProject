@@ -15,6 +15,8 @@ public static class GameData
 
     public static bool DebugMode = false;
 
+    public static bool DataIsInit = false;
+
     static Config config;
 
     static User PlayerUser;

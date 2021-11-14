@@ -29,7 +29,7 @@ public class UICardDetail : UICard
         Txt_Name.text = data.Name;
         Txt_Cost.text = data.EnergyCost.ToString();
         Txt_Rarity.text = data.Rarity.ToString();
-        Txt_Desc.text = Lang.GetText(data.KeyId);
+        //Txt_Desc.text = Lang.GetText(data.KeyId);
 
         if (CurrentObjPrev != null)
         {

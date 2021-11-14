@@ -36,9 +36,10 @@ public class UIMainMenu : MonoBehaviour
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
+        GameData.DataIsInit = false;
         GameData.DebugMode = false;
 #if UNITY_EDITOR
-        GameData.DebugMode = false;
+        GameData.DebugMode = true;
 #endif
 
         if (GameData.DebugMode)
@@ -75,6 +76,11 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetPlayerData(string jsonData)
     {
+        if (GameData.DataIsInit)
+        {
+            return;
+        }
+        GameData.DataIsInit = true;
         PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
         GameData.SetUser(PlayerUser);
         PlayerProgress = GameData.GetUserProgress();

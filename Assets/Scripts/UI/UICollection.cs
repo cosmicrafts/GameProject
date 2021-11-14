@@ -96,7 +96,10 @@ public class UICollection : MonoBehaviour
 
         CardCollection.gameObject.SetActive(false);
 
-        SelectCard(AllCards[0]);
+        if (AllCards.Count > 0)
+        {
+            SelectCard(AllCards[0]);
+        }
     }
 
     public void SelectCard(UICard card)
