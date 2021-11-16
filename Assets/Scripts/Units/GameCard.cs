@@ -2,11 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum CardType
+{
+    Unit,
+    Spell
+}
+
 public class GameCard : MonoBehaviour
 {
+    public string NftsKey;
+
     public int EnergyCost;
 
     public Sprite Icon;
 
-    public GameObject UnitMesh;
+    public CardType cardType;
 }

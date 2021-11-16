@@ -54,6 +54,22 @@ public class Ship : Unit
         Move();
     }
 
+    protected override void FixedUpdate()
+    {
+        if (MyRb.velocity.magnitude > MaxSpeed+1f)
+        {
+            MyRb.velocity = MyRb.velocity.normalized * (MaxSpeed + 1f);
+        }
+        if (MyRb.angularVelocity.magnitude > 0.5f)
+        {
+            MyRb.angularVelocity = Vector3.zero;
+        }
+        if (transform.rotation.x != 0f || transform.rotation.y != 0f)
+        {
+            transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+        }
+    }
+
     void Move()
     {
         if (IsDeath())
@@ -176,6 +192,7 @@ public class Ship : Unit
     {
         base.Die();
         MySt.enabled = false;
+        MainThruster.SetActive(false);
         float AngleDeathRot = CMath.AngleBetweenVector2(LastImpact, transform.position);
 
         float z = Mathf.Sin(AngleDeathRot * Mathf.Deg2Rad);

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIGameMng : MonoBehaviour
@@ -18,8 +16,7 @@ public class UIGameMng : MonoBehaviour
     public Text EnergyLabel;
     public Image EnergyBar;
 
-    public Text Txt_PlayerName;
-    public Text Txt_WalletId;
+    public GameObject AreaDeploy;
 
     public Text MTxtEnergyUsed;
     public Text MTxtEnergyGenerated;
@@ -40,7 +37,7 @@ public class UIGameMng : MonoBehaviour
 
     private void Start()
     {
-
+        
     }
 
     public void SetGameOver(Team winner)
@@ -74,6 +71,21 @@ public class UIGameMng : MonoBehaviour
     public void UpdateTimeOut(string newtime)
     {
         TimeOut.text = newtime;
+    }
+
+    public void SelectCard(int idc)
+    {
+        UIDeck[idc].SpIcon.color = Color.green;
+        AreaDeploy.SetActive(true);
+    }
+
+    public void DeselectCards()
+    {
+        foreach (UIGameCard card in UIDeck)
+        {
+            card.SpIcon.color = Color.white;
+        }
+        AreaDeploy.SetActive(false);
     }
 
     public void UpdateEnergy(float energy, float max)

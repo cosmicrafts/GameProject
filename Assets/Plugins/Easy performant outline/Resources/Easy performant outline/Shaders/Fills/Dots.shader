@@ -110,7 +110,7 @@
             half4 frag (v2f i) : SV_Target
             {
 #if USE_CUTOUT
-                clip(tex2D(_CutoutTexture, i.uv).a - _CutoutThreshold);
+                //clip(tex2D(_CutoutTexture, i.uv).a - _CutoutThreshold);
 #endif
                 half3 screenPos = i.screenPos.xyz / i.screenPos.w;
                 

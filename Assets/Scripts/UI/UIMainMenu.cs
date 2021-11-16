@@ -8,9 +8,18 @@ using Newtonsoft.Json;
 
 public class UIMainMenu : MonoBehaviour
 {
+    public static UIMainMenu Menu;
+
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
+
+    public UICollection Collection;
+
+    public User PlayerUser;
+    public UserProgress PlayerProgress;
+    public UserCollection PlayerCollection;
+    public NFTsCharacter PlayerCharacter;
 
     //TimeSpan TimeMatch;
     //DateTime StartTime;
@@ -20,11 +29,14 @@ public class UIMainMenu : MonoBehaviour
 
     private void Awake()
     {
+        Menu = this;
+
         SaveData.LoadGameConfig();
 
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
+        GameData.DataIsInit = false;
         GameData.DebugMode = false;
 #if UNITY_EDITOR
         GameData.DebugMode = true;
@@ -32,7 +44,10 @@ public class UIMainMenu : MonoBehaviour
 
         if (GameData.DebugMode)
         {
-            GameData.PlayerUser = new User() { NikeName = "Player", WalletId = "SomeWalletId" };
+            PlayerUser = GameData.GetUserData();
+            PlayerProgress = GameData.GetUserProgress();
+            PlayerCollection = GameData.GetUserCollection();
+            PlayerCharacter = GameData.GetUserCharacter();
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
         }
@@ -44,7 +59,7 @@ public class UIMainMenu : MonoBehaviour
         GameData.CurrentMatch = Match.none;
         //TimeMatch = new TimeSpan(0, 0, 5);
 
-        if (GameData.PlayerUser != null)
+        if (GameData.UserIsInit())
         {
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
@@ -61,7 +76,17 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetPlayerData(string jsonData)
     {
-        GameData.PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
+        if (GameData.DataIsInit)
+        {
+            return;
+        }
+        GameData.DataIsInit = true;
+        PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
+        GameData.SetUser(PlayerUser);
+        PlayerProgress = GameData.GetUserProgress();
+        PlayerCollection = GameData.GetUserCollection();
+        PlayerCollection.AddUnitsDefault();
+        PlayerCharacter = GameData.GetUserCharacter();
         LoginPanel.SetActive(false);
         MenuPanel.SetActive(true);
     }
@@ -73,7 +98,7 @@ public class UIMainMenu : MonoBehaviour
             return;
         }
 
-        GameData.PlayerUser.FirstGame = false;
+        PlayerUser.FirstGame = false;
         GameData.CurrentMatch = Match.bots;
         
         MenuPanel.SetActive(false);
@@ -89,7 +114,7 @@ public class UIMainMenu : MonoBehaviour
             return;
         }
 
-        GameData.PlayerUser.FirstGame = true;
+        PlayerUser.FirstGame = true;
         GameData.CurrentMatch = Match.tutorial;
 
         MenuPanel.SetActive(false);
@@ -100,7 +125,12 @@ public class UIMainMenu : MonoBehaviour
 
     public void GoLoginPage()
     {
+#if UNITY_EDITOR
+        User user = new User() { NikeName = "Player", Avatar = 1 };
+        SetPlayerData(JsonConvert.SerializeObject(user));
+#else
         Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
+#endif
     }
 
     public void ChangeLang(int lang)

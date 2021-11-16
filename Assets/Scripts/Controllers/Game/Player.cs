@@ -19,7 +19,9 @@ public class Player : MonoBehaviour
     GameCard[] GameCards;
     Mesh[] UnitsMeshs;
     Material[] UnitMaterials;
+    GameObject[] SpellPreviews;
     GameCard DragingCard;
+    GameCard SelectedCard;
 
     [Range(0, 99)]
     public float CurrentEnergy = 5;
@@ -43,9 +45,33 @@ public class Player : MonoBehaviour
         {
             Debug.LogError("Size of deck must equals 8");
             DeckUnits = new GameObject[8];
+            return;
+        }
+
+        if (GameData.CurrentMatch != Match.tutorial)
+        {
+            GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
+            if (Character != null)
+            {
+                Instantiate(Character, transform);
+            }
+
+            List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;
+
+            if (CollectionDeck != null)
+            {
+                if (CollectionDeck.Count == 8)
+                {
+                    for (int i = 0; i < 8; i++)
+                    {
+                        DeckUnits[i] = ResourcesServices.LoadCardPrefab(CollectionDeck[i].KeyId, CollectionDeck[i] as NFTsSpell != null);
+                    }
+                }
+            }
         }
 
         GameCards = new GameCard[8];
+        SpellPreviews = new GameObject[8];
         UnitsMeshs = new Mesh[8];
         UnitMaterials = new Material[8];
 
@@ -54,8 +80,18 @@ public class Player : MonoBehaviour
             if (DeckUnits[i] != null)
             {
                 GameCards[i] = DeckUnits[i].GetComponent<GameCard>();
-                UnitsMeshs[i] = GameCards[i].UnitMesh.GetComponent<MeshFilter>().sharedMesh;
-                UnitMaterials[i] = GameCards[i].UnitMesh.GetComponent<MeshRenderer>().sharedMaterial;
+
+                if (GameCards[i].cardType == CardType.Spell)
+                {
+                    SpellCard spell = GameCards[i] as SpellCard;
+                    SpellPreviews[i] = spell.PreviewEffect;
+
+                } else if (GameCards[i].cardType == CardType.Unit)
+                {
+                    UnitCard unit = GameCards[i] as UnitCard;
+                    UnitsMeshs[i] = unit.UnitMesh.GetComponent<MeshFilter>().sharedMesh;
+                    UnitMaterials[i] = unit.UnitMesh.GetComponent<MeshRenderer>().sharedMaterial;
+                }   
             }
         }
 
@@ -72,11 +108,30 @@ public class Player : MonoBehaviour
         AddEnergy(Time.deltaTime * SpeedEnergy);
     }
 
-    private void FixedUpdate()
+    public void SelectCard(int idu)
     {
-        if (UnitDrag.gameObject.activeSelf && DragingCard != null)
+        if (!InControl)
         {
-            UnitDrag.transform.position = CMath.GetMouseWorldPos();
+            return;
+        }
+
+        if (SelectedCard == GameCards[idu])
+        {
+            SelectedCard = null;
+            GameMng.UI.DeselectCards();
+            UnitDrag.gameObject.SetActive(false);
+        } else
+        {
+            SelectedCard = GameCards[idu];
+            GameMng.UI.SelectCard(idu);
+            if (DragingCard.cardType == CardType.Spell)
+            {
+                PrepareDeploy(SpellPreviews[idu], SelectedCard.EnergyCost);
+            }
+            else if (DragingCard.cardType == CardType.Unit)
+            {
+                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.EnergyCost);
+            }
         }
     }
 
@@ -88,9 +143,21 @@ public class Player : MonoBehaviour
         }
 
         DragingCard = GameCards[idu];
-        UnitDrag.gameObject.SetActive(true);
-        UnitDrag.SetMeshAndTexture(UnitsMeshs[idu], UnitMaterials[idu]);
-        UnitDrag.transform.position = CMath.GetMouseWorldPos();
+
+        if (SelectedCard != null && SelectedCard != DragingCard)
+        {
+            SelectedCard = null;
+            GameMng.UI.DeselectCards();
+        }
+
+        if (DragingCard.cardType == CardType.Spell)
+        {
+            PrepareDeploy(SpellPreviews[idu], DragingCard.EnergyCost);
+        } else if (DragingCard.cardType == CardType.Unit)
+        {
+            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.EnergyCost);
+        }
+        
     }
 
     public void DropDeckUnit()
@@ -100,16 +167,15 @@ public class Player : MonoBehaviour
             return;
         }
 
-        if (DragingCard.EnergyCost <= CurrentEnergy && UnitDrag.IsValid())
+        if (UnitDrag.IsValid() && (DragingCard != null || SelectedCard != null))
         {
-            Unit unit = Instantiate(DragingCard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
-            unit.MyTeam = MyTeam;
-            RestEnergy(DragingCard.EnergyCost);
-            GameMng.MT.AddDeploys(1);
+            DeplyUnit(DragingCard == null ? SelectedCard : DragingCard);
         }
 
         UnitDrag.gameObject.SetActive(false);
         DragingCard = null;
+        SelectedCard = null;
+        GameMng.UI.DeselectCards();
     }
 
     public void SetInControl(bool incontrol)
@@ -144,8 +210,45 @@ public class Player : MonoBehaviour
         GameMng.UI.UpdateEnergy(CurrentEnergy, MaxEnergy);
     }
 
-    public bool IsDraging()
+    public bool IsPreparingDeploy()
     {
-        return DragingCard != null;
+        return DragingCard != null || SelectedCard != null;
+    }
+
+    public void PrepareDeploy(Mesh mesh, Material mat, float cost)
+    {
+        UnitDrag.gameObject.SetActive(true);
+        UnitDrag.setMeshActive(true);
+        UnitDrag.SetMeshAndTexture(mesh, mat);
+        UnitDrag.transform.position = CMath.GetMouseWorldPos();
+        UnitDrag.TargetCost = cost;
+    }
+
+    public void PrepareDeploy(GameObject preview, float cost)
+    {
+        UnitDrag.gameObject.SetActive(true);
+        UnitDrag.setMeshActive(false);
+        UnitDrag.CreatePreviewObj(preview);
+        UnitDrag.transform.position = CMath.GetMouseWorldPos();
+        UnitDrag.TargetCost = cost;
+    }
+
+    public void DeplyUnit(GameCard unitcard)
+    {
+        if (unitcard.EnergyCost <= CurrentEnergy)
+        {
+            if (unitcard as UnitCard != null)
+            {
+                Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
+                unit.MyTeam = MyTeam;
+                RestEnergy(unitcard.EnergyCost);
+                GameMng.MT.AddDeploys(1);
+            } else
+            {
+                Spell spell = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Spell>();
+                spell.MyTeam = MyTeam;
+                RestEnergy(unitcard.EnergyCost);
+            }
+        }
     }
 }

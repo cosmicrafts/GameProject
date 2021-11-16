@@ -17,6 +17,8 @@ public class User
 
     public string PassWord { get; set; }
 
+    public int Avatar { get; set; }
+
     public string Token { get; set; }
 
     public string Email { get; set; }
