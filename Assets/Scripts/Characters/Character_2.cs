@@ -4,15 +4,9 @@ using UnityEngine;
 
 public class Character_2 : GameCharacter
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void DeployUnit(Unit unit)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.DeployUnit(unit);
+        unit.ShieldDelay *= 0.75f;
     }
 }

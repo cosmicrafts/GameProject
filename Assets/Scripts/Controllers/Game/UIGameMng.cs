@@ -16,6 +16,8 @@ public class UIGameMng : MonoBehaviour
     public Text EnergyLabel;
     public Image EnergyBar;
 
+    public Image PlayerCharacter;
+
     public GameObject AreaDeploy;
 
     public Text MTxtEnergyUsed;
@@ -112,5 +114,11 @@ public class UIGameMng : MonoBehaviour
         MTxtSecRemaining.text = GameMng.MT.GetSecRemaining().ToString()+" s";
 
         MTxtScore.text = GameMng.MT.GetScore().ToString();
+    }
+
+    public void SetPlayerCharacter(Sprite icon)
+    {
+        PlayerCharacter.gameObject.SetActive(true);
+        PlayerCharacter.sprite = icon;
     }
 }

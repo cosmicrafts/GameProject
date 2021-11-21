@@ -137,9 +137,6 @@ public class UIMainMenu : MonoBehaviour
 
     public void GoLoginPage()
     {
-        User test_user = new User() { NikeName = "Player", Avatar = 1 };
-        SetPlayerData(JsonConvert.SerializeObject(test_user));
-        return;
 #if UNITY_EDITOR
         User user = new User() { NikeName = "Player", Avatar = 1 };
         SetPlayerData(JsonConvert.SerializeObject(user));

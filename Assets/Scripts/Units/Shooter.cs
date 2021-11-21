@@ -19,6 +19,9 @@ public class Shooter : MonoBehaviour
     [Range(1,99)]
     public float BulletSpeed = 10f;
 
+    [Range(1, 99)]
+    public int BulletDamage = 1;
+
     public bool RotateToEnemy = true;
 
     public bool StopToAttack = true;
@@ -75,6 +78,7 @@ public class Shooter : MonoBehaviour
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.Target = Target.gameObject;
                     bullet.Speed = BulletSpeed;
+                    bullet.Dmg = BulletDamage;
                     MuzzleFlash[i].Clear();
                     MuzzleFlash[i].Play();
                 }

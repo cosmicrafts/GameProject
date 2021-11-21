@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Character_1 : GameCharacter
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void DeployUnit(Unit unit)
     {
-        GameMng.P.SpeedEnergy = GameMng.P.SpeedEnergy * 1.5f;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.DeployUnit(unit);
+        Shooter shooter = unit.GetComponent<Shooter>();
+        if (shooter != null)
+        {
+            shooter.BulletDamage = (int)((float)shooter.BulletDamage * 0.25f);
+            shooter.CoolDown *= 0.75f;
+        }
+        Ship ship = unit.GetComponent<Ship>();
+        if (ship != null)
+        {
+            ship.MaxSpeed *= 1.25f;
+        }
     }
 }

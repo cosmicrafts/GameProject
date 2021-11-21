@@ -279,6 +279,11 @@ public class Unit : MonoBehaviour
         return MaxShield;
     }
 
+    public void SetMaxShield(int maxshield)
+    {
+        MaxShield = maxshield;
+    }
+
     public int GetMaxHitPoints()
     {
         return MaxHp;

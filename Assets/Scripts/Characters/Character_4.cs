@@ -10,9 +10,10 @@ public class Character_4 : GameCharacter
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void DeployUnit(Unit unit)
     {
-        
+        base.DeployUnit(unit);
+        unit.Shield += 1;
+        unit.SetMaxShield(unit.Shield);
     }
 }

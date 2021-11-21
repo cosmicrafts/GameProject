@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     GameObject[] SpellPreviews;
     GameCard DragingCard;
     GameCard SelectedCard;
+    GameCharacter MyCharacter;
 
     [Range(0, 99)]
     public float CurrentEnergy = 5;
@@ -53,7 +54,8 @@ public class Player : MonoBehaviour
             GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
             if (Character != null)
             {
-                Instantiate(Character, transform);
+                MyCharacter = Instantiate(Character, transform).GetComponent<GameCharacter>();
+                GameMng.UI.SetPlayerCharacter(ResourcesServices.LoadCharacterIcon(GameMng.PlayerCharacter.Icon));
             }
 
             List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;
@@ -241,12 +243,20 @@ public class Player : MonoBehaviour
             {
                 Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
                 unit.MyTeam = MyTeam;
+                if (MyCharacter != null)
+                {
+                    MyCharacter.DeployUnit(unit);
+                }
                 RestEnergy(unitcard.EnergyCost);
                 GameMng.MT.AddDeploys(1);
             } else
             {
                 Spell spell = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Spell>();
                 spell.MyTeam = MyTeam;
+                if (MyCharacter != null)
+                {
+                    MyCharacter.DeploySpell(spell);
+                }
                 RestEnergy(unitcard.EnergyCost);
             }
         }
