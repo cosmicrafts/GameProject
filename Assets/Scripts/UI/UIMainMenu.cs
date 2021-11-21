@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using System.Linq;
 
 public class UIMainMenu : MonoBehaviour
 {
@@ -13,6 +14,13 @@ public class UIMainMenu : MonoBehaviour
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
+
+    public GameObject MainMenu;
+    public GameObject CollectionMenu;
+    public GameObject CharactersMenu;
+
+    public GameObject PlayerDataComp;
+    public GameObject BackBtn;
 
     public UICollection Collection;
 
@@ -24,8 +32,12 @@ public class UIMainMenu : MonoBehaviour
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
+    public Text TopTitle;
     public Text StartCountDownText;
+    public Image GameTitle;
     public Image LocalGameLoadingBar;
+
+    List<UIPTxtInfo> UIPropertys;
 
     private void Awake()
     {
@@ -36,7 +48,6 @@ public class UIMainMenu : MonoBehaviour
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
-        GameData.DataIsInit = false;
         GameData.DebugMode = false;
 #if UNITY_EDITOR
         GameData.DebugMode = true;
@@ -47,6 +58,7 @@ public class UIMainMenu : MonoBehaviour
             PlayerUser = GameData.GetUserData();
             PlayerProgress = GameData.GetUserProgress();
             PlayerCollection = GameData.GetUserCollection();
+            PlayerCollection.AddUnitsDefault();
             PlayerCharacter = GameData.GetUserCharacter();
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
@@ -57,6 +69,11 @@ public class UIMainMenu : MonoBehaviour
     void Start()
     {
         GameData.CurrentMatch = Match.none;
+        UIPropertys = new List<UIPTxtInfo>();
+        foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
+        {
+            UIPropertys.Add(prop);
+        }
         //TimeMatch = new TimeSpan(0, 0, 5);
 
         if (GameData.UserIsInit())
@@ -76,11 +93,6 @@ public class UIMainMenu : MonoBehaviour
 
     public void SetPlayerData(string jsonData)
     {
-        if (GameData.DataIsInit)
-        {
-            return;
-        }
-        GameData.DataIsInit = true;
         PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
         GameData.SetUser(PlayerUser);
         PlayerProgress = GameData.GetUserProgress();
@@ -125,6 +137,9 @@ public class UIMainMenu : MonoBehaviour
 
     public void GoLoginPage()
     {
+        User test_user = new User() { NikeName = "Player", Avatar = 1 };
+        SetPlayerData(JsonConvert.SerializeObject(test_user));
+        return;
 #if UNITY_EDITOR
         User user = new User() { NikeName = "Player", Avatar = 1 };
         SetPlayerData(JsonConvert.SerializeObject(user));
@@ -146,6 +161,54 @@ public class UIMainMenu : MonoBehaviour
         {
             yield return null;
             LocalGameLoadingBar.fillAmount = loading.progress;
+        }
+    }
+
+    public void GoCollectionMenu()
+    {
+        MainMenu.SetActive(false);
+        CollectionMenu.SetActive(true);
+        BackBtn.SetActive(true);
+        TopTitle.text = Lang.GetText("mn_collection");
+        GameTitle.gameObject.SetActive(false);
+        PlayerDataComp.SetActive(false);
+    }
+
+    public void GoCharactersMenu()
+    {
+        MainMenu.SetActive(false);
+        CharactersMenu.SetActive(true);
+        BackBtn.SetActive(true);
+        TopTitle.text = Lang.GetText("mn_characters");
+        GameTitle.gameObject.SetActive(false);
+        PlayerDataComp.SetActive(false);
+    }
+
+    public void BackMainSection()
+    {
+        RefreshAllPropertys();
+        MainMenu.SetActive(true);
+        CollectionMenu.SetActive(false);
+        CharactersMenu.SetActive(false);
+        BackBtn.SetActive(false);
+        TopTitle.text = string.Empty;
+        GameTitle.gameObject.SetActive(true);
+        PlayerDataComp.SetActive(true);
+    }
+
+    public void RefreshProperty(PlayerProperty property)
+    {
+        foreach(UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property))
+        {
+            prop.LoadProperty();
+        }
+    }
+
+    public void RefreshAllPropertys()
+    {
+        foreach (UIPTxtInfo prop in UIPropertys)
+        {
+            prop.LoadProperty();
         }
     }
 }

@@ -19,6 +19,8 @@ public class UserCollection
 
     public void AddUnitsDefault()
     {
+        InitCollection();
+
         NFTsCharacter default_character = new NFTsCharacter()
         {
             KeyId = "Chr_1",
@@ -26,6 +28,24 @@ public class UserCollection
             Icon = "Character_1"
         };
         Characters.Add(default_character);
+        Characters.Add(new NFTsCharacter()
+        {
+            KeyId = "Chr_2",
+            Name = "Dofshlu",
+            Icon = "Character_2"
+        });
+        Characters.Add(new NFTsCharacter()
+        {
+            KeyId = "Chr_3",
+            Name = "Plagnor",
+            Icon = "Character_3"
+        });
+        Characters.Add(new NFTsCharacter()
+        {
+            KeyId = "Chr_4",
+            Name = "Sotzeer",
+            Icon = "Character_4"
+        });
         GameData.SetUserCharacter(default_character);
         for (int i = 1; i <= 11; i++)
         {
