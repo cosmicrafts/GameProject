@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
     protected int PlayerId = 1;
+    protected bool IsFake = false;
     public Team MyTeam;
 
     [Range(0, 300)]
@@ -22,5 +21,10 @@ public class Spell : MonoBehaviour
     protected virtual void Update()
     {
         
+    }
+
+    public void setHasFake()
+    {
+        IsFake = true;
     }
 }

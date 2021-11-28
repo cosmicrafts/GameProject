@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 public enum Match
 {
@@ -12,6 +13,8 @@ public enum Match
 public static class GameData
 {
     public static Match CurrentMatch = Match.none;
+
+    public static bool ImMaster = false;
 
     public static bool DebugMode = false;
 
@@ -121,6 +124,11 @@ public static class GameData
     {
         PlayerUser = null;
         PlayerProgress = null;
+    }
+
+    public static string GetVersion()
+    {
+        return Application.version;
     }
 
     [DllImport("__Internal")]

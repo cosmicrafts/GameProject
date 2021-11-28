@@ -241,8 +241,7 @@ public class Player : MonoBehaviour
         {
             if (unitcard as UnitCard != null)
             {
-                Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
-                unit.MyTeam = MyTeam;
+                Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam);
                 if (MyCharacter != null)
                 {
                     MyCharacter.DeployUnit(unit);
@@ -251,8 +250,7 @@ public class Player : MonoBehaviour
                 GameMng.MT.AddDeploys(1);
             } else
             {
-                Spell spell = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Spell>();
-                spell.MyTeam = MyTeam;
+                Spell spell = GameMng.GM.CreateSpell(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam);
                 if (MyCharacter != null)
                 {
                     MyCharacter.DeploySpell(spell);

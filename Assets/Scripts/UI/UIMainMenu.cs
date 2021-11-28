@@ -14,10 +14,12 @@ public class UIMainMenu : MonoBehaviour
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
+    public GameObject MultiPanel;
 
     public GameObject MainMenu;
     public GameObject CollectionMenu;
     public GameObject CharactersMenu;
+    public GameObject GameModesMenu;
 
     public GameObject PlayerDataComp;
     public GameObject BackBtn;
@@ -33,7 +35,6 @@ public class UIMainMenu : MonoBehaviour
     //DateTime StartTime;
 
     public Text TopTitle;
-    public Text StartCountDownText;
     public Image GameTitle;
     public Image LocalGameLoadingBar;
 
@@ -85,10 +86,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (GameData.CurrentMatch == Match.multi)
-        {
-            //StartCountDownText.text = TimeMatch.Add(StartTime - DateTime.Now).ToString(@"%s");
-        }
+
     }
 
     public void SetPlayerData(string jsonData)
@@ -103,7 +101,7 @@ public class UIMainMenu : MonoBehaviour
         MenuPanel.SetActive(true);
     }
 
-    public void PlayButton()
+    public void PlayIAButton()
     {
         if (GameData.CurrentMatch != Match.none)
         {
@@ -133,6 +131,20 @@ public class UIMainMenu : MonoBehaviour
         MatchPanel.SetActive(true);
 
         StartCoroutine(LoadLocalGame());
+    }
+
+    public void PlayMultiButton()
+    {
+        if (GameData.CurrentMatch != Match.none)
+        {
+            return;
+        }
+
+        PlayerUser.FirstGame = true;
+        GameData.CurrentMatch = Match.multi;
+
+        MenuPanel.SetActive(false);
+        MultiPanel.SetActive(true);
     }
 
     public void GoLoginPage()
@@ -181,12 +193,23 @@ public class UIMainMenu : MonoBehaviour
         PlayerDataComp.SetActive(false);
     }
 
+    public void GoGamesModesMenu()
+    {
+        MainMenu.SetActive(false);
+        GameModesMenu.SetActive(true);
+        BackBtn.SetActive(true);
+        TopTitle.text = Lang.GetText("mn_gamemodes");
+        GameTitle.gameObject.SetActive(false);
+        PlayerDataComp.SetActive(false);
+    }
+
     public void BackMainSection()
     {
         RefreshAllPropertys();
         MainMenu.SetActive(true);
         CollectionMenu.SetActive(false);
         CharactersMenu.SetActive(false);
+        GameModesMenu.SetActive(false);
         BackBtn.SetActive(false);
         TopTitle.text = string.Empty;
         GameTitle.gameObject.SetActive(true);

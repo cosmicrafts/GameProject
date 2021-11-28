@@ -24,6 +24,8 @@ public class GameMng : MonoBehaviour
     public Unit[] Targets;
 
     List<Unit> Units;
+    int IdCounter;
+    NetGamePack GameNetPack;
 
     public float MapWidth = 60;
     public float MapHeigth = 48;
@@ -57,6 +59,8 @@ public class GameMng : MonoBehaviour
         PlayerProgress = GameData.GetUserProgress();
         PlayerCollection = GameData.GetUserCollection();
         PlayerCharacter = GameData.GetUserCharacter();
+        GameNetPack = new NetGamePack();
+        IdCounter = 0;
     }
 
     // Start is called before the first frame update
@@ -179,6 +183,44 @@ public class GameMng : MonoBehaviour
         return result;
     }
 
+    public Unit CreateUnit(GameObject obj, Vector3 position, Team team)
+    {
+        Unit unit = Instantiate(obj, position, Quaternion.identity).GetComponent<Unit>();
+        unit.MyTeam = team;
+        unit.setId(GenerateUnitId());
+        return unit;
+    }
+
+    public Unit CreateFakeUnit(string nftKey, int Id, float x, float z, int team)
+    {
+        GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, false);
+        if (obj == null)
+            return null;
+        Unit unit = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity).GetComponent<Unit>();
+        unit.MyTeam = (Team)team;
+        unit.setId(Id);
+        unit.setHasFake();
+        return unit;
+    }
+
+    public Spell CreateSpell(GameObject obj, Vector3 position, Team team)
+    {
+        Spell spell = Instantiate(obj, position, Quaternion.identity).GetComponent<Spell>();
+        spell.MyTeam = team;
+        return spell;
+    }
+
+    public Spell CreateFakeSpell(string nftKey, float x, float z, int team)
+    {
+        GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, true);
+        if (obj == null)
+            return null;
+        Spell spell = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity).GetComponent<Spell>();
+        spell.MyTeam = (Team)team;
+        spell.setHasFake();
+        return spell;
+    }
+
     public void AddUnit(Unit unit)
     {
         if (!Units.Contains(unit))
@@ -224,25 +266,31 @@ public class GameMng : MonoBehaviour
         {
             yield return dnet;
 
-            try
+            if (GameData.ImMaster) //Master send data
             {
-                GameNetwork.SendJson(JsonConvert.SerializeObject(new
+                GameNetPack.Units = Units.Select(s => new NetUnitPack
                 {
-                    id = 15,
-                    type = 1,
-                    action = 5,
-                    date= DateTime.Now,
-                    param = new
-                    {
-                        x = 10,
-                        y = 0,
-                        rot = 60,
-                    }
-                }));
-            }
-            catch (Exception e)
+                    id = s.getId(),
+                    pos_x = s.transform.position.x,
+                    pos_z = s.transform.position.z,
+                    rot_y = s.transform.rotation.y,
+                    max_hp = s.GetMaxHitPoints(),
+                    max_sh = s.GetMaxShield(),
+                    hp = s.HitPoints,
+                    sh = s.Shield,
+                }).ToList();
+
+                try
+                {
+                    GameNetwork.SendJson(JsonConvert.SerializeObject(GameNetPack));
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError(e.Message);
+                }
+            } else //Cliente get data
             {
-                Debug.LogError(e.Message);
+
             }
         }
     }
@@ -250,5 +298,11 @@ public class GameMng : MonoBehaviour
     public void GetJson(string json)
     {
         Debug.Log(json);
+    }
+
+    public int GenerateUnitId()
+    {
+        IdCounter++;
+        return IdCounter;
     }
 }

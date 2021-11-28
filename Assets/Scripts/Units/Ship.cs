@@ -9,7 +9,6 @@ public class Ship : Unit
 {
     public SteeringRig MySt;
 
-    float Direction = 0;
     float Speed = 0f;
 
     [Range(0,99)]
@@ -118,25 +117,6 @@ public class Ship : Unit
             MySt.MoveForce = 0f;
             Speed = 0f;
         }
-
-        //if (CanMove)
-        //{
-        //    if (getVelocity() < MaxSpeed)
-        //    {
-        //        addVelocity(Aceleration * Time.deltaTime);
-        //    }
-        //}
-        //else
-        //{
-        //    if (getVelocity() > 0f)
-        //    {
-        //        addVelocity(DragSpeed * Time.deltaTime * -1f);
-        //    }
-        //    else
-        //    {
-        //        setVelocity(0f);
-        //    }
-        //}
     }
 
     public void ResetDestination()
@@ -152,35 +132,6 @@ public class Ship : Unit
     {
         MySt.Destination = des;
         MySt.StoppingDistance = stopdistance;
-    }
-
-    void setVelocity(float velocity)
-    {
-        float x = Mathf.Sin(Direction * Mathf.Deg2Rad);
-        float z = Mathf.Cos(Direction * Mathf.Deg2Rad);
-        MyRb.velocity = new Vector3(x * velocity, 0, z * velocity);
-    }
-
-    void setDirection(float direction)
-    {
-        Direction = direction;
-        setVelocity(getVelocity());
-    }
-
-    void setVelocityDirection(float velocity, float direction)
-    {
-        Direction = direction;
-        setVelocity(velocity);
-    }
-
-    void addVelocity(float amount)
-    {
-        setVelocity(getVelocity() + amount);
-    }
-
-    float getVelocity()
-    {
-        return MyRb.velocity.magnitude;
     }
 
     protected override void CastComplete()

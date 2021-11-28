@@ -18,7 +18,9 @@ public enum TypeDmg
 
 public class Unit : MonoBehaviour
 {
+    protected int Id;
     protected int PlayerId = 1;
+    protected bool IsFake = false;
     public Team MyTeam;
 
     [Range(1,9999)]
@@ -86,6 +88,10 @@ public class Unit : MonoBehaviour
         SA.SetActive(IsMyTeam(GameMng.P.MyTeam) && SpawnAreaSize > 0f);
         Destroy(Portal, 3f);
         GameMng.GM.AddUnit(this);
+        if (IsFake)
+        {
+            InitHasFake();
+        }
     }
 
     // Update is called once per frame
@@ -264,9 +270,40 @@ public class Unit : MonoBehaviour
         LastImpact = position;
     }
 
+    public void setId(int id)
+    {
+        Id = id;
+    }
+
+    public int getId()
+    {
+        return Id;
+    }
+
     public int GetPlayerId()
     {
         return PlayerId;
+    }
+
+    public void setHasFake()
+    {
+        IsFake = true;
+    }
+
+    void InitHasFake()
+    {
+        TrigerBase.enabled = false;
+        SolidBase.enabled = false;
+    }
+
+    public void FakeSync(NetUnitPack data)
+    {
+        transform.position = new Vector3(data.pos_x, 0f, data.pos_z);
+        transform.rotation = Quaternion.Euler(0f, data.rot_y, 0f);
+        HitPoints = data.max_hp;
+        Shield = data.max_sh;
+        HitPoints = data.hp;
+        Shield = data.sh;
     }
 
     public Animator GetAnimator()
@@ -291,6 +328,6 @@ public class Unit : MonoBehaviour
 
     public bool InControl()
     {
-        return (!Disabled && Casting <= 0f);
+        return (!Disabled && Casting <= 0f && !IsFake);
     }
 }
