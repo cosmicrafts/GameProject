@@ -145,6 +145,7 @@ public class UIMainMenu : MonoBehaviour
 
         MenuPanel.SetActive(false);
         MultiPanel.SetActive(true);
+        MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
     }
 
     public void GoLoginPage()

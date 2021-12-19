@@ -25,7 +25,6 @@ public class GameMng : MonoBehaviour
 
     List<Unit> Units;
     int IdCounter;
-    NetGamePack GameNetPack;
 
     public float MapWidth = 60;
     public float MapHeigth = 48;
@@ -59,7 +58,6 @@ public class GameMng : MonoBehaviour
         PlayerProgress = GameData.GetUserProgress();
         PlayerCollection = GameData.GetUserCollection();
         PlayerCharacter = GameData.GetUserCharacter();
-        GameNetPack = new NetGamePack();
         IdCounter = 0;
     }
 
@@ -268,7 +266,7 @@ public class GameMng : MonoBehaviour
 
             if (GameData.ImMaster) //Master send data
             {
-                GameNetPack.Units = Units.Select(s => new NetUnitPack
+                List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
                 {
                     id = s.getId(),
                     pos_x = s.transform.position.x,
@@ -279,10 +277,11 @@ public class GameMng : MonoBehaviour
                     hp = s.HitPoints,
                     sh = s.Shield,
                 }).ToList();
+                GameNetwork.SetGameUnits(upack);
 
                 try
                 {
-                    GameNetwork.SendJson(JsonConvert.SerializeObject(GameNetPack));
+                    GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameData.MatchId);
                 }
                 catch (Exception e)
                 {
@@ -290,7 +289,7 @@ public class GameMng : MonoBehaviour
                 }
             } else //Cliente get data
             {
-
+                string data = GameNetwork.JSGetGameData(GameData.MatchId);
             }
         }
     }

@@ -49,7 +49,7 @@ public class GameMetrics : MonoBehaviour
         if (winner == GameMng.P.MyTeam && !GameMng.GM.IsGameTutorial())
         {
 #if UNITY_WEBGL
-            GameData.SaveScore(Score);
+            GameNetwork.JSSaveScore(Score);
 #endif
             Debug.Log("Save Score");
         }

@@ -3,14 +3,23 @@
   // the event listeners name and make sure the
   // parameters match as well.
 
-    SaveScore: function (score) {
-
+  JSSaveScore: function (score) {
         ReactUnityWebGL.SaveScore(score);
   },
 
-    SendJson: function (json) {
+  JSSendGameData: function (json, matchId) {
+        ReactUnityWebGL.SendGameData(Pointer_stringify(json), matchId);
+  },
 
-        ReactUnityWebGL.SendJson(Pointer_stringify(json));
-        console.log(Pointer_stringify(json));
+  JSGetGameData: function (matchId) {
+      return ReactUnityWebGL.GetGameData(matchId);
+  },
+
+  JSCreateGame: function (walletId) {
+    return ReactUnityWebGL.CreateGame(walletId);
+  },
+
+  JSSearchGame: function (walletId) {
+      return ReactUnityWebGL.SearchGame(walletId);
   },
 });

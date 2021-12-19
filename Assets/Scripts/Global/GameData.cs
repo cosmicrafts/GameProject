@@ -14,6 +14,8 @@ public static class GameData
 {
     public static Match CurrentMatch = Match.none;
 
+    public static int MatchId = 0;
+
     public static bool ImMaster = false;
 
     public static bool DebugMode = false;
@@ -130,7 +132,4 @@ public static class GameData
     {
         return Application.version;
     }
-
-    [DllImport("__Internal")]
-    public static extern void SaveScore(int score);
 }
