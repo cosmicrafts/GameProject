@@ -12,14 +12,14 @@
   },
 
   JSGetGameData: function (matchId) {
-      return ReactUnityWebGL.GetGameData(matchId);
+        ReactUnityWebGL.GetGameData(matchId);
   },
 
   JSCreateGame: function (walletId) {
-    return ReactUnityWebGL.CreateGame(walletId);
+        ReactUnityWebGL.CreateGame(walletId);
   },
 
   JSSearchGame: function (walletId) {
-      return ReactUnityWebGL.SearchGame(walletId);
+        ReactUnityWebGL.SearchGame(walletId);
   },
 });

@@ -6,9 +6,14 @@ public static class GameNetwork
 {
     static NetGamePack GameNetPack;
 
-    public static void InitGameNetwork()
+    public static void Start()
     {
         GameNetPack = new NetGamePack();
+    }
+
+    public static int GetId()
+    {
+        return GameNetPack.GameId;
     }
 
     public static void UpdateGameData(string json)
@@ -57,7 +62,7 @@ public static class GameNetwork
 
     public static bool GameRoomIsFull()
     {
-        return GameNetPack.ClientWalletId != null && GameNetPack.MasterWalletId != null;
+        return !string.IsNullOrEmpty(GameNetPack.ClientWalletId) && !string.IsNullOrEmpty(GameNetPack.MasterWalletId);
     }
 
     public static List<NetUnitPack> GetGameUnits()
@@ -72,11 +77,11 @@ public static class GameNetwork
     public static extern void JSSendGameData(string json, int matchId);
 
     [DllImport("__Internal")]
-    public static extern string JSGetGameData(int matchId);
+    public static extern void JSGetGameData(int matchId);
 
     [DllImport("__Internal")]
-    public static extern int JSCreateGame(string walletId);
+    public static extern void JSCreateGame(string walletId);
 
     [DllImport("__Internal")]
-    public static extern int JSSearchGame(string walletId);
+    public static extern void JSSearchGame(string walletId);
 }

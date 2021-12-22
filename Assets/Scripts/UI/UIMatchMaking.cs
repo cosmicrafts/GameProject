@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIMatchMaking : MonoBehaviour
@@ -11,7 +12,6 @@ public class UIMatchMaking : MonoBehaviour
     public GameObject MatchScreen;
 
     WaitForSeconds DeltaOne;
-    WaitForSeconds DeltaThree;
 
     public GameObject CancelButton;
     public GameObject GameFinded;
@@ -20,15 +20,18 @@ public class UIMatchMaking : MonoBehaviour
     public Text Txt_VsWalletId;
     public Text Txt_VsNikeName;
 
+    public Text Txt_CountDown;
+
     User MyUserData;
     User VsUserData;
     bool IsCanceled;
+
+    int CoutDown;
 
     // Start is called before the first frame update
     void Start()
     {
         DeltaOne = new WaitForSeconds(1f);
-        DeltaThree = new WaitForSeconds(3f);
         MyUserData = GameData.GetUserData();
     }
 
@@ -40,8 +43,9 @@ public class UIMatchMaking : MonoBehaviour
         CancelButton.SetActive(true);
         GameFinded.SetActive(false);
         SearchingFor.SetActive(true);
-        GameData.MatchId = 0;
+        GameNetwork.Start();
         IsCanceled = false;
+        CoutDown = 5;
         StartCoroutine(Searching());
     }
 
@@ -56,81 +60,56 @@ public class UIMatchMaking : MonoBehaviour
     void UpdateVsData()
     {
         VsUserData = GameNetwork.GetVsData();
-        Txt_VsWalletId.text = VsUserData.WalletId;
+        Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
+    }
+
+    public void GLGetICPData(string json)
+    {
+        if (IsCanceled)
+            return;
+        Debug.Log(json);
+        GameNetwork.UpdateGameData(json);
     }
 
     IEnumerator Searching()
     {
         //Find Match
         GameData.ImMaster = false;
-        GameData.MatchId = GameNetwork.JSSearchGame(MyUserData.WalletId);
-        yield return DeltaOne;
+        GameNetwork.JSSearchGame(MyUserData.WalletId);
+
+        //Wait for match
+        yield return new WaitUntil(() => GameNetwork.GetId() != 0);
 
         if (IsCanceled)
             yield return null;
-        //Check for results
-        if (GameData.MatchId == 0)
-        {
-            //New Match
-            StartCoroutine(Creating());
-            yield return null;
-        }
 
         //Join Match
-        Debug.Log($"Match: {GameData.MatchId}");
+        Debug.Log($"Match: {GameNetwork.GetId()}");
         CancelButton.SetActive(false);
         SearchingFor.SetActive(false);
         GameFinded.SetActive(true);
 
-        string json = GameNetwork.JSGetGameData(GameData.MatchId);
-        GameNetwork.UpdateGameData(json);
-        GameNetwork.SetClientData(MyUserData.WalletId, MyUserData.NikeName);
-        GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameData.MatchId);
+        //Wait for ready
+        yield return new WaitUntil(() => GameNetwork.GameRoomIsFull());
+
         UpdateVsData();
-        //Wait For Ready
-
-        yield return DeltaThree;
-        json = GameNetwork.JSGetGameData(GameData.MatchId);
-        GameNetwork.UpdateGameData(json);
-        if (GameNetwork.GetGameStatus() == NetGameStep.Ready)
-        {
-            SearchingScreen.SetActive(false);
-            MatchScreen.SetActive(true);
-        }
-    }
-
-    IEnumerator Creating()
-    {
-        GameData.ImMaster = true;
-        GameNetwork.InitGameNetwork();
-        GameNetwork.SetMasterData(MyUserData.WalletId, MyUserData.NikeName);
-        GameData.MatchId = GameNetwork.JSCreateGame(MyUserData.WalletId);
-        yield return new WaitUntil(() => GameData.MatchId != 0);
-        GameNetwork.SetGameStatus(NetGameStep.Searching);
-        GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameData.MatchId);
-
-        bool fullRoom = false;
-        while (!fullRoom)
-        {
-            yield return DeltaOne;
-            string json = GameNetwork.JSGetGameData(GameData.MatchId);
-            GameNetwork.UpdateGameData(json);
-            fullRoom = GameNetwork.GameRoomIsFull();
-        }
-        if (IsCanceled)
-            yield return null;
-
-        Debug.Log($"Match: {GameData.MatchId}");
-        CancelButton.SetActive(false);
-        SearchingFor.SetActive(false);
-        GameFinded.SetActive(true);
-
-        GameNetwork.SetGameStatus(NetGameStep.Ready);
-        GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameData.MatchId);
-
         SearchingScreen.SetActive(false);
         MatchScreen.SetActive(true);
-        UpdateVsData();
+        Txt_CountDown.text = CoutDown.ToString();
+
+        AsyncOperation loading = SceneManager.LoadSceneAsync(1);
+        loading.allowSceneActivation = false;
+        //Final Count Down
+        yield return DeltaOne;
+
+        while (CoutDown > 0)
+        {
+            CoutDown--;
+            Txt_CountDown.text = CoutDown.ToString();
+            yield return DeltaOne;
+        }
+        //Go Game
+        loading.allowSceneActivation = true;
     }
 }

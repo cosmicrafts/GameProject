@@ -3,14 +3,17 @@ using System.Collections.Generic;
 
 public enum NetGameStep
 {
-    Searching,
+    Waiting,
     Ready,
     InGame,
-    Results
+    Results,
+    End
 }
 
 public class NetGamePack
 {
+    public int GameId { get; set; }
+
     public int GameStep { get; set; }
 
     public string MasterPlayerName { get; set; }

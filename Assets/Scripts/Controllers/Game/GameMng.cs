@@ -281,7 +281,7 @@ public class GameMng : MonoBehaviour
 
                 try
                 {
-                    GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameData.MatchId);
+                    GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameNetwork.GetId());
                 }
                 catch (Exception e)
                 {
@@ -289,7 +289,7 @@ public class GameMng : MonoBehaviour
                 }
             } else //Cliente get data
             {
-                string data = GameNetwork.JSGetGameData(GameData.MatchId);
+                
             }
         }
     }

@@ -14,8 +14,6 @@ public static class GameData
 {
     public static Match CurrentMatch = Match.none;
 
-    public static int MatchId = 0;
-
     public static bool ImMaster = false;
 
     public static bool DebugMode = false;
