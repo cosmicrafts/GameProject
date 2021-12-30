@@ -19,11 +19,14 @@ public class UIMatchMaking : MonoBehaviour
 
     public Text Txt_VsWalletId;
     public Text Txt_VsNikeName;
+    public Text Txt_VsLevel;
+    public Image Txt_VsIcon;
+    public Image Txt_VsAvatar;
 
     public Text Txt_CountDown;
 
     User MyUserData;
-    User VsUserData;
+    UserGeneral VsUserData;
     bool IsCanceled;
 
     int CoutDown;
@@ -38,6 +41,21 @@ public class UIMatchMaking : MonoBehaviour
 
     public void StartSearch()
     {
+        if (GameData.DebugMode)
+        {
+            GameData.ImMaster = false;
+            GameData.SetVsUser(new UserGeneral()
+            {
+                NikeName = "Vs Player",
+                WalletId = "SomeWalletIdRandomNumbers",
+                Level = 23,
+                Xp = 175,
+                Avatar = 2,
+                Icon = "Character_1"
+            });
+            SceneManager.LoadScene(1);
+            return;
+        }
         SearchingScreen.SetActive(true);
         MatchScreen.SetActive(false);
         CancelButton.SetActive(true);
@@ -60,8 +78,17 @@ public class UIMatchMaking : MonoBehaviour
     void UpdateVsData()
     {
         VsUserData = GameNetwork.GetVsData();
+        UpdateUI_VSData();
+        GameData.SetVsUser(VsUserData);
+    }
+
+    void UpdateUI_VSData()
+    {
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
+        Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
+        Txt_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(VsUserData.Icon);
+        Txt_VsAvatar.sprite = ResourcesServices.LoadAvatarIcon(VsUserData.Avatar);
     }
 
     public void GLGetICPData(string json)
@@ -70,13 +97,14 @@ public class UIMatchMaking : MonoBehaviour
             return;
         Debug.Log(json);
         GameNetwork.UpdateGameData(json);
+        GameData.ImMaster = GameNetwork.GetMasterWalletId() == MyUserData.WalletId;
     }
 
     IEnumerator Searching()
     {
         //Find Match
-        GameData.ImMaster = false;
-        GameNetwork.JSSearchGame(MyUserData.WalletId);
+        string MyJsonProfile = JsonConvert.SerializeObject(GameData.BuildMyProfileHasVS());
+        GameNetwork.JSSearchGame(MyUserData.WalletId, MyJsonProfile);
 
         //Wait for match
         yield return new WaitUntil(() => GameNetwork.GetId() != 0);

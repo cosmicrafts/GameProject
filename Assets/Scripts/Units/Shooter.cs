@@ -61,13 +61,21 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (MyUnit.IsBaseStation && MyUnit.MyTeam == Team.Blue)
+        {
+            Debug.Log("test");
+        }
+
         if (MyUnit.IsDeath() || !CanAttack || !MyUnit.InControl())
             return;
 
-        if (RotateToEnemy && Target != null)
+        if (Target != null)
         {
-            var _direction = (Target.transform.position - transform.position).normalized;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_direction), Time.deltaTime * 3f);
+            if (RotateToEnemy)
+            {
+                var _direction = (Target.transform.position - transform.position).normalized;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_direction), Time.deltaTime * 3f);
+            }
 
             if (DelayShoot <= 0f)
             {

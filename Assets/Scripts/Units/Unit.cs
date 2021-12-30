@@ -19,8 +19,8 @@ public enum TypeDmg
 public class Unit : MonoBehaviour
 {
     protected int Id;
-    protected int PlayerId = 1;
     protected bool IsFake = false;
+    public int PlayerId = 1;
     public Team MyTeam;
 
     [Range(1,9999)]
@@ -155,7 +155,7 @@ public class Unit : MonoBehaviour
     {
         if (IsDeath() || !InControl())
             return;
-
+        
         ShieldLoad = ShieldDelay;
         ShieldCharge = 0f;
 

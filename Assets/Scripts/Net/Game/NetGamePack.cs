@@ -24,5 +24,17 @@ public class NetGamePack
 
     public string ClientWalletId { get; set; }
 
+    public int MasterLvl { get; set; }
+
+    public int ClientLvl { get; set; }
+
+    public int MasterAvatar { get; set; }
+
+    public int ClientAvatar { get; set; }
+
+    public string MasterIcon { get; set; }
+
+    public string ClientIcon { get; set; }
+
     public List<NetUnitPack> Units { get; set; }
 }

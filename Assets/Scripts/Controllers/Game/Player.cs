@@ -36,6 +36,14 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         GameMng.P = this;
+        if (GameData.CurrentMatch == Match.multi)
+        {
+            if (!GameData.ImMaster)
+            {
+                ID = 2;
+                MyTeam = Team.Red;
+            }
+        }
     }
 
     private void Start()
@@ -49,13 +57,13 @@ public class Player : MonoBehaviour
             return;
         }
 
+        //Create Character and Deck (normal game)
         if (GameData.CurrentMatch != Match.tutorial)
         {
             GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
             if (Character != null)
             {
                 MyCharacter = Instantiate(Character, transform).GetComponent<GameCharacter>();
-                GameMng.UI.SetPlayerCharacter(ResourcesServices.LoadCharacterIcon(GameMng.PlayerCharacter.Icon));
             }
 
             List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;

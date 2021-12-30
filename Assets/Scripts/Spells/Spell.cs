@@ -2,9 +2,9 @@
 
 public class Spell : MonoBehaviour
 {
-    protected int PlayerId = 1;
     protected bool IsFake = false;
     public Team MyTeam;
+    public int PlayerId = 1;
 
     [Range(0, 300)]
     public float Duration = 1;

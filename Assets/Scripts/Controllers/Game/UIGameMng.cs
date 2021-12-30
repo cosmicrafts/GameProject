@@ -16,8 +16,6 @@ public class UIGameMng : MonoBehaviour
     public Text EnergyLabel;
     public Image EnergyBar;
 
-    public Image PlayerCharacter;
-
     public GameObject AreaDeploy;
 
     public Text MTxtEnergyUsed;
@@ -32,6 +30,8 @@ public class UIGameMng : MonoBehaviour
 
     public Text MTxtScore;
 
+    public UIPlayerGameInfo[] Players = new UIPlayerGameInfo[2];
+
     private void Awake()
     {
         GameMng.UI = this;
@@ -39,7 +39,41 @@ public class UIGameMng : MonoBehaviour
 
     private void Start()
     {
-        
+        Players[GameMng.P.ID-1].InitInfo(GameMng.PlayerData, GameMng.PlayerProgress, GameMng.PlayerCharacter);
+        switch(GameData.CurrentMatch)
+        {
+            case Match.tutorial:
+                {
+                    Players[1].InitInfo(new UserGeneral()
+                    {
+                        NikeName = "Sotzeer",
+                        WalletId = string.Empty,
+                        Level = 99,
+                        Xp = 0,
+                        Avatar = 4,
+                        Icon = "Character_4"
+                    });
+                }
+                break;
+            case Match.bots:
+                {
+                    Players[1].InitInfo(new UserGeneral()
+                    {
+                        NikeName = "CosmicBoot",
+                        WalletId = string.Empty,
+                        Level = 99,
+                        Xp = 0,
+                        Avatar = 2,
+                        Icon = "Character_2"
+                    });
+                }
+                break;
+            case Match.multi:
+                {
+                    Players[GameMng.P.ID == 1 ? 1 : 0].InitInfo(GameData.GetVsUser());
+                }
+                break;
+        }
     }
 
     public void SetGameOver(Team winner)
@@ -114,11 +148,5 @@ public class UIGameMng : MonoBehaviour
         MTxtSecRemaining.text = GameMng.MT.GetSecRemaining().ToString()+" s";
 
         MTxtScore.text = GameMng.MT.GetScore().ToString();
-    }
-
-    public void SetPlayerCharacter(Sprite icon)
-    {
-        PlayerCharacter.gameObject.SetActive(true);
-        PlayerCharacter.sprite = icon;
     }
 }

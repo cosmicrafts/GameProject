@@ -47,17 +47,39 @@ public static class GameNetwork
         GameNetPack.MasterPlayerName = name;
     }
 
+    public static string GetMasterWalletId()
+    {
+        return GameNetPack.MasterWalletId;
+    }
+
     public static void SetClientData(string wid, string name)
     {
         GameNetPack.ClientWalletId = wid;
         GameNetPack.ClientPlayerName = name;
     }
 
-    public static User GetVsData()
+    public static string GetClientWalletId()
+    {
+        return GameNetPack.ClientWalletId;
+    }
+
+    public static UserGeneral GetVsData()
     {
         return GameData.ImMaster ? 
-            new User() { NikeName = GameNetPack.ClientPlayerName, WalletId = GameNetPack.ClientWalletId } : 
-            new User() { NikeName = GameNetPack.MasterPlayerName, WalletId = GameNetPack.MasterWalletId };
+            new UserGeneral() { 
+                NikeName = GameNetPack.ClientPlayerName, 
+                WalletId = GameNetPack.ClientWalletId,
+                Level = GameNetPack.ClientLvl,
+                Avatar = GameNetPack.ClientAvatar,
+                Icon = GameNetPack.ClientIcon
+            } : 
+            new UserGeneral() { 
+                NikeName = GameNetPack.MasterPlayerName, 
+                WalletId = GameNetPack.MasterWalletId,
+                Level = GameNetPack.MasterLvl,
+                Avatar = GameNetPack.MasterAvatar,
+                Icon = GameNetPack.MasterIcon
+            };
     }
 
     public static bool GameRoomIsFull()
@@ -76,12 +98,12 @@ public static class GameNetwork
     [DllImport("__Internal")]
     public static extern void JSSendGameData(string json, int matchId);
 
-    [DllImport("__Internal")]
-    public static extern void JSGetGameData(int matchId);
+    //[DllImport("__Internal")]
+    //public static extern void JSGetGameData(int matchId);
+
+    //[DllImport("__Internal")]
+    //public static extern void JSCreateGame(string walletId, string playerData);
 
     [DllImport("__Internal")]
-    public static extern void JSCreateGame(string walletId);
-
-    [DllImport("__Internal")]
-    public static extern void JSSearchGame(string walletId);
+    public static extern void JSSearchGame(string walletId, string playerData);
 }

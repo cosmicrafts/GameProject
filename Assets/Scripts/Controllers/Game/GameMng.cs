@@ -59,6 +59,7 @@ public class GameMng : MonoBehaviour
         PlayerCollection = GameData.GetUserCollection();
         PlayerCharacter = GameData.GetUserCharacter();
         IdCounter = 0;
+        Targets[0].PlayerId = 2;
     }
 
     // Start is called before the first frame update
@@ -181,40 +182,44 @@ public class GameMng : MonoBehaviour
         return result;
     }
 
-    public Unit CreateUnit(GameObject obj, Vector3 position, Team team)
+    public Unit CreateUnit(GameObject obj, Vector3 position, Team team, int playerId = -1)
     {
         Unit unit = Instantiate(obj, position, Quaternion.identity).GetComponent<Unit>();
         unit.MyTeam = team;
+        unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
         return unit;
     }
 
-    public Unit CreateFakeUnit(string nftKey, int Id, float x, float z, int team)
+    public Unit CreateFakeUnit(string nftKey, int Id, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, false);
         if (obj == null)
             return null;
         Unit unit = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity).GetComponent<Unit>();
         unit.MyTeam = (Team)team;
+        unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(Id);
         unit.setHasFake();
         return unit;
     }
 
-    public Spell CreateSpell(GameObject obj, Vector3 position, Team team)
+    public Spell CreateSpell(GameObject obj, Vector3 position, Team team, int playerId = -1)
     {
         Spell spell = Instantiate(obj, position, Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = team;
+        spell.PlayerId = playerId == -1 ? P.ID : playerId;
         return spell;
     }
 
-    public Spell CreateFakeSpell(string nftKey, float x, float z, int team)
+    public Spell CreateFakeSpell(string nftKey, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, true);
         if (obj == null)
             return null;
         Spell spell = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = (Team)team;
+        spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setHasFake();
         return spell;
     }
