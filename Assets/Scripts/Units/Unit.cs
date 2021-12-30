@@ -19,6 +19,7 @@ public enum TypeDmg
 public class Unit : MonoBehaviour
 {
     protected int Id;
+    protected string Key;
     protected bool IsFake = false;
     public int PlayerId = 1;
     public Team MyTeam;
@@ -280,6 +281,16 @@ public class Unit : MonoBehaviour
         return Id;
     }
 
+    public void setKey(string key)
+    {
+        Key = key;
+    }
+
+    public string getKey()
+    {
+        return Key;
+    }
+
     public int GetPlayerId()
     {
         return PlayerId;
@@ -319,6 +330,30 @@ public class Unit : MonoBehaviour
     public void SetMaxShield(int maxshield)
     {
         MaxShield = maxshield;
+    }
+
+    public void SetFakeShield(int sh)
+    {
+        if (!IsFake)
+            return;
+
+        Shield = sh;
+        UI.SetShieldBar((float)Shield / (float)MaxShield);
+    }
+
+    public void SetMaxHitPoints(int maxhp)
+    {
+        MaxHp = maxhp;
+        UI.SetHPBar((float)HitPoints / (float)MaxHp);
+    }
+
+    public void SetFakeHp(int hp)
+    {
+        if (!IsFake)
+            return;
+
+        HitPoints = hp;
+        UI.SetHPBar((float)HitPoints / (float)MaxHp);
     }
 
     public int GetMaxHitPoints()

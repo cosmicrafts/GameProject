@@ -41,6 +41,11 @@ public static class GameNetwork
         GameNetPack.Units = netUnitPack;
     }
 
+    public static void SetGameDeletedUnits(List<int> netUnitsDeleted)
+    {
+        GameNetPack.DeleteIdsUnits = netUnitsDeleted;
+    }
+
     public static void SetMasterData(string wid, string name)
     {
         GameNetPack.MasterWalletId = wid;
@@ -90,6 +95,16 @@ public static class GameNetwork
     public static List<NetUnitPack> GetGameUnits()
     {
         return GameNetPack.Units;
+    }
+
+    public static List<NetUnitPack> GetGameUnitsRequest()
+    {
+        return GameNetPack.UnitsRequest;
+    }
+
+    public static List<int> GetGameUnitsDeleted()
+    {
+        return GameNetPack.DeleteIdsUnits;
     }
 
     [DllImport("__Internal")]

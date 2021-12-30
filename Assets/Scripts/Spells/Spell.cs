@@ -3,6 +3,7 @@
 public class Spell : MonoBehaviour
 {
     protected bool IsFake = false;
+    protected string Key;
     public Team MyTeam;
     public int PlayerId = 1;
 
@@ -26,5 +27,15 @@ public class Spell : MonoBehaviour
     public void setHasFake()
     {
         IsFake = true;
+    }
+
+    public void setKey(string key)
+    {
+        Key = key;
+    }
+
+    public string getKey()
+    {
+        return Key;
     }
 }

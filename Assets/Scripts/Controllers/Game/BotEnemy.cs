@@ -154,7 +154,7 @@ public class BotEnemy : MonoBehaviour
             if (SelectedUnit.EnergyCost <= CurrentEnergy && SpawnAreas.Count > 0)
             {
                 Vector3 PositionSpawn = SpawnRefUnit.transform.position + (SideSpawns[TargetSideSpawn] * SpawnRefUnit.SpawnAreaSize);
-                Unit unit = GameMng.GM.CreateUnit(SelectedUnit.gameObject, PositionSpawn, MyTeam);
+                Unit unit = GameMng.GM.CreateUnit(SelectedUnit.gameObject, PositionSpawn, MyTeam, SelectedUnit.NftsKey);
                 CurrentEnergy -= SelectedUnit.EnergyCost;
                 TargetSideSpawn++;
                 if (TargetSideSpawn > 2)

@@ -118,6 +118,11 @@ public class Player : MonoBehaviour
         AddEnergy(Time.deltaTime * SpeedEnergy);
     }
 
+    public bool ImFake()
+    {
+        return GameData.CurrentMatch == Match.multi && ID == 2;
+    }
+
     public void SelectCard(int idu)
     {
         if (!InControl)
@@ -249,22 +254,50 @@ public class Player : MonoBehaviour
         {
             if (unitcard as UnitCard != null)
             {
-                Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam);
-                if (MyCharacter != null)
+                if (ImFake()) //Request Deploy
                 {
-                    MyCharacter.DeployUnit(unit);
+
+                } else //Normal Deply
+                {
+                    Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
+                    if (MyCharacter != null)
+                    {
+                        MyCharacter.DeployUnit(unit);
+                    }
+                    RestEnergy(unitcard.EnergyCost);
+                    GameMng.MT.AddDeploys(1);
                 }
-                RestEnergy(unitcard.EnergyCost);
-                GameMng.MT.AddDeploys(1);
             } else
             {
-                Spell spell = GameMng.GM.CreateSpell(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam);
-                if (MyCharacter != null)
+                if (ImFake()) //Request Deploy
                 {
-                    MyCharacter.DeploySpell(spell);
+
                 }
-                RestEnergy(unitcard.EnergyCost);
+                else //Normal Deply
+                {
+                    Spell spell = GameMng.GM.CreateSpell(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
+                    if (MyCharacter != null)
+                    {
+                        MyCharacter.DeploySpell(spell);
+                    }
+                    RestEnergy(unitcard.EnergyCost);
+                }
             }
         }
+    }
+
+    public int GetVsTeamInt()
+    {
+        return MyTeam == Team.Red ? 0 : 1;
+    }
+
+    public Team GetVsTeam()
+    {
+        return MyTeam == Team.Red ? Team.Blue : Team.Red;
+    }
+
+    public int GetVsId()
+    {
+        return ID == 1 ? 2 : 1;
     }
 }

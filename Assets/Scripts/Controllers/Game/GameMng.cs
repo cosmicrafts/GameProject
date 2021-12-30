@@ -24,6 +24,7 @@ public class GameMng : MonoBehaviour
     public Unit[] Targets;
 
     List<Unit> Units;
+    List<int> DeletedUnits;
     int IdCounter;
 
     public float MapWidth = 60;
@@ -53,6 +54,7 @@ public class GameMng : MonoBehaviour
         GameOver = false;
         RunTime = true;
         Units = new List<Unit>();
+        DeletedUnits = new List<int>();
         CONFIG = GameData.GetConfig();
         PlayerData = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
@@ -71,6 +73,9 @@ public class GameMng : MonoBehaviour
         {
             Targets[i].IsBaseStation = true;
         }
+
+        Targets[1].setId(1);
+        Targets[0].setId(2);
 
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -98,7 +103,7 @@ public class GameMng : MonoBehaviour
                     Destroy(BOT);
                     Destroy(GT.gameObject);
                     dnet = new WaitForSeconds(1f / 5f);
-                    StartCoroutine(GameNetAsync());
+                    StartCoroutine(LoopGameNetAsync());
                 }
                 break;
         }
@@ -182,13 +187,22 @@ public class GameMng : MonoBehaviour
         return result;
     }
 
-    public Unit CreateUnit(GameObject obj, Vector3 position, Team team, int playerId = -1)
+    public Unit CreateUnit(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
     {
         Unit unit = Instantiate(obj, position, Quaternion.identity).GetComponent<Unit>();
         unit.MyTeam = team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
+        unit.setKey(nftKey);
         return unit;
+    }
+
+    public Unit CreateUnit(string nftKey, float x, float z, int team, int playerId = -1)
+    {
+        GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, false);
+        if (obj == null)
+            return null;
+        return CreateUnit(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
 
     public Unit CreateFakeUnit(string nftKey, int Id, float x, float z, int team, int playerId = -1)
@@ -200,15 +214,17 @@ public class GameMng : MonoBehaviour
         unit.MyTeam = (Team)team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(Id);
+        unit.setKey(nftKey);
         unit.setHasFake();
         return unit;
     }
 
-    public Spell CreateSpell(GameObject obj, Vector3 position, Team team, int playerId = -1)
+    public Spell CreateSpell(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
     {
         Spell spell = Instantiate(obj, position, Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
+        spell.setKey(nftKey);
         return spell;
     }
 
@@ -220,6 +236,7 @@ public class GameMng : MonoBehaviour
         Spell spell = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = (Team)team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
+        spell.setKey(nftKey);
         spell.setHasFake();
         return spell;
     }
@@ -237,7 +254,13 @@ public class GameMng : MonoBehaviour
         if (Units.Contains(unit))
         {
             Units.Remove(unit);
+            DeletedUnits.Add(unit.getId());
         }
+    }
+
+    public void KillUnit(Unit unit)
+    {
+        unit.DestroyUnit();
     }
 
     public int CountUnits()
@@ -263,7 +286,7 @@ public class GameMng : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    IEnumerator GameNetAsync()
+    IEnumerator LoopGameNetAsync()
     {
         while (true)
         {
@@ -271,37 +294,81 @@ public class GameMng : MonoBehaviour
 
             if (GameData.ImMaster) //Master send data
             {
-                List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
-                {
-                    id = s.getId(),
-                    pos_x = s.transform.position.x,
-                    pos_z = s.transform.position.z,
-                    rot_y = s.transform.rotation.y,
-                    max_hp = s.GetMaxHitPoints(),
-                    max_sh = s.GetMaxShield(),
-                    hp = s.HitPoints,
-                    sh = s.Shield,
-                }).ToList();
-                GameNetwork.SetGameUnits(upack);
-
-                try
-                {
-                    GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameNetwork.GetId());
-                }
-                catch (Exception e)
-                {
-                    Debug.LogError(e.Message);
-                }
-            } else //Cliente get data
-            {
-                
+                SyncNetData();
             }
         }
     }
 
-    public void GetJson(string json)
+    public void SyncNetData()
     {
-        Debug.Log(json);
+        List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
+        {
+            id = s.getId(),
+            key = s.getKey(),
+            pos_x = s.transform.position.x,
+            pos_z = s.transform.position.z,
+            rot_y = s.transform.rotation.y,
+            max_hp = s.GetMaxHitPoints(),
+            max_sh = s.GetMaxShield(),
+            hp = s.HitPoints,
+            sh = s.Shield,
+        }).ToList();
+        GameNetwork.SetGameUnits(upack);
+        GameNetwork.SetGameDeletedUnits(DeletedUnits);
+
+        try
+        {
+            GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameNetwork.GetId());
+        }
+        catch (Exception e)
+        {
+            Debug.LogError(e.Message);
+        }
+    }
+
+    public void GameGetNetData(string json)
+    {
+        GameNetwork.UpdateGameData(json);
+        if (GameData.ImMaster)
+        {
+            //Create Requested Units
+            List<NetUnitPack> unitsRequested = GameNetwork.GetGameUnitsRequest();
+            foreach (NetUnitPack unit in unitsRequested)
+            {
+                //Create Real Unit
+                CreateUnit(unit.key, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+            }
+        } else
+        {
+            //Sync Real Units
+            List<NetUnitPack> units = GameNetwork.GetGameUnits();
+            List<int> deleted = GameNetwork.GetGameUnitsDeleted();
+            foreach (NetUnitPack unit in units)
+            {
+                if (string.IsNullOrEmpty(unit.key))
+                    continue;
+
+                Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
+                if (find == null) //Create fake
+                {
+                    CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+                } else //Sync data
+                {
+                    if (deleted.Contains(unit.id)) //destroy unit
+                    {
+                        KillUnit(find);
+                    } else
+                    {
+                        find.transform.position = new Vector3(unit.pos_x, 0f, unit.pos_z);
+                        find.transform.rotation = Quaternion.Euler(new Vector3(0f, unit.rot_y, 0f));
+                        find.SetMaxHitPoints(unit.max_hp);
+                        find.SetFakeHp(unit.hp);
+                        find.SetMaxShield(unit.max_sh);
+                        find.SetFakeShield(unit.sh);
+                    }
+                }
+            }
+        }
     }
 
     public int GenerateUnitId()

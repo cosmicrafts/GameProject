@@ -5,6 +5,8 @@ public class NetUnitPack
 {
     public int id { get; set; }
 
+    public string key { get; set; }
+
     public float pos_x { get; set; }
 
     public float pos_z { get; set; }
