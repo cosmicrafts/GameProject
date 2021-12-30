@@ -11,6 +11,10 @@
         ReactUnityWebGL.SendGameData(Pointer_stringify(json), matchId);
   },
 
+  JSCreateUnitRequest: function (json, matchId) {
+        ReactUnityWebGL.CreateUnitRequest(Pointer_stringify(json), matchId);
+  },
+
   JSSearchGame: function (walletId, playerData) {
         ReactUnityWebGL.SearchGame(walletId, playerData);
   },

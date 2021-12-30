@@ -24,6 +24,7 @@ public class GameMng : MonoBehaviour
     public Unit[] Targets;
 
     List<Unit> Units;
+    List<NetUnitPack> UnitsRequested;
     List<int> DeletedUnits;
     int IdCounter;
 
@@ -46,6 +47,7 @@ public class GameMng : MonoBehaviour
     public BoxCollider GridColl;
     WaitForSeconds dnet;
 
+
     private void Awake()
     {
         GM = this;
@@ -55,6 +57,7 @@ public class GameMng : MonoBehaviour
         RunTime = true;
         Units = new List<Unit>();
         DeletedUnits = new List<int>();
+        UnitsRequested = new List<NetUnitPack>();
         CONFIG = GameData.GetConfig();
         PlayerData = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
@@ -326,13 +329,21 @@ public class GameMng : MonoBehaviour
         }
     }
 
+    public void GameGetRequestedUnits(string json)
+    {
+        if (GameData.ImMaster && !string.IsNullOrEmpty(json))
+        {
+            UnitsRequested = JsonConvert.DeserializeObject<List<NetUnitPack>>(json);
+        }
+    }
+
     public void GameGetNetData(string json)
     {
         GameNetwork.UpdateGameData(json);
         if (GameData.ImMaster)
         {
             //Create Requested Units
-            List<NetUnitPack> unitsRequested = GameNetwork.GetGameUnitsRequest();
+            List<NetUnitPack> unitsRequested = UnitsRequested;
             foreach (NetUnitPack unit in unitsRequested)
             {
                 //Create Real Unit

@@ -38,7 +38,5 @@ public class NetGamePack
 
     public List<NetUnitPack> Units { get; set; }
 
-    public List<NetUnitPack> UnitsRequest { get; set; }
-
     public List<int> DeleteIdsUnits { get; set; }
 }

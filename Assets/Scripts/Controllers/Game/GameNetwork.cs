@@ -97,11 +97,6 @@ public static class GameNetwork
         return GameNetPack.Units;
     }
 
-    public static List<NetUnitPack> GetGameUnitsRequest()
-    {
-        return GameNetPack.UnitsRequest;
-    }
-
     public static List<int> GetGameUnitsDeleted()
     {
         return GameNetPack.DeleteIdsUnits;
@@ -112,6 +107,9 @@ public static class GameNetwork
 
     [DllImport("__Internal")]
     public static extern void JSSendGameData(string json, int matchId);
+
+    [DllImport("__Internal")]
+    public static extern void JSCreateUnitRequest(string json, int matchId);
 
     //[DllImport("__Internal")]
     //public static extern void JSGetGameData(int matchId);

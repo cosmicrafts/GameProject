@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -256,7 +257,14 @@ public class Player : MonoBehaviour
             {
                 if (ImFake()) //Request Deploy
                 {
-
+                    Vector3 position = CMath.GetMouseWorldPos();
+                    NetUnitPack uniidata = new NetUnitPack()
+                    {
+                        key = unitcard.NftsKey,
+                        pos_x = position.x,
+                        pos_z = position.z
+                    };
+                    GameNetwork.JSCreateUnitRequest(JsonConvert.SerializeObject(uniidata), GameNetwork.GetId());
                 } else //Normal Deply
                 {
                     Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
@@ -264,14 +272,14 @@ public class Player : MonoBehaviour
                     {
                         MyCharacter.DeployUnit(unit);
                     }
-                    RestEnergy(unitcard.EnergyCost);
-                    GameMng.MT.AddDeploys(1);
                 }
+                RestEnergy(unitcard.EnergyCost);
+                GameMng.MT.AddDeploys(1);
             } else
             {
                 if (ImFake()) //Request Deploy
                 {
-
+                    //Spells
                 }
                 else //Normal Deply
                 {
@@ -280,8 +288,8 @@ public class Player : MonoBehaviour
                     {
                         MyCharacter.DeploySpell(spell);
                     }
-                    RestEnergy(unitcard.EnergyCost);
                 }
+                RestEnergy(unitcard.EnergyCost);
             }
         }
     }
