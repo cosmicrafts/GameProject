@@ -61,12 +61,7 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MyUnit.IsBaseStation && MyUnit.MyTeam == Team.Blue)
-        {
-            Debug.Log("test");
-        }
-
-        if (MyUnit.IsDeath() || !CanAttack || !MyUnit.InControl())
+        if (MyUnit.GetIsDeath() || !CanAttack || !MyUnit.InControl())
             return;
 
         if (Target != null)

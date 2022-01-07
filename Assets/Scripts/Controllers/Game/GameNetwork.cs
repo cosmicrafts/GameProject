@@ -5,10 +5,12 @@ using System.Runtime.InteropServices;
 public static class GameNetwork
 {
     static NetGamePack GameNetPack;
+    static NetClientGamePack ClientNetPack;
 
     public static void Start()
     {
         GameNetPack = new NetGamePack();
+        ClientNetPack = new NetClientGamePack();
     }
 
     public static int GetId()
@@ -21,9 +23,19 @@ public static class GameNetwork
         GameNetPack = JsonConvert.DeserializeObject<NetGamePack>(json);
     }
 
+    public static void UpdateClientGameData(string json)
+    {
+        ClientNetPack = JsonConvert.DeserializeObject<NetClientGamePack>(json);
+    }
+
     public static string GetJsonGameNetPack()
     {
         return JsonConvert.SerializeObject(GameNetPack);
+    }
+
+    public static string GetJsonClientGameNetPack()
+    {
+        return JsonConvert.SerializeObject(ClientNetPack);
     }
 
     public static void SetGameStatus(NetGameStep step)
@@ -44,6 +56,16 @@ public static class GameNetwork
     public static void SetGameDeletedUnits(List<int> netUnitsDeleted)
     {
         GameNetPack.DeleteIdsUnits = netUnitsDeleted;
+    }
+
+    public static void SetRequestedGameUnits(List<NetUnitPack> netUnitPack)
+    {
+        ClientNetPack.UnitsRequested = netUnitPack;
+    }
+
+    public static void SetClientGameId(int gameId)
+    {
+        ClientNetPack.GameId = gameId;
     }
 
     public static void SetMasterData(string wid, string name)
@@ -74,6 +96,7 @@ public static class GameNetwork
             new UserGeneral() { 
                 NikeName = GameNetPack.ClientPlayerName, 
                 WalletId = GameNetPack.ClientWalletId,
+                Xp = GameNetPack.ClientXp,
                 Level = GameNetPack.ClientLvl,
                 Avatar = GameNetPack.ClientAvatar,
                 Icon = GameNetPack.ClientIcon
@@ -81,6 +104,7 @@ public static class GameNetwork
             new UserGeneral() { 
                 NikeName = GameNetPack.MasterPlayerName, 
                 WalletId = GameNetPack.MasterWalletId,
+                Xp = GameNetPack.MasterXp,
                 Level = GameNetPack.MasterLvl,
                 Avatar = GameNetPack.MasterAvatar,
                 Icon = GameNetPack.MasterIcon
@@ -102,14 +126,19 @@ public static class GameNetwork
         return GameNetPack.DeleteIdsUnits;
     }
 
+    public static List<NetUnitPack> GetClientGameUnitsRequested()
+    {
+        return ClientNetPack.UnitsRequested;
+    }
+
     [DllImport("__Internal")]
     public static extern void JSSaveScore(int score);
 
     [DllImport("__Internal")]
-    public static extern void JSSendGameData(string json, int matchId);
+    public static extern void JSSendMasterData(string json);
 
     [DllImport("__Internal")]
-    public static extern void JSCreateUnitRequest(string json, int matchId);
+    public static extern void JSSendClientData(string json);
 
     //[DllImport("__Internal")]
     //public static extern void JSGetGameData(int matchId);
@@ -118,5 +147,5 @@ public static class GameNetwork
     //public static extern void JSCreateGame(string walletId, string playerData);
 
     [DllImport("__Internal")]
-    public static extern void JSSearchGame(string walletId, string playerData);
+    public static extern void JSSearchGame(string json);
 }

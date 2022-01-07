@@ -24,9 +24,11 @@ public class GameMng : MonoBehaviour
     public Unit[] Targets;
 
     List<Unit> Units;
-    List<NetUnitPack> UnitsRequested;
+    List<NetUnitPack> RequestedUnits;
     List<int> DeletedUnits;
+    List<int> CreatedUnits;
     int IdCounter;
+    int IdRequestCounter;
 
     public float MapWidth = 60;
     public float MapHeigth = 48;
@@ -56,14 +58,15 @@ public class GameMng : MonoBehaviour
         GameOver = false;
         RunTime = true;
         Units = new List<Unit>();
+        RequestedUnits = new List<NetUnitPack>();
         DeletedUnits = new List<int>();
-        UnitsRequested = new List<NetUnitPack>();
+        CreatedUnits = new List<int>();
         CONFIG = GameData.GetConfig();
         PlayerData = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
         PlayerCollection = GameData.GetUserCollection();
         PlayerCharacter = GameData.GetUserCharacter();
-        IdCounter = 0;
+        IdCounter = IdRequestCounter = 0;
         Targets[0].PlayerId = 2;
     }
 
@@ -79,6 +82,7 @@ public class GameMng : MonoBehaviour
 
         Targets[1].setId(1);
         Targets[0].setId(2);
+        IdCounter = 2;
 
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -105,8 +109,13 @@ public class GameMng : MonoBehaviour
                 {
                     Destroy(BOT);
                     Destroy(GT.gameObject);
-                    dnet = new WaitForSeconds(1f / 5f);
+                    dnet = new WaitForSeconds(1f / 3f);
                     StartCoroutine(LoopGameNetAsync());
+                    if (GameData.ImMaster)
+                    {
+                        GameNetwork.SetGameStatus(NetGameStep.InGame);
+                        SyncNetData();
+                    }
                 }
                 break;
         }
@@ -153,7 +162,7 @@ public class GameMng : MonoBehaviour
         UI.SetGameOver(Winner);
         if (GameData.CurrentMatch == Match.multi)
         {
-            //StopCoroutine(GameNetAsync());
+            StopCoroutine(LoopGameNetAsync());
         }
     }
 
@@ -263,7 +272,14 @@ public class GameMng : MonoBehaviour
 
     public void KillUnit(Unit unit)
     {
-        unit.DestroyUnit();
+        unit.Die();
+    }
+
+    public void RequestUnit(NetUnitPack unit)
+    {
+        RequestedUnits.Add(unit);
+        GameNetwork.SetRequestedGameUnits(RequestedUnits);
+        GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
     }
 
     public int CountUnits()
@@ -295,15 +311,15 @@ public class GameMng : MonoBehaviour
         {
             yield return dnet;
 
-            if (GameData.ImMaster) //Master send data
-            {
-                SyncNetData();
-            }
+            SyncNetData();
         }
     }
 
     public void SyncNetData()
     {
+        if (!GameData.ImMaster) //Master send data
+            return;
+
         List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
         {
             id = s.getId(),
@@ -321,7 +337,7 @@ public class GameMng : MonoBehaviour
 
         try
         {
-            GameNetwork.JSSendGameData(GameNetwork.GetJsonGameNetPack(), GameNetwork.GetId());
+            GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
         }
         catch (Exception e)
         {
@@ -329,28 +345,29 @@ public class GameMng : MonoBehaviour
         }
     }
 
-    public void GameGetRequestedUnits(string json)
+    public void GL_SyncMaster(string json)
     {
         if (GameData.ImMaster && !string.IsNullOrEmpty(json))
         {
-            UnitsRequested = JsonConvert.DeserializeObject<List<NetUnitPack>>(json);
+            GameNetwork.UpdateClientGameData(json);
+            List<NetUnitPack> UnitsRequested = GameNetwork.GetClientGameUnitsRequested();
+            foreach (NetUnitPack unit in UnitsRequested)
+            {
+                //Create Real Unit
+                if (!CreatedUnits.Contains(unit.id))
+                {
+                    CreateUnit(unit.key, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+                    CreatedUnits.Add(unit.id);
+                }
+            }
         }
     }
 
-    public void GameGetNetData(string json)
+    public void GL_SyncClient(string json)
     {
-        GameNetwork.UpdateGameData(json);
-        if (GameData.ImMaster)
+        if (!GameData.ImMaster)
         {
-            //Create Requested Units
-            List<NetUnitPack> unitsRequested = UnitsRequested;
-            foreach (NetUnitPack unit in unitsRequested)
-            {
-                //Create Real Unit
-                CreateUnit(unit.key, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
-            }
-        } else
-        {
+            GameNetwork.UpdateGameData(json);
             //Sync Real Units
             List<NetUnitPack> units = GameNetwork.GetGameUnits();
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
@@ -363,20 +380,24 @@ public class GameMng : MonoBehaviour
                 if (find == null) //Create fake
                 {
                     CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
-                } else //Sync data
+                }
+                else //Sync data
                 {
-                    if (deleted.Contains(unit.id)) //destroy unit
-                    {
-                        KillUnit(find);
-                    } else
-                    {
-                        find.transform.position = new Vector3(unit.pos_x, 0f, unit.pos_z);
-                        find.transform.rotation = Quaternion.Euler(new Vector3(0f, unit.rot_y, 0f));
-                        find.SetMaxHitPoints(unit.max_hp);
-                        find.SetFakeHp(unit.hp);
-                        find.SetMaxShield(unit.max_sh);
-                        find.SetFakeShield(unit.sh);
-                    }
+                    find.transform.position = new Vector3(unit.pos_x, 0f, unit.pos_z);
+                    find.transform.rotation = Quaternion.Euler(new Vector3(0f, unit.rot_y, 0f));
+                    find.SetMaxHitPoints(unit.max_hp);
+                    find.SetFakeHp(unit.hp);
+                    find.SetMaxShield(unit.max_sh);
+                    find.SetFakeShield(unit.sh);
+                }
+            }
+            //Delete Units
+            foreach(int unitId in deleted)
+            {
+                Unit find = Units.FirstOrDefault(f => f.getId() == unitId);
+                if (find != null)
+                {
+                    KillUnit(find);
                 }
             }
         }
@@ -386,5 +407,11 @@ public class GameMng : MonoBehaviour
     {
         IdCounter++;
         return IdCounter;
+    }
+
+    public int GenerateUnitRequestId()
+    {
+        IdRequestCounter++;
+        return IdRequestCounter;
     }
 }

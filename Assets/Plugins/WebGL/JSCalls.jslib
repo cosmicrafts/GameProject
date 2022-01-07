@@ -7,15 +7,15 @@
         ReactUnityWebGL.SaveScore(score);
   },
 
-  JSSendGameData: function (json, matchId) {
-        ReactUnityWebGL.SendGameData(Pointer_stringify(json), matchId);
+  JSSendMasterData: function (json) {
+        ReactUnityWebGL.SendMasterData(Pointer_stringify(json));
   },
 
-  JSCreateUnitRequest: function (json, matchId) {
-        ReactUnityWebGL.CreateUnitRequest(Pointer_stringify(json), matchId);
+  JSSendClientData: function (json) {
+        ReactUnityWebGL.SendClientData(Pointer_stringify(json));
   },
 
-  JSSearchGame: function (walletId, playerData) {
-        ReactUnityWebGL.SearchGame(walletId, playerData);
+  JSSearchGame: function (json) {
+        ReactUnityWebGL.SearchGame(Pointer_stringify(json));
   },
 });

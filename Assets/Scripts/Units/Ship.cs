@@ -39,11 +39,17 @@ public class Ship : Unit
     {
         base.Start();
         Target = GameMng.GM.GetFinalTarget(MyTeam);
-        MySt.Destination = Target.position;
-        MySt.StoppingDistance = StoppingDistance;
-        foreach (RaySensor sensor in AvoidanceSensors)
+        if (IsFake)
         {
-            sensor.Length = AvoidanceRange;
+            MySt.enabled = false;
+        } else
+        {
+            MySt.Destination = Target.position;
+            MySt.StoppingDistance = StoppingDistance;
+            foreach (RaySensor sensor in AvoidanceSensors)
+            {
+                sensor.Length = AvoidanceRange;
+            }
         }
     }
 
@@ -71,7 +77,7 @@ public class Ship : Unit
 
     void Move()
     {
-        if (IsDeath())
+        if (IsDeath)
         {
             transform.Rotate(DeathRot, 100f * Time.deltaTime, Space.Self);
             return;
@@ -139,7 +145,7 @@ public class Ship : Unit
         base.CastComplete();
     }
 
-    protected override void Die()
+    public override void Die()
     {
         base.Die();
         MySt.enabled = false;

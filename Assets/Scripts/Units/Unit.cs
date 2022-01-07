@@ -20,7 +20,8 @@ public class Unit : MonoBehaviour
 {
     protected int Id;
     protected string Key;
-    protected bool IsFake = false;
+    protected bool IsFake;
+    protected bool IsDeath;
     public int PlayerId = 1;
     public Team MyTeam;
 
@@ -110,7 +111,7 @@ public class Unit : MonoBehaviour
         if (ShieldLoad > 0f)
         {
             ShieldLoad -= Time.deltaTime;
-        } else
+        } else if (!IsFake)
         {
             if (Shield < MaxShield)
             {
@@ -154,7 +155,7 @@ public class Unit : MonoBehaviour
 
     public void AddDmg(int dmg, TypeDmg typeDmg)
     {
-        if (IsDeath() || !InControl())
+        if (IsDeath || !InControl())
             return;
         
         ShieldLoad = ShieldDelay;
@@ -197,9 +198,13 @@ public class Unit : MonoBehaviour
         AddDmg(dmg, TypeDmg.Normal);
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
+        if (IsDeath)
+            return;
+
         HitPoints = 0;
+        IsDeath = true;
         UI.HideUI();
         SA.SetActive(false);
         MyAnim.SetBool("Death", true);
@@ -240,9 +245,9 @@ public class Unit : MonoBehaviour
         return other == MyTeam;
     }
 
-    public bool IsDeath()
+    public bool GetIsDeath()
     {
-        return HitPoints <= 0;
+        return IsDeath;
     }
 
     public void DestroyUnit()

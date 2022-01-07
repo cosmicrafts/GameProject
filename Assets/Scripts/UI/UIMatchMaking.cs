@@ -104,7 +104,7 @@ public class UIMatchMaking : MonoBehaviour
     {
         //Find Match
         string MyJsonProfile = JsonConvert.SerializeObject(GameData.BuildMyProfileHasVS());
-        GameNetwork.JSSearchGame(MyUserData.WalletId, MyJsonProfile);
+        GameNetwork.JSSearchGame(MyJsonProfile);
 
         //Wait for match
         yield return new WaitUntil(() => GameNetwork.GetId() != 0);
@@ -114,6 +114,7 @@ public class UIMatchMaking : MonoBehaviour
 
         //Join Match
         Debug.Log($"Match: {GameNetwork.GetId()}");
+        GameNetwork.SetClientGameId(GameNetwork.GetId());
         CancelButton.SetActive(false);
         SearchingFor.SetActive(false);
         GameFinded.SetActive(true);

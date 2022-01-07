@@ -28,6 +28,10 @@ public class NetGamePack
 
     public int ClientLvl { get; set; }
 
+    public int MasterXp { get; set; }
+
+    public int ClientXp { get; set; }
+
     public int MasterAvatar { get; set; }
 
     public int ClientAvatar { get; set; }
