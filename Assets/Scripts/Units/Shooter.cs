@@ -19,6 +19,9 @@ public class Shooter : MonoBehaviour
     [Range(1,99)]
     public float BulletSpeed = 10f;
 
+    [Range(1, 99)]
+    public int BulletDamage = 1;
+
     public bool RotateToEnemy = true;
 
     public bool StopToAttack = true;
@@ -58,13 +61,16 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (MyUnit.IsDeath() || !CanAttack || !MyUnit.InControl())
+        if (MyUnit.GetIsDeath() || !CanAttack || !MyUnit.InControl())
             return;
 
-        if (RotateToEnemy && Target != null)
+        if (Target != null)
         {
-            var _direction = (Target.transform.position - transform.position).normalized;
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_direction), Time.deltaTime * 3f);
+            if (RotateToEnemy)
+            {
+                var _direction = (Target.transform.position - transform.position).normalized;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(_direction), Time.deltaTime * 3f);
+            }
 
             if (DelayShoot <= 0f)
             {
@@ -75,6 +81,7 @@ public class Shooter : MonoBehaviour
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.Target = Target.gameObject;
                     bullet.Speed = BulletSpeed;
+                    bullet.Dmg = BulletDamage;
                     MuzzleFlash[i].Clear();
                     MuzzleFlash[i].Play();
                 }

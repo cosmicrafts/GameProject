@@ -18,7 +18,11 @@ public enum TypeDmg
 
 public class Unit : MonoBehaviour
 {
-    protected int PlayerId = 1;
+    protected int Id;
+    protected string Key;
+    protected bool IsFake;
+    protected bool IsDeath;
+    public int PlayerId = 1;
     public Team MyTeam;
 
     [Range(1,9999)]
@@ -86,6 +90,10 @@ public class Unit : MonoBehaviour
         SA.SetActive(IsMyTeam(GameMng.P.MyTeam) && SpawnAreaSize > 0f);
         Destroy(Portal, 3f);
         GameMng.GM.AddUnit(this);
+        if (IsFake)
+        {
+            InitHasFake();
+        }
     }
 
     // Update is called once per frame
@@ -103,7 +111,7 @@ public class Unit : MonoBehaviour
         if (ShieldLoad > 0f)
         {
             ShieldLoad -= Time.deltaTime;
-        } else
+        } else if (!IsFake)
         {
             if (Shield < MaxShield)
             {
@@ -147,9 +155,9 @@ public class Unit : MonoBehaviour
 
     public void AddDmg(int dmg, TypeDmg typeDmg)
     {
-        if (IsDeath() || !InControl())
+        if (IsDeath || !InControl())
             return;
-
+        
         ShieldLoad = ShieldDelay;
         ShieldCharge = 0f;
 
@@ -190,9 +198,13 @@ public class Unit : MonoBehaviour
         AddDmg(dmg, TypeDmg.Normal);
     }
 
-    protected virtual void Die()
+    public virtual void Die()
     {
+        if (IsDeath)
+            return;
+
         HitPoints = 0;
+        IsDeath = true;
         UI.HideUI();
         SA.SetActive(false);
         MyAnim.SetBool("Death", true);
@@ -233,9 +245,9 @@ public class Unit : MonoBehaviour
         return other == MyTeam;
     }
 
-    public bool IsDeath()
+    public bool GetIsDeath()
     {
-        return HitPoints <= 0;
+        return IsDeath;
     }
 
     public void DestroyUnit()
@@ -264,9 +276,50 @@ public class Unit : MonoBehaviour
         LastImpact = position;
     }
 
+    public void setId(int id)
+    {
+        Id = id;
+    }
+
+    public int getId()
+    {
+        return Id;
+    }
+
+    public void setKey(string key)
+    {
+        Key = key;
+    }
+
+    public string getKey()
+    {
+        return Key;
+    }
+
     public int GetPlayerId()
     {
         return PlayerId;
+    }
+
+    public void setHasFake()
+    {
+        IsFake = true;
+    }
+
+    void InitHasFake()
+    {
+        TrigerBase.enabled = false;
+        SolidBase.enabled = false;
+    }
+
+    public void FakeSync(NetUnitPack data)
+    {
+        transform.position = new Vector3(data.pos_x, 0f, data.pos_z);
+        transform.rotation = Quaternion.Euler(0f, data.rot_y, 0f);
+        HitPoints = data.max_hp;
+        Shield = data.max_sh;
+        HitPoints = data.hp;
+        Shield = data.sh;
     }
 
     public Animator GetAnimator()
@@ -279,6 +332,40 @@ public class Unit : MonoBehaviour
         return MaxShield;
     }
 
+    public void SetMaxShield(int maxshield)
+    {
+        MaxShield = maxshield;
+    }
+
+    public void SetFakeShield(int sh)
+    {
+        if (!IsFake)
+            return;
+
+        Shield = sh;
+        UI.SetShieldBar((float)Shield / (float)MaxShield);
+    }
+
+    public void SetMaxHitPoints(int maxhp)
+    {
+        MaxHp = maxhp;
+        UI.SetHPBar((float)HitPoints / (float)MaxHp);
+    }
+
+    public void SetFakeHp(int hp)
+    {
+        if (!IsFake)
+            return;
+
+        float diference = Mathf.Abs(hp - HitPoints);
+        if (!IsMyTeam(GameMng.P.MyTeam))
+        {
+            GameMng.MT.AddDamage(diference);
+        }
+        HitPoints = hp;
+        UI.SetHPBar((float)HitPoints / (float)MaxHp);
+    }
+
     public int GetMaxHitPoints()
     {
         return MaxHp;
@@ -286,6 +373,6 @@ public class Unit : MonoBehaviour
 
     public bool InControl()
     {
-        return (!Disabled && Casting <= 0f);
+        return (!Disabled && Casting <= 0f && !IsFake);
     }
 }

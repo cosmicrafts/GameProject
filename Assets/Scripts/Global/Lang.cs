@@ -56,20 +56,9 @@ public class Lang : MonoBehaviour
         if (UIS == null)
             return string.Empty;
 
+        if (!UIS.ContainsKey(key))
+            return "[NO FOUND]";
+
         return UIS[key].ToString();
-    }
-
-    public static string GetItemName(int id)
-    {
-        string key = $"item_name_{id}";
-
-        return GetText(key);
-    }
-
-    public static string GetItemDesc(int id)
-    {
-        string key = $"item_desc_{id}";
-
-        return GetText(key);
     }
 }

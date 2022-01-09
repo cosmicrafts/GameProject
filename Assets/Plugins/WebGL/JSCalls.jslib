@@ -3,14 +3,19 @@
   // the event listeners name and make sure the
   // parameters match as well.
 
-    SaveScore: function (score) {
-
+  JSSaveScore: function (score) {
         ReactUnityWebGL.SaveScore(score);
   },
 
-    SendJson: function (json) {
+  JSSendMasterData: function (json) {
+        ReactUnityWebGL.SendMasterData(Pointer_stringify(json));
+  },
 
-        ReactUnityWebGL.SendJson(Pointer_stringify(json));
-        console.log(Pointer_stringify(json));
+  JSSendClientData: function (json) {
+        ReactUnityWebGL.SendClientData(Pointer_stringify(json));
+  },
+
+  JSSearchGame: function (json) {
+        ReactUnityWebGL.SearchGame(Pointer_stringify(json));
   },
 });

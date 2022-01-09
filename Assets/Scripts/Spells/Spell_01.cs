@@ -19,6 +19,10 @@ public class Spell_01 : Spell
     protected override void Update()
     {
         base.Update();
+        
+        if (IsFake)
+            return;
+
         if (delaydmg > 0f)
         {
             delaydmg -= Time.deltaTime;

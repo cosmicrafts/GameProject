@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     GameObject[] SpellPreviews;
     GameCard DragingCard;
     GameCard SelectedCard;
+    GameCharacter MyCharacter;
 
     [Range(0, 99)]
     public float CurrentEnergy = 5;
@@ -35,6 +37,14 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         GameMng.P = this;
+        if (GameData.CurrentMatch == Match.multi)
+        {
+            if (!GameData.ImMaster)
+            {
+                ID = 2;
+                MyTeam = Team.Red;
+            }
+        }
     }
 
     private void Start()
@@ -48,12 +58,13 @@ public class Player : MonoBehaviour
             return;
         }
 
+        //Create Character and Deck (normal game)
         if (GameData.CurrentMatch != Match.tutorial)
         {
             GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
             if (Character != null)
             {
-                Instantiate(Character, transform);
+                MyCharacter = Instantiate(Character, transform).GetComponent<GameCharacter>();
             }
 
             List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;
@@ -106,6 +117,11 @@ public class Player : MonoBehaviour
         }
 
         AddEnergy(Time.deltaTime * SpeedEnergy);
+    }
+
+    public bool ImFake()
+    {
+        return GameData.CurrentMatch == Match.multi && ID == 2;
     }
 
     public void SelectCard(int idu)
@@ -239,16 +255,58 @@ public class Player : MonoBehaviour
         {
             if (unitcard as UnitCard != null)
             {
-                Unit unit = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Unit>();
-                unit.MyTeam = MyTeam;
+                if (ImFake()) //Request Deploy
+                {
+                    Vector3 position = CMath.GetMouseWorldPos();
+                    NetUnitPack unitdata = new NetUnitPack()
+                    {
+                        id = GameMng.GM.GenerateUnitRequestId(),
+                        key = unitcard.NftsKey,
+                        pos_x = position.x,
+                        pos_z = position.z
+                    };
+                    GameMng.GM.RequestUnit(unitdata);
+                } else //Normal Deply
+                {
+                    Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
+                    if (MyCharacter != null)
+                    {
+                        MyCharacter.DeployUnit(unit);
+                    }
+                }
                 RestEnergy(unitcard.EnergyCost);
                 GameMng.MT.AddDeploys(1);
             } else
             {
-                Spell spell = Instantiate(unitcard.gameObject, CMath.GetMouseWorldPos(), Quaternion.identity).GetComponent<Spell>();
-                spell.MyTeam = MyTeam;
+                if (ImFake()) //Request Deploy
+                {
+                    //Spells
+                }
+                else //Normal Deply
+                {
+                    Spell spell = GameMng.GM.CreateSpell(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
+                    if (MyCharacter != null)
+                    {
+                        MyCharacter.DeploySpell(spell);
+                    }
+                }
                 RestEnergy(unitcard.EnergyCost);
             }
         }
+    }
+
+    public int GetVsTeamInt()
+    {
+        return MyTeam == Team.Red ? 0 : 1;
+    }
+
+    public Team GetVsTeam()
+    {
+        return MyTeam == Team.Red ? Team.Blue : Team.Red;
+    }
+
+    public int GetVsId()
+    {
+        return ID == 1 ? 2 : 1;
     }
 }

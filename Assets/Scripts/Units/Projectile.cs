@@ -13,6 +13,9 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public float Speed;
 
+    [HideInInspector]
+    public int Dmg;
+
     public GameObject Inpact;
     public GameObject ShieldInpact;
 
@@ -80,7 +83,7 @@ public class Projectile : MonoBehaviour
         {
             Destroy(Instantiate(Inpact, transform.position + (transform.forward * 1.5f), Quaternion.identity), 0.5f);
         }
-        target.AddDmg(1);
+        target.AddDmg(Dmg);
         target.SetImpactPosition(transform.position);
         Destroy(gameObject);
     }

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json;
+using System.Linq;
 
 public class UIMainMenu : MonoBehaviour
 {
@@ -13,6 +14,15 @@ public class UIMainMenu : MonoBehaviour
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
+    public GameObject MultiPanel;
+
+    public GameObject MainMenu;
+    public GameObject CollectionMenu;
+    public GameObject CharactersMenu;
+    public GameObject GameModesMenu;
+
+    public GameObject PlayerDataComp;
+    public GameObject BackBtn;
 
     public UICollection Collection;
 
@@ -24,8 +34,11 @@ public class UIMainMenu : MonoBehaviour
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
-    public Text StartCountDownText;
+    public Text TopTitle;
+    public Image GameTitle;
     public Image LocalGameLoadingBar;
+
+    List<UIPTxtInfo> UIPropertys;
 
     private void Awake()
     {
@@ -36,7 +49,6 @@ public class UIMainMenu : MonoBehaviour
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
-        GameData.DataIsInit = false;
         GameData.DebugMode = false;
 #if UNITY_EDITOR
         GameData.DebugMode = true;
@@ -47,6 +59,7 @@ public class UIMainMenu : MonoBehaviour
             PlayerUser = GameData.GetUserData();
             PlayerProgress = GameData.GetUserProgress();
             PlayerCollection = GameData.GetUserCollection();
+            PlayerCollection.AddUnitsDefault();
             PlayerCharacter = GameData.GetUserCharacter();
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
@@ -57,6 +70,11 @@ public class UIMainMenu : MonoBehaviour
     void Start()
     {
         GameData.CurrentMatch = Match.none;
+        UIPropertys = new List<UIPTxtInfo>();
+        foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
+        {
+            UIPropertys.Add(prop);
+        }
         //TimeMatch = new TimeSpan(0, 0, 5);
 
         if (GameData.UserIsInit())
@@ -68,19 +86,11 @@ public class UIMainMenu : MonoBehaviour
 
     private void Update()
     {
-        if (GameData.CurrentMatch == Match.multi)
-        {
-            //StartCountDownText.text = TimeMatch.Add(StartTime - DateTime.Now).ToString(@"%s");
-        }
+
     }
 
     public void SetPlayerData(string jsonData)
     {
-        if (GameData.DataIsInit)
-        {
-            return;
-        }
-        GameData.DataIsInit = true;
         PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
         GameData.SetUser(PlayerUser);
         PlayerProgress = GameData.GetUserProgress();
@@ -91,7 +101,7 @@ public class UIMainMenu : MonoBehaviour
         MenuPanel.SetActive(true);
     }
 
-    public void PlayButton()
+    public void PlayIAButton()
     {
         if (GameData.CurrentMatch != Match.none)
         {
@@ -123,6 +133,21 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(LoadLocalGame());
     }
 
+    public void PlayMultiButton()
+    {
+        if (GameData.CurrentMatch != Match.none)
+        {
+            return;
+        }
+
+        PlayerUser.FirstGame = true;
+        GameData.CurrentMatch = Match.multi;
+
+        MenuPanel.SetActive(false);
+        MultiPanel.SetActive(true);
+        MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
+    }
+
     public void GoLoginPage()
     {
 #if UNITY_EDITOR
@@ -146,6 +171,65 @@ public class UIMainMenu : MonoBehaviour
         {
             yield return null;
             LocalGameLoadingBar.fillAmount = loading.progress;
+        }
+    }
+
+    public void GoCollectionMenu()
+    {
+        MainMenu.SetActive(false);
+        CollectionMenu.SetActive(true);
+        BackBtn.SetActive(true);
+        TopTitle.text = Lang.GetText("mn_collection");
+        GameTitle.gameObject.SetActive(false);
+        PlayerDataComp.SetActive(false);
+    }
+
+    public void GoCharactersMenu()
+    {
+        MainMenu.SetActive(false);
+        CharactersMenu.SetActive(true);
+        BackBtn.SetActive(true);
+        TopTitle.text = Lang.GetText("mn_characters");
+        GameTitle.gameObject.SetActive(false);
+        PlayerDataComp.SetActive(false);
+    }
+
+    public void GoGamesModesMenu()
+    {
+        MainMenu.SetActive(false);
+        GameModesMenu.SetActive(true);
+        BackBtn.SetActive(true);
+        TopTitle.text = Lang.GetText("mn_gamemodes");
+        GameTitle.gameObject.SetActive(false);
+        PlayerDataComp.SetActive(false);
+    }
+
+    public void BackMainSection()
+    {
+        RefreshAllPropertys();
+        MainMenu.SetActive(true);
+        CollectionMenu.SetActive(false);
+        CharactersMenu.SetActive(false);
+        GameModesMenu.SetActive(false);
+        BackBtn.SetActive(false);
+        TopTitle.text = string.Empty;
+        GameTitle.gameObject.SetActive(true);
+        PlayerDataComp.SetActive(true);
+    }
+
+    public void RefreshProperty(PlayerProperty property)
+    {
+        foreach(UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property))
+        {
+            prop.LoadProperty();
+        }
+    }
+
+    public void RefreshAllPropertys()
+    {
+        foreach (UIPTxtInfo prop in UIPropertys)
+        {
+            prop.LoadProperty();
         }
     }
 }

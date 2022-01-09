@@ -13,7 +13,7 @@ public class EDetector : MonoBehaviour
         if (other.CompareTag("Unit"))
         {
             Unit OtherUnit = other.gameObject.GetComponent<Unit>();
-            if (!OtherUnit.IsMyTeam(MyUnit.MyTeam) && !OtherUnit.IsDeath())
+            if (!OtherUnit.IsMyTeam(MyUnit.MyTeam) && !OtherUnit.GetIsDeath())
             {
                 MyShooter.AddEnemy(OtherUnit);
             }

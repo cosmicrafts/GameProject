@@ -1,11 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-    protected int PlayerId = 1;
+    protected bool IsFake = false;
+    protected string Key;
     public Team MyTeam;
+    public int PlayerId = 1;
 
     [Range(0, 300)]
     public float Duration = 1;
@@ -22,5 +22,20 @@ public class Spell : MonoBehaviour
     protected virtual void Update()
     {
         
+    }
+
+    public void setHasFake()
+    {
+        IsFake = true;
+    }
+
+    public void setKey(string key)
+    {
+        Key = key;
+    }
+
+    public string getKey()
+    {
+        return Key;
     }
 }

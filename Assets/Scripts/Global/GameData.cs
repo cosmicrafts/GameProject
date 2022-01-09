@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using UnityEngine;
 
 public enum Match
 {
@@ -13,13 +14,15 @@ public static class GameData
 {
     public static Match CurrentMatch = Match.none;
 
-    public static bool DebugMode = false;
+    public static bool ImMaster = false;
 
-    public static bool DataIsInit = false;
+    public static bool DebugMode = false;
 
     static Config config;
 
     static User PlayerUser;
+
+    static UserGeneral VsPlayerUser;
 
     static UserProgress PlayerProgress;
 
@@ -49,6 +52,11 @@ public static class GameData
         PlayerUser = user;
     }
 
+    public static void SetVsUser(UserGeneral user)
+    {
+        VsPlayerUser = user;
+    }
+
     public static void SetUserProgress(UserProgress userprogress)
     {
         PlayerProgress = userprogress;
@@ -68,10 +76,31 @@ public static class GameData
     {
         if (PlayerUser == null)
         {
-            PlayerUser = new User() {NikeName = "Player", Avatar = 1};
+            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", Avatar = 1};
         }
 
         return PlayerUser;
+    }
+
+    public static UserGeneral GetVsUser()
+    {
+        return VsPlayerUser;
+    }
+
+    public static UserGeneral BuildMyProfileHasVS()
+    {
+        if (PlayerUser == null || PlayerProgress == null)
+            return null;
+
+        return new UserGeneral()
+        {
+            WalletId = PlayerUser.WalletId,
+            NikeName = PlayerUser.NikeName,
+            Level = PlayerProgress.GetLevel(),
+            Xp = PlayerProgress.GetXp(),
+            Avatar = PlayerUser.Avatar,
+            Icon = PlayerCharacter.Icon
+        };
     }
 
     public static UserProgress GetUserProgress()
@@ -125,6 +154,8 @@ public static class GameData
         PlayerProgress = null;
     }
 
-    [DllImport("__Internal")]
-    public static extern void SaveScore(int score);
+    public static string GetVersion()
+    {
+        return Application.version;
+    }
 }

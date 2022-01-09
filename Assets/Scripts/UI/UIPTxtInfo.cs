@@ -1,71 +1,81 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+public enum PlayerProperty
+{
+    Name,
+    WalletId,
+    Level,
+    Xp,
+    Xpbar,
+    Character,
+    Avatar
+}
+
 public class UIPTxtInfo : MonoBehaviour
 {
-    public enum PlayerProperty
-    {
-        Name,
-        WalletId,
-        Level,
-        Xp,
-        Xpbar,
-        Character,
-        Avatar
-    }
-
     public PlayerProperty Property;
 
     // Start is called before the first frame update
     void Start()
+    {
+        LoadProperty();
+    }
+
+    public void LoadProperty()
     {
         if (!GameData.UserIsInit())
         {
             return;
         }
 
-        User user = GameData.GetUserData();
-        NFTsCharacter nFTsCharacter = GameData.GetUserCharacter();
-        UserProgress userProgress = GameData.GetUserProgress();
-
-        switch(Property)
+        switch (Property)
         {
             case PlayerProperty.Name:
                 {
+                    User user = GameData.GetUserData();
                     Text mytext = GetComponent<Text>();
                     mytext.text = user.NikeName;
-                }break;
+                }
+                break;
             case PlayerProperty.WalletId:
                 {
+                    User user = GameData.GetUserData();
                     Text mytext = GetComponent<Text>();
                     mytext.text = Utils.GetWalletIDShort(user.WalletId);
                 }
                 break;
             case PlayerProperty.Level:
                 {
+                    UserProgress userProgress = GameData.GetUserProgress();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{Lang.GetText("mn_lvl")} {userProgress.GetLevel()}";
                 }
                 break;
             case PlayerProperty.Xp:
                 {
+                    UserProgress userProgress = GameData.GetUserProgress();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{userProgress.GetXp()} {Lang.GetText("mn_xp")}";
                 }
                 break;
             case PlayerProperty.Xpbar:
                 {
+                    UserProgress userProgress = GameData.GetUserProgress();
                     Image myimage = GetComponent<Image>();
                     myimage.fillAmount = (float)userProgress.GetXp() / (float)userProgress.GetNextXpGoal();
-                }break;
+                }
+                break;
             case PlayerProperty.Character:
                 {
+                    NFTsCharacter nFTsCharacter = GameData.GetUserCharacter();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
                 }
                 break;
             case PlayerProperty.Avatar:
                 {
+                    User user = GameData.GetUserData();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
                 }
