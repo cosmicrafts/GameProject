@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameMetrics : MonoBehaviour
+public class GameMetrics
 {
     float EnergyUsed;
     float EnergyGenerated;
@@ -17,13 +17,8 @@ public class GameMetrics : MonoBehaviour
 
     int Score;
 
-    private void Awake()
-    {
-        GameMng.MT = this;
-    }
-
     // Start is called before the first frame update
-    void Start()
+    public void InitMetrics()
     {
         EnergyUsed = 0;
         EnergyGenerated = 0;

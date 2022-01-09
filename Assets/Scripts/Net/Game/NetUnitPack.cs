@@ -7,6 +7,10 @@ public class NetUnitPack
 
     public string key { get; set; }
 
+    public int team { get; set; }
+
+    public int player_id { get; set; }
+
     public float pos_x { get; set; }
 
     public float pos_z { get; set; }

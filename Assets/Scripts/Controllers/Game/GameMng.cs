@@ -66,6 +66,8 @@ public class GameMng : MonoBehaviour
         PlayerProgress = GameData.GetUserProgress();
         PlayerCollection = GameData.GetUserCollection();
         PlayerCharacter = GameData.GetUserCharacter();
+        MT = new GameMetrics();
+        MT.InitMetrics();
         IdCounter = IdRequestCounter = 0;
         Targets[0].PlayerId = 2;
     }
@@ -162,6 +164,10 @@ public class GameMng : MonoBehaviour
         UI.SetGameOver(Winner);
         if (GameData.CurrentMatch == Match.multi)
         {
+            if (GameData.ImMaster)
+            {
+                SyncNetData();
+            }
             StopCoroutine(LoopGameNetAsync());
         }
     }
@@ -331,6 +337,8 @@ public class GameMng : MonoBehaviour
             max_sh = s.GetMaxShield(),
             hp = s.HitPoints,
             sh = s.Shield,
+            team = (int)s.MyTeam,
+            player_id = s.PlayerId
         }).ToList();
         GameNetwork.SetGameUnits(upack);
         GameNetwork.SetGameDeletedUnits(DeletedUnits);
@@ -379,7 +387,7 @@ public class GameMng : MonoBehaviour
                 Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
                 if (find == null) //Create fake
                 {
-                    CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+                    CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
                 }
                 else //Sync data
                 {

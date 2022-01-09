@@ -357,6 +357,11 @@ public class Unit : MonoBehaviour
         if (!IsFake)
             return;
 
+        float diference = Mathf.Abs(hp - HitPoints);
+        if (!IsMyTeam(GameMng.P.MyTeam))
+        {
+            GameMng.MT.AddDamage(diference);
+        }
         HitPoints = hp;
         UI.SetHPBar((float)HitPoints / (float)MaxHp);
     }
