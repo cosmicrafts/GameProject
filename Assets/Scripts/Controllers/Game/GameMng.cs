@@ -338,7 +338,8 @@ public class GameMng : MonoBehaviour
             hp = s.HitPoints,
             sh = s.Shield,
             team = (int)s.MyTeam,
-            player_id = s.PlayerId
+            player_id = s.PlayerId,
+            id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
         }).ToList();
         GameNetwork.SetGameUnits(upack);
         GameNetwork.SetGameDeletedUnits(DeletedUnits);
@@ -397,6 +398,18 @@ public class GameMng : MonoBehaviour
                     find.SetFakeHp(unit.hp);
                     find.SetMaxShield(unit.max_sh);
                     find.SetFakeShield(unit.sh);
+                    if (unit.id_target > 0)
+                    {
+                        Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);
+                        if (target != null)
+                        {
+                            Shooter shooter = find.GetComponent<Shooter>();
+                            if (shooter != null)
+                            {
+                                shooter.SetFakeTarget(target);
+                            }
+                        }
+                    }
                 }
             }
             //Delete Units

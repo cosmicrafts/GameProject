@@ -155,7 +155,7 @@ public class Unit : MonoBehaviour
 
     public void AddDmg(int dmg, TypeDmg typeDmg)
     {
-        if (IsDeath || !InControl())
+        if (IsDeath || !InControl() || dmg <= 0)
             return;
         
         ShieldLoad = ShieldDelay;
@@ -248,6 +248,16 @@ public class Unit : MonoBehaviour
     public bool GetIsDeath()
     {
         return IsDeath;
+    }
+
+    public bool GetIsDisabled()
+    {
+        return Disabled;
+    }
+
+    public bool GetIsCasting()
+    {
+        return Casting > 0f;
     }
 
     public void DestroyUnit()
