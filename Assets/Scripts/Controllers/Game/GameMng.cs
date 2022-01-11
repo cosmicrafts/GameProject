@@ -332,7 +332,7 @@ public class GameMng : MonoBehaviour
             key = s.getKey(),
             pos_x = s.transform.position.x,
             pos_z = s.transform.position.z,
-            rot_y = s.transform.rotation.y,
+            rot_y = s.transform.rotation.eulerAngles.y,
             max_hp = s.GetMaxHitPoints(),
             max_sh = s.GetMaxShield(),
             hp = s.HitPoints,
@@ -393,11 +393,9 @@ public class GameMng : MonoBehaviour
                 else //Sync data
                 {
                     find.transform.position = new Vector3(unit.pos_x, 0f, unit.pos_z);
-                    find.transform.rotation = Quaternion.Euler(new Vector3(0f, unit.rot_y, 0f));
-                    find.SetMaxHitPoints(unit.max_hp);
-                    find.SetFakeHp(unit.hp);
-                    find.SetMaxShield(unit.max_sh);
-                    find.SetFakeShield(unit.sh);
+                    find.transform.rotation = Quaternion.Euler(0f, unit.rot_y, 0f);
+                    find.SetFakeHp(unit.hp, unit.max_hp);
+                    find.SetFakeShield(unit.sh, unit.max_sh);
                     if (unit.id_target > 0)
                     {
                         Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);

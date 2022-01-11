@@ -322,16 +322,6 @@ public class Unit : MonoBehaviour
         SolidBase.enabled = false;
     }
 
-    public void FakeSync(NetUnitPack data)
-    {
-        transform.position = new Vector3(data.pos_x, 0f, data.pos_z);
-        transform.rotation = Quaternion.Euler(0f, data.rot_y, 0f);
-        HitPoints = data.max_hp;
-        Shield = data.max_sh;
-        HitPoints = data.hp;
-        Shield = data.sh;
-    }
-
     public Animator GetAnimator()
     {
         return MyAnim;
@@ -347,12 +337,13 @@ public class Unit : MonoBehaviour
         MaxShield = maxshield;
     }
 
-    public void SetFakeShield(int sh)
+    public void SetFakeShield(int sh, int max_sh)
     {
         if (!IsFake)
             return;
 
         Shield = sh;
+        MaxShield = max_sh;
         UI.SetShieldBar((float)Shield / (float)MaxShield);
     }
 
@@ -362,7 +353,7 @@ public class Unit : MonoBehaviour
         UI.SetHPBar((float)HitPoints / (float)MaxHp);
     }
 
-    public void SetFakeHp(int hp)
+    public void SetFakeHp(int hp, int max_hp)
     {
         if (!IsFake)
             return;
@@ -373,6 +364,7 @@ public class Unit : MonoBehaviour
             GameMng.MT.AddDamage(diference);
         }
         HitPoints = hp;
+        MaxHp = max_hp;
         UI.SetHPBar((float)HitPoints / (float)MaxHp);
     }
 
