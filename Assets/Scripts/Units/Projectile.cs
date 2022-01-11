@@ -33,13 +33,14 @@ public class Projectile : MonoBehaviour
 
         if (Target != null)
         {
+            var _direction = (Target.transform.position - transform.position).normalized;
+            var _lookRotation = Quaternion.LookRotation(_direction);
+            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * Speed);
             LastTargetPosition = Target.transform.position;
-            Rotate(Target.transform.position);
         }
 
         if (CheckLastPosition)
         {
-            Rotate(LastTargetPosition);
             if (Vector3.Distance(transform.position, LastTargetPosition) < 1.0f)
             {
                 Destroy(Instantiate(Inpact, transform.position, Quaternion.identity), 0.5f);
@@ -85,16 +86,5 @@ public class Projectile : MonoBehaviour
         target.AddDmg(Dmg);
         target.SetImpactPosition(transform.position);
         Destroy(gameObject);
-    }
-
-    void Rotate(Vector3 target)
-    {
-        Quaternion _lookRotation = Quaternion.LookRotation((target - transform.position).normalized);
-        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * Speed);
-    }
-
-    public void SetLastPosition(Vector3 lastposition)
-    {
-        LastTargetPosition = lastposition;
     }
 }

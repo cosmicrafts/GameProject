@@ -42,8 +42,6 @@ public class Shooter : MonoBehaviour
 
     Unit Target;
 
-    Unit FakeTarget;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -63,17 +61,6 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FakeTarget)
-        {
-            ShootFakeTarget();
-        } else
-        {
-            ShootTarget();
-        }
-    }
-
-    public void ShootTarget()
-    {
         if (MyUnit.GetIsDeath() || !CanAttack || !MyUnit.InControl())
             return;
 
@@ -87,7 +74,7 @@ public class Shooter : MonoBehaviour
 
             if (DelayShoot <= 0f)
             {
-                for (int i = 0; i < Cannons.childCount; i++)
+                for(int i=0; i<Cannons.childCount; i++)
                 {
                     Transform cannon = Cannons.GetChild(i);
                     Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
@@ -99,8 +86,7 @@ public class Shooter : MonoBehaviour
                     MuzzleFlash[i].Play();
                 }
                 DelayShoot = CoolDown;
-            }
-            else
+            } else
             {
                 DelayShoot -= Time.deltaTime;
             }
@@ -112,39 +98,9 @@ public class Shooter : MonoBehaviour
             {
                 InRange.Clear();
                 SetTarget(null);
-            }
-            else
+            } else
             {
                 CleanEnemys();
-            }
-        }
-    }
-
-    public void ShootFakeTarget()
-    {
-        if (MyUnit.GetIsDeath() || MyUnit.GetIsDisabled() && MyUnit.GetIsCasting())
-            return;
-
-        if (FakeTarget != null)
-        {
-            if (DelayShoot <= 0f)
-            {
-                for (int i = 0; i < Cannons.childCount; i++)
-                {
-                    Transform cannon = Cannons.GetChild(i);
-                    Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
-                    bullet.MyTeam = MyUnit.MyTeam;
-                    bullet.SetLastPosition(Target.transform.position);
-                    bullet.Speed = BulletSpeed;
-                    bullet.Dmg = 0;
-                    MuzzleFlash[i].Clear();
-                    MuzzleFlash[i].Play();
-                }
-                DelayShoot = CoolDown;
-            }
-            else
-            {
-                DelayShoot -= Time.deltaTime;
             }
         }
     }
@@ -163,11 +119,6 @@ public class Shooter : MonoBehaviour
         {
             MyShip.SetDestination(Target.transform.position, RangeDetector);
         }
-    }
-
-    public void SetFakeTarget(Unit target)
-    {
-        FakeTarget = target;
     }
 
     public void AddEnemy(Unit enemy)
@@ -214,10 +165,5 @@ public class Shooter : MonoBehaviour
             Unit closer = InRange.OrderBy(o => Vector3.Distance(transform.position, o.transform.position)).FirstOrDefault();
             SetTarget(closer);
         }    
-    }
-
-    public int GetIdTarget()
-    {
-        return Target == null ? 0 : Target.getId();
     }
 }
