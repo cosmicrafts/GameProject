@@ -134,7 +134,7 @@ public class Shooter : MonoBehaviour
                     Transform cannon = Cannons.GetChild(i);
                     Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
                     bullet.MyTeam = MyUnit.MyTeam;
-                    bullet.Target = Target.gameObject;
+                    bullet.SetLastPosition(Target.transform.position);
                     bullet.Speed = BulletSpeed;
                     bullet.Dmg = 0;
                     MuzzleFlash[i].Clear();
