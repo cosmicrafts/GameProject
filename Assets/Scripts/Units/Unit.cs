@@ -70,6 +70,8 @@ public class Unit : MonoBehaviour
 
     protected Rigidbody MyRb;
 
+    Quaternion FakeRotation;
+
     // Start is called before the first frame update
     virtual protected void Start()
     {
@@ -106,6 +108,11 @@ public class Unit : MonoBehaviour
             {
                 CastComplete();
             }
+        }
+
+        if (FakeRotation != null && IsFake)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, FakeRotation, Time.time * 5f);
         }
 
         if (ShieldLoad > 0f)
@@ -322,6 +329,11 @@ public class Unit : MonoBehaviour
         SolidBase.enabled = false;
     }
 
+    public void SetFakeRotation(Quaternion quaternion)
+    {
+        FakeRotation = quaternion;
+    }
+
     public Animator GetAnimator()
     {
         return MyAnim;
@@ -344,7 +356,7 @@ public class Unit : MonoBehaviour
 
         Shield = sh;
         MaxShield = maxshield;
-        UI.SetShieldBar((float)Shield / (float)MaxShield);
+        UI.SetShieldBar((float)sh / (float)maxshield);
     }
 
     public void SetMaxHitPoints(int maxhp)
@@ -365,7 +377,7 @@ public class Unit : MonoBehaviour
         }
         HitPoints = hp;
         MaxHp = maxhp;
-        UI.SetHPBar((float)HitPoints / (float)MaxHp);
+        UI.SetHPBar((float)hp / (float)maxhp);
     }
 
     public int GetMaxHitPoints()

@@ -392,8 +392,12 @@ public class GameMng : MonoBehaviour
                 }
                 else //Sync data
                 {
-                    find.transform.position = new Vector3(unit.pos_x, 0f, unit.pos_z);
-                    find.transform.rotation = Quaternion.Euler(0f, unit.rot_y, 0f);
+                    Ship ship = find as Ship;
+                    if (ship != null)
+                    {
+                        ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
+                    }
+                    find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
                     find.SetFakeHp(unit.hp, unit.max_hp);
                     find.SetFakeShield(unit.sh, unit.max_sh);
                     if (unit.id_target > 0)

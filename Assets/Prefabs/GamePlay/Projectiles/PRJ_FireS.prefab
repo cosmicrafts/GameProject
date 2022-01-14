@@ -13914,10 +13914,9 @@ GameObject:
   - component: {fileID: 4495777382407797808}
   - component: {fileID: 4495777382407816592}
   - component: {fileID: 49977308736601857}
-  - component: {fileID: -1511847612538522035}
   - component: {fileID: 9066554652131141818}
   m_Layer: 0
-  m_Name: PRJ_Fire
+  m_Name: PRJ_FireS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18613,19 +18612,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.25
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &-1511847612538522035
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495777382389081428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &9066554652131141818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18641,6 +18627,7 @@ MonoBehaviour:
   MyTeam: 0
   Target: {fileID: 0}
   Speed: 0
+  Dmg: 0
   Inpact: {fileID: 122474, guid: 577af436092783e448b60646ae9c1da6, type: 3}
   ShieldInpact: {fileID: 8994491411004452053, guid: a6a405c512eefab4cb21693a2ff0f2d4,
     type: 3}

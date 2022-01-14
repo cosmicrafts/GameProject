@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
 
     Vector3 LastTargetPosition;
     bool CheckLastPosition = false;
+    bool IsFake;
 
     private void Start()
     {
@@ -29,7 +30,14 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * Speed;
+        if (IsFake)
+        {
+            //transform.position = Vector3.Lerp(transform.position, LastTargetPosition, Time.deltaTime * 1f/(Speed*0.1f));
+            transform.position = Vector3.MoveTowards(transform.position, LastTargetPosition, Time.deltaTime * Speed);
+        } else
+        {
+            transform.position += transform.forward * Time.deltaTime * Speed;
+        }
 
         if (Target != null)
         {
@@ -40,8 +48,9 @@ public class Projectile : MonoBehaviour
         if (CheckLastPosition)
         {
             Rotate(LastTargetPosition);
-            if (Vector3.Distance(transform.position, LastTargetPosition) < 1.0f)
+            if (Vector3.Distance(transform.position, LastTargetPosition) < Speed)
             {
+                transform.position = LastTargetPosition;
                 Destroy(Instantiate(Inpact, transform.position, Quaternion.identity), 0.5f);
                 Destroy(gameObject);
             }
@@ -50,6 +59,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (IsFake)
+            return;
+
         if (other.gameObject == Target)
         {
             Unit target = Target.GetComponent<Unit>();
@@ -96,5 +108,13 @@ public class Projectile : MonoBehaviour
     public void SetLastPosition(Vector3 lastposition)
     {
         LastTargetPosition = lastposition;
+    }
+
+    public void SetFake(bool isfake)
+    {
+        IsFake = isfake;
+        SphereCollider sc = GetComponent<SphereCollider>();
+        if (sc != null)
+            sc.enabled = !isfake;
     }
 }

@@ -47,6 +47,7 @@ public class Shooter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //SetFakeTarget(GameMng.GM.Targets[0]);
         InRange = new List<Unit>();
         EnemyDetector.radius = RangeDetector;
         MyShip = GetComponent<Ship>();
@@ -134,9 +135,10 @@ public class Shooter : MonoBehaviour
                     Transform cannon = Cannons.GetChild(i);
                     Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
                     bullet.MyTeam = MyUnit.MyTeam;
-                    bullet.SetLastPosition(Target.transform.position);
+                    bullet.SetLastPosition(FakeTarget.transform.position);
                     bullet.Speed = BulletSpeed;
                     bullet.Dmg = 0;
+                    bullet.SetFake(true);
                     MuzzleFlash[i].Clear();
                     MuzzleFlash[i].Play();
                 }
