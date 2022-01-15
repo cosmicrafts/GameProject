@@ -253,7 +253,7 @@ public class Player : MonoBehaviour
     {
         if (unitcard.EnergyCost <= CurrentEnergy)
         {
-            if (unitcard as UnitCard != null)
+            if (unitcard as UnitCard != null) //UNIT
             {
                 if (ImFake()) //Request Deploy
                 {
@@ -263,7 +263,8 @@ public class Player : MonoBehaviour
                         id = GameMng.GM.GenerateUnitRequestId(),
                         key = unitcard.NftsKey,
                         pos_x = position.x,
-                        pos_z = position.z
+                        pos_z = position.z,
+                        is_spell = false
                     };
                     GameMng.GM.RequestUnit(unitdata);
                 } else //Normal Deply
@@ -276,11 +277,21 @@ public class Player : MonoBehaviour
                 }
                 RestEnergy(unitcard.EnergyCost);
                 GameMng.MT.AddDeploys(1);
-            } else
+            } else // SPELL
             {
                 if (ImFake()) //Request Deploy
                 {
-                    //Spells
+                    Vector3 position = CMath.GetMouseWorldPos();
+                    NetUnitPack unitdata = new NetUnitPack()
+                    {
+                        id = GameMng.GM.GenerateUnitRequestId(),
+                        key = unitcard.NftsKey,
+                        pos_x = position.x,
+                        pos_z = position.z,
+                        is_spell = true
+                    };
+                    GameMng.GM.RequestUnit(unitdata);
+                    GameMng.GM.CreateFakeSpell(unitcard.NftsKey, position.x, position.z, (int)MyTeam, ID);
                 }
                 else //Normal Deply
                 {

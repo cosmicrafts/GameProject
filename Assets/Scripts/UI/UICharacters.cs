@@ -96,6 +96,11 @@ public class UICharacters : MonoBehaviour
         {
             CharactersScroll.value = 1f;
         }
+        foreach(UICharacter uICharacter in AllCharacters)
+        {
+            uICharacter.UpdateDelta();
+        }
+        MoveScroll();
     }
 
     public void MovePrevCharacter()
@@ -105,6 +110,11 @@ public class UICharacters : MonoBehaviour
         {
             CharactersScroll.value = 0f;
         }
+        foreach (UICharacter uICharacter in AllCharacters)
+        {
+            uICharacter.UpdateDelta();
+        }
+        MoveScroll();
     }
 
     void ResizeEmptySides()

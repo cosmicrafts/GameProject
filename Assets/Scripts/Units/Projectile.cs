@@ -7,8 +7,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public Team MyTeam;
 
-    [HideInInspector]
-    public GameObject Target;
+    GameObject Target;
 
     [HideInInspector]
     public float Speed;
@@ -20,12 +19,11 @@ public class Projectile : MonoBehaviour
     public GameObject ShieldInpact;
 
     Vector3 LastTargetPosition;
-    bool CheckLastPosition = false;
     bool IsFake;
 
     private void Start()
     {
-        CheckLastPosition = Target != null;
+
     }
 
     private void Update()
@@ -43,12 +41,10 @@ public class Projectile : MonoBehaviour
         {
             LastTargetPosition = Target.transform.position;
             Rotate(Target.transform.position);
-        }
-
-        if (CheckLastPosition)
+        } else
         {
             Rotate(LastTargetPosition);
-            if (Vector3.Distance(transform.position, LastTargetPosition) < Speed)
+            if (Vector3.Distance(transform.position, LastTargetPosition) < 1f)
             {
                 transform.position = LastTargetPosition;
                 Destroy(Instantiate(Inpact, transform.position, Quaternion.identity), 0.5f);
@@ -108,6 +104,18 @@ public class Projectile : MonoBehaviour
     public void SetLastPosition(Vector3 lastposition)
     {
         LastTargetPosition = lastposition;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        if (target == null)
+        {
+            Destroy(gameObject, 1f);
+        } else
+        {
+            Target = target;
+            LastTargetPosition = target.transform.position;
+        }
     }
 
     public void SetFake(bool isfake)

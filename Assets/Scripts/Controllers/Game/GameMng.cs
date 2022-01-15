@@ -80,11 +80,8 @@ public class GameMng : MonoBehaviour
         for(int i=0; i<Targets.Length; i++)
         {
             Targets[i].IsBaseStation = true;
+            Targets[i].setId(GenerateUnitId());
         }
-
-        Targets[1].setId(1);
-        Targets[0].setId(2);
-        IdCounter = 2;
 
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -117,6 +114,12 @@ public class GameMng : MonoBehaviour
                     {
                         GameNetwork.SetGameStatus(NetGameStep.InGame);
                         SyncNetData();
+                    } else
+                    {
+                        for (int i = 0; i < Targets.Length; i++)
+                        {
+                            Targets[i].setHasFake();
+                        }
                     }
                 }
                 break;
@@ -166,6 +169,7 @@ public class GameMng : MonoBehaviour
         {
             if (GameData.ImMaster)
             {
+                GameNetwork.SetGameStatus(NetGameStep.End);
                 SyncNetData();
             }
             StopCoroutine(LoopGameNetAsync());
@@ -244,6 +248,14 @@ public class GameMng : MonoBehaviour
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setKey(nftKey);
         return spell;
+    }
+
+    public Spell CreateSpell(string nftKey, float x, float z, int team, int playerId = -1)
+    {
+        GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, true);
+        if (obj == null)
+            return null;
+        return CreateSpell(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
 
     public Spell CreateFakeSpell(string nftKey, float x, float z, int team, int playerId = -1)
@@ -365,7 +377,13 @@ public class GameMng : MonoBehaviour
                 //Create Real Unit
                 if (!CreatedUnits.Contains(unit.id))
                 {
-                    CreateUnit(unit.key, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+                    if (unit.is_spell)
+                    {
+                        CreateSpell(unit.key, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+                    } else
+                    {
+                        CreateUnit(unit.key, unit.pos_x, unit.pos_z, P.GetVsTeamInt(), P.GetVsId());
+                    }
                     CreatedUnits.Add(unit.id);
                 }
             }
@@ -382,13 +400,13 @@ public class GameMng : MonoBehaviour
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             foreach (NetUnitPack unit in units)
             {
-                if (string.IsNullOrEmpty(unit.key))
-                    continue;
-
                 Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
                 if (find == null) //Create fake
                 {
-                    CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
+                    if (!string.IsNullOrEmpty(unit.key))
+                    {
+                        CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
+                    }
                 }
                 else //Sync data
                 {

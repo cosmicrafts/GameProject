@@ -24,7 +24,7 @@ public class Spell : MonoBehaviour
         
     }
 
-    public void setHasFake()
+    public virtual void setHasFake()
     {
         IsFake = true;
     }

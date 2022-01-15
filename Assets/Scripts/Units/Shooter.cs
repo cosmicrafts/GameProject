@@ -64,7 +64,7 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (FakeTarget)
+        if (MyUnit.getIsFake())
         {
             ShootFakeTarget();
         } else
@@ -93,7 +93,7 @@ public class Shooter : MonoBehaviour
                     Transform cannon = Cannons.GetChild(i);
                     Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
                     bullet.MyTeam = MyUnit.MyTeam;
-                    bullet.Target = Target.gameObject;
+                    bullet.SetTarget(Target.gameObject);
                     bullet.Speed = BulletSpeed;
                     bullet.Dmg = BulletDamage;
                     MuzzleFlash[i].Clear();

@@ -112,7 +112,7 @@ public class Unit : MonoBehaviour
 
         if (FakeRotation != null && IsFake)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, FakeRotation, Time.time * 5f);
+            transform.rotation = Quaternion.Lerp(transform.rotation, FakeRotation, Time.time * 0.1f);
         }
 
         if (ShieldLoad > 0f)
@@ -316,6 +316,11 @@ public class Unit : MonoBehaviour
     public int GetPlayerId()
     {
         return PlayerId;
+    }
+
+    public bool getIsFake()
+    {
+        return IsFake;
     }
 
     public void setHasFake()
