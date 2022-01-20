@@ -7,8 +7,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public Team MyTeam;
 
-    [HideInInspector]
-    public GameObject Target;
+    GameObject Target;
 
     [HideInInspector]
     public float Speed;
@@ -20,29 +19,34 @@ public class Projectile : MonoBehaviour
     public GameObject ShieldInpact;
 
     Vector3 LastTargetPosition;
-    bool CheckLastPosition = false;
+    bool IsFake;
 
     private void Start()
     {
-        CheckLastPosition = Target != null;
+
     }
 
     private void Update()
     {
-        transform.position += transform.forward * Time.deltaTime * Speed;
+        if (IsFake)
+        {
+            //transform.position = Vector3.Lerp(transform.position, LastTargetPosition, Time.deltaTime * 1f/(Speed*0.1f));
+            transform.position = Vector3.MoveTowards(transform.position, LastTargetPosition, Time.deltaTime * Speed);
+        } else
+        {
+            transform.position += transform.forward * Time.deltaTime * Speed;
+        }
 
         if (Target != null)
         {
-            var _direction = (Target.transform.position - transform.position).normalized;
-            var _lookRotation = Quaternion.LookRotation(_direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * Speed);
             LastTargetPosition = Target.transform.position;
-        }
-
-        if (CheckLastPosition)
+            Rotate(Target.transform.position);
+        } else
         {
-            if (Vector3.Distance(transform.position, LastTargetPosition) < 1.0f)
+            Rotate(LastTargetPosition);
+            if (Vector3.Distance(transform.position, LastTargetPosition) < 1f)
             {
+                transform.position = LastTargetPosition;
                 Destroy(Instantiate(Inpact, transform.position, Quaternion.identity), 0.5f);
                 Destroy(gameObject);
             }
@@ -51,6 +55,9 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (IsFake)
+            return;
+
         if (other.gameObject == Target)
         {
             Unit target = Target.GetComponent<Unit>();
@@ -86,5 +93,36 @@ public class Projectile : MonoBehaviour
         target.AddDmg(Dmg);
         target.SetImpactPosition(transform.position);
         Destroy(gameObject);
+    }
+
+    void Rotate(Vector3 target)
+    {
+        Quaternion _lookRotation = Quaternion.LookRotation((target - transform.position).normalized);
+        transform.rotation = Quaternion.Slerp(transform.rotation, _lookRotation, Time.deltaTime * Speed);
+    }
+
+    public void SetLastPosition(Vector3 lastposition)
+    {
+        LastTargetPosition = lastposition;
+    }
+
+    public void SetTarget(GameObject target)
+    {
+        if (target == null)
+        {
+            Destroy(gameObject, 1f);
+        } else
+        {
+            Target = target;
+            LastTargetPosition = target.transform.position;
+        }
+    }
+
+    public void SetFake(bool isfake)
+    {
+        IsFake = isfake;
+        SphereCollider sc = GetComponent<SphereCollider>();
+        if (sc != null)
+            sc.enabled = !isfake;
     }
 }

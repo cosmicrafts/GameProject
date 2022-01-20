@@ -29,7 +29,12 @@ public class UICharacter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CurrentDelta = Mathf.Abs((RefScroll.value-AlphaFactor) * DeltaFactor);
+        UpdateDelta();
+    }
+
+    public void UpdateDelta()
+    {
+        CurrentDelta = Mathf.Abs((RefScroll.value - AlphaFactor) * DeltaFactor);
         MyAnim.SetFloat("AlphaAmount", CurrentDelta > 1f ? 1f : CurrentDelta);
     }
 

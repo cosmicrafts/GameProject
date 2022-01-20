@@ -27,6 +27,7 @@ public class Ship : Unit
     public float AvoidanceRange = 3f;
 
     Transform Target;
+    Vector3 FakeDestination;
     public RaySensor[] AvoidanceSensors;
     public GameObject MainThruster;
 
@@ -39,6 +40,7 @@ public class Ship : Unit
     {
         base.Start();
         Target = GameMng.GM.GetFinalTarget(MyTeam);
+        FakeDestination = transform.position;
         if (IsFake)
         {
             MySt.enabled = false;
@@ -83,45 +85,53 @@ public class Ship : Unit
             return;
         }
 
-        if (InControl())
+        if (IsFake)
         {
-            if (CanMove)
+            transform.position = Vector3.Lerp(transform.position, FakeDestination, Time.deltaTime * MaxSpeed);
+            MainThruster.SetActive(Vector3.Distance(transform.position, FakeDestination) > Speed);
+        } else
+        {
+            if (InControl())
             {
-                if (Speed < MaxSpeed)
+                if (CanMove)
                 {
-                    Speed += Aceleration * Time.deltaTime;
+                    if (Speed < MaxSpeed)
+                    {
+                        Speed += Aceleration * Time.deltaTime;
+                    }
+                    else
+                    {
+                        Speed = MaxSpeed;
+                    }
+
+                    MySt.TurnForce = TurnSpeed * 100f;
+                    MySt.StrafeForce = DragSpeed * 100f;
+                    MySt.MoveForce = Speed * 100f;
+                    MySt.StopSpeed = StopSpeed;
                 }
                 else
                 {
-                    Speed = MaxSpeed;
+                    MySt.TurnForce = 0f;
+                    MySt.MoveForce = 0f;
+                    Speed = 0f;
                 }
 
-                MySt.TurnForce = TurnSpeed * 100f;
-                MySt.StrafeForce = DragSpeed * 100f;
-                MySt.MoveForce = Speed * 100f;
-                MySt.StopSpeed = StopSpeed;
+                if (MySt.hasReachedDestination() && MainThruster.activeSelf)
+                {
+                    MainThruster.SetActive(false);
+                }
+                if (!MySt.hasReachedDestination() && !MainThruster.activeSelf)
+                {
+                    MainThruster.SetActive(true);
+                }
             }
-            else
+            else if (MainThruster.activeSelf)
             {
+                MainThruster.SetActive(false);
                 MySt.TurnForce = 0f;
                 MySt.MoveForce = 0f;
                 Speed = 0f;
             }
-
-            if (MySt.hasReachedDestination() && MainThruster.activeSelf)
-            {
-                MainThruster.SetActive(false);
-            }
-            if (!MySt.hasReachedDestination() && !MainThruster.activeSelf)
-            {
-                MainThruster.SetActive(true);
-            }
-        } else if (MainThruster.activeSelf)
-        {
-            MainThruster.SetActive(false);
-            MySt.TurnForce = 0f;
-            MySt.MoveForce = 0f;
-            Speed = 0f;
         }
     }
 
@@ -138,6 +148,11 @@ public class Ship : Unit
     {
         MySt.Destination = des;
         MySt.StoppingDistance = stopdistance;
+    }
+
+    public void SetFakeDestination(Vector3 des)
+    {
+        FakeDestination = des;
     }
 
     protected override void CastComplete()

@@ -36,6 +36,12 @@ public class Spell_01 : Spell
         }
     }
 
+    public override void setHasFake()
+    {
+        base.setHasFake();
+        GetComponent<BoxCollider>().enabled = false;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Unit"))

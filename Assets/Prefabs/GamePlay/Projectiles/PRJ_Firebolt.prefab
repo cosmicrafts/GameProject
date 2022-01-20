@@ -4806,7 +4806,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2993895921483184766}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 66362109d38707e41966aad33585e4bc, type: 3}
@@ -9586,11 +9586,10 @@ GameObject:
   - component: {fileID: 4495777382389447028}
   - component: {fileID: 4495777382407797808}
   - component: {fileID: 4495777382407816592}
-  - component: {fileID: 49977308736601857}
   - component: {fileID: -1511847612538522035}
   - component: {fileID: 9066554652131141818}
   m_Layer: 0
-  m_Name: PRJ_Test3
+  m_Name: PRJ_Firebolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14273,19 +14272,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!135 &49977308736601857
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4495777382389081428}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!135 &-1511847612538522035
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -14314,6 +14300,7 @@ MonoBehaviour:
   MyTeam: 0
   Target: {fileID: 0}
   Speed: 0
+  Dmg: 0
   Inpact: {fileID: 122474, guid: 577af436092783e448b60646ae9c1da6, type: 3}
   ShieldInpact: {fileID: 8994491411004452053, guid: a6a405c512eefab4cb21693a2ff0f2d4,
     type: 3}
