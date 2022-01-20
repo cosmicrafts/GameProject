@@ -78,14 +78,14 @@ public class UserCollection
                 IsStation = true
             });
         }
-        Cards.Add(new NFTsSpell()
-        {
-            KeyId = $"Skill_1",
-            Name = $"Skill 1",
-            EnergyCost = 10,
-            Icon = $"I_Skill_01",
-            Rarity = 5
-        });
+        //Cards.Add(new NFTsSpell()
+        //{
+        //    KeyId = $"Skill_1",
+        //    Name = $"Skill 1",
+        //    EnergyCost = 10,
+        //    Icon = $"I_Skill_01",
+        //    Rarity = 5
+        //});
         Deck = Cards.Take(8).ToList();
     }
 }

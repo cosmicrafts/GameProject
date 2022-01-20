@@ -24,4 +24,8 @@ public class NetUnitPack
     public int max_sh { get; set; }
 
     public int sh { get; set; }
+
+    public int id_target { get; set; }
+
+    public bool is_spell { get; set; }
 }
