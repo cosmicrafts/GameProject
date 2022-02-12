@@ -13,6 +13,8 @@ public class Player : MonoBehaviour
 
     bool InControl;
 
+    bool CanGenEnergy;
+
     public DragUnitCtrl UnitDrag;
 
     public GameObject[] DeckUnits = new GameObject[8];
@@ -49,7 +51,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        InControl = true;
+        InControl = CanGenEnergy = true;
 
         if (DeckUnits.Length != 8)
         {
@@ -204,8 +206,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    public void SetCanGenEnergy(bool can)
+    {
+        CanGenEnergy = can;
+    }
+
     public void AddEnergy(float value)
     {
+        if (!CanGenEnergy)
+            return;
+
         if (CurrentEnergy < MaxEnergy)
         {
             CurrentEnergy += value;

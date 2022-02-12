@@ -83,7 +83,7 @@ public class GameMng : MonoBehaviour
             Targets[i].setId(GenerateUnitId());
         }
 
-        TimeOut = new TimeSpan(0, 5, 0);
+        TimeOut = new TimeSpan(0, 1, 0);
         StartTime = DateTime.Now;
         GridColl.size = new Vector3(MapWidth*2f, 0.1f, MapHeigth*2f);
 
@@ -132,6 +132,11 @@ public class GameMng : MonoBehaviour
         if (GameOver)
             return;
 
+        TimeControl();
+    }
+
+    public void TimeControl()
+    {
         if (RunTime)
         {
             TimeSpan CurrentTime = TimeOut.Add(StartTime - DateTime.Now);
@@ -139,7 +144,9 @@ public class GameMng : MonoBehaviour
             if (CurrentTime.TotalSeconds <= 0)
             {
                 RunTime = false;
-                //TIME OUT
+                UI.UpdateTimeOut("0:00");
+                P.SetCanGenEnergy(false);
+                GameDraw();
             }
         }
     }
@@ -150,6 +157,29 @@ public class GameMng : MonoBehaviour
             return transform;
 
         return Targets[(int)team].transform;
+    }
+
+    void GameDraw()
+    {
+        if (P.ImFake())
+            return;
+
+        if (Targets[0].HitPoints == Targets[1].HitPoints)
+        {
+            //SAME HP
+            Targets[0].GetComponent<Shooter>().StopAttack();
+            Targets[1].GetComponent<Shooter>().StopAttack();
+        }
+        else if (Targets[0].HitPoints > Targets[1].HitPoints)
+        {
+            //WIN P2
+            KillUnit(Targets[1]);
+        }
+        else
+        {
+            //WIN P1
+            KillUnit(Targets[0]);
+        }
     }
 
     public void EndGame(Team winner)

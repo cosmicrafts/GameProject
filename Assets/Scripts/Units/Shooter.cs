@@ -218,6 +218,13 @@ public class Shooter : MonoBehaviour
         }    
     }
 
+    public void StopAttack()
+    {
+        CanAttack = false;
+        InRange.Clear();
+        SetTarget(null);
+    }
+
     public int GetIdTarget()
     {
         return Target == null ? 0 : Target.getId();
