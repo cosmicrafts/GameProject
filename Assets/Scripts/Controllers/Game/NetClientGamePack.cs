@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class NetClientGamePack
 {
     public int GameId { get; set; }
+
+    public DateTime LastUpdate { get; set; }
 
     public List<NetUnitPack> UnitsRequested { get; set; }
 }

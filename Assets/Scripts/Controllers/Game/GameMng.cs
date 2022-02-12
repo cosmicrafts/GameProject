@@ -83,7 +83,7 @@ public class GameMng : MonoBehaviour
             Targets[i].setId(GenerateUnitId());
         }
 
-        TimeOut = new TimeSpan(0, 1, 0);
+        TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
         GridColl.size = new Vector3(MapWidth*2f, 0.1f, MapHeigth*2f);
 
@@ -112,6 +112,7 @@ public class GameMng : MonoBehaviour
                     StartCoroutine(LoopGameNetAsync());
                     if (GameData.ImMaster)
                     {
+                        GameNetwork.SetGameStart(DateTime.Now);
                         GameNetwork.SetGameStatus(NetGameStep.InGame);
                         SyncNetData();
                     } else
@@ -199,6 +200,10 @@ public class GameMng : MonoBehaviour
         {
             if (GameData.ImMaster)
             {
+                if (GameNetwork.GetWinner() == 0)
+                {
+                    GameNetwork.SetWinner(winner == P.MyTeam ? 1 : 2);
+                }
                 GameNetwork.SetGameStatus(NetGameStep.End);
                 SyncNetData();
             }
@@ -326,6 +331,7 @@ public class GameMng : MonoBehaviour
     public void RequestUnit(NetUnitPack unit)
     {
         RequestedUnits.Add(unit);
+        GameNetwork.SetClientLastUpdate(DateTime.Now);
         GameNetwork.SetRequestedGameUnits(RequestedUnits);
         GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
     }
@@ -385,6 +391,7 @@ public class GameMng : MonoBehaviour
         }).ToList();
         GameNetwork.SetGameUnits(upack);
         GameNetwork.SetGameDeletedUnits(DeletedUnits);
+        GameNetwork.SetMasterLastUpdate(DateTime.Now);
 
         try
         {
@@ -417,6 +424,7 @@ public class GameMng : MonoBehaviour
                     CreatedUnits.Add(unit.id);
                 }
             }
+            CheckMultiplayerWinner();
         }
     }
 
@@ -425,8 +433,9 @@ public class GameMng : MonoBehaviour
         if (!GameData.ImMaster)
         {
             GameNetwork.UpdateGameData(json);
+            StartTime = GameNetwork.GetStartTime();
             //Sync Real Units
-            List<NetUnitPack> units = GameNetwork.GetGameUnits();
+            List <NetUnitPack> units = GameNetwork.GetGameUnits();
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             foreach (NetUnitPack unit in units)
             {
@@ -470,6 +479,29 @@ public class GameMng : MonoBehaviour
                 {
                     KillUnit(find);
                 }
+            }
+            //Check winner
+            CheckMultiplayerWinner();
+        }
+    }
+
+    public void CheckMultiplayerWinner()
+    {
+        if (GameData.CurrentMatch != Match.multi)
+            return;
+
+        int winner = GameNetwork.GetWinner();
+        if (winner != 0 && !GameOver)
+        {
+            if (winner == 1 && Targets[P.GetVsId()] != null)
+            {
+                KillUnit(Targets[P.GetVsId()]);
+                return;
+            }
+            if (winner == 2 && Targets[P.ID] != null)
+            {
+                KillUnit(Targets[P.ID]);
+                return;
             }
         }
     }

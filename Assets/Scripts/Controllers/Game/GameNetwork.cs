@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
@@ -11,6 +12,8 @@ public static class GameNetwork
     {
         GameNetPack = new NetGamePack();
         ClientNetPack = new NetClientGamePack();
+        GameNetPack.LastUpdate = DateTime.Now;
+        ClientNetPack.LastUpdate = DateTime.Now;
     }
 
     public static int GetId()
@@ -43,6 +46,31 @@ public static class GameNetwork
         GameNetPack.GameStep = (int)step;
     }
 
+    public static void SetGameStart(DateTime start)
+    {
+        GameNetPack.GameStart = start;
+    }
+
+    public static void SetClientLastUpdate(DateTime dateTime)
+    {
+        ClientNetPack.LastUpdate = dateTime;
+    }
+
+    public static void SetMasterLastUpdate(DateTime dateTime)
+    {
+        GameNetPack.LastUpdate = dateTime;
+    }
+
+    public static void SetWinner(int GameWinner)
+    {
+        GameNetPack.GameWinner = GameWinner;
+    }
+
+    public static int GetWinner()
+    {
+        return GameNetPack.GameWinner;
+    }
+
     public static NetGameStep GetGameStatus()
     {
         return (NetGameStep)GameNetPack.GameStep;
@@ -72,6 +100,11 @@ public static class GameNetwork
     {
         GameNetPack.MasterWalletId = wid;
         GameNetPack.MasterPlayerName = name;
+    }
+
+    public static DateTime GetStartTime()
+    {
+        return GameNetPack.GameStart;
     }
 
     public static string GetMasterWalletId()

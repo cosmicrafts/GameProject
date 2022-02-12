@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public enum NetGameStep
@@ -15,6 +16,12 @@ public class NetGamePack
     public int GameId { get; set; }
 
     public int GameStep { get; set; }
+
+    public DateTime GameStart { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+    public int GameWinner { get; set; }
 
     public string MasterPlayerName { get; set; }
 
@@ -39,6 +46,10 @@ public class NetGamePack
     public string MasterIcon { get; set; }
 
     public string ClientIcon { get; set; }
+
+    public string MasterScore { get; set; }
+
+    public string ClientScore { get; set; }
 
     public List<NetUnitPack> Units { get; set; }
 
