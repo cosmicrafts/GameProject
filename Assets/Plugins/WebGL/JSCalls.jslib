@@ -15,6 +15,10 @@
         ReactUnityWebGL.SendClientData(Pointer_stringify(json));
   },
 
+  JSExitGame: function () {
+        ReactUnityWebGL.ExitGame();
+  },
+
   JSSearchGame: function (json) {
         ReactUnityWebGL.SearchGame(Pointer_stringify(json));
   },

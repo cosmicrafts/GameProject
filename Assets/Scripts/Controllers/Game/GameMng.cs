@@ -108,15 +108,16 @@ public class GameMng : MonoBehaviour
                 {
                     Destroy(BOT);
                     Destroy(GT.gameObject);
-                    dnet = new WaitForSeconds(1f / 3f);
                     StartCoroutine(LoopGameNetAsync());
                     if (GameData.ImMaster)
                     {
+                        dnet = new WaitForSeconds(1f / 3f);
                         GameNetwork.SetGameStart(DateTime.Now);
                         GameNetwork.SetGameStatus(NetGameStep.InGame);
                         SyncNetData();
                     } else
                     {
+                        dnet = new WaitForSeconds(5f);
                         for (int i = 0; i < Targets.Length; i++)
                         {
                             Targets[i].setHasFake();
@@ -325,7 +326,8 @@ public class GameMng : MonoBehaviour
 
     public void KillUnit(Unit unit)
     {
-        unit.Die();
+        if (unit != null)
+            unit.Die();
     }
 
     public void RequestUnit(NetUnitPack unit)
@@ -356,6 +358,9 @@ public class GameMng : MonoBehaviour
 
     public void EndScene()
     {
+        if (GameData.CurrentMatch == Match.multi)
+            GameNetwork.JSExitGame();
+
         SceneManager.LoadScene(0);
     }
 
@@ -371,35 +376,39 @@ public class GameMng : MonoBehaviour
 
     public void SyncNetData()
     {
-        if (!GameData.ImMaster) //Master send data
-            return;
+        if (GameData.ImMaster) //Master send main data
+        {
+            List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
+            {
+                id = s.getId(),
+                key = s.getKey(),
+                pos_x = s.transform.position.x,
+                pos_z = s.transform.position.z,
+                rot_y = s.transform.rotation.eulerAngles.y,
+                max_hp = s.GetMaxHitPoints(),
+                max_sh = s.GetMaxShield(),
+                hp = s.HitPoints,
+                sh = s.Shield,
+                team = (int)s.MyTeam,
+                player_id = s.PlayerId,
+                id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
+            }).ToList();
+            GameNetwork.SetGameUnits(upack);
+            GameNetwork.SetGameDeletedUnits(DeletedUnits);
+            GameNetwork.SetMasterLastUpdate(DateTime.Now);
 
-        List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
+            try
+            {
+                GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+        } else //Client send 
         {
-            id = s.getId(),
-            key = s.getKey(),
-            pos_x = s.transform.position.x,
-            pos_z = s.transform.position.z,
-            rot_y = s.transform.rotation.eulerAngles.y,
-            max_hp = s.GetMaxHitPoints(),
-            max_sh = s.GetMaxShield(),
-            hp = s.HitPoints,
-            sh = s.Shield,
-            team = (int)s.MyTeam,
-            player_id = s.PlayerId,
-            id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
-        }).ToList();
-        GameNetwork.SetGameUnits(upack);
-        GameNetwork.SetGameDeletedUnits(DeletedUnits);
-        GameNetwork.SetMasterLastUpdate(DateTime.Now);
-
-        try
-        {
-            GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
-        }
-        catch (Exception e)
-        {
-            Debug.LogError(e.Message);
+            GameNetwork.SetClientLastUpdate(DateTime.Now);
+            GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
         }
     }
 
@@ -424,7 +433,6 @@ public class GameMng : MonoBehaviour
                     CreatedUnits.Add(unit.id);
                 }
             }
-            CheckMultiplayerWinner();
         }
     }
 
@@ -485,22 +493,35 @@ public class GameMng : MonoBehaviour
         }
     }
 
+    public void GL_SyncWinner(int winner)
+    {
+        if (!GameOver && winner != 0)
+        {
+            GameNetwork.SetWinner(winner);
+            CheckMultiplayerWinner();
+        }
+    }
+
     public void CheckMultiplayerWinner()
     {
         if (GameData.CurrentMatch != Match.multi)
             return;
 
         int winner = GameNetwork.GetWinner();
+        
         if (winner != 0 && !GameOver)
         {
-            if (winner == 1 && Targets[P.GetVsId()] != null)
+            Debug.Log($"WE HAVE A WINNER...({winner})");
+            if (winner == 1)
             {
-                KillUnit(Targets[P.GetVsId()]);
+                KillUnit(Targets[0]);
+                Debug.Log("MASTER WINNS, KILLING UNIT 0");
                 return;
             }
-            if (winner == 2 && Targets[P.ID] != null)
+            if (winner == 2)
             {
-                KillUnit(Targets[P.ID]);
+                KillUnit(Targets[1]);
+                Debug.Log("CLIENT WINNS, KILLING UNIT 1");
                 return;
             }
         }

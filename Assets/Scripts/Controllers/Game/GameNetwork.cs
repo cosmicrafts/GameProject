@@ -173,11 +173,8 @@ public static class GameNetwork
     [DllImport("__Internal")]
     public static extern void JSSendClientData(string json);
 
-    //[DllImport("__Internal")]
-    //public static extern void JSGetGameData(int matchId);
-
-    //[DllImport("__Internal")]
-    //public static extern void JSCreateGame(string walletId, string playerData);
+    [DllImport("__Internal")]
+    public static extern void JSExitGame();
 
     [DllImport("__Internal")]
     public static extern void JSSearchGame(string json);
