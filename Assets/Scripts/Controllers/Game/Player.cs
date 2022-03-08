@@ -301,7 +301,6 @@ public class Player : MonoBehaviour
                         is_spell = true
                     };
                     GameMng.GM.RequestUnit(unitdata);
-                    GameMng.GM.CreateFakeSpell(unitcard.NftsKey, position.x, position.z, (int)MyTeam, ID);
                 }
                 else //Normal Deply
                 {

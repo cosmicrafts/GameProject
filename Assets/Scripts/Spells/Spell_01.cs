@@ -6,6 +6,9 @@ public class Spell_01 : Spell
 {
     List<Unit> Targets;
     float delaydmg;
+    public LineRenderer Lazer;
+    public GameObject StartLazer;
+    public GameObject EndLazer;
     // Start is called before the first frame update
     protected override void Start()
     {
@@ -14,6 +17,17 @@ public class Spell_01 : Spell
         delaydmg = 0.25f;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 50f, 0f));
+
+        if (GameMng.GM.MainStationsExist())
+        {
+            Vector3 target = GameMng.GM.Targets[MyTeam == Team.Blue ? 0 : 1].transform.position;
+            Vector3 origin = GameMng.GM.Targets[MyTeam == Team.Blue ? 1 : 0].transform.position;
+            Lazer.SetPosition(0, origin);
+            Lazer.SetPosition(1, target);
+            StartLazer.transform.position = origin;
+            EndLazer.transform.position = target;
+            StartLazer.transform.localRotation = Quaternion.Euler(new Vector3(0, MyTeam == Team.Blue ? 90 : 270, 0));
+        }
     }
 
     protected override void Update()

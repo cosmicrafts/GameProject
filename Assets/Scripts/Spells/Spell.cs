@@ -6,12 +6,14 @@ public class Spell : MonoBehaviour
     protected string Key;
     public Team MyTeam;
     public int PlayerId = 1;
+    protected int Id;
 
     [Range(0, 300)]
     public float Duration = 1;
     // Start is called before the first frame update
     protected virtual void Start()
     {
+        GameMng.GM.AddSpell(this);
         if (Duration > 0)
         {
             Destroy(gameObject, Duration);
@@ -37,5 +39,23 @@ public class Spell : MonoBehaviour
     public string getKey()
     {
         return Key;
+    }
+
+    public void setId(int id)
+    {
+        Id = id;
+    }
+
+    public int getId()
+    {
+        return Id;
+    }
+
+    private void OnDestroy()
+    {
+        if (GameMng.GM != null)
+        {
+            GameMng.GM.DeleteSpell(this);
+        }
     }
 }

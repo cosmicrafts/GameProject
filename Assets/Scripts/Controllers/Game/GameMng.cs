@@ -24,6 +24,7 @@ public class GameMng : MonoBehaviour
     public Unit[] Targets;
 
     List<Unit> Units;
+    List<Spell> Spells;
     List<NetUnitPack> RequestedUnits;
     List<int> DeletedUnits;
     List<int> CreatedUnits;
@@ -58,6 +59,7 @@ public class GameMng : MonoBehaviour
         GameOver = false;
         RunTime = true;
         Units = new List<Unit>();
+        Spells = new List<Spell>();
         RequestedUnits = new List<NetUnitPack>();
         DeletedUnits = new List<int>();
         CreatedUnits = new List<int>();
@@ -282,6 +284,7 @@ public class GameMng : MonoBehaviour
         Spell spell = Instantiate(obj, position, Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
+        spell.setId(GenerateUnitId());
         spell.setKey(nftKey);
         return spell;
     }
@@ -294,7 +297,7 @@ public class GameMng : MonoBehaviour
         return CreateSpell(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
 
-    public Spell CreateFakeSpell(string nftKey, float x, float z, int team, int playerId = -1)
+    public Spell CreateFakeSpell(string nftKey, int id, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, true);
         if (obj == null)
@@ -302,6 +305,7 @@ public class GameMng : MonoBehaviour
         Spell spell = Instantiate(obj, new Vector3(x, 0, z), Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = (Team)team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
+        spell.setId(id);
         spell.setKey(nftKey);
         spell.setHasFake();
         return spell;
@@ -315,12 +319,28 @@ public class GameMng : MonoBehaviour
         }
     }
 
+    public void AddSpell(Spell spell)
+    {
+        if (!Spells.Contains(spell))
+        {
+            Spells.Add(spell);
+        }
+    }
+
     public void DeleteUnit(Unit unit)
     {
         if (Units.Contains(unit))
         {
             Units.Remove(unit);
             DeletedUnits.Add(unit.getId());
+        }
+    }
+
+    public void DeleteSpell(Spell spell)
+    {
+        if (Spells.Contains(spell))
+        {
+            Spells.Remove(spell);
         }
     }
 
@@ -393,6 +413,18 @@ public class GameMng : MonoBehaviour
                 player_id = s.PlayerId,
                 id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
             }).ToList();
+            var spack = Spells.Select(s => new NetUnitPack
+            {
+                id = s.getId(),
+                key = s.getKey(),
+                pos_x = s.transform.position.x,
+                pos_z = s.transform.position.z,
+                rot_y = s.transform.rotation.eulerAngles.y,
+                team = (int)s.MyTeam,
+                player_id = s.PlayerId,
+                is_spell = true
+            });
+            upack.AddRange(spack);
             GameNetwork.SetGameUnits(upack);
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
             GameNetwork.SetMasterLastUpdate(DateTime.Now);
@@ -447,33 +479,43 @@ public class GameMng : MonoBehaviour
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             foreach (NetUnitPack unit in units)
             {
-                Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
-                if (find == null) //Create fake
+                if (unit.is_spell)
                 {
-                    if (!string.IsNullOrEmpty(unit.key))
+                    Spell find = Spells.FirstOrDefault(f => f.getId() == unit.id);
+                    if (find == null) //Create fake
                     {
-                        CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
+                        CreateFakeSpell(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
                     }
-                }
-                else //Sync data
+                } else
                 {
-                    Ship ship = find as Ship;
-                    if (ship != null)
+                    Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
+                    if (find == null) //Create fake
                     {
-                        ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
-                    }
-                    find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
-                    find.SetFakeHp(unit.hp, unit.max_hp);
-                    find.SetFakeShield(unit.sh, unit.max_sh);
-                    if (unit.id_target > 0)
-                    {
-                        Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);
-                        if (target != null)
+                        if (!string.IsNullOrEmpty(unit.key))
                         {
-                            Shooter shooter = find.GetComponent<Shooter>();
-                            if (shooter != null)
+                            CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
+                        }
+                    }
+                    else //Sync data
+                    {
+                        Ship ship = find as Ship;
+                        if (ship != null)
+                        {
+                            ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
+                        }
+                        find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
+                        find.SetFakeHp(unit.hp, unit.max_hp);
+                        find.SetFakeShield(unit.sh, unit.max_sh);
+                        if (unit.id_target > 0)
+                        {
+                            Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);
+                            if (target != null)
                             {
-                                shooter.SetFakeTarget(target);
+                                Shooter shooter = find.GetComponent<Shooter>();
+                                if (shooter != null)
+                                {
+                                    shooter.SetFakeTarget(target);
+                                }
                             }
                         }
                     }
@@ -525,6 +567,11 @@ public class GameMng : MonoBehaviour
                 return;
             }
         }
+    }
+
+    public bool MainStationsExist()
+    {
+        return Targets[0] != null && Targets[1] != null;
     }
 
     public int GenerateUnitId()
