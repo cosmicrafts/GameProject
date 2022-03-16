@@ -41,7 +41,9 @@ public class Unit : MonoBehaviour
     public float SpawnAreaSize = 0f; 
 
     [HideInInspector]
-    public bool IsBaseStation = false;
+    bool IsBaseStation = false;
+    [HideInInspector]
+    MainStation MainStationData;
 
     [HideInInspector]
     public bool IsInmortal = false;
@@ -75,6 +77,8 @@ public class Unit : MonoBehaviour
     // Start is called before the first frame update
     virtual protected void Start()
     {
+        MainStationData = GetComponent<MainStation>();
+        IsBaseStation = MainStationData != null;
         LastImpact = Vector3.zero;
         MaxShield = Shield;
         MaxHp = HitPoints;

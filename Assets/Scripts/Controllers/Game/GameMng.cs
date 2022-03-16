@@ -22,6 +22,8 @@ public class GameMng : MonoBehaviour
     public BotEnemy BOT;
 
     public Unit[] Targets;
+    public Material[] SkinStationsMaterials;
+    public Mesh[] SkinStationsMeshes;
 
     List<Unit> Units;
     List<Spell> Spells;
@@ -81,7 +83,6 @@ public class GameMng : MonoBehaviour
 
         for(int i=0; i<Targets.Length; i++)
         {
-            Targets[i].IsBaseStation = true;
             Targets[i].setId(GenerateUnitId());
         }
 

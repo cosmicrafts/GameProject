@@ -28609,7 +28609,7 @@ Transform:
   m_GameObject: {fileID: 2061224231458051091}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.43951, y: 0.43951, z: 0.43951}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2061224232315216246}
   m_RootOrder: 0
@@ -28621,7 +28621,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2061224231458051091}
-  m_Mesh: {fileID: -2432090755550338912, guid: c3fa94d7748fde24eb5853d6663dc235, type: 3}
+  m_Mesh: {fileID: 588780157734765639, guid: 3ba64cc9ad65930479a3afb888b6c90d, type: 3}
 --- !u!23 &2061224231458051092
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28639,7 +28639,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4dc0e59fbe05e85439c83bfc6cc6df1a, type: 2}
+  - {fileID: 2100000, guid: 5f90edc9b9bbca6469bea6a6229e1be7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -28671,7 +28671,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 2.5
   m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
 --- !u!114 &2061224231458051094
 MonoBehaviour:
@@ -28771,7 +28771,7 @@ GameObject:
   - component: {fileID: 2061224232315216235}
   - component: {fileID: 2061224232315216234}
   m_Layer: 0
-  m_Name: Station_Base_Red
+  m_Name: U_ASBase1
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28825,6 +28825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4a09c51eb317479067e7974bdc85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerId: 1
   MyTeam: 1
   HitPoints: 128
   Shield: 128
@@ -28856,6 +28857,7 @@ MonoBehaviour:
   RangeDetector: 21
   CoolDown: 1
   BulletSpeed: 21
+  BulletDamage: 1
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 906587669107ebd42af3f7926a23d253, type: 3}
@@ -28871,7 +28873,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 2.4
   m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
 --- !u!114 &2061224232315216234
 MonoBehaviour:
@@ -53211,7 +53213,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 2.3}
+  m_AnchoredPosition: {x: 0, y: 3.35}
   m_SizeDelta: {x: 480, y: 320}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &8416372925588658841

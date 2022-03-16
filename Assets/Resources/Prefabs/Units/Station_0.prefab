@@ -28887,12 +28887,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2198226034328220055}
   - component: {fileID: 2198226034328220052}
+  - component: {fileID: 1107383137566633056}
   - component: {fileID: 1221812395794976959}
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
   m_Layer: 0
-  m_Name: Station_001
+  m_Name: Station_0
   m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28934,6 +28935,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &1107383137566633056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0486a3e2ca7a51a44b9eb9f423b0d22d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1221812395794976959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28946,6 +28959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51d4a09c51eb317479067e7974bdc85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerId: 1
   MyTeam: 0
   HitPoints: 64
   Shield: 64
@@ -28977,6 +28991,7 @@ MonoBehaviour:
   RangeDetector: 30
   CoolDown: 0.45
   BulletSpeed: 27.5
+  BulletDamage: 1
   RotateToEnemy: 0
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: c840bc9c6bc570240b1e85e113917ac0, type: 3}
