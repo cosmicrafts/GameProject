@@ -11,6 +11,10 @@ public enum Language
 
 public class Lang : MonoBehaviour
 {
+    public static string[] FilesNames = new string[2]
+    {
+        "ENG","ESP"
+    };
 
     public static Hashtable UIS;
 
@@ -24,13 +28,13 @@ public class Lang : MonoBehaviour
 
     public static void SetLang(Language newlang)
     {
-        TextAsset textAsset = (TextAsset)Resources.Load("XML/UIStrings");
+        TextAsset textAsset = (TextAsset)Resources.Load($"XML/Langs/LNG_{FilesNames[(int)newlang]}");
         XmlDocument xml = new XmlDocument();
         xml.LoadXml(textAsset.text);
         UIS = new Hashtable();
         //Load Strings
 
-        XmlNodeList elements = xml.SelectNodes($"/languages/{newlang}/string");
+        XmlNodeList elements = xml.SelectNodes($"/Strings/string");
         if (elements != null)
         {
             IEnumerator elemEnum = elements.GetEnumerator();
