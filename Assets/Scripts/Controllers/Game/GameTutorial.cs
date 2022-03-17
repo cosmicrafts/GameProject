@@ -55,7 +55,6 @@ public class GameTutorial : MonoBehaviour
     public GameObject[] Tips = new GameObject[5];
     public Text[] Objectives = new Text[3];
     public GameObject ObjectiveAlert;
-    public GameObject[] EnnemyUnits = new GameObject[3];
 
     public GameObject AliadUnits;
     public GameObject EnemyUnits;
