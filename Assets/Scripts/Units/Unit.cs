@@ -87,6 +87,7 @@ public class Unit : MonoBehaviour
         TrigerBase = GetComponent<SphereCollider>();
         SolidBase = Mesh.GetComponent<SphereCollider>();
         UI.Init(MaxHp-1, MaxShield-1);
+        UI.SetColorBars(!IsMyTeam(GameMng.P.MyTeam));
         MyOutline.OutlineParameters.Color = GameMng.GM.GetColorUnit(MyTeam, PlayerId);
         TrigerBase.radius = SolidBase.radius;
         transform.localScale = new Vector3(Size, Size, Size);

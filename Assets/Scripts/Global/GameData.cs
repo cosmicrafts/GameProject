@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.InteropServices;
 using UnityEngine;
 
@@ -67,9 +68,16 @@ public static class GameData
         PlayerCollection = userCollection;
     }
 
-    public static void SetUserCharacter(NFTsCharacter nFTsCharacter)
+    public static void SetUserCharacter(string keyId)
     {
-        PlayerCharacter = nFTsCharacter;
+        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.KeyId == keyId);
+        if (character == null)
+        {
+            PlayerCharacter = PlayerCollection.Characters[0];
+        } else
+        {
+            PlayerCharacter = character;
+        }
     }
 
     public static User GetUserData()
@@ -129,7 +137,7 @@ public static class GameData
     {
         if (PlayerCharacter == null)
         {
-            PlayerCharacter = new NFTsCharacter() { KeyId = "Chr_1", Name = "Sotzeer", Icon = "Character_1" };
+            PlayerCharacter = PlayerCollection.Characters[0];
         }
 
         return PlayerCharacter;

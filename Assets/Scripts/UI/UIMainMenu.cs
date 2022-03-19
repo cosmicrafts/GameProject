@@ -47,10 +47,12 @@ public class UIMainMenu : MonoBehaviour
         Menu = this;
         UserDataLoaded = 0;
 
-        SaveData.LoadGameConfig();
-
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
+
+        SaveData.LoadGameConfig();
+        PlayerCollection = GameData.GetUserCollection();
+        PlayerCollection.AddUnitsAndCharactersDefault();
 
         GameData.DebugMode = false;
 #if UNITY_EDITOR
@@ -59,13 +61,7 @@ public class UIMainMenu : MonoBehaviour
 
         if (GameData.DebugMode)
         {
-            PlayerUser = GameData.GetUserData();
-            PlayerProgress = GameData.GetUserProgress();
-            PlayerCollection = GameData.GetUserCollection();
-            PlayerCollection.AddUnitsDefault();
-            PlayerCharacter = GameData.GetUserCharacter();
-            LoginPanel.SetActive(false);
-            MenuPanel.SetActive(true);
+            InitPlayerData();
         }
     }
 
@@ -97,7 +93,7 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetCharacterData(string jsonData)
     {
         NFTsCharacter character = JsonConvert.DeserializeObject<NFTsCharacter>(jsonData);
-        GameData.SetUserCharacter(character);
+        GameData.SetUserCharacter(character.KeyId);
         AddProgressDataLoaded();
     }
 
@@ -114,6 +110,7 @@ public class UIMainMenu : MonoBehaviour
     {
         Config config = JsonConvert.DeserializeObject<Config>(jsonData);
         GameData.SetConfig(config);
+        GameData.ChangeLang((Language)config.language);
         AddProgressDataLoaded();
     }
 
@@ -128,8 +125,6 @@ public class UIMainMenu : MonoBehaviour
     {
         PlayerUser = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
-        PlayerCollection = GameData.GetUserCollection();
-        PlayerCollection.AddUnitsDefault();
         PlayerCharacter = GameData.GetUserCharacter();
         LoginPanel.SetActive(false);
         MenuPanel.SetActive(true);

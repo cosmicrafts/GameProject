@@ -46,7 +46,7 @@ public class UICharacters : MonoBehaviour
             uICharacter.DeltaFactor = nChars / 2;
             uICharacter.RefScroll = CharactersScroll;
             AllCharacters.Add(uICharacter);
-            if (pCharacter == PlayerCollection.Characters[i])
+            if (pCharacter.KeyId == PlayerCollection.Characters[i].KeyId)
             {
                 CurrentChar = uICharacter;
                 uICharacter.SelectChar();
@@ -72,21 +72,14 @@ public class UICharacters : MonoBehaviour
         }
     }
 
-    public void SelectCharacter()
+    public void BtnSelectCharacter()
     {
-        Debug.Log("Start Selection");
         CurrentChar.DeselectChar();
-        Debug.Log("Old Character deselected");
         CurrentChar = FrontChar;
-        Debug.Log("New Character selected");
         NFTsCharacter nFTsCharacter = CurrentChar.GetData();
-        Debug.Log("Get New character NFT data");
-        GameData.SetUserCharacter(nFTsCharacter);
-        Debug.Log("Set NFT Character data in profile");
+        GameData.SetUserCharacter(nFTsCharacter.KeyId);
         CurrentChar.SelectChar();
-        Debug.Log("Mark Character has selected");
         GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
-        Debug.Log("Save in blockchain");
     }
 
     public void MoveScroll()

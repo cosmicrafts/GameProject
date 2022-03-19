@@ -12,6 +12,8 @@ public class GameCard : MonoBehaviour
 {
     public string NftsKey;
 
+    public string Name;
+
     public int EnergyCost;
 
     public Sprite Icon;

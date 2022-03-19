@@ -49,6 +49,12 @@ public class UIUnit : MonoBehaviour
         Shield.fillAmount = porcent;
     }
 
+    public void SetColorBars(bool imEnnemy)
+    {
+        Hp.color = GameMng.UI.GetHpBarColor(imEnnemy);
+        Shield.color = GameMng.UI.GetShieldBarColor(imEnnemy);
+    }
+
     public void HideUI()
     {
         Canvas.SetActive(false);

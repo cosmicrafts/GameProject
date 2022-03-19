@@ -32,9 +32,19 @@ public class UIGameMng : MonoBehaviour
 
     public UIPlayerGameInfo[] Players = new UIPlayerGameInfo[2];
 
+    Color FriendHpBarColor;
+    Color FriendShieldBarColor;
+
+    Color EnemyHpBarColor;
+    Color EnemyShieldBarColor;
+
     private void Awake()
     {
         GameMng.UI = this;
+        FriendHpBarColor = new Color(0.25f, 1f, 0.28f, 1f);
+        FriendShieldBarColor = new Color(0.25f, 0.66f, 1f, 1f);
+        EnemyHpBarColor = new Color(1f, 0.25f, 0.25f, 1f);
+        EnemyShieldBarColor = new Color(1f, 0.8f, 0.25f, 1f);
     }
 
     private void Start()
@@ -148,5 +158,15 @@ public class UIGameMng : MonoBehaviour
         MTxtSecRemaining.text = GameMng.MT.GetSecRemaining().ToString()+" s";
 
         MTxtScore.text = GameMng.MT.GetScore().ToString();
+    }
+
+    public Color GetHpBarColor(bool isEnnemy)
+    {
+        return isEnnemy ? EnemyHpBarColor : FriendHpBarColor;
+    }
+
+    public Color GetShieldBarColor(bool isEnnemy)
+    {
+        return isEnnemy ? EnemyShieldBarColor : FriendShieldBarColor;
     }
 }

@@ -17,17 +17,16 @@ public class UserCollection
         Characters = new List<NFTsCharacter>();
     }
 
-    public void AddUnitsDefault()
+    public void AddUnitsAndCharactersDefault()
     {
         InitCollection();
-
-        NFTsCharacter default_character = new NFTsCharacter()
+        //CHARACTERS
+        Characters.Add(new NFTsCharacter()
         {
             KeyId = "Chr_1",
             Name = "Wegnar",
             Icon = "Character_1"
-        };
-        Characters.Add(default_character);
+        });
         Characters.Add(new NFTsCharacter()
         {
             KeyId = "Chr_2",
@@ -46,7 +45,7 @@ public class UserCollection
             Name = "Sotzeer",
             Icon = "Character_4"
         });
-        GameData.SetUserCharacter(default_character);
+        //ALL CARDS
         for (int i = 1; i <= 11; i++)
         {
             Cards.Add(new NFTsUnit()
@@ -86,6 +85,7 @@ public class UserCollection
             Icon = $"I_Skill_01",
             Rarity = 5
         });
+        //CURRENT DECK
         Deck = Cards.Take(8).ToList();
     }
 }
