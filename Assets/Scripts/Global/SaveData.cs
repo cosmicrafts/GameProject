@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,6 +35,7 @@ public static class SaveData
     public static void SaveGameConfig()
     {
         SaveManager.Instance.Save(GameData.GetConfig(), fullPathConfig, DataWasSaved, false);
+        GameNetwork.JSSavePlayerConfig(JsonConvert.SerializeObject(GameData.GetConfig()));
     }
 
     private static void DataWasSaved(SaveResult result, string message)

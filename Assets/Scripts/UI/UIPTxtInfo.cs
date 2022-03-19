@@ -9,7 +9,8 @@ public enum PlayerProperty
     Xp,
     Xpbar,
     Character,
-    Avatar
+    Avatar,
+    Score
 }
 
 public class UIPTxtInfo : MonoBehaviour
@@ -78,6 +79,13 @@ public class UIPTxtInfo : MonoBehaviour
                     User user = GameData.GetUserData();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
+                }
+                break;
+            case PlayerProperty.Score:
+                {
+                    UserProgress progress = GameData.GetUserProgress();
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = progress.GetBattlePoints().ToString();
                 }
                 break;
         }

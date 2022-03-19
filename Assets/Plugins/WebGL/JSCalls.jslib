@@ -7,6 +7,14 @@
         ReactUnityWebGL.SaveScore(score);
   },
 
+  JSSavePlayerConfig: function (json) {
+        ReactUnityWebGL.SavePlayerConfig(Pointer_stringify(json));
+  },
+
+  JSSavePlayerCharacter: function (json) {
+        ReactUnityWebGL.SavePlayerCharacter(Pointer_stringify(json));
+  },
+
   JSSendMasterData: function (json) {
         ReactUnityWebGL.SendMasterData(Pointer_stringify(json));
   },

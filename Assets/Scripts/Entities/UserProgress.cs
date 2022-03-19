@@ -9,10 +9,13 @@ public class UserProgress
 
     int XpForLeveUp { get; set; }
 
-    public void InitValues(int level, int xp)
+    int BattlePoints { get; set; }
+
+    public void InitValues(Progress progress)
     {
-        Level = level;
-        Xp = xp;
+        Level = progress.Level;
+        Xp = progress.Xp;
+        BattlePoints = progress.BattlePoints;
         XpForLeveUp = GetNextXpGoal();
     }
 
@@ -29,6 +32,16 @@ public class UserProgress
     public int GetLevel()
     {
         return Level;
+    }
+
+    public int GetBattlePoints()
+    {
+        return BattlePoints;
+    }
+
+    public void AddBattlePoints(int plus)
+    {
+        BattlePoints += plus;
     }
 
     public void AddXp(int plus)

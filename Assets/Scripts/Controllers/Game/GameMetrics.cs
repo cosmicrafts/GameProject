@@ -46,7 +46,7 @@ public class GameMetrics
 #if UNITY_WEBGL
             GameNetwork.JSSaveScore(Score);
 #endif
-            Debug.Log("Save Score");
+            GameData.GetUserProgress().AddBattlePoints(Score);
         }
     }
 

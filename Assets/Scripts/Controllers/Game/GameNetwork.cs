@@ -168,6 +168,12 @@ public static class GameNetwork
     public static extern void JSSaveScore(int score);
 
     [DllImport("__Internal")]
+    public static extern void JSSavePlayerConfig(string json);
+
+    [DllImport("__Internal")]
+    public static extern void JSSavePlayerCharacter(string json);
+
+    [DllImport("__Internal")]
     public static extern void JSSendMasterData(string json);
 
     [DllImport("__Internal")]

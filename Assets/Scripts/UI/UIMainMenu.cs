@@ -40,9 +40,12 @@ public class UIMainMenu : MonoBehaviour
 
     List<UIPTxtInfo> UIPropertys;
 
+    int UserDataLoaded;
+
     private void Awake()
     {
         Menu = this;
+        UserDataLoaded = 0;
 
         SaveData.LoadGameConfig();
 
@@ -84,15 +87,46 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void GL_SetPlayerData(string jsonData)
     {
-
+        User user = JsonConvert.DeserializeObject<User>(jsonData);
+        GameData.SetUser(user);
+        AddProgressDataLoaded();
     }
 
-    public void SetPlayerData(string jsonData)
+    public void GL_SetCharacterData(string jsonData)
     {
-        PlayerUser = JsonConvert.DeserializeObject<User>(jsonData);
-        GameData.SetUser(PlayerUser);
+        NFTsCharacter character = JsonConvert.DeserializeObject<NFTsCharacter>(jsonData);
+        GameData.SetUserCharacter(character);
+        AddProgressDataLoaded();
+    }
+
+    public void GL_SetProgressData(string jsonData)
+    {
+        Progress progress = JsonConvert.DeserializeObject<Progress>(jsonData);
+        UserProgress userProgress = new UserProgress();
+        userProgress.InitValues(progress);
+        GameData.SetUserProgress(userProgress);
+        AddProgressDataLoaded();
+    }
+
+    public void GL_SetConfigData(string jsonData)
+    {
+        Config config = JsonConvert.DeserializeObject<Config>(jsonData);
+        GameData.SetConfig(config);
+        AddProgressDataLoaded();
+    }
+
+    void AddProgressDataLoaded()
+    {
+        UserDataLoaded++;
+        if (UserDataLoaded == 4)
+            InitPlayerData();
+    }
+
+    void InitPlayerData()
+    {
+        PlayerUser = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
         PlayerCollection = GameData.GetUserCollection();
         PlayerCollection.AddUnitsDefault();
@@ -151,11 +185,20 @@ public class UIMainMenu : MonoBehaviour
     public void GoLoginPage()
     {
 #if UNITY_EDITOR
-        User user = new User() { NikeName = "Player", Avatar = 1 };
-        SetPlayerData(JsonConvert.SerializeObject(user));
+        InitPlayerData();
 #else
         Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
 #endif
+    }
+
+    public void GoDiscordPage()
+    {
+        Application.OpenURL("http://discord.gg/cosmicrafts");
+    }
+
+    public void GoAirdropsPage()
+    {
+        Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
     }
 
     public void ChangeLang(int lang)

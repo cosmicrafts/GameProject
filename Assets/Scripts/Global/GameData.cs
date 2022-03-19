@@ -108,7 +108,7 @@ public static class GameData
         if (PlayerProgress == null)
         {
             PlayerProgress = new UserProgress();
-            PlayerProgress.InitValues(1, 0);
+            PlayerProgress.InitValues(new Progress { BattlePoints = 0, Xp = 0, Level = 1 });
         }
 
         return PlayerProgress;
@@ -129,7 +129,7 @@ public static class GameData
     {
         if (PlayerCharacter == null)
         {
-            PlayerCharacter = new NFTsCharacter() { Name = "Sotzeer", Icon = "Character_1" };
+            PlayerCharacter = new NFTsCharacter() { KeyId = "Chr_1", Name = "Sotzeer", Icon = "Character_1" };
         }
 
         return PlayerCharacter;

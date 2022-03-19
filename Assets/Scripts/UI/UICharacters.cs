@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -73,10 +74,19 @@ public class UICharacters : MonoBehaviour
 
     public void SelectCharacter()
     {
+        Debug.Log("Start Selection");
         CurrentChar.DeselectChar();
+        Debug.Log("Old Character deselected");
         CurrentChar = FrontChar;
-        GameData.SetUserCharacter(CurrentChar.GetData());
+        Debug.Log("New Character selected");
+        NFTsCharacter nFTsCharacter = CurrentChar.GetData();
+        Debug.Log("Get New character NFT data");
+        GameData.SetUserCharacter(nFTsCharacter);
+        Debug.Log("Set NFT Character data in profile");
         CurrentChar.SelectChar();
+        Debug.Log("Mark Character has selected");
+        GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
+        Debug.Log("Save in blockchain");
     }
 
     public void MoveScroll()
