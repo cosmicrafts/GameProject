@@ -208,7 +208,8 @@ public class GameMng : MonoBehaviour
                 {
                     GameNetwork.SetWinner(winner == P.MyTeam ? 1 : 2);
                 }
-                GameNetwork.SetGameStatus(NetGameStep.End);
+                GameNetwork.SetGameStatus(NetGameStep.Results);
+                Debug.Log($"winer is :{winner}");
                 SyncNetData();
             }
             StopCoroutine(LoopGameNetAsync());
