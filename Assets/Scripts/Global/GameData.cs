@@ -78,6 +78,7 @@ public static class GameData
         {
             PlayerCharacter = character;
         }
+        PlayerCollection.ChangeDeckFaction(PlayerCharacter);
     }
 
     public static User GetUserData()

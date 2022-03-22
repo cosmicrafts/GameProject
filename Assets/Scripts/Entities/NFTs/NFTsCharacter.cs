@@ -5,4 +5,8 @@ public class NFTsCharacter : NFTs
     public string Skill { get; set; }
 
     public string PassiveSkill { get; set; }
+
+    public string Faction { get; set; }
+
+    public int StationId { get; set; }
 }

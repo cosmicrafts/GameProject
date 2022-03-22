@@ -79,7 +79,10 @@ public class UICharacters : MonoBehaviour
         NFTsCharacter nFTsCharacter = CurrentChar.GetData();
         GameData.SetUserCharacter(nFTsCharacter.KeyId);
         CurrentChar.SelectChar();
-        GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
+        if (!GameData.DebugMode)
+        {
+            GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
+        }
     }
 
     public void MoveScroll()

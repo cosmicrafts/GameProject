@@ -32,9 +32,11 @@ public class UICollection : MonoBehaviour
     UICard DragingCard;
     UICard EnterCard;
 
+    List<NFTsCard> AvCards;
     List<UICard> AllCards;
 
     UserCollection PlayerCollection;
+    NFTsCharacter PlayerCharacter;
 
     public UICardDrag DragIcon;
 
@@ -71,9 +73,33 @@ public class UICollection : MonoBehaviour
 
         PlayerCollection = GameData.GetUserCollection();
 
+        RefreshCollection();
+    }
+
+    private void OnEnable()
+    {
+        RefreshCollection();
+    }
+
+    void RefreshCollection()
+    {
+        if (PlayerCollection == null)
+            return;
+
+        PlayerCharacter = GameData.GetUserCharacter();
+
+        foreach (Transform child in CardCollection.transform.parent)
+        {
+            if (child.gameObject != CardCollection.gameObject)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+
+        AvCards = PlayerCollection.Cards.Where(f => f.Faction == PlayerCharacter.Faction).ToList();
         AllCards = new List<UICard>();
 
-        List<NFTsCard> Sorted = PlayerCollection.Cards.OrderBy(f => f.Name).ToList();
+        List<NFTsCard> Sorted = AvCards.OrderBy(f => f.Name).ToList();
 
         foreach (NFTsCard nFTsCard in Sorted)
         {
@@ -88,7 +114,7 @@ public class UICollection : MonoBehaviour
 
         if (PlayerCollection.Deck.Count == 8)
         {
-            for(int i=0; i<PlayerCollection.Deck.Count; i++)
+            for (int i = 0; i < PlayerCollection.Deck.Count; i++)
             {
                 Deck[i].SetData(PlayerCollection.Deck[i]);
             }
@@ -100,6 +126,8 @@ public class UICollection : MonoBehaviour
         {
             SelectCard(AllCards[0]);
         }
+
+        SortAndFilterCollection();
     }
 
     public void SelectCard(UICard card)
@@ -170,17 +198,17 @@ public class UICollection : MonoBehaviour
         {
             case CardOrder.Cost:
                 {
-                    Sorted = PlayerCollection.Cards.OrderByDescending(f => f.EnergyCost).ToList();
+                    Sorted = AvCards.OrderByDescending(f => f.EnergyCost).ToList();
                 }
                 break;
             case CardOrder.Rarity:
                 {
-                    Sorted = PlayerCollection.Cards.OrderByDescending(f => f.Rarity).ToList();
+                    Sorted = AvCards.OrderByDescending(f => f.Rarity).ToList();
                 }
                 break;
             default:
                 {
-                    Sorted = PlayerCollection.Cards.OrderByDescending(f => f.Name).ToList();
+                    Sorted = AvCards.OrderByDescending(f => f.Name).ToList();
                 }
                 break;
         }
