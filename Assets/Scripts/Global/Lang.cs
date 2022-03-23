@@ -6,14 +6,24 @@ using UnityEngine;
 public enum Language
 {
     English,
-    Spanish
+    Spanish,
+    Arabian,
+    Chinese,
+    German,
+    French,
+    Hindu,
+    Japanese,
+    Portuguese,
+    Russian,
+    Vietnamese,
+    Korean
 }
 
 public class Lang : MonoBehaviour
 {
-    public static string[] FilesNames = new string[2]
+    public static string[] FilesNames = new string[12]
     {
-        "ENG","ESP"
+        "ENG","ESP","ARA","CHA","DEU","FRA","HIN","JPN","POR","RUS","VIE","KOR"
     };
 
     public static Hashtable UIS;
