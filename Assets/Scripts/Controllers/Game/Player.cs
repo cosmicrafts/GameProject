@@ -142,11 +142,11 @@ public class Player : MonoBehaviour
         {
             SelectedCard = GameCards[idu];
             GameMng.UI.SelectCard(idu);
-            if (DragingCard.cardType == CardType.Spell)
+            if (SelectedCard.cardType == CardType.Spell)
             {
                 PrepareDeploy(SpellPreviews[idu], SelectedCard.EnergyCost);
             }
-            else if (DragingCard.cardType == CardType.Unit)
+            else if (SelectedCard.cardType == CardType.Unit)
             {
                 PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.EnergyCost);
             }

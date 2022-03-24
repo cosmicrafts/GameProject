@@ -101,7 +101,7 @@ public class UserCollection
             EnergyCost = 10,
             Icon = $"I_Skill_01",
             Rarity = 5,
-            Faction = "Alliance"
+            Faction = "Neutral"
         });
         //SPIRATS
         for (int i = 1; i <= 9; i++)

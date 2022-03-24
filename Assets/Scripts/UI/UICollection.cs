@@ -96,7 +96,7 @@ public class UICollection : MonoBehaviour
             }
         }
 
-        AvCards = PlayerCollection.Cards.Where(f => f.Faction == PlayerCharacter.Faction).ToList();
+        AvCards = PlayerCollection.Cards.Where(f => f.Faction == PlayerCharacter.Faction || f.Faction == "Neutral").ToList();
         AllCards = new List<UICard>();
 
         List<NFTsCard> Sorted = AvCards.OrderBy(f => f.Name).ToList();
