@@ -11,7 +11,8 @@ public enum PlayerProperty
     Character,
     Avatar,
     Score,
-    XpProgress
+    XpProgress,
+    Emblem
 }
 
 public class UIPTxtInfo : MonoBehaviour
@@ -94,6 +95,13 @@ public class UIPTxtInfo : MonoBehaviour
                     UserProgress progress = GameData.GetUserProgress();
                     Text mytext = GetComponent<Text>();
                     mytext.text = progress.GetBattlePoints().ToString();
+                }
+                break;
+            case PlayerProperty.Emblem:
+                {
+                    NFTsCharacter nFTsCharacter = GameData.GetUserCharacter();
+                    Image myimage = GetComponent<Image>();
+                    myimage.sprite = ResourcesServices.LoadCharacterEmblem(nFTsCharacter.KeyId);
                 }
                 break;
         }

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIGameCard : MonoBehaviour
@@ -14,4 +12,11 @@ public class UIGameCard : MonoBehaviour
     public Text TextCost;
 
     public Image SpIcon;
+
+    public GameObject Selection;
+
+    public void SetSelection(bool selected)
+    {
+        Selection.SetActive(selected);
+    }
 }

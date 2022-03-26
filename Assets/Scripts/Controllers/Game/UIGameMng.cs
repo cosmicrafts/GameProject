@@ -121,7 +121,7 @@ public class UIGameMng : MonoBehaviour
 
     public void SelectCard(int idc)
     {
-        UIDeck[idc].SpIcon.color = Color.green;
+        UIDeck[idc].SetSelection(true);
         AreaDeploy.SetActive(true);
     }
 
@@ -129,7 +129,7 @@ public class UIGameMng : MonoBehaviour
     {
         foreach (UIGameCard card in UIDeck)
         {
-            card.SpIcon.color = Color.white;
+            card.SetSelection(false);
         }
         AreaDeploy.SetActive(false);
     }
