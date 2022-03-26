@@ -21,7 +21,6 @@ public class UIMainMenu : MonoBehaviour
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
 
-    public GameObject PlayerDataComp;
     public GameObject BackBtn;
 
     public UICollection Collection;
@@ -31,11 +30,14 @@ public class UIMainMenu : MonoBehaviour
     public UserCollection PlayerCollection;
     public NFTsCharacter PlayerCharacter;
 
+    public Text CurrentGameMode;
+    public Text CurrentGameModeStatus;
+
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
     public Text TopTitle;
-    public Image GameTitle;
+    //public Image GameTitle;
     public Image LocalGameLoadingBar;
 
     List<UIPTxtInfo> UIPropertys;
@@ -53,6 +55,7 @@ public class UIMainMenu : MonoBehaviour
         SaveData.LoadGameConfig();
         PlayerCollection = GameData.GetUserCollection();
         PlayerCollection.AddUnitsAndCharactersDefault();
+        CheckGameMode();
 
         GameData.DebugMode = false;
 #if UNITY_EDITOR
@@ -130,49 +133,28 @@ public class UIMainMenu : MonoBehaviour
         MenuPanel.SetActive(true);
     }
 
-    public void PlayIAButton()
+    void PlayIA()
     {
-        if (GameData.CurrentMatch != Match.none)
-        {
-            return;
-        }
-
         PlayerUser.FirstGame = false;
-        GameData.CurrentMatch = Match.bots;
         
-        MenuPanel.SetActive(false);
         MatchPanel.SetActive(true);
 
         StartCoroutine(LoadLocalGame());
     }
 
-    public void PlayTutorialButton()
+    void PlayTutorial()
     {
-        if (GameData.CurrentMatch != Match.none)
-        {
-            return;
-        }
-
         PlayerUser.FirstGame = true;
-        GameData.CurrentMatch = Match.tutorial;
 
-        MenuPanel.SetActive(false);
         MatchPanel.SetActive(true);
 
         StartCoroutine(LoadLocalGame());
     }
 
-    public void PlayMultiButton()
+    void PlayMulti()
     {
-        if (GameData.CurrentMatch != Match.none)
-        {
-            return;
-        }
-
         PlayerUser.FirstGame = true;
-        GameData.CurrentMatch = Match.multi;
 
-        MenuPanel.SetActive(false);
         MultiPanel.SetActive(true);
         MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
     }
@@ -218,8 +200,7 @@ public class UIMainMenu : MonoBehaviour
         CollectionMenu.SetActive(true);
         BackBtn.SetActive(true);
         TopTitle.text = Lang.GetText("mn_collection");
-        GameTitle.gameObject.SetActive(false);
-        PlayerDataComp.SetActive(false);
+        //GameTitle.gameObject.SetActive(false);
     }
 
     public void GoCharactersMenu()
@@ -228,8 +209,7 @@ public class UIMainMenu : MonoBehaviour
         CharactersMenu.SetActive(true);
         BackBtn.SetActive(true);
         TopTitle.text = Lang.GetText("mn_characters");
-        GameTitle.gameObject.SetActive(false);
-        PlayerDataComp.SetActive(false);
+        //GameTitle.gameObject.SetActive(false);
     }
 
     public void GoGamesModesMenu()
@@ -238,8 +218,36 @@ public class UIMainMenu : MonoBehaviour
         GameModesMenu.SetActive(true);
         BackBtn.SetActive(true);
         TopTitle.text = Lang.GetText("mn_gamemodes");
-        GameTitle.gameObject.SetActive(false);
-        PlayerDataComp.SetActive(false);
+        //GameTitle.gameObject.SetActive(false);
+    }
+
+    public void PlayCurrentMode()
+    {
+        MainMenu.SetActive(false);
+
+        switch(GameData.CurrentMatch)
+        {
+            case Match.bots:
+                {
+                    PlayIA();
+                }
+                break;
+            case Match.multi:
+                {
+                    PlayMulti();
+                }
+                break;
+            case Match.tutorial:
+                {
+                    PlayTutorial();
+                }
+                break;
+            default:
+                {
+                    PlayMulti();
+                }
+                break;
+        }
     }
 
     public void BackMainSection()
@@ -251,8 +259,45 @@ public class UIMainMenu : MonoBehaviour
         GameModesMenu.SetActive(false);
         BackBtn.SetActive(false);
         TopTitle.text = string.Empty;
-        GameTitle.gameObject.SetActive(true);
-        PlayerDataComp.SetActive(true);
+        //GameTitle.gameObject.SetActive(true);
+    }
+
+    public void ChangeCurrentGameMode(int newMode)
+    {
+        GameData.CurrentMatch = (Match)newMode;
+        CheckGameMode();
+        BackMainSection();
+    }
+
+    void CheckGameMode()
+    {
+        switch (GameData.CurrentMatch)
+        {
+            case Match.bots:
+                {
+                    CurrentGameMode.text = Lang.GetText("mn_pve");
+                    CurrentGameModeStatus.text = string.Empty;
+                }
+                break;
+            case Match.multi:
+                {
+                    CurrentGameMode.text = Lang.GetText("mn_pvp");
+                    CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
+                }
+                break;
+            case Match.tutorial:
+                {
+                    CurrentGameMode.text = Lang.GetText("mn_tutorial");
+                    CurrentGameModeStatus.text = string.Empty;
+                }
+                break;
+            default:
+                {
+                    CurrentGameMode.text = Lang.GetText("mn_pvp");
+                    CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
+                }
+                break;
+        }
     }
 
     public void RefreshProperty(PlayerProperty property)
