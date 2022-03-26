@@ -10,7 +10,8 @@ public enum PlayerProperty
     Xpbar,
     Character,
     Avatar,
-    Score
+    Score,
+    XpProgress
 }
 
 public class UIPTxtInfo : MonoBehaviour
@@ -58,6 +59,13 @@ public class UIPTxtInfo : MonoBehaviour
                     UserProgress userProgress = GameData.GetUserProgress();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{userProgress.GetXp()} {Lang.GetText("mn_xp")}";
+                }
+                break;
+            case PlayerProperty.XpProgress:
+                {
+                    UserProgress userProgress = GameData.GetUserProgress();
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = $"{userProgress.GetXp()} / {userProgress.GetNextXpGoal()} {Lang.GetText("mn_xp")}";
                 }
                 break;
             case PlayerProperty.Xpbar:
