@@ -88,4 +88,17 @@ public class Lang : MonoBehaviour
 
         return data.Substring(0, data.IndexOf(':'));
     }
+
+    public static string GetCardDescription(string key)
+    {
+        if (UIS == null)
+            return string.Empty;
+
+        if (!UIS.ContainsKey(key))
+            return "[NO FOUND]";
+
+        string data = UIS[key].ToString();
+
+        return data.Substring(data.IndexOf(':')+1);
+    }
 }

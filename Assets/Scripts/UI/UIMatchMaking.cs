@@ -25,6 +25,7 @@ public class UIMatchMaking : MonoBehaviour
     public Image Txt_VsAvatar;
 
     public Text Txt_CountDown;
+    public Text Txt_Tips;
 
     User MyUserData;
     UserGeneral VsUserData;
@@ -126,6 +127,7 @@ public class UIMatchMaking : MonoBehaviour
         UpdateVsData();
         SearchingScreen.SetActive(false);
         MatchScreen.SetActive(true);
+        Txt_Tips.text = Lang.GetText($"mn_tip_{UnityEngine.Random.Range(1,4)}");
         Txt_CountDown.text = CoutDown.ToString();
 
         AsyncOperation loading = SceneManager.LoadSceneAsync(1);

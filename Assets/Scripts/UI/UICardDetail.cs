@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UICardDetail : UICard
@@ -9,12 +7,13 @@ public class UICardDetail : UICard
     public MeshRenderer ModelRender;
     public MeshFilter ModelFilter;
 
-    public Text Txt_Type;
-    public Text Txt_Desc;
     public Text Txt_HP;
     public Text Txt_Shield;
     public Text Txt_Dmg;
-    public Text Txt_Speed;
+
+    public Image Bar_HP;
+    public Image Bar_Shield;
+    public Image Bar_Dmg;
 
     GameObject CurrentObjPrev;
 
@@ -27,9 +26,8 @@ public class UICardDetail : UICard
 
         //Init Basic Properties
         Txt_Name.text = data.Name;
+        Txt_Details.text = Lang.GetCardDescription(data.KeyId);
         Txt_Cost.text = data.EnergyCost.ToString();
-        Txt_Rarity.text = data.Rarity.ToString();
-        Txt_Desc.text = Lang.GetText(data.KeyId);
 
         if (CurrentObjPrev != null)
         {
@@ -46,7 +44,6 @@ public class UICardDetail : UICard
             Txt_HP.transform.parent.gameObject.SetActive(false);
             Txt_Shield.transform.parent.gameObject.SetActive(false);
             Txt_Dmg.transform.parent.gameObject.SetActive(false);
-            Txt_Speed.transform.parent.gameObject.SetActive(false);
             Txt_Type.text = Lang.GetText("mn_skill");
         } else
         {
@@ -59,16 +56,15 @@ public class UICardDetail : UICard
             Txt_HP.transform.parent.gameObject.SetActive(true);
             Txt_Shield.transform.parent.gameObject.SetActive(true);
             Txt_Dmg.transform.parent.gameObject.SetActive(true);
-            Txt_Speed.transform.parent.gameObject.SetActive(true);
 
             NFTsUnit unitdata = data as NFTsUnit;
             Txt_HP.text = unitdata.HitPoints.ToString();
+            Bar_HP.fillAmount = (float)unitdata.HitPoints / 200f;
             Txt_Shield.text = unitdata.Shield.ToString();
+            Bar_Shield.fillAmount = (float)unitdata.Shield / 200f;
             Txt_Dmg.text = unitdata.Dammage.ToString();
-            Txt_Speed.text = unitdata.Speed.ToString();
-            Txt_Speed.transform.parent.gameObject.SetActive(!unitdata.IsStation);
+            Bar_Dmg.fillAmount = (float)unitdata.Dammage / 100f;
             Txt_Type.text = Lang.GetText(unitdata.IsStation ? "mn_station" : "mn_ship");
-
         }
     }
 }

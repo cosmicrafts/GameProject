@@ -199,7 +199,7 @@ public class UIMainMenu : MonoBehaviour
         MainMenu.SetActive(false);
         CollectionMenu.SetActive(true);
         BackBtn.SetActive(true);
-        TopTitle.text = Lang.GetText("mn_collection");
+        TopTitle.text = Lang.GetText("mn_chyur_deck");
         //GameTitle.gameObject.SetActive(false);
     }
 

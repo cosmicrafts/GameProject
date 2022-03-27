@@ -9,10 +9,10 @@ public class UICard : MonoBehaviour
 
     public Text Txt_Name;
     public Text Txt_Cost;
-    public Text Txt_Rarity;
+    public Text Txt_Type;
+    public Text Txt_Details;
 
     public Image Icon;
-    public Image Border;
 
     protected bool IsSkill;
 
@@ -38,17 +38,23 @@ public class UICard : MonoBehaviour
 
         Txt_Name.text = data.Name;
         Txt_Cost.text = data.EnergyCost.ToString();
-        Txt_Rarity.text = data.Rarity.ToString();
+        if (Txt_Details != null)
+        {
+            Txt_Details.text = Lang.GetCardDescription(data.KeyId);
+        }
+        //Txt_Rarity.text = data.Rarity.ToString();
 
         Icon.sprite = ResourcesServices.LoadCardIcon(data.Icon, IsSkill);
 
         if (data as NFTsSpell != null)
         {
             TypeCard = CardClass.Skill;
+            Txt_Type.text = Lang.GetText("mn_skill");
         } else
         {
             NFTsUnit nFTsUnit = data as NFTsUnit;
             TypeCard = nFTsUnit.IsStation ? CardClass.Station : CardClass.Ship;
+            Txt_Type.text = Lang.GetText(nFTsUnit.IsStation ? "mn_station" : "mn_ship");
         }
     }
 

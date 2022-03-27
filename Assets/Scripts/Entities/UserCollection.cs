@@ -70,13 +70,13 @@ public class UserCollection
             {
                 KeyId = $"U_ALL_{i}",
                 Name = Lang.GetCardName($"U_ALL_{i}"),
-                EnergyCost = 3,
+                EnergyCost = i,
                 Icon = $"I_Ship_{i}",
                 Rarity = 1,
-                HitPoints = 10,
-                Shield = 5,
+                HitPoints = 5+(2*i),
+                Shield = 3+(1*i),
                 Speed = 1,
-                Dammage = 3,
+                Dammage = i,
                 Faction = "Alliance"
             });
         }
@@ -87,10 +87,10 @@ public class UserCollection
             EnergyCost = 5,
             Icon = $"I_Sta_1",
             Rarity = 3,
-            HitPoints = 10,
-            Shield = 5,
+            HitPoints = 20,
+            Shield = 10,
             Speed = 0,
-            Dammage = 3,
+            Dammage = 2,
             IsStation = true,
             Faction = "Alliance"
         });
@@ -110,13 +110,13 @@ public class UserCollection
             {
                 KeyId = $"U_SPI_{i}",
                 Name = Lang.GetCardName($"U_SPI_{i}"),
-                EnergyCost = 3,
+                EnergyCost = i,
                 Icon = $"I_Ship_{i}",
                 Rarity = 1,
-                HitPoints = 10,
-                Shield = 5,
+                HitPoints = 3+(1*i),
+                Shield = 5+(2*i),
                 Speed = 1,
-                Dammage = 3,
+                Dammage = i,
                 Faction = "Spirats"
             });
         }
@@ -127,10 +127,10 @@ public class UserCollection
             EnergyCost = 5,
             Icon = $"I_Sta_1",
             Rarity = 3,
-            HitPoints = 10,
-            Shield = 5,
+            HitPoints = 5,
+            Shield = 20,
             Speed = 0,
-            Dammage = 3,
+            Dammage = 1,
             IsStation = true,
             Faction = "Spirats"
         });
