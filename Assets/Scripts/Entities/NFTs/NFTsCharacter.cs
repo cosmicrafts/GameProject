@@ -8,5 +8,5 @@ public class NFTsCharacter : NFTs
 
     public string Faction { get; set; }
 
-    public int StationId { get; set; }
+    public int CharacterId { get; set; }
 }

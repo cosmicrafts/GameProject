@@ -9,40 +9,13 @@ public class UICharacter : MonoBehaviour
 
     public Image MyAvatar;
     public Text MyName;
-    public Animator MyAnim;
-
-    [HideInInspector]
-    public float AlphaFactor;
-    [HideInInspector]
-    public float DeltaFactor;
-    [HideInInspector]
-    public Scrollbar RefScroll;
-    [HideInInspector]
-    public float CurrentDelta;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        MyAnim.SetFloat("AlphaAmount", 0.0f);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        UpdateDelta();
-    }
-
-    public void UpdateDelta()
-    {
-        CurrentDelta = Mathf.Abs((RefScroll.value - AlphaFactor) * DeltaFactor);
-        MyAnim.SetFloat("AlphaAmount", CurrentDelta > 1f ? 1f : CurrentDelta);
-    }
+    public GameObject IconSelected;
 
     public void SetData(NFTsCharacter data)
     {
         Data = data;
-        MyAvatar.sprite = ResourcesServices.LoadCharacterIcon(Data.Icon);
-        MyName.text = Lang.GetEntityName(data.KeyId);
+        MyAvatar.sprite = ResourcesServices.LoadAvatarIcon(Data.CharacterId);
+        MyName.text = Lang.GetEntityName(Data.KeyId);
     }
 
     public NFTsCharacter GetData()
@@ -50,13 +23,8 @@ public class UICharacter : MonoBehaviour
         return Data;
     }
 
-    public void SelectChar()
+    public void SetSelection(bool selected)
     {
-        MyName.color = Color.yellow;
-    }
-
-    public void DeselectChar()
-    {
-        MyName.color = Color.white;
+        IconSelected.SetActive(selected);
     }
 }

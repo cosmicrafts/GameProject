@@ -7,23 +7,26 @@ using UnityEngine.UI;
 
 public class UICharacters : MonoBehaviour
 {
-    public UICharacter DefaultCharacter;
-
-    public Scrollbar CharactersScroll;
-
-    public RectTransform EmptyLeft;
-    public RectTransform EmptyRigth;
-
-    public Text CurrentDescription;
-
-    Resolution res;
-
     public UserCollection PlayerCollection;
     List<UICharacter> AllCharacters;
     UICharacter CurrentChar;
-    UICharacter FrontChar;
 
-    float slicePorcent;
+    public UICharacter DefaultUIChar;
+
+    public Scrollbar CharactersScroll;
+
+    public Image PreviewAvatar;
+    public Image Emblem;
+    public Text CharName;
+    public Text CharTitle;
+    public Text CharDesc;
+    public Text CharAka;
+    public Text CharLvl;
+
+    public Text CosRunsAv;
+
+    public Text[] SkillNames = new Text[4];
+    public Text[] SkillDesc = new Text[4];
 
     // Start is called before the first frame update
     void Start()
@@ -32,100 +35,58 @@ public class UICharacters : MonoBehaviour
         PlayerCollection = GameData.GetUserCollection();
         NFTsCharacter pCharacter = GameData.GetUserCharacter();
 
-        res = Screen.currentResolution;
-        ResizeEmptySides();
-
-        int nChars = PlayerCollection.Characters.Count;
-        slicePorcent = 1f / ((float)nChars - 1);
-
-        for (int i=0; i< nChars; i++)
+        foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.CharacterId))
         {
-            UICharacter uICharacter = Instantiate(DefaultCharacter, DefaultCharacter.transform.parent).GetComponent<UICharacter>();
-            uICharacter.SetData(PlayerCollection.Characters[i]);
-            uICharacter.AlphaFactor = slicePorcent * i;
-            uICharacter.DeltaFactor = nChars / 2;
-            uICharacter.RefScroll = CharactersScroll;
-            AllCharacters.Add(uICharacter);
-            if (pCharacter.KeyId == PlayerCollection.Characters[i].KeyId)
-            {
-                CurrentChar = uICharacter;
-                uICharacter.SelectChar();
-            }
+            UICharacter uichar = Instantiate(DefaultUIChar.gameObject, DefaultUIChar.transform.parent).GetComponent<UICharacter>();
+            uichar.SetData(character);
+            uichar.gameObject.SetActive(true);
+            uichar.transform.SetAsFirstSibling();
+            AllCharacters.Add(uichar);
         }
 
-        DefaultCharacter.gameObject.SetActive(false);
-        EmptyRigth.transform.SetAsLastSibling();
-        
-        CharactersScroll.value = 0f;
-        FrontChar = AllCharacters[0];
-        CurrentDescription.text = Lang.GetEntityDescription(FrontChar.GetData().KeyId);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (res.width != Screen.currentResolution.width || res.height != Screen.currentResolution.height)
+        CurrentChar = AllCharacters.FirstOrDefault(f => f.GetData() == pCharacter);
+        if (CurrentChar == null)
         {
-            ResizeEmptySides();
-
-            res = Screen.currentResolution;
+            CurrentChar = AllCharacters[0];
         }
+        UpdateUIInfo();
     }
 
-    public void BtnSelectCharacter()
+    public void BtnSelectCharacter(UICharacter character)
     {
-        CurrentChar.DeselectChar();
-        CurrentChar = FrontChar;
-        NFTsCharacter nFTsCharacter = CurrentChar.GetData();
+        CurrentChar.SetSelection(false);
+        NFTsCharacter nFTsCharacter = character.GetData();
+        CurrentChar = character;
+        UpdateUIInfo();
         GameData.SetUserCharacter(nFTsCharacter.KeyId);
-        CurrentChar.SelectChar();
+
         if (!GameData.DebugMode)
         {
             GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
         }
     }
 
-    public void MoveScroll()
+    public void UpdateUIInfo()
     {
-        UICharacter current = AllCharacters.OrderBy(o => o.CurrentDelta).FirstOrDefault();
-        if (FrontChar != current)
+        CurrentChar.SetSelection(true);
+        string key = CurrentChar.GetData().KeyId;
+        PreviewAvatar.sprite = ResourcesServices.LoadCharacterIcon(CurrentChar.GetData().Icon);
+        Emblem.sprite = ResourcesServices.LoadCharacterEmblem(key);
+        CharName.text = Lang.GetEntityName(key);
+        CharDesc.text = Lang.GetEntityDescription(key);
+        CharTitle.text = Lang.GetText($"{key}_title");
+        CharAka.text = Lang.GetText($"{key}_aka");
+        CharLvl.text = $"{Lang.GetText("mn_level")} 1";
+        CosRunsAv.text = $"{Lang.GetText("mn_cr_left")} 0";
+        for(int i=0; i<4; i++)
         {
-            FrontChar = current;
-            CurrentDescription.text = Lang.GetEntityDescription(FrontChar.GetData().KeyId);
+            SkillNames[i].text = Lang.GetText("mn_comingsoon");
+            SkillDesc[i].text = Lang.GetText("mn_comingsoon");
         }
     }
 
-    public void MoveNextCharacter()
+    public void GoLimit()
     {
-        CharactersScroll.value += slicePorcent;
-        if (CharactersScroll.value > 1f)
-        {
-            CharactersScroll.value = 1f;
-        }
-        foreach(UICharacter uICharacter in AllCharacters)
-        {
-            uICharacter.UpdateDelta();
-        }
-        MoveScroll();
-    }
-
-    public void MovePrevCharacter()
-    {
-        CharactersScroll.value -= slicePorcent;
-        if (CharactersScroll.value < 0f)
-        {
-            CharactersScroll.value = 0f;
-        }
-        foreach (UICharacter uICharacter in AllCharacters)
-        {
-            uICharacter.UpdateDelta();
-        }
-        MoveScroll();
-    }
-
-    void ResizeEmptySides()
-    {
-        EmptyLeft.sizeDelta = new Vector2((Screen.width - 480) * 0.5f, EmptyLeft.sizeDelta.y);
-        EmptyRigth.sizeDelta = new Vector2((Screen.width - 480) * 0.5f, EmptyLeft.sizeDelta.y);
+        CharactersScroll.value = 1;
     }
 }

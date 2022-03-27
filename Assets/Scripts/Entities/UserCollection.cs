@@ -37,7 +37,7 @@ public class UserCollection
             KeyId = "Chr_1",
             Icon = "Character_1",
             Faction = "Alliance",
-            StationId = 1
+            CharacterId = 1
         });
         //Characters.Add(new NFTsCharacter()
         //{
@@ -58,7 +58,7 @@ public class UserCollection
             KeyId = "Chr_4",
             Icon = "Character_4",
             Faction = "Spirats",
-            StationId = 4
+            CharacterId = 4
         });
         //ALL CARDS
         //ALLIANCE

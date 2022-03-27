@@ -21,8 +21,8 @@ public class MainStation : MonoBehaviour
                 {
                     if (GameMng.P.MyTeam == MyUnit.MyTeam)
                     {
-                        MyMesh.mesh = GameMng.GM.SkinStationsMeshes[GameMng.PlayerCharacter.StationId];
-                        MyRender.material = GameMng.GM.SkinStationsMaterials[GameMng.PlayerCharacter.StationId];
+                        MyMesh.mesh = GameMng.GM.SkinStationsMeshes[GameMng.PlayerCharacter.CharacterId];
+                        MyRender.material = GameMng.GM.SkinStationsMaterials[GameMng.PlayerCharacter.CharacterId];
                     } else
                     {
                         MyMesh.mesh = GameMng.GM.SkinStationsMeshes[4];
@@ -43,8 +43,8 @@ public class MainStation : MonoBehaviour
                 {
                     if (GameMng.P.MyTeam == MyUnit.MyTeam)
                     {
-                        MyMesh.mesh = GameMng.GM.SkinStationsMeshes[GameMng.PlayerCharacter.StationId];
-                        MyRender.material = GameMng.GM.SkinStationsMaterials[GameMng.PlayerCharacter.StationId];
+                        MyMesh.mesh = GameMng.GM.SkinStationsMeshes[GameMng.PlayerCharacter.CharacterId];
+                        MyRender.material = GameMng.GM.SkinStationsMaterials[GameMng.PlayerCharacter.CharacterId];
                     }
                     else
                     {
