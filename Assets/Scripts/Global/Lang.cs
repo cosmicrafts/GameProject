@@ -76,7 +76,7 @@ public class Lang : MonoBehaviour
         return UIS[key].ToString();
     }
 
-    public static string GetCardName(string key)
+    public static string GetEntityName(string key)
     {
         if (UIS == null)
             return string.Empty;
@@ -89,7 +89,7 @@ public class Lang : MonoBehaviour
         return data.Substring(0, data.IndexOf(':'));
     }
 
-    public static string GetCardDescription(string key)
+    public static string GetEntityDescription(string key)
     {
         if (UIS == null)
             return string.Empty;

@@ -58,7 +58,7 @@ public class UICharacters : MonoBehaviour
         
         CharactersScroll.value = 0f;
         FrontChar = AllCharacters[0];
-        CurrentDescription.text = Lang.GetText($"{FrontChar.GetData().KeyId}_stats");
+        CurrentDescription.text = Lang.GetEntityDescription(FrontChar.GetData().KeyId);
     }
 
     // Update is called once per frame
@@ -91,7 +91,7 @@ public class UICharacters : MonoBehaviour
         if (FrontChar != current)
         {
             FrontChar = current;
-            CurrentDescription.text = Lang.GetText($"{FrontChar.GetData().KeyId}_stats");
+            CurrentDescription.text = Lang.GetEntityDescription(FrontChar.GetData().KeyId);
         }
     }
 

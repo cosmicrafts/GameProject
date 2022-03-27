@@ -25,8 +25,8 @@ public class UICardDetail : UICard
         IsSkill = data as NFTsSpell != null;
 
         //Init Basic Properties
-        Txt_Name.text = data.Name;
-        Txt_Details.text = Lang.GetCardDescription(data.KeyId);
+        Txt_Name.text = Lang.GetEntityName(data.KeyId);
+        Txt_Details.text = Lang.GetEntityDescription(data.KeyId);
         Txt_Cost.text = data.EnergyCost.ToString();
 
         if (CurrentObjPrev != null)

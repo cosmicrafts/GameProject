@@ -35,7 +35,6 @@ public class UserCollection
         Characters.Add(new NFTsCharacter()
         {
             KeyId = "Chr_1",
-            Name = "Wegnar",
             Icon = "Character_1",
             Faction = "Alliance",
             StationId = 1
@@ -57,7 +56,6 @@ public class UserCollection
         Characters.Add(new NFTsCharacter()
         {
             KeyId = "Chr_4",
-            Name = "Sotzeer",
             Icon = "Character_4",
             Faction = "Spirats",
             StationId = 4
@@ -69,7 +67,6 @@ public class UserCollection
             Cards.Add(new NFTsUnit()
             {
                 KeyId = $"U_ALL_{i}",
-                Name = Lang.GetCardName($"U_ALL_{i}"),
                 EnergyCost = i,
                 Icon = $"I_Ship_{i}",
                 Rarity = 1,
@@ -83,7 +80,6 @@ public class UserCollection
         Cards.Add(new NFTsUnit()
         {
             KeyId = $"S_ALL_1",
-            Name = Lang.GetCardName($"S_ALL_1"),
             EnergyCost = 5,
             Icon = $"I_Sta_1",
             Rarity = 3,
@@ -97,7 +93,6 @@ public class UserCollection
         Cards.Add(new NFTsSpell()
         {
             KeyId = $"H_NEU_1",
-            Name = Lang.GetCardName($"H_NEU_1"),
             EnergyCost = 10,
             Icon = $"I_Skill_01",
             Rarity = 5,
@@ -109,7 +104,6 @@ public class UserCollection
             Cards.Add(new NFTsUnit()
             {
                 KeyId = $"U_SPI_{i}",
-                Name = Lang.GetCardName($"U_SPI_{i}"),
                 EnergyCost = i,
                 Icon = $"I_Ship_{i}",
                 Rarity = 1,
@@ -123,7 +117,6 @@ public class UserCollection
         Cards.Add(new NFTsUnit()
         {
             KeyId = $"S_SPI_1",
-            Name = Lang.GetCardName($"S_SPI_1"),
             EnergyCost = 5,
             Icon = $"I_Sta_1",
             Rarity = 3,

@@ -208,7 +208,7 @@ public class UIMainMenu : MonoBehaviour
         MainMenu.SetActive(false);
         CharactersMenu.SetActive(true);
         BackBtn.SetActive(true);
-        TopTitle.text = Lang.GetText("mn_characters");
+        TopTitle.text = Lang.GetText("mn_chyur_char");
         //GameTitle.gameObject.SetActive(false);
     }
 

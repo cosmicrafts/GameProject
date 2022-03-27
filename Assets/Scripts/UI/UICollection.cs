@@ -43,6 +43,7 @@ public class UICollection : MonoBehaviour
     public Dropdown DD_OrderBy;
 
     List<CardClass> ClassFilter;
+    Dictionary<string, string> UnitNames;
 
     public bool FilterShips { get; set; }
     public bool FilterStations { get; set; }
@@ -97,9 +98,14 @@ public class UICollection : MonoBehaviour
         }
 
         AvCards = PlayerCollection.Cards.Where(f => f.Faction == PlayerCharacter.Faction || f.Faction == "Neutral").ToList();
+        UnitNames = new Dictionary<string, string>();
+        foreach(NFTsCard nFTsCard in AvCards)
+        {
+            UnitNames.Add(nFTsCard.KeyId, Lang.GetEntityName(nFTsCard.KeyId));
+        }
         AllCards = new List<UICard>();
 
-        List<NFTsCard> Sorted = AvCards.OrderBy(f => f.Name).ToList();
+        List<NFTsCard> Sorted = AvCards.OrderBy(f => UnitNames[f.KeyId]).ToList();
 
         foreach (NFTsCard nFTsCard in Sorted)
         {
@@ -208,7 +214,7 @@ public class UICollection : MonoBehaviour
                 break;
             default:
                 {
-                    Sorted = AvCards.OrderByDescending(f => f.Name).ToList();
+                    Sorted = AvCards.OrderByDescending(f => UnitNames[f.KeyId]).ToList();
                 }
                 break;
         }

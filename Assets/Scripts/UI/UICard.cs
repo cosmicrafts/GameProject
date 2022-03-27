@@ -33,14 +33,14 @@ public class UICard : MonoBehaviour
         IsSelected = false;
 
         IsSkill = data as NFTsSpell != null;
-        NameCard = data.Name;
+        NameCard = Lang.GetEntityName(data.KeyId);
         KeyName = data.KeyId;
 
-        Txt_Name.text = data.Name;
+        Txt_Name.text = Lang.GetEntityName(data.KeyId);
         Txt_Cost.text = data.EnergyCost.ToString();
         if (Txt_Details != null)
         {
-            Txt_Details.text = Lang.GetCardDescription(data.KeyId);
+            Txt_Details.text = Lang.GetEntityDescription(data.KeyId);
         }
         //Txt_Rarity.text = data.Rarity.ToString();
 
