@@ -68,7 +68,7 @@ public class UserCollection
             {
                 KeyId = $"U_ALL_{i}",
                 EnergyCost = i,
-                Icon = $"I_Ship_{i}",
+                Icon = $"I_All_Ship_{i}",
                 Rarity = 1,
                 HitPoints = 5+(2*i),
                 Shield = 3+(1*i),
@@ -81,7 +81,7 @@ public class UserCollection
         {
             KeyId = $"S_ALL_1",
             EnergyCost = 5,
-            Icon = $"I_Sta_1",
+            Icon = $"I_All_Sta_1",
             Rarity = 3,
             HitPoints = 20,
             Shield = 10,
@@ -94,7 +94,7 @@ public class UserCollection
         {
             KeyId = $"H_NEU_1",
             EnergyCost = 10,
-            Icon = $"I_Skill_01",
+            Icon = $"I_Com_Skill_01",
             Rarity = 5,
             Faction = "Neutral"
         });
@@ -105,7 +105,7 @@ public class UserCollection
             {
                 KeyId = $"U_SPI_{i}",
                 EnergyCost = i,
-                Icon = $"I_Ship_{i}",
+                Icon = $"I_Spi_Ship_{i}",
                 Rarity = 1,
                 HitPoints = 3+(1*i),
                 Shield = 5+(2*i),
@@ -118,7 +118,7 @@ public class UserCollection
         {
             KeyId = $"S_SPI_1",
             EnergyCost = 5,
-            Icon = $"I_Sta_1",
+            Icon = $"I_Spi_Sta_2",
             Rarity = 3,
             HitPoints = 5,
             Shield = 20,
