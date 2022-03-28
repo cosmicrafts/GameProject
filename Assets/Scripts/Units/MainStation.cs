@@ -49,10 +49,9 @@ public class MainStation : MonoBehaviour
                     else
                     {
                         UserGeneral vs = GameData.GetVsUser();
-                        int IdStation;
-                        int.TryParse(vs.Icon.Substring(10), out IdStation);
-                        MyMesh.mesh = GameMng.GM.SkinStationsMeshes[IdStation];
-                        MyRender.material = GameMng.GM.SkinStationsMaterials[IdStation];
+                        NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(vs.CharacterKey);
+                        MyMesh.mesh = GameMng.GM.SkinStationsMeshes[nFTsCharacter.CharacterId];
+                        MyRender.material = GameMng.GM.SkinStationsMaterials[nFTsCharacter.CharacterId];
                     }
                 }
                 break;

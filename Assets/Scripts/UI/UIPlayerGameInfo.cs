@@ -29,6 +29,7 @@ public class UIPlayerGameInfo : MonoBehaviour
         Level.text = $"{Lang.GetText("mn_lvl")} {user.Level}";
         XpBar.fillAmount = (float)user.Xp / (float)user.GetNextXpGoal();
         Avatar.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
-        Icon.sprite = ResourcesServices.LoadCharacterIcon(user.Icon);
+        NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(user.CharacterKey);
+        Icon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
     }
 }

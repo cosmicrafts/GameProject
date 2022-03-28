@@ -26,12 +26,15 @@ public class UIUnit : MonoBehaviour
     {
         MainCamera = Camera.main;
 
-        for (int i = 0; i < maxhp; i++)
+        int maxLines = maxhp / 4;
+
+        for (int i = 0; i < maxLines; i++)
             Instantiate(HpLine, HpLine.transform.parent);
 
         if (maxshield > 0)
         {
-            for (int i = 0; i < maxshield; i++)
+            maxLines = maxshield / 4;
+            for (int i = 0; i < maxLines; i++)
                 Instantiate(ShieldLine, ShieldLine.transform.parent);
         } else
         {

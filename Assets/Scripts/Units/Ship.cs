@@ -1,9 +1,5 @@
 ﻿using SensorToolkit;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Ship : Unit
 {
@@ -180,5 +176,15 @@ public class Ship : Unit
     public override void EnableUnit()
     {
         base.EnableUnit();
+    }
+
+    public override void SetNfts(NFTsUnit nFTsUnit)
+    {
+        base.SetNfts(nFTsUnit);
+
+        if (GameData.DebugMode || nFTsUnit == null)
+            return;
+
+        MaxSpeed = nFTsUnit.Speed;
     }
 }

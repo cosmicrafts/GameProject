@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -93,6 +94,7 @@ public class Player : MonoBehaviour
             if (DeckUnits[i] != null)
             {
                 GameCards[i] = DeckUnits[i].GetComponent<GameCard>();
+                NFTsCard nFTsCard = GameMng.PlayerCollection.Cards.FirstOrDefault(f => f.KeyId == GameCards[i].NftsKey);
 
                 if (GameCards[i].cardType == CardType.Spell)
                 {

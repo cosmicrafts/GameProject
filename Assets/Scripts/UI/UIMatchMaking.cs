@@ -15,8 +15,10 @@ public class UIMatchMaking : MonoBehaviour
     WaitForSeconds DeltaOne;
 
     public GameObject CancelButton;
-    public GameObject GameFinded;
-    public GameObject SearchingFor;
+
+    public Text StatusGame;
+    public GameObject SearchIcon;
+    public GameObject FoundIcon;
 
     public Text Txt_VsWalletId;
     public Text Txt_VsNikeName;
@@ -53,7 +55,7 @@ public class UIMatchMaking : MonoBehaviour
                 Level = 23,
                 Xp = 175,
                 Avatar = 2,
-                Icon = "Character_1"
+                CharacterKey = "Chr_1"
             });
             SceneManager.LoadScene(1);
             return;
@@ -61,8 +63,9 @@ public class UIMatchMaking : MonoBehaviour
         SearchingScreen.SetActive(true);
         MatchScreen.SetActive(false);
         CancelButton.SetActive(true);
-        GameFinded.SetActive(false);
-        SearchingFor.SetActive(true);
+        SearchIcon.SetActive(true);
+        FoundIcon.SetActive(false);
+        StatusGame.text = Lang.GetText("mn_matchmaking");
         GameNetwork.Start();
         IsCanceled = false;
         CoutDown = 5;
@@ -89,7 +92,8 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
         Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
-        Txt_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(VsUserData.Icon);
+        NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(VsUserData.CharacterKey);
+        Txt_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
         Txt_VsAvatar.sprite = ResourcesServices.LoadAvatarIcon(VsUserData.Avatar);
     }
 
@@ -118,8 +122,9 @@ public class UIMatchMaking : MonoBehaviour
         Debug.Log($"Match: {GameNetwork.GetId()}");
         GameNetwork.SetClientGameId(GameNetwork.GetId());
         CancelButton.SetActive(false);
-        SearchingFor.SetActive(false);
-        GameFinded.SetActive(true);
+        StatusGame.text = Lang.GetText("mn_matchfound");
+        SearchIcon.SetActive(false);
+        FoundIcon.SetActive(true);
 
         //Wait for ready
         yield return new WaitUntil(() => GameNetwork.GameRoomIsFull());

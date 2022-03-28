@@ -118,7 +118,7 @@ public class UserCollection
         {
             KeyId = $"S_SPI_1",
             EnergyCost = 5,
-            Icon = $"I_Spi_Sta_2",
+            Icon = $"I_Spi_Sta_1",
             Rarity = 3,
             HitPoints = 5,
             Shield = 20,
@@ -131,5 +131,10 @@ public class UserCollection
         Decks["Alliance"] = Cards.Where(f => f.Faction == "Alliance").Take(8).ToList();
         Decks["Spirats"] = Cards.Where(f => f.Faction == "Spirats").Take(8).ToList();
         Deck = Decks["Alliance"];
+    }
+
+    public NFTsCharacter GetCharacterByKey(string key)
+    {
+        return Characters.FirstOrDefault(f => f.KeyId == key);
     }
 }

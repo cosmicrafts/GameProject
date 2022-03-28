@@ -43,9 +43,9 @@ public class NetGamePack
 
     public int ClientAvatar { get; set; }
 
-    public string MasterIcon { get; set; }
+    public string MasterCharacter { get; set; }
 
-    public string ClientIcon { get; set; }
+    public string ClientCharacter { get; set; }
 
     public string MasterScore { get; set; }
 

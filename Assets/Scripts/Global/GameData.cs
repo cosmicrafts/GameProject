@@ -108,7 +108,7 @@ public static class GameData
             Level = PlayerProgress.GetLevel(),
             Xp = PlayerProgress.GetXp(),
             Avatar = PlayerUser.Avatar,
-            Icon = PlayerCharacter.Icon
+            CharacterKey = PlayerCharacter.KeyId
         };
     }
 

@@ -19,13 +19,13 @@ public enum TypeDmg
 public class Unit : MonoBehaviour
 {
     protected int Id;
-    protected string Key;
+    protected NFTsUnit NFTs;
     protected bool IsFake;
     protected bool IsDeath;
     public int PlayerId = 1;
     public Team MyTeam;
 
-    [Range(1,9999)]
+    [Range(1, 9999)]
     public int HitPoints = 10;
     int MaxHp = 10;
     [Range(1, 9999)]
@@ -35,10 +35,10 @@ public class Unit : MonoBehaviour
     public float ShieldDelay = 3f;
     [Range(1, 9999)]
     public int Energy = 10;
-    [Range(0,10)]
+    [Range(0, 10)]
     public float Size = 1f;
     [Range(0, 30)]
-    public float SpawnAreaSize = 0f; 
+    public float SpawnAreaSize = 0f;
 
     [HideInInspector]
     bool IsBaseStation = false;
@@ -86,7 +86,7 @@ public class Unit : MonoBehaviour
         MyOutline = Mesh.GetComponent<Outlinable>();
         TrigerBase = GetComponent<SphereCollider>();
         SolidBase = Mesh.GetComponent<SphereCollider>();
-        UI.Init(MaxHp-1, MaxShield-1);
+        UI.Init(MaxHp - 1, MaxShield - 1);
         UI.SetColorBars(!IsMyTeam(GameMng.P.MyTeam));
         MyOutline.OutlineParameters.Color = GameMng.GM.GetColorUnit(MyTeam, PlayerId);
         TrigerBase.radius = SolidBase.radius;
@@ -169,7 +169,7 @@ public class Unit : MonoBehaviour
     {
         if (IsDeath || !InControl() || dmg <= 0)
             return;
-        
+
         ShieldLoad = ShieldDelay;
         ShieldCharge = 0f;
 
@@ -308,14 +308,9 @@ public class Unit : MonoBehaviour
         return Id;
     }
 
-    public void setKey(string key)
-    {
-        Key = key;
-    }
-
     public string getKey()
     {
-        return Key;
+        return NFTs.KeyId;
     }
 
     public int GetPlayerId()
@@ -393,6 +388,21 @@ public class Unit : MonoBehaviour
     public int GetMaxHitPoints()
     {
         return MaxHp;
+    }
+
+    public virtual void SetNfts(NFTsUnit nFTsUnit)
+    {
+        NFTs = nFTsUnit;
+
+        if (GameData.DebugMode || nFTsUnit == null)
+            return;
+
+        HitPoints = nFTsUnit.HitPoints;
+        MaxHp = HitPoints;
+        Shield = nFTsUnit.Shield;
+        MaxShield = Shield;
+
+        GetComponent<Shooter>()?.InitStatsFromNFT(nFTsUnit);
     }
 
     public bool InControl()

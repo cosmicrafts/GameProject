@@ -132,7 +132,7 @@ public static class GameNetwork
                 Xp = GameNetPack.ClientXp,
                 Level = GameNetPack.ClientLvl,
                 Avatar = GameNetPack.ClientAvatar,
-                Icon = GameNetPack.ClientIcon
+                CharacterKey = GameNetPack.ClientCharacter
             } : 
             new UserGeneral() { 
                 NikeName = GameNetPack.MasterPlayerName, 
@@ -140,7 +140,7 @@ public static class GameNetwork
                 Xp = GameNetPack.MasterXp,
                 Level = GameNetPack.MasterLvl,
                 Avatar = GameNetPack.MasterAvatar,
-                Icon = GameNetPack.MasterIcon
+                CharacterKey = GameNetPack.MasterCharacter
             };
     }
 

@@ -61,7 +61,7 @@ public class UIGameMng : MonoBehaviour
                         Level = 99,
                         Xp = 0,
                         Avatar = 4,
-                        Icon = "Character_4"
+                        CharacterKey = "Chr_4"
                     });
                 }
                 break;
@@ -74,7 +74,7 @@ public class UIGameMng : MonoBehaviour
                         Level = 99,
                         Xp = 0,
                         Avatar = 2,
-                        Icon = "Character_2"
+                        CharacterKey = "Chr_4"
                     });
                 }
                 break;

@@ -6,7 +6,7 @@ public class UserGeneral : User
 
     public int Xp { get; set; }
 
-    public string Icon { get; set; }
+    public string CharacterKey { get; set; }
 
     public int GetNextXpGoal()
     {

@@ -229,4 +229,12 @@ public class Shooter : MonoBehaviour
     {
         return Target == null ? 0 : Target.getId();
     }
+
+    public virtual void InitStatsFromNFT(NFTsUnit nFTsUnit)
+    {
+        if (GameData.DebugMode)
+            return;
+
+        BulletDamage = nFTsUnit.Dammage;
+    }
 }

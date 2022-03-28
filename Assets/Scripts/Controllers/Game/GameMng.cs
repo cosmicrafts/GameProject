@@ -52,6 +52,8 @@ public class GameMng : MonoBehaviour
     public BoxCollider GridColl;
     WaitForSeconds dnet;
 
+    Dictionary<string, NFTsCard> AllNfts;
+
 
     private void Awake()
     {
@@ -72,6 +74,11 @@ public class GameMng : MonoBehaviour
         PlayerCharacter = GameData.GetUserCharacter();
         MT = new GameMetrics();
         MT.InitMetrics();
+        AllNfts = new Dictionary<string, NFTsCard>();
+        foreach(NFTsCard nFTsUnit in PlayerCollection.Cards)
+        {
+            AllNfts.Add(nFTsUnit.KeyId, nFTsUnit);
+        }
         IdCounter = IdRequestCounter = 0;
         Targets[0].PlayerId = 2;
     }
@@ -255,7 +262,7 @@ public class GameMng : MonoBehaviour
         unit.MyTeam = team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
-        unit.setKey(nftKey);
+        unit.SetNfts(AllNfts[nftKey] as NFTsUnit);
         return unit;
     }
 
@@ -276,7 +283,7 @@ public class GameMng : MonoBehaviour
         unit.MyTeam = (Team)team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(Id);
-        unit.setKey(nftKey);
+        unit.SetNfts(null);
         unit.setHasFake();
         return unit;
     }
@@ -287,7 +294,7 @@ public class GameMng : MonoBehaviour
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setId(GenerateUnitId());
-        spell.setKey(nftKey);
+        spell.SetNfts(AllNfts[nftKey] as NFTsSpell);
         return spell;
     }
 
@@ -308,7 +315,7 @@ public class GameMng : MonoBehaviour
         spell.MyTeam = (Team)team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setId(id);
-        spell.setKey(nftKey);
+        spell.SetNfts(null);
         spell.setHasFake();
         return spell;
     }

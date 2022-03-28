@@ -3,7 +3,7 @@
 public class Spell : MonoBehaviour
 {
     protected bool IsFake = false;
-    protected string Key;
+    protected NFTsSpell NFTs;
     public Team MyTeam;
     public int PlayerId = 1;
     protected int Id;
@@ -31,14 +31,9 @@ public class Spell : MonoBehaviour
         IsFake = true;
     }
 
-    public void setKey(string key)
-    {
-        Key = key;
-    }
-
     public string getKey()
     {
-        return Key;
+        return NFTs.KeyId;
     }
 
     public void setId(int id)
@@ -57,5 +52,13 @@ public class Spell : MonoBehaviour
         {
             GameMng.GM.DeleteSpell(this);
         }
+    }
+
+    public virtual void SetNfts(NFTsSpell nFTsSpell)
+    {
+        NFTs = nFTsSpell;
+
+        if (GameData.DebugMode || nFTsSpell == null)
+            return;
     }
 }
