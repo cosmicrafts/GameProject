@@ -136,7 +136,8 @@ public class UIMainMenu : MonoBehaviour
     void PlayIA()
     {
         PlayerUser.FirstGame = false;
-        
+
+        MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
 
         StartCoroutine(LoadLocalGame());
@@ -146,6 +147,7 @@ public class UIMainMenu : MonoBehaviour
     {
         PlayerUser.FirstGame = true;
 
+        MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
 
         StartCoroutine(LoadLocalGame());
@@ -155,7 +157,6 @@ public class UIMainMenu : MonoBehaviour
     {
         PlayerUser.FirstGame = true;
 
-        MultiPanel.SetActive(true);
         MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
     }
 
@@ -223,8 +224,6 @@ public class UIMainMenu : MonoBehaviour
 
     public void PlayCurrentMode()
     {
-        MainMenu.SetActive(false);
-
         switch(GameData.CurrentMatch)
         {
             case Match.bots:

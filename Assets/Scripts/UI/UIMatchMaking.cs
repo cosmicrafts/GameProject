@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class UIMatchMaking : MonoBehaviour
 {
-    public GameObject MainMenu;
     public GameObject SearchingScreen;
     public GameObject MatchScreen;
 
@@ -74,8 +73,7 @@ public class UIMatchMaking : MonoBehaviour
 
     public void CancelSearch()
     {
-        MainMenu.SetActive(true);
-        gameObject.SetActive(false);
+        SearchingScreen.SetActive(false);
         IsCanceled = true;
         StopAllCoroutines();
     }
