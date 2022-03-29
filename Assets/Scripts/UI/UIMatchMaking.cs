@@ -22,8 +22,8 @@ public class UIMatchMaking : MonoBehaviour
     public Text Txt_VsWalletId;
     public Text Txt_VsNikeName;
     public Text Txt_VsLevel;
-    public Image Txt_VsIcon;
-    public Image Txt_VsAvatar;
+    public Image Img_VsIcon;
+    public Image Img_VsEmblem;
 
     public Text Txt_CountDown;
     public Text Txt_Tips;
@@ -91,8 +91,8 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsNikeName.text = VsUserData.NikeName;
         Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
         NFTsCharacter nFTsCharacter = GameData.GetUserCollection().GetCharacterByKey(VsUserData.CharacterKey);
-        Txt_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
-        Txt_VsAvatar.sprite = ResourcesServices.LoadAvatarIcon(VsUserData.Avatar);
+        Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+        Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(VsUserData.CharacterKey);
     }
 
     public void GLGetICPData(string json)
