@@ -6,14 +6,13 @@ using UnityEngine;
 
 public enum Match
 {
-    none,
     tutorial,
     bots,
     multi
 }
 public static class GameData
 {
-    public static Match CurrentMatch = Match.none;
+    public static Match CurrentMatch = Match.multi;
 
     public static bool ImMaster = false;
 

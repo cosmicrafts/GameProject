@@ -90,7 +90,7 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
         Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
-        NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(VsUserData.CharacterKey);
+        NFTsCharacter nFTsCharacter = GameData.GetUserCollection().GetCharacterByKey(VsUserData.CharacterKey);
         Txt_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
         Txt_VsAvatar.sprite = ResourcesServices.LoadAvatarIcon(VsUserData.Avatar);
     }
@@ -99,7 +99,6 @@ public class UIMatchMaking : MonoBehaviour
     {
         if (IsCanceled)
             return;
-        Debug.Log(json);
         GameNetwork.UpdateGameData(json);
         GameData.ImMaster = GameNetwork.GetMasterWalletId() == MyUserData.WalletId;
     }
@@ -126,7 +125,7 @@ public class UIMatchMaking : MonoBehaviour
 
         //Wait for ready
         yield return new WaitUntil(() => GameNetwork.GameRoomIsFull());
-
+        Debug.Log($"Starting VS");
         UpdateVsData();
         SearchingScreen.SetActive(false);
         MatchScreen.SetActive(true);

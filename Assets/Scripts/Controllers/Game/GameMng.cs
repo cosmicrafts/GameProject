@@ -387,8 +387,11 @@ public class GameMng : MonoBehaviour
 
     public void EndScene()
     {
-        if (GameData.CurrentMatch == Match.multi)
+        if (GameData.CurrentMatch == Match.multi && !GameData.DebugMode)
+        {
+            Debug.Log("End Game IC");
             GameNetwork.JSExitGame();
+        }
 
         SceneManager.LoadScene(0);
     }

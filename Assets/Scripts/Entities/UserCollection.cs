@@ -30,7 +30,6 @@ public class UserCollection
 
     public void AddUnitsAndCharactersDefault()
     {
-        InitCollection();
         //CHARACTERS
         Characters.Add(new NFTsCharacter()
         {

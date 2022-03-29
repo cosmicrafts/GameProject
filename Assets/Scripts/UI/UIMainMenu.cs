@@ -71,7 +71,6 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameData.CurrentMatch = Match.none;
         UIPropertys = new List<UIPTxtInfo>();
         foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
         {
