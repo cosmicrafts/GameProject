@@ -13,7 +13,12 @@ public class Character_4 : GameCharacter
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);
-        unit.Shield += 1;
+        unit.Shield += 2;
         unit.SetMaxShield(unit.Shield);
+        Ship ship = unit.GetComponent<Ship>();
+        if (ship != null)
+        {
+            ship.MaxSpeed *= 1.25f;
+        }
     }
 }

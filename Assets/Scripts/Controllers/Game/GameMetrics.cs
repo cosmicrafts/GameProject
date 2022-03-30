@@ -41,7 +41,7 @@ public class GameMetrics
 
         Score = (int)Damage + (Kills * 10) + (Deploys * 10) + (SecRemaining * 3) + (int)EnergyUsed - (int) EnergyWasted;
 
-        if (winner == GameMng.P.MyTeam && !GameMng.GM.IsGameTutorial())
+        if (GameData.CurrentMatch == Match.bots)
         {
 #if UNITY_WEBGL
             GameNetwork.JSSaveScore(Score);

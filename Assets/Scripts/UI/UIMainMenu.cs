@@ -52,9 +52,17 @@ public class UIMainMenu : MonoBehaviour
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
-        SaveData.LoadGameConfig();
-        PlayerCollection = GameData.GetUserCollection();
-        PlayerCollection.AddUnitsAndCharactersDefault();
+        if (!GameData.DataReady)
+        {
+            SaveData.LoadGameConfig();
+            PlayerCollection = GameData.GetUserCollection();
+            PlayerCollection.AddUnitsAndCharactersDefault();
+            GameData.DataReady = true;
+        }
+        else
+        {
+            InitPlayerData();
+        }
         CheckGameMode();
 
         GameData.DebugMode = false;
@@ -185,7 +193,7 @@ public class UIMainMenu : MonoBehaviour
 
     IEnumerator LoadLocalGame()
     {   
-        AsyncOperation loading = SceneManager.LoadSceneAsync(1);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
 
         while(!loading.isDone)
         {

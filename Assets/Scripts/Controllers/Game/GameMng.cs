@@ -158,6 +158,10 @@ public class GameMng : MonoBehaviour
                 RunTime = false;
                 UI.UpdateTimeOut("0:00");
                 P.SetCanGenEnergy(false);
+                if (GameData.CurrentMatch == Match.bots)
+                {
+                    BOT.SetCanGenEnergy(false);
+                }
                 GameDraw();
             }
         }
@@ -393,7 +397,7 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSExitGame();
         }
 
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
 
     IEnumerator LoopGameNetAsync()

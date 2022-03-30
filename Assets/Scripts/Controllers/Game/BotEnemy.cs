@@ -47,6 +47,8 @@ public class BotEnemy : MonoBehaviour
 
     private static System.Random rng;
 
+    bool CanGenEnergy;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +58,7 @@ public class BotEnemy : MonoBehaviour
         MyUnits.Add(GameMng.GM.Targets[0]);
         TargetUnit = GameMng.GM.Targets[1];
 
+        CanGenEnergy = true;
         rng = new System.Random();
         SideSpawns = new Vector3[3] { Vector3.left, Vector3.forward, Vector3.back };
         TargetSideSpawn = 0;
@@ -88,6 +91,9 @@ public class BotEnemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!CanGenEnergy)
+            return;
+        
         if (CurrentEnergy < MaxEnergy)
         {
             CurrentEnergy += Time.deltaTime * SpeedEnergy;
@@ -96,6 +102,11 @@ public class BotEnemy : MonoBehaviour
         {
             CurrentEnergy = MaxEnergy;
         }
+    }
+
+    public void SetCanGenEnergy(bool can)
+    {
+        CanGenEnergy = can;
     }
 
     IEnumerator IA()
@@ -143,22 +154,19 @@ public class BotEnemy : MonoBehaviour
                     break;
             }
 
-            List<Unit> SpawnAreas = MyUnits.Where(f => f.SpawnAreaSize > 0).ToList();
+            //List<Unit> SpawnAreas = MyUnits.Where(f => f.SpawnAreaSize > 0).ToList();
 
-            if (SpawnAreas.Count == 0)
-                continue;
+            //if (SpawnAreas.Count == 0)
+            //    continue;
 
-            Unit SpawnRefUnit = SpawnAreas.OrderBy(o => 
-                Vector3.Distance(o.transform.position, TargetUnit.transform.position)).FirstOrDefault();
+            //Unit SpawnRefUnit = SpawnAreas.OrderBy(o => 
+            //    Vector3.Distance(o.transform.position, TargetUnit.transform.position)).FirstOrDefault();
 
-            if (SelectedUnit.EnergyCost <= CurrentEnergy && SpawnAreas.Count > 0)
+            if (SelectedUnit.EnergyCost <= CurrentEnergy)
             {
-                Vector3 PositionSpawn = SpawnRefUnit.transform.position + (SideSpawns[TargetSideSpawn] * SpawnRefUnit.SpawnAreaSize);
+                Vector3 PositionSpawn = transform.GetChild(Random.Range(0, transform.childCount)).position;
                 Unit unit = GameMng.GM.CreateUnit(SelectedUnit.gameObject, PositionSpawn, MyTeam, SelectedUnit.NftsKey);
                 CurrentEnergy -= SelectedUnit.EnergyCost;
-                TargetSideSpawn++;
-                if (TargetSideSpawn > 2)
-                    TargetSideSpawn = 0;
             }
         }
     }
