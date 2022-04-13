@@ -368,7 +368,10 @@ public class GameMng : MonoBehaviour
         RequestedUnits.Add(unit);
         GameNetwork.SetClientLastUpdate(DateTime.Now);
         GameNetwork.SetRequestedGameUnits(RequestedUnits);
-        GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
+        if (GameData.IsProductionWeb())
+        {
+            GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
+        }
     }
 
     public int CountUnits()
@@ -391,9 +394,8 @@ public class GameMng : MonoBehaviour
 
     public void EndScene()
     {
-        if (GameData.CurrentMatch == Match.multi && !GameData.DebugMode)
+        if (GameData.CurrentMatch == Match.multi && GameData.IsProductionWeb())
         {
-            Debug.Log("End Game IC");
             GameNetwork.JSExitGame();
         }
 
@@ -447,7 +449,10 @@ public class GameMng : MonoBehaviour
 
             try
             {
-                GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
+                if (GameData.IsProductionWeb())
+                {
+                    GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
+                }
             }
             catch (Exception e)
             {
@@ -456,7 +461,10 @@ public class GameMng : MonoBehaviour
         } else //Client send 
         {
             GameNetwork.SetClientLastUpdate(DateTime.Now);
-            GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
+            if (GameData.IsProductionWeb())
+            {
+                GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
+            }
         }
     }
 

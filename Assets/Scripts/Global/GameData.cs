@@ -10,6 +10,11 @@ public enum Match
     bots,
     multi
 }
+public enum Plataform
+{
+    Web,
+    Pc
+}
 public static class GameData
 {
     public static Match CurrentMatch = Match.multi;
@@ -17,6 +22,8 @@ public static class GameData
     public static bool ImMaster = false;
 
     public static bool DebugMode = false;
+
+    public static Plataform CurrentPlataform = Plataform.Pc;
 
     public static bool DataReady = false;
 
@@ -167,5 +174,10 @@ public static class GameData
     public static string GetVersion()
     {
         return Application.version;
+    }
+
+    public static bool IsProductionWeb()
+    {
+        return CurrentPlataform == Plataform.Web && !DebugMode;
     }
 }

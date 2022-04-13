@@ -43,9 +43,10 @@ public class GameMetrics
 
         if (GameData.CurrentMatch == Match.bots)
         {
-#if UNITY_WEBGL
-            GameNetwork.JSSaveScore(Score);
-#endif
+            if (GameData.IsProductionWeb())
+            {
+                GameNetwork.JSSaveScore(Score);
+            }
             GameData.GetUserProgress().AddBattlePoints(Score);
         }
     }

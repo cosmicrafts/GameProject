@@ -60,7 +60,7 @@ public class UICharacters : MonoBehaviour
         UpdateUIInfo();
         GameData.SetUserCharacter(nFTsCharacter.KeyId);
 
-        if (!GameData.DebugMode)
+        if (GameData.IsProductionWeb())
         {
             GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
         }

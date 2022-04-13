@@ -21,11 +21,6 @@ public class Projectile : MonoBehaviour
     Vector3 LastTargetPosition;
     bool IsFake;
 
-    private void Start()
-    {
-
-    }
-
     private void Update()
     {
         if (IsFake)

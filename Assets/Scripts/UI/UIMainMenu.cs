@@ -69,9 +69,13 @@ public class UIMainMenu : MonoBehaviour
 #if UNITY_EDITOR
         GameData.DebugMode = true;
 #endif
+#if UNITY_WEBGL
+        GameData.CurrentPlataform = Plataform.Web;
+#endif
 
         if (GameData.DebugMode)
         {
+            GameData.CurrentMatch = Match.bots;
             InitPlayerData();
         }
     }

@@ -107,7 +107,10 @@ public class UIMatchMaking : MonoBehaviour
     {
         //Find Match
         string MyJsonProfile = JsonConvert.SerializeObject(GameData.BuildMyProfileHasVS());
-        GameNetwork.JSSearchGame(MyJsonProfile);
+        if (GameData.IsProductionWeb())
+        {
+            GameNetwork.JSSearchGame(MyJsonProfile);
+        }
 
         //Wait for match
         yield return new WaitUntil(() => GameNetwork.GetId() != 0);
@@ -118,14 +121,17 @@ public class UIMatchMaking : MonoBehaviour
         //Join Match
         Debug.Log($"Match: {GameNetwork.GetId()}");
         GameNetwork.SetClientGameId(GameNetwork.GetId());
-        CancelButton.SetActive(false);
+        CancelButton.SetActive(GameData.ImMaster);
         StatusGame.text = Lang.GetText("mn_matchfound");
         SearchIcon.SetActive(false);
         FoundIcon.SetActive(true);
 
         //Wait for ready
         yield return new WaitUntil(() => GameNetwork.GameRoomIsFull());
-        Debug.Log($"Starting VS");
+
+        if (IsCanceled)
+            yield return null;
+
         UpdateVsData();
         SearchingScreen.SetActive(false);
         MatchScreen.SetActive(true);

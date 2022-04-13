@@ -35,7 +35,7 @@ public static class SaveData
     public static void SaveGameConfig()
     {
         SaveManager.Instance.Save(GameData.GetConfig(), fullPathConfig, DataWasSaved, false);
-        if (!GameData.DebugMode)
+        if (GameData.IsProductionWeb())
         {
             GameNetwork.JSSavePlayerConfig(JsonConvert.SerializeObject(GameData.GetConfig()));
         }
