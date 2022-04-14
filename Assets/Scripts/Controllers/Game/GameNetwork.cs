@@ -184,4 +184,7 @@ public static class GameNetwork
 
     [DllImport("__Internal")]
     public static extern void JSSearchGame(string json);
+
+    [DllImport("__Internal")]
+    public static extern void JSCancelGame(int gameId);
 }

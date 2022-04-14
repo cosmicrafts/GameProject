@@ -75,6 +75,10 @@ public class UIMatchMaking : MonoBehaviour
     {
         SearchingScreen.SetActive(false);
         IsCanceled = true;
+        if (GameNetwork.GetId() != 0)
+        {
+            GameNetwork.JSCancelGame(GameNetwork.GetId());
+        }
         StopAllCoroutines();
     }
 
