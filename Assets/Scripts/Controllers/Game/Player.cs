@@ -48,6 +48,7 @@ public class Player : MonoBehaviour
                 MyTeam = Team.Red;
             }
         }
+        GameMng.GM.InitBaseStations();
     }
 
     private void Start()

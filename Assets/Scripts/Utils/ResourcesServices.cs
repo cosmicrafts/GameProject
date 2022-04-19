@@ -44,6 +44,11 @@ public static class ResourcesServices
         return Resources.Load<GameObject>($"Prefabs/{folder}/{Factions[key.Substring(2,3)]}/{key}");
     }
 
+    public static GameObject LoadBaseStationPrefab(string faction)
+    {
+        return Resources.Load<GameObject>($"Prefabs/BaseStations/BS_{faction}");
+    }
+
     public static GameObject LoadCharacterPrefab(string key)
     {
         return Resources.Load<GameObject>($"Prefabs/Characters/{key}");

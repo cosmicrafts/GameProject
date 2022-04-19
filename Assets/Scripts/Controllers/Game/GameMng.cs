@@ -21,9 +21,9 @@ public class GameMng : MonoBehaviour
     public GameTutorial GT;
     public BotEnemy BOT;
 
+    [HideInInspector]
     public Unit[] Targets;
-    public Material[] SkinStationsMaterials;
-    public Mesh[] SkinStationsMeshes;
+    public Transform[] BS_Positions;
 
     List<Unit> Units;
     List<Spell> Spells;
@@ -80,7 +80,7 @@ public class GameMng : MonoBehaviour
             AllNfts.Add(nFTsUnit.KeyId, nFTsUnit);
         }
         IdCounter = IdRequestCounter = 0;
-        Targets[0].PlayerId = 2;
+        Targets = new Unit[2];
     }
 
     // Start is called before the first frame update
@@ -258,6 +258,22 @@ public class GameMng : MonoBehaviour
         }
 
         return result;
+    }
+
+    public void InitBaseStations()
+    {
+        //PLAYER STATION
+        int PIn = P.MyTeam == Team.Blue ? 1 : 0;
+        int VsIn = P.MyTeam == Team.Red ? 1 : 0;
+        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.Faction), 
+            BS_Positions[PIn].position, Quaternion.identity).GetComponent<Unit>();
+        //VS STATION
+        GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
+            GameData.CurrentMatch == Match.multi ? "Spirats" : "Spirats");
+        Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn].position, Quaternion.identity).GetComponent<Unit>();
+
+        Targets[0].PlayerId = 2;
+        Targets[0].MyTeam = Team.Red;
     }
 
     public Unit CreateUnit(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
