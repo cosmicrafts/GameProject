@@ -1,10 +1,50 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 
 namespace EPOOutline
 {
+    public static class SerializedPropertyExtentions
+    {
+        private static MethodInfo getFieldInfoAndStaticTypeFromProperty;
+
+        public static Attribute[] GetFieldAttributes(this SerializedProperty prop)
+        {
+            if (getFieldInfoAndStaticTypeFromProperty == null)
+            {
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    foreach (var t in assembly.GetTypes())
+                    {
+                        if (t.Name != "ScriptAttributeUtility")
+                            continue;
+
+                        getFieldInfoAndStaticTypeFromProperty = t.GetMethod("GetFieldAttributes", BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic);
+                        foreach (var info in getFieldInfoAndStaticTypeFromProperty.GetParameters())
+                            Debug.Log(info.ParameterType + " " + info.Name);
+
+                        break;
+                    }
+
+                    if (getFieldInfoAndStaticTypeFromProperty != null)
+                        break;
+                }
+            }
+
+            var p = new object[] { prop, null };
+            var fieldInfo = getFieldInfoAndStaticTypeFromProperty.Invoke(null, p) as Attribute[];
+            return fieldInfo;
+        }
+
+        public static T GetCustomAttributeFromProperty<T>(this SerializedProperty prop) where T : System.Attribute
+        {
+            return Array.Find(GetFieldAttributes(prop), x => x is T) as T;
+        }
+    }
+
     [CustomPropertyDrawer(typeof(SerializedPass))]
     public class SerializedPassPropertyDrawer : PropertyDrawer
     {
@@ -16,12 +56,15 @@ namespace EPOOutline
             var shaderProperty = property.FindPropertyRelative("shader");
 
             var currentShaderReference = shaderProperty.objectReferenceValue as Shader;
-            var prefix = "Hidden/EPO/Fill/";
+
+            var attribute = (SerializedPassInfoAttribute)null;// property.GetCustomAttributeFromProperty<SerializedPassInfoAttribute>();
+
+            var prefix = attribute == null ? "Hidden/EPO/Fill/" : attribute.ShadersFolder;
             var fillLabel = currentShaderReference == null ? "none" : currentShaderReference.name.Substring(prefix.Length);
             if (shaderProperty.hasMultipleDifferentValues)
                 fillLabel = "-";
 
-            if (EditorGUI.DropdownButton(position, new GUIContent("Fill type: " + fillLabel), FocusType.Passive))
+            if (EditorGUI.DropdownButton(position, new GUIContent(label.text + " : " + fillLabel), FocusType.Passive))
             {
                 var menu = new GenericMenu();
 
@@ -73,6 +116,7 @@ namespace EPOOutline
                 }
 
                 var fillParametersPosition = position;
+                fillParametersPosition.height = EditorGUIUtility.singleLineHeight;
                 for (var index = 0; index < ShaderUtil.GetPropertyCount(currentShaderReference); index++)
                 {
                     var propertyName = ShaderUtil.GetPropertyName(currentShaderReference, index);

@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace EPOOutline
 {
-    [CanEditMultipleObjects]
     [CustomEditor(typeof(Outlinable))]
     public class OutlinableEditor : Editor
     {
@@ -24,7 +23,7 @@ namespace EPOOutline
                     {
                         var renderPosition = position;
                         var element = targets.GetArrayElementAtIndex(item);
-                        var rendererItem = element.FindPropertyRelative("Renderer");
+                        var rendererItem = element.FindPropertyRelative("renderer");
                         var reference = rendererItem.objectReferenceValue;
 
                         EditorGUI.PropertyField(renderPosition, element, new GUIContent(reference == null ? "Null" : reference.name), true);
@@ -49,7 +48,14 @@ namespace EPOOutline
                         {
                             menu.AddItem(new GUIContent("Add all"), false, () =>
                                 {
-                                    (target as Outlinable).AddAllChildRenderersToRenderingList();
+                                    (target as Outlinable).AddAllChildRenderersToRenderingList(RenderersAddingMode.All);
+
+                                    EditorUtility.SetDirty(target);
+                                });
+
+                            menu.AddItem(new GUIContent("Add all basic"), false, () =>
+                                {
+                                    (target as Outlinable).AddAllChildRenderersToRenderingList(RenderersAddingMode.MeshRenderer | RenderersAddingMode.SkinnedMeshRenderer);
 
                                     EditorUtility.SetDirty(target);
                                 });
@@ -57,7 +63,7 @@ namespace EPOOutline
 
                         menu.AddItem(new GUIContent("Empty"), false, () =>
                             {
-                                (target as Outlinable).OutlineTargets.Add(new OutlineTarget());
+                                (target as Outlinable).TryAddTarget(new OutlineTarget());
 
                                 EditorUtility.SetDirty(target);
                             });
@@ -68,7 +74,7 @@ namespace EPOOutline
                             for (var index = 0; index < targets.arraySize; index++)
                             {
                                 var element = targets.GetArrayElementAtIndex(index);
-                                var elementRenderer = element.FindPropertyRelative("Renderer");
+                                var elementRenderer = element.FindPropertyRelative("renderer");
                                 if (elementRenderer.objectReferenceValue == item)
                                 {
                                     found = true;
@@ -93,7 +99,7 @@ namespace EPOOutline
                             }
                             else
                                 path = item.ToString();
-                            
+
                             GenericMenu.MenuFunction function = () =>
                                 {
                                     var index = targets.arraySize;

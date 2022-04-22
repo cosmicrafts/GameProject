@@ -33,6 +33,7 @@ namespace EPOOutline
         [MenuItem("Tools/Easy performant outline/Check models")]
         private static void CheckModelMenu()
         {
+            EditorPrefs.DeleteKey("Never ask about models check");
             EditorPrefs.DeleteKey("Models checked");
             CheckModels();
         }
@@ -153,8 +154,23 @@ namespace EPOOutline
 
         public void OnPreprocessBuild(BuildReport report)
         {
-            EditorPrefs.DeleteKey("Models checked");
-            CheckModels();
+            if (EditorPrefs.GetBool("Never ask about models check"))
+                return;
+
+            var result = EditorUtility.DisplayDialogComplex("Would you like to check models?", "If you don't use edge shift outline you can skip this", "Check", "Skip", "Never ask again");
+            switch (result)
+            {
+                case 0:
+                    EditorPrefs.DeleteKey("Models checked");
+                    CheckModels();
+                    break;
+                case 1:
+                    return;
+                case 2:
+                    EditorPrefs.SetBool("Never ask about models check", true);
+                    break;
+            }
+
         }
     }
 }

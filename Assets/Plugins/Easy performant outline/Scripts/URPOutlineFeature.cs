@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using EPOOutline;
 using System;
+using System.Reflection;
 
 #if URP_OUTLINE && UNITY_2019_1_OR_NEWER
 #if UNITY_2019_3_OR_NEWER
@@ -32,6 +33,38 @@ public class URPOutlineFeature : ScriptableRendererFeature
             Parameters.CheckInitialization();
         }
 
+        private FieldInfo nameId = typeof(RenderTargetIdentifier).GetField("m_NameID", BindingFlags.NonPublic | BindingFlags.Instance);
+
+        private bool IsDepthTextureAvailable(ScriptableRenderer renderer)
+        {
+#if UNITY_2022_1_OR_NEWER
+            return renderer.cameraDepthTargetHandle.rt != null;
+#else
+            return (int)nameId.GetValue(GetDepthTarget(renderer)) != -1;
+#endif
+        }
+
+        private RenderTargetIdentifier GetDepthTarget(ScriptableRenderer renderer)
+        {
+            return
+#if UNITY_2022_1_OR_NEWER
+                Renderer.cameraDepthTargetHandle;
+#elif UNITY_2020_2_OR_NEWER
+                Renderer.cameraDepthTarget;
+#else
+                Renderer.cameraDepth;
+#endif
+        }
+
+        private RenderTargetIdentifier GetColorTarget(ScriptableRenderer renderer)
+        {
+#if UNITY_2022_1_OR_NEWER
+                return renderer.cameraColorTargetHandle;
+#else
+                return renderer.cameraColorTarget;
+#endif
+        }
+
         public override void Execute(ScriptableRenderContext context, ref RenderingData renderingData)
         {
             var camera = renderingData.cameraData.camera;
@@ -44,39 +77,22 @@ public class URPOutlineFeature : ScriptableRendererFeature
             Parameters.Buffer.name = renderingData.cameraData.camera.name;
 #endif
 
+            Outlinable.GetAllActiveOutlinables(renderingData.cameraData.camera, Parameters.OutlinablesToRender);
+
             Outliner.UpdateSharedParameters(Parameters, renderingData.cameraData.camera, renderingData.cameraData.isSceneViewCamera);
 
-            Outlinable.GetAllActiveOutlinables(Parameters.Camera, Parameters.OutlinablesToRender);
-            RendererFilteringUtility.Filter(Parameters);
+            RendererFilteringUtility.Filter(renderingData.cameraData.camera, Parameters);
 
-            var targetTexture = camera.targetTexture == null ? camera.activeTexture : camera.targetTexture;
-
-            if (UnityEngine.XR.XRSettings.enabled
-                    && !Parameters.IsEditorCamera
-                    && Parameters.EyeMask != StereoTargetEyeMask.None)
-            {
-                var descriptor = UnityEngine.XR.XRSettings.eyeTextureDesc;
-                Parameters.TargetWidth = descriptor.width;
-                Parameters.TargetHeight = descriptor.height;
-            }
-            else
-            { 
-                Parameters.TargetWidth = targetTexture != null ? targetTexture.width : (int)(camera.scaledPixelWidth * renderingData.cameraData.renderScale);
-                Parameters.TargetHeight = targetTexture != null ? targetTexture.height : (int)(camera.scaledPixelHeight * renderingData.cameraData.renderScale);
-            }
+            Parameters.TargetWidth = renderingData.cameraData.cameraTargetDescriptor.width;
+            Parameters.TargetHeight = renderingData.cameraData.cameraTargetDescriptor.height;
 
             Parameters.Antialiasing = renderingData.cameraData.cameraTargetDescriptor.msaaSamples;
 
-            var useCustomRenderTarget = Outliner.HasCutomRenderTarget && !renderingData.cameraData.isSceneViewCamera;
-            Parameters.Target = RenderTargetUtility.ComposeTarget(Parameters, useCustomRenderTarget ? Outliner.GetRenderTarget(Parameters) : Renderer.cameraColorTarget);
+            Parameters.Target = RenderTargetUtility.ComposeTarget(Parameters, Renderer.cameraColorTarget);
             Parameters.DepthTarget =
 #if UNITY_2019_3_OR_NEWER && !UNITY_2019_3_0 && !UNITY_2019_3_1 && !UNITY_2019_3_2 && !UNITY_2019_3_3 && !UNITY_2019_3_4 && !UNITY_2019_3_5 && !UNITY_2019_3_6 && !UNITY_2019_3_7 && !UNITY_2019_3_8
-            RenderTargetUtility.ComposeTarget(Parameters, UseColorTargetForDepth ? Renderer.cameraColorTarget :
-#if UNITY_2020_2_OR_NEWER
-                Renderer.cameraDepthTarget);
-#else
-                Renderer.cameraDepth);
-#endif
+            RenderTargetUtility.ComposeTarget(Parameters, !IsDepthTextureAvailable(Renderer) ? GetColorTarget(Renderer) :
+                GetDepthTarget(Renderer));
 #else
                 RenderTargetUtility.ComposeTarget(Parameters, Renderer.cameraColorTarget);
 #endif
@@ -198,18 +214,15 @@ public class URPOutlineFeature : ScriptableRendererFeature
         }
 #endif
 
-        var shouldUseDepthTarget = renderingData.cameraData.requiresDepthTexture && renderingData.cameraData.cameraTargetDescriptor.msaaSamples <= 1 && !renderingData.cameraData.isSceneViewCamera;
-
         foreach (var outliner in outliners)
         {
             var outline = outlinePool.Get();
 
             outline.Outliner = outliner;
 
-            outline.UseColorTargetForDepth = !shouldUseDepthTarget;//(additionalCameraData == null || activeStackCount == 0 && additionalCameraData.renderType != CameraRenderType.Overlay) &&
-
             outline.Renderer = renderer;
-            outline.renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
+
+            outline.renderPassEvent = outliner.RenderStage == RenderStage.AfterTransparents ? RenderPassEvent.AfterRenderingTransparents : RenderPassEvent.AfterRenderingOpaques;
 
             renderer.EnqueuePass(outline);
         }

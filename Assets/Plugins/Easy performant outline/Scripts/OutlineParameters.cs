@@ -44,9 +44,13 @@ namespace EPOOutline
         public RenderTargetIdentifier DepthTarget;
         public CommandBuffer Buffer;
         public DilateQuality DilateQuality = DilateQuality.Base;
-        public int DilateIterrations = 2;
-        public int BlurIterrantions = 5;
-        
+        public int DilateIterations = 2;
+        public int BlurIterations = 5;
+
+        public Vector2 Scale = Vector2.one;
+
+        public Rect? CustomViewport;
+
         public long OutlineLayerMask = -1;
 
         public int TargetWidth;
@@ -62,10 +66,10 @@ namespace EPOOutline
 
         public bool IsEditorCamera;
 
-        public float PrimaryBufferScale = 0.1f;
-        public float InfoBufferScale = 0.2f;
+        public BufferSizeMode PrimaryBufferSizeMode;
+        public int PrimaryBufferSizeReference;
 
-        public bool ScaleIndependent = true;
+        public float PrimaryBufferScale = 0.1f;
 
         public StereoTargetEyeMask EyeMask;
 
@@ -80,6 +84,14 @@ namespace EPOOutline
         public List<Outlinable> OutlinablesToRender = new List<Outlinable>();
 
         private bool isInitialized = false;
+        
+        public Vector2Int MakeScaledVector(int x, int y)
+        {
+            var fx = (float)x;
+            var fy = (float)y;
+
+            return new Vector2Int(Mathf.FloorToInt(fx * Scale.x), Mathf.FloorToInt(fy * Scale.y));
+        }
 
         public void CheckInitialization()
         {
@@ -89,6 +101,41 @@ namespace EPOOutline
             Buffer = new CommandBuffer();
 
             isInitialized = true;
+        }
+
+        public void Prepare()
+        {
+            if (OutlinablesToRender.Count == 0)
+                return;
+            
+            UseInfoBuffer = OutlinablesToRender.Find(x => x != null && ((x.DrawingMode & (OutlinableDrawingMode.Obstacle | OutlinableDrawingMode.Mask)) != 0 || x.ComplexMaskingEnabled)) != null;
+            if (UseInfoBuffer)
+                return;
+
+            foreach (var target in OutlinablesToRender)
+            {
+                if ((target.DrawingMode & OutlinableDrawingMode.Normal) == 0)
+                    continue;
+
+                if (!CheckDiffers(target))
+                    continue;
+
+                UseInfoBuffer = true;
+                break;
+            }
+        }
+
+        private static bool CheckDiffers(Outlinable outlinable)
+        {
+            if (outlinable.RenderStyle == RenderStyle.Single)
+                return CheckIfNonOne(outlinable.OutlineParameters);
+            else
+                return CheckIfNonOne(outlinable.FrontParameters) || CheckIfNonOne(outlinable.BackParameters);
+        }
+
+        private static bool CheckIfNonOne(Outlinable.OutlineProperties parameters)
+        {
+            return parameters.BlurShift != 1.0f || parameters.DilateShift != 1.0f;
         }
     }
 }
