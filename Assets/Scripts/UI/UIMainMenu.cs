@@ -46,6 +46,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("--- MENU START ---");
         Menu = this;
         UserDataLoaded = 0;
 
@@ -78,6 +79,7 @@ public class UIMainMenu : MonoBehaviour
             GameData.CurrentMatch = Match.bots;
             InitPlayerData();
         }
+        Debug.Log("--- MENU REDY ---");
     }
 
     // Start is called before the first frame update
@@ -137,6 +139,7 @@ public class UIMainMenu : MonoBehaviour
 
     void InitPlayerData()
     {
+        Debug.Log("--- MENU SHOW ---");
         PlayerUser = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
         PlayerCharacter = GameData.GetUserCharacter();
@@ -235,6 +238,7 @@ public class UIMainMenu : MonoBehaviour
 
     public void PlayCurrentMode()
     {
+        Debug.Log("-- PLAY --");
         switch(GameData.CurrentMatch)
         {
             case Match.bots:
