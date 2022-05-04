@@ -12,7 +12,7 @@ public enum SocialLogs
 [System.Serializable]
 public class Config
 {
-    public int language = 0;
+    public int language = 0; // 0 ingles / 1 español
 
     public string UserName = string.Empty;
 

@@ -11,13 +11,13 @@ public class User
 {
     public int Id { get; set; }
 
-    public string WalletId { get; set; }
+    public string WalletId { get; set; } //*
 
-    public string NikeName { get; set; }
+    public string NikeName { get; set; } //*
 
     public string PassWord { get; set; }
 
-    public int Avatar { get; set; }
+    public int Avatar { get; set; } //*
 
     public string Token { get; set; }
 

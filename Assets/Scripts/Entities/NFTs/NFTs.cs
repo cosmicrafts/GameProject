@@ -2,11 +2,11 @@
 
 public abstract class NFTs
 {
-    public string KeyId { get; set; }
+    public string KeyId { get; set; } //* Chr_1 - Chr_2
 
-    public string Icon { get; set; }
+    public string Icon { get; set; } //* Character_1 - Character_2
 
     public int Rarity { get; set; }
 
-    public string Faction { get; set; }
+    public string Faction { get; set; } //* Alliance - Spirats
 }
