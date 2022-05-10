@@ -4,18 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 public class MyWallet : MonoBehaviour
 {
-    [SerializeField]
-Text walletID;
-    [SerializeField]
-    Text playerAccountName;
+    public Text walletID;
+
     // Start is called before the first frame update
     void Start()
     {
-    
         walletID.text = PlayerPrefs.GetString("Account");
-
-        if (playerAccountName)
-            playerAccountName.text = PlayerPrefs.GetString("AccounName"); 
     }
 
     // Update is called once per frame

@@ -20,4 +20,5 @@ Used to set the network: https://chainlist.org/
 1666600000 Harmony Mainnet Shard0
 */
 
-window.web3ChainId = 1;
+window.web3ChainId = 42262;
+window.web3NetwrokName="Oasis Emerald";
