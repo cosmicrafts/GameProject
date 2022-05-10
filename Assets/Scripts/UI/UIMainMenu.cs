@@ -9,8 +9,12 @@ using System.Linq;
 
 public class UIMainMenu : MonoBehaviour
 {
-    public static UIMainMenu Menu;
+    [SerializeField]
+    MyWallet metaMaskWallet;
 
+
+    public static UIMainMenu Menu;
+    
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
@@ -49,9 +53,13 @@ public class UIMainMenu : MonoBehaviour
         Menu = this;
         UserDataLoaded = 0;
 
+        string playerWalletRose = PlayerPrefs.GetString("AccounName");
+        GL_SetPlayerData(playerWalletRose);
+
+
       //  LoginPanel.SetActive(true); el panel login
-        //MenuPanel.SetActive(true);
-    GoLoginPage();
+      //MenuPanel.SetActive(true);
+      // GoLoginPage();
         if (!GameData.DataReady)
         {
             SaveData.LoadGameConfig();

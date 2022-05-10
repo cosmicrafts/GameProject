@@ -32,7 +32,7 @@ public class WebLogin : MonoBehaviour
             account = ConnectAccount();
         };
         // save account for next scene
-        PlayerPrefs.SetString("Account", account);
+        PlayerPrefs.SetString("Account", account); //esto guarda la cartera
         // reset login message
         SetConnectAccount("");
         // load next scene
