@@ -50,8 +50,8 @@ public class UIMainMenu : MonoBehaviour
         UserDataLoaded = 0;
 
       //  LoginPanel.SetActive(true); el panel login
-        MenuPanel.SetActive(false);
-
+        //MenuPanel.SetActive(true);
+    GoLoginPage();
         if (!GameData.DataReady)
         {
             SaveData.LoadGameConfig();
