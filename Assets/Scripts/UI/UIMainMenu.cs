@@ -49,7 +49,7 @@ public class UIMainMenu : MonoBehaviour
         Menu = this;
         UserDataLoaded = 0;
 
-        LoginPanel.SetActive(true);
+      //  LoginPanel.SetActive(true); el panel login
         MenuPanel.SetActive(false);
 
         if (!GameData.DataReady)
