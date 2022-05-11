@@ -19427,7 +19427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NftsKey: U_SPI_9
   Name: Piranha
-  EnergyCost: 1
+  EnergyCost: 5
   Icon: {fileID: 21300000, guid: a09cdf1ab2aacef419ebf50c8177e371, type: 3}
   cardType: 0
   UnitMesh: {fileID: 5048876922347535074}
@@ -19445,11 +19445,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 1
-  HitPoints: 20
+  HitPoints: 40
   Shield: 40
   ShieldDelay: 4
   Energy: 1
-  Size: 0.75
+  Size: 1
   SpawnAreaSize: 0
   IsInmortal: 0
   Mesh: {fileID: 5048876922347535074}
@@ -19458,8 +19458,8 @@ MonoBehaviour:
   Portal: {fileID: 325441422253409849}
   UI: {fileID: 4156378657126718010}
   MySt: {fileID: 6629238874467684503}
-  Aceleration: 0.25
-  MaxSpeed: 5
+  Aceleration: 0.5
+  MaxSpeed: 0.25
   DragSpeed: 2
   TurnSpeed: 80
   StopSpeed: 6
@@ -19491,13 +19491,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 5329792604467865609}
   CanAttack: 1
-  RangeDetector: 12
-  CoolDown: 0.12
-  BulletSpeed: 12
-  BulletDamage: 1
+  RangeDetector: 14
+  CoolDown: 1
+  BulletSpeed: 24
+  BulletDamage: 3
   RotateToEnemy: 1
   StopToAttack: 1
-  Bullet: {fileID: 4495777382389081428, guid: 832aa8ddfb9cd36499f0d916f60f67b8, type: 3}
+  Bullet: {fileID: 4495777382389081428, guid: a96ee20c7498cf34e93a359b285d1cf5, type: 3}
   Cannons: {fileID: 4833153700053751007}
 --- !u!135 &3139305571220585730
 SphereCollider:
@@ -19659,7 +19659,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5048876922347535074}
-  m_Mesh: {fileID: -4230572111970751538, guid: 2405012fe9fc3814aa4a695286789c37, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: 2405012fe9fc3814aa4a695286789c37, type: 3}
 --- !u!23 &4107487187788863329
 MeshRenderer:
   m_ObjectHideFlags: 0

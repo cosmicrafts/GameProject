@@ -19679,7 +19679,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2198226033516823794}
-  m_Mesh: {fileID: 2914073830808630976, guid: f3095ca47b8aa1b4999385866dd56f25, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: f3095ca47b8aa1b4999385866dd56f25, type: 3}
 --- !u!23 &2198226033516823797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20316,7 +20316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NftsKey: U_SPI_6
   Name: Hammer
-  EnergyCost: 1
+  EnergyCost: 6
   Icon: {fileID: 21300000, guid: 356840e274e93fd4a8713a62ce1a1324, type: 3}
   cardType: 0
   UnitMesh: {fileID: 2198226033516823794}
@@ -20334,11 +20334,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 1
-  HitPoints: 20
-  Shield: 40
+  HitPoints: 35
+  Shield: 35
   ShieldDelay: 4
   Energy: 1
-  Size: 0.75
+  Size: 1
   SpawnAreaSize: 0
   IsInmortal: 0
   Mesh: {fileID: 2198226033516823794}
@@ -20347,8 +20347,8 @@ MonoBehaviour:
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 5231352681095886937}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 0.25
-  MaxSpeed: 5
+  Aceleration: 0.5
+  MaxSpeed: 0.25
   DragSpeed: 2
   TurnSpeed: 80
   StopSpeed: 6
@@ -20381,12 +20381,12 @@ MonoBehaviour:
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
   RangeDetector: 12
-  CoolDown: 0.12
+  CoolDown: 2
   BulletSpeed: 12
   BulletDamage: 1
   RotateToEnemy: 1
   StopToAttack: 1
-  Bullet: {fileID: 4495777382389081428, guid: fddca3eeae61b4649ad7e09460088e86, type: 3}
+  Bullet: {fileID: 4495777382389081428, guid: a96ee20c7498cf34e93a359b285d1cf5, type: 3}
   Cannons: {fileID: 2198226032443553816}
 --- !u!135 &2198226034328220042
 SphereCollider:

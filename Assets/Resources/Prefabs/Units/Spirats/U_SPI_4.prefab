@@ -19587,7 +19587,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2198226033516823794}
-  m_Mesh: {fileID: 1173986410074700337, guid: fa0d5d9b0e82f9a41b8f65a8a8282222, type: 3}
+  m_Mesh: {fileID: -2432090755550338912, guid: fa0d5d9b0e82f9a41b8f65a8a8282222, type: 3}
 --- !u!23 &2198226033516823797
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20224,7 +20224,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NftsKey: U_SPI_4
   Name: Humpback
-  EnergyCost: 1
+  EnergyCost: 8
   Icon: {fileID: 21300000, guid: f4ed58dc378c3e241afe77cff99bdd51, type: 3}
   cardType: 0
   UnitMesh: {fileID: 2198226033516823794}
@@ -20242,8 +20242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 1
-  HitPoints: 4
-  Shield: 4
+  HitPoints: 60
+  Shield: 60
   ShieldDelay: 4
   Energy: 1
   Size: 1
@@ -20255,8 +20255,8 @@ MonoBehaviour:
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 2105607250888955600}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 3
-  MaxSpeed: 3
+  Aceleration: 0.5
+  MaxSpeed: 1
   DragSpeed: 2
   TurnSpeed: 80
   StopSpeed: 6
@@ -20288,13 +20288,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 16
-  CoolDown: 0.5
+  RangeDetector: 2
+  CoolDown: 0.75
   BulletSpeed: 29
-  BulletDamage: 1
+  BulletDamage: 4
   RotateToEnemy: 1
   StopToAttack: 1
-  Bullet: {fileID: 4495777382389081428, guid: fddca3eeae61b4649ad7e09460088e86, type: 3}
+  Bullet: {fileID: 4495777382389081428, guid: e4145131ffcfb654592432e136987c82, type: 3}
   Cannons: {fileID: 2198226032443553816}
 --- !u!135 &2198226034328220042
 SphereCollider:
