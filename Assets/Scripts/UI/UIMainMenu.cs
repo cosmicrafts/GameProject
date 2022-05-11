@@ -53,15 +53,15 @@ public class UIMainMenu : MonoBehaviour
         Menu = this;
         UserDataLoaded = 0;
 
-     //  string playerWalletRose = PlayerPrefs.GetString("AccounName");
-    //   GL_SetPlayerData(playerWalletRose);
+        string playerWalletRose = PlayerPrefs.GetString("AccounName");
+        GL_SetPlayerData(playerWalletRose);
 
-       
+
       //  LoginPanel.SetActive(true); el panel login
       //MenuPanel.SetActive(true);
       // GoLoginPage();
         if (!GameData.DataReady)
-        { 
+        {
             SaveData.LoadGameConfig();
             PlayerCollection = GameData.GetUserCollection();
             PlayerCollection.AddUnitsAndCharactersDefault();
@@ -69,7 +69,6 @@ public class UIMainMenu : MonoBehaviour
         }
         else
         {
-            
             InitPlayerData();
         }
         CheckGameMode();
@@ -84,8 +83,7 @@ public class UIMainMenu : MonoBehaviour
 
         if (GameData.DebugMode)
         {
-           
-            GameData.CurrentMatch = Match.tutorial;
+            GameData.CurrentMatch = Match.bots;
             InitPlayerData();
         }
     }
@@ -93,7 +91,6 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
         UIPropertys = new List<UIPTxtInfo>();
         foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
         {
@@ -104,8 +101,7 @@ public class UIMainMenu : MonoBehaviour
         if (GameData.UserIsInit())
         {
             LoginPanel.SetActive(false);
-            MenuPanel.SetActive(false);
-            PlayTutorial();
+            MenuPanel.SetActive(true);
         }
     }
 
@@ -209,7 +205,7 @@ public class UIMainMenu : MonoBehaviour
 
     IEnumerator LoadLocalGame()
     {   
-        AsyncOperation loading = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
 
         while(!loading.isDone)
         {
