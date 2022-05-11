@@ -99,8 +99,9 @@ public class UIMainMenu : MonoBehaviour
 
         if(GameData.CurrentPlataform == Plataform.Web)
         {
-            GameData.CurrentMatch = Match.bots;
-            InitPlayerData();
+           
+            GameData.CurrentMatch = Match.tutorial;
+            PlayTutorial();
         }
     }
 
@@ -122,6 +123,9 @@ public class UIMainMenu : MonoBehaviour
             
             
         }
+
+
+       GameNetwork.JSWalletStart();
     }
   
     

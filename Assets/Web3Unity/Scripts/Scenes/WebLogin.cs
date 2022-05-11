@@ -18,10 +18,13 @@ public class WebLogin : MonoBehaviour
     private int expirationTime;
     private string account;
     bool haveAccount =false;
+
+
     public void OnLogin()
     {
         Web3Connect();
-        OnConnected();
+
+       OnConnected();
     }
 
     async private void OnConnected()
@@ -33,19 +36,26 @@ public class WebLogin : MonoBehaviour
         };
         // save account for next scene
         PlayerPrefs.SetString("Account", account); //esto guarda la cartera
-
-
+        string walletID = PlayerPrefs.GetString("Account");
+        GameNetwork.JSMetaWallet(walletID);
         // reset login message
         SetConnectAccount("");
     
-      /*  if (haveAccount)
+    
+     
+        // load next scene
+      
+    }
+    public void OnRecibeMetaMaskData(string usser )
+    {
+        if (string.IsNullOrEmpty(usser))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-   */
-     
-        // load next scene
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        else
+        {
+            SceneManager.LoadScene(2);
+        }
     }
     private void Update()
     {
@@ -59,27 +69,7 @@ public class WebLogin : MonoBehaviour
         // move to next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-  /*  public void UserWalletEVMCall()
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        if(haveAccount)
-       
-#endif
-    }
-    public void StartWallet(bool usser)
-    {
-#if UNITY_WEBGL && !UNITY_EDITOR
-          
-     if(!usser) {
-
-     haveAccount=false;
-    }else{
-   haveAccount =true;
-
-        JSWalletStart();
-         }
-#endif
-    }*/
+ 
 
     public bool HaveUsser()
     {

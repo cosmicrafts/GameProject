@@ -10,6 +10,10 @@ public class SetPlayerNickName : MonoBehaviour
     [SerializeField]
     string
     mainScene;
+    public User PlayerUser;
+    public UserProgress PlayerProgress;
+    public UserCollection PlayerCollection;
+    public NFTsCharacter PlayerCharacter;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,15 +25,41 @@ public class SetPlayerNickName : MonoBehaviour
     {
         
     }
+    void InitPlayerData()
+    {
+        PlayerUser = GameData.GetUserData();
+        PlayerProgress = GameData.GetUserProgress();
+        PlayerCharacter = GameData.GetUserCharacter();
+      
+      
+    }
 
+    public void OnMetaNameData(int usser)
+    {
+        if (usser ==1)
+        {
+            SceneManager.LoadScene(mainScene);
+            //tutorial
+        }
+        else 
+       
+        {
+            //Nombre no valido
+        }
+
+      
+
+        
+
+    }
     public void SetPlayerName()
     { 
         if(inputNameField.text != null)
         {
             string playerName = inputNameField.text;
             PlayerPrefs.SetString("AccounName", playerName);
-            SceneManager.LoadScene(mainScene);
-
+     
+            GameNetwork.JSMetaUsserName(playerName);
         }
 
 

@@ -38,12 +38,19 @@
 
 
       JSMetaWallet: function (walletID) {
-            ReactUnityWebGL.MetaWallet(walletID);
-
+            ReactUnityWebGL.MetaWallet(Pointer_stringify(walletID));
 
       },
 
         JSWalletStart: function () {
             ReactUnityWebGL.WalletStart();
+
+
+      },
+        JSMetaUsserName: function (usserID) {
+            ReactUnityWebGL.MetaUsserNamet(Pointer_stringify(walletID));
+
+
+
       },
 });
