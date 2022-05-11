@@ -8,6 +8,7 @@ public class Web3PrivateKeySend20Example : MonoBehaviour
     async public void OnSend20()
     {
         Debug.Log("Click");
+
         // private key of account
         string privateKey = "46a0c839ac4465538ab22ae5b709853d2ba64a604c6ddb06cbab681e7a70bc78"; 
         // set chain: ethereum, moonbeam, polygon etc
@@ -44,7 +45,8 @@ public class Web3PrivateKeySend20Example : MonoBehaviour
        // Application.OpenURL("https://rinkeby.etherscan.io/tx/" + response);
     }
 
-
+  //   window.web3ChainId = 42261;
+ //  window.web3NetwrokName="Oasis Emerald";
 
    
 

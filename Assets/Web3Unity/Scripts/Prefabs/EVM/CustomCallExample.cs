@@ -27,7 +27,7 @@ public class CustomCallExample : MonoBehaviour
         // abi in json format
         string abi = "[ { \"inputs\": [ { \"internalType\": \"uint8\", \"name\": \"_myArg\", \"type\": \"uint8\" } ], \"name\": \"addTotal\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"myTotal\", \"outputs\": [ { \"internalType\": \"uint256\", \"name\": \"\", \"type\": \"uint256\" } ], \"stateMutability\": \"view\", \"type\": \"function\" } ]";
         // address of contract
-        string contract = "0x6224394Deb3DEd876c20e1039409cb6CdDD64dD6";
+        string contract = "0x3De545e93Cb2D6342bb02b381f46EdB7F8b0b8ee";
         // array of arguments for contract
         string args = "[]";
         // connects to user's browser wallet to call a transaction
