@@ -15,6 +15,7 @@
             ReactUnityWebGL.SavePlayerCharacter(Pointer_stringify(json));
       },
 
+
       JSSendMasterData: function (json) {
             ReactUnityWebGL.SendMasterData(Pointer_stringify(json));
       },
@@ -33,5 +34,16 @@
 
       JSCancelGame: function (gameId) {
             ReactUnityWebGL.CancelGame(gameId);
+      },
+
+
+      JSMetaWallet: function (walletID) {
+            ReactUnityWebGL.MetaWallet(walletID);
+
+
+      },
+
+        JSWalletStart: function () {
+            ReactUnityWebGL.WalletStart();
       },
 });

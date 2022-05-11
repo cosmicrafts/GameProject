@@ -6,9 +6,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
-
+using System.Runtime.InteropServices;
 public class UIMainMenu : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    public static extern void JSMetaWallet(string walletID);
+
+
     [SerializeField]
     MyWallet metaMaskWallet;
 
@@ -48,6 +52,7 @@ public class UIMainMenu : MonoBehaviour
 
     int UserDataLoaded;
 
+
     private void Awake()
     {
         Menu = this;
@@ -58,7 +63,7 @@ public class UIMainMenu : MonoBehaviour
 
        
       //  LoginPanel.SetActive(true); el panel login
-      //MenuPanel.SetActive(true);
+    
       // GoLoginPage();
         if (!GameData.DataReady)
         { 
@@ -75,17 +80,26 @@ public class UIMainMenu : MonoBehaviour
         CheckGameMode();
 
         GameData.DebugMode = false;
+
 #if UNITY_EDITOR
         GameData.DebugMode = true;
 #endif
+
 #if UNITY_WEBGL
         GameData.CurrentPlataform = Plataform.Web;
+
 #endif
 
         if (GameData.DebugMode)
         {
            
-            GameData.CurrentMatch = Match.tutorial;
+            GameData.CurrentMatch = Match.bots;
+            InitPlayerData();
+        }
+
+        if(GameData.CurrentPlataform == Plataform.Web)
+        {
+            GameData.CurrentMatch = Match.bots;
             InitPlayerData();
         }
     }
@@ -104,12 +118,15 @@ public class UIMainMenu : MonoBehaviour
         if (GameData.UserIsInit())
         {
             LoginPanel.SetActive(false);
-            MenuPanel.SetActive(false);
-            PlayTutorial();
+            MenuPanel.SetActive(true);
+            
+            
         }
     }
+  
+    
 
-    public void GL_SetPlayerData(string jsonData)
+        public void GL_SetPlayerData(string jsonData)
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);
         GameData.SetUser(user);

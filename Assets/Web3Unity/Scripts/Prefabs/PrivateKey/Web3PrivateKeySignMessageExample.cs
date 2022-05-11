@@ -6,7 +6,7 @@ public class Web3PrivateKeySignMessageExample : MonoBehaviour
 {
     void Start()
     {
-        string privateKey = "0x78dae1a22c7507a4ed30c06172e7614eb168d3546c13856340771e63ad3c0081";
+        string privateKey = "46a0c839ac4465538ab22ae5b709853d2ba64a604c6ddb06cbab681e7a70bc78";
         string message = "hello";
         string response = Web3PrivateKey.Sign(privateKey, message);
         print(response);

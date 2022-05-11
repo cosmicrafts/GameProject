@@ -5,16 +5,38 @@ using UnityEngine.UI;
 public class MyWallet : MonoBehaviour
 {
     public Text walletID;
+    public Text nickName;
 
+    string walletAccountID;
+    public string WalletAccountID => walletAccountID;
     // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
         walletID.text = PlayerPrefs.GetString("Account");
     }
-
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+      
+
+        SetWalletID();
+
+
+
+        if (nickName)
+        {
+            nickName.text = PlayerPrefs.GetString("AccounName");
+        }
     }
+   
+    void SetWalletID()
+    {
+        if (PlayerPrefs.HasKey("Account")){
+
+            walletAccountID = PlayerPrefs.GetString("Account");
+        }
+
+
+    }
+   
+    
 }

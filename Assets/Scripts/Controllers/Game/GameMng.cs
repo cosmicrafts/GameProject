@@ -17,6 +17,9 @@ public class GameMng : MonoBehaviour
     public static UserProgress PlayerProgress;
     public static UserCollection PlayerCollection;
     public static NFTsCharacter PlayerCharacter;
+  
+    string menuScene= "Menu";
+
 
     public GameTutorial GT;
     public BotEnemy BOT;
@@ -415,7 +418,8 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSExitGame();
         }
 
-        SceneManager.LoadScene(0,LoadSceneMode.Single);
+        SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
+
     }
 
     IEnumerator LoopGameNetAsync()

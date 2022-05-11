@@ -187,4 +187,12 @@ public static class GameNetwork
 
     [DllImport("__Internal")]
     public static extern void JSCancelGame(int gameId);
+
+    [DllImport("__Internal")]
+    public static extern void JSMetaWallet(string walletID);
+
+    [DllImport("__Internal")]
+    public static extern void JSWalletStart();
+
+
 }
