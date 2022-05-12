@@ -48,7 +48,7 @@
 
       },
         JSMetaUsserName: function (usserID) {
-            ReactUnityWebGL.MetaUsserName(Pointer_stringify(walletID));
+            ReactUnityWebGL.MetaUsserName(Pointer_stringify(usserID));
 
       },
 });

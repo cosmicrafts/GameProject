@@ -19,7 +19,7 @@ public class WebLogin : MonoBehaviour
     private string account;
     bool haveAccount =false;
     [SerializeField]
-    InputField inputNameField;
+    InputField inputNameField; 
     [SerializeField]
     string mainScene;
     string playerName;
@@ -56,16 +56,14 @@ public class WebLogin : MonoBehaviour
    // SceneManager.LoadScene(2);
     public void OnRecibeMetaMaskData(string usser)//esta es de PK
     {
-        if (PlayerPrefs.HasKey("AccounName").Equals(usser))
+        if (string.IsNullOrEmpty(usser))
         {
-            SceneManager.LoadScene(mainScene);
+            namePanel.SetActive(true);
         }
         else
         {
-
-                namePanel.SetActive(true);
-            
-
+            SceneManager.LoadScene(mainScene);
+          
         }
         
     }
