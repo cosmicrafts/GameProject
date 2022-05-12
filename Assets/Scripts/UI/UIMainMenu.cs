@@ -159,6 +159,7 @@ public class UIMainMenu : MonoBehaviour
         AddProgressDataLoaded();
     }
 
+   
     public void GL_SetCharacterData(string jsonData)
     {
         NFTsCharacter character = JsonConvert.DeserializeObject<NFTsCharacter>(jsonData);

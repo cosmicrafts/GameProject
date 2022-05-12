@@ -9,6 +9,7 @@ public class WebGLSendContractExample : MonoBehaviour
 {
     public Text confirmed;
 
+    UIGameMng uiManager;
     async public void OnSendContract()
     {
         // smart contract method to call
@@ -32,6 +33,8 @@ public class WebGLSendContractExample : MonoBehaviour
             Debug.Log(response);
         } catch (Exception e) {
             Debug.LogException(e, this);
+
+            uiManager.ActivedExitBtns();
         }
     }
 

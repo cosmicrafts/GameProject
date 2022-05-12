@@ -110,7 +110,7 @@ public class UIGameMng : MonoBehaviour
         GameMng.MT.CalculateLastMetrics(winner);
         UpdateResults();
     }
-
+   
     public void InitGameCards(GameCard[] gameCards)
     {
         for (int i = 0; i < gameCards.Length; i++)

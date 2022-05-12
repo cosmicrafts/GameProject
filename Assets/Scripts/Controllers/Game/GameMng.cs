@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameMng : MonoBehaviour
-{
+          { [SerializeField]
     WebGLSendContractExample webSend;
     public static GameMng GM;
     public static UIGameMng UI;
@@ -412,7 +412,7 @@ public class GameMng : MonoBehaviour
 
         return GT.gameObject.activeSelf;
     }
-
+   
     public void EndScene()
     {
         if (GameData.CurrentMatch == Match.multi && GameData.IsProductionWeb())
