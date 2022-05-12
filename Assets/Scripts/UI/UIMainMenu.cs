@@ -101,7 +101,9 @@ public class UIMainMenu : MonoBehaviour
         {
            
             GameData.CurrentMatch = Match.tutorial;
+        
             PlayTutorial();
+           // MainMenu.SetActive(true);
         }
     }
 

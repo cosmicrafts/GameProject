@@ -377,6 +377,6 @@ public class GameTutorial : MonoBehaviour
 
     public void EndTutorial()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(2);
     }
 }
