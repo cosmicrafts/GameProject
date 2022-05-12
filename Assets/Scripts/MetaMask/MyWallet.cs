@@ -33,6 +33,7 @@ public class MyWallet : MonoBehaviour
         if (PlayerPrefs.HasKey("Account")){
 
             walletAccountID = PlayerPrefs.GetString("Account");
+            walletID.text = walletAccountID;
         }
 
 
