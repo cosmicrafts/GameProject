@@ -16,7 +16,7 @@ public class GameTutorial : MonoBehaviour
     public UIGameCard[] GameCards = new UIGameCard[8];
 
     public GameObject Dialog;
-
+    public string menuScene;
     public Image IconCharacter;
     public Text DialogText;
 
@@ -378,7 +378,8 @@ public class GameTutorial : MonoBehaviour
 
     public void EndTutorial()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(menuScene);
+        PlayerPrefs.SetInt("Tuto", 1);
        
     }
 }

@@ -41,7 +41,8 @@ public class UIMainMenu : MonoBehaviour
 
     public Text CurrentGameMode;
     public Text CurrentGameModeStatus;
-
+    [SerializeField]
+    public int tutoGame=0;
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
@@ -52,23 +53,20 @@ public class UIMainMenu : MonoBehaviour
     List<UIPTxtInfo> UIPropertys;
 
     int UserDataLoaded;
-    int  isfristGame =0;
+    
 
     private void Awake()
-    { 
-        if(PlayerPrefs.HasKey("IsFristGame"))
-            PlayerPrefs.GetInt("IsFristGame");
+    {
         
+     
+
+
+
         Menu = this;
         UserDataLoaded = 0;
 
-     //  string playerWalletRose = PlayerPrefs.GetString("AccounName");
-    //   GL_SetPlayerData(playerWalletRose);
-
-       
-      //  LoginPanel.SetActive(true); el panel login
+     
     
-      // GoLoginPage();
         if (!GameData.DataReady)
         { 
             SaveData.LoadGameConfig();
@@ -103,27 +101,48 @@ public class UIMainMenu : MonoBehaviour
 
         if(GameData.CurrentPlataform == Plataform.Web)
         {
-           
-            GameData.CurrentMatch = Match.tutorial;
-            if (isfristGame ==0 )
-            {
-                isfristGame = 1;
-                PlayerPrefs.SetInt("IsFristGame", isfristGame);
-                PlayerPrefs.GetInt("IsFristGame");
 
+
+
+
+            //  GameData.CurrentMatch = Match.bots;
+
+            if(PlayerPrefs.HasKey("Tuto"))
+                tutoGame = PlayerPrefs.GetInt("Tuto");
+       
+                GameData.CurrentMatch = Match.tutorial;
+            if (tutoGame == 0)
+            {
                 PlayTutorial();
-              
 
-
-            }else
-             if (isfristGame == 1|| PlayerPrefs.HasKey("IsFristGame"))
+            } else if (tutoGame != 0)
             {
+                GameData.CurrentMatch = Match.bots;
                 MainMenu.SetActive(true);
             }
+         
 
-            
-          
-           //
+      
+              //  GameData.CurrentMatch = Match.bots;
+               // MainMenu.SetActive(true);
+           
+               
+
+
+
+
+            //  
+
+            //   InitPlayerData();
+
+
+
+
+
+
+
+
+
         }
     }
 
@@ -202,16 +221,18 @@ public class UIMainMenu : MonoBehaviour
     void PlayIA()
     {
         PlayerUser.FirstGame = false;
-
+ 
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
 
         StartCoroutine(LoadLocalGame());
     }
-
+   
     void PlayTutorial()
     {
-        PlayerUser.FirstGame = true;
+        
+   
+       PlayerUser.FirstGame = true;
 
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
