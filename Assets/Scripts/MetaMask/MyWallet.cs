@@ -9,14 +9,14 @@ public class MyWallet : MonoBehaviour
 
     string walletAccountID;
     public string WalletAccountID => walletAccountID;
-   
- 
+
+    private void Awake()
+    {
+        SetWalletID();
+    }
     void Start()
     {
      
-
-        SetWalletID();
-
 
         if (nickName)
         {

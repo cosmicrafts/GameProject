@@ -41,8 +41,8 @@ public class UIMainMenu : MonoBehaviour
 
     public Text CurrentGameMode;
     public Text CurrentGameModeStatus;
-    [SerializeField]
-    public int tutoGame=0;
+
+  int tutoGame=0;
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
@@ -102,11 +102,6 @@ public class UIMainMenu : MonoBehaviour
         if(GameData.CurrentPlataform == Plataform.Web)
         {
 
-
-
-
-            //  GameData.CurrentMatch = Match.bots;
-
             if(PlayerPrefs.HasKey("Tuto"))
                 tutoGame = PlayerPrefs.GetInt("Tuto");
        
@@ -117,36 +112,22 @@ public class UIMainMenu : MonoBehaviour
 
             } else if (tutoGame != 0)
             {
-                GameData.CurrentMatch = Match.bots;
+                GameData.CurrentMatch = Match.multi;
+                CurrentGameMode.text = Lang.GetText("mn_pvp");
                 MainMenu.SetActive(true);
             }
          
 
       
-              //  GameData.CurrentMatch = Match.bots;
-               // MainMenu.SetActive(true);
-           
-               
-
-
-
-
-            //  
+     
 
             //   InitPlayerData();
 
 
 
 
-
-
-
-
-
         }
     }
-
-    // Start is called before the first frame update
     void Start()
     {
        
