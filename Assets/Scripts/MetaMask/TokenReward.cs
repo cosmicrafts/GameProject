@@ -12,7 +12,7 @@ public class TokenReward : MonoBehaviour
     UIGameMng uiGame;
     [SerializeField]
     string walletTest= "0xf0d056015Bdd86C0EFD07000F75Ea10873A1d0A7";
-    async public void SignTokenReward(string _finalScore)
+    async public void signTokenReward(string _finalScore)
     {
        // 0x46a0c839ac4465538ab22ae5b709853d2ba64a604c6ddb06cbab681e7a70bc78   HIPOTESTE
          string privateKey = walletTest;// "0xf6ff72762a0f14ad98ce1313edbff4e2893dff0f75f60f7c6a45541fba422dc2";
