@@ -106,10 +106,12 @@ public class UIMainMenu : MonoBehaviour
             GameData.CurrentMatch = Match.tutorial;
             if (isfristGame)
             {
+                isfristGame = false;
                 PlayTutorial();
 
             }
             else {
+
                 MainMenu.SetActive(true);
             }
           

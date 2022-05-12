@@ -9,16 +9,13 @@ public class MyWallet : MonoBehaviour
 
     string walletAccountID;
     public string WalletAccountID => walletAccountID;
-    // Start is called before the first frame update
-    private void Awake()
-    {
-    }
+   
+ 
     void Start()
     {
-      
+     
 
         SetWalletID();
-
 
 
         if (nickName)

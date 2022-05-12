@@ -74,6 +74,7 @@ public class GameTutorial : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+     
         InitDialogs();
         CurrentString = string.Empty;
         TargetString = Dialogs[0];
@@ -378,6 +379,6 @@ public class GameTutorial : MonoBehaviour
     public void EndTutorial()
     {
         SceneManager.LoadScene(2);
-        UIMainMenu.instance.StopTutorial(false);
+       
     }
 }
