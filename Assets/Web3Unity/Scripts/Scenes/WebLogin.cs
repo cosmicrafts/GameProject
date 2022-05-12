@@ -58,12 +58,16 @@ public class WebLogin : MonoBehaviour
     {
         if (string.IsNullOrEmpty(usser))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+           
+            namePanel.SetActive(true);
         }
         else
         {
-            namePanel.SetActive(true);
+            GameNetwork.JSMetaUsserName(playerName);
+            SceneManager.LoadScene(mainScene);
+
         }
+        
     }
     public void OnMetaNameData(int usser)//esta es de PK
     {
@@ -87,14 +91,13 @@ public class WebLogin : MonoBehaviour
 
             PlayerPrefs.SetString("AccounName", playerName);
 
-            if (PlayerPrefs.HasKey("AccounName"))
-            {
-                GameNetwork.JSMetaUsserName(playerName);
-            }
+           
+
         }
-
-
+   
+  
     }
+   
 
     public void OnSkip()
     {
