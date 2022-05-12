@@ -40,11 +40,6 @@ public class TokenReward : MonoBehaviour
 
 
 
-
-
-
-
-
          string method = "rewardToken"; //manda a llamar el metods
          //FinalScore to convert to tokens
          string amount = "\"" + _finalScore + "\"";
