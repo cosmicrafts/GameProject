@@ -230,7 +230,7 @@ public class UIMainMenu : MonoBehaviour
 
     IEnumerator LoadLocalGame()
     {   
-        AsyncOperation loading = SceneManager.LoadSceneAsync(3, LoadSceneMode.Single);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
 
         while(!loading.isDone)
         {
