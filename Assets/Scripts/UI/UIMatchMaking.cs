@@ -143,7 +143,7 @@ public class UIMatchMaking : MonoBehaviour
         Txt_Tips.text = Lang.GetText($"mn_tip_{UnityEngine.Random.Range(1,4)}");
         Txt_CountDown.text = CoutDown.ToString();
 
-        AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
         loading.allowSceneActivation = false;
         //Final Count Down
         yield return DeltaOne;
