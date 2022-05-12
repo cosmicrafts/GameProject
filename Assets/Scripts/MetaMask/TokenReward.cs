@@ -5,10 +5,10 @@ using UnityEngine;
 using Newtonsoft.Json;
 
 
-#if UNITY_WEBGL
+
 public class TokenReward : MonoBehaviour
 {
-    async public void signTokenReward(float _finalScore)
+    async public void SignTokenReward(float _finalScore)
     {
         //attach private key of ownerWallet here.
          string privateKey = "46a0c839ac4465538ab22ae5b709853d2ba64a604c6ddb06cbab681e7a70bc78";
@@ -52,4 +52,3 @@ public class TokenReward : MonoBehaviour
 
     }
 }
-#endif
