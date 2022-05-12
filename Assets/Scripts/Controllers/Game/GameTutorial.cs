@@ -205,6 +205,7 @@ public class GameTutorial : MonoBehaviour
 
                     Animator anim = EnemyUnit.GetAnimator();
                     anim.speed = 0;
+                    EndTutorial();
                 }
                 break;
         }

@@ -8,12 +8,18 @@ using Newtonsoft.Json;
 
 public class TokenReward : MonoBehaviour
 {
-    async public void SignTokenReward(float _finalScore)
+    [SerializeField]
+    string ourPrivateKey = "0x46a0c839ac4465538ab22ae5b709853d2ba64a604c6ddb06cbab681e7a70bc78";
+    [SerializeField]
+    string ourContract = "0x3De545e93Cb2D6342bb02b381f46EdB7F8b0b8ee";
+
+
+   async public void SignTokenReward(float _finalScore)
     {
         //attach private key of ownerWallet here.
-         string privateKey = "46a0c839ac4465538ab22ae5b709853d2ba64a604c6ddb06cbab681e7a70bc78";
-         // get account from private key
-         string account = Web3PrivateKey.Address(privateKey);
+         string privateKey = ourPrivateKey;
+        // get account from private key
+        string account = Web3PrivateKey.Address(privateKey);
 
          // set chain: ethereum, moonbeam, polygon etc
         string chain = "oasis";
@@ -35,7 +41,10 @@ public class TokenReward : MonoBehaviour
          string amount = "\"" + _finalScore + "\"";
 
           // address of contract
-         string contract = "0xf2eDB7997A83fD767b2bB114143c798Dca968fc2";
+         string contract = ourContract;
+
+
+
 
         string[] obj = {amount};
         string args = JsonConvert.SerializeObject(obj);
