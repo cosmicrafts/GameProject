@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMng : MonoBehaviour
 {
+    WebGLSendContractExample webSend;
     public static GameMng GM;
     public static UIGameMng UI;
     public static Player P;
@@ -419,7 +420,11 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSExitGame();
         }
         //tokenTest.SignTokenReward(10000000000000000);
-        SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
+        if (webSend.confirmed.text.Contains("0"))
+        {
+            SceneManager.LoadScene(1);
+        }
+      //  SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
 
     }
 

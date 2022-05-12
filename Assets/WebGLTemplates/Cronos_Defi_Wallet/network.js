@@ -22,4 +22,5 @@ Used to set the network: https://chainlist.org/
 338 Cronos Testnet
 */
 
-window.web3ChainId = 1;
+window.web3ChainId = 42261;
+window.web3NetwrokName="Oasis Emerald";
