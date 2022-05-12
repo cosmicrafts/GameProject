@@ -10,7 +10,6 @@ using System.Runtime.InteropServices;
 public class UIMainMenu : MonoBehaviour
 {
 
-    public static UIMainMenu instance;
     [DllImport("__Internal")]
     public static extern void JSMetaWallet(string walletID);
 
@@ -53,11 +52,13 @@ public class UIMainMenu : MonoBehaviour
     List<UIPTxtInfo> UIPropertys;
 
     int UserDataLoaded;
-    bool isfristGame =true;
+    int  isfristGame =0;
 
     private void Awake()
-    {
-        instance = this;
+    { 
+        if(PlayerPrefs.HasKey("IsFristGame"))
+            PlayerPrefs.GetInt("IsFristGame");
+        
         Menu = this;
         UserDataLoaded = 0;
 
@@ -104,16 +105,20 @@ public class UIMainMenu : MonoBehaviour
         {
            
             GameData.CurrentMatch = Match.tutorial;
-            if (isfristGame)
+            if (isfristGame ==0 )
             {
-                isfristGame = false;
                 PlayTutorial();
+                isfristGame = 1;
+                PlayerPrefs.SetInt("IsFristGame", isfristGame);
 
-            }
-            else {
 
+            }else
+             if (isfristGame == 1)
+            {
                 MainMenu.SetActive(true);
             }
+
+            
           
            //
         }
@@ -373,8 +378,5 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
-  public void StopTutorial(bool newValue)
-    {
-        isfristGame = newValue;
-    }
+ 
 }
