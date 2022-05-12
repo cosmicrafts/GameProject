@@ -20,8 +20,8 @@ public class GameMng : MonoBehaviour
   
     string menuScene= "Menu";
 
-    [SerializeField]
-    TokenReward tokenTest;
+  //  [SerializeField]
+   // TokenReward tokenTest;
     public GameTutorial GT;
     public BotEnemy BOT;
 
@@ -418,7 +418,7 @@ public class GameMng : MonoBehaviour
         {
             GameNetwork.JSExitGame();
         }
-        tokenTest.SignTokenReward(10000000000000000);
+        //tokenTest.SignTokenReward(10000000000000000);
         SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
 
     }
