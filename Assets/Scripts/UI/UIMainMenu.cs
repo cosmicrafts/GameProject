@@ -107,13 +107,16 @@ public class UIMainMenu : MonoBehaviour
             GameData.CurrentMatch = Match.tutorial;
             if (isfristGame ==0 )
             {
-                PlayTutorial();
                 isfristGame = 1;
                 PlayerPrefs.SetInt("IsFristGame", isfristGame);
+                PlayerPrefs.GetInt("IsFristGame");
+
+                PlayTutorial();
+              
 
 
             }else
-             if (isfristGame == 1)
+             if (isfristGame == 1|| PlayerPrefs.HasKey("IsFristGame"))
             {
                 MainMenu.SetActive(true);
             }
