@@ -56,15 +56,15 @@ public class WebLogin : MonoBehaviour
    // SceneManager.LoadScene(2);
     public void OnRecibeMetaMaskData(string usser)//esta es de PK
     {
-        if (string.IsNullOrEmpty(usser))
+        if (PlayerPrefs.HasKey("AccounName"))
         {
-           
-            namePanel.SetActive(true);
+            SceneManager.LoadScene(mainScene);
         }
         else
         {
-            GameNetwork.JSMetaUsserName(playerName);
-            SceneManager.LoadScene(mainScene);
+
+                namePanel.SetActive(true);
+            
 
         }
         
@@ -91,10 +91,10 @@ public class WebLogin : MonoBehaviour
 
             PlayerPrefs.SetString("AccounName", playerName);
 
-           
 
+            GameNetwork.JSMetaUsserName(playerName);
         }
-   
+    
   
     }
    
