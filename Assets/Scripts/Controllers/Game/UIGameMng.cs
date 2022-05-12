@@ -6,7 +6,10 @@ public class UIGameMng : MonoBehaviour
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
     public GameObject ResultsScreen;
-
+    [SerializeField]
+    GameObject panelBtns;
+    [SerializeField]
+    GameObject tokenBtn;
     public GameObject TopMidInfo;
     public GameObject DeckPanel;
 
@@ -40,17 +43,19 @@ public class UIGameMng : MonoBehaviour
 
     private void Awake()
     {
-        GameMng.UI = this;
+        GameMng.UI = this; ResultsScreen.SetActive(false);
         FriendHpBarColor = new Color(0.25f, 1f, 0.28f, 1f);
         FriendShieldBarColor = new Color(0.25f, 0.66f, 1f, 1f);
         EnemyHpBarColor = new Color(1f, 0.25f, 0.25f, 1f);
         EnemyShieldBarColor = new Color(1f, 0.8f, 0.25f, 1f);
+
     }
 
     private void Start()
     {
-        Players[GameMng.P.ID-1].InitInfo(GameMng.PlayerData, GameMng.PlayerProgress, GameMng.PlayerCharacter);
-        switch(GameData.CurrentMatch)
+        panelBtns.SetActive(false);
+        Players[GameMng.P.ID - 1].InitInfo(GameMng.PlayerData, GameMng.PlayerProgress, GameMng.PlayerCharacter);
+        switch (GameData.CurrentMatch)
         {
             case Match.tutorial:
                 {
@@ -92,6 +97,8 @@ public class UIGameMng : MonoBehaviour
         DeckPanel.SetActive(false);
 
         ResultsScreen.SetActive(true);
+        panelBtns.SetActive(false);
+        tokenBtn.SetActive(true);
         if (winner == GameMng.P.MyTeam)
         {
             VictoryScreen.SetActive(true);
@@ -106,7 +113,7 @@ public class UIGameMng : MonoBehaviour
 
     public void InitGameCards(GameCard[] gameCards)
     {
-        for (int i=0; i<gameCards.Length; i++)
+        for (int i = 0; i < gameCards.Length; i++)
         {
             UIDeck[i].SpIcon.sprite = gameCards[i].Icon;
             UIDeck[i].EnergyCost = gameCards[i].EnergyCost;
@@ -150,12 +157,12 @@ public class UIGameMng : MonoBehaviour
         MTxtEnergyUsed.text = GameMng.MT.GetEnergyUsed().ToString();
         MTxtEnergyGenerated.text = GameMng.MT.GetEnergyGenerated().ToString("F0");
         MTxtEnergyWasted.text = GameMng.MT.GetEnergyWasted().ToString("F0");
-        MTxtEnergyChargeRatePerSec.text = GameMng.MT.GetEnergyChargeRatePerSec().ToString()+"/s";
+        MTxtEnergyChargeRatePerSec.text = GameMng.MT.GetEnergyChargeRatePerSec().ToString() + "/s";
 
         MTxtDamage.text = GameMng.MT.GetDamage().ToString();
         MTxtKills.text = GameMng.MT.GetKills().ToString();
         MTxtDeploys.text = GameMng.MT.GetDeploys().ToString();
-        MTxtSecRemaining.text = GameMng.MT.GetSecRemaining().ToString()+" s";
+        MTxtSecRemaining.text = GameMng.MT.GetSecRemaining().ToString() + " s";
 
         MTxtScore.text = GameMng.MT.GetScore().ToString();
     }
@@ -164,7 +171,11 @@ public class UIGameMng : MonoBehaviour
     {
         return isEnnemy ? EnemyHpBarColor : FriendHpBarColor;
     }
-
+    public void ActivedExitBtns()
+    {
+        panelBtns.SetActive(true);
+        tokenBtn.SetActive(false);
+    }
     public Color GetShieldBarColor(bool isEnnemy)
     {
         return isEnnemy ? EnemyShieldBarColor : FriendShieldBarColor;

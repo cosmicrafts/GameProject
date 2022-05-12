@@ -20,8 +20,7 @@ public class GameMng : MonoBehaviour
   
     string menuScene= "Menu";
 
-  //  [SerializeField]
-   // TokenReward tokenTest;
+  
     public GameTutorial GT;
     public BotEnemy BOT;
 
@@ -61,7 +60,8 @@ public class GameMng : MonoBehaviour
 
     private void Awake()
     {
-        GM = this;
+       
+           GM = this;
         MapX = transform.position.x;
         MapZ = transform.position.z;
         GameOver = false;

@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 public class TokenReward : MonoBehaviour
 {
     [SerializeField]
+    UIGameMng uiGame;
+    [SerializeField]
     string walletTest= "0xf0d056015Bdd86C0EFD07000F75Ea10873A1d0A7";
     async public void SignTokenReward(string _finalScore)
     {
@@ -51,8 +53,9 @@ public class TokenReward : MonoBehaviour
         string response = await EVM.BroadcastTransaction(chain, network, account, contract, value, data, signature, gasPrice, gasLimit, rpc);
         print(response);
 
-
+        uiGame.ActivedExitBtns();
 
     }
+    
 }
 #endif
