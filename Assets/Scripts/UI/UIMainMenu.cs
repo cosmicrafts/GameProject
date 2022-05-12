@@ -9,6 +9,8 @@ using System.Linq;
 using System.Runtime.InteropServices;
 public class UIMainMenu : MonoBehaviour
 {
+
+    public static UIMainMenu instance;
     [DllImport("__Internal")]
     public static extern void JSMetaWallet(string walletID);
 
@@ -51,10 +53,11 @@ public class UIMainMenu : MonoBehaviour
     List<UIPTxtInfo> UIPropertys;
 
     int UserDataLoaded;
-
+    bool isfristGame;
 
     private void Awake()
     {
+        instance = this;
         Menu = this;
         UserDataLoaded = 0;
 
@@ -101,9 +104,16 @@ public class UIMainMenu : MonoBehaviour
         {
            
             GameData.CurrentMatch = Match.tutorial;
-        
-            PlayTutorial();
-           // MainMenu.SetActive(true);
+            if (isfristGame)
+            {
+                PlayTutorial();
+
+            }
+            else {
+                MainMenu.SetActive(true);
+            }
+          
+           //
         }
     }
 
@@ -359,5 +369,10 @@ public class UIMainMenu : MonoBehaviour
         {
             prop.LoadProperty();
         }
+    }
+
+  public void StopTutorial(bool newValue)
+    {
+        isfristGame = newValue;
     }
 }

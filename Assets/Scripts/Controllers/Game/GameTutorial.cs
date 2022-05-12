@@ -378,5 +378,6 @@ public class GameTutorial : MonoBehaviour
     public void EndTutorial()
     {
         SceneManager.LoadScene(2);
+        UIMainMenu.instance.StopTutorial(false);
     }
 }
