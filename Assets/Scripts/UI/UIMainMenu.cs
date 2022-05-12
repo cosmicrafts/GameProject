@@ -53,7 +53,7 @@ public class UIMainMenu : MonoBehaviour
     List<UIPTxtInfo> UIPropertys;
 
     int UserDataLoaded;
-    bool isfristGame;
+    bool isfristGame =true;
 
     private void Awake()
     {

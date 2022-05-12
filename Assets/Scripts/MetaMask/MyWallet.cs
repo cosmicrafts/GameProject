@@ -12,7 +12,6 @@ public class MyWallet : MonoBehaviour
     // Start is called before the first frame update
     private void Awake()
     {
-        walletID.text = PlayerPrefs.GetString("Account");
     }
     void Start()
     {
@@ -33,7 +32,8 @@ public class MyWallet : MonoBehaviour
         if (PlayerPrefs.HasKey("Account")){
 
             walletAccountID = PlayerPrefs.GetString("Account");
-            walletID.text = walletAccountID;
+
+            walletID.text = PlayerPrefs.GetString("Account");
         }
 
 
