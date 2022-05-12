@@ -56,7 +56,7 @@ public class WebLogin : MonoBehaviour
    // SceneManager.LoadScene(2);
     public void OnRecibeMetaMaskData(string usser)//esta es de PK
     {
-        if (PlayerPrefs.HasKey("AccounName"))
+        if (PlayerPrefs.HasKey("AccounName").Equals(usser))
         {
             SceneManager.LoadScene(mainScene);
         }
