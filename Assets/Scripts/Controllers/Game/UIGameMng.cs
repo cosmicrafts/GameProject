@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class UIGameMng : MonoBehaviour
 {
+
     public GameObject VictoryScreen;
     public GameObject DefeatScreen;
     public GameObject ResultsScreen;
@@ -34,7 +35,7 @@ public class UIGameMng : MonoBehaviour
     public Text MTxtScore;
 
     public UIPlayerGameInfo[] Players = new UIPlayerGameInfo[2];
-
+    
     Color FriendHpBarColor;
     Color FriendShieldBarColor;
 
