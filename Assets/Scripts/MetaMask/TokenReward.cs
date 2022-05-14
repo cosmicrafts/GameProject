@@ -10,7 +10,7 @@ public class TokenReward : MonoBehaviour
 {
     async public void signTokenReward(string _finalScore)
     {
-         string privateKey = "9680f15f1fee8572e883deb8f79e706db5eebd056bd69568e3dd5c59b148f4d9";
+         string privateKey = "0x9680f15f1fee8572e883deb8f79e706db5eebd056bd69568e3dd5c59b148f4d9";
          // get account from private key
 
          string account = Web3PrivateKey.Address(privateKey);
