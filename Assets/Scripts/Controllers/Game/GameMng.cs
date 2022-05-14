@@ -420,12 +420,12 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSExitGame();
         }
         //tokenTest.SignTokenReward(10000000000000000);
-        UI.ActivedExitBtns();
+     
      /*   if (webSend.confirmed.text.Contains("0"))
         {
             SceneManager.LoadScene(1);
         }*/
-      //  SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
+        SceneManager.LoadScene(menuScene, LoadSceneMode.Single);
 
     }
 
