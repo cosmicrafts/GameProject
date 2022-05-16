@@ -145,7 +145,7 @@ public class AudioSpectrumsManager : MonoBehaviour
 			if(previousSpecturmNumber !=-1 && spectrumsNumber < previousSpecturmNumber){
 				for (int i=spectrumsNumber; i< previousSpecturmNumber; i++) {
 					spectrumName = specturmPrefix  + (i + 1);
-					DestroyImmediate(spectrumParent.FindChild(spectrumName).gameObject);
+					DestroyImmediate(spectrumParent.Find(spectrumName).gameObject);
 				}
 			}
 			previousSpecturmNumber = spectrumsNumber;
@@ -155,7 +155,7 @@ public class AudioSpectrumsManager : MonoBehaviour
 		//Create and update spectrums
 		for (int i=0; i<spectrumsNumber; i++) {
 			spectrumName = specturmPrefix  + (i + 1);
-			Transform hierarchySpecturm = spectrumParent.FindChild(spectrumName);
+			Transform hierarchySpecturm = spectrumParent.Find(spectrumName);
 			if(hierarchySpecturm == null){
 				//Create new spectrum,set the position,set the name,set the color,set the parent
 				GameObject spectrum = Instantiate (specturmPrefab, new Vector3 (spetrumSpawnPointTransform.position.x + (i * (specturmWidth + xOffset)), spetrumSpawnPointTransform.position.y, 0), Quaternion.identity) as GameObject;

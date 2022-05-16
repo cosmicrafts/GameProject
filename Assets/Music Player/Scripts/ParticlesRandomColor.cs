@@ -31,7 +31,7 @@ public class ParticlesRandomColor : MonoBehaviour
 		IEnumerator Start ()
 		{
 				while (isRunning) {
-						if (particleSystem != null) {
+						if (GetComponent<ParticleSystem>() != null) {
 								ps.startColor = new Color (Random.Range (0, 255), Random.Range (0, 255), Random.Range (0, 255), alpha) / 255.0f;
 						}
 						yield return new WaitForSeconds (sleepTime);

@@ -14,7 +14,7 @@ public class WebGLSendContractExample : MonoBehaviour
     {
         // smart contract method to call
         string method = "addTotal";
-        // abi in json format
+        // abi in json format // !
         string abi = "[ { \"inputs\": [ { \"internalType\": \"uint8\", \"name\": \"_myArg\", \"type\": \"uint8\" } ], \"name\": \"addTotal\", \"outputs\": [], \"stateMutability\": \"nonpayable\", \"type\": \"function\" }, { \"inputs\": [], \"name\": \"myTotal\", \"outputs\": [ { \"internalType\": \"uint256\", \"name\": \"\", \"type\": \"uint256\" } ], \"stateMutability\": \"view\", \"type\": \"function\" } ]";
         // address of contract
         string contract = "0x0A6A7fe985D6CcC03C7483D90DC59b48a2790dF4";
