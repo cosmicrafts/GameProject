@@ -122,6 +122,15 @@ public class Player : MonoBehaviour
         }
 
         AddEnergy(Time.deltaTime * SpeedEnergy);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            DragDeckUnit(0);
+            DropDeckUnit();
+            SelectCard(0);
+
+        }
+
+
     }
 
     public bool ImFake()

@@ -9,7 +9,7 @@ public class WebGLTransfer20: MonoBehaviour
 {
     [SerializeField]
     private string contract = "0x3De545e93Cb2D6342bb02b381f46EdB7F8b0b8ee";
-    [SerializeField]
+    [SerializeField] 
     private string toAccount = "0xf0d056015Bdd86C0EFD07000F75Ea10873A1d0A7";
     [SerializeField]
     private string amount = "1000000000000000000";

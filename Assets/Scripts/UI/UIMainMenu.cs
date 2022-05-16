@@ -14,9 +14,10 @@ public class UIMainMenu : MonoBehaviour
     public static extern void JSMetaWallet(string walletID);
 
 
+   // [SerializeField]
+   // MyWallet metaMaskWallet;
     [SerializeField]
-    MyWallet metaMaskWallet;
-
+    MyAccount myAccount;
 
     public static UIMainMenu Menu;
     
@@ -53,14 +54,14 @@ public class UIMainMenu : MonoBehaviour
     List<UIPTxtInfo> UIPropertys;
 
     int UserDataLoaded;
-    
+  
 
     private void Awake()
     {
-        
-     
 
 
+
+      
 
         Menu = this;
         UserDataLoaded = 0;
@@ -106,6 +107,7 @@ public class UIMainMenu : MonoBehaviour
                 tutoGame = PlayerPrefs.GetInt("Tuto");
        
                 GameData.CurrentMatch = Match.tutorial;
+            CheckGameMode();
             if (tutoGame == 0)
             {
                 PlayTutorial();
@@ -113,7 +115,7 @@ public class UIMainMenu : MonoBehaviour
             } else if (tutoGame != 0)
             {
                 GameData.CurrentMatch = Match.multi;
-                CurrentGameMode.text = Lang.GetText("mn_pvp");
+                CheckGameMode();
                 MainMenu.SetActive(true);
             }
          

@@ -20,29 +20,29 @@ public class MyAccount : MonoBehaviour
     Image mainAvatarImg;
     [SerializeField]
     List<int> expToLvlUP;
-
+    [SerializeField]
+    InputField newNameInput;
+    
     [SerializeField] int avatarIndex;
+    public int AvatarIndex => avatarIndex;
 
+    string playerName;
+    [SerializeField] Text walletID;
+    [SerializeField] Text nickName;
+    string walletAccountID;
+    public string WalletAccountID => walletAccountID;
+    
+    
     private void Awake()
     {
-        if (PlayerPrefs.HasKey("AvatarIndex"))
-        {
-            avatarIndex = PlayerPrefs.GetInt("AvatarIndex");
-            mainAvatarImg.sprite = avatarsIcon[avatarIndex];
-
-        }
         accountPanel.SetActive(false);
-    }
-    void Start()
-    {
-        if (!PlayerPrefs.HasKey("AvatarIndex"))
-        {
-            mainAvatarImg.sprite = avatarsIcon[0];
-
-        }
-    
+        SetAccountName();
+        SetAvatar();
+        SetWalletID();
        
     }
+   
+   
     public void OnActiveAccountPanel()
     {
         
@@ -63,7 +63,39 @@ public class MyAccount : MonoBehaviour
     }
     void AccountLevelUp()
     {
-       
+
+    }
+    void SetAccountName()
+    {
+        if (PlayerPrefs.HasKey("AccounName"))
+        {
+            playerName = PlayerPrefs.GetString("AccounName");
+        }
+        if (nickName)
+        {
+            nickName.text = playerName;
+        }
+
+    }
+    void SetAvatar()
+    {
+        if (!PlayerPrefs.HasKey("AvatarIndex"))
+        {
+            mainAvatarImg.sprite = avatarsIcon[0];
+
+        }
+    }
+    void SetWalletID()
+    {
+        if (PlayerPrefs.HasKey("Account"))
+        {
+
+            walletAccountID = PlayerPrefs.GetString("Account");
+
+            walletID.text = PlayerPrefs.GetString("Account");
+        }
+
+
     }
     public void ChangeAvatarSprite(int newAvatar)
     {
@@ -71,7 +103,7 @@ public class MyAccount : MonoBehaviour
         mainAvatarImg.sprite = avatarsIcon[avatarIndex];
         PlayerPrefs.SetInt("AvatarIndex", newAvatar);
     }
-  
+   
     public void AddAccountExperencie(int newExp)
     {
         accountExp += newExp;
@@ -85,9 +117,12 @@ public class MyAccount : MonoBehaviour
             accountLevel++;
         }
     }
-    public void ChangeName() 
+    public void ChangeName(string newName) 
     {
-    
+        if (PlayerPrefs.HasKey("AccounName"))
+        {
+
+        }
     }
 
 }

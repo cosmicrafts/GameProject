@@ -7,34 +7,20 @@ public class MyWallet : MonoBehaviour
     public Text walletID;
     public Text nickName;
 
-    string walletAccountID;
-    public string WalletAccountID => walletAccountID;
+   
 
     private void Awake()
     {
-        SetWalletID();
+        
     }
     void Start()
     {
      
 
-        if (nickName)
-        {
-            nickName.text = PlayerPrefs.GetString("AccounName");
-        }
+       
     }
    
-    void SetWalletID()
-    {
-        if (PlayerPrefs.HasKey("Account")){
-
-            walletAccountID = PlayerPrefs.GetString("Account");
-
-            walletID.text = PlayerPrefs.GetString("Account");
-        }
-
-
-    }
+    
    
     
 }

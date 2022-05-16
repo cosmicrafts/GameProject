@@ -7,8 +7,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameMng : MonoBehaviour
-          { [SerializeField]
-    WebGLSendContractExample webSend;
+          { 
+   
     public static GameMng GM;
     public static UIGameMng UI;
     public static Player P;

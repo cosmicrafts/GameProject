@@ -154,8 +154,46 @@ public class Unit : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
         }
-    }
 
+      //  UnitLimitControl();
+
+
+
+    }
+    void UnitLimitControl()
+    {
+        if (!IsBaseStation)
+        {
+            if (Mathf.Abs(MyRb.transform.position.z) >= 100 || Mathf.Abs(MyRb.transform.position.z) >= -100)
+            {
+                MyRb.velocity = Vector3.zero;
+                if (MyRb.transform.position.z >= 100)
+                {
+                    MyRb.transform.position = new Vector3(MyRb.transform.position.x, MyRb.transform.position.x, 100);
+                }
+                if (MyRb.transform.position.z < -100)
+                {
+                    MyRb.transform.position = new Vector3(MyRb.transform.position.x, MyRb.transform.position.x, -100);
+                }
+
+
+            }
+            if (Mathf.Abs(MyRb.transform.position.x) >= 100 || Mathf.Abs(MyRb.transform.position.x) >= -100)
+            {
+                MyRb.velocity = Vector3.zero;
+                if (MyRb.transform.position.x >= 100)
+                {
+                    MyRb.transform.position = new Vector3(100, MyRb.transform.position.x, MyRb.transform.position.z);
+                }
+                if (MyRb.transform.position.x < -100)
+                {
+                    MyRb.transform.position = new Vector3(-100, MyRb.transform.position.x, MyRb.transform.position.z);
+                }
+
+
+            }
+        }
+    }
     virtual protected void CastComplete()
     {
         if (SpawnAreaSize > 0f && MyTeam == GameMng.P.MyTeam)
