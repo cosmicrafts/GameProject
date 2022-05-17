@@ -18,6 +18,7 @@ public class IntroScene : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(InitialiazeIntro());
+        return;
     }
 
     IEnumerator InitialiazeIntro()
@@ -31,5 +32,6 @@ public class IntroScene : MonoBehaviour
         topPanel.SetActive(false);
         botPanel.SetActive(false);
         BackGroundSound.Play();
+    
     }
 }
