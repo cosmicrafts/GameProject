@@ -130,10 +130,7 @@ public class UIMainMenu : MonoBehaviour
 
         }
     }
-    IEnumerator IntroScene()
-    {
-        yield return new WaitForSeconds(2);
-    }
+ 
     void Start()
     {
        
