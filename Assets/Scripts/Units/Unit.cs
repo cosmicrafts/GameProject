@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
     protected bool IsDeath;
     public int PlayerId = 1;
     public Team MyTeam;
-
+   
     [Range(1, 9999)]
     public int HitPoints = 10;
     int MaxHp = 10;
@@ -73,7 +73,7 @@ public class Unit : MonoBehaviour
     protected Rigidbody MyRb;
 
     Quaternion FakeRotation;
-
+   
     // Start is called before the first frame update
     virtual protected void Start()
     {
