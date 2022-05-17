@@ -11,12 +11,13 @@ public class TokenReward : MonoBehaviour
     async public void signTokenReward(float _finalScore)
     {
         //attach private key of ownerWallet here.
-        string privateKey = "0xd37c4a8c25ccf60e54f9b8f38c55aef0b526d9fd2aa62efc45aa6feebffdca11"; //esta es la calve de la cuenta del contrato 
+        string privateKey = "0xd37c4a8c25ccf60e54f9b8f38c55aef0b526d9fd2aa62efc45aa6feebffdca11"; //esta es la clave de la cuenta del contrato 
         // get account from private key
         string account = Web3PrivateKey.Address(privateKey);
+
         string playerAccount = PlayerPrefs.GetString("Account");
         // set chain: ethereum, moonbeam, polygon etc
-        string chain = "oasis";
+        string chain = "42261";
 
         // set network mainnet, testnet
         string network = "testnet";

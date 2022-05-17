@@ -44,7 +44,7 @@ public class WebLogin : MonoBehaviour
         // save account for next scene
         PlayerPrefs.SetString("Account", account); //esto guarda la cartera
     
-        GameNetwork.JSMetaWallet(account);
+        GameNetwork.JSMetaWallet(account); //esto aca se la manda a pk
         // reset login message
         SetConnectAccount("");
     

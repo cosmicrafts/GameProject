@@ -21,4 +21,4 @@ Used to set the network: https://chainlist.org/
 */
 
 window.web3ChainId = 42261;
-window.web3NetwrokName="Oasis Emerald";
+window.web3NetworkName ="testnet";
