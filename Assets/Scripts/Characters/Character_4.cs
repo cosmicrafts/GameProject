@@ -4,12 +4,7 @@ using UnityEngine;
 
 public class Character_4 : GameCharacter
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    //Add 2 shield points and movement speed to units
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);

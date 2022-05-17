@@ -13,11 +13,6 @@ public static class CMath
 
     public static Vector3 GetMouseWorldPos()
     {
-        //float wx = (Input.mousePosition.x * GameMng.GM.MapWidth) / Screen.width;
-        //float wz = (Input.mousePosition.y * GameMng.GM.MapHeigth) / Screen.height;
-
-        //Vector3 WorldPos = new Vector3(GameMng.GM.MapX + wx, 0f, GameMng.GM.MapZ + wz - 4f);
-
         RaycastHit hit;
 
         if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100f, 1 << 9))

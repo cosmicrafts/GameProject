@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Character_3 : GameCharacter
 {
-    // Start is called before the first frame update
+    // Player begins with more energy
     void Start()
     {
         GameMng.P.MaxEnergy += 5f;
     }
 
+    //Add 1 shield points and more range attack to units
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);

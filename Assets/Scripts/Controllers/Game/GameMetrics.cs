@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class GameMetrics
 {
+    //Energy variables
     float EnergyUsed;
     float EnergyGenerated;
     float EnergyWasted;
     float EnergyChargeRatePerSec;
 
+    //Battle variables
     float Damage;
     int Kills;
     int Deploys;
-    int SecRemaining;
 
+    //Remaining time
+    int SecRemaining;
+    //Score Token
     int Score;
 
     // Start is called before the first frame update
     public void InitMetrics()
     {
+        //Init metrics
         EnergyUsed = 0;
         EnergyGenerated = 0;
         EnergyWasted = 0;
@@ -33,6 +38,7 @@ public class GameMetrics
         Score = 0;
     }
 
+    //Calculate final metrics when game ends
     public void CalculateLastMetrics(Team winner)
     {
         EnergyWasted += GameMng.P.CurrentEnergy;
@@ -51,36 +57,44 @@ public class GameMetrics
         }
     }
 
+    //Add energy used
     public void AddEnergyUsed(float value)
     {
         EnergyUsed += value;
     }
 
+    //Add energy generated
     public void AddEnergyGenerated(float value)
     {
         EnergyGenerated += value;
     }
 
+    //Add energy generated when players energy is full
     public void AddEnergyWasted(float value)
     {
         EnergyWasted += value;
     }
 
+    //Damage done
     public void AddDamage(float value)
     {
         Damage += value;
     }
 
+    //TakeDowns
     public void AddKills(int value)
     {
         Kills += value;
     }
 
+    //Player cards deploys
     public void AddDeploys(int value)
     {
         Deploys += value;
     }
 
+    //Gets
+    #region
     public float GetEnergyUsed()
     {
         return EnergyUsed;
@@ -117,4 +131,5 @@ public class GameMetrics
     {
         return Score;
     }
+    #endregion
 }

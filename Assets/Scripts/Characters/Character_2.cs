@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character_2 : GameCharacter
 {
+    //Reduce time to recover shields to units
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);

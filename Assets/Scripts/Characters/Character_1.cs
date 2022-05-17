@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Character_1 : GameCharacter
 {
+    //Add dmg and speed attack to units
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);
