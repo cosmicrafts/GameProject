@@ -10,11 +10,11 @@ public class UIGameMng : MonoBehaviour
     [SerializeField]
     GameObject panelBtns;
     [SerializeField]
-    GameObject tokenBtn;
+    int maxPlayerCard=4;
     public GameObject TopMidInfo;
     public GameObject DeckPanel;
 
-    public UIGameCard[] UIDeck = new UIGameCard[8];
+    public UIGameCard[] UIDeck = new UIGameCard[4];
 
     public Text TimeOut;
     public Text EnergyLabel;
@@ -99,7 +99,7 @@ public class UIGameMng : MonoBehaviour
 
         ResultsScreen.SetActive(true);
         panelBtns.SetActive(false);
-        tokenBtn.SetActive(true);
+      
         if (winner == GameMng.P.MyTeam)
         {
             VictoryScreen.SetActive(true);
@@ -175,7 +175,7 @@ public class UIGameMng : MonoBehaviour
     public void ActivedExitBtns()
     {
         panelBtns.SetActive(true);
-        tokenBtn.SetActive(false);
+       
     }
     public Color GetShieldBarColor(bool isEnnemy)
     {
