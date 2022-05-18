@@ -6,9 +6,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField]
+    int maxplayerCard =4;
+
     [HideInInspector]
     public int ID = 1;
-
+   
     [HideInInspector]
     public Team MyTeam = Team.Blue;
 
@@ -18,7 +21,7 @@ public class Player : MonoBehaviour
 
     public DragUnitCtrl UnitDrag;
 
-    public GameObject[] DeckUnits = new GameObject[8];
+    public GameObject[] DeckUnits = new GameObject[4];
 
     GameCard[] GameCards;
     Mesh[] UnitsMeshs;
@@ -55,10 +58,10 @@ public class Player : MonoBehaviour
     {
         InControl = CanGenEnergy = true;
 
-        if (DeckUnits.Length != 8)
+        if (DeckUnits.Length != maxplayerCard)
         {
             Debug.LogError("Size of deck must equals 8");
-            DeckUnits = new GameObject[8];
+            DeckUnits = new GameObject[maxplayerCard];
             return;
         }
 
@@ -75,9 +78,9 @@ public class Player : MonoBehaviour
 
             if (CollectionDeck != null)
             {
-                if (CollectionDeck.Count == 8)
+                if (CollectionDeck.Count == maxplayerCard)
                 {
-                    for (int i = 0; i < 8; i++)
+                    for (int i = 0; i < maxplayerCard; i++)
                     {
                         DeckUnits[i] = ResourcesServices.LoadCardPrefab(CollectionDeck[i].KeyId, CollectionDeck[i] as NFTsSpell != null);
                     }
@@ -85,10 +88,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        GameCards = new GameCard[8];
-        SpellPreviews = new GameObject[8];
-        UnitsMeshs = new Mesh[8];
-        UnitMaterials = new Material[8];
+        GameCards = new GameCard[maxplayerCard];
+        SpellPreviews = new GameObject[maxplayerCard];
+        UnitsMeshs = new Mesh[maxplayerCard];
+        UnitMaterials = new Material[maxplayerCard];
 
         for (int i = 0; i < DeckUnits.Length; i++)
         {
@@ -122,14 +125,8 @@ public class Player : MonoBehaviour
         }
 
         AddEnergy(Time.deltaTime * SpeedEnergy);
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            DragDeckUnit(0);
-            DropDeckUnit();
-            SelectCard(0);
-
-        }
-
+       
+        PlayersHotkey();
 
     }
 
@@ -340,5 +337,40 @@ public class Player : MonoBehaviour
     public int GetVsId()
     {
         return ID == 1 ? 2 : 1;
+    }
+
+    void PlayersHotkey()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            DragDeckUnit(0);
+            DropDeckUnit();
+            SelectCard(0);
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            DragDeckUnit(1);
+            DropDeckUnit();
+            SelectCard(1);
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            DragDeckUnit(2);
+            DropDeckUnit();
+            SelectCard(2);
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            DragDeckUnit(3);
+            DropDeckUnit();
+            SelectCard(3);
+
+        }
     }
 }

@@ -20,7 +20,7 @@ public enum CardClass
 
 public class UICollection : MonoBehaviour
 {
-    public UICard[] Deck = new UICard[8];
+    public UICard[] Deck = new UICard[4];
 
     public UICard CardCollection;
 
@@ -41,7 +41,8 @@ public class UICollection : MonoBehaviour
     public UICardDrag DragIcon;
 
     public Dropdown DD_OrderBy;
-
+    [SerializeField]
+    int maxCardToPlay = 4;
     List<CardClass> ClassFilter;
     Dictionary<string, string> UnitNames;
 
@@ -50,6 +51,7 @@ public class UICollection : MonoBehaviour
     public bool FilterSkills { get; set; }
     public string FilterSearch { get; set; }
     public int OrderBy { get; set; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -118,7 +120,7 @@ public class UICollection : MonoBehaviour
             card.SetData(nFTsCard);
         }
 
-        if (PlayerCollection.Deck.Count == 8)
+        if (PlayerCollection.Deck.Count == maxCardToPlay)
         {
             for (int i = 0; i < PlayerCollection.Deck.Count; i++)
             {
