@@ -245,82 +245,75 @@ public class GameMng : MonoBehaviour
     //GAME OVER
     public void EndGame(Team winner)
     {
+        //Set the team winner and end the game
         GameOver = true;
         Winner = winner;
+        //Player has not control now
         P.SetInControl(false);
+        //Set the first game has false
         PlayerData.FirstGame = false;
-
+        //Disable all the units
         foreach (Unit unit in Units)
         {
             unit.DisableUnit();
         }
-
+        //Update UI
         UI.SetGameOver(Winner);
+        //Check if the game mode is multiplayer
         if (GameData.CurrentMatch == Match.multi)
         {
+            //if im master...
             if (GameData.ImMaster)
             {
+                //Set the winner in network and end the game in backend
                 if (GameNetwork.GetWinner() == 0)
                 {
                     GameNetwork.SetWinner(winner == P.MyTeam ? 1 : 2);
                 }
                 GameNetwork.SetGameStatus(NetGameStep.Results);
-                Debug.Log($"winer is :{winner}");
                 SyncNetData();
             }
+            //Stop multiplayer sync loop 
             StopCoroutine(LoopGameNetAsync());
         }
     }
-
+    //Get if the game is over
     public bool IsGameOver()
     {
         return GameOver;
     }
-
+    //Get the remaining seconds of the game
     public int GetRemainingSecs()
     {
         return TimeOut.Add(StartTime - DateTime.Now).Seconds;
     }
-
+    //Get a color for a unit depending the team and id player
     public Color GetColorUnit(Team team, int playerId)
     {
-        Color result;
-
-        if (P.MyTeam == team)
-        {
-            if (P.ID == playerId)
-            {
-                result = new Color(0f, 0.5f, 1.5f);
-            }
-            else
-            {
-                result = Color.yellow;
-            }
-        }
-        else
-        {
-            result = Color.red;
-        }
-
-        return result;
+        //BLUE (MY OWN UNIT)
+        //YELLOW (ALLIED UNIT)
+        //RED (ENEMY UNIT)
+        return P.MyTeam != team ? Color.red :
+                    (P.ID == playerId ? Color.blue : Color.yellow);
     }
-
+    //Create base stations (from player´s script)
     public void InitBaseStations()
     {
         //PLAYER STATION
-        int PIn = P.MyTeam == Team.Blue ? 1 : 0;
-        int VsIn = P.MyTeam == Team.Red ? 1 : 0;
+        int PIn = P.MyTeam == Team.Blue ? 1 : 0; //Player base station index
+        int VsIn = P.MyTeam == Team.Red ? 1 : 0; //Enemy base station index
+        //Create the player´s base station
         Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.Faction), 
             BS_Positions[PIn].position, Quaternion.identity).GetComponent<Unit>();
-        //VS STATION
+        //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
             GameData.CurrentMatch == Match.multi ? "Spirats" : "Spirats");
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn].position, Quaternion.identity).GetComponent<Unit>();
-
+        //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
         Targets[0].MyTeam = Team.Red;
     }
-
+    //Deply a unit using a prefab game object
     public Unit CreateUnit(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
     {
         Unit unit = Instantiate(obj, position, Quaternion.identity).GetComponent<Unit>();
@@ -330,7 +323,7 @@ public class GameMng : MonoBehaviour
         unit.SetNfts(AllNfts[nftKey] as NFTsUnit);
         return unit;
     }
-
+    //Deply a unit using a nft Key
     public Unit CreateUnit(string nftKey, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, false);
@@ -338,7 +331,7 @@ public class GameMng : MonoBehaviour
             return null;
         return CreateUnit(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
-
+    //Deply a fake unit using a nft key (for multiplayer client)
     public Unit CreateFakeUnit(string nftKey, int Id, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, false);
@@ -352,7 +345,7 @@ public class GameMng : MonoBehaviour
         unit.setHasFake();
         return unit;
     }
-
+    //Cast a spell using a prefab game object
     public Spell CreateSpell(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
     {
         Spell spell = Instantiate(obj, position, Quaternion.identity).GetComponent<Spell>();
@@ -362,7 +355,7 @@ public class GameMng : MonoBehaviour
         spell.SetNfts(AllNfts[nftKey] as NFTsSpell);
         return spell;
     }
-
+    //Cast a spell using a nft key
     public Spell CreateSpell(string nftKey, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, true);
@@ -370,7 +363,7 @@ public class GameMng : MonoBehaviour
             return null;
         return CreateSpell(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
-
+    //Cast a fake spell using a nft key (for multiplayer client)
     public Spell CreateFakeSpell(string nftKey, int id, float x, float z, int team, int playerId = -1)
     {
         GameObject obj = ResourcesServices.LoadCardPrefab(nftKey, true);
@@ -384,7 +377,7 @@ public class GameMng : MonoBehaviour
         spell.setHasFake();
         return spell;
     }
-
+    //Add a unit to the unit's list
     public void AddUnit(Unit unit)
     {
         if (!Units.Contains(unit))
@@ -392,7 +385,7 @@ public class GameMng : MonoBehaviour
             Units.Add(unit);
         }
     }
-
+    //Add a spell to the spell's list
     public void AddSpell(Spell spell)
     {
         if (!Spells.Contains(spell))
@@ -400,7 +393,7 @@ public class GameMng : MonoBehaviour
             Spells.Add(spell);
         }
     }
-
+    //Delete a unit to the unit's list
     public void DeleteUnit(Unit unit)
     {
         if (Units.Contains(unit))
@@ -409,7 +402,7 @@ public class GameMng : MonoBehaviour
             DeletedUnits.Add(unit.getId());
         }
     }
-
+    //Delete a spell to the spell's list
     public void DeleteSpell(Spell spell)
     {
         if (Spells.Contains(spell))
@@ -417,13 +410,13 @@ public class GameMng : MonoBehaviour
             Spells.Remove(spell);
         }
     }
-
+    //Kill a specific unit
     public void KillUnit(Unit unit)
     {
         if (unit != null)
             unit.Die();
     }
-
+    //Request a deply of a specific unit or spell to the master (used by the client)
     public void RequestUnit(NetUnitPack unit)
     {
         RequestedUnits.Add(unit);
@@ -434,25 +427,17 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
         }
     }
-
+    //Returns how many units exist in the game
     public int CountUnits()
     {
         return Units.Count;
     }
-
+    //Returns how many units of a team exist in the game
     public int CountUnits(Team team)
     {
         return Units.Where(f => f.IsMyTeam(team)).Count();
     }
-
-    public bool IsGameTutorial()
-    {
-        if (GT == null)
-            return false;
-
-        return GT.gameObject.activeSelf;
-    }
-
+    //Ends the game scene and returns the player to the main menu scene
     public void EndScene()
     {
         if (GameData.CurrentMatch == Match.multi && GameData.IsProductionWeb())
@@ -462,21 +447,23 @@ public class GameMng : MonoBehaviour
 
         SceneManager.LoadScene(0,LoadSceneMode.Single);
     }
-
+    //Multiplayer data async loop (Send game data)
     IEnumerator LoopGameNetAsync()
     {
         while (true)
         {
-            yield return dnet;
+            yield return dnet;//delta time
 
-            SyncNetData();
+            SyncNetData();//Send game data
         }
     }
-
+    //Send game data
     public void SyncNetData()
     {
-        if (GameData.ImMaster) //Master send main data
+        //Master send main data
+        if (GameData.ImMaster)
         {
+            //Prepare the units and spells data
             List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -504,40 +491,51 @@ public class GameMng : MonoBehaviour
                 is_spell = true
             });
             upack.AddRange(spack);
+            //Make a game data package with currents entities and deleted entities
             GameNetwork.SetGameUnits(upack);
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
-            GameNetwork.SetMasterLastUpdate(DateTime.Now);
-
+            GameNetwork.SetMasterLastUpdate(DateTime.Now);//Set the last master comunication update
+            //Try to send the data to the back end
             try
             {
+                //Send the data only if the game is runing has production on web
                 if (GameData.IsProductionWeb())
                 {
+                    //Send the data
                     GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
                 }
             }
             catch (Exception e)
             {
+                //In case of error, log the error
                 Debug.LogError(e.Message);
             }
-        } else //Client send 
+        } else //Client send data
         {
+            //Set the last client comunication update
             GameNetwork.SetClientLastUpdate(DateTime.Now);
+            //Send the data only if the game is runing has production on web
             if (GameData.IsProductionWeb())
             {
+                //Send the data
                 GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
             }
         }
     }
-
+    //Sync the recived data from client (called from back end)
     public void GL_SyncMaster(string json)
     {
+        //Sync data if im master and data is not empty
         if (GameData.ImMaster && !string.IsNullOrEmpty(json))
         {
+            //Update local network data
             GameNetwork.UpdateClientGameData(json);
+            //Unpackage the data
             List<NetUnitPack> UnitsRequested = GameNetwork.GetClientGameUnitsRequested();
+            //Loop every  requested unit or spell
             foreach (NetUnitPack unit in UnitsRequested)
             {
-                //Create Real Unit
+                //Create real Unit or spell if doesn't exist already
                 if (!CreatedUnits.Contains(unit.id))
                 {
                     if (unit.is_spell)
@@ -552,45 +550,59 @@ public class GameMng : MonoBehaviour
             }
         }
     }
-
+    //Sync the recived data from master (called from back end)
     public void GL_SyncClient(string json)
     {
+        //Sync if im the client
         if (!GameData.ImMaster)
         {
+            //Update local network data
             GameNetwork.UpdateGameData(json);
+            //Set the start date time of the game
             StartTime = GameNetwork.GetStartTime();
-            //Sync Real Units
+            //Unpack units and spells data
             List <NetUnitPack> units = GameNetwork.GetGameUnits();
+            //Unpack the deleted units and spells
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
+            //Loop every entitie
             foreach (NetUnitPack unit in units)
             {
+                //Check if the entitie is a spell
                 if (unit.is_spell)
                 {
+                    //Check if the spell doesn´t exist already
                     Spell find = Spells.FirstOrDefault(f => f.getId() == unit.id);
-                    if (find == null) //Create fake
+                    //Create fake spell
+                    if (find == null) 
                     {
                         CreateFakeSpell(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
                     }
-                } else
+                } else//The entitie is a unit
                 {
+                    //Check if the unit doesn´t exist already
                     Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
-                    if (find == null) //Create fake
+                    //Create fake unit
+                    if (find == null) 
                     {
                         if (!string.IsNullOrEmpty(unit.key))
                         {
                             CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
                         }
                     }
-                    else //Sync data
+                    else //Sync data if the unit exist
                     {
+                        //Check if the unit is a ship (can move) or a station
                         Ship ship = find as Ship;
                         if (ship != null)
                         {
+                            //The unit is a ship so set the destination from master data
                             ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
                         }
+                        //Set the position, rotation and other variables from master data
                         find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
                         find.SetFakeHp(unit.hp, unit.max_hp);
                         find.SetFakeShield(unit.sh, unit.max_sh);
+                        //Set the shooting target if the unit can attack
                         if (unit.id_target > 0)
                         {
                             Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);
@@ -606,7 +618,7 @@ public class GameMng : MonoBehaviour
                     }
                 }
             }
-            //Delete Units
+            //Check the deleted units from master and delete the same local units
             foreach(int unitId in deleted)
             {
                 Unit find = Units.FirstOrDefault(f => f.getId() == unitId);
@@ -615,56 +627,59 @@ public class GameMng : MonoBehaviour
                     KillUnit(find);
                 }
             }
-            //Check winner
+            //Check if exist a default winner
             CheckMultiplayerWinner();
         }
     }
-
+    //Sync winner data
     public void GL_SyncWinner(int winner)
     {
+        //check if the game is not over but the back end has a winner
         if (!GameOver && winner != 0)
         {
             GameNetwork.SetWinner(winner);
             CheckMultiplayerWinner();
         }
     }
-
+    //Check if some player wins the game
+    //(used when some player disconets from the game to much time and the other player wins by defaut)
     public void CheckMultiplayerWinner()
     {
+        //Only works for multiplayer game mode
         if (GameData.CurrentMatch != Match.multi)
             return;
-
+        //Get the winner from network data
         int winner = GameNetwork.GetWinner();
-        
-        if (winner != 0 && !GameOver)
+        //check if the game is not over but the back end has a winner
+        if (!GameOver && winner != 0)
         {
-            Debug.Log($"WE HAVE A WINNER...({winner})");
+            //The game has a winner
             if (winner == 1)
             {
+                //The master wins the game so we destroy the client´s base station
                 KillUnit(Targets[0]);
-                Debug.Log("MASTER WINNS, KILLING UNIT 0");
                 return;
             }
             if (winner == 2)
             {
+                //The client wins the game so we destroy the master´s base station
                 KillUnit(Targets[1]);
-                Debug.Log("CLIENT WINNS, KILLING UNIT 1");
                 return;
             }
         }
     }
-
+    //Returns if the main stations still exist
     public bool MainStationsExist()
     {
         return Targets[0] != null && Targets[1] != null;
     }
-
+    //Generate an unic ID for units or spells
     public int GenerateUnitId()
     {
         IdCounter++;
         return IdCounter;
     }
-
+    //Generate an unic ID for requested units or spells
     public int GenerateUnitRequestId()
     {
         IdRequestCounter++;
