@@ -21,7 +21,7 @@ public class GameControl : MonoBehaviour
 
     public void StartGame()
     {
-        timer.StartTimer(); // llamamos la funcion para empezar el Timer de timer.cs
+        timer.StartTimer(); // llamamos  la funcion para empezar el Timer de timer.cs
     }
 
     public void EndGame()

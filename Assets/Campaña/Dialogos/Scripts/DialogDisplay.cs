@@ -56,6 +56,14 @@ public class DialogDisplay : MonoBehaviour
         if(speakerUILeft.SpeakerIs(character))
         {
             SetDialog(speakerUILeft, speakerUIRight, line.text);
+            /* speakerUILeft.Show();
+            speakerUIRight.Hide();
+
+            speakerUILeft.Dialog = string.Empty;
+            foreach(char ch in line.text)
+            {
+                speakerUILeft.Dialog = speakerUILeft.Dialog + ch ;
+            } */
         }
         else
         {
@@ -68,7 +76,20 @@ public class DialogDisplay : MonoBehaviour
                     string text)
     {
         activeSpeakerUI.Dialog = text;
+        //activeSpeakerUI.Dialog = StartCoroutine(LetraPorLetra(text));
         activeSpeakerUI.Show();
         inactiveSpeakerUI.Hide();
+    }
+
+    // recorer al array para mostrar letra por letra
+    private IEnumerator LetraPorLetra(string text)
+    {
+        string dialogo = string.Empty;
+        foreach(char ch in text)
+        {
+            dialogo += ch;
+            yield return new WaitForSeconds(0.05f);
+           
+        }
     }
 }

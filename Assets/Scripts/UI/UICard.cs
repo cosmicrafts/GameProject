@@ -33,7 +33,7 @@ public class UICard : MonoBehaviour
         IsSelected = false;
 
         IsSkill = data as NFTsSpell != null;
-        NameCard = Lang.GetEntityName(data.KeyId);
+        NameCard = Lang.GetEntityName(data.KeyId); 
         KeyName = data.KeyId;
 
         Txt_Name.text = Lang.GetEntityName(data.KeyId);
