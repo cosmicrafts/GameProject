@@ -1,60 +1,71 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    //The ID of the player (or index)
     [HideInInspector]
     public int ID = 1;
-
+    //The player´s team
     [HideInInspector]
     public Team MyTeam = Team.Blue;
-
+    //Enables or disables the gameplay
     bool InControl;
-
+    //Allows to generate energy
     bool CanGenEnergy;
-
+    //Reference the drag and drop object
     public DragUnitCtrl UnitDrag;
-
+    //Stores the deck units prefabs
     public GameObject[] DeckUnits = new GameObject[8];
 
+    //Stores the card data from units
     GameCard[] GameCards;
+    //Stores the meshes and materials of the units, for drag and drop previews
     Mesh[] UnitsMeshs;
     Material[] UnitMaterials;
+    //Stores the object with particules of the spells, for drag and drop previews
     GameObject[] SpellPreviews;
+    //Reference the current dragin card
     GameCard DragingCard;
+    //Reference the current selected card
     GameCard SelectedCard;
+    //Reference the player´s character
     GameCharacter MyCharacter;
 
+    //Curent energy
     [Range(0, 99)]
     public float CurrentEnergy = 5;
-
+    //Max energy
     [Range(0, 99)]
     public float MaxEnergy = 10;
-
+    //Energy regeneration speed 
     [Range(0, 99)]
     public float SpeedEnergy = 1;
 
     private void Awake()
     {
+        //Defines the current Player controler to the game manager
         GameMng.P = this;
+        //Check if the current game is a multiplayer match
         if (GameData.CurrentMatch == Match.multi)
         {
+            //If im not the master, im the client, so my id and team change...
             if (!GameData.ImMaster)
             {
                 ID = 2;
                 MyTeam = Team.Red;
             }
         }
+        //Game manager can now spawn the base stations
         GameMng.GM.InitBaseStations();
     }
 
     private void Start()
     {
+        //Enable the gameplay and the energy generation
         InControl = CanGenEnergy = true;
-
+        //Check the size of the deck
         if (DeckUnits.Length != 8)
         {
             Debug.LogError("Size of deck must equals 8");
@@ -62,17 +73,18 @@ public class Player : MonoBehaviour
             return;
         }
 
-        //Create Character and Deck (normal game)
+        //Check if the current match is not the tutorial
         if (GameData.CurrentMatch != Match.tutorial)
         {
+            //Get the player´s character and spawn it
             GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
             if (Character != null)
             {
                 MyCharacter = Instantiate(Character, transform).GetComponent<GameCharacter>();
             }
-
+            //Get the player´s deck and save the info
             List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;
-
+            
             if (CollectionDeck != null)
             {
                 if (CollectionDeck.Count == 8)
@@ -84,7 +96,7 @@ public class Player : MonoBehaviour
                 }
             }
         }
-
+        //Init and set the units data arrays
         GameCards = new GameCard[8];
         SpellPreviews = new GameObject[8];
         UnitsMeshs = new Mesh[8];
@@ -110,41 +122,47 @@ public class Player : MonoBehaviour
                 }   
             }
         }
-
+        //Update the UI info
         GameMng.UI.InitGameCards(GameCards);
     }
 
     private void Update()
     {
+        //Check if the gameplay is on
         if (!InControl)
         {
             return;
         }
-
+        //Add energy over time
         AddEnergy(Time.deltaTime * SpeedEnergy);
     }
 
+    //Check if im the client
     public bool ImFake()
     {
         return GameData.CurrentMatch == Match.multi && ID == 2;
     }
 
+    //Select a card (from index 0 - 7) 
     public void SelectCard(int idu)
     {
+        //Check if the gameplay is on
         if (!InControl)
         {
             return;
         }
 
+        //If the card is already selected, deselect the card
         if (SelectedCard == GameCards[idu])
         {
             SelectedCard = null;
             GameMng.UI.DeselectCards();
             UnitDrag.gameObject.SetActive(false);
-        } else
+        } else //Ii the card is not selected, select the card
         {
             SelectedCard = GameCards[idu];
             GameMng.UI.SelectCard(idu);
+            //Show the preview of the card on the cursor
             if (SelectedCard.cardType == CardType.Spell)
             {
                 PrepareDeploy(SpellPreviews[idu], SelectedCard.EnergyCost);
@@ -156,21 +174,25 @@ public class Player : MonoBehaviour
         }
     }
 
+    //Start dragin a card
     public void DragDeckUnit(int idu)
     {
+        //Check if the gameplay is on
         if (!InControl)
         {
             return;
         }
 
+        //set the dragin card
         DragingCard = GameCards[idu];
-
+        //If the player has a selected card and is not this card, deselect the card
         if (SelectedCard != null && SelectedCard != DragingCard)
         {
             SelectedCard = null;
             GameMng.UI.DeselectCards();
         }
 
+        //Show the preview of the card on the cursor
         if (DragingCard.cardType == CardType.Spell)
         {
             PrepareDeploy(SpellPreviews[idu], DragingCard.EnergyCost);
@@ -181,24 +203,30 @@ public class Player : MonoBehaviour
         
     }
 
+    //Drop the dragin card
     public void DropDeckUnit()
     {
+        //Check if the gameplay is on
         if (!InControl)
         {
             return;
         }
 
+        //Check if the player is dragin a card or if he has a selected card
+        //Also check if the dragin card is on a valid spawn area
         if (UnitDrag.IsValid() && (DragingCard != null || SelectedCard != null))
         {
+            //Deply the unit
             DeplyUnit(DragingCard == null ? SelectedCard : DragingCard);
         }
-
+        //Clear the selection and the dragin object controller
         UnitDrag.gameObject.SetActive(false);
         DragingCard = null;
         SelectedCard = null;
         GameMng.UI.DeselectCards();
     }
 
+    //Enables or disables the gameplay
     public void SetInControl(bool incontrol)
     {
         InControl = incontrol;
@@ -208,12 +236,12 @@ public class Player : MonoBehaviour
             DragingCard = null;
         }
     }
-
+    //Set if the player can generates energy
     public void SetCanGenEnergy(bool can)
     {
         CanGenEnergy = can;
     }
-
+    //Add energy
     public void AddEnergy(float value)
     {
         if (!CanGenEnergy)
@@ -231,19 +259,19 @@ public class Player : MonoBehaviour
         }
         GameMng.UI.UpdateEnergy(CurrentEnergy, MaxEnergy);
     }
-
+    //Reduce energy
     public void RestEnergy(float value)
     {
         CurrentEnergy -= value;
         GameMng.MT.AddEnergyUsed(value);
         GameMng.UI.UpdateEnergy(CurrentEnergy, MaxEnergy);
     }
-
+    //Returns if the player is dragin or selecting a card
     public bool IsPreparingDeploy()
     {
         return DragingCard != null || SelectedCard != null;
     }
-
+    //Shows the dragin card whit the specific mesh and material
     public void PrepareDeploy(Mesh mesh, Material mat, float cost)
     {
         UnitDrag.gameObject.SetActive(true);
@@ -252,7 +280,7 @@ public class Player : MonoBehaviour
         UnitDrag.transform.position = CMath.GetMouseWorldPos();
         UnitDrag.TargetCost = cost;
     }
-
+    //Shows the dragin card whit a game object has preview
     public void PrepareDeploy(GameObject preview, float cost)
     {
         UnitDrag.gameObject.SetActive(true);
@@ -261,14 +289,17 @@ public class Player : MonoBehaviour
         UnitDrag.transform.position = CMath.GetMouseWorldPos();
         UnitDrag.TargetCost = cost;
     }
-
+    //Deploy a spell or unit
     public void DeplyUnit(GameCard unitcard)
     {
+        //Check the card cost and current plkayer´s energy
         if (unitcard.EnergyCost <= CurrentEnergy)
         {
-            if (unitcard as UnitCard != null) //UNIT
+            //Check if the card is a SHIP OR STATION
+            if (unitcard as UnitCard != null)
             {
-                if (ImFake()) //Request Deploy
+                //If im am the client, send a request to deploy
+                if (ImFake())
                 {
                     Vector3 position = CMath.GetMouseWorldPos();
                     NetUnitPack unitdata = new NetUnitPack()
@@ -280,7 +311,7 @@ public class Player : MonoBehaviour
                         is_spell = false
                     };
                     GameMng.GM.RequestUnit(unitdata);
-                } else //Normal Deply
+                } else //Im not the client, so is a commun deply
                 {
                     Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
                     if (MyCharacter != null)
@@ -288,11 +319,13 @@ public class Player : MonoBehaviour
                         MyCharacter.DeployUnit(unit);
                     }
                 }
+                //Reduce the energy
                 RestEnergy(unitcard.EnergyCost);
                 GameMng.MT.AddDeploys(1);
-            } else // SPELL
+            } else //THE CARD IS A SPELL
             {
-                if (ImFake()) //Request Deploy
+                //If im am the client, send a request to deploy
+                if (ImFake())
                 {
                     Vector3 position = CMath.GetMouseWorldPos();
                     NetUnitPack unitdata = new NetUnitPack()
@@ -305,7 +338,7 @@ public class Player : MonoBehaviour
                     };
                     GameMng.GM.RequestUnit(unitdata);
                 }
-                else //Normal Deply
+                else //Im not the client, so is a commun deply
                 {
                     Spell spell = GameMng.GM.CreateSpell(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
                     if (MyCharacter != null)
@@ -313,21 +346,22 @@ public class Player : MonoBehaviour
                         MyCharacter.DeploySpell(spell);
                     }
                 }
+                //Reduce the energy
                 RestEnergy(unitcard.EnergyCost);
             }
         }
     }
-
+    //Returns the team of the enemy as int
     public int GetVsTeamInt()
     {
         return MyTeam == Team.Red ? 0 : 1;
     }
-
+    //Returns the team of the enemy
     public Team GetVsTeam()
     {
         return MyTeam == Team.Red ? Team.Blue : Team.Red;
     }
-
+    //Returns the ID of the enemy
     public int GetVsId()
     {
         return ID == 1 ? 2 : 1;
