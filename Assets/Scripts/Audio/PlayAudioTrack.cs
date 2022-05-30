@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayAudioTrack : MonoBehaviour
 {
     private AudioManager audioManager;
-    public int newTrackID;
+    
+     int newTrackID;
 
     public bool playOnStart;
 
@@ -15,7 +16,7 @@ public class PlayAudioTrack : MonoBehaviour
         audioManager = FindObjectOfType<AudioManager>();
         if (playOnStart)
         {
-            audioManager.PlayNewTrack(newTrackID);
+           // audioManager.PlayNewTrack(newTrackID);
         }
     }
 

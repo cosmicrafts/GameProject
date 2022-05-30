@@ -8,10 +8,15 @@ public class AudioVolumeManager : MonoBehaviour
     private AudioVolumeController[] audios;
 
     [Range(0, 1)]
-    public float maxVolumeLevel;
-
+    [SerializeField]  float maxVolumeLevel;
+    [Header("Volumen Actual de la cancion")]
+    [Tooltip("Volumen Actual de la cancion")]
     [Range(0, 1)]
-    public float currentVolumeLevel;
+    [SerializeField]  float currentVolumeLevel=1f;
+    private void Awake()
+    {
+        currentVolumeLevel = 1f;
+    }
 
     // Start is called before the first frame update
     void Start()
