@@ -126,8 +126,8 @@ public class UIMatchMaking : MonoBehaviour
         Debug.Log($"Match: {GameNetwork.GetId()}");
         GameNetwork.SetClientGameId(GameNetwork.GetId());
         CancelButton.SetActive(GameData.ImMaster);
-        if (!GameData.ImMaster)
-            StatusGame.text = Lang.GetText("mn_matchfound");
+        //if (!GameData.ImMaster)
+        //    StatusGame.text = Lang.GetText("mn_matchfound");
         SearchIcon.SetActive(false);
         FoundIcon.SetActive(true);
 
