@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
+//Enum of the multiplayer status
 public enum NetGameStep
 {
     Waiting,
@@ -11,6 +12,7 @@ public enum NetGameStep
     End
 }
 
+//Package structure for multiplayer comunication
 public class NetGamePack
 {
     public int GameId { get; set; }

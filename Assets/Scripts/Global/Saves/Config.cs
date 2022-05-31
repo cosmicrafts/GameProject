@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿//Enum Login Types
 public enum SocialLogs
 {
     None,
@@ -9,10 +6,11 @@ public enum SocialLogs
     Twitch
 }
 
+//Game configuration structure (will be encrypted)
 [System.Serializable]
 public class Config
 {
-    public int language = 0; // 0 ingles / 1 español
+    public int language = 0;
 
     public string UserName = string.Empty;
 

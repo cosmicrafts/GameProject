@@ -1,4 +1,4 @@
-﻿
+﻿//NFT unit class
 public class NFTsUnit : NFTsCard
 {
     public bool IsStation { get; set; }

@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿//NFT character class
 public class NFTsCharacter : NFTs
 {
     public string Skill { get; set; } 

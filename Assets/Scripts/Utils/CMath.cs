@@ -2,6 +2,7 @@
 
 public static class CMath
 {
+    //Returns the angle between 2 vector (0 to 360)
     public static float AngleBetweenVector2(Vector2 vec1, Vector2 vec2)
     {
         Vector2 diference = vec2 - vec1;
@@ -11,6 +12,7 @@ public static class CMath
         return angle;
     }
 
+    //Returns the world mouse position (requires a trigger collider)
     public static Vector3 GetMouseWorldPos()
     {
         RaycastHit hit;
@@ -23,9 +25,9 @@ public static class CMath
         return Vector3.zero;
     }
 
+    //Returns the Y rotation to look from vector A to vector B
     public static Vector3 LookToY(Vector3 from, Vector3 to)
     {
-        Vector3 rotation = new Vector3(to.x, from.y, to.z);
-        return rotation;
+        return new Vector3(to.x, from.y, to.z);
     }
 }
