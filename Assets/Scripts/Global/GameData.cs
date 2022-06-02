@@ -55,6 +55,11 @@ public static class GameData
     {
         config = newconfig;
     }
+    //Get the current game language
+    public static Language GetGameLanguage()
+    {
+        return (Language)GetConfig().language;
+    }
     //Set the basic player data
     public static void SetUser(User user)
     {
