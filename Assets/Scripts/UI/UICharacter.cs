@@ -1,16 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UICharacter : MonoBehaviour
 {
+    //NFT data source
     private NFTsCharacter Data;
 
+    //UI Text and image references (for name and avatar)
     public Image MyAvatar;
     public Text MyName;
+
+    //UI icon used when the character is selected
     public GameObject IconSelected;
 
+    //Initialize the UI from a NFT character data
     public void SetData(NFTsCharacter data)
     {
         Data = data;
@@ -18,11 +21,13 @@ public class UICharacter : MonoBehaviour
         MyName.text = Lang.GetEntityName(Data.KeyId);
     }
 
+    //returns the nft character data
     public NFTsCharacter GetData()
     {
         return Data;
     }
 
+    //Show or hide the selection icon
     public void SetSelection(bool selected)
     {
         IconSelected.SetActive(selected);

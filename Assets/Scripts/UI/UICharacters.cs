@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,14 +6,18 @@ using UnityEngine.UI;
 
 public class UICharacters : MonoBehaviour
 {
+    //Player NFT collection reference
     public UserCollection PlayerCollection;
+    //UI characters references
     List<UICharacter> AllCharacters;
+    //Current player character
     UICharacter CurrentChar;
-
+    //Default UI character reference
     public UICharacter DefaultUIChar;
-
+    //Scroll bar reference (with the list of characters)
     public Scrollbar CharactersScroll;
 
+    //UI Stats of the selected character
     public Image PreviewAvatar;
     public Image Emblem;
     public Text CharName;
@@ -31,10 +34,14 @@ public class UICharacters : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Initialize the UI characters list
         AllCharacters = new List<UICharacter>();
+        //Get the player collection data
         PlayerCollection = GameData.GetUserCollection();
+        //Get the current player character
         NFTsCharacter pCharacter = GameData.GetUserCharacter();
 
+        //Show the UI characters from the player collection characters data
         foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.CharacterId))
         {
             UICharacter uichar = Instantiate(DefaultUIChar.gameObject, DefaultUIChar.transform.parent).GetComponent<UICharacter>();
@@ -44,14 +51,17 @@ public class UICharacters : MonoBehaviour
             AllCharacters.Add(uichar);
         }
 
+        //Sets the player selected character, if is null, select the first one of the list
         CurrentChar = AllCharacters.FirstOrDefault(f => f.GetData() == pCharacter);
         if (CurrentChar == null)
         {
             CurrentChar = AllCharacters[0];
         }
+        //Update the UI of the selected character
         UpdateUIInfo();
     }
 
+    //Selects and changes the current player´s character
     public void BtnSelectCharacter(UICharacter character)
     {
         CurrentChar.SetSelection(false);
@@ -66,6 +76,7 @@ public class UICharacters : MonoBehaviour
         }
     }
 
+    //Updates the UI info of the selected character
     public void UpdateUIInfo()
     {
         CurrentChar.SetSelection(true);
@@ -85,6 +96,7 @@ public class UICharacters : MonoBehaviour
         }
     }
 
+    //Scrolls to the right limit of the characters list
     public void GoLimit()
     {
         CharactersScroll.value = 1;

@@ -3,32 +3,40 @@ using UnityEngine.UI;
 
 public class UICardDetail : UICard
 {
+    //References the object model of the selected card
     public GameObject Model;
+    //References the mesh renderer model of the selected card
     public MeshRenderer ModelRender;
+    //References the mesh filter model of the selected card
     public MeshFilter ModelFilter;
 
+    //The text references of specific card stats
     public Text Txt_HP;
     public Text Txt_Shield;
     public Text Txt_Dmg;
 
+    //The images bars references of specific card stats
     public Image Bar_HP;
     public Image Bar_Shield;
     public Image Bar_Dmg;
 
+    //The particles reference for skills cards
     GameObject CurrentObjPrev;
 
+    //Sets the UI data from a selected card from NFT data
     public override void SetData(NFTsCard data)
     {
+        //Set the basic properties
         Data = data;
         IsSelected = false;
-
         IsSkill = data as NFTsSpell != null;
 
-        //Init Basic Properties
+        //Set the name, description and cost of the card
         Txt_Name.text = Lang.GetEntityName(data.KeyId);
         Txt_Details.text = Lang.GetEntityDescription(data.KeyId);
         Txt_Cost.text = data.EnergyCost.ToString();
 
+        //Deletes the last particules preview if exist
         if (CurrentObjPrev != null)
         {
             Destroy(CurrentObjPrev);

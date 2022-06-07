@@ -1,9 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Types of cards sorting
 public enum CardOrder
 {
     Name,
@@ -11,6 +11,7 @@ public enum CardOrder
     Rarity
 }
 
+//Types of cards
 public enum CardClass
 {
     Ship,
@@ -20,31 +21,43 @@ public enum CardClass
 
 public class UICollection : MonoBehaviour
 {
+    //UI deck of the player
     public UICard[] Deck = new UICard[8];
-
+    //UI default card collection
     public UICard CardCollection;
-
+    //UI selected card preview
     public UICardDetail CardPreview;
 
+    //Current ui card selected
     [HideInInspector]
     public UICard CurrentSelected;
 
+    //Current draging card
     UICard DragingCard;
+    //Current mouse over card
     UICard EnterCard;
 
+    //All NFTs cards
     List<NFTsCard> AvCards;
+    //Current showing cards
     List<UICard> AllCards;
 
+    //Player collection and character data reference
     UserCollection PlayerCollection;
     NFTsCharacter PlayerCharacter;
 
+    //UI draging card reference
     public UICardDrag DragIcon;
 
+    //UI card sorting drop down
     public Dropdown DD_OrderBy;
 
+    //List of cards types (filter)
     List<CardClass> ClassFilter;
+    //Dictionary of key cards (nfts) and cards names
     Dictionary<string, string> UnitNames;
 
+    //Filtering and sorting variables
     public bool FilterShips { get; set; }
     public bool FilterStations { get; set; }
     public bool FilterSkills { get; set; }
@@ -54,6 +67,7 @@ public class UICollection : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //initialize the filters and sorts default vaules
         FilterShips = true;
         FilterStations = true;
         FilterSkills = true;
@@ -72,23 +86,29 @@ public class UICollection : MonoBehaviour
             new Dropdown.OptionData { text = Lang.GetText("mn_rarity")}
         });
 
+        //Gets the user collection data
         PlayerCollection = GameData.GetUserCollection();
-
+        //Refresh de UI
         RefreshCollection();
     }
 
     private void OnEnable()
     {
+        //Refresh de UI
         RefreshCollection();
     }
 
+    //Updates the UI collection with the current data and filters
     void RefreshCollection()
     {
+        //If the collection data does't exit, exit the function
         if (PlayerCollection == null)
             return;
 
+        //Gets the current player character
         PlayerCharacter = GameData.GetUserCharacter();
 
+        //Clean the collection section
         foreach (Transform child in CardCollection.transform.parent)
         {
             if (child.gameObject != CardCollection.gameObject)
@@ -97,16 +117,20 @@ public class UICollection : MonoBehaviour
             }
         }
 
+        //Get the collection cards deppendig the cuurent faction of the current player character
         AvCards = PlayerCollection.Cards.Where(f => f.Faction == PlayerCharacter.Faction || f.Faction == "Neutral").ToList();
+        //Initialize the dictionary with the keys and names of the cards
         UnitNames = new Dictionary<string, string>();
         foreach(NFTsCard nFTsCard in AvCards)
         {
             UnitNames.Add(nFTsCard.KeyId, Lang.GetEntityName(nFTsCard.KeyId));
         }
-        AllCards = new List<UICard>();
-
+        
+        //Sort the data by name (default sort)
         List<NFTsCard> Sorted = AvCards.OrderBy(f => UnitNames[f.KeyId]).ToList();
 
+        //instantiate the ui cards with the NFTs data
+        AllCards = new List<UICard>();
         foreach (NFTsCard nFTsCard in Sorted)
         {
             if (PlayerCollection.Deck.Contains(nFTsCard))
@@ -118,6 +142,7 @@ public class UICollection : MonoBehaviour
             card.SetData(nFTsCard);
         }
 
+        //Initialize the UI Deck data
         if (PlayerCollection.Deck.Count == 8)
         {
             for (int i = 0; i < PlayerCollection.Deck.Count; i++)
@@ -126,16 +151,20 @@ public class UICollection : MonoBehaviour
             }
         }
 
+        //Hide the default ui card
         CardCollection.gameObject.SetActive(false);
 
+        //Select the first card
         if (AllCards.Count > 0)
         {
             SelectCard(AllCards[0]);
         }
 
+        //Apply the sort and filters values
         SortAndFilterCollection();
     }
 
+    //Selects a card
     public void SelectCard(UICard card)
     {
         if (card.DeckSlot == -1 && EnterCard != null)
@@ -152,6 +181,7 @@ public class UICollection : MonoBehaviour
         CardPreview.SetData(card.GetData());
     }
     
+    //Drags a card
     public void DragCard(UICard card)
     {
         DragingCard = card;
@@ -160,6 +190,7 @@ public class UICollection : MonoBehaviour
         DragIcon.transform.position = Input.mousePosition;
     }
 
+    //Drops a card
     public void DropCard()
     {
         if (EnterCard!= null && DragingCard != null)
@@ -178,16 +209,19 @@ public class UICollection : MonoBehaviour
         DragIcon.gameObject.SetActive(false);
     }
 
+    //Mouse over enter to deck
     public void DeckEnterDrop(UICard card)
     {    
         EnterCard = card;
     }
 
+    //Mouse over exit from deck
     public void ClearEnterDrop(UICard card)
     {
         EnterCard = null;
     }
 
+    //Applay the filters and sort on the collection list
     public void SortAndFilterCollection()
     {
         ClassFilter.Clear();
