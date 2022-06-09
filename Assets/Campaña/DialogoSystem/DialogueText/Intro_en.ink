@@ -1,5 +1,5 @@
 
-AHHHH llegadoo Sotzeerr!!!! #speaker:Pokallore #portrait:pokallore_feliz #layout:left
+AHHHH arrived Sotzeerr!!!! #speaker:Pokallore #portrait:pokallore_feliz #layout:left
 +[Next]
     The Cosmic Cons have found us, they followed me. Prepare for some company… #speaker:Sotzeerr #portrait:sotzeer_feliz #layout:right
     ++[Next]

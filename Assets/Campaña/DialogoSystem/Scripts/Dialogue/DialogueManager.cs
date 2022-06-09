@@ -35,8 +35,10 @@ public class DialogueManager : MonoBehaviour
     private const string PORTRAIT_TAG = "portrait";
     private const string LAYOUT_TAG = "layout";
 
-    [Header("Ink JSON")]
-    [SerializeField] private TextAsset inkJSON;
+    [Header("Archivos Ink JSON:")]
+    //[SerializeField] private TextAsset inkJSON;
+    [SerializeField] private TextAsset inkJSON_es;
+    [SerializeField] private TextAsset inkJSON_en;
 
     private void Awake() 
     {
@@ -54,6 +56,12 @@ public class DialogueManager : MonoBehaviour
 
     private void Start() 
     {
+        ///->    Obtener lenguaje activo    <--////
+        //Language lenguaje = GameData.GetGameLanguage(); // obtener lenguaje, 
+        //GameData.GetGameLanguage(Language.Spanish);
+        //UIMainMenu.ChangeLang(1);
+        GameData.ChangeLang((Language)1);
+
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
@@ -78,7 +86,18 @@ public class DialogueManager : MonoBehaviour
             //visualCue.SetActive(true);
             if (InputManager.GetInstance().GetInteractPressed()) 
             {
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                //DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+                if(GameData.GetGameLanguage() == Language.English)
+                {
+                    DialogueManager.GetInstance().EnterDialogueMode(inkJSON_en);
+                }
+                else
+                {
+                    if(GameData.GetGameLanguage() == Language.Spanish)
+                    {
+                        DialogueManager.GetInstance().EnterDialogueMode(inkJSON_es);
+                    }
+                }
             }
         }
 
