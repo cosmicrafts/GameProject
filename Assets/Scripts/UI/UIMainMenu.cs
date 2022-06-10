@@ -9,52 +9,64 @@ using System.Linq;
 
 public class UIMainMenu : MonoBehaviour
 {
+    //Self public reference
     public static UIMainMenu Menu;
 
+    //Main sections
     public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
     public GameObject MultiPanel;
 
+    //Sub sections
     public GameObject MainMenu;
     public GameObject CollectionMenu;
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
 
+    //Back button 
     public GameObject BackBtn;
 
+    //UI Collection controller
     public UICollection Collection;
 
+    //User data
     public User PlayerUser;
     public UserProgress PlayerProgress;
     public UserCollection PlayerCollection;
     public NFTsCharacter PlayerCharacter;
 
+    //UI Text references for game mode and game status
     public Text CurrentGameMode;
     public Text CurrentGameModeStatus;
 
-    //TimeSpan TimeMatch;
-    //DateTime StartTime;
-
+    //Current section title
     public Text TopTitle;
-    //public Image GameTitle;
+
+    //Loading Bar (used when a new scene is loading)
     public Image LocalGameLoadingBar;
 
+    //UI User data references
     List<UIPTxtInfo> UIPropertys;
 
+    //Progress of the loaded user data
     int UserDataLoaded;
 
     private void Awake()
     {
         Debug.Log("--- MENU START ---");
+        //initialize variables
         Menu = this;
         UserDataLoaded = 0;
 
+        //Show the login page
         LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
+        //If the essential data doesn't exist...
         if (!GameData.DataReady)
         {
+            //Initialize the essential data
             SaveData.LoadGameConfig();
             PlayerCollection = GameData.GetUserCollection();
             PlayerCollection.AddUnitsAndCharactersDefault();
@@ -62,21 +74,28 @@ public class UIMainMenu : MonoBehaviour
         }
         else
         {
+            //Load the player data
             InitPlayerData();
         }
+
+        //Check the current game mode
         CheckGameMode();
 
+        //Check the build type
         GameData.DebugMode = false;
 #if UNITY_EDITOR
         GameData.DebugMode = true;
 #endif
+        //Check the current plataform
 #if UNITY_WEBGL
         GameData.CurrentPlataform = Plataform.Web;
 #endif
-
+        //If this is a debug runtime...
         if (GameData.DebugMode)
         {
+            //Set the game mode as bots
             GameData.CurrentMatch = Match.bots;
+            //Load the player data (with default vaules)
             InitPlayerData();
         }
         Debug.Log("--- MENU REDY ---");
@@ -85,20 +104,23 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Find and save all the UI player properties
         UIPropertys = new List<UIPTxtInfo>();
         foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
         {
             UIPropertys.Add(prop);
         }
-        //TimeMatch = new TimeSpan(0, 0, 5);
-
+        
+        //Check if we already have the user data
         if (GameData.UserIsInit())
         {
+            //Show the main menu
             LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
         }
     }
 
+    //Called from WEB, for set the base player data
     public void GL_SetPlayerData(string jsonData)
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);
@@ -106,6 +128,7 @@ public class UIMainMenu : MonoBehaviour
         AddProgressDataLoaded();
     }
 
+    //Called from WEB, for set the player character
     public void GL_SetCharacterData(string jsonData)
     {
         NFTsCharacter character = JsonConvert.DeserializeObject<NFTsCharacter>(jsonData);
@@ -113,6 +136,7 @@ public class UIMainMenu : MonoBehaviour
         AddProgressDataLoaded();
     }
 
+    //Called from WEB, for set the base player progress
     public void GL_SetProgressData(string jsonData)
     {
         Progress progress = JsonConvert.DeserializeObject<Progress>(jsonData);
@@ -122,6 +146,7 @@ public class UIMainMenu : MonoBehaviour
         AddProgressDataLoaded();
     }
 
+    //Called from WEB, for set the base player config
     public void GL_SetConfigData(string jsonData)
     {
         Config config = JsonConvert.DeserializeObject<Config>(jsonData);
@@ -130,6 +155,7 @@ public class UIMainMenu : MonoBehaviour
         AddProgressDataLoaded();
     }
 
+    //Add progress of the player loaded data
     void AddProgressDataLoaded()
     {
         UserDataLoaded++;
@@ -137,6 +163,7 @@ public class UIMainMenu : MonoBehaviour
             InitPlayerData();
     }
 
+    //Load the player´s data and show the main menu
     void InitPlayerData()
     {
         Debug.Log("--- MENU SHOW ---");
@@ -147,6 +174,7 @@ public class UIMainMenu : MonoBehaviour
         MenuPanel.SetActive(true);
     }
 
+    //Start the IA game mode
     void PlayIA()
     {
         PlayerUser.FirstGame = false;
@@ -157,6 +185,7 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(LoadLocalGame());
     }
 
+    //Start the Tutorial
     void PlayTutorial()
     {
         PlayerUser.FirstGame = true;
@@ -167,6 +196,7 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(LoadLocalGame());
     }
 
+    //Serch for a multiplayer match
     void PlayMulti()
     {
         PlayerUser.FirstGame = true;
@@ -174,6 +204,7 @@ public class UIMainMenu : MonoBehaviour
         MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
     }
 
+    //Redirect to the login page
     public void GoLoginPage()
     {
 #if UNITY_EDITOR
@@ -183,21 +214,25 @@ public class UIMainMenu : MonoBehaviour
 #endif
     }
 
+    //Open the cosmicrafts discord
     public void GoDiscordPage()
     {
         Application.OpenURL("http://discord.gg/cosmicrafts");
     }
 
+    //Open the airdrip page
     public void GoAirdropsPage()
     {
         Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
     }
 
+    //Change the game language
     public void ChangeLang(int lang)
     {
         GameData.ChangeLang((Language)lang);
     }
 
+    //Load the game scene for a Tutorial o PVIA game
     IEnumerator LoadLocalGame()
     {   
         AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
@@ -209,6 +244,7 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
+    //Show the collection menu
     public void GoCollectionMenu()
     {
         MainMenu.SetActive(false);
@@ -218,6 +254,7 @@ public class UIMainMenu : MonoBehaviour
         //GameTitle.gameObject.SetActive(false);
     }
 
+    //Show the characters menu
     public void GoCharactersMenu()
     {
         MainMenu.SetActive(false);
@@ -227,6 +264,7 @@ public class UIMainMenu : MonoBehaviour
         //GameTitle.gameObject.SetActive(false);
     }
 
+    //Show the games mode menu
     public void GoGamesModesMenu()
     {
         MainMenu.SetActive(false);
@@ -236,6 +274,7 @@ public class UIMainMenu : MonoBehaviour
         //GameTitle.gameObject.SetActive(false);
     }
 
+    //Start the current game mode
     public void PlayCurrentMode()
     {
         Debug.Log("-- PLAY --");
@@ -264,6 +303,7 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
+    //Go back to the main menu
     public void BackMainSection()
     {
         RefreshAllPropertys();
@@ -276,6 +316,7 @@ public class UIMainMenu : MonoBehaviour
         //GameTitle.gameObject.SetActive(true);
     }
 
+    //Change the current game mode
     public void ChangeCurrentGameMode(int newMode)
     {
         GameData.CurrentMatch = (Match)newMode;
@@ -283,6 +324,7 @@ public class UIMainMenu : MonoBehaviour
         BackMainSection();
     }
 
+    //Update the UI for the current game mode
     void CheckGameMode()
     {
         switch (GameData.CurrentMatch)
@@ -314,6 +356,7 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
+    //Refresh a specific UI propertie of the player
     public void RefreshProperty(PlayerProperty property)
     {
         foreach(UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property))
@@ -322,6 +365,7 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
+    //Refresh all the UI references properties of the player
     public void RefreshAllPropertys()
     {
         foreach (UIPTxtInfo prop in UIPropertys)

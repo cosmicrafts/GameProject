@@ -1,51 +1,66 @@
 ﻿using Newtonsoft.Json;
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIMatchMaking : MonoBehaviour
 {
+    //Searching match screen reference
     public GameObject SearchingScreen;
+    //Match found screen reference
     public GameObject MatchScreen;
 
+    //1 SEC. delta time
     WaitForSeconds DeltaOne;
 
+    //Cancel Searching button
     public GameObject CancelButton;
 
+    //Search Status text reference
     public Text StatusGame;
+    //Searching Icon reference
     public GameObject SearchIcon;
+    //Match found Icon reference
     public GameObject FoundIcon;
 
+    //UI Players properties and icons references
     public Text Txt_VsWalletId;
     public Text Txt_VsNikeName;
     public Text Txt_VsLevel;
     public Image Img_VsIcon;
     public Image Img_VsEmblem;
 
+    //UI count down and tips references
     public Text Txt_CountDown;
     public Text Txt_Tips;
 
+    //Player data
     User MyUserData;
     UserGeneral VsUserData;
+
+    //The current serching was canceled
     bool IsCanceled;
 
+    //Game start count down
     int CoutDown;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Set the delta time
         DeltaOne = new WaitForSeconds(1f);
+        //Get the player's data
         MyUserData = GameData.GetUserData();
     }
 
-
+    //Start searching for a match
     public void StartSearch()
     {
+        //If this is a debug build...
         if (GameData.DebugMode)
         {
+            //Make a fake VS player
             GameData.ImMaster = false;
             GameData.SetVsUser(new UserGeneral()
             {
@@ -59,18 +74,22 @@ public class UIMatchMaking : MonoBehaviour
             SceneManager.LoadScene(1);
             return;
         }
+        //Shown the corresponding UI
         SearchingScreen.SetActive(true);
         MatchScreen.SetActive(false);
         CancelButton.SetActive(true);
         SearchIcon.SetActive(true);
         FoundIcon.SetActive(false);
         StatusGame.text = Lang.GetText("mn_matchmaking");
+        //Initialize de network variables
         GameNetwork.Start();
         IsCanceled = false;
         CoutDown = 5;
+        //Enter to the searching loop
         StartCoroutine(Searching());
     }
 
+    //Stop the searching
     public void CancelSearch()
     {
         SearchingScreen.SetActive(false);
@@ -82,6 +101,7 @@ public class UIMatchMaking : MonoBehaviour
         StopAllCoroutines();
     }
 
+    //Load the Enemy player data
     void UpdateVsData()
     {
         VsUserData = GameNetwork.GetVsData();
@@ -89,6 +109,7 @@ public class UIMatchMaking : MonoBehaviour
         GameData.SetVsUser(VsUserData);
     }
 
+    //Update the UI Enemy data
     void UpdateUI_VSData()
     {
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
@@ -99,6 +120,7 @@ public class UIMatchMaking : MonoBehaviour
         Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(VsUserData.CharacterKey);
     }
 
+    //Called from the WEB, set the current match info
     public void GLGetICPData(string json)
     {
         if (IsCanceled)
@@ -107,45 +129,52 @@ public class UIMatchMaking : MonoBehaviour
         GameData.ImMaster = GameNetwork.GetMasterWalletId() == MyUserData.WalletId;
     }
 
+    //Searching loop
     IEnumerator Searching()
     {
-        //Find Match
+        //Make a resume of the player data
         string MyJsonProfile = JsonConvert.SerializeObject(GameData.BuildMyProfileHasVS());
         if (GameData.IsProductionWeb())
         {
+            //Send a request for a match with the player´s data
             GameNetwork.JSSearchGame(MyJsonProfile);
         }
 
         //Wait for match
         yield return new WaitUntil(() => GameNetwork.GetId() != 0);
 
+        //Check if the player cancels the operation
         if (IsCanceled)
             yield return null;
 
-        //Join Match
+        //Join to the match
         Debug.Log($"Match: {GameNetwork.GetId()}");
+        //Update the match info
         GameNetwork.SetClientGameId(GameNetwork.GetId());
+        //Update the UI
         CancelButton.SetActive(GameData.ImMaster);
-        //if (!GameData.ImMaster)
-        //    StatusGame.text = Lang.GetText("mn_matchfound");
         SearchIcon.SetActive(false);
         FoundIcon.SetActive(true);
 
-        //Wait for ready
+        //Wait for the other player
         yield return new WaitUntil(() => GameNetwork.GameRoomIsFull());
 
+        //Check if the player cancels the operation
         if (IsCanceled)
             yield return null;
 
+        //Update the UI data
         UpdateVsData();
+        //Show the lobby with the players
         SearchingScreen.SetActive(false);
         MatchScreen.SetActive(true);
         Txt_Tips.text = Lang.GetText($"mn_tip_{UnityEngine.Random.Range(1,4)}");
         Txt_CountDown.text = CoutDown.ToString();
 
+        //Load the game scene but not open it
         AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
         loading.allowSceneActivation = false;
-        //Final Count Down
+        //Begin the count down
         yield return DeltaOne;
 
         while (CoutDown > 0)
@@ -154,7 +183,7 @@ public class UIMatchMaking : MonoBehaviour
             Txt_CountDown.text = CoutDown.ToString();
             yield return DeltaOne;
         }
-        //Go Game
+        //Go to the Game Scene
         loading.allowSceneActivation = true;
     }
 }

@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 public class UIVsPInfo : MonoBehaviour
 {
+    //The enemy player property
     public PlayerProperty Property;
 
-    // Start is called before the first frame update
+    //Load and show the property when begins
     void Start()
     {
         LoadProperty();
@@ -13,11 +14,13 @@ public class UIVsPInfo : MonoBehaviour
 
     public void LoadProperty()
     {
+        //Check if we have an enemy data
         if (GameData.GetVersion() == null)
         {
             return;
         }
 
+        //Show the selected property
         switch (Property)
         {
             case PlayerProperty.Name:

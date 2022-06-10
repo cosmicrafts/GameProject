@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIScroll : MonoBehaviour
@@ -9,7 +8,6 @@ public class UIScroll : MonoBehaviour
     private float Ref = 768f;
     public float timeAnimation = 0.5f;
 
-    
     public void MoveTo(string item = "0,0")
     {
         string[] split = item.Split(",");
@@ -38,11 +36,5 @@ public class UIScroll : MonoBehaviour
         }
            
         transform.localPosition = targetPosition;
-           
     }
-        
-    
-       
-       
-       
 }

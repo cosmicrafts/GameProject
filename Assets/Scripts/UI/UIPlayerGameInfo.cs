@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIPlayerGameInfo : MonoBehaviour
 {
+    //Player UI stats and icons references
     public Text PlayerName;
     public Text WalletId;
     public Text Level;
@@ -12,6 +11,7 @@ public class UIPlayerGameInfo : MonoBehaviour
     public Image Avatar;
     public Image Icon;
 
+    //Update the UI banner with the player data
     public void InitInfo(User user, UserProgress progress, NFTsCharacter character)
     {
         WalletId.text = Utils.GetWalletIDShort(user.WalletId);
@@ -22,6 +22,7 @@ public class UIPlayerGameInfo : MonoBehaviour
         Icon.sprite = ResourcesServices.LoadCharacterIcon(character.Icon);
     }
 
+    //Update the UI banner with a resume of some player data (for multiplayer)
     public void InitInfo(UserGeneral user)
     {
         WalletId.text = Utils.GetWalletIDShort(user.WalletId);

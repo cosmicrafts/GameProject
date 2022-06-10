@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+//Types of properties of the player
 public enum PlayerProperty
 {
     Name,
@@ -17,9 +18,10 @@ public enum PlayerProperty
 
 public class UIPTxtInfo : MonoBehaviour
 {
+    //The player property
     public PlayerProperty Property;
 
-    // Start is called before the first frame update
+    //Load and show the property when begins
     void Start()
     {
         LoadProperty();
@@ -27,11 +29,13 @@ public class UIPTxtInfo : MonoBehaviour
 
     public void LoadProperty()
     {
+        //Check if the player data exist
         if (!GameData.UserIsInit())
         {
             return;
         }
 
+        //Show the selected property
         switch (Property)
         {
             case PlayerProperty.Name:
