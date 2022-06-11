@@ -1,4 +1,8 @@
-﻿//Enum Login Types
+﻿/*
+ * Here we save the game configuration
+ */
+
+//Enum Login Types
 public enum SocialLogs
 {
     None,

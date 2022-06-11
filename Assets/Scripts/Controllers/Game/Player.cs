@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/*
+ * This is the Player code
+ * Controls his energy, gameplay, deck, etc.
+ * Contains the player data references and his ID and team on the game
+ */
 public class Player : MonoBehaviour
 {
     //The ID of the player (or index)

@@ -1,6 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
+
+/*
+ * Here we save the network data of the master (multiplayer)
+ */
 
 //Enum of the multiplayer status
 public enum NetGameStep

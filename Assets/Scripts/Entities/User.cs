@@ -1,5 +1,7 @@
 ﻿using System;
-
+/*
+ * Here we save the essential player information
+ */
 public enum userRol
 {
     None,

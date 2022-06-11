@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+/*
+ * Here we save the network data of the client (multiplayer)
+ */
 public class NetClientGamePack
 {
     //Game Id (back end)

@@ -1,10 +1,15 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+/*
+ * This is the in-game main controller
+ * Initialize the essential data and controls the game flow
+ * Synchronize network data and connects the other controllers
+ */
 
 public class GameMng : MonoBehaviour
 {

@@ -1,5 +1,11 @@
 ﻿using System.Linq;
 using UnityEngine;
+/*
+    Here we save and manage the global data of the game like
+    player's data, game configuration, game language, current game mode, etc.
+    This data always exist
+ */
+
 //Enum Game Modes Types
 public enum Match
 {

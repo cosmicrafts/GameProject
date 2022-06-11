@@ -1,4 +1,4 @@
-﻿//Master NFT class
+﻿//This is the master NFT class
 public abstract class NFTs
 {
     public string KeyId { get; set; } //* Chr_1 - Chr_2

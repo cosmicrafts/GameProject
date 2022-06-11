@@ -1,8 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
+﻿/*
+ * This is the in-game metrics controller
+ * Save the game statistics and calculates the game results
+*/
 public class GameMetrics
 {
     //Energy variables

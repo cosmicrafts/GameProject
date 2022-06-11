@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/* 
+ * This is the 3° in-game character controller 
+ * Plagnor
+ */
 public class Character_3 : GameCharacter
 {
     // Player begins with more energy

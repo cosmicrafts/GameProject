@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/* 
+ * This is the 2° in-game character controller 
+ * Dofshlu
+ */
 public class Character_2 : GameCharacter
 {
     //Reduce time to recover shields to units

@@ -3,6 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+/*
+ * This is the in-game multiplayer data
+ * Saves and manages the network data
+ * Also defines the backend functions (JS)
+ */
+
 public static class GameNetwork
 {
     //Game package data (MASTER)

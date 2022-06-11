@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
+/* 
+ * This is the parent class for characters controllers 
+ */
 public class GameCharacter : MonoBehaviour
 {
     //Key NFT ID

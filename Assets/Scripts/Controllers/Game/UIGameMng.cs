@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * This is the in-game UI controller
+ * Contains the UI references and functions for update them
+ * Only controls the game's data, the UI for the players and the tutorial are in other scripts
+ */
 public class UIGameMng : MonoBehaviour
 {
     //Screens objects references

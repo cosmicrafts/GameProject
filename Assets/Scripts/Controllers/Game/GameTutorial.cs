@@ -3,6 +3,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
+ * This is the Tutorial controller
+ * Controls the events in the game and the character´s dialogs
+ * Limits the player to do only specific things
+ */
+
 public class GameTutorial : MonoBehaviour
 {
     //Enum with the diferents status of the tutorial

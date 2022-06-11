@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-
+/*
+ * Here we save and manages the player NFTs
+ */
 public class UserCollection
 {
     public Dictionary<string,List<NFTsCard>> Decks;

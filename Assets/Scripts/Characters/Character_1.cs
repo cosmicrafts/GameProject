@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/* 
+ * This is the first in-game character controller 
+ * Wegnar
+ */
 public class Character_1 : GameCharacter
 {
     //Add dmg and speed attack to units

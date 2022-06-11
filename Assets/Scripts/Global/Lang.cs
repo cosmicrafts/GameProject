@@ -1,7 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Xml;
 using UnityEngine;
+/*
+ * This is the game language controller
+ * Loads the strings from the Xmls and returns the vaules for the current game language
+*/
 //All the available languages
 public enum Language
 {

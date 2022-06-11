@@ -1,7 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿/* 
+ * This is the 4° in-game character controller 
+ * Sotzeer
+ */
 public class Character_4 : GameCharacter
 {
     //Add 2 shield points and movement speed to units

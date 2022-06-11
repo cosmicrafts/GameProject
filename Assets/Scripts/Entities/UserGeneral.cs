@@ -1,4 +1,7 @@
-﻿
+﻿/*
+ * This is a class used for unifys the basic data and progression of the player
+ * Only used for multiplayer comunication
+ */
 
 public class UserGeneral : User
 {

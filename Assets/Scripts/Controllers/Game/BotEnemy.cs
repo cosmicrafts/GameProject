@@ -2,7 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+/* 
+ * This is the IA controller
+ * Works with a timing loop and has 3 behaviour modes
+ * Use his own energy and deck
+ * The positions to deply units are predefined
+ */
 public class BotEnemy : MonoBehaviour
 {
     //Bot IA modes

@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * This code show the game´s version on a text component
+ */
 [RequireComponent(typeof(Text))]
 public class Version : MonoBehaviour
 {
