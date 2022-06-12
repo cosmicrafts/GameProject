@@ -34,4 +34,13 @@
       JSCancelGame: function (gameId) {
             ReactUnityWebGL.CancelGame(gameId);
       },
+
+     JSLoginPanel: function (json) {
+            ReactUnityWebGL.JSLoginPanel(Pointer_stringify(json));
+
+      },
+
+      JSWalletsLogin: function (string) {
+            ReactUnityWebGL.JSWalletsLogin(walletId);
+      },
 });

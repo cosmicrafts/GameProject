@@ -230,4 +230,10 @@ public static class GameNetwork
     //Cancel the match making
     [DllImport("__Internal")]
     public static extern void JSCancelGame(int gameId);
+
+    [DllImport("__Internal")]
+    public static extern void JSLoginPanel(string accountID);
+
+    [DllImport("__Internal")]
+    public static extern void JSWalletsLogin(string walletID);
 }
