@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This is a UI instance used to show a translated text
+ * Requires the TEXT component and the key of the string
+ */
+
 [RequireComponent(typeof(Text))]
 public class UILang : MonoBehaviour
 {

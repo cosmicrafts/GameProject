@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This code represents a character instance on the characters menu
+ * The instance has the icon and name UI references
+ */
+
 public class UICharacter : MonoBehaviour
 {
     //NFT data source

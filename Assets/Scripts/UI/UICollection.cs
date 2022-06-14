@@ -3,6 +3,12 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This is the UI collection menu controller
+ * Initialize all UI collection window (cards, decks and previews)
+ * Manage the changes on the deck and only shows cards of the current character faction or neutral faction
+ */
+
 //Types of cards sorting
 public enum CardOrder
 {

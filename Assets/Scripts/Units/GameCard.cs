@@ -1,7 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+/*
+ * This is the basic game card data used on the units and spells prefabs
+ */
+
+//Type of the prefab
 public enum CardType
 {
     Unit,

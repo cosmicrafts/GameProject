@@ -1,6 +1,11 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This is the game resources services
+ * Returns assets from the resources folder
+ */
+
 public static class ResourcesServices
 {
     //Dictionary of factions (prefix)

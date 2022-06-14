@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This code shows a enemy player property on a UI element (UI component)
+ * Is only used for multiplayer
+ */
+
 public class UIVsPInfo : MonoBehaviour
 {
     //The enemy player property

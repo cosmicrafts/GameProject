@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * This code represents a instance of a card on the deck collection menu
+ * The card has the UI refrences from the inspector, to show the NFT data
+ */
 public class UICard : MonoBehaviour
 {
     //NFT data source

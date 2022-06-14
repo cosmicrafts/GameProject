@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This code shows the player data on the in-game UI player banner
+ */
+
 public class UIPlayerGameInfo : MonoBehaviour
 {
     //Player UI stats and icons references

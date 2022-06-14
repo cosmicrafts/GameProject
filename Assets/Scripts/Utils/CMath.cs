@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 
+/*
+ * This script has some Math utils functions
+ */
+
 public static class CMath
 {
     //Returns the angle between 2 vector (0 to 360)

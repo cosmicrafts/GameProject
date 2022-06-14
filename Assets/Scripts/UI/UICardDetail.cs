@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * This is a detailed view of the selected card on the deck collection menu
+ * Shows more data and a 3D preview of the selected card
+ * Gets the base references and funcions of UICard code
+ */
 public class UICardDetail : UICard
 {
     //References the object model of the selected card

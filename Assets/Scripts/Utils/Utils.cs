@@ -1,5 +1,8 @@
 ﻿using System;
 
+/*
+ * This script has some general utils functions
+ */
 public static class Utils
 {
     //Simple string encryptation

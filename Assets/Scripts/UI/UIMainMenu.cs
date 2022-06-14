@@ -7,6 +7,12 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
 
+/*
+ * This is the UI Main menu controller
+ * Manages the UI references and windows to navigate through the game menus and start the in-game scenes
+ * Also recive the back-end functions to initialize the player data
+ */
+
 public class UIMainMenu : MonoBehaviour
 {
     //Self public reference

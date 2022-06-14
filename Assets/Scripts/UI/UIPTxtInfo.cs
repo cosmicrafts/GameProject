@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+/*
+ * This code shows a player property on a UI element (UI component)
+ */
+
 //Types of properties of the player
 public enum PlayerProperty
 {

@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-
+/*
+ * This code represents a in the game card instance
+ * The card has the UI refrences from the inspector, to show the Icon and energy cost NFT data
+ */
 public class UIGameCard : MonoBehaviour
 {
     //The UI card in game

@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/*
+ * This code manages the multiplayer matchmaking and show the UI matching elements
+ * Also Manages the multiplayer lobby and opens the multiplayer game scene when the players are ready
+ */
+
 public class UIMatchMaking : MonoBehaviour
 {
     //Searching match screen reference
