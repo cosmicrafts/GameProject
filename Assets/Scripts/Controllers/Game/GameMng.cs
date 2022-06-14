@@ -450,7 +450,7 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSExitGame();
         }
 
-        SceneManager.LoadScene(0,LoadSceneMode.Single);
+        SceneManager.LoadScene(1,LoadSceneMode.Single);
     }
     //Multiplayer data async loop (Send game data)
     IEnumerator LoopGameNetAsync()

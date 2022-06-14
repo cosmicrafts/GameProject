@@ -241,7 +241,7 @@ public class UIMainMenu : MonoBehaviour
     //Load the game scene for a Tutorial o PVIA game
     IEnumerator LoadLocalGame()
     {   
-        AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
 
         while(!loading.isDone)
         {
