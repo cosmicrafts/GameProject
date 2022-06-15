@@ -17,9 +17,32 @@ public class LoginTest : MonoBehaviour
     [SerializeField]
     GameObject LoginPanel;
 
+
+    private Animator anim;
+
+
+    // Start is called before the first frame update
+  
+
+    void CloseLogin()
+    {
+        if (anim != null)
+        {
+            anim.Play("Close_PanelLogin");
+        }
+    }
+     void ClosePanelLoading()
+    {
+        if (anim != null)
+        {
+            anim.Play("Close_PanelLoading");
+        }
+    }
+
     void Start()
     {
-          namePanel.SetActive(false);
+        anim = GetComponent<Animator>();
+        namePanel.SetActive(false);
     }
 
     // Update is called once per frame
