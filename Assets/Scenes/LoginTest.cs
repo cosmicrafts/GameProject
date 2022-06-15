@@ -10,6 +10,7 @@ public class LoginTest : MonoBehaviour
     [SerializeField]
     GameObject namePanel;
     string playerName;
+ 
     private string account;
     string mainScene="Menu";
     bool haveAccount = false;
@@ -63,6 +64,8 @@ public class LoginTest : MonoBehaviour
     {
         if (string.IsNullOrEmpty(usser))
         {
+
+            LoginPanel.SetActive(false);
             namePanel.SetActive(true);
         }
         else
