@@ -18,7 +18,8 @@ public class LoginTest : MonoBehaviour
     [SerializeField]
     GameObject LoginPanel;
 
-
+  [SerializeField]
+  GameObject loadingPanel;
     private Animator anim;
 
 
