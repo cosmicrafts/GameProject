@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 using UnityEngine.SceneManagement;
 public class LoginTest : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class LoginTest : MonoBehaviour
     [SerializeField]
     GameObject namePanel;
     string playerName;
- 
+    
     private string account;
     string mainScene="Menu";
     bool haveAccount = false;
