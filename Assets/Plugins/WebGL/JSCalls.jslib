@@ -41,7 +41,7 @@
       },
 
       JSWalletsLogin: function (walletName) {
-            ReactUnityWebGL.JSWalletsLogin(walletName);
+            ReactUnityWebGL.JSWalletsLogin(Pointer_stringify(walletName));
       },
 
       RequestAnvilConnect: function(anvilUrl) {
