@@ -40,8 +40,8 @@
 
       },
 
-      JSWalletsLogin: function (string) {
-            ReactUnityWebGL.JSWalletsLogin(walletId);
+      JSWalletsLogin: function () {
+            ReactUnityWebGL.JSWalletsLogin();
       },
 
       RequestAnvilConnect: function(anvilUrl) {
