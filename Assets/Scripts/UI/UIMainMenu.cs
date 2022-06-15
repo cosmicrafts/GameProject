@@ -66,7 +66,7 @@ public class UIMainMenu : MonoBehaviour
         UserDataLoaded = 0;
 
         //Show the login page
-        LoginPanel.SetActive(true);
+       // LoginPanel.SetActive(true);
         MenuPanel.SetActive(false);
 
         //If the essential data doesn't exist...
