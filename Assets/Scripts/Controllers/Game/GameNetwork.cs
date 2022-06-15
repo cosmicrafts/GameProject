@@ -236,4 +236,34 @@ public static class GameNetwork
 
     [DllImport("__Internal")]
     public static extern void JSWalletsLogin(string walletID);
+
+    [DllImport("__Internal")]
+    public static extern void RequestAnvilConnect(string anvilUrl);
+
+    [DllImport("__Internal")]
+    public static extern void CheckAnvilConnection(string anvilUrl);
+
+    [DllImport("__Internal")]
+    public static extern void GetAnvilNfts(string anvilUrl);
+
+
+
+    public static void RequestConnect(string anvilUrl)
+    {
+
+     RequestAnvilConnect(anvilUrl);
+
+    }
+    public static void CheckConnection(string anvilUrl)
+    {
+
+       CheckAnvilConnection(anvilUrl);
+
+    }
+
+    public static void OnGetAnvilNfts(string anvilUrl)
+    {
+      GetAnvilNfts(anvilUrl);
+
+    }
 }

@@ -43,4 +43,19 @@
       JSWalletsLogin: function (string) {
             ReactUnityWebGL.JSWalletsLogin(walletId);
       },
+
+      RequestAnvilConnect: function(anvilUrl) {
+        dispatchReactUnityEvent("RequestIcpConnect", anvilUrl);
+    },
+    
+    CheckAnvilConnection: function(anvilIndex) {
+        dispatchReactUnityEvent("CheckAnvilConnection", anvilUrl);
+    },
+    
+    GetAnvilNfts : function (anvilUrl) 
+    {
+        dispatchReactUnityEvent("GetAnvilNfts", anvilUrl);
+    }
+
+
 });
