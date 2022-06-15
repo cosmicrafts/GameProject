@@ -54,7 +54,7 @@ public class Unit : MonoBehaviour
     float ShieldLoad = 0f;
     float ShieldCharge = 0f;
     float ShieldSpeed = 1f;
-
+    [SerializeField]
     protected SphereCollider TrigerBase;
     protected SphereCollider SolidBase;
 
@@ -64,6 +64,7 @@ public class Unit : MonoBehaviour
     public GameObject Portal;
     public UIUnit UI;
     protected Outlinable MyOutline;
+    [SerializeField]
     protected Animator MyAnim;
 
     protected Vector3 LastImpact;
@@ -89,7 +90,7 @@ public class Unit : MonoBehaviour
         MyOutline.OutlineParameters.Color = GameMng.GM.GetColorUnit(MyTeam, PlayerId);
         TrigerBase.radius = SolidBase.radius;
         transform.localScale = new Vector3(Size, Size, Size);
-        MyAnim = Mesh.GetComponent<Animator>();
+       // MyAnim =transform.GetChild(0). GetComponent<Animator>();//Mesh.GetComponent<Animator>();
         Portal.transform.parent = null;
         transform.LookAt(CMath.LookToY(transform.position, GameMng.GM.GetFinalTarget(MyTeam).position));
         SA.SetActive(IsMyTeam(GameMng.P.MyTeam) && SpawnAreaSize > 0f);

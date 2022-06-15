@@ -5,7 +5,7 @@ using UnityEngine;
 public class LoadingPanel : MonoBehaviour
 {
     public static LoadingPanel instance;
-    public GameObject loadingPanel;
+    public  GameObject loadingPanel;
     private void Awake()
     {
         if (!instance)

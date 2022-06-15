@@ -58,7 +58,7 @@ public class Login : MonoBehaviour
         GameNetwork.JSLoginPanel(account); //esto aca se la manda a pk
                                            // reset login message
 
-
+        LoginPanel.SetActive(true);
     }
 
     public void OnRecibeNameData(string usser)//esta es de PK
@@ -104,6 +104,7 @@ public class Login : MonoBehaviour
             playerName = inputNameField.text;
             PlayerPrefs.SetString("AccounName", playerName);
             GameNetwork.JSLoginPanel(playerName);
+            LoginPanel.SetActive(true);
         }
 
     }
@@ -112,13 +113,13 @@ public class Login : MonoBehaviour
     {
 
         GameNetwork.JSWalletsLogin("stoicWallet");
-        LoginPanel.SetActive(true);
+       
     }
     public void IdentityLogin()
     {
 
         GameNetwork.JSWalletsLogin("identityWallet");
-        LoginPanel.SetActive(true);
+       
     }
 
 }
