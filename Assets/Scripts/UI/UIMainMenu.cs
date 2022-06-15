@@ -66,7 +66,7 @@ public class UIMainMenu : MonoBehaviour
         UserDataLoaded = 0;
 
         //Show the login page
-       // LoginPanel.SetActive(true);
+      LoadingPanel.instance.ActiveLoadingPanel();
         MenuPanel.SetActive(false);
 
         //If the essential data doesn't exist...
@@ -121,7 +121,8 @@ public class UIMainMenu : MonoBehaviour
         if (GameData.UserIsInit())
         {
             //Show the main menu
-            LoginPanel.SetActive(false);
+            LoadingPanel.instance.DesactiveLoadingPanel();
+            //LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
         }
     }

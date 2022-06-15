@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DonDestroid : MonoBehaviour
+public class LoiadinPanel : MonoBehaviour
 {
-      [SerializeField]
-  GameObject LoginPanel;
-    // Start is called before the first frame update
+    public static GameObject loadingCanvas;
     void Start()
     {
-         DontDestroyOnLoad(this.gameObject);
+        
     }
 
     // Update is called once per frame

@@ -4,27 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
-public class LoginTest : MonoBehaviour
+public class Login : MonoBehaviour
 {
-    
+
     public InputField inputNameField;
     [SerializeField]
     GameObject namePanel;
     string playerName;
-    
+
     private string account;
-    string mainScene="Menu";
+    string mainScene = "Menu";
 
     [SerializeField]
     GameObject LoginPanel;
 
-  [SerializeField]
-  GameObject loadingPanel;
+    [SerializeField]
+    GameObject loadingPanel;
     private Animator anim;
 
 
     // Start is called before the first frame update
-  
+
 
     void CloseLogin()
     {
@@ -33,7 +33,7 @@ public class LoginTest : MonoBehaviour
             anim.Play("Close_PanelLogin");
         }
     }
-     void ClosePanelLoading()
+    void ClosePanelLoading()
     {
         if (anim != null)
         {
@@ -56,8 +56,8 @@ public class LoginTest : MonoBehaviour
     {
 
         GameNetwork.JSLoginPanel(account); //esto aca se la manda a pk
-        // reset login message
-      
+                                           // reset login message
+
 
     }
 
@@ -71,23 +71,26 @@ public class LoginTest : MonoBehaviour
         }
         else
         {
+            LoadingPanel.instance.ActiveLoadingPanel();
             SceneManager.LoadScene(mainScene);
 
         }
 
     }
-   
+
 
     public void OnNameData(int usser)//esta es de PK
     {
         if (usser == 1)
         {
+            LoadingPanel.instance.ActiveLoadingPanel();
             SceneManager.LoadScene(mainScene);
             //tutorial
         }
         else
 
         {
+            LoadingPanel.instance.DesactiveLoadingPanel();
             LoginPanel.SetActive(false);
             namePanel.SetActive(true);
         }
@@ -96,19 +99,19 @@ public class LoginTest : MonoBehaviour
 
     public void SetPlayerName()
     {
-     if (inputNameField.text != null)
-     {
-         playerName = inputNameField.text;
-         PlayerPrefs.SetString("AccounName", playerName);
-         GameNetwork.JSLoginPanel(playerName);
-     }
- 
- }
+        if (inputNameField.text != null)
+        {
+            playerName = inputNameField.text;
+            PlayerPrefs.SetString("AccounName", playerName);
+            GameNetwork.JSLoginPanel(playerName);
+        }
+
+    }
 
     public void StoickLogin()
     {
-       
-     GameNetwork.JSWalletsLogin("stoicWallet");
+
+        GameNetwork.JSWalletsLogin("stoicWallet");
         LoginPanel.SetActive(true);
     }
     public void IdentityLogin()
@@ -118,9 +121,4 @@ public class LoginTest : MonoBehaviour
         LoginPanel.SetActive(true);
     }
 
-    public void Test()
-    {
-        Debug.Log("Toque");
-
-    }
 }
