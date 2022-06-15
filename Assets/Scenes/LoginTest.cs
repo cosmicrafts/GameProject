@@ -80,13 +80,13 @@ public class LoginTest : MonoBehaviour
 
     public void StoickLogin()
     {
-        Debug.Log("Toque");
+       
      GameNetwork.JSWalletsLogin("stoicWallet");
         LoginPanel.SetActive(true);
     }
     public void IdentityLogin()
     {
-        Debug.Log("Toque");
+
         GameNetwork.JSWalletsLogin("identityWallet");
         LoginPanel.SetActive(true);
     }
