@@ -11,7 +11,7 @@ public class LoginTest : MonoBehaviour
     GameObject namePanel;
     string playerName;
     private string account;
-    string mainScene="MainScene";
+    string mainScene="Menu";
     bool haveAccount = false;
     string blockChainName;
     [SerializeField]
