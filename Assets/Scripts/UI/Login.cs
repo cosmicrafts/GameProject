@@ -11,7 +11,8 @@ public class Login : MonoBehaviour
     [SerializeField]
     GameObject namePanel;
     string playerName;
-
+    [SerializeField]
+    Text walletID;
     private string account;
     string mainScene = "Menu";
 
@@ -78,7 +79,7 @@ public class Login : MonoBehaviour
 
     }
 
-
+ 
     public void OnNameData(int usser)//esta es de PK
     {
         if (usser == 1)
@@ -93,8 +94,15 @@ public class Login : MonoBehaviour
             LoadingPanel.instance.DesactiveLoadingPanel();
             LoginPanel.SetActive(false);
             namePanel.SetActive(true);
+            walletID.text = ""+ account;
         }
 
+    }
+    public void BackLoginMenu()
+    {
+        namePanel.SetActive(false);
+        LoginPanel.SetActive(true);
+       
     }
 
     public void SetPlayerName()

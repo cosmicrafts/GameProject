@@ -29,7 +29,10 @@ public class UIMainMenu : MonoBehaviour
     public GameObject CollectionMenu;
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
-
+    // Intro Door
+    [SerializeField]
+    GameObject doorIntro;
+    Animator doorAnim;
     //Back button 
     public GameObject BackBtn;
 
@@ -68,6 +71,7 @@ public class UIMainMenu : MonoBehaviour
 
         //Show the login page
       LoadingPanel.instance.ActiveLoadingPanel();
+        doorAnim = doorIntro.GetComponent<Animator>();
         MenuPanel.SetActive(false);
 
         //If the essential data doesn't exist...
@@ -182,6 +186,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerProgress = GameData.GetUserProgress();
         PlayerCharacter = GameData.GetUserCharacter();
         LoadingPanel.instance.DesactiveLoadingPanel();
+        doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }
 
