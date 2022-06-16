@@ -42,14 +42,18 @@ public class TestNft : MonoBehaviour
     {
       
         StartCoroutine(GetPlayerNFTX(url));
-        GameNetwork.JSGetAnvilNfts(url);
+      
         Debug.Log(url);
+        return;
+      
     }
     public IEnumerator GetPlayerNFTX(string u)
     {
         urlSelectedNFTX = u;
         WWW www = new WWW(u);
-        yield return www.url;
+    
+        yield return www;
+        GameNetwork.JSGetAnvilNfts(www.url);
         foreach (Sprite sprites in selectedNFTXImages)
         {
 
@@ -65,7 +69,7 @@ public class TestNft : MonoBehaviour
             toke.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
             break;
         }
-        return;
+        
       
     }
 
