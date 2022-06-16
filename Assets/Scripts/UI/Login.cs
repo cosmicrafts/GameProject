@@ -112,13 +112,12 @@ public class Login : MonoBehaviour
 
     public void StoickLogin()
     {
-        LoadingPanel.instance.ActiveLoadingPanel();
         GameNetwork.JSWalletsLogin("stoicWallet");
        
     }
     public void IdentityLogin()
     {
-        LoadingPanel.instance.ActiveLoadingPanel();
+      
         GameNetwork.JSWalletsLogin("identityWallet");
        
     }
