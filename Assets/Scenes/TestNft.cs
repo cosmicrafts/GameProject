@@ -14,9 +14,8 @@ public class TestNft : MonoBehaviour
     [SerializeField]
     GameObject nftTestPanel;
     [SerializeField]
-    Transform instanceImage;
-    [SerializeField]
-    GameObject imageHolder;
+    Image spriteX;
+
     void Start()
     {
         nftTestPanel.SetActive(false);
@@ -42,36 +41,15 @@ public class TestNft : MonoBehaviour
     {
       
         StartCoroutine(GetPlayerNFTX(url));
-      
-        Debug.Log(url);
-        return;
-      
+        GameNetwork.JSGetAnvilNfts(url);
+        
     }
     public IEnumerator GetPlayerNFTX(string u)
     {
         urlSelectedNFTX = u;
         WWW www = new WWW(u);
-    
         yield return www;
-        GameNetwork.JSGetAnvilNfts(www.url);
-        foreach (Sprite sprites in selectedNFTXImages)
-        {
-
-            selectedNFTXImages.Add(sprites);
-         
-            break;
-        }
-
-        for(int i = 0; i < selectedNFTXImages.Count; i++)
-        {
-       Image toke=   Instantiate(imageHolder, instanceImage.transform.position, Quaternion.identity).GetComponent<Image>();
-
-            toke.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            break;
-        }
-        
-      
+        spriteX.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
     }
 
-    
 }
