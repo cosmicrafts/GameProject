@@ -19,7 +19,7 @@ public class UIMainMenu : MonoBehaviour
     public static UIMainMenu Menu;
 
     //Main sections
-    public GameObject LoginPanel;
+  //  public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
     public GameObject MultiPanel;
@@ -60,6 +60,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void Awake()
     {
+        LoadingPanel.instance.DesactiveLoadingPanel ();
         Debug.Log("--- MENU START ---");
         //initialize variables
         Menu = this;
@@ -105,7 +106,7 @@ public class UIMainMenu : MonoBehaviour
             InitPlayerData();
         }
         Debug.Log("--- MENU REDY ---");
-        LoadingPanel.instance.DesactiveLoadingPanel();
+       
     }
 
     // Start is called before the first frame update
@@ -122,10 +123,12 @@ public class UIMainMenu : MonoBehaviour
         if (GameData.UserIsInit())
         {
             //Show the main menu
-            
+
             //LoginPanel.SetActive(false);
+       
             MenuPanel.SetActive(true);
         }
+       
     }
 
     //Called from WEB, for set the base player data
@@ -178,7 +181,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerUser = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
         PlayerCharacter = GameData.GetUserCharacter();
-        LoginPanel.SetActive(false);
+        LoadingPanel.instance.DesactiveLoadingPanel();
         MenuPanel.SetActive(true);
     }
 
