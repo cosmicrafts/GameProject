@@ -11,7 +11,7 @@ public class TestNft : MonoBehaviour
     string urlSelectedNFTX;
    List<Sprite> selectedNFTXImages = new List<Sprite>();
     // Start is called before the first frame update
-  
+    [SerializeField]
     GameObject nftTestPanel;
     [SerializeField]
     Transform instanceImage;
@@ -57,9 +57,10 @@ public class TestNft : MonoBehaviour
          
             break;
         }
+
         for(int i = 0; i < selectedNFTXImages.Count; i++)
         {
-   Image toke=   Instantiate(imageHolder, instanceImage.transform.position, Quaternion.identity).GetComponent<Image>();
+       Image toke=   Instantiate(imageHolder, instanceImage.transform.position, Quaternion.identity).GetComponent<Image>();
 
             toke.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
         }
