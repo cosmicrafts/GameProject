@@ -27,11 +27,7 @@ public class TestNft : MonoBehaviour
        
 
     }
-    [Preserve]
-    public class RequestAnvilConnectResponse
-    {
-        [Preserve] public string result;
-    }
+   
     public void JSAnvilConnect()
     {
         GameNetwork.JSAnvilConnect();
