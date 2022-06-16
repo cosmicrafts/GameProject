@@ -27,15 +27,23 @@ public class TestNft : MonoBehaviour
         [Preserve] public string result;
     }
 
+    public void GetNFT(string url)
+    {
+        StartCoroutine(GetPlayerNFTX(url));
 
-    [System.Obsolete]
+    }
     public IEnumerator GetPlayerNFTX(string u)
     {
         urlSelectedNFTX = u;
         WWW www = new WWW(u);
         yield return www.url;
-
-      //Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        foreach (var f in selectedNFTXImages)
+        {
+            yield return f;
+            Debug.Log(f);
+        }
+        //  Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+      
     }
 
     

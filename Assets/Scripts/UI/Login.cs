@@ -20,20 +20,21 @@ public class Login : MonoBehaviour
 
     [SerializeField]
     GameObject loadingPanel;
+    [SerializeField]
     private Animator anim;
 
 
     // Start is called before the first frame update
 
 
-    void CloseLogin()
+    public void CloseLogin()
     {
         if (anim != null)
         {
             anim.Play("Close_PanelLogin");
         }
     }
-    void ClosePanelLoading()
+    public void ClosePanelLoading()
     {
         if (anim != null)
         {
@@ -43,7 +44,7 @@ public class Login : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<Animator>();
+     
         namePanel.SetActive(false);
     }
 
@@ -111,13 +112,12 @@ public class Login : MonoBehaviour
 
     public void StoickLogin()
     {
-
         GameNetwork.JSWalletsLogin("stoicWallet");
        
     }
     public void IdentityLogin()
     {
-
+      
         GameNetwork.JSWalletsLogin("identityWallet");
        
     }
