@@ -4,14 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Scripting;
 using Newtonsoft.Json;
-
+using System.Runtime.InteropServices;
 public class TestNft : MonoBehaviour
 {
+    [SerializeField] private Sprite spriteX;
     string urlSelectedNFTX;
    List<Sprite> selectedNFTXImages = new List<Sprite>();
     // Start is called before the first frame update
     [SerializeField]
+    Sprite sprite;
     GameObject nftTestPanel;
+    [SerializeField]
+    Transform instanceImage;
+    [SerializeField]
+    GameObject imageHolder;
     void Start()
     {
         nftTestPanel.SetActive(false);
@@ -45,12 +51,20 @@ public class TestNft : MonoBehaviour
         urlSelectedNFTX = u;
         WWW www = new WWW(u);
         yield return www.url;
-        foreach (var f in selectedNFTXImages)
+        foreach (Sprite sprites in selectedNFTXImages)
         {
-            yield return f;
-            Debug.Log(f);
+
+            selectedNFTXImages.Add(sprites);
+         
+            break;
         }
-        //  Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        for(int i = 0; i < selectedNFTXImages.Count; i++)
+        {
+   Image toke=   Instantiate(imageHolder, instanceImage.transform.position, Quaternion.identity).GetComponent<Image>();
+
+            toke.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        }
+      
       
     }
 
