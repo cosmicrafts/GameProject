@@ -7,12 +7,11 @@ using Newtonsoft.Json;
 using System.Runtime.InteropServices;
 public class TestNft : MonoBehaviour
 {
-    [SerializeField] private Sprite spriteX;
+
     string urlSelectedNFTX;
    List<Sprite> selectedNFTXImages = new List<Sprite>();
     // Start is called before the first frame update
-    [SerializeField]
-    Sprite sprite;
+  
     GameObject nftTestPanel;
     [SerializeField]
     Transform instanceImage;
