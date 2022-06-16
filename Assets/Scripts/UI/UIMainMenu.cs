@@ -30,8 +30,8 @@ public class UIMainMenu : MonoBehaviour
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
     // Intro Door
+  
     [SerializeField]
-    GameObject doorIntro;
     Animator doorAnim;
     //Back button 
     public GameObject BackBtn;
@@ -63,6 +63,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void Awake()
     {
+       
         LoadingPanel.instance.DesactiveLoadingPanel ();
         Debug.Log("--- MENU START ---");
         //initialize variables
@@ -71,7 +72,7 @@ public class UIMainMenu : MonoBehaviour
 
         //Show the login page
       LoadingPanel.instance.ActiveLoadingPanel();
-        doorAnim = doorIntro.GetComponent<Animator>();
+      
         MenuPanel.SetActive(false);
 
         //If the essential data doesn't exist...
@@ -116,6 +117,7 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
         //Find and save all the UI player properties
         UIPropertys = new List<UIPTxtInfo>();
         foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
@@ -389,4 +391,9 @@ public class UIMainMenu : MonoBehaviour
             prop.LoadProperty();
         }
     }
+
+
+
+
+    
 }

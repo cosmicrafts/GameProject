@@ -14961,6 +14961,7 @@ MonoBehaviour:
   CollectionMenu: {fileID: 1558923004}
   CharactersMenu: {fileID: 1590099877}
   GameModesMenu: {fileID: 1704099903}
+  doorAnim: {fileID: 874628389}
   BackBtn: {fileID: 1237980059}
   Collection: {fileID: 1558923006}
   CurrentGameMode: {fileID: 1576768761}
@@ -64756,6 +64757,7 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652384180809}
   - component: {fileID: 874628389}
+  - component: {fileID: 919132148196204788}
   m_Layer: 12
   m_Name: IntroDoor
   m_TagString: Untagged
@@ -64763,6 +64765,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &919132148196204788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148196204787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c9e15cdb92d3c41b4eb2be8da425fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorIntro: {fileID: 919132148196204787}
 --- !u!4 &1532374958063425645
 Transform:
   m_ObjectHideFlags: 0
@@ -64795,7 +64810,7 @@ Transform:
   - {fileID: 7789673789781060850}
   m_Father: {fileID: 3193505459065631104}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &2866116042689122243
 GameObject:
   m_ObjectHideFlags: 0
@@ -64858,7 +64873,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1548697694842552884}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -180}
 --- !u!137 &5473610766377913684
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -64946,7 +64961,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7789673789781060850}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -1.6525238e-14}
 --- !u!4 &6272283969400726019
 Transform:
   m_ObjectHideFlags: 0
@@ -65042,7 +65057,7 @@ Transform:
   - {fileID: 6069601056879193741}
   m_Father: {fileID: 1548697694842552884}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 2.7838624e-14}
 --- !u!1 &7887151150785054646
 GameObject:
   m_ObjectHideFlags: 0
