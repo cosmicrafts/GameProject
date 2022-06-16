@@ -26,11 +26,15 @@ public class TestNft : MonoBehaviour
     {
         [Preserve] public string result;
     }
-
+    public void JSAnvilConnect()
+    {
+        GameNetwork.JSAnvilConnect();
+    }
     public void GetNFT(string url)
     {
         StartCoroutine(GetPlayerNFTX(url));
-
+        GameNetwork.JSGetAnvilNfts(url);
+        Debug.Log(url);
     }
     public IEnumerator GetPlayerNFTX(string u)
     {

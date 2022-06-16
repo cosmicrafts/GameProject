@@ -44,17 +44,17 @@
             ReactUnityWebGL.JSWalletsLogin(Pointer_stringify(walletName));
       },
 
-      RequestAnvilConnect: function(anvilUrl) {
-        dispatchReactUnityEvent("RequestIcpConnect", anvilUrl);
+       JSAnvilConnect: function() {
+          ReactUnityWebGL.JSAnvilConnect();
     },
     
     CheckAnvilConnection: function(anvilIndex) {
         dispatchReactUnityEvent("CheckAnvilConnection", anvilUrl);
     },
     
-    GetAnvilNfts : function (anvilUrl) 
+    JSGetAnvilNfts : function (json) 
     {
-        dispatchReactUnityEvent("GetAnvilNfts", anvilUrl);
+       ReactUnityWebGL.JSAnvilConnect(Pointer_stringify(json));
     }
 
 
