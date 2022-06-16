@@ -43,6 +43,8 @@ public static class GameData
     static UserCollection PlayerCollection;
     //Save the current character selected by the player
     static NFTsCharacter PlayerCharacter;
+    //Save all the NFTs types in the game
+    static NFTsCollection NFTCollection;
     //Save te current region of the game
     public static string Region = "LAN";
 
@@ -87,9 +89,9 @@ public static class GameData
         PlayerCollection = userCollection;
     }
     //Set the current player character
-    public static void SetUserCharacter(string keyId)
+    public static void SetUserCharacter(string KeyId)
     {
-        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.KeyId == keyId);
+        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.KeyId == KeyId);
         if (character == null)
         {
             PlayerCharacter = PlayerCollection.Characters[0];
@@ -98,6 +100,11 @@ public static class GameData
             PlayerCharacter = character;
         }
         PlayerCollection.ChangeDeckFaction(PlayerCharacter);
+    }
+    //Set the global NFTs Collection
+    public static void SetNFTsCollection(NFTsCollection nFTsCollection)
+    {
+        NFTCollection = nFTsCollection;
     }
     //Returns the basic Player data
     public static User GetUserData()
@@ -161,6 +168,17 @@ public static class GameData
         }
 
         return PlayerCharacter;
+    }
+    //Returns the Global NFTs collection
+    public static NFTsCollection GetNFTsCollection()
+    {
+        if (NFTCollection == null)
+        {
+            NFTCollection = new NFTsCollection();
+            NFTCollection.InitCollection();
+        }
+
+        return NFTCollection;
     }
     //Change the language of the game
     public static void ChangeLang(Language newlang)
