@@ -8,11 +8,13 @@ using Newtonsoft.Json;
 public class TestNft : MonoBehaviour
 {
     string urlSelectedNFTX;
-   List<Sprite> selectedNFTXImages = new List<Sprite>();  
+   List<Sprite> selectedNFTXImages = new List<Sprite>();
     // Start is called before the first frame update
+    [SerializeField]
+    GameObject nftTestPanel;
     void Start()
     {
-        
+        nftTestPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,10 +31,11 @@ public class TestNft : MonoBehaviour
     public void JSAnvilConnect()
     {
         GameNetwork.JSAnvilConnect();
-
+          nftTestPanel.SetActive(true);
     }
     public void GetNFT(string url)
     {
+      
         StartCoroutine(GetPlayerNFTX(url));
         GameNetwork.JSGetAnvilNfts(url);
         Debug.Log(url);
