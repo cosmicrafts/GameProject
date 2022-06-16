@@ -23,7 +23,6 @@ public class Login : MonoBehaviour
     [SerializeField]
     private Animator anim;
 
-
     // Start is called before the first frame update
 
 
