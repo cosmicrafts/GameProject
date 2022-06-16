@@ -29,9 +29,7 @@ public class TestNft : MonoBehaviour
 
     public void GetNFT()
     {
-        urlSelectedNFTX = u;
-        WWW www = new WWW(u);
-        yield return www.url;
+        
 
     }
     public IEnumerator GetPlayerNFTX(string u)
