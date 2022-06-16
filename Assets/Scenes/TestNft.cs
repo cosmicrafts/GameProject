@@ -29,6 +29,7 @@ public class TestNft : MonoBehaviour
     public void JSAnvilConnect()
     {
         GameNetwork.JSAnvilConnect();
+
     }
     public void GetNFT(string url)
     {
