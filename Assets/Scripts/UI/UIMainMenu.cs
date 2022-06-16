@@ -105,6 +105,7 @@ public class UIMainMenu : MonoBehaviour
             InitPlayerData();
         }
         Debug.Log("--- MENU REDY ---");
+        LoadingPanel.instance.DesactiveLoadingPanel();
     }
 
     // Start is called before the first frame update
@@ -121,7 +122,7 @@ public class UIMainMenu : MonoBehaviour
         if (GameData.UserIsInit())
         {
             //Show the main menu
-            LoadingPanel.instance.DesactiveLoadingPanel();
+            
             //LoginPanel.SetActive(false);
             MenuPanel.SetActive(true);
         }

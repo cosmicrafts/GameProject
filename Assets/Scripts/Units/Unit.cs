@@ -90,7 +90,7 @@ public class Unit : MonoBehaviour
         MyOutline.OutlineParameters.Color = GameMng.GM.GetColorUnit(MyTeam, PlayerId);
         TrigerBase.radius = SolidBase.radius;
         transform.localScale = new Vector3(Size, Size, Size);
-       // MyAnim =transform.GetChild(0). GetComponent<Animator>();//Mesh.GetComponent<Animator>();
+        MyAnim = Mesh.GetComponent<Animator>();
         Portal.transform.parent = null;
         transform.LookAt(CMath.LookToY(transform.position, GameMng.GM.GetFinalTarget(MyTeam).position));
         SA.SetActive(IsMyTeam(GameMng.P.MyTeam) && SpawnAreaSize > 0f);
