@@ -35,7 +35,7 @@ public class TestNft : MonoBehaviour
         WWW www = new WWW(u);
         yield return www.url;
 
-      //Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+      Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
     }
 
     
