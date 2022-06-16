@@ -63,8 +63,9 @@ public class TestNft : MonoBehaviour
        Image toke=   Instantiate(imageHolder, instanceImage.transform.position, Quaternion.identity).GetComponent<Image>();
 
             toke.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            break;
         }
-      
+        return;
       
     }
 
