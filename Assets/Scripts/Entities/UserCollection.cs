@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Linq;
 /*
  * Here we save and manages the player NFTs
@@ -31,6 +32,9 @@ public class UserCollection
 
     public void AddUnitsAndCharactersDefault()
     {
+        //Characters.AddRange(JsonConvert.DeserializeObject<List<NFTsCharacter>>(mijsonPersonajes));
+        //Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(mijsonUnidades));
+        //Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(mijsonSpells));
         //CHARACTERS
         Characters.Add(new NFTsCharacter()
         {
