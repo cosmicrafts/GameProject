@@ -14,7 +14,7 @@ public class UnitAnimLis : MonoBehaviour
     void Start()
     {
         //Get unit data
-      //  MyUnit = transform.parent.GetComponent<Unit>();
+    //MyUnit = transform.parent.GetComponent<Unit>();
     }
 
     //Called when the deth animation ends
