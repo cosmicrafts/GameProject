@@ -121,8 +121,8 @@ public class Player : MonoBehaviour
                 } else if (GameCards[i].cardType == CardType.Unit)
                 {
                     UnitCard unit = GameCards[i] as UnitCard;
-                    UnitsMeshs[i] = unit.UnitMesh.GetComponent<MeshFilter>().sharedMesh;
-                    UnitMaterials[i] = unit.UnitMesh.GetComponent<MeshRenderer>().sharedMaterial;
+                    UnitsMeshs[i] = unit.UnitMesh.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh;
+                    UnitMaterials[i] = unit.UnitMesh.GetComponent<SkinnedMeshRenderer>().sharedMaterial;
                 }   
             }
         }

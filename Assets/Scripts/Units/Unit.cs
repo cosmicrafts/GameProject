@@ -54,7 +54,7 @@ public class Unit : MonoBehaviour
     float ShieldLoad = 0f;
     float ShieldCharge = 0f;
     float ShieldSpeed = 1f;
-    [SerializeField]
+ 
     protected SphereCollider TrigerBase;
     protected SphereCollider SolidBase;
 

@@ -42,6 +42,9 @@ GameObject:
   - component: {fileID: 543450653716115812}
   - component: {fileID: 919132149171596255}
   - component: {fileID: 919132149171596256}
+  - component: {fileID: 9012948275264193969}
+  - component: {fileID: 4924594612154130257}
+  - component: {fileID: 3725949869829200102}
   m_Layer: 0
   m_Name: WU_UnityExport_Chacalot_01
   m_TagString: Untagged
@@ -61,6 +64,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6399882785425687987}
   - {fileID: 2464497883319937220}
   - {fileID: 1654135386722911027}
   m_Father: {fileID: 2198226034328220055}
@@ -99,6 +103,88 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyUnit: {fileID: 2198226034328220053}
+--- !u!135 &9012948275264193969
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149171596254}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+--- !u!114 &4924594612154130257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149171596254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - IsVisible: 1
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 5461046117018205739}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+--- !u!114 &3725949869829200102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132149171596254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &945525388828575642
 GameObject:
   m_ObjectHideFlags: 0
@@ -14650,10 +14736,9 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6399882785425687987}
+  m_Children: []
   m_Father: {fileID: 543450653716115812}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026386947004526454
 GameObject:
@@ -35308,7 +35393,7 @@ MonoBehaviour:
   EnergyCost: 5
   Icon: {fileID: 21300000, guid: 7b95204222321e044bf8307fc6da67b9, type: 3}
   cardType: 0
-  UnitMesh: {fileID: 2198226033516823794}
+  UnitMesh: {fileID: 919132149171596254}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35330,8 +35415,7 @@ MonoBehaviour:
   Size: 1
   SpawnAreaSize: 8
   IsInmortal: 0
-  TrigerBase: {fileID: 0}
-  Mesh: {fileID: 2198226033516823794}
+  Mesh: {fileID: 919132149171596254}
   SA: {fileID: 5031199355345424574}
   Explosion: {fileID: 169654, guid: 1dadf691cda82fa44a8a66d7dd374612, type: 3}
   Portal: {fileID: 3721508634898023609}
@@ -64807,8 +64891,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6399882785425687987}
   - component: {fileID: 5461046117018205739}
-  - component: {fileID: 579282274808356164}
-  - component: {fileID: 6411204682682308370}
   - component: {fileID: 394893792699303897}
   m_Layer: 0
   m_Name: Chacalot_Geo
@@ -64824,12 +64906,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5905105773401959971}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2464497883319937220}
+  m_Father: {fileID: 543450653716115812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5461046117018205739
@@ -64924,76 +65006,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.08179426, y: 0.95465267, z: -0.00000071525574}
     m_Extent: {x: 4.3201222, y: 3.0166464, z: 4.258361}
   m_DirtyAABB: 0
---- !u!135 &579282274808356164
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905105773401959971}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
---- !u!114 &6411204682682308370
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905105773401959971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  complexMaskingMode: 0
-  drawingMode: 1
-  outlineLayer: 0
-  outlineTargets:
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 5461046117018205739}
-    SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  renderStyle: 1
-  outlineParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  backParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  frontParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
 --- !u!114 &394893792699303897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74851,7 +74863,7 @@ Transform:
   - {fileID: 5838269846860603505}
   - {fileID: 7680417818099734521}
   m_Father: {fileID: 543450653716115812}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7805368594503349185
 GameObject:
