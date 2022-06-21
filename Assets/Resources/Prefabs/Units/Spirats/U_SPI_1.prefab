@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &270717993256280917
+--- !u!1 &60151737515240664
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,30 +8,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2409419014447840928}
+  - component: {fileID: 6164798557630309755}
   m_Layer: 0
-  m_Name: Chacalot_Spike_01_R_Jnt
+  m_Name: Chacalot_Mechanism_03_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2409419014447840928
+--- !u!4 &6164798557630309755
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270717993256280917}
-  m_LocalRotation: {x: 0, y: 0.6078641, z: -0, w: 0.79404116}
-  m_LocalPosition: {x: 1.3603594, y: 0.00037026405, z: -1.3882115}
+  m_GameObject: {fileID: 60151737515240664}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.98618263, y: -0.000001309519, z: -0.000000029802365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6932746534923159497}
+  m_Father: {fileID: 4098704383305456196}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &919132149171596254
+--- !u!1 &215763381756752557
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -39,185 +39,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 543450653716115812}
-  - component: {fileID: 919132149171596255}
-  - component: {fileID: 919132149171596256}
-  - component: {fileID: 9012948275264193969}
-  - component: {fileID: 4924594612154130257}
-  - component: {fileID: 3725949869829200102}
+  - component: {fileID: 1187659630496835165}
   m_Layer: 0
-  m_Name: WU_UnityExport_Chacalot_01
+  m_Name: Chacalot_Head_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &543450653716115812
+--- !u!4 &1187659630496835165
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149171596254}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_GameObject: {fileID: 215763381756752557}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.6811477, y: -4.440892e-16, z: 1.684862e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6399882785425687987}
-  - {fileID: 2464497883319937220}
-  - {fileID: 1654135386722911027}
-  m_Father: {fileID: 2198226034328220055}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &919132149171596255
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149171596254}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 65d99d1326de08b4da3badf45addea77, type: 3}
-  m_Controller: {fileID: 9100000, guid: 94e16ceaf8a7a0e47949d1fb4aef90b4, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &919132149171596256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149171596254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyUnit: {fileID: 2198226034328220053}
---- !u!135 &9012948275264193969
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149171596254}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 4
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
---- !u!114 &4924594612154130257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149171596254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  complexMaskingMode: 0
-  drawingMode: 1
-  outlineLayer: 0
-  outlineTargets:
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 5461046117018205739}
-    SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  renderStyle: 1
-  outlineParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  backParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  frontParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
---- !u!114 &3725949869829200102
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132149171596254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &945525388828575642
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3303930123681727307}
-  m_Layer: 0
-  m_Name: Chacalot_Flipper_Bot_Root_R_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3303930123681727307
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 945525388828575642}
-  m_LocalRotation: {x: 0.6005783, y: -0.35281932, z: 0.6186565, w: -0.36343962}
-  m_LocalPosition: {x: 0.8656922, y: -0.79152703, z: 0.67912847}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2143803538216090642}
-  m_Father: {fileID: 5838269846860603505}
+  - {fileID: 6589719020146998223}
+  m_Father: {fileID: 4791194841762774397}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &956214753981255631
+--- !u!1 &674912536420996010
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -225,27 +71,91 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4960666419709772938}
+  - component: {fileID: 2454338716413158698}
   m_Layer: 0
-  m_Name: Chacalot_Spike_01_L_Jnt
+  m_Name: Chacalot_Mechanism_01_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4960666419709772938
+--- !u!4 &2454338716413158698
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956214753981255631}
-  m_LocalRotation: {x: 0, y: 0.6078641, z: -0, w: 0.79404116}
-  m_LocalPosition: {x: -1.3603594, y: -0.00037026405, z: 1.3882114}
+  m_GameObject: {fileID: 674912536420996010}
+  m_LocalRotation: {x: 0.00000001606312, y: -0.000000008887014, z: 0.87501025, w: 0.48410448}
+  m_LocalPosition: {x: 0.0004438835, y: 0.7289338, z: 0.358411}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4098704383305456196}
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &850690664893948120
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 682431627027589444}
+  m_Layer: 0
+  m_Name: Chacalot_Cannon_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &682431627027589444
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850690664893948120}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.3651847, y: 0.002071, z: -1.6653345e-15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7547441171106281793}
+  m_Father: {fileID: 3905013700593685379}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1080096901708938521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6727053567686584763}
+  m_Layer: 0
+  m_Name: Chacalot_Door_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6727053567686584763
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080096901708938521}
+  m_LocalRotation: {x: 0, y: -0, z: -0.38865128, w: 0.92138493}
+  m_LocalPosition: {x: 0.8775365, y: 0.8688589, z: -2.2489085e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5844203477731668874}
+  m_Father: {fileID: 3135601762840571108}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1086958871929673711
@@ -9808,7 +9718,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &1341804548271653860
+--- !u!1 &1351074612166660432
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9816,63 +9726,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5844203477731668874}
+  - component: {fileID: 7814586549176536998}
   m_Layer: 0
-  m_Name: Chacalot_Wing_L_Jnt
+  m_Name: Chacalot_Joints_Grp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5844203477731668874
+--- !u!4 &7814586549176536998
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1341804548271653860}
-  m_LocalRotation: {x: 0, y: 0, z: 0.16008934, w: 0.9871025}
-  m_LocalPosition: {x: -0.23944548, y: -0.04554756, z: -0.022766411}
+  m_GameObject: {fileID: 1351074612166660432}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4960666419709772938}
-  - {fileID: 8313028042562948663}
-  - {fileID: 5224663513520671350}
-  m_Father: {fileID: 8779366425131937207}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1413707044273547210
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3084350513945955295}
-  m_Layer: 0
-  m_Name: Chacalot_Wing_Root_R_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3084350513945955295
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1413707044273547210}
-  m_LocalRotation: {x: 0.7071068, y: 4.3297806e-17, z: 0.7071068, w: -4.3297806e-17}
-  m_LocalPosition: {x: -0.14253682, y: -0.33124042, z: 1.01852}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6932746534923159497}
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 11
+  - {fileID: 3135601762840571108}
+  - {fileID: 1157430734740855660}
+  m_Father: {fileID: 9010839959292132849}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1570224675209762242
 GameObject:
@@ -14647,7 +14524,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &1696040486704543950
+--- !u!1 &1645057614485126996
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14655,61 +14532,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2266572120364655403}
+  - component: {fileID: 4181100239585289994}
   m_Layer: 0
-  m_Name: Chacalot_Flipper_Top_R_Jnt
+  m_Name: Chacalot_Mechanism_03_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2266572120364655403
+--- !u!4 &4181100239585289994
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1696040486704543950}
-  m_LocalRotation: {x: 0.6830127, y: 0.18301271, z: 0.6830127, w: 0.18301271}
-  m_LocalPosition: {x: 0.71121716, y: 0.089739785, z: 1.07295}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1698214009151452876
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3467698618458926102}
-  m_Layer: 0
-  m_Name: Chacalot_Cannon_02_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3467698618458926102
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698214009151452876}
+  m_GameObject: {fileID: 1645057614485126996}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.27306885, y: -0.00003796816, z: 0.00000086426735}
+  m_LocalPosition: {x: -0.98618156, y: -8.881784e-16, z: -2.220446e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 690861709032516148}
+  m_Father: {fileID: 7221338122554387166}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1809508800460018561
+--- !u!1 &2183874966833831303
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14717,124 +14563,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2464497883319937220}
+  - component: {fileID: 1923114491660798812}
   m_Layer: 0
-  m_Name: Chacalot_Geo_Grp
+  m_Name: Chacalot_Wing_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2464497883319937220
+--- !u!4 &1923114491660798812
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1809508800460018561}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 543450653716115812}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2026386947004526454
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2211564894927742539}
-  m_Layer: 0
-  m_Name: Chacalot_Mechanism_02_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2211564894927742539
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2026386947004526454}
-  m_LocalRotation: {x: 0.71783704, y: -0.69621116, z: -0.000000011249464, w: -0.000000010910557}
-  m_LocalPosition: {x: -0.81171465, y: 2.6645353e-15, z: -5.551115e-17}
+  m_GameObject: {fileID: 2183874966833831303}
+  m_LocalRotation: {x: 0, y: 0, z: 0.16008934, w: 0.9871025}
+  m_LocalPosition: {x: 0.23944783, y: 0.045547605, z: 0.022766463}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4647739885656697759}
-  m_Father: {fileID: 6615692860003864312}
+  - {fileID: 6623017816357302837}
+  - {fileID: 4585560883034523474}
+  - {fileID: 822404124624552557}
+  m_Father: {fileID: 5785865744998303562}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2060444905760940527
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4785025836278437585}
-  m_Layer: 0
-  m_Name: Chacalot_Mechanism_02_R_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4785025836278437585
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060444905760940527}
-  m_LocalRotation: {x: 0.71783704, y: -0.69621116, z: -0.000000011249464, w: -0.000000010910557}
-  m_LocalPosition: {x: 0.8117159, y: -0.00000045621647, z: -0.00000002980237}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3389967997204851182}
-  m_Father: {fileID: 6379848333857925567}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2170886787350364906
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8779366425131937207}
-  m_Layer: 0
-  m_Name: Chacalot_Wing_Root_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8779366425131937207
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2170886787350364906}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.14253676, y: -0.33124045, z: -1.0185224}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5844203477731668874}
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2198226032443553817
 GameObject:
@@ -35348,7 +35101,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 543450653716115812}
+  - {fileID: 9010839959292132849}
   - {fileID: 2198226033516823787}
   - {fileID: 6536637190762479940}
   - {fileID: 2198226033917351814}
@@ -35393,7 +35146,7 @@ MonoBehaviour:
   EnergyCost: 5
   Icon: {fileID: 21300000, guid: 7b95204222321e044bf8307fc6da67b9, type: 3}
   cardType: 0
-  UnitMesh: {fileID: 919132149171596254}
+  UnitMesh: {fileID: 8522850772209166155}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35415,12 +35168,12 @@ MonoBehaviour:
   Size: 1
   SpawnAreaSize: 8
   IsInmortal: 0
-  Mesh: {fileID: 919132149171596254}
+  Mesh: {fileID: 8522850772209166155}
   SA: {fileID: 5031199355345424574}
   Explosion: {fileID: 169654, guid: 1dadf691cda82fa44a8a66d7dd374612, type: 3}
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 7787216838360180774}
-  MyAnim: {fileID: 919132149171596255}
+  MyAnim: {fileID: 6721350253040675104}
   MySt: {fileID: 2198226033917351815}
   Aceleration: 0.5
   MaxSpeed: 0.25
@@ -35508,7 +35261,7 @@ MonoBehaviour:
   MinimumVisibility: 0.5
   LineOfSightUpdateMode: 0
   CheckLineOfSightInterval: 1
---- !u!1 &2418595128058742178
+--- !u!1 &2294683664727781449
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35516,31 +35269,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1064438234737532008}
+  - component: {fileID: 1901679241126332569}
   m_Layer: 0
-  m_Name: Chacalot_Flipper_Bot_Root_L_Jnt
+  m_Name: Chacalot_Tail_Finn_Mid_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1064438234737532008
+--- !u!4 &1901679241126332569
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2418595128058742178}
-  m_LocalRotation: {x: -0.35281932, y: -0.6005783, z: 0.36343962, w: 0.6186565}
-  m_LocalPosition: {x: 0.8656922, y: -0.79152703, z: -0.67912847}
+  m_GameObject: {fileID: 2294683664727781449}
+  m_LocalRotation: {x: -0.5068195, y: 0.49308625, z: -0.49308625, w: 0.5068195}
+  m_LocalPosition: {x: -0.62891364, y: 0.15301916, z: -1.2132108e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1233842076857288548}
-  m_Father: {fileID: 5838269846860603505}
+  - {fileID: 6824490230920820360}
+  - {fileID: 6999989127348787575}
+  m_Father: {fileID: 7934712111841650008}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2338683982540728142
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 710329296087941794}
+  m_Layer: 0
+  m_Name: Chacalot_Spike_02_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &710329296087941794
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2338683982540728142}
+  m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
+  m_LocalPosition: {x: -2.0449667, y: -0.009402275, z: 1.223194}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3142560739575676703}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2555010447035476916
+--- !u!1 &2395279077133069223
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35548,30 +35333,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5224663513520671350}
+  - component: {fileID: 7934712111841650008}
   m_Layer: 0
-  m_Name: Chacalot_Spike_03_L_Jnt
+  m_Name: Chacalot_Tail_02_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5224663513520671350
+--- !u!4 &7934712111841650008
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2555010447035476916}
-  m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
-  m_LocalPosition: {x: -2.6511347, y: -0.0094025135, z: 1.0728328}
+  m_GameObject: {fileID: 2395279077133069223}
+  m_LocalRotation: {x: 0, y: 0, z: 0.13052619, w: 0.9914449}
+  m_LocalPosition: {x: -0.86610025, y: 1.7763568e-15, z: -1.6108576e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5844203477731668874}
-  m_RootOrder: 2
+  m_Children:
+  - {fileID: 1901679241126332569}
+  m_Father: {fileID: 5498017207466447476}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2603232417567762359
+--- !u!1 &2397377341550322772
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35579,30 +35365,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2143803538216090642}
+  - component: {fileID: 7753275074512227313}
   m_Layer: 0
-  m_Name: Chacalot_Flipper_Bot_R_Jnt
+  m_Name: Chacalot_Flipper_Bot_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2143803538216090642
+--- !u!4 &7753275074512227313
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2603232417567762359}
+  m_GameObject: {fileID: 2397377341550322772}
   m_LocalRotation: {x: 0.0017195622, y: -0.013649896, z: 0.00051227043, w: 0.9999052}
-  m_LocalPosition: {x: 0.4221744, y: 0.0000044467397, z: 0.00012418556}
+  m_LocalPosition: {x: -0.4221744, y: -0.0000044467397, z: -0.00012418556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3303930123681727307}
+  m_Father: {fileID: 8377806508245422333}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2862031199768180071
+--- !u!1 &2528524796672438156
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35610,30 +35396,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6825485603636986131}
+  - component: {fileID: 4585560883034523474}
   m_Layer: 0
-  m_Name: Chacalot_Propeller_Jnt
+  m_Name: Chacalot_Spike_02_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6825485603636986131
+--- !u!4 &4585560883034523474
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2862031199768180071}
-  m_LocalRotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
-  m_LocalPosition: {x: 2.0375714, y: -0.67935824, z: -4.978866e-16}
+  m_GameObject: {fileID: 2528524796672438156}
+  m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
+  m_LocalPosition: {x: 2.0449667, y: 0.009402275, z: -1.2231941}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 7
+  m_Father: {fileID: 1923114491660798812}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2994943863741402251
+--- !u!1 &2557484688962560553
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35641,30 +35427,33 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1313841143687017940}
+  - component: {fileID: 4791194841762774397}
   m_Layer: 0
-  m_Name: Chacalot_Cannon_02_R_Jnt
+  m_Name: Chacalot_Spine_01_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1313841143687017940
+--- !u!4 &4791194841762774397
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2994943863741402251}
+  m_GameObject: {fileID: 2557484688962560553}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27306634, y: 0.000038, z: -0.000001}
+  m_LocalPosition: {x: -1.8608146, y: 0, z: 4.1867618e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8358168244230284753}
-  m_RootOrder: 0
+  m_Children:
+  - {fileID: 8992295440977672975}
+  - {fileID: 3905013700593685379}
+  - {fileID: 1187659630496835165}
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3148850052096438236
+--- !u!1 &3131532420030407350
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -35672,29 +35461,135 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 733007281204836894}
+  - component: {fileID: 2474346683066796326}
+  - component: {fileID: 3553303601337479870}
+  - component: {fileID: 1757844094649136199}
   m_Layer: 0
-  m_Name: Chacalot_Flipper_Top_L_Jnt
+  m_Name: Chacalot_Geo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &733007281204836894
+--- !u!4 &2474346683066796326
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3148850052096438236}
-  m_LocalRotation: {x: 0.18301271, y: -0.6830127, z: -0.18301271, w: 0.6830127}
-  m_LocalPosition: {x: 0.71121716, y: 0.0897398, z: -1.0729468}
+  m_GameObject: {fileID: 3131532420030407350}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 3
+  m_Father: {fileID: 9010839959292132849}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &3553303601337479870
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131532420030407350}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 61a1c4d5b5c18a84db808db4b144c09b, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: -1582990390714953720, guid: c609c22cfddbfe04987c93c948f4dd59, type: 3}
+  m_Bones:
+  - {fileID: 3135601762840571108}
+  - {fileID: 4791194841762774397}
+  - {fileID: 1187659630496835165}
+  - {fileID: 6589719020146998223}
+  - {fileID: 8992295440977672975}
+  - {fileID: 8291189992193926817}
+  - {fileID: 5375586890565558403}
+  - {fileID: 3905013700593685379}
+  - {fileID: 682431627027589444}
+  - {fileID: 7547441171106281793}
+  - {fileID: 8118438115943544459}
+  - {fileID: 238907870593786146}
+  - {fileID: 3142560739575676703}
+  - {fileID: 4490517215475517471}
+  - {fileID: 710329296087941794}
+  - {fileID: 3605111187863979747}
+  - {fileID: 8377806508245422333}
+  - {fileID: 7753275074512227313}
+  - {fileID: 2611710310781816198}
+  - {fileID: 5498017207466447476}
+  - {fileID: 7934712111841650008}
+  - {fileID: 1901679241126332569}
+  - {fileID: 6824490230920820360}
+  - {fileID: 6999989127348787575}
+  - {fileID: 2398729563181744749}
+  - {fileID: 7221338122554387166}
+  - {fileID: 4181100239585289994}
+  - {fileID: 6727053567686584763}
+  - {fileID: 7345983537357582270}
+  - {fileID: 5785865744998303562}
+  - {fileID: 1923114491660798812}
+  - {fileID: 6623017816357302837}
+  - {fileID: 4585560883034523474}
+  - {fileID: 822404124624552557}
+  - {fileID: 6295958335345676254}
+  - {fileID: 7441643935118340231}
+  - {fileID: 2454338716413158698}
+  - {fileID: 4098704383305456196}
+  - {fileID: 6164798557630309755}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 3135601762840571108}
+  m_AABB:
+    m_Center: {x: -0.08179426, y: 0.95465267, z: -0.00000071525574}
+    m_Extent: {x: 4.3201222, y: 3.0166464, z: 4.258361}
+  m_DirtyAABB: 0
+--- !u!114 &1757844094649136199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3131532420030407350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3387366605580379403
 GameObject:
   m_ObjectHideFlags: 0
@@ -40468,6 +40363,195 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!1 &3398252368732246547
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1157430734740855660}
+  m_Layer: 0
+  m_Name: Chacalot_InGame_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1157430734740855660
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3398252368732246547}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7814586549176536998}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3555933382332419663
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 822404124624552557}
+  m_Layer: 0
+  m_Name: Chacalot_Spike_03_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &822404124624552557
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555933382332419663}
+  m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
+  m_LocalPosition: {x: 2.6511345, y: 0.0094025135, z: -1.0728328}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1923114491660798812}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3635669208854111431
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6824490230920820360}
+  m_Layer: 0
+  m_Name: Chacalot_Tail_Finn_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6824490230920820360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635669208854111431}
+  m_LocalRotation: {x: -0.48511136, y: 0.48615518, z: 0.5145171, w: 0.5134125}
+  m_LocalPosition: {x: 0.12797606, y: -0.24304314, z: -0.046459805}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1901679241126332569}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3644207417400427701
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3905013700593685379}
+  m_Layer: 0
+  m_Name: Chacalot_Cannon_Root_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3905013700593685379
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3644207417400427701}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -6.123234e-17}
+  m_LocalPosition: {x: -0.3518242, y: -1.1091902, z: 0.520008}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 682431627027589444}
+  m_Father: {fileID: 4791194841762774397}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3651628023691226590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8992295440977672975}
+  m_Layer: 0
+  m_Name: Chacalot_Cannon_Root_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8992295440977672975
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3651628023691226590}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.44552216, y: -1.1091907, z: -0.52000767}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8291189992193926817}
+  m_Father: {fileID: 4791194841762774397}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3689385519299768602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2398729563181744749}
+  m_Layer: 0
+  m_Name: Chacalot_Mechanism_01_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2398729563181744749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3689385519299768602}
+  m_LocalRotation: {x: -0.000000008887014, y: -0.00000001606312, z: -0.48410448, w: 0.87501025}
+  m_LocalPosition: {x: 0.00044393094, y: 0.728938, z: -0.35841098}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7221338122554387166}
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3721508634898023609
 GameObject:
   m_ObjectHideFlags: 0
@@ -45290,7 +45374,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &4243609492318758557
+--- !u!1 &3990145321348425193
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -45298,28 +45382,104 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1991333519129564642}
+  - component: {fileID: 8291189992193926817}
   m_Layer: 0
-  m_Name: Chacalot_Tail_Finn_R_Jnt
+  m_Name: Chacalot_Cannon_01_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1991333519129564642
+--- !u!4 &8291189992193926817
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4243609492318758557}
-  m_LocalRotation: {x: 0.5145171, y: 0.5134125, z: 0.48511136, w: -0.48615518}
-  m_LocalPosition: {x: 0.12797606, y: 0.24304314, z: -0.046459805}
+  m_GameObject: {fileID: 3990145321348425193}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3651799, y: -0.0020708442, z: 5.551115e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6981223183632466956}
-  m_RootOrder: 1
+  m_Children:
+  - {fileID: 5375586890565558403}
+  m_Father: {fileID: 8992295440977672975}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4302923807799596829
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5498017207466447476}
+  m_Layer: 0
+  m_Name: Chacalot_Tail_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5498017207466447476
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4302923807799596829}
+  m_LocalRotation: {x: -0.14412962, y: 0.9895588, z: -6.941839e-17, w: -5.176761e-17}
+  m_LocalPosition: {x: 1.980874, y: 0.518606, z: -4.946533e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7934712111841650008}
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4341836543013894684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3135601762840571108}
+  m_Layer: 0
+  m_Name: Chacalot_CoG_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3135601762840571108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4341836543013894684}
+  m_LocalRotation: {x: 0.1193702, y: 0.69695824, z: 0.1193702, w: 0.69695824}
+  m_LocalPosition: {x: 4.8191944e-15, y: -0.12505879, z: -10.89154}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6727053567686584763}
+  - {fileID: 8377806508245422333}
+  - {fileID: 6295958335345676254}
+  - {fileID: 8118438115943544459}
+  - {fileID: 7345983537357582270}
+  - {fileID: 2398729563181744749}
+  - {fileID: 2454338716413158698}
+  - {fileID: 2611710310781816198}
+  - {fileID: 4791194841762774397}
+  - {fileID: 5498017207466447476}
+  - {fileID: 238907870593786146}
+  - {fileID: 5785865744998303562}
+  m_Father: {fileID: 7814586549176536998}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4386967747394625303
 GameObject:
@@ -50186,7 +50346,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &4697632820133370760
+--- !u!1 &4447840519459498547
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -50194,29 +50354,59 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3948170109443808993}
+  - component: {fileID: 6589719020146998223}
   m_Layer: 0
-  m_Name: Chacalot_Tail_01_Jnt
+  m_Name: Chacalot_Horn_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3948170109443808993
+--- !u!4 &6589719020146998223
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4697632820133370760}
-  m_LocalRotation: {x: -0.14412962, y: 0.9895588, z: -6.941839e-17, w: -5.176761e-17}
-  m_LocalPosition: {x: 1.980874, y: 0.518606, z: -4.946533e-16}
+  m_GameObject: {fileID: 4447840519459498547}
+  m_LocalRotation: {x: 0, y: -0, z: -0.44919014, w: 0.8934362}
+  m_LocalPosition: {x: -0.410634, y: 0.78152, z: 0.000000029802322}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1484944255821343181}
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 9
+  m_Children: []
+  m_Father: {fileID: 1187659630496835165}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4639272865715317256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6999989127348787575}
+  m_Layer: 0
+  m_Name: Chacalot_Tail_Finn_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6999989127348787575
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4639272865715317256}
+  m_LocalRotation: {x: 0.5145171, y: 0.5134125, z: 0.48511136, w: -0.48615518}
+  m_LocalPosition: {x: 0.12797606, y: 0.24304314, z: -0.046459805}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1901679241126332569}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5023021588399462144
 GameObject:
@@ -59864,80 +60054,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 2
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &5100074901924247177
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5838269846860603505}
-  m_Layer: 0
-  m_Name: Chacalot_CoG_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5838269846860603505
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5100074901924247177}
-  m_LocalRotation: {x: 0.1193702, y: 0.69695824, z: 0.1193702, w: 0.69695824}
-  m_LocalPosition: {x: 4.8191944e-15, y: -0.12505879, z: -10.89154}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2872484963310691630}
-  - {fileID: 1064438234737532008}
-  - {fileID: 3303930123681727307}
-  - {fileID: 733007281204836894}
-  - {fileID: 2266572120364655403}
-  - {fileID: 6615692860003864312}
-  - {fileID: 6379848333857925567}
-  - {fileID: 6825485603636986131}
-  - {fileID: 4106130692415910376}
-  - {fileID: 3948170109443808993}
-  - {fileID: 8779366425131937207}
-  - {fileID: 3084350513945955295}
-  m_Father: {fileID: 1654135386722911027}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5134016910979737254
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2446919998079006554}
-  m_Layer: 0
-  m_Name: Chacalot_Horn_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2446919998079006554
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5134016910979737254}
-  m_LocalRotation: {x: 0, y: -0, z: -0.44919014, w: 0.8934362}
-  m_LocalPosition: {x: -0.410634, y: 0.78152, z: 0.000000029802322}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7709384566848793288}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5191477478022238104
 GameObject:
   m_ObjectHideFlags: 0
@@ -64691,7 +64807,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &5193922610333501472
+--- !u!1 &5851478006360367945
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64699,31 +64815,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5527943192254144278}
+  - component: {fileID: 8118438115943544459}
   m_Layer: 0
-  m_Name: Chacalot_Cannon_Root_R_Jnt
+  m_Name: Chacalot_Flipper_Top_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &5527943192254144278
+--- !u!4 &8118438115943544459
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5193922610333501472}
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: -6.123234e-17}
-  m_LocalPosition: {x: -0.3518242, y: -1.1091902, z: 0.520008}
+  m_GameObject: {fileID: 5851478006360367945}
+  m_LocalRotation: {x: 0.18301271, y: -0.6830127, z: -0.18301271, w: 0.6830127}
+  m_LocalPosition: {x: 0.71121716, y: 0.0897398, z: -1.0729468}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8358168244230284753}
-  m_Father: {fileID: 4106130692415910376}
-  m_RootOrder: 1
+  m_Children: []
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5200362455675003211
+--- !u!1 &5987108945544183838
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64731,293 +64846,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 454119474730497946}
+  - component: {fileID: 7547441171106281793}
   m_Layer: 0
-  m_Name: Chacalot_Cannon_Root_L_Jnt
+  m_Name: Chacalot_Cannon_02_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &454119474730497946
+--- !u!4 &7547441171106281793
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5200362455675003211}
+  m_GameObject: {fileID: 5987108945544183838}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.44552216, y: -1.1091907, z: -0.52000767}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 690861709032516148}
-  m_Father: {fileID: 4106130692415910376}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5256311736731986002
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2608468174300772893}
-  m_Layer: 0
-  m_Name: Chacalot_Tail_Finn_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2608468174300772893
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5256311736731986002}
-  m_LocalRotation: {x: -0.48511136, y: 0.48615518, z: 0.5145171, w: 0.5134125}
-  m_LocalPosition: {x: 0.12797606, y: -0.24304314, z: -0.046459805}
+  m_LocalPosition: {x: 0.27306634, y: 0.000038, z: -0.000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6981223183632466956}
+  m_Father: {fileID: 682431627027589444}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5311154478654061967
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6615692860003864312}
-  m_Layer: 0
-  m_Name: Chacalot_Mechanism_01_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6615692860003864312
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5311154478654061967}
-  m_LocalRotation: {x: -0.000000008887014, y: -0.00000001606312, z: -0.48410448, w: 0.87501025}
-  m_LocalPosition: {x: 0.00044393094, y: 0.728938, z: -0.35841098}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2211564894927742539}
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5467194974297899738
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8209941721021370104}
-  m_Layer: 0
-  m_Name: Chacalot_Spike_03_R_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8209941721021370104
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467194974297899738}
-  m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
-  m_LocalPosition: {x: 2.6511345, y: 0.0094025135, z: -1.0728328}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6932746534923159497}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5609671257652701564
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 690861709032516148}
-  m_Layer: 0
-  m_Name: Chacalot_Cannon_01_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &690861709032516148
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5609671257652701564}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.3651799, y: -0.0020708442, z: 5.551115e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 3467698618458926102}
-  m_Father: {fileID: 454119474730497946}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5905105773401959971
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6399882785425687987}
-  - component: {fileID: 5461046117018205739}
-  - component: {fileID: 394893792699303897}
-  m_Layer: 0
-  m_Name: Chacalot_Geo
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6399882785425687987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905105773401959971}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 543450653716115812}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!137 &5461046117018205739
-SkinnedMeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905105773401959971}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 3
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 5561349426305759274, guid: 65d99d1326de08b4da3badf45addea77, type: 3}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  serializedVersion: 2
-  m_Quality: 0
-  m_UpdateWhenOffscreen: 0
-  m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: -1582990390714953720, guid: 65d99d1326de08b4da3badf45addea77, type: 3}
-  m_Bones:
-  - {fileID: 5838269846860603505}
-  - {fileID: 4106130692415910376}
-  - {fileID: 7709384566848793288}
-  - {fileID: 2446919998079006554}
-  - {fileID: 454119474730497946}
-  - {fileID: 690861709032516148}
-  - {fileID: 3467698618458926102}
-  - {fileID: 5527943192254144278}
-  - {fileID: 8358168244230284753}
-  - {fileID: 1313841143687017940}
-  - {fileID: 733007281204836894}
-  - {fileID: 8779366425131937207}
-  - {fileID: 5844203477731668874}
-  - {fileID: 4960666419709772938}
-  - {fileID: 8313028042562948663}
-  - {fileID: 5224663513520671350}
-  - {fileID: 1064438234737532008}
-  - {fileID: 1233842076857288548}
-  - {fileID: 6825485603636986131}
-  - {fileID: 3948170109443808993}
-  - {fileID: 1484944255821343181}
-  - {fileID: 6981223183632466956}
-  - {fileID: 2608468174300772893}
-  - {fileID: 1991333519129564642}
-  - {fileID: 6615692860003864312}
-  - {fileID: 2211564894927742539}
-  - {fileID: 4647739885656697759}
-  - {fileID: 2872484963310691630}
-  - {fileID: 2266572120364655403}
-  - {fileID: 3084350513945955295}
-  - {fileID: 6932746534923159497}
-  - {fileID: 2409419014447840928}
-  - {fileID: 4982521728266685383}
-  - {fileID: 8209941721021370104}
-  - {fileID: 3303930123681727307}
-  - {fileID: 2143803538216090642}
-  - {fileID: 6379848333857925567}
-  - {fileID: 4785025836278437585}
-  - {fileID: 3389967997204851182}
-  m_BlendShapeWeights: []
-  m_RootBone: {fileID: 5838269846860603505}
-  m_AABB:
-    m_Center: {x: -0.08179426, y: 0.95465267, z: -0.00000071525574}
-    m_Extent: {x: 4.3201222, y: 3.0166464, z: 4.258361}
-  m_DirtyAABB: 0
---- !u!114 &394893792699303897
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5905105773401959971}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6043586332263371748
 GameObject:
   m_ObjectHideFlags: 0
@@ -69867,7 +69718,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &6174244635869257350
+--- !u!1 &6481645475627099937
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69875,61 +69726,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7680417818099734521}
+  - component: {fileID: 3605111187863979747}
   m_Layer: 0
-  m_Name: Chacalot_InGame_Jnt
+  m_Name: Chacalot_Spike_03_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7680417818099734521
+--- !u!4 &3605111187863979747
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6174244635869257350}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1654135386722911027}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6454020731421205273
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4982521728266685383}
-  m_Layer: 0
-  m_Name: Chacalot_Spike_02_R_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4982521728266685383
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6454020731421205273}
+  m_GameObject: {fileID: 6481645475627099937}
   m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
-  m_LocalPosition: {x: 2.0449667, y: 0.009402275, z: -1.2231941}
+  m_LocalPosition: {x: -2.6511347, y: -0.0094025135, z: 1.0728328}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6932746534923159497}
-  m_RootOrder: 1
+  m_Father: {fileID: 3142560739575676703}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6483024609614393020
+--- !u!1 &6563650362209585463
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69937,125 +69757,29 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4106130692415910376}
+  - component: {fileID: 8377806508245422333}
   m_Layer: 0
-  m_Name: Chacalot_Spine_01_Jnt
+  m_Name: Chacalot_Flipper_Bot_Root_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4106130692415910376
+--- !u!4 &8377806508245422333
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6483024609614393020}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8608146, y: 0, z: 4.1867618e-16}
+  m_GameObject: {fileID: 6563650362209585463}
+  m_LocalRotation: {x: -0.35281932, y: -0.6005783, z: 0.36343962, w: 0.6186565}
+  m_LocalPosition: {x: 0.8656922, y: -0.79152703, z: -0.67912847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 454119474730497946}
-  - {fileID: 5527943192254144278}
-  - {fileID: 7709384566848793288}
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6553576377127218139
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8313028042562948663}
-  m_Layer: 0
-  m_Name: Chacalot_Spike_02_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8313028042562948663
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6553576377127218139}
-  m_LocalRotation: {x: 0, y: 0.6087614, z: -0, w: 0.7933533}
-  m_LocalPosition: {x: -2.0449667, y: -0.009402275, z: 1.223194}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5844203477731668874}
+  - {fileID: 7753275074512227313}
+  m_Father: {fileID: 3135601762840571108}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6610136292648970034
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1484944255821343181}
-  m_Layer: 0
-  m_Name: Chacalot_Tail_02_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1484944255821343181
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6610136292648970034}
-  m_LocalRotation: {x: 0, y: 0, z: 0.13052619, w: 0.9914449}
-  m_LocalPosition: {x: -0.86610025, y: 1.7763568e-15, z: -1.6108576e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6981223183632466956}
-  m_Father: {fileID: 3948170109443808993}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &6612242698178799809
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1233842076857288548}
-  m_Layer: 0
-  m_Name: Chacalot_Flipper_Bot_L_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1233842076857288548
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6612242698178799809}
-  m_LocalRotation: {x: 0.0017195622, y: -0.013649896, z: 0.00051227043, w: 0.9999052}
-  m_LocalPosition: {x: -0.4221744, y: -0.0000044467397, z: -0.00012418556}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1064438234737532008}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6712551276095163535
 GameObject:
@@ -74765,7 +74489,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &7262328146489037074
+--- !u!1 &6715338153138797042
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74773,33 +74497,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6932746534923159497}
+  - component: {fileID: 2611710310781816198}
   m_Layer: 0
-  m_Name: Chacalot_Wing_R_Jnt
+  m_Name: Chacalot_Propeller_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6932746534923159497
+--- !u!4 &2611710310781816198
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7262328146489037074}
-  m_LocalRotation: {x: 0, y: 0, z: 0.16008934, w: 0.9871025}
-  m_LocalPosition: {x: 0.23944783, y: 0.045547605, z: 0.022766463}
+  m_GameObject: {fileID: 6715338153138797042}
+  m_LocalRotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
+  m_LocalPosition: {x: 2.0375714, y: -0.67935824, z: -4.978866e-16}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2409419014447840928}
-  - {fileID: 4982521728266685383}
-  - {fileID: 8209941721021370104}
-  m_Father: {fileID: 3084350513945955295}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7304289854631640284
+--- !u!1 &6820380963577211682
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74807,32 +74528,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6981223183632466956}
+  - component: {fileID: 7441643935118340231}
   m_Layer: 0
-  m_Name: Chacalot_Tail_Finn_Mid_Jnt
+  m_Name: Chacalot_Flipper_Bot_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6981223183632466956
+--- !u!4 &7441643935118340231
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7304289854631640284}
-  m_LocalRotation: {x: -0.5068195, y: 0.49308625, z: -0.49308625, w: 0.5068195}
-  m_LocalPosition: {x: -0.62891364, y: 0.15301916, z: -1.2132108e-16}
+  m_GameObject: {fileID: 6820380963577211682}
+  m_LocalRotation: {x: 0.0017195622, y: -0.013649896, z: 0.00051227043, w: 0.9999052}
+  m_LocalPosition: {x: 0.4221744, y: 0.0000044467397, z: 0.00012418556}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2608468174300772893}
-  - {fileID: 1991333519129564642}
-  m_Father: {fileID: 1484944255821343181}
+  m_Children: []
+  m_Father: {fileID: 6295958335345676254}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7510224608030449093
+--- !u!1 &7177327013952200468
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74840,32 +74559,30 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1654135386722911027}
+  - component: {fileID: 6392280823794492497}
   m_Layer: 0
-  m_Name: Chacalot_Joints_Grp
+  m_Name: Chacalot_Geo_Grp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1654135386722911027
+--- !u!4 &6392280823794492497
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7510224608030449093}
+  m_GameObject: {fileID: 7177327013952200468}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5838269846860603505}
-  - {fileID: 7680417818099734521}
-  m_Father: {fileID: 543450653716115812}
-  m_RootOrder: 2
+  m_Children: []
+  m_Father: {fileID: 9010839959292132849}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &7805368594503349185
+--- !u!1 &7252726456380870271
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74873,30 +74590,192 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4647739885656697759}
+  - component: {fileID: 238907870593786146}
   m_Layer: 0
-  m_Name: Chacalot_Mechanism_03_L_Jnt
+  m_Name: Chacalot_Wing_Root_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4647739885656697759
+--- !u!4 &238907870593786146
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7805368594503349185}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.98618156, y: -8.881784e-16, z: -2.220446e-16}
+  m_GameObject: {fileID: 7252726456380870271}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.14253676, y: -0.33124045, z: -1.0185224}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3142560739575676703}
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7358457342944849274
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4098704383305456196}
+  m_Layer: 0
+  m_Name: Chacalot_Mechanism_02_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4098704383305456196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7358457342944849274}
+  m_LocalRotation: {x: 0.71783704, y: -0.69621116, z: -0.000000011249464, w: -0.000000010910557}
+  m_LocalPosition: {x: 0.8117159, y: -0.00000045621647, z: -0.00000002980237}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6164798557630309755}
+  m_Father: {fileID: 2454338716413158698}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7393074952464901091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7221338122554387166}
+  m_Layer: 0
+  m_Name: Chacalot_Mechanism_02_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7221338122554387166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7393074952464901091}
+  m_LocalRotation: {x: 0.71783704, y: -0.69621116, z: -0.000000011249464, w: -0.000000010910557}
+  m_LocalPosition: {x: -0.81171465, y: 2.6645353e-15, z: -5.551115e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4181100239585289994}
+  m_Father: {fileID: 2398729563181744749}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7501126084122840945
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3142560739575676703}
+  m_Layer: 0
+  m_Name: Chacalot_Wing_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3142560739575676703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7501126084122840945}
+  m_LocalRotation: {x: 0, y: 0, z: 0.16008934, w: 0.9871025}
+  m_LocalPosition: {x: -0.23944548, y: -0.04554756, z: -0.022766411}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4490517215475517471}
+  - {fileID: 710329296087941794}
+  - {fileID: 3605111187863979747}
+  m_Father: {fileID: 238907870593786146}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7572848265253038943
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5785865744998303562}
+  m_Layer: 0
+  m_Name: Chacalot_Wing_Root_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5785865744998303562
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7572848265253038943}
+  m_LocalRotation: {x: 0.7071068, y: 4.3297806e-17, z: 0.7071068, w: -4.3297806e-17}
+  m_LocalPosition: {x: -0.14253682, y: -0.33124042, z: 1.01852}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1923114491660798812}
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7858743522986767451
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7345983537357582270}
+  m_Layer: 0
+  m_Name: Chacalot_Flipper_Top_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7345983537357582270
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7858743522986767451}
+  m_LocalRotation: {x: 0.6830127, y: 0.18301271, z: 0.6830127, w: 0.18301271}
+  m_LocalPosition: {x: 0.71121716, y: 0.089739785, z: 1.07295}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2211564894927742539}
-  m_RootOrder: 0
+  m_Father: {fileID: 3135601762840571108}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8162797319403465805
+--- !u!1 &7860772471805524569
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74904,28 +74783,27 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8358168244230284753}
+  - component: {fileID: 5375586890565558403}
   m_Layer: 0
-  m_Name: Chacalot_Cannon_01_R_Jnt
+  m_Name: Chacalot_Cannon_02_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8358168244230284753
+--- !u!4 &5375586890565558403
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8162797319403465805}
+  m_GameObject: {fileID: 7860772471805524569}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.3651847, y: 0.002071, z: -1.6653345e-15}
+  m_LocalPosition: {x: -0.27306885, y: -0.00003796816, z: 0.00000086426735}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1313841143687017940}
-  m_Father: {fileID: 5527943192254144278}
+  m_Children: []
+  m_Father: {fileID: 8291189992193926817}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8184293494008983471
@@ -79793,7 +79671,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &8348428162889654079
+--- !u!1 &8522850772209166155
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79801,62 +79679,140 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6379848333857925567}
+  - component: {fileID: 9010839959292132849}
+  - component: {fileID: 5771736006921086127}
+  - component: {fileID: 7253585083393467568}
+  - component: {fileID: 4681310685342766064}
+  - component: {fileID: 6721350253040675104}
   m_Layer: 0
-  m_Name: Chacalot_Mechanism_01_R_Jnt
+  m_Name: Mesh_Chacalot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6379848333857925567
+--- !u!4 &9010839959292132849
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8348428162889654079}
-  m_LocalRotation: {x: 0.00000001606312, y: -0.000000008887014, z: 0.87501025, w: 0.48410448}
-  m_LocalPosition: {x: 0.0004438835, y: 0.7289338, z: 0.358411}
+  m_GameObject: {fileID: 8522850772209166155}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4785025836278437585}
-  m_Father: {fileID: 5838269846860603505}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8393320086994104716
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2872484963310691630}
-  m_Layer: 0
-  m_Name: Chacalot_Door_Jnt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2872484963310691630
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8393320086994104716}
-  m_LocalRotation: {x: 0, y: -0, z: -0.38865128, w: 0.92138493}
-  m_LocalPosition: {x: 0.8775365, y: 0.8688589, z: -2.2489085e-16}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5838269846860603505}
+  - {fileID: 2474346683066796326}
+  - {fileID: 6392280823794492497}
+  - {fileID: 7814586549176536998}
+  m_Father: {fileID: 2198226034328220055}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8680932278430776888
+--- !u!114 &5771736006921086127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522850772209166155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MyUnit: {fileID: 2198226034328220053}
+--- !u!135 &7253585083393467568
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522850772209166155}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+--- !u!114 &4681310685342766064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522850772209166155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - IsVisible: 1
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 3553303601337479870}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+--- !u!95 &6721350253040675104
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522850772209166155}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ecc462cb3f138384498526750fb88c99, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &8618051415904799503
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79864,31 +79820,31 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7709384566848793288}
+  - component: {fileID: 6295958335345676254}
   m_Layer: 0
-  m_Name: Chacalot_Head_Jnt
+  m_Name: Chacalot_Flipper_Bot_Root_R_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7709384566848793288
+--- !u!4 &6295958335345676254
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8680932278430776888}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.6811477, y: -4.440892e-16, z: 1.684862e-16}
+  m_GameObject: {fileID: 8618051415904799503}
+  m_LocalRotation: {x: 0.6005783, y: -0.35281932, z: 0.6186565, w: -0.36343962}
+  m_LocalPosition: {x: 0.8656922, y: -0.79152703, z: 0.67912847}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2446919998079006554}
-  m_Father: {fileID: 4106130692415910376}
+  - {fileID: 7441643935118340231}
+  m_Father: {fileID: 3135601762840571108}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8814641650912763981
+--- !u!1 &8629879910879003482
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79896,27 +79852,58 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3389967997204851182}
+  - component: {fileID: 4490517215475517471}
   m_Layer: 0
-  m_Name: Chacalot_Mechanism_03_R_Jnt
+  m_Name: Chacalot_Spike_01_L_Jnt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3389967997204851182
+--- !u!4 &4490517215475517471
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8814641650912763981}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.98618263, y: -0.000001309519, z: -0.000000029802365}
+  m_GameObject: {fileID: 8629879910879003482}
+  m_LocalRotation: {x: 0, y: 0.6078641, z: -0, w: 0.79404116}
+  m_LocalPosition: {x: -1.3603594, y: -0.00037026405, z: 1.3882114}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4785025836278437585}
+  m_Father: {fileID: 3142560739575676703}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8739128263029010368
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6623017816357302837}
+  m_Layer: 0
+  m_Name: Chacalot_Spike_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6623017816357302837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8739128263029010368}
+  m_LocalRotation: {x: 0, y: 0.6078641, z: -0, w: 0.79404116}
+  m_LocalPosition: {x: 1.3603594, y: 0.00037026405, z: -1.3882115}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1923114491660798812}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3865535993931117614
