@@ -24,7 +24,7 @@ public class UICard : MonoBehaviour
     public bool IsSelected;
     //Type of card (skill, ship or station)
     [HideInInspector]
-    public CardClass TypeCard;
+    public NFTClass TypeCard;
     //The name of the card
     [HideInInspector]
     public string NameCard;
@@ -58,14 +58,14 @@ public class UICard : MonoBehaviour
         if (data as NFTsSpell != null)
         {
             //This card is a spell
-            TypeCard = CardClass.Skill;
+            TypeCard = NFTClass.Skill;
             Txt_Type.text = Lang.GetText("mn_skill");
         } else
         {
             //This card is a unit
             NFTsUnit nFTsUnit = data as NFTsUnit;
-            TypeCard = nFTsUnit.IsStation ? CardClass.Station : CardClass.Ship;
-            Txt_Type.text = Lang.GetText(nFTsUnit.IsStation ? "mn_station" : "mn_ship");
+            TypeCard = (NFTClass)nFTsUnit.EntType;
+            Txt_Type.text = Lang.GetText(TypeCard == NFTClass.Station ? "mn_station" : "mn_ship");
         }
     }
 

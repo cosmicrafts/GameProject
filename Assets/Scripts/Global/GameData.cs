@@ -19,6 +19,15 @@ public enum Plataform
     Web,
     Pc
 }
+
+//Types of NFTS
+public enum NFTClass
+{
+    Character,
+    Skill,
+    Station,
+    Ship
+}
 public static class GameData
 {
     //Save the selected game mode

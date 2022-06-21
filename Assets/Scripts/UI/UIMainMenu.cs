@@ -81,7 +81,6 @@ public class UIMainMenu : MonoBehaviour
             //Initialize the essential data
             SaveData.LoadGameConfig();
             PlayerCollection = GameData.GetUserCollection();
-            PlayerCollection.AddUnitsAndCharactersDefault();
             GameData.DataReady = true;
         }
         else
@@ -107,6 +106,9 @@ public class UIMainMenu : MonoBehaviour
         {
             //Set the game mode as bots
             GameData.CurrentMatch = Match.bots;
+            //Set the default test units
+            if (!GameData.DataReady)
+                PlayerCollection.AddUnitsAndCharactersDefault();
             //Load the player data (with default vaules)
             InitPlayerData();
         }
@@ -172,6 +174,24 @@ public class UIMainMenu : MonoBehaviour
         AddProgressDataLoaded();
     }
 
+    //Called from WEB, for set the player characters collection
+    public void GL_SetCollectionCharactersData(string jsonData)
+    {
+        PlayerCollection.SetCharacters(jsonData);
+    }
+
+    //Called from WEB, for set the player Units collection
+    public void GL_SetCollectionUnitsData(string jsonData)
+    {
+        PlayerCollection.SetUnitCards(jsonData);
+    }
+
+    //Called from WEB, for set the player Spells collection
+    public void GL_SetCollectionSkillsData(string jsonData)
+    {
+        PlayerCollection.SetSpellsCards(jsonData);
+    }
+
     //Add progress of the player loaded data
     void AddProgressDataLoaded()
     {
@@ -187,6 +207,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerUser = GameData.GetUserData();
         PlayerProgress = GameData.GetUserProgress();
         PlayerCharacter = GameData.GetUserCharacter();
+        PlayerCollection.InitDecks();
         LoadingPanel.instance.DesactiveLoadingPanel();
         doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);

@@ -22,7 +22,7 @@ public class UICharacter : MonoBehaviour
     public void SetData(NFTsCharacter data)
     {
         Data = data;
-        MyAvatar.sprite = ResourcesServices.LoadAvatarIcon(Data.CharacterId);
+        MyAvatar.sprite = ResourcesServices.LoadAvatarIcon(Data.LocalID);
         MyName.text = Lang.GetEntityName(Data.KeyId);
     }
 

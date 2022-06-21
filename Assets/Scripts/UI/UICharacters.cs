@@ -42,7 +42,7 @@ public class UICharacters : MonoBehaviour
         NFTsCharacter pCharacter = GameData.GetUserCharacter();
 
         //Show the UI characters from the player collection characters data
-        foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.CharacterId))
+        foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.LocalID))
         {
             UICharacter uichar = Instantiate(DefaultUIChar.gameObject, DefaultUIChar.transform.parent).GetComponent<UICharacter>();
             uichar.SetData(character);

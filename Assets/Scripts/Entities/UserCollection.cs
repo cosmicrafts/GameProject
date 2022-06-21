@@ -6,6 +6,8 @@ using System.Linq;
  */
 public class UserCollection
 {
+    bool DeckReady;
+
     public Dictionary<string,List<NFTsCard>> Decks;
 
     public List<NFTsCard> Deck;
@@ -16,6 +18,7 @@ public class UserCollection
 
     public void InitCollection()
     {
+        DeckReady = false;
         Decks = new Dictionary<string, List<NFTsCard>>
         {
             {"Alliance", null},
@@ -30,39 +33,50 @@ public class UserCollection
         Deck = Decks[nFTsCharacter.Faction];
     }
 
+    public void SetCharacters(string jsonList)
+    {
+        Characters.AddRange(JsonConvert.DeserializeObject<List<NFTsCharacter>>(jsonList));
+    }
+
+    public void SetSpellsCards(string jsonList)
+    {
+        Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsSpell>>(jsonList));
+    }
+
+    public void SetUnitCards(string jsonList)
+    {
+        Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(jsonList));
+    }
+
+    public void InitDecks()
+    {
+        if (DeckReady || Decks == null)
+            return;
+
+        Decks["Alliance"] = Cards.Where(f => f.Faction == "Alliance").Take(8).ToList();
+        Decks["Spirats"] = Cards.Where(f => f.Faction == "Spirats").Take(8).ToList();
+        Deck = Decks["Alliance"];
+        DeckReady = true;
+    }
+
     public void AddUnitsAndCharactersDefault()
     {
-        //Characters.AddRange(JsonConvert.DeserializeObject<List<NFTsCharacter>>(mijsonPersonajes));
-        //Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(mijsonUnidades));
-        //Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(mijsonSpells));
         //CHARACTERS
         Characters.Add(new NFTsCharacter()
         {
             KeyId = "Chr_1",
             Icon = "Character_1",
             Faction = "Alliance",
-            CharacterId = 1
+            LocalID = 1,
+            EntType = (int)NFTClass.Character
         });
-        //Characters.Add(new NFTsCharacter()
-        //{
-        //    KeyId = "Chr_2",
-        //    Name = "Dofshlu",
-        //    Icon = "Character_2",
-        //    Faction = "Alliance"
-        //});
-        //Characters.Add(new NFTsCharacter()
-        //{
-        //    KeyId = "Chr_3",
-        //    Name = "Plagnor",
-        //    Icon = "Character_3",
-        //    Faction = "Alliance"
-        //});
         Characters.Add(new NFTsCharacter()
         {
             KeyId = "Chr_4",
             Icon = "Character_4",
             Faction = "Spirats",
-            CharacterId = 4
+            LocalID = 4,
+            EntType = (int)NFTClass.Character
         });
         //ALL CARDS
         //ALLIANCE
@@ -78,7 +92,8 @@ public class UserCollection
                 Shield = 3+(1*i),
                 Speed = 1,
                 Dammage = i,
-                Faction = "Alliance"
+                Faction = "Alliance",
+                EntType = (int)NFTClass.Ship
             });
         }
         Cards.Add(new NFTsUnit()
@@ -91,7 +106,7 @@ public class UserCollection
             Shield = 10,
             Speed = 0,
             Dammage = 2,
-            IsStation = true,
+            EntType = (int)NFTClass.Station,
             Faction = "Alliance"
         });
         Cards.Add(new NFTsSpell()
@@ -100,7 +115,8 @@ public class UserCollection
             EnergyCost = 10,
             Icon = $"I_Com_Skill_01",
             Rarity = 5,
-            Faction = "Neutral"
+            Faction = "Neutral",
+            EntType = (int)NFTClass.Skill
         });
         //SPIRATS
         for (int i = 1; i <= 9; i++)
@@ -115,7 +131,8 @@ public class UserCollection
                 Shield = 5+(2*i),
                 Speed = 1,
                 Dammage = i,
-                Faction = "Spirats"
+                Faction = "Spirats",
+                EntType = (int)NFTClass.Ship
             });
         }
         Cards.Add(new NFTsUnit()
@@ -128,13 +145,11 @@ public class UserCollection
             Shield = 20,
             Speed = 0,
             Dammage = 1,
-            IsStation = true,
+            EntType = (int)NFTClass.Station,
             Faction = "Spirats"
         });
         //CURRENT DECK
-        Decks["Alliance"] = Cards.Where(f => f.Faction == "Alliance").Take(8).ToList();
-        Decks["Spirats"] = Cards.Where(f => f.Faction == "Spirats").Take(8).ToList();
-        Deck = Decks["Alliance"];
+        InitDecks();
     }
 
     public NFTsCharacter GetCharacterByKey(string key)

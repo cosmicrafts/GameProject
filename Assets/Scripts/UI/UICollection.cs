@@ -17,14 +17,6 @@ public enum CardOrder
     Rarity
 }
 
-//Types of cards
-public enum CardClass
-{
-    Ship,
-    Station,
-    Skill
-}
-
 public class UICollection : MonoBehaviour
 {
     //UI deck of the player
@@ -59,7 +51,7 @@ public class UICollection : MonoBehaviour
     public Dropdown DD_OrderBy;
 
     //List of cards types (filter)
-    List<CardClass> ClassFilter;
+    List<NFTClass> ClassFilter;
     //Dictionary of key cards (nfts) and cards names
     Dictionary<string, string> UnitNames;
 
@@ -80,10 +72,10 @@ public class UICollection : MonoBehaviour
 
         OrderBy = 0;
         FilterSearch = string.Empty;
-        ClassFilter = new List<CardClass>();
-        ClassFilter.Add(CardClass.Ship);
-        ClassFilter.Add(CardClass.Station);
-        ClassFilter.Add(CardClass.Skill);
+        ClassFilter = new List<NFTClass>();
+        ClassFilter.Add(NFTClass.Ship);
+        ClassFilter.Add(NFTClass.Station);
+        ClassFilter.Add(NFTClass.Skill);
 
         DD_OrderBy.ClearOptions();
         DD_OrderBy.AddOptions(new List<Dropdown.OptionData>() {
@@ -232,11 +224,11 @@ public class UICollection : MonoBehaviour
     {
         ClassFilter.Clear();
         if (FilterShips)
-            ClassFilter.Add(CardClass.Ship);
+            ClassFilter.Add(NFTClass.Ship);
         if (FilterStations)
-            ClassFilter.Add(CardClass.Station);
+            ClassFilter.Add(NFTClass.Station);
         if (FilterSkills)
-            ClassFilter.Add(CardClass.Skill);
+            ClassFilter.Add(NFTClass.Skill);
 
         List<NFTsCard> Sorted;
 
