@@ -16,6 +16,8 @@ public class UserCollection
 
     public List<NFTsCharacter> Characters;
 
+    public NFTsCharacter DefaultCharacter;
+
     public void InitCollection()
     {
         DeckReady = false;
@@ -26,6 +28,14 @@ public class UserCollection
         };
         Cards = new List<NFTsCard>();
         Characters = new List<NFTsCharacter>();
+        DefaultCharacter = new NFTsCharacter()
+        {
+            KeyId = "Chr_1",
+            Icon = "Character_1",
+            Faction = "Alliance",
+            LocalID = 1,
+            EntType = (int)NFTClass.Character
+        };
     }
 
     public void ChangeDeckFaction(NFTsCharacter nFTsCharacter)

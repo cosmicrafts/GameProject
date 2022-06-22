@@ -64,14 +64,14 @@ public class UIMainMenu : MonoBehaviour
     private void Awake()
     {
        
-        LoadingPanel.instance.DesactiveLoadingPanel ();
+        //LoadingPanel.instance.DesactiveLoadingPanel();
         Debug.Log("--- MENU START ---");
         //initialize variables
         Menu = this;
         UserDataLoaded = 0;
 
         //Show the login page
-      LoadingPanel.instance.ActiveLoadingPanel();
+        //LoadingPanel.instance.ActiveLoadingPanel();
       
         MenuPanel.SetActive(false);
 
@@ -208,7 +208,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerProgress = GameData.GetUserProgress();
         PlayerCharacter = GameData.GetUserCharacter();
         PlayerCollection.InitDecks();
-        LoadingPanel.instance.DesactiveLoadingPanel();
+        //LoadingPanel.instance.DesactiveLoadingPanel();
         doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }

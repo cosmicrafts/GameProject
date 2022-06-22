@@ -173,7 +173,17 @@ public static class GameData
     {
         if (PlayerCharacter == null)
         {
-            PlayerCharacter = PlayerCollection.Characters[0];
+            var Characters = GetUserCollection().Characters;
+            if (Characters == null)
+            {
+                PlayerCharacter = GetUserCollection().DefaultCharacter;
+            } else if (Characters.Count == 0)
+            {
+                PlayerCharacter = GetUserCollection().DefaultCharacter;
+            } else
+            {
+                PlayerCharacter = Characters[0];
+            }
         }
 
         return PlayerCharacter;
