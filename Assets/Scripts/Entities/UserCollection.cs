@@ -64,7 +64,7 @@ public class UserCollection
             return;
 
         Decks["Alliance"] = Cards.Where(f => f.Faction == "Alliance").Take(8).ToList();
-        Decks["Spirats"] = Cards.Where(f => f.Faction == "Spirats").Take(8).ToList();
+        //Decks["Spirats"] = Cards.Where(f => f.Faction == "Spirats").Take(8).ToList();
         Deck = Decks["Alliance"];
         DeckReady = true;
     }
@@ -79,20 +79,19 @@ public class UserCollection
             LocalID = 1,
             EntType = (int)NFTClass.Character
         });
-        Characters.Add(new NFTsCharacter()
-        {
-            Icon = "Character_4",
-            Faction = "Spirats",
-            LocalID = 4,
-            EntType = (int)NFTClass.Character
-        });
+        //Characters.Add(new NFTsCharacter()
+        //{
+        //    Icon = "Character_4",
+        //    Faction = "Spirats",
+        //    LocalID = 4,
+        //    EntType = (int)NFTClass.Character
+        //});
         //ALL CARDS
         //ALLIANCE
         for (int i = 1; i <= 10; i++)
         {
             Cards.Add(new NFTsUnit()
             {
-                KeyId = $"U_ALL_{i}",
                 EnergyCost = i,
                 Icon = $"I_All_Ship_{i}",
                 Rarity = 1,
@@ -107,7 +106,6 @@ public class UserCollection
         }
         Cards.Add(new NFTsUnit()
         {
-            KeyId = $"S_ALL_1",
             EnergyCost = 5,
             Icon = $"I_All_Sta_1",
             Rarity = 3,
@@ -121,7 +119,6 @@ public class UserCollection
         });
         Cards.Add(new NFTsSpell()
         {
-            KeyId = $"H_NEU_1",
             EnergyCost = 10,
             Icon = $"I_Com_Skill_01",
             Rarity = 5,
@@ -134,7 +131,6 @@ public class UserCollection
         {
             Cards.Add(new NFTsUnit()
             {
-                KeyId = $"U_SPI_{i}",
                 EnergyCost = i,
                 Icon = $"I_Spi_Ship_{i}",
                 Rarity = 1,
@@ -149,7 +145,6 @@ public class UserCollection
         }
         Cards.Add(new NFTsUnit()
         {
-            KeyId = $"S_SPI_1",
             EnergyCost = 5,
             Icon = $"I_Spi_Sta_1",
             Rarity = 3,
