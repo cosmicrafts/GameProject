@@ -74,7 +74,6 @@ public class UserCollection
         //CHARACTERS
         Characters.Add(new NFTsCharacter()
         {
-            KeyId = "Chr_1",
             Icon = "Character_1",
             Faction = "Alliance",
             LocalID = 1,
@@ -82,7 +81,6 @@ public class UserCollection
         });
         Characters.Add(new NFTsCharacter()
         {
-            KeyId = "Chr_4",
             Icon = "Character_4",
             Faction = "Spirats",
             LocalID = 4,
@@ -103,7 +101,8 @@ public class UserCollection
                 Speed = 1,
                 Dammage = i,
                 Faction = "Alliance",
-                EntType = (int)NFTClass.Ship
+                EntType = (int)NFTClass.Ship,
+                LocalID = i
             });
         }
         Cards.Add(new NFTsUnit()
@@ -117,7 +116,8 @@ public class UserCollection
             Speed = 0,
             Dammage = 2,
             EntType = (int)NFTClass.Station,
-            Faction = "Alliance"
+            Faction = "Alliance",
+            LocalID = 1
         });
         Cards.Add(new NFTsSpell()
         {
@@ -126,7 +126,8 @@ public class UserCollection
             Icon = $"I_Com_Skill_01",
             Rarity = 5,
             Faction = "Neutral",
-            EntType = (int)NFTClass.Skill
+            EntType = (int)NFTClass.Skill,
+            LocalID = 1
         });
         //SPIRATS
         for (int i = 1; i <= 9; i++)
@@ -142,7 +143,8 @@ public class UserCollection
                 Speed = 1,
                 Dammage = i,
                 Faction = "Spirats",
-                EntType = (int)NFTClass.Ship
+                EntType = (int)NFTClass.Ship,
+                LocalID = i
             });
         }
         Cards.Add(new NFTsUnit()
@@ -156,7 +158,8 @@ public class UserCollection
             Speed = 0,
             Dammage = 1,
             EntType = (int)NFTClass.Station,
-            Faction = "Spirats"
+            Faction = "Spirats",
+            LocalID = 1
         });
         //CURRENT DECK
         InitDecks();

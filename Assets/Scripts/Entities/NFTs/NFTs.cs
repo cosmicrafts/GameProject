@@ -5,7 +5,7 @@ public abstract class NFTs
 
     public string NameID { get; set; }
 
-    public string KeyId { get; set; }
+    public virtual string KeyId { get; set; }
 
     public string Name { get; set; }
 

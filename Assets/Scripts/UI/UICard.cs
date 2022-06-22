@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 /*
  * This code represents a instance of a card on the deck collection menu
@@ -53,7 +55,13 @@ public class UICard : MonoBehaviour
             Txt_Details.text = Lang.GetEntityDescription(data.KeyId);
         }
         //Set the icon of the NFT
-        Icon.sprite = ResourcesServices.LoadCardIcon(data.Icon, IsSkill);
+        if (GlobalManager.GMD.DebugMode)
+        {
+            Icon.sprite = ResourcesServices.LoadCardIcon(data.Icon, IsSkill);
+        } else
+        {
+            StartCoroutine(GetNFTIcon(data.Icon));
+        }
         //Set type of the NFT
         if (data as NFTsSpell != null)
         {
@@ -88,4 +96,13 @@ public class UICard : MonoBehaviour
         IsSelected = false;
         Txt_Name.color = Color.white;
     }
+
+    protected IEnumerator GetNFTIcon(string u)
+    {
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(u);
+        yield return www.SendWebRequest();
+        Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        Icon.sprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+    }
+
 }
