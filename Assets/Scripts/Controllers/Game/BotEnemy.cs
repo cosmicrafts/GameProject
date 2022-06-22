@@ -62,7 +62,7 @@ public class BotEnemy : MonoBehaviour
     int MinCostUnit;
 
     //Random class service
-    private static System.Random rng;
+    private System.Random rng;
 
     //Allows to generate energy
     bool CanGenEnergy;

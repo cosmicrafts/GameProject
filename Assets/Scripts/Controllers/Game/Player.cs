@@ -52,10 +52,10 @@ public class Player : MonoBehaviour
         //Defines the current Player controler to the game manager
         GameMng.P = this;
         //Check if the current game is a multiplayer match
-        if (GameData.CurrentMatch == Match.multi)
+        if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
             //If im not the master, im the client, so my id and team change...
-            if (!GameData.ImMaster)
+            if (!GlobalManager.GMD.ImMaster)
             {
                 ID = 2;
                 MyTeam = Team.Red;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         }
 
         //Check if the current match is not the tutorial
-        if (GameData.CurrentMatch != Match.tutorial)
+        if (GlobalManager.GMD.CurrentMatch != Match.tutorial)
         {
             //Get the player´s character and spawn it
             GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     //Check if im the client
     public bool ImFake()
     {
-        return GameData.CurrentMatch == Match.multi && ID == 2;
+        return GlobalManager.GMD.CurrentMatch == Match.multi && ID == 2;
     }
 
     //Select a card (from index 0 - 7) 

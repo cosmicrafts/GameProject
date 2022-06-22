@@ -37,9 +37,9 @@ public class UICharacters : MonoBehaviour
         //Initialize the UI characters list
         AllCharacters = new List<UICharacter>();
         //Get the player collection data
-        PlayerCollection = GameData.GetUserCollection();
+        PlayerCollection = GlobalManager.GMD.GetUserCollection();
         //Get the current player character
-        NFTsCharacter pCharacter = GameData.GetUserCharacter();
+        NFTsCharacter pCharacter = GlobalManager.GMD.GetUserCharacter();
 
         //Show the UI characters from the player collection characters data
         foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.LocalID))
@@ -68,9 +68,9 @@ public class UICharacters : MonoBehaviour
         NFTsCharacter nFTsCharacter = character.GetData();
         CurrentChar = character;
         UpdateUIInfo();
-        GameData.SetUserCharacter(nFTsCharacter.KeyId);
+        GlobalManager.GMD.SetUserCharacter(nFTsCharacter.KeyId);
 
-        if (GameData.IsProductionWeb())
+        if (GlobalManager.GMD.IsProductionWeb())
         {
             GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
         }

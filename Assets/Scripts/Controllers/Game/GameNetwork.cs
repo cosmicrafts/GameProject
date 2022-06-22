@@ -174,7 +174,7 @@ public static class GameNetwork
     //Get the enemy´s data
     public static UserGeneral GetVsData()
     {
-        return GameData.ImMaster ? 
+        return GlobalManager.GMD.ImMaster ? 
             new UserGeneral() { 
                 NikeName = GameNetPack.ClientPlayerName, 
                 WalletId = GameNetPack.ClientWalletId,

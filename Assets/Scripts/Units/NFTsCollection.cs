@@ -14,7 +14,7 @@ public class NFTsCollection
 
     public List<NFTsCharacter> AllCharacters;
 
-    public void InitCollection()
+    public void InitGlobalCollection()
     {
         AllCards = new List<NFTsCard>();
         AllCharacters = new List<NFTsCharacter>();

@@ -66,22 +66,40 @@ public class UIMainMenu : MonoBehaviour
        
         //LoadingPanel.instance.DesactiveLoadingPanel();
         Debug.Log("--- MENU START ---");
+        //Instanciate Global Manager
+        if (FindObjectOfType<GlobalManager>() == null)
+        {
+            Instantiate(ResourcesServices.LoadGlobalManager());
+        }
         //initialize variables
         Menu = this;
         UserDataLoaded = 0;
+        //Check the build type
+        
+        GlobalManager.GMD.DebugMode = false;
+#if UNITY_EDITOR
+        GlobalManager.GMD.DebugMode = true;
+#endif
+        //Check the current plataform
+#if UNITY_WEBGL
+        GlobalManager.GMD.CurrentPlataform = Plataform.Web;
+#endif
 
         //Show the login page
         //LoadingPanel.instance.ActiveLoadingPanel();
-      
+
         MenuPanel.SetActive(false);
 
         //If the essential data doesn't exist...
-        if (!GameData.DataReady)
+        if (!GlobalManager.GMD.DataReady)
         {
             //Initialize the essential data
             SaveData.LoadGameConfig();
-            PlayerCollection = GameData.GetUserCollection();
-            GameData.DataReady = true;
+            //Load the player NFTs collection
+            PlayerCollection = GlobalManager.GMD.GetUserCollection();
+            //Add default NFTs if we are debuging
+            if (GlobalManager.GMD.DebugMode)
+                PlayerCollection.AddUnitsAndCharactersDefault();
         }
         else
         {
@@ -92,23 +110,13 @@ public class UIMainMenu : MonoBehaviour
         //Check the current game mode
         CheckGameMode();
 
-        //Check the build type
-        GameData.DebugMode = false;
-#if UNITY_EDITOR
-        GameData.DebugMode = true;
-#endif
-        //Check the current plataform
-#if UNITY_WEBGL
-        GameData.CurrentPlataform = Plataform.Web;
-#endif
         //If this is a debug runtime...
-        if (GameData.DebugMode)
+        if (GlobalManager.GMD.DebugMode)
         {
             //Set the game mode as bots
-            GameData.CurrentMatch = Match.bots;
+            GlobalManager.GMD.CurrentMatch = Match.bots;
             //Set the default test units
-            if (!GameData.DataReady)
-                PlayerCollection.AddUnitsAndCharactersDefault();
+            
             //Load the player data (with default vaules)
             InitPlayerData();
         }
@@ -128,7 +136,7 @@ public class UIMainMenu : MonoBehaviour
         }
         
         //Check if we already have the user data
-        if (GameData.UserIsInit())
+        if (GlobalManager.GMD.UserIsInit())
         {
             //Show the main menu
 
@@ -143,7 +151,7 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetPlayerData(string jsonData)
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);
-        GameData.SetUser(user);
+        GlobalManager.GMD.SetUser(user);
         AddProgressDataLoaded();
     }
 
@@ -151,7 +159,7 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetCharacterData(string jsonData)
     {
         NFTsCharacter character = JsonConvert.DeserializeObject<NFTsCharacter>(jsonData);
-        GameData.SetUserCharacter(character.KeyId);
+        GlobalManager.GMD.SetUserCharacter(character.KeyId);
         AddProgressDataLoaded();
     }
 
@@ -161,7 +169,7 @@ public class UIMainMenu : MonoBehaviour
         Progress progress = JsonConvert.DeserializeObject<Progress>(jsonData);
         UserProgress userProgress = new UserProgress();
         userProgress.InitValues(progress);
-        GameData.SetUserProgress(userProgress);
+        GlobalManager.GMD.SetUserProgress(userProgress);
         AddProgressDataLoaded();
     }
 
@@ -169,8 +177,8 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetConfigData(string jsonData)
     {
         Config config = JsonConvert.DeserializeObject<Config>(jsonData);
-        GameData.SetConfig(config);
-        GameData.ChangeLang((Language)config.language);
+        GlobalManager.GMD.SetConfig(config);
+        GlobalManager.GMD.ChangeLang((Language)config.language);
         AddProgressDataLoaded();
     }
 
@@ -204,9 +212,9 @@ public class UIMainMenu : MonoBehaviour
     void InitPlayerData()
     {
         Debug.Log("--- MENU SHOW ---");
-        PlayerUser = GameData.GetUserData();
-        PlayerProgress = GameData.GetUserProgress();
-        PlayerCharacter = GameData.GetUserCharacter();
+        PlayerUser = GlobalManager.GMD.GetUserData();
+        PlayerProgress = GlobalManager.GMD.GetUserProgress();
+        PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         PlayerCollection.InitDecks();
         //LoadingPanel.instance.DesactiveLoadingPanel();
         doorAnim.SetTrigger("DoorIntro");
@@ -268,7 +276,7 @@ public class UIMainMenu : MonoBehaviour
     //Change the game language
     public void ChangeLang(int lang)
     {
-        GameData.ChangeLang((Language)lang);
+        GlobalManager.GMD.ChangeLang((Language)lang);
     }
 
     //Load the game scene for a Tutorial o PVIA game
@@ -317,7 +325,7 @@ public class UIMainMenu : MonoBehaviour
     public void PlayCurrentMode()
     {
         Debug.Log("-- PLAY --");
-        switch(GameData.CurrentMatch)
+        switch(GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots:
                 {
@@ -358,7 +366,7 @@ public class UIMainMenu : MonoBehaviour
     //Change the current game mode
     public void ChangeCurrentGameMode(int newMode)
     {
-        GameData.CurrentMatch = (Match)newMode;
+        GlobalManager.GMD.CurrentMatch = (Match)newMode;
         CheckGameMode();
         BackMainSection();
     }
@@ -366,7 +374,7 @@ public class UIMainMenu : MonoBehaviour
     //Update the UI for the current game mode
     void CheckGameMode()
     {
-        switch (GameData.CurrentMatch)
+        switch (GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots:
                 {

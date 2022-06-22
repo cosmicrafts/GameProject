@@ -8,6 +8,12 @@ using UnityEngine;
 
 public static class ResourcesServices
 {
+    //Global Manager Prefab
+    public static GameObject LoadGlobalManager()
+    {
+        return Resources.Load<GameObject>($"Prefabs/Manager/GlobalManagerObj");
+    }
+
     //Dictionary of factions (prefix)
     static Dictionary<string, string> Factions = new Dictionary<string, string>
     {

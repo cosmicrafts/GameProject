@@ -23,7 +23,7 @@ public static class SaveData
         {
             //Create a new game config and set it
             Config newConfig = new Config();
-            GameData.SetConfig(newConfig);
+            GlobalManager.GMD.SetConfig(newConfig);
             //initialize the language
             Lang.InitLanguage((Language)newConfig.language);
             return;
@@ -32,7 +32,7 @@ public static class SaveData
         if (result == SaveResult.Success)
         {
             //Set the configuration
-            GameData.SetConfig(data);
+            GlobalManager.GMD.SetConfig(data);
             //initialize the language
             Lang.InitLanguage((Language)data.language);
         }
@@ -40,10 +40,10 @@ public static class SaveData
     //Save the current game configuration locally
     public static void SaveGameConfig()
     {
-        SaveManager.Instance.Save(GameData.GetConfig(), fullPathConfig, DataWasSaved, false);
-        if (GameData.IsProductionWeb())
+        SaveManager.Instance.Save(GlobalManager.GMD.GetConfig(), fullPathConfig, DataWasSaved, false);
+        if (GlobalManager.GMD.IsProductionWeb())
         {
-            GameNetwork.JSSavePlayerConfig(JsonConvert.SerializeObject(GameData.GetConfig()));
+            GameNetwork.JSSavePlayerConfig(JsonConvert.SerializeObject(GlobalManager.GMD.GetConfig()));
         }
     }
     //This function is called when the configuration was saved

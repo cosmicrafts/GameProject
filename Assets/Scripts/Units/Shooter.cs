@@ -294,7 +294,7 @@ public class Shooter : MonoBehaviour
     //Load and initialize stats from NFT data
     public virtual void InitStatsFromNFT(NFTsUnit nFTsUnit)
     {
-        if (GameData.DebugMode)
+        if (GlobalManager.GMD.DebugMode)
             return;
 
         BulletDamage = nFTsUnit.Dammage;
