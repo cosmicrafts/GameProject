@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class UICharacters : MonoBehaviour
@@ -81,7 +83,7 @@ public class UICharacters : MonoBehaviour
     {
         CurrentChar.SetSelection(true);
         string key = CurrentChar.GetData().KeyId;
-        PreviewAvatar.sprite = ResourcesServices.LoadCharacterIcon(CurrentChar.GetData().Icon);
+        PreviewAvatar.sprite = CurrentChar.GetData().IconSprite;
         Emblem.sprite = ResourcesServices.LoadCharacterEmblem(key);
         CharName.text = Lang.GetEntityName(key);
         CharDesc.text = Lang.GetEntityDescription(key);

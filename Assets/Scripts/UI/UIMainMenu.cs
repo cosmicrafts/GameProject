@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
+using UnityEngine.Networking;
 
 /*
  * This is the UI Main menu controller
@@ -216,6 +217,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         PlayerCollection.InitDecks();
+        StartCoroutine(LoadNFTsIcons());
         //LoadingPanel.instance.DesactiveLoadingPanel();
         doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
@@ -421,8 +423,30 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
-
-
-
-    
+    //Load NFTs Icons
+    private IEnumerator LoadNFTsIcons()
+    {
+        //LOAD URL CHARACTERS ICONS
+        foreach (NFTsCharacter character in PlayerCollection.Characters)
+        {
+            if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite != null)
+            {
+                UnityWebRequest www = UnityWebRequestTexture.GetTexture(character.IconURL);
+                yield return www.SendWebRequest();
+                Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+                character.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            }
+        }
+        //LOAD URL CARDS ICONS
+        foreach (NFTsCard card in PlayerCollection.Cards)
+        {
+            if (!string.IsNullOrEmpty(card.IconURL) && card.IconSprite != null)
+            {
+                UnityWebRequest www = UnityWebRequestTexture.GetTexture(card.IconURL);
+                yield return www.SendWebRequest();
+                Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+                card.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
+            }
+        }
+    }
 }

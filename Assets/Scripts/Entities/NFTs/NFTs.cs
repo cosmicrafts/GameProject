@@ -1,4 +1,6 @@
 ﻿//This is the master NFT class
+using UnityEngine;
+
 public abstract class NFTs
 {
     public int ID { get; set; }
@@ -11,7 +13,9 @@ public abstract class NFTs
 
     public string Description { get; set; }
 
-    public string Icon { get; set; }
+    public string IconURL { get; set; }
+
+    public Sprite IconSprite { get; set; }
 
     public int Rarity { get; set; }
 

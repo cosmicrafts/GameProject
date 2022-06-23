@@ -120,8 +120,7 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
         Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
-        NFTsCharacter nFTsCharacter = GlobalManager.GMD.GetUserCollection().GetCharacterByKey(VsUserData.CharacterKey);
-        Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+        Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(VsUserData.CharacterKey);
         Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(VsUserData.CharacterKey);
     }
 

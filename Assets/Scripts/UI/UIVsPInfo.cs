@@ -60,8 +60,7 @@ public class UIVsPInfo : MonoBehaviour
                 {
                     UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Image myimage = GetComponent<Image>();
-                    NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(user.CharacterKey);
-                    myimage.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+                    myimage.sprite = ResourcesServices.LoadCharacterIcon(user.CharacterKey);
                 }
                 break;
             case PlayerProperty.Avatar:

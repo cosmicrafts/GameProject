@@ -39,15 +39,14 @@ public static class ResourcesServices
         return Resources.Load<Sprite>($"UI/Icons/Avatars/Avatar_{id}");
     }
     //Returns a sprite character icon
-    public static Sprite LoadCharacterIcon(string icon)
+    public static Sprite LoadCharacterIcon(string nftCharacterKey)
     {
-        return Resources.Load<Sprite>($"UI/Characters/{icon}");
+        return Resources.Load<Sprite>($"UI/Characters/Ico_{nftCharacterKey}");
     }
     //Returns a sprite card icon
-    public static Sprite LoadCardIcon(string icon, bool isSkill)
+    public static Sprite LoadCardIcon(string nftCardKey)
     {
-        string folder = isSkill ? "Skills" : "Units";
-        return Resources.Load<Sprite>($"UI/Icons/{folder}/{icon}");
+        return Resources.Load<Sprite>($"UI/Icons/Cards/Ico_{nftCardKey}");
     }
     //Returns the prefab of a spell or unit
     public static GameObject LoadCardPrefab(string key, bool isSkill)
@@ -66,8 +65,8 @@ public static class ResourcesServices
         return Resources.Load<GameObject>($"Prefabs/Characters/{key}");
     }
     //Returns the sprite emblem of a character
-    public static Sprite LoadCharacterEmblem(string key)
+    public static Sprite LoadCharacterEmblem(string nftCharacterKey)
     {
-        return Resources.Load<Sprite>($"UI/Characters/Emblems/{Emblems[key]}");
+        return Resources.Load<Sprite>($"UI/Characters/Emblems/{Emblems[nftCharacterKey]}");
     }
 }

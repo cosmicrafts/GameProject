@@ -23,7 +23,7 @@ public class UIPlayerGameInfo : MonoBehaviour
         Level.text = $"{Lang.GetText("mn_lvl")} {progress.GetLevel()}";
         XpBar.fillAmount = (float)progress.GetXp() / (float)progress.GetNextXpGoal();
         Avatar.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
-        Icon.sprite = ResourcesServices.LoadCharacterIcon(character.Icon);
+        Icon.sprite = character.IconSprite;
     }
 
     //Update the UI banner with a resume of some player data (for multiplayer)
@@ -34,7 +34,7 @@ public class UIPlayerGameInfo : MonoBehaviour
         Level.text = $"{Lang.GetText("mn_lvl")} {user.Level}";
         XpBar.fillAmount = (float)user.Xp / (float)user.GetNextXpGoal();
         Avatar.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
-        NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(user.CharacterKey);
-        Icon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+        //NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey();
+        Icon.sprite = ResourcesServices.LoadCharacterIcon(user.CharacterKey);
     }
 }

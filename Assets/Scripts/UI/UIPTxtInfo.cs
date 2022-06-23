@@ -88,7 +88,7 @@ public class UIPTxtInfo : MonoBehaviour
                 {
                     NFTsCharacter nFTsCharacter = GlobalManager.GMD.GetUserCharacter();
                     Image myimage = GetComponent<Image>();
-                    myimage.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+                    myimage.sprite = nFTsCharacter.IconSprite;
                 }
                 break;
             case PlayerProperty.Avatar:
