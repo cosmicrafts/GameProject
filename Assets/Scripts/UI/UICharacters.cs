@@ -70,11 +70,11 @@ public class UICharacters : MonoBehaviour
         NFTsCharacter nFTsCharacter = character.GetData();
         CurrentChar = character;
         UpdateUIInfo();
-        GlobalManager.GMD.SetUserCharacter(nFTsCharacter.KeyId);
+        GlobalManager.GMD.SetUserCharacter(nFTsCharacter.ID);
 
         if (GlobalManager.GMD.IsProductionWeb())
         {
-            GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
+            GameNetwork.JSSavePlayerCharacter(CurrentChar.GetData().ID);
         }
     }
 

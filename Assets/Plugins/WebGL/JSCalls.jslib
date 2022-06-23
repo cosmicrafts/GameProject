@@ -11,8 +11,8 @@
             ReactUnityWebGL.SavePlayerConfig(Pointer_stringify(json));
       },
 
-      JSSavePlayerCharacter: function (json) {
-            ReactUnityWebGL.SavePlayerCharacter(Pointer_stringify(json));
+      JSSavePlayerCharacter: function (nftid) {
+            ReactUnityWebGL.SavePlayerCharacter(nftid);
       },
 
       JSSendMasterData: function (json) {

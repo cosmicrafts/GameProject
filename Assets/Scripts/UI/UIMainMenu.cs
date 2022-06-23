@@ -157,10 +157,9 @@ public class UIMainMenu : MonoBehaviour
     }
 
     //Called from WEB, for set the player character
-    public void GL_SetCharacterData(string jsonData)
+    public void GL_SetCharacterSelected(int NFTid)
     {
-        NFTsCharacter character = JsonConvert.DeserializeObject<NFTsCharacter>(jsonData);
-        GlobalManager.GMD.SetUserCharacter(character.KeyId);
+        GlobalManager.GMD.SetUserCharacter(NFTid);
         AddProgressDataLoaded();
     }
 

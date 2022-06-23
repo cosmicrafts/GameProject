@@ -98,9 +98,9 @@ public class GameData
         PlayerCollection = userCollection;
     }
     //Set the current player character
-    public void SetUserCharacter(string KeyId)
+    public void SetUserCharacter(int NFTid)
     {
-        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.KeyId == KeyId);
+        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.ID == NFTid);
         if (character == null)
         {
             PlayerCharacter = PlayerCollection.Characters[0];

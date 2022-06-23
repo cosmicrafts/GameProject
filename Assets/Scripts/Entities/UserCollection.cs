@@ -30,6 +30,7 @@ public class UserCollection
         Characters = new List<NFTsCharacter>();
         DefaultCharacter = new NFTsCharacter()
         {
+            ID = 1,
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_1"),
             Faction = (int)Factions.Alliance,
             LocalID = 1,
