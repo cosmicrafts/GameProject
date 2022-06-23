@@ -308,7 +308,7 @@ public class GameMng : MonoBehaviour
         int PIn = P.MyTeam == Team.Blue ? 1 : 0; //Player base station index
         int VsIn = P.MyTeam == Team.Red ? 1 : 0; //Enemy base station index
         //Create the player´s base station
-        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.Faction), 
+        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.KeyId), 
             BS_Positions[PIn].position, Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(

@@ -19,11 +19,15 @@ public abstract class NFTs
 
     public int Rarity { get; set; }
 
-    public string Faction { get; set; }
+    public int Faction { get; set; }
+
+    public string FactionPrefix { get; set; }
 
     public int Level { get; set; }
 
     public int LocalID { get; set; }
 
     public int EntType { get; set; }
+
+    public char TypePrefix { get; set; }
 }

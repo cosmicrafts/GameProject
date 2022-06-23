@@ -8,7 +8,7 @@ public class UserCollection
 {
     bool DeckReady;
 
-    public Dictionary<string,List<NFTsCard>> Decks;
+    public Dictionary<Factions, List<NFTsCard>> Decks;
 
     public List<NFTsCard> Deck;
 
@@ -21,17 +21,17 @@ public class UserCollection
     public void InitCollection()
     {
         DeckReady = false;
-        Decks = new Dictionary<string, List<NFTsCard>>
+        Decks = new Dictionary<Factions, List<NFTsCard>>
         {
-            {"Alliance", null},
-            {"Spirats", null},
+            {Factions.Alliance, null},
+            {Factions.Spirats, null},
         };
         Cards = new List<NFTsCard>();
         Characters = new List<NFTsCharacter>();
         DefaultCharacter = new NFTsCharacter()
         {
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_1"),
-            Faction = "Alliance",
+            Faction = (int)Factions.Alliance,
             LocalID = 1,
             EntType = (int)NFTClass.Character
         };
@@ -39,7 +39,7 @@ public class UserCollection
 
     public void ChangeDeckFaction(NFTsCharacter nFTsCharacter)
     {
-        Deck = Decks[nFTsCharacter.Faction];
+        Deck = Decks[(Factions)nFTsCharacter.Faction];
     }
 
     public void SetCharacters(string jsonList)
@@ -59,13 +59,24 @@ public class UserCollection
 
     public void InitDecks()
     {
+        //Check if the decks are already complete
         if (DeckReady || Decks == null)
             return;
 
-        Decks["Alliance"] = Cards.Where(f => f.Faction == "Alliance").Take(8).ToList();
-        //Decks["Spirats"] = Cards.Where(f => f.Faction == "Spirats").Take(8).ToList();
-        Deck = Decks["Alliance"];
+        //Init Cards
+        foreach (NFTsCard card in Cards)
+        {
+            card.TypePrefix = NFTsCollection.NFTsPrefix[card.EntType];
+            card.FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.Faction];
+        }
+
+        //Set Factions Decks
+        Decks[Factions.Alliance] = Cards.Where(f => (Factions)f.Faction == Factions.Alliance).Take(8).ToList();
+
+        //Set current deck
+        Deck = Decks[Factions.Alliance];
         
+        //Decks are redy
         DeckReady = true;
     }
 
@@ -93,7 +104,7 @@ public class UserCollection
                 Shield = 3+(1*i),
                 Speed = 1,
                 Dammage = i,
-                Faction = "Alliance",
+                Faction = (int)Factions.Alliance,
                 EntType = (int)NFTClass.Ship,
                 LocalID = i
             });
@@ -108,7 +119,7 @@ public class UserCollection
             Speed = 0,
             Dammage = 2,
             EntType = (int)NFTClass.Station,
-            Faction = "Alliance",
+            Faction = (int)Factions.Alliance,
             LocalID = 1
         });
         Cards.Add(new NFTsSpell()
@@ -116,7 +127,7 @@ public class UserCollection
             EnergyCost = 10,
             IconSprite = ResourcesServices.LoadCardIcon("H_COM_1"),
             Rarity = 5,
-            Faction = "Neutral",
+            Faction = (int)Factions.Neutral,
             EntType = (int)NFTClass.Skill,
             LocalID = 1
         });
@@ -132,7 +143,7 @@ public class UserCollection
                 Shield = 5+(2*i),
                 Speed = 1,
                 Dammage = i,
-                Faction = "Spirats",
+                Faction = (int)Factions.Spirats,
                 EntType = (int)NFTClass.Ship,
                 LocalID = i
             });
@@ -147,7 +158,7 @@ public class UserCollection
             Speed = 0,
             Dammage = 1,
             EntType = (int)NFTClass.Station,
-            Faction = "Spirats",
+            Faction = (int)Factions.Spirats,
             LocalID = 1
         });
         //CURRENT DECK

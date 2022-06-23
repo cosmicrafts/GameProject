@@ -116,7 +116,8 @@ public class UICollection : MonoBehaviour
         }
 
         //Get the collection cards deppendig the cuurent faction of the current player character
-        AvCards = PlayerCollection.Cards.Where(f => f.Faction == PlayerCharacter.Faction || f.Faction == "Neutral").ToList();
+        AvCards = PlayerCollection.Cards.Where(
+            f => f.Faction == PlayerCharacter.Faction || (Factions)f.Faction == Factions.Neutral).ToList();
         //Initialize the dictionary with the keys and names of the cards
         UnitNames = new Dictionary<string, string>();
         foreach(NFTsCard nFTsCard in AvCards)

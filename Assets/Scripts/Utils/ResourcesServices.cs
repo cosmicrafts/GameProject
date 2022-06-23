@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 /*
  * This is the game resources services
@@ -13,26 +12,6 @@ public static class ResourcesServices
     {
         return Resources.Load<GameObject>($"Prefabs/Manager/GlobalManagerObj");
     }
-
-    //Dictionary of factions (prefix)
-    static Dictionary<string, string> Factions = new Dictionary<string, string>
-    {
-        {"ALL","Alliance" },
-        {"SPI","Spirats" },
-        {"NEU","Neutral" },
-    };
-    //Dictionary of character´s emblems
-    static Dictionary<string, string> Emblems = new Dictionary<string, string>
-    {
-        {"Chr_0","Emblem_0" },
-        {"Chr_1","Emblem_1" },
-        {"Chr_2","Emblem_2" },
-        {"Chr_3","Emblem_3" },
-        {"Chr_4","Emblem_4" },
-        {"Chr_5","Emblem_5" },
-        {"Chr_6","Emblem_6" },
-    };
-
     //Returns a sprite avatar
     public static Sprite LoadAvatarIcon(int id)
     {
@@ -52,12 +31,12 @@ public static class ResourcesServices
     public static GameObject LoadCardPrefab(string key, bool isSkill)
     {
         string folder = isSkill ? "Skills" : "Units";
-        return Resources.Load<GameObject>($"Prefabs/{folder}/{Factions[key.Substring(2,3)]}/{key}");
+        return Resources.Load<GameObject>($"Prefabs/{folder}/{key.Substring(2, 3)}/{key}");
     }
     //Returns the prefab base station from a faction
-    public static GameObject LoadBaseStationPrefab(string faction)
+    public static GameObject LoadBaseStationPrefab(string nftCharacterKey)
     {
-        return Resources.Load<GameObject>($"Prefabs/BaseStations/BS_{faction}");
+        return Resources.Load<GameObject>($"Prefabs/BaseStations/BS_{nftCharacterKey}");
     }
     //Returns the prefab of a character
     public static GameObject LoadCharacterPrefab(string key)
@@ -67,6 +46,6 @@ public static class ResourcesServices
     //Returns the sprite emblem of a character
     public static Sprite LoadCharacterEmblem(string nftCharacterKey)
     {
-        return Resources.Load<Sprite>($"UI/Characters/Emblems/{Emblems[nftCharacterKey]}");
+        return Resources.Load<Sprite>($"UI/Characters/Emblems/{nftCharacterKey}_Emb");
     }
 }
