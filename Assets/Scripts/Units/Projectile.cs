@@ -24,9 +24,10 @@ public class Projectile : MonoBehaviour
 
     //The game object effect to instantiate when the bullet impacts directly
     public GameObject Inpact;
+    public Color colorImpact = new Color(1,1,1,0.5f);
     //The game object effect to instantiate when the bullet impacts on shield
     public GameObject ShieldInpact;
-
+    public Color colorShield = new Color(1,1,1,0.5f);
     //The last valid position of the target
     Vector3 LastTargetPosition;
     //A fake bullet is used for multiplayer, to show a visual representation of the original bullet in master
@@ -59,7 +60,10 @@ public class Projectile : MonoBehaviour
             if (Vector3.Distance(transform.position, LastTargetPosition) < 1f)
             {
                 transform.position = LastTargetPosition;
-                Destroy(Instantiate(Inpact, transform.position, Quaternion.identity), 0.5f);
+                GameObject impactPrefab = Instantiate(Inpact, transform.position, Quaternion.identity);
+                impactPrefab.GetComponent<FX_ChangeColor>().color = colorImpact;
+                impactPrefab.GetComponent<FX_ChangeColor>().UpdateColor();
+                Destroy(impactPrefab, 0.5f);
                 Destroy(gameObject);
             }
         }
@@ -105,13 +109,19 @@ public class Projectile : MonoBehaviour
         {
             //Instantiate the shield impact
             GameObject si = Instantiate(ShieldInpact, transform.position, Quaternion.identity);
+            si.GetComponent<FX_ChangeColor>().color = colorShield;
+            si.GetComponent<FX_ChangeColor>().UpdateColor();
             si.transform.LookAt(target.transform);
             Destroy(si, 0.5f);
         }
         else
         {
             //Instantiate the direct impact
-            Destroy(Instantiate(Inpact, transform.position + (transform.forward * 1.5f), Quaternion.identity), 0.5f);
+            GameObject impactPrefab = Instantiate(Inpact, transform.position + (transform.forward * 1.5f), Quaternion.identity);
+            impactPrefab.GetComponent<FX_ChangeColor>().color = colorImpact;
+            impactPrefab.GetComponent<FX_ChangeColor>().UpdateColor();
+            Destroy(impactPrefab, 0.5f);
+
         }
         //Add damage to the target
         target.AddDmg(Dmg);
