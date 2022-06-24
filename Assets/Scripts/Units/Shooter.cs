@@ -40,7 +40,9 @@ public class Shooter : MonoBehaviour
 
     //The bullet game object to shoot
     public GameObject Bullet;
-
+    public Color colorBullet = new Color(1,1,1,0.5f);
+    public Color colorImpact = new Color(1,1,1,0.5f);
+    public Color colorShield = new Color(1,1,1,0.5f);
     //The relative position of the cannons
     public Transform Cannons;
 
@@ -122,7 +124,14 @@ public class Shooter : MonoBehaviour
                 for (int i = 0; i < Cannons.childCount; i++)
                 {
                     Transform cannon = Cannons.GetChild(i);
-                    Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
+
+                    GameObject bulletPrefab = Instantiate(Bullet, cannon.position, cannon.rotation);
+                    bulletPrefab.GetComponent<FX_ChangeColor>().color = colorBullet;
+                    bulletPrefab.GetComponent<FX_ChangeColor>().UpdateColor();
+                    
+                    Projectile bullet = bulletPrefab.GetComponent<Projectile>();
+                    bullet.colorImpact = colorImpact;
+                    bullet.colorShield = colorShield;
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.SetTarget(Target.gameObject);
                     bullet.Speed = BulletSpeed;
@@ -174,7 +183,12 @@ public class Shooter : MonoBehaviour
                 for (int i = 0; i < Cannons.childCount; i++)
                 {
                     Transform cannon = Cannons.GetChild(i);
-                    Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
+                    
+                    GameObject bulletPrefab = Instantiate(Bullet, cannon.position, cannon.rotation);
+                    bulletPrefab.GetComponent<FX_ChangeColor>().color = colorBullet;
+                    bulletPrefab.GetComponent<FX_ChangeColor>().UpdateColor();
+                    
+                    Projectile bullet = bulletPrefab.GetComponent<Projectile>();
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.SetLastPosition(FakeTarget.transform.position);
                     bullet.Speed = BulletSpeed;
