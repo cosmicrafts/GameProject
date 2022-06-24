@@ -217,7 +217,8 @@ public class UIMainMenu : MonoBehaviour
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         PlayerCollection.InitDecks();
         StartCoroutine(LoadNFTsIcons());
-        //LoadingPanel.instance.DesactiveLoadingPanel();
+  
+        LoadingPanel.instance.DesactiveLoadingPanel();      //desactivar el panel de carga
         doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }
