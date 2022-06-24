@@ -4,22 +4,19 @@
  * This is the basic game card data used on the units and spells prefabs
  */
 
-//Type of the prefab
-public enum CardType
-{
-    Unit,
-    Spell
-}
-
 public class GameCard : MonoBehaviour
 {
     public string NftsKey;
 
-    public string Name;
+    public string Alias;
 
-    public int EnergyCost;
+    NFTsCard Data;
 
-    public Sprite Icon;
+    public NFTsCard GetData()
+    {
+        if (Data == null)
+            Data = GlobalManager.GMD.GetUserCollection().FindCard(NftsKey);
 
-    public CardType cardType;
+        return Data;
+    }
 }

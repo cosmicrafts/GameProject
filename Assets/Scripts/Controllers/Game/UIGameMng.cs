@@ -123,9 +123,9 @@ public class UIGameMng : MonoBehaviour
     {
         for (int i=0; i<gameCards.Length; i++)
         {
-            UIDeck[i].SpIcon.sprite = gameCards[i].Icon;
-            UIDeck[i].EnergyCost = gameCards[i].EnergyCost;
-            UIDeck[i].TextCost.text = gameCards[i].EnergyCost.ToString();
+            UIDeck[i].SpIcon.sprite = gameCards[i].GetData().IconSprite;
+            UIDeck[i].EnergyCost = gameCards[i].GetData().EnergyCost;
+            UIDeck[i].TextCost.text = gameCards[i].GetData().EnergyCost.ToString();
         }
     }
     //Update the UI time

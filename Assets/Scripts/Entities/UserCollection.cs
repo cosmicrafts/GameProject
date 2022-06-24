@@ -94,7 +94,7 @@ public class UserCollection
         //});
         //ALL CARDS
         //ALLIANCE
-        for (int i = 1; i <= 10; i++)
+        for (int i = 1; i <= 8; i++)
         {
             Cards.Add(new NFTsUnit()
             {
@@ -110,19 +110,19 @@ public class UserCollection
                 LocalID = i
             });
         }
-        Cards.Add(new NFTsUnit()
-        {
-            EnergyCost = 5,
-            IconSprite = ResourcesServices.LoadCardIcon("S_ALL_1"),
-            Rarity = 3,
-            HitPoints = 20,
-            Shield = 10,
-            Speed = 0,
-            Dammage = 2,
-            EntType = (int)NFTClass.Station,
-            Faction = (int)Factions.Alliance,
-            LocalID = 1
-        });
+        //Cards.Add(new NFTsUnit()
+        //{
+        //    EnergyCost = 5,
+        //    IconSprite = ResourcesServices.LoadCardIcon("S_ALL_1"),
+        //    Rarity = 3,
+        //    HitPoints = 20,
+        //    Shield = 10,
+        //    Speed = 0,
+        //    Dammage = 2,
+        //    EntType = (int)NFTClass.Station,
+        //    Faction = (int)Factions.Alliance,
+        //    LocalID = 1
+        //});
         Cards.Add(new NFTsSpell()
         {
             EnergyCost = 10,
@@ -133,7 +133,7 @@ public class UserCollection
             LocalID = 1
         });
         //SPIRATS
-        for (int i = 1; i <= 9; i++)
+        for (int i = 1; i <= 8; i++)
         {
             Cards.Add(new NFTsUnit()
             {
@@ -149,20 +149,25 @@ public class UserCollection
                 LocalID = i
             });
         }
-        Cards.Add(new NFTsUnit()
-        {
-            EnergyCost = 5,
-            IconSprite = ResourcesServices.LoadCardIcon($"S_SPI_1"),
-            Rarity = 3,
-            HitPoints = 5,
-            Shield = 20,
-            Speed = 0,
-            Dammage = 1,
-            EntType = (int)NFTClass.Station,
-            Faction = (int)Factions.Spirats,
-            LocalID = 1
-        });
+        //Cards.Add(new NFTsUnit()
+        //{
+        //    EnergyCost = 5,
+        //    IconSprite = ResourcesServices.LoadCardIcon($"S_SPI_1"),
+        //    Rarity = 3,
+        //    HitPoints = 5,
+        //    Shield = 20,
+        //    Speed = 0,
+        //    Dammage = 1,
+        //    EntType = (int)NFTClass.Station,
+        //    Faction = (int)Factions.Spirats,
+        //    LocalID = 1
+        //});
         //CURRENT DECK
         InitDecks();
+    }
+
+    public NFTsCard FindCard(string NFTkey)
+    {
+        return Cards.FirstOrDefault(f => f.KeyId == NFTkey);
     }
 }

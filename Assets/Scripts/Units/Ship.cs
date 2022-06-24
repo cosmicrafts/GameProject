@@ -43,7 +43,7 @@ public class Ship : Unit
     //Avoidance sensors references
     public RaySensor[] AvoidanceSensors;
     //Thrusters Parent game object reference
-    public GameObject MainThruster;
+    public GameObject[] Thrusters;
 
     //Controls if the ship can move on
     [HideInInspector]
@@ -114,7 +114,7 @@ public class Ship : Unit
         {
             //Just move to the destination smoothly
             transform.position = Vector3.Lerp(transform.position, FakeDestination, Time.deltaTime * MaxSpeed);
-            MainThruster.SetActive(Vector3.Distance(transform.position, FakeDestination) > Speed);
+            EnableThrusters(Vector3.Distance(transform.position, FakeDestination) > Speed);
         } else //Normal Ship
         {
             //If the unit is active
@@ -148,19 +148,19 @@ public class Ship : Unit
                 }
 
                 //Enable and disable the thrusters when the ship moves or reachs the destination
-                if (MySt.hasReachedDestination() && MainThruster.activeSelf)
+                if (MySt.hasReachedDestination() && ThrustersAreEnable())
                 {
-                    MainThruster.SetActive(false);
+                    EnableThrusters(false);
                 }
-                if (!MySt.hasReachedDestination() && !MainThruster.activeSelf)
+                if (!MySt.hasReachedDestination() && !ThrustersAreEnable())
                 {
-                    MainThruster.SetActive(true);
+                    EnableThrusters(true);
                 }
             }//The ship has not control and the thrusters are active
-            else if (MainThruster.activeSelf)
+            else if (ThrustersAreEnable())
             {
                 //Disable the thrusters
-                MainThruster.SetActive(false);
+                EnableThrusters(false);
                 //Stop the movement controller
                 MySt.TurnForce = 0f;
                 MySt.MoveForce = 0f;
@@ -203,7 +203,7 @@ public class Ship : Unit
     {
         base.Die();
         MySt.enabled = false;
-        MainThruster.SetActive(false);
+        EnableThrusters(false);
         float AngleDeathRot = CMath.AngleBetweenVector2(LastImpact, transform.position);
 
         float z = Mathf.Sin(AngleDeathRot * Mathf.Deg2Rad);
@@ -232,5 +232,17 @@ public class Ship : Unit
             return;
 
         MaxSpeed = nFTsUnit.Speed;
+    }
+
+    //Enable or disable Thrusters
+    void EnableThrusters(bool enable)
+    {
+        foreach (GameObject t in Thrusters)
+            t.SetActive(enable);
+    }
+
+    bool ThrustersAreEnable()
+    {
+        return Thrusters == null ? false : (Thrusters.Length > 0 ? Thrusters[0].activeSelf : false);
     }
 }

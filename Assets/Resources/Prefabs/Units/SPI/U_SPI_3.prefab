@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8111524536735059854}
+  m_Father: {fileID: 1147239259333202000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &2316550706502972391
@@ -1527,10 +1527,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   NftsKey: U_SPI_3
-  Name: Goblin
-  EnergyCost: 3
-  Icon: {fileID: 21300000, guid: 97ffca10b2c435342b0008418ce8a0e3, type: 3}
-  cardType: 0
+  Alias: Goblin
   UnitMesh: {fileID: 8924511833478731060}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
@@ -1554,7 +1551,7 @@ MonoBehaviour:
   SpawnAreaSize: 0
   IsInmortal: 0
   Mesh: {fileID: 8924511833478731060}
-  SA: {fileID: 0}
+  SA: {fileID: 7815091164994155410}
   Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 7887455258742894303}
@@ -1577,7 +1574,7 @@ MonoBehaviour:
   - {fileID: 2198226032991477277}
   - {fileID: 2198226033913644468}
   - {fileID: 2198226033598466411}
-  MainThruster: {fileID: 2198226033494133004}
+  Thrusters: []
   CanMove: 1
 --- !u!114 &2198226034328220054
 MonoBehaviour:
@@ -1603,7 +1600,8 @@ MonoBehaviour:
   colorBullet: {r: 0.63529414, g: 0.4431373, b: 0.81568635, a: 0.5}
   colorImpact: {r: 0.63529414, g: 0.4431373, b: 0.81568635, a: 0.5}
   colorShield: {r: 1, g: 1, b: 1, a: 0.5}
-  Cannons: {fileID: 2198226032443553816}
+  Cannons:
+  - {fileID: 0}
 --- !u!135 &2198226034328220042
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1801,9 +1799,10 @@ Transform:
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2987064558498613133}
   m_Father: {fileID: 8111524536735059854}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2807989091929825002
 GameObject:
@@ -2618,7 +2617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyUnit: {fileID: 0}
 --- !u!114 &2214194592497386513
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3140,7 +3138,7 @@ Transform:
   m_Children:
   - {fileID: 3366033988787950594}
   m_Father: {fileID: 8111524536735059854}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5656744094991989690
 GameObject:
@@ -3928,12 +3926,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8111524536735059854}
-  - component: {fileID: 9166532718256727586}
-  - component: {fileID: 253820540405720664}
   - component: {fileID: 3291025420471720438}
   - component: {fileID: 2058496377610602745}
+  - component: {fileID: 9166532718256727586}
+  - component: {fileID: 253820540405720664}
   m_Layer: 0
-  m_Name: Mesh_Goblin
+  m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3951,45 +3949,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2987064558498613133}
   - {fileID: 1147239259333202000}
   - {fileID: 2715841001853864718}
   m_Father: {fileID: 2198226034328220055}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &9166532718256727586
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8924511833478731060}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5acc29ffa9c4b224283fc22edec4cd82, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &253820540405720664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8924511833478731060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyUnit: {fileID: 0}
 --- !u!135 &3291025420471720438
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4060,6 +4024,38 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
+--- !u!95 &9166532718256727586
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924511833478731060}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5acc29ffa9c4b224283fc22edec4cd82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &253820540405720664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8924511833478731060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8946005333136760198
 GameObject:
   m_ObjectHideFlags: 0
@@ -4671,6 +4667,12 @@ PrefabInstance:
 --- !u!4 &7815091164993883368 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4461760019699739548, guid: 5752cf7307bd74443be48ba2fb587d03,
+    type: 3}
+  m_PrefabInstance: {fileID: 5881581383079372660}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7815091164994155410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4461760019699471590, guid: 5752cf7307bd74443be48ba2fb587d03,
     type: 3}
   m_PrefabInstance: {fileID: 5881581383079372660}
   m_PrefabAsset: {fileID: 0}
