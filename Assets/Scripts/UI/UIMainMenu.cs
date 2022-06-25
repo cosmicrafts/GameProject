@@ -208,7 +208,7 @@ public class UIMainMenu : MonoBehaviour
             InitPlayerData();
     }
 
-    //Load the player´s data and show the main menu
+    //Load the player´s data
     void InitPlayerData()
     {
         Debug.Log("--- MENU SHOW ---");
@@ -431,10 +431,8 @@ public class UIMainMenu : MonoBehaviour
         {
             if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite == null)
             {
-                Debug.Log($"FETCH {character.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(character.IconURL);
                 yield return www.SendWebRequest();
-                Debug.Log($"FETCH RESULT: {www.error}");
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 character.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
@@ -450,5 +448,7 @@ public class UIMainMenu : MonoBehaviour
                 card.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
         }
+
+        RefreshAllPropertys();
     }
 }
