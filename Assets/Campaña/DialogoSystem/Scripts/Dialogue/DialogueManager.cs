@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
     private const string LAYOUT_TAG = "layout";
 
     [Header("Archivos Ink JSON:")]
-    [SerializeField] private TextAsset[] inkJSON;
+    [SerializeField] private TextAsset[] inkJSON; // arreglo para los 12 lenguajes
     //[SerializeField] private TextAsset inkJSON_es;
     //[SerializeField] private TextAsset inkJSON_en;
 
