@@ -425,10 +425,12 @@ public class UIMainMenu : MonoBehaviour
     //Load NFTs Icons
     private IEnumerator LoadNFTsIcons()
     {
-        Debug.Log("START LOADING CHARACTERS SPRITES");
+        Debug.Log($"START LOADING CHARACTERS SPRITES");
+        Debug.Log($"PLAYER HAVE {PlayerCollection.Characters.Count} CHARACTERS");
         //LOAD URL CHARACTERS ICONS
         foreach (NFTsCharacter character in PlayerCollection.Characters)
         {
+            Debug.Log($"CHEKING NFT CHARACTERS DATA");
             if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite != null)
             {
                 Debug.Log($"FETCH {character.IconURL} IMAGE");
@@ -440,9 +442,11 @@ public class UIMainMenu : MonoBehaviour
             }
         }
         Debug.Log("START LOADING UNITS SPRITES");
+        Debug.Log($"PLAYER HAVE {PlayerCollection.Cards.Count} CARDS");
         //LOAD URL CARDS ICONS
         foreach (NFTsCard card in PlayerCollection.Cards)
         {
+            Debug.Log($"CHEKING NFT CARD DATA");
             if (!string.IsNullOrEmpty(card.IconURL) && card.IconSprite != null)
             {
                 Debug.Log($"FETCH {card.IconURL} IMAGE");
