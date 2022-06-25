@@ -20,7 +20,7 @@ public class UIMainMenu : MonoBehaviour
     public static UIMainMenu Menu;
 
     //Main sections
-  //  public GameObject LoginPanel;
+    //  public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
     public GameObject MultiPanel;
@@ -31,7 +31,7 @@ public class UIMainMenu : MonoBehaviour
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
     // Intro Door
-  
+
     [SerializeField]
     Animator doorAnim;
     //Back button 
@@ -64,7 +64,7 @@ public class UIMainMenu : MonoBehaviour
 
     private void Awake()
     {
-       
+
         //LoadingPanel.instance.DesactiveLoadingPanel();
         Debug.Log("--- MENU START ---");
         //Instanciate Global Manager
@@ -76,7 +76,7 @@ public class UIMainMenu : MonoBehaviour
         Menu = this;
         UserDataLoaded = 0;
         //Check the build type
-        
+
         GlobalManager.GMD.DebugMode = false;
 #if UNITY_EDITOR
         GlobalManager.GMD.DebugMode = true;
@@ -117,35 +117,35 @@ public class UIMainMenu : MonoBehaviour
             //Set the game mode as bots
             GlobalManager.GMD.CurrentMatch = Match.bots;
             //Set the default test units
-            
+
             //Load the player data (with default vaules)
             InitPlayerData();
         }
         Debug.Log("--- MENU REDY ---");
-       
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
         //Find and save all the UI player properties
         UIPropertys = new List<UIPTxtInfo>();
-        foreach(UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
+        foreach (UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
         {
             UIPropertys.Add(prop);
         }
-        
+
         //Check if we already have the user data
         if (GlobalManager.GMD.UserIsInit())
         {
             //Show the main menu
 
             //LoginPanel.SetActive(false);
-       
+
             MenuPanel.SetActive(true);
         }
-       
+
     }
 
     //Called from WEB, for set the base player data
@@ -217,8 +217,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         PlayerCollection.InitDecks();
         StartCoroutine(LoadNFTsIcons());
-  
-        LoadingPanel.instance.DesactiveLoadingPanel();      //desactivar el panel de carga
+        LoadingPanel.instance.DesactiveLoadingPanel();
         doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }
@@ -283,10 +282,10 @@ public class UIMainMenu : MonoBehaviour
 
     //Load the game scene for a Tutorial o PVIA game
     IEnumerator LoadLocalGame()
-    {   
+    {
         AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
 
-        while(!loading.isDone)
+        while (!loading.isDone)
         {
             yield return null;
             LocalGameLoadingBar.fillAmount = loading.progress;
@@ -327,7 +326,7 @@ public class UIMainMenu : MonoBehaviour
     public void PlayCurrentMode()
     {
         Debug.Log("-- PLAY --");
-        switch(GlobalManager.GMD.CurrentMatch)
+        switch (GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots:
                 {
@@ -408,7 +407,7 @@ public class UIMainMenu : MonoBehaviour
     //Refresh a specific UI propertie of the player
     public void RefreshProperty(PlayerProperty property)
     {
-        foreach(UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property))
+        foreach (UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property))
         {
             prop.LoadProperty();
         }
@@ -426,24 +425,30 @@ public class UIMainMenu : MonoBehaviour
     //Load NFTs Icons
     private IEnumerator LoadNFTsIcons()
     {
+        Debug.Log("START LOADING CHARACTERS SPRITES");
         //LOAD URL CHARACTERS ICONS
         foreach (NFTsCharacter character in PlayerCollection.Characters)
         {
             if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite != null)
             {
+                Debug.Log($"FETCH {character.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(character.IconURL);
                 yield return www.SendWebRequest();
+                Debug.Log($"FETCH RESULT: {www.result == UnityWebRequest.Result.Success}");
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 character.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
         }
+        Debug.Log("START LOADING UNITS SPRITES");
         //LOAD URL CARDS ICONS
         foreach (NFTsCard card in PlayerCollection.Cards)
         {
             if (!string.IsNullOrEmpty(card.IconURL) && card.IconSprite != null)
             {
+                Debug.Log($"FETCH {card.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(card.IconURL);
                 yield return www.SendWebRequest();
+                Debug.Log($"FETCH RESULT: {www.result == UnityWebRequest.Result.Success}");
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 card.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
