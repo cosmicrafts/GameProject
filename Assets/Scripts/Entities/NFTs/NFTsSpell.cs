@@ -2,5 +2,5 @@
 
 public class NFTsSpell : NFTsCard
 {
-    
+
 }

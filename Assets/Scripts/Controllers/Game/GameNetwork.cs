@@ -174,7 +174,7 @@ public static class GameNetwork
     //Get the enemy´s data
     public static UserGeneral GetVsData()
     {
-        return GameData.ImMaster ? 
+        return GlobalManager.GMD.ImMaster ? 
             new UserGeneral() { 
                 NikeName = GameNetPack.ClientPlayerName, 
                 WalletId = GameNetPack.ClientWalletId,
@@ -209,7 +209,7 @@ public static class GameNetwork
 
     //Save the current character of the player
     [DllImport("__Internal")]
-    public static extern void JSSavePlayerCharacter(string json);
+    public static extern void JSSavePlayerCharacter(int nftid);
 
     //Send the game data (master's data)
     [DllImport("__Internal")]

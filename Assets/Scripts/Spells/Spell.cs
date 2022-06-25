@@ -75,7 +75,7 @@ public class Spell : MonoBehaviour
     {
         NFTs = nFTsSpell;
 
-        if (GameData.DebugMode || nFTsSpell == null)
+        if (GlobalManager.GMD.DebugMode || nFTsSpell == null)
             return;
     }
 }

@@ -77,11 +77,11 @@ public class GameMng : MonoBehaviour
     {
         //Init static unique controllers
         GM = this;
-        CONFIG = GameData.GetConfig();
-        PlayerData = GameData.GetUserData();
-        PlayerProgress = GameData.GetUserProgress();
-        PlayerCollection = GameData.GetUserCollection();
-        PlayerCharacter = GameData.GetUserCharacter();
+        CONFIG = GlobalManager.GMD.GetConfig();
+        PlayerData = GlobalManager.GMD.GetUserData();
+        PlayerProgress = GlobalManager.GMD.GetUserProgress();
+        PlayerCollection = GlobalManager.GMD.GetUserCollection();
+        PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         //init Basic variables and basic storages list
         GameOver = false;
         RunTime = true;
@@ -119,7 +119,7 @@ public class GameMng : MonoBehaviour
         //Set the size of the clicks and taps collider (the area where player can spawn cards)
         GridColl.size = new Vector3(MapWidth*2f, 0.1f, MapHeigth*2f);
         //Check which game mode was selected
-        switch(GameData.CurrentMatch)
+        switch(GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots: //VS IA
                 {
@@ -150,7 +150,7 @@ public class GameMng : MonoBehaviour
                     //Start the sync loop of multiplayer
                     StartCoroutine(LoopGameNetAsync());
                     //IF IM THE MASTER...
-                    if (GameData.ImMaster)
+                    if (GlobalManager.GMD.ImMaster)
                     {
                         //Set the delta time async (0.33 sec)
                         dnet = new WaitForSeconds(1f / 3f);
@@ -202,7 +202,7 @@ public class GameMng : MonoBehaviour
                 UI.UpdateTimeOut("0:00");
                 //Player and bot can´t generate energy
                 P.SetCanGenEnergy(false);
-                if (GameData.CurrentMatch == Match.bots)
+                if (GlobalManager.GMD.CurrentMatch == Match.bots)
                 {
                     BOT.SetCanGenEnergy(false);
                 }
@@ -265,10 +265,10 @@ public class GameMng : MonoBehaviour
         //Update UI
         UI.SetGameOver(Winner);
         //Check if the game mode is multiplayer
-        if (GameData.CurrentMatch == Match.multi)
+        if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
             //if im master...
-            if (GameData.ImMaster)
+            if (GlobalManager.GMD.ImMaster)
             {
                 //Set the winner in network and end the game in backend
                 if (GameNetwork.GetWinner() == 0)
@@ -308,11 +308,11 @@ public class GameMng : MonoBehaviour
         int PIn = P.MyTeam == Team.Blue ? 1 : 0; //Player base station index
         int VsIn = P.MyTeam == Team.Red ? 1 : 0; //Enemy base station index
         //Create the player´s base station
-        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.Faction), 
+        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.KeyId), 
             BS_Positions[PIn].position, Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
-            GameData.CurrentMatch == Match.multi ? "Spirats" : "Spirats");
+            GlobalManager.GMD.CurrentMatch == Match.multi ? "Spirats" : "Spirats");
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn].position, Quaternion.identity).GetComponent<Unit>();
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
@@ -427,7 +427,7 @@ public class GameMng : MonoBehaviour
         RequestedUnits.Add(unit);
         GameNetwork.SetClientLastUpdate(DateTime.Now);
         GameNetwork.SetRequestedGameUnits(RequestedUnits);
-        if (GameData.IsProductionWeb())
+        if (GlobalManager.GMD.IsProductionWeb())
         {
             GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
         }
@@ -445,7 +445,7 @@ public class GameMng : MonoBehaviour
     //Ends the game scene and returns the player to the main menu scene
     public void EndScene()
     {
-        if (GameData.CurrentMatch == Match.multi && GameData.IsProductionWeb())
+        if (GlobalManager.GMD.CurrentMatch == Match.multi && GlobalManager.GMD.IsProductionWeb())
         {
             GameNetwork.JSExitGame();
         }
@@ -466,7 +466,7 @@ public class GameMng : MonoBehaviour
     public void SyncNetData()
     {
         //Master send main data
-        if (GameData.ImMaster)
+        if (GlobalManager.GMD.ImMaster)
         {
             //Prepare the units and spells data
             List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
@@ -504,7 +504,7 @@ public class GameMng : MonoBehaviour
             try
             {
                 //Send the data only if the game is runing has production on web
-                if (GameData.IsProductionWeb())
+                if (GlobalManager.GMD.IsProductionWeb())
                 {
                     //Send the data
                     GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
@@ -520,7 +520,7 @@ public class GameMng : MonoBehaviour
             //Set the last client comunication update
             GameNetwork.SetClientLastUpdate(DateTime.Now);
             //Send the data only if the game is runing has production on web
-            if (GameData.IsProductionWeb())
+            if (GlobalManager.GMD.IsProductionWeb())
             {
                 //Send the data
                 GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
@@ -531,7 +531,7 @@ public class GameMng : MonoBehaviour
     public void GL_SyncMaster(string json)
     {
         //Sync data if im master and data is not empty
-        if (GameData.ImMaster && !string.IsNullOrEmpty(json))
+        if (GlobalManager.GMD.ImMaster && !string.IsNullOrEmpty(json))
         {
             //Update local network data
             GameNetwork.UpdateClientGameData(json);
@@ -559,7 +559,7 @@ public class GameMng : MonoBehaviour
     public void GL_SyncClient(string json)
     {
         //Sync if im the client
-        if (!GameData.ImMaster)
+        if (!GlobalManager.GMD.ImMaster)
         {
             //Update local network data
             GameNetwork.UpdateGameData(json);
@@ -651,7 +651,7 @@ public class GameMng : MonoBehaviour
     public void CheckMultiplayerWinner()
     {
         //Only works for multiplayer game mode
-        if (GameData.CurrentMatch != Match.multi)
+        if (GlobalManager.GMD.CurrentMatch != Match.multi)
             return;
         //Get the winner from network data
         int winner = GameNetwork.GetWinner();

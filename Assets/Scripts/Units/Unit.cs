@@ -499,7 +499,7 @@ public class Unit : MonoBehaviour
         NFTs = nFTsUnit;
 
         //Validate the data
-        if (GameData.DebugMode || nFTsUnit == null)
+        if (GlobalManager.GMD.DebugMode || nFTsUnit == null)
             return;
 
         //Remplace the variables

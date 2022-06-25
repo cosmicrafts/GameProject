@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 /*
  * This code represents a instance of a card on the deck collection menu
@@ -53,7 +55,7 @@ public class UICard : MonoBehaviour
             Txt_Details.text = Lang.GetEntityDescription(data.KeyId);
         }
         //Set the icon of the NFT
-        Icon.sprite = ResourcesServices.LoadCardIcon(data.Icon, IsSkill);
+        Icon.sprite = data.IconSprite;
         //Set type of the NFT
         if (data as NFTsSpell != null)
         {

@@ -62,8 +62,8 @@ public class UICardDetail : UICard
             //UNITS
             Model.SetActive(true);
             UnitCard UnitPrefab = ResourcesServices.LoadCardPrefab(data.KeyId, IsSkill).GetComponent<UnitCard>();
-            ModelFilter.mesh = UnitPrefab.UnitMesh.GetComponent<MeshFilter>().sharedMesh;
-            ModelRender.material = UnitPrefab.UnitMesh.GetComponent<MeshRenderer>().sharedMaterial;
+            ModelFilter.mesh = UnitPrefab.UnitMesh.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+            ModelRender.material = UnitPrefab.UnitMesh.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
 
             Txt_HP.transform.parent.gameObject.SetActive(true);
             Txt_Shield.transform.parent.gameObject.SetActive(true);

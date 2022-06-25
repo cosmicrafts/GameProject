@@ -13,10 +13,10 @@ public class AudioVolumeController : MonoBehaviour
     private float currentAudioLevel = 1;
 
     [Range(0, 2)]
-    public float defaultAudioLevel;
+    public float defaultAudioLevel = 1;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         audioSource.volume = currentAudioLevel;
         audioSource = GetComponent<AudioSource>();

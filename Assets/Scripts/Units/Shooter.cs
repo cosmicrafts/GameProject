@@ -40,9 +40,11 @@ public class Shooter : MonoBehaviour
 
     //The bullet game object to shoot
     public GameObject Bullet;
-
+    public Color colorBullet = new Color(1,1,1,0.5f);
+    public Color colorImpact = new Color(1,1,1,0.5f);
+    public Color colorShield = new Color(1,1,1,0.5f);
     //The relative position of the cannons
-    public Transform Cannons;
+    public Transform[] Cannons;
 
     //The shooting particle systems
     ParticleSystem[] MuzzleFlash;
@@ -73,10 +75,14 @@ public class Shooter : MonoBehaviour
         EnemyDetector.radius = RangeDetector;
         MyShip = GetComponent<Ship>();
         MyUnit = GetComponent<Unit>();
-        MuzzleFlash = new ParticleSystem[Cannons.childCount];
-        for (int i=0; i<Cannons.childCount; i++)
+        if (Cannons == null)
         {
-            MuzzleFlash[i] = Cannons.GetChild(i).GetChild(0).GetComponent<ParticleSystem>();
+            Cannons = new Transform[0];
+        }
+        MuzzleFlash = new ParticleSystem[Cannons.Length];
+        for (int i=0; i<Cannons.Length; i++)
+        {
+            MuzzleFlash[i] = Cannons[i].GetChild(0).GetComponent<ParticleSystem>();
         }
         if (CoolDown <= 0f)
             CoolDown = 0.1f;
@@ -119,16 +125,26 @@ public class Shooter : MonoBehaviour
             if (DelayShoot <= 0f)
             {
                 //Instantiate a bullet per cannon
-                for (int i = 0; i < Cannons.childCount; i++)
+                for (int i = 0; i < Cannons.Length; i++)
                 {
-                    Transform cannon = Cannons.GetChild(i);
-                    Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
+                    Transform cannon = Cannons[i];
+
+                    GameObject bulletPrefab = Instantiate(Bullet, cannon.position, cannon.rotation);
+                    bulletPrefab.GetComponent<FX_ChangeColor>().color = colorBullet;
+                    bulletPrefab.GetComponent<FX_ChangeColor>().UpdateColor();
+                    
+                    Projectile bullet = bulletPrefab.GetComponent<Projectile>();
+                    bullet.colorImpact = colorImpact;
+                    bullet.colorShield = colorShield;
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.SetTarget(Target.gameObject);
                     bullet.Speed = BulletSpeed;
                     bullet.Dmg = BulletDamage;
-                    MuzzleFlash[i].Clear();
-                    MuzzleFlash[i].Play();
+                    if (MuzzleFlash[i] != null)
+                    {
+                        MuzzleFlash[i].Clear();
+                        MuzzleFlash[i].Play();
+                    }
                 }
                 //Reset cooldown
                 DelayShoot = CoolDown;
@@ -171,17 +187,25 @@ public class Shooter : MonoBehaviour
             if (DelayShoot <= 0f)
             {
                 //Instantiate a fake bullet per cannon
-                for (int i = 0; i < Cannons.childCount; i++)
+                for (int i = 0; i < Cannons.Length; i++)
                 {
-                    Transform cannon = Cannons.GetChild(i);
-                    Projectile bullet = Instantiate(Bullet, cannon.position, cannon.rotation).GetComponent<Projectile>();
+                    Transform cannon = Cannons[i];
+                    
+                    GameObject bulletPrefab = Instantiate(Bullet, cannon.position, cannon.rotation);
+                    bulletPrefab.GetComponent<FX_ChangeColor>().color = colorBullet;
+                    bulletPrefab.GetComponent<FX_ChangeColor>().UpdateColor();
+                    
+                    Projectile bullet = bulletPrefab.GetComponent<Projectile>();
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.SetLastPosition(FakeTarget.transform.position);
                     bullet.Speed = BulletSpeed;
                     bullet.Dmg = 0;
                     bullet.SetFake(true);
-                    MuzzleFlash[i].Clear();
-                    MuzzleFlash[i].Play();
+                    if (MuzzleFlash[i] != null)
+                    {
+                        MuzzleFlash[i].Clear();
+                        MuzzleFlash[i].Play();
+                    }
                 }
                 //Reset cooldown
                 DelayShoot = CoolDown;
@@ -294,7 +318,7 @@ public class Shooter : MonoBehaviour
     //Load and initialize stats from NFT data
     public virtual void InitStatsFromNFT(NFTsUnit nFTsUnit)
     {
-        if (GameData.DebugMode)
+        if (GlobalManager.GMD.DebugMode)
             return;
 
         BulletDamage = nFTsUnit.Dammage;

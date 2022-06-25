@@ -1,7 +1,9 @@
 ﻿using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 
 public class UICharacters : MonoBehaviour
@@ -37,9 +39,9 @@ public class UICharacters : MonoBehaviour
         //Initialize the UI characters list
         AllCharacters = new List<UICharacter>();
         //Get the player collection data
-        PlayerCollection = GameData.GetUserCollection();
+        PlayerCollection = GlobalManager.GMD.GetUserCollection();
         //Get the current player character
-        NFTsCharacter pCharacter = GameData.GetUserCharacter();
+        NFTsCharacter pCharacter = GlobalManager.GMD.GetUserCharacter();
 
         //Show the UI characters from the player collection characters data
         foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.LocalID))
@@ -68,11 +70,11 @@ public class UICharacters : MonoBehaviour
         NFTsCharacter nFTsCharacter = character.GetData();
         CurrentChar = character;
         UpdateUIInfo();
-        GameData.SetUserCharacter(nFTsCharacter.KeyId);
+        GlobalManager.GMD.SetUserCharacter(nFTsCharacter.ID);
 
-        if (GameData.IsProductionWeb())
+        if (GlobalManager.GMD.IsProductionWeb())
         {
-            GameNetwork.JSSavePlayerCharacter(JsonConvert.SerializeObject(CurrentChar.GetData()));
+            GameNetwork.JSSavePlayerCharacter(CurrentChar.GetData().ID);
         }
     }
 
@@ -81,7 +83,7 @@ public class UICharacters : MonoBehaviour
     {
         CurrentChar.SetSelection(true);
         string key = CurrentChar.GetData().KeyId;
-        PreviewAvatar.sprite = ResourcesServices.LoadCharacterIcon(CurrentChar.GetData().Icon);
+        PreviewAvatar.sprite = CurrentChar.GetData().IconSprite;
         Emblem.sprite = ResourcesServices.LoadCharacterEmblem(key);
         CharName.text = Lang.GetEntityName(key);
         CharDesc.text = Lang.GetEntityDescription(key);

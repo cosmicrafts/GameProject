@@ -64,7 +64,7 @@ public class UIGameMng : MonoBehaviour
         //Init the UI info of the player
         Players[GameMng.P.ID-1].InitInfo(GameMng.PlayerData, GameMng.PlayerProgress, GameMng.PlayerCharacter);
         //Inits the enemys info depending the match
-        switch(GameData.CurrentMatch)
+        switch(GlobalManager.GMD.CurrentMatch)
         {
             case Match.tutorial:
                 {
@@ -94,7 +94,7 @@ public class UIGameMng : MonoBehaviour
                 break;
             case Match.multi:
                 {
-                    Players[GameMng.P.ID == 1 ? 1 : 0].InitInfo(GameData.GetVsUser());
+                    Players[GameMng.P.ID == 1 ? 1 : 0].InitInfo(GlobalManager.GMD.GetVsUser());
                 }
                 break;
         }
@@ -123,9 +123,9 @@ public class UIGameMng : MonoBehaviour
     {
         for (int i=0; i<gameCards.Length; i++)
         {
-            UIDeck[i].SpIcon.sprite = gameCards[i].Icon;
-            UIDeck[i].EnergyCost = gameCards[i].EnergyCost;
-            UIDeck[i].TextCost.text = gameCards[i].EnergyCost.ToString();
+            UIDeck[i].SpIcon.sprite = gameCards[i].GetData().IconSprite;
+            UIDeck[i].EnergyCost = gameCards[i].GetData().EnergyCost;
+            UIDeck[i].TextCost.text = gameCards[i].GetData().EnergyCost.ToString();
         }
     }
     //Update the UI time

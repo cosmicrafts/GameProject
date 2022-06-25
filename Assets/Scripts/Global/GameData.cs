@@ -28,37 +28,37 @@ public enum NFTClass
     Station,
     Ship
 }
-public static class GameData
+public class GameData
 {
     //Save the selected game mode
-    public static Match CurrentMatch = Match.multi;
+    public Match CurrentMatch = Match.multi;
     //Save if the player is the multiplayer master
-    public static bool ImMaster = false;
+    public bool ImMaster = false;
     //Save if the game is running in Debug mode
-    public static bool DebugMode = false;
+    public bool DebugMode = false;
     //Save the current plataform
-    public static Plataform CurrentPlataform = Plataform.Pc;
+    public Plataform CurrentPlataform = Plataform.Pc;
     //Save if the player data is loaded and ready
-    public static bool DataReady = false;
+    public bool DataReady = false;
     //Save the game configuration
-    static Config config;
+    Config config;
     //Save the basic data of the player
-    static User PlayerUser;
+    User PlayerUser;
     //Save the basic data of Vs player (for multiplayer)
-    static UserGeneral VsPlayerUser;
+    UserGeneral VsPlayerUser;
     //Save the data progression of the player
-    static UserProgress PlayerProgress;
+    UserProgress PlayerProgress;
     //Save the NFTs collection data of the player
-    static UserCollection PlayerCollection;
+    UserCollection PlayerCollection;
     //Save the current character selected by the player
-    static NFTsCharacter PlayerCharacter;
+    NFTsCharacter PlayerCharacter;
     //Save all the NFTs types in the game
-    static NFTsCollection NFTCollection;
+    NFTsCollection NFTCollection;
     //Save te current region of the game
-    public static string Region = "LAN";
+    public string Region = "LAN";
 
     //Returns the current game config, if is null, create a new one
-    public static Config GetConfig()
+    public Config GetConfig()
     {
         if (config == null)
         {
@@ -68,39 +68,39 @@ public static class GameData
         return config;
     }
     //Set the current game config
-    public static void SetConfig(Config newconfig)
+    public void SetConfig(Config newconfig)
     {
         config = newconfig;
     }
     //Get the current game language
-    public static Language GetGameLanguage()
+    public Language GetGameLanguage()
     {
         return (Language)GetConfig().language;
     }
     //Set the basic player data
-    public static void SetUser(User user)
+    public void SetUser(User user)
     {
         PlayerUser = user;
     }
     //Set the basic Vs player data
-    public static void SetVsUser(UserGeneral user)
+    public void SetVsUser(UserGeneral user)
     {
         VsPlayerUser = user;
     }
     //Set the player's progression
-    public static void SetUserProgress(UserProgress userprogress)
+    public void SetUserProgress(UserProgress userprogress)
     {
         PlayerProgress = userprogress;
     }
     //Set the NFTs collection data for the player
-    public static void SetUserCollection(UserCollection userCollection)
+    public void SetUserCollection(UserCollection userCollection)
     {
         PlayerCollection = userCollection;
     }
     //Set the current player character
-    public static void SetUserCharacter(string KeyId)
+    public void SetUserCharacter(int NFTid)
     {
-        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.KeyId == KeyId);
+        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.ID == NFTid);
         if (character == null)
         {
             PlayerCharacter = PlayerCollection.Characters[0];
@@ -111,12 +111,12 @@ public static class GameData
         PlayerCollection.ChangeDeckFaction(PlayerCharacter);
     }
     //Set the global NFTs Collection
-    public static void SetNFTsCollection(NFTsCollection nFTsCollection)
+    public void SetNFTsCollection(NFTsCollection nFTsCollection)
     {
         NFTCollection = nFTsCollection;
     }
     //Returns the basic Player data
-    public static User GetUserData()
+    public User GetUserData()
     {
         if (PlayerUser == null)
         {
@@ -126,12 +126,12 @@ public static class GameData
         return PlayerUser;
     }
     //Returns the basic Vs Player data
-    public static UserGeneral GetVsUser()
+    public UserGeneral GetVsUser()
     {
         return VsPlayerUser;
     }
     //Create a data resume of the player, used to send it to the network
-    public static UserGeneral BuildMyProfileHasVS()
+    public UserGeneral BuildMyProfileHasVS()
     {
         if (PlayerUser == null || PlayerProgress == null)
             return null;
@@ -147,7 +147,7 @@ public static class GameData
         };
     }
     //Returns the progression of the player
-    public static UserProgress GetUserProgress()
+    public UserProgress GetUserProgress()
     {
         if (PlayerProgress == null)
         {
@@ -158,7 +158,7 @@ public static class GameData
         return PlayerProgress;
     }
     //Returns the NFTs data of the player
-    public static UserCollection GetUserCollection()
+    public UserCollection GetUserCollection()
     {
         if (PlayerCollection == null)
         {
@@ -169,28 +169,38 @@ public static class GameData
         return PlayerCollection;
     }
     //Returns the current player character
-    public static NFTsCharacter GetUserCharacter()
+    public NFTsCharacter GetUserCharacter()
     {
         if (PlayerCharacter == null)
         {
-            PlayerCharacter = PlayerCollection.Characters[0];
+            var Characters = GetUserCollection().Characters;
+            if (Characters == null)
+            {
+                PlayerCharacter = GetUserCollection().DefaultCharacter;
+            } else if (Characters.Count == 0)
+            {
+                PlayerCharacter = GetUserCollection().DefaultCharacter;
+            } else
+            {
+                PlayerCharacter = Characters[0];
+            }
         }
 
         return PlayerCharacter;
     }
     //Returns the Global NFTs collection
-    public static NFTsCollection GetNFTsCollection()
+    public NFTsCollection GetNFTsCollection()
     {
         if (NFTCollection == null)
         {
             NFTCollection = new NFTsCollection();
-            NFTCollection.InitCollection();
+            NFTCollection.InitGlobalCollection();
         }
 
         return NFTCollection;
     }
     //Change the language of the game
-    public static void ChangeLang(Language newlang)
+    public void ChangeLang(Language newlang)
     {
         Lang.SetLang(newlang);
 
@@ -198,12 +208,12 @@ public static class GameData
         SaveData.SaveGameConfig();
     }
     //Returns if the player information is loaded and ready
-    public static bool UserIsInit()
+    public bool UserIsInit()
     {
         return PlayerUser != null;
     }
     //Clear the player information
-    public static void ClearUser()
+    public void ClearUser()
     {
         PlayerUser = null;
         PlayerProgress = null;
@@ -212,12 +222,12 @@ public static class GameData
         ImMaster = false;
     }
     //Returns the current version of the game
-    public static string GetVersion()
+    public string GetVersion()
     {
         return Application.version;
     }
     //Returns if the game is running on web and if is a production build
-    public static bool IsProductionWeb()
+    public bool IsProductionWeb()
     {
         return CurrentPlataform == Plataform.Web && !DebugMode;
     }

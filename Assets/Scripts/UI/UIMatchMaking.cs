@@ -56,18 +56,18 @@ public class UIMatchMaking : MonoBehaviour
         //Set the delta time
         DeltaOne = new WaitForSeconds(1f);
         //Get the player's data
-        MyUserData = GameData.GetUserData();
+        MyUserData = GlobalManager.GMD.GetUserData();
     }
 
     //Start searching for a match
     public void StartSearch()
     {
         //If this is a debug build...
-        if (GameData.DebugMode)
+        if (GlobalManager.GMD.DebugMode)
         {
             //Make a fake VS player
-            GameData.ImMaster = false;
-            GameData.SetVsUser(new UserGeneral()
+            GlobalManager.GMD.ImMaster = false;
+            GlobalManager.GMD.SetVsUser(new UserGeneral()
             {
                 NikeName = "Vs Player",
                 WalletId = "SomeWalletIdRandomNumbers",
@@ -111,7 +111,7 @@ public class UIMatchMaking : MonoBehaviour
     {
         VsUserData = GameNetwork.GetVsData();
         UpdateUI_VSData();
-        GameData.SetVsUser(VsUserData);
+        GlobalManager.GMD.SetVsUser(VsUserData);
     }
 
     //Update the UI Enemy data
@@ -120,8 +120,7 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
         Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
-        NFTsCharacter nFTsCharacter = GameData.GetUserCollection().GetCharacterByKey(VsUserData.CharacterKey);
-        Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+        Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(VsUserData.CharacterKey);
         Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(VsUserData.CharacterKey);
     }
 
@@ -131,15 +130,15 @@ public class UIMatchMaking : MonoBehaviour
         if (IsCanceled)
             return;
         GameNetwork.UpdateGameData(json);
-        GameData.ImMaster = GameNetwork.GetMasterWalletId() == MyUserData.WalletId;
+        GlobalManager.GMD.ImMaster = GameNetwork.GetMasterWalletId() == MyUserData.WalletId;
     }
 
     //Searching loop
     IEnumerator Searching()
     {
         //Make a resume of the player data
-        string MyJsonProfile = JsonConvert.SerializeObject(GameData.BuildMyProfileHasVS());
-        if (GameData.IsProductionWeb())
+        string MyJsonProfile = JsonConvert.SerializeObject(GlobalManager.GMD.BuildMyProfileHasVS());
+        if (GlobalManager.GMD.IsProductionWeb())
         {
             //Send a request for a match with the player´s data
             GameNetwork.JSSearchGame(MyJsonProfile);
@@ -157,7 +156,7 @@ public class UIMatchMaking : MonoBehaviour
         //Update the match info
         GameNetwork.SetClientGameId(GameNetwork.GetId());
         //Update the UI
-        CancelButton.SetActive(GameData.ImMaster);
+        CancelButton.SetActive(GlobalManager.GMD.ImMaster);
         SearchIcon.SetActive(false);
         FoundIcon.SetActive(true);
 

@@ -62,7 +62,7 @@ public class BotEnemy : MonoBehaviour
     int MinCostUnit;
 
     //Random class service
-    private static System.Random rng;
+    private System.Random rng;
 
     //Allows to generate energy
     bool CanGenEnergy;
@@ -102,8 +102,8 @@ public class BotEnemy : MonoBehaviour
             return;
 
         //Set the max and min cost of the bot´s deck
-        MaxCostUnit = GameCards.Max(f => f.EnergyCost);
-        MinCostUnit = GameCards.Min(f => f.EnergyCost);
+        MaxCostUnit = GameCards.Max(f => f.GetData().EnergyCost);
+        MinCostUnit = GameCards.Min(f => f.GetData().EnergyCost);
 
         //Start IA loop
         StartCoroutine(IA());
@@ -157,12 +157,12 @@ public class BotEnemy : MonoBehaviour
                         {
                             continue;
                         }
-                        SelectedUnit = GameCards.FirstOrDefault(f => f.EnergyCost <= MaxCostUnit);
+                        SelectedUnit = GameCards.FirstOrDefault(f => f.GetData().EnergyCost <= MaxCostUnit);
                     }
                     break;
                 case BotMode.Pasive: //Select the cheapest card
                     {
-                        SelectedUnit = GameCards.FirstOrDefault(f => f.EnergyCost <= MinCostUnit);
+                        SelectedUnit = GameCards.FirstOrDefault(f => f.GetData().EnergyCost <= MinCostUnit);
                     }
                     break;
                 default: //Select a random card
@@ -170,7 +170,7 @@ public class BotEnemy : MonoBehaviour
                         for(int i=0; i<10; i++)
                         {
                             SelectedUnit = GameCards[Random.Range(0, GameCards.Count)];
-                            if (SelectedUnit.EnergyCost <= CurrentEnergy)
+                            if (SelectedUnit.GetData().EnergyCost <= CurrentEnergy)
                             {
                                 break;
                             }
@@ -180,13 +180,13 @@ public class BotEnemy : MonoBehaviour
             }
 
             //Check if the bot have enough energy
-            if (SelectedUnit.EnergyCost <= CurrentEnergy)
+            if (SelectedUnit.GetData().EnergyCost <= CurrentEnergy)
             {
                 //Select a random position (check the childs game objects of the bot)
                 Vector3 PositionSpawn = transform.GetChild(Random.Range(0, transform.childCount)).position;
                 //Spawn selected unit and rest energy
                 Unit unit = GameMng.GM.CreateUnit(SelectedUnit.gameObject, PositionSpawn, MyTeam, SelectedUnit.NftsKey);
-                CurrentEnergy -= SelectedUnit.EnergyCost;
+                CurrentEnergy -= SelectedUnit.GetData().EnergyCost;
             }
         }
     }

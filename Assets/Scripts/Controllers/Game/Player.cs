@@ -52,10 +52,10 @@ public class Player : MonoBehaviour
         //Defines the current Player controler to the game manager
         GameMng.P = this;
         //Check if the current game is a multiplayer match
-        if (GameData.CurrentMatch == Match.multi)
+        if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
             //If im not the master, im the client, so my id and team change...
-            if (!GameData.ImMaster)
+            if (!GlobalManager.GMD.ImMaster)
             {
                 ID = 2;
                 MyTeam = Team.Red;
@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
         }
 
         //Check if the current match is not the tutorial
-        if (GameData.CurrentMatch != Match.tutorial)
+        if (GlobalManager.GMD.CurrentMatch != Match.tutorial)
         {
             //Get the player´s character and spawn it
             GameObject Character = ResourcesServices.LoadCharacterPrefab(GameMng.PlayerCharacter.KeyId);
@@ -111,18 +111,18 @@ public class Player : MonoBehaviour
             if (DeckUnits[i] != null)
             {
                 GameCards[i] = DeckUnits[i].GetComponent<GameCard>();
-                NFTsCard nFTsCard = GameMng.PlayerCollection.Cards.FirstOrDefault(f => f.KeyId == GameCards[i].NftsKey);
+                //NFTsCard nFTsCard = GameMng.PlayerCollection.Cards.FirstOrDefault(f => f.KeyId == GameCards[i].NftsKey);
 
-                if (GameCards[i].cardType == CardType.Spell)
+                if ((NFTClass)GameCards[i].GetData().EntType == NFTClass.Skill)
                 {
                     SpellCard spell = GameCards[i] as SpellCard;
                     SpellPreviews[i] = spell.PreviewEffect;
 
-                } else if (GameCards[i].cardType == CardType.Unit)
+                } else
                 {
                     UnitCard unit = GameCards[i] as UnitCard;
-                    UnitsMeshs[i] = unit.UnitMesh.transform.GetChild(0).GetComponent<SkinnedMeshRenderer>().sharedMesh;
-                    UnitMaterials[i] = unit.UnitMesh.GetComponent<SkinnedMeshRenderer>().sharedMaterial;
+                    UnitsMeshs[i] = unit.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+                    UnitMaterials[i] = unit.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
                 }   
             }
         }
@@ -144,7 +144,7 @@ public class Player : MonoBehaviour
     //Check if im the client
     public bool ImFake()
     {
-        return GameData.CurrentMatch == Match.multi && ID == 2;
+        return GlobalManager.GMD.CurrentMatch == Match.multi && ID == 2;
     }
 
     //Select a card (from index 0 - 7) 
@@ -167,13 +167,13 @@ public class Player : MonoBehaviour
             SelectedCard = GameCards[idu];
             GameMng.UI.SelectCard(idu);
             //Show the preview of the card on the cursor
-            if (SelectedCard.cardType == CardType.Spell)
+            if ((NFTClass)SelectedCard.GetData().EntType == NFTClass.Skill)
             {
-                PrepareDeploy(SpellPreviews[idu], SelectedCard.EnergyCost);
+                PrepareDeploy(SpellPreviews[idu], SelectedCard.GetData().EnergyCost);
             }
-            else if (SelectedCard.cardType == CardType.Unit)
+            else
             {
-                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.EnergyCost);
+                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.GetData().EnergyCost);
             }
         }
     }
@@ -197,12 +197,12 @@ public class Player : MonoBehaviour
         }
 
         //Show the preview of the card on the cursor
-        if (DragingCard.cardType == CardType.Spell)
+        if ((NFTClass)DragingCard.GetData().EntType == NFTClass.Skill)
         {
-            PrepareDeploy(SpellPreviews[idu], DragingCard.EnergyCost);
-        } else if (DragingCard.cardType == CardType.Unit)
+            PrepareDeploy(SpellPreviews[idu], DragingCard.GetData().EnergyCost);
+        }
         {
-            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.EnergyCost);
+            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.GetData().EnergyCost);
         }
         
     }
@@ -297,7 +297,7 @@ public class Player : MonoBehaviour
     public void DeplyUnit(GameCard unitcard)
     {
         //Check the card cost and current plkayer´s energy
-        if (unitcard.EnergyCost <= CurrentEnergy)
+        if (unitcard.GetData().EnergyCost <= CurrentEnergy)
         {
             //Check if the card is a SHIP OR STATION
             if (unitcard as UnitCard != null)
@@ -324,7 +324,7 @@ public class Player : MonoBehaviour
                     }
                 }
                 //Reduce the energy
-                RestEnergy(unitcard.EnergyCost);
+                RestEnergy(unitcard.GetData().EnergyCost);
                 GameMng.MT.AddDeploys(1);
             } else //THE CARD IS A SPELL
             {
@@ -351,7 +351,7 @@ public class Player : MonoBehaviour
                     }
                 }
                 //Reduce the energy
-                RestEnergy(unitcard.EnergyCost);
+                RestEnergy(unitcard.GetData().EnergyCost);
             }
         }
     }

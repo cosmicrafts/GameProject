@@ -9,6 +9,6 @@ public class Version : MonoBehaviour
     //Show the current game version (requires a TEXT component)
     void Start()
     {
-        GetComponent<Text>().text = GameData.GetVersion();
+        GetComponent<Text>().text = GlobalManager.GMD.GetVersion();
     }
 }
