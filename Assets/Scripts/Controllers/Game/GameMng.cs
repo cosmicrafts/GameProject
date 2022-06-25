@@ -312,7 +312,7 @@ public class GameMng : MonoBehaviour
             BS_Positions[PIn].position, Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
-            GlobalManager.GMD.CurrentMatch == Match.multi ? "Spirats" : "Spirats");
+            GlobalManager.GMD.CurrentMatch == Match.multi ? "Chr_4" : "Chr_4");
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn].position, Quaternion.identity).GetComponent<Unit>();
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;

@@ -75,6 +75,12 @@ public class UIMainMenu : MonoBehaviour
         //initialize variables
         Menu = this;
         UserDataLoaded = 0;
+        //Find and save all the UI player properties
+        UIPropertys = new List<UIPTxtInfo>();
+        foreach (UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
+        {
+            UIPropertys.Add(prop);
+        }
         //Check the build type
 
         GlobalManager.GMD.DebugMode = false;
@@ -128,14 +134,6 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        //Find and save all the UI player properties
-        UIPropertys = new List<UIPTxtInfo>();
-        foreach (UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
-        {
-            UIPropertys.Add(prop);
-        }
-
         //Check if we already have the user data
         if (GlobalManager.GMD.UserIsInit())
         {
