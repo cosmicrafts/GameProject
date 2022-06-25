@@ -217,7 +217,8 @@ public class UIMainMenu : MonoBehaviour
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         PlayerCollection.InitDecks();
         StartCoroutine(LoadNFTsIcons());
-        LoadingPanel.instance.DesactiveLoadingPanel();
+        if (!GlobalManager.GMD.DebugMode)
+            LoadingPanel.instance.DesactiveLoadingPanel();
         doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }
@@ -431,7 +432,7 @@ public class UIMainMenu : MonoBehaviour
         foreach (NFTsCharacter character in PlayerCollection.Characters)
         {
             Debug.Log($"CHEKING NFT CHARACTERS DATA");
-            if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite != null)
+            if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite == null)
             {
                 Debug.Log($"FETCH {character.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(character.IconURL);
@@ -447,7 +448,7 @@ public class UIMainMenu : MonoBehaviour
         foreach (NFTsCard card in PlayerCollection.Cards)
         {
             Debug.Log($"CHEKING NFT CARD DATA");
-            if (!string.IsNullOrEmpty(card.IconURL) && card.IconSprite != null)
+            if (!string.IsNullOrEmpty(card.IconURL) && card.IconSprite == null)
             {
                 Debug.Log($"FETCH {card.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(card.IconURL);
