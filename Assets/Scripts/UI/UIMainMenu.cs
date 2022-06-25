@@ -426,34 +426,26 @@ public class UIMainMenu : MonoBehaviour
     //Load NFTs Icons
     private IEnumerator LoadNFTsIcons()
     {
-        Debug.Log($"START LOADING CHARACTERS SPRITES");
-        Debug.Log($"PLAYER HAVE {PlayerCollection.Characters.Count} CHARACTERS");
         //LOAD URL CHARACTERS ICONS
         foreach (NFTsCharacter character in PlayerCollection.Characters)
         {
-            Debug.Log($"CHEKING NFT CHARACTERS DATA");
             if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite == null)
             {
                 Debug.Log($"FETCH {character.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(character.IconURL);
                 yield return www.SendWebRequest();
-                Debug.Log($"FETCH RESULT: {www.result == UnityWebRequest.Result.Success}");
+                Debug.Log($"FETCH RESULT: {www.error}");
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 character.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
         }
-        Debug.Log("START LOADING UNITS SPRITES");
-        Debug.Log($"PLAYER HAVE {PlayerCollection.Cards.Count} CARDS");
         //LOAD URL CARDS ICONS
         foreach (NFTsCard card in PlayerCollection.Cards)
         {
-            Debug.Log($"CHEKING NFT CARD DATA");
             if (!string.IsNullOrEmpty(card.IconURL) && card.IconSprite == null)
             {
-                Debug.Log($"FETCH {card.IconURL} IMAGE");
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(card.IconURL);
                 yield return www.SendWebRequest();
-                Debug.Log($"FETCH RESULT: {www.result == UnityWebRequest.Result.Success}");
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 card.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
