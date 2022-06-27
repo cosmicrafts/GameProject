@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.Scripting;
 using Newtonsoft.Json;
 using System.Runtime.InteropServices;
+using UnityEngine.Networking;
+
 public class TestNft : MonoBehaviour
 {
 
@@ -43,9 +45,10 @@ public class TestNft : MonoBehaviour
     public IEnumerator GetPlayerNFTX(string u)
     {
         urlSelectedNFTX = u;
-        WWW www = new WWW(u);
-        yield return www;
-        spriteX.sprite = Sprite.Create(www.texture, new Rect(0.0f, 0.0f, www.texture.width, www.texture.height), new Vector2(0.5f, 0.5f), 100.0f);
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(u);
+        yield return www.SendWebRequest();
+        Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+        spriteX.sprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
     }
 
 }

@@ -22,4 +22,11 @@ public class UnitAnimLis : MonoBehaviour
         //Kill the unit
         MyUnit.DestroyUnit();
     }
+
+    //Called an explosion effect
+    public void AE_BlowUpUnit()
+    {
+        //Kill the unit
+        MyUnit.BlowUpEffect();
+    }
 }

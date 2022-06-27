@@ -209,6 +209,8 @@ public class Unit : MonoBehaviour
     //Called when the cast is complete
     virtual protected void CastComplete()
     {
+        MyAnim.SetBool("Idle", true);
+        MyAnim.speed = 1;
         if (SpawnAreaSize > 0f && MyTeam == GameMng.P.MyTeam)
         {
             SA.SetActive(true);
@@ -289,7 +291,9 @@ public class Unit : MonoBehaviour
         //Disable Spawn area
         SA.SetActive(false);
         //Run death animation
-        MyAnim.SetBool("Death", true);
+        MyAnim.SetTrigger("Die");
+        //Disable physics
+        SolidBase.enabled = false;
     }
 
     //Disable Unit
@@ -358,11 +362,6 @@ public class Unit : MonoBehaviour
         //Remove from the game manager
         GameMng.GM.DeleteUnit(this);
 
-        //Instantiate explosion object effect
-        GameObject explosion = Instantiate(Explosion, transform.position, Quaternion.identity);
-        explosion.transform.localScale = transform.localScale * 1.8f;
-        Destroy(explosion, 1f);
-
         //Chec if is the base station
         if (!GameMng.GM.IsGameOver() && IsBaseStation)
         {
@@ -378,6 +377,15 @@ public class Unit : MonoBehaviour
 
         //Destroy the object
         Destroy(gameObject);
+    }
+
+    //Explosion Effect
+    public void BlowUpEffect()
+    {
+        //Instantiate explosion object effect
+        GameObject explosion = Instantiate(Explosion, transform.position, Quaternion.identity);
+        explosion.transform.localScale = transform.localScale * 1.8f;
+        Destroy(explosion, 1f);
     }
 
     //Set the last impact position recived

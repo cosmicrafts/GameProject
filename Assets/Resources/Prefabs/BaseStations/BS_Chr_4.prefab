@@ -4841,6 +4841,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4659385339496141584}
   - component: {fileID: 3854135311105607889}
+  - component: {fileID: 6114053768574542399}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -4925,6 +4926,26 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &6114053768574542399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1472722872429027172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &1934264405126533416
 GameObject:
   m_ObjectHideFlags: 0
@@ -10071,8 +10092,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 0
-  HitPoints: 256
-  Shield: 256
+  HitPoints: 64
+  Shield: 64
   ShieldDelay: 1
   Energy: 10
   Size: 1
@@ -38699,6 +38720,7 @@ GameObject:
   - component: {fileID: 5580249855106811542}
   - component: {fileID: 292014324983016134}
   - component: {fileID: 8717014747714097797}
+  - component: {fileID: 1427651959944767756}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -38800,6 +38822,26 @@ MonoBehaviour:
   amplitude: 0.5
   phase: 0
   frequency: 4
+--- !u!114 &1427651959944767756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222758832642557859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &7658122148673450234
 GameObject:
   m_ObjectHideFlags: 0

@@ -113,6 +113,14 @@ public class Shooter : MonoBehaviour
         //If we have a target...
         if (Target != null)
         {
+            if (Target.GetIsDeath())
+            {
+                Unit tempTarget = Target;
+                Target = null;
+                RemoveEnemy(tempTarget);
+                return;
+            }
+
             //If the unit must look at the enemy...
             if (RotateToEnemy)
             {
@@ -148,6 +156,8 @@ public class Shooter : MonoBehaviour
                 }
                 //Reset cooldown
                 DelayShoot = CoolDown;
+                //Run animation
+                MyUnit.GetAnimator().SetTrigger("Attack");
             }
             else //Cool down is active
             {
@@ -155,7 +165,7 @@ public class Shooter : MonoBehaviour
                 DelayShoot -= Time.deltaTime;
             }
         }
-        //If we dont have a current target
+        //If we dont have a current target after shooting
         if (Target == null)
         {
             //Check if we dont have an other enemy in range
@@ -209,6 +219,8 @@ public class Shooter : MonoBehaviour
                 }
                 //Reset cooldown
                 DelayShoot = CoolDown;
+                //Run animation
+                MyUnit.GetAnimator().SetTrigger("Attack");
             }
             else //Cool down is active
             {
