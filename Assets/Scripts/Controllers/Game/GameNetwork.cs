@@ -246,7 +246,8 @@ public static class GameNetwork
     [DllImport("__Internal")]
     public static extern void JSGetAnvilNfts(string anvilUrl);
 
+    [DllImport("__Internal")]
+    public static extern void JSClaimNft(int nftIndex);
 
 
-   
 }

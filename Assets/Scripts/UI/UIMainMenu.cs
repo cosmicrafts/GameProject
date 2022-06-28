@@ -61,7 +61,8 @@ public class UIMainMenu : MonoBehaviour
 
     //Progress of the loaded user data
     int UserDataLoaded;
-
+    int isFirstLogin;
+    public GameObject welcomePanel;
     private void Awake()
     {
 
@@ -140,8 +141,26 @@ public class UIMainMenu : MonoBehaviour
             //Show the main menu
 
             //LoginPanel.SetActive(false);
+         
 
             MenuPanel.SetActive(true);
+
+            if (!PlayerPrefs.HasKey("firstLogin"))
+            {
+
+                if (isFirstLogin == 0)
+                {
+
+                    welcomePanel.SetActive(true);
+                    isFirstLogin = 1;
+                    PlayerPrefs.SetInt("firstLogin", 1);
+                }
+                else
+                {
+                    welcomePanel.SetActive(false);
+                }
+            }
+            PlayerPrefs.GetInt("firstLogin");
         }
 
     }
@@ -278,7 +297,11 @@ public class UIMainMenu : MonoBehaviour
     {
         GlobalManager.GMD.ChangeLang((Language)lang);
     }
-
+    public void OnClaimWelcomeNft(int nftIndex)
+    {
+        GameNetwork.JSClaimNft(nftIndex);
+       welcomePanel.SetActive(false);
+    }
     //Load the game scene for a Tutorial o PVIA game
     IEnumerator LoadLocalGame()
     {
