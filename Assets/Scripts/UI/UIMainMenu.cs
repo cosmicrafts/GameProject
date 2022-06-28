@@ -61,7 +61,7 @@ public class UIMainMenu : MonoBehaviour
 
     //Progress of the loaded user data
     int UserDataLoaded;
-    int isFirstLogin;
+    int isFirstLogin =0;
     public GameObject welcomePanel;
     private void Awake()
     {
