@@ -55,9 +55,9 @@ public class UIScroll : MonoBehaviour
     void Update()
     {
         if ((Screen.width != w) || (Screen.height != h)) {
-            ScreenResized();
             w = Screen.width;
             h = Screen.height;
+            ScreenResized();
         }
     }
     
