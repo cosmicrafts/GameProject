@@ -78,8 +78,10 @@ MonoBehaviour:
   Speed: 0
   Dmg: 0
   Inpact: {fileID: 164982, guid: ea28c4f6b96a00243a4b433791308c47, type: 3}
+  colorImpact: {r: 1, g: 1, b: 1, a: 0.5}
   ShieldInpact: {fileID: 8994491411004452053, guid: a6a405c512eefab4cb21693a2ff0f2d4,
     type: 3}
+  colorShield: {r: 1, g: 1, b: 1, a: 0.5}
 --- !u!1001 &3092762304846911118
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,7 +149,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8040932318687861344, guid: bfe5f1ce81800594b8e9c688ed34fc96, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: bfe5f1ce81800594b8e9c688ed34fc96, type: 3}
 --- !u!4 &3092762304846588086 stripped
 Transform:
