@@ -82,16 +82,6 @@ public class UIMainMenu : MonoBehaviour
         {
             UIPropertys.Add(prop);
         }
-        //Check the build type
-
-        GlobalManager.GMD.DebugMode = false;
-#if UNITY_EDITOR
-        GlobalManager.GMD.DebugMode = true;
-#endif
-        //Check the current plataform
-#if UNITY_WEBGL
-        GlobalManager.GMD.CurrentPlataform = Plataform.Web;
-#endif
 
         //Show the login page
         //LoadingPanel.instance.ActiveLoadingPanel();

@@ -19,9 +19,11 @@ public class Player : MonoBehaviour
     //Allows to generate energy
     bool CanGenEnergy;
     //Reference the drag and drop object
-    public DragUnitCtrl UnitDrag;
+    [HideInInspector]
+    DragUnitCtrl UnitDrag;
     //Stores the deck units prefabs
-    public GameObject[] DeckUnits = new GameObject[8];
+    [HideInInspector]
+    public GameObject[] DeckUnits;
 
     //Stores the card data from units
     GameCard[] GameCards;
@@ -51,6 +53,8 @@ public class Player : MonoBehaviour
     {
         //Defines the current Player controler to the game manager
         GameMng.P = this;
+        //Init Deck Units Array
+        DeckUnits = new GameObject[8];
         //Check if the current game is a multiplayer match
         if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
@@ -67,15 +71,10 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        //Get draging cards controller
+        UnitDrag = GetComponentInChildren<DragUnitCtrl>();
         //Enable the gameplay and the energy generation
         InControl = CanGenEnergy = true;
-        //Check the size of the deck
-        if (DeckUnits.Length != 8)
-        {
-            Debug.LogError("Size of deck must equals 8");
-            DeckUnits = new GameObject[8];
-            return;
-        }
 
         //Check if the current match is not the tutorial
         if (GlobalManager.GMD.CurrentMatch != Match.tutorial)

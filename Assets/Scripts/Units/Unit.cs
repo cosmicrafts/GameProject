@@ -135,7 +135,7 @@ public class Unit : MonoBehaviour
         MyAnim = Mesh.GetComponent<Animator>();
         Portal.transform.parent = null;
         //Set the start rotation
-        transform.LookAt(CMath.LookToY(transform.position, GameMng.GM.GetFinalTarget(MyTeam).position));
+        transform.LookAt(CMath.LookToY(transform.position, GameMng.GM.GetDefaultTargetPosition(MyTeam)));
         //Active the spawn area if the size is more than 0
         SA.SetActive(IsMyTeam(GameMng.P.MyTeam) && SpawnAreaSize > 0f);
         //Destroy the cast portal after 3 sec

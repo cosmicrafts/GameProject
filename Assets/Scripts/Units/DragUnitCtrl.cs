@@ -32,7 +32,7 @@ public class DragUnitCtrl : MonoBehaviour
         //Initialize variables
         areas = 0;
         SetStatusColor(Color.red);
-        target = GameMng.GM.GetFinalTarget(GameMng.P.MyTeam).position;
+        target = GameMng.GM.GetDefaultTargetPosition(GameMng.P.MyTeam);
         DefaultColor = Color.green;
         player = GameMng.P;
     }

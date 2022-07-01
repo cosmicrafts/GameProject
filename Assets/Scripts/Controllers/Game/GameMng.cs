@@ -25,14 +25,16 @@ public class GameMng : MonoBehaviour
     public static NFTsCharacter PlayerCharacter;
 
     //OPTIONAL SYSTEMS CONTROLLERS
+    [HideInInspector]
     public GameTutorial GT;
+    [HideInInspector]
     public BotEnemy BOT;
 
     //Code of the base stations
     [HideInInspector]
     public Unit[] Targets;
     //Base stations initial positions (set in inspector)
-    public Transform[] BS_Positions;
+    public Vector3[] BS_Positions;
 
     //Storage all game units and spells
     List<Unit> Units;
@@ -65,6 +67,7 @@ public class GameMng : MonoBehaviour
     DateTime StartTime;
 
     //clicks collider detection (necessary for spawn units)
+    [HideInInspector]
     public BoxCollider GridColl;
 
     //Delta multiplayer refresh
@@ -73,8 +76,17 @@ public class GameMng : MonoBehaviour
     //Dictionary of NFTs data of the units <NFTkey, NFTdata> (work in progress)
     Dictionary<string, NFTsCard> AllNfts;
 
+    //Testing mode
+    public bool Testing;
+
     private void Awake()
     {
+        //Check for the global manager
+        if (GlobalManager.GMD == null)
+        {
+            Instantiate(ResourcesServices.LoadGlobalManager());
+            GlobalManager.GMD.CurrentMatch = Match.testing;
+        }
         //Init static unique controllers
         GM = this;
         CONFIG = GlobalManager.GMD.GetConfig();
@@ -82,14 +94,30 @@ public class GameMng : MonoBehaviour
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         PlayerCollection = GlobalManager.GMD.GetUserCollection();
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
+        //Check production
+        if (!GlobalManager.GMD.DebugMode)
+            Testing = false;
+        //Check Default Player units
+        if (Testing && PlayerCollection.Deck == null)
+        {
+            PlayerCollection.AddUnitsAndCharactersDefault();
+        }
         //init Basic variables and basic storages list
         GameOver = false;
-        RunTime = true;
+        RunTime = !Testing;
         Units = new List<Unit>();
         Spells = new List<Spell>();
         RequestedUnits = new List<NetUnitPack>();
         DeletedUnits = new List<int>();
         CreatedUnits = new List<int>();
+        //Default Base Positions
+        if (BS_Positions == null)
+        {
+            //From world reference
+            BS_Positions = new Vector3[2];
+            BS_Positions[0] = new Vector3(17f, 0f, -19f);
+            BS_Positions[1] = new Vector3(-17f, 0f, 19f);
+        }
         //init metrics controller
         MT = new GameMetrics();
         MT.InitMetrics();
@@ -108,15 +136,22 @@ public class GameMng : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Try find BOT controller and Tutorial Controller
+        GT = FindObjectOfType<GameTutorial>();
+        BOT = FindObjectOfType<BotEnemy>();
         //Set the IDs of the base stations
-        for(int i=0; i<Targets.Length; i++)
+        for (int i=0; i<Targets.Length; i++)
         {
             Targets[i].setId(GenerateUnitId());
         }
         //Set the time count down (5 minutes) and when the game begins
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
+        //Set Defautl Manager position
+        transform.position = new Vector3(-30f, 0f, -20f);
         //Set the size of the clicks and taps collider (the area where player can spawn cards)
+        GridColl = GetComponentInChildren<BoxCollider>();
+        GridColl.transform.localPosition = new Vector3(30f, 0f, 20f);
         GridColl.size = new Vector3(MapWidth*2f, 0.1f, MapHeigth*2f);
         //Check which game mode was selected
         switch(GlobalManager.GMD.CurrentMatch)
@@ -124,9 +159,11 @@ public class GameMng : MonoBehaviour
             case Match.bots: //VS IA
                 {
                     //Destroy the game tutorial controller
-                    Destroy(GT.gameObject);
+                    if (GT)
+                        Destroy(GT.gameObject);
                     //Init the Bot controller
-                    BOT.gameObject.SetActive(true);
+                    if (BOT)
+                        BOT.gameObject.SetActive(true);
                 }
                 break;
             case Match.tutorial: //TUTORIAL
@@ -139,14 +176,17 @@ public class GameMng : MonoBehaviour
                     RunTime = false;
                     UI.UpdateTimeOut("--");
                     //Destroy the bot controller
-                    Destroy(BOT);
+                    if (BOT)
+                        Destroy(BOT.gameObject);
                 }
                 break;
             case Match.multi: //MULTIPLAYER
                 {
                     //Destroy the bot and tutorial controller
-                    Destroy(BOT);
-                    Destroy(GT.gameObject);
+                    if (BOT)
+                        Destroy(BOT.gameObject);
+                    if (GT)
+                        Destroy(GT.gameObject);
                     //Start the sync loop of multiplayer
                     StartCoroutine(LoopGameNetAsync());
                     //IF IM THE MASTER...
@@ -202,7 +242,7 @@ public class GameMng : MonoBehaviour
                 UI.UpdateTimeOut("0:00");
                 //Player and bot can´t generate energy
                 P.SetCanGenEnergy(false);
-                if (GlobalManager.GMD.CurrentMatch == Match.bots)
+                if (GlobalManager.GMD.CurrentMatch == Match.bots && BOT)
                 {
                     BOT.SetCanGenEnergy(false);
                 }
@@ -238,13 +278,19 @@ public class GameMng : MonoBehaviour
         }
     }
 
-    //Get the enemy base station of X team
-    public Transform GetFinalTarget(Team team)
+    //Get the transform enemy base station of X team
+    public Transform GetFinalTransformTarget(Team team)
     {
         if (GameOver)
             return transform;
 
         return Targets[(int)team].transform;
+    }
+
+    //Get the transform enemy base station of X team
+    public Vector3 GetDefaultTargetPosition(Team team)
+    {
+        return BS_Positions[(int)team];
     }
 
     //GAME OVER
@@ -309,11 +355,11 @@ public class GameMng : MonoBehaviour
         int VsIn = P.MyTeam == Team.Red ? 1 : 0; //Enemy base station index
         //Create the player´s base station
         Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.KeyId), 
-            BS_Positions[PIn].position, Quaternion.identity).GetComponent<Unit>();
+            BS_Positions[PIn], Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
             GlobalManager.GMD.CurrentMatch == Match.multi ? "Chr_4" : "Chr_4");
-        Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn].position, Quaternion.identity).GetComponent<Unit>();
+        Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn], Quaternion.identity).GetComponent<Unit>();
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
         Targets[0].MyTeam = Team.Red;

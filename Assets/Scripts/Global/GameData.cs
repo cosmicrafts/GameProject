@@ -9,6 +9,7 @@ using UnityEngine;
 //Enum Game Modes Types
 public enum Match
 {
+    testing,
     tutorial,
     bots,
     multi

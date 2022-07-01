@@ -56,7 +56,7 @@ public class Ship : Unit
     {
         base.Start();
         //Set the current destination (enemy´s base station)
-        Target = GameMng.GM.GetFinalTarget(MyTeam);
+        Target = GameMng.GM.GetFinalTransformTarget(MyTeam);
         FakeDestination = transform.position;
         if (IsFake)
         {
