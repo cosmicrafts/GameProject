@@ -15,17 +15,17 @@ public static class ResourcesServices
     //Returns a sprite avatar
     public static Sprite LoadAvatarIcon(int id)
     {
-        return Resources.Load<Sprite>($"UI/Icons/Avatars/Avatar_{id}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Avatars/Avatar_{id}"));
     }
     //Returns a sprite character icon
     public static Sprite LoadCharacterIcon(string nftCharacterKey)
     {
-        return Resources.Load<Sprite>($"UI/Characters/Ico_{nftCharacterKey}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Characters/Ico_{nftCharacterKey}"));
     }
     //Returns a sprite card icon
     public static Sprite LoadCardIcon(string nftCardKey)
     {
-        return Resources.Load<Sprite>($"UI/Icons/Cards/Ico_{nftCardKey}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Cards/Ico_{nftCardKey}"));
     }
     //Returns the prefab of a spell or unit
     public static GameObject LoadCardPrefab(string key, bool isSkill)
@@ -46,6 +46,11 @@ public static class ResourcesServices
     //Returns the sprite emblem of a character
     public static Sprite LoadCharacterEmblem(string nftCharacterKey)
     {
-        return Resources.Load<Sprite>($"UI/Characters/Emblems/{nftCharacterKey}_Emb");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Characters/Emblems/{nftCharacterKey}_Emb"));
+    }
+
+    static Sprite ValidateSprite(Sprite sprite)
+    {
+        return sprite == null ? Resources.Load<Sprite>($"UI/PH_512") : sprite;
     }
 }
