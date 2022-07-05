@@ -7,7 +7,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField]
-    int maxplayerCard =4;
+    int maxplayerCard =8;
 
     [HideInInspector]
     public int ID = 1;
@@ -126,7 +126,7 @@ public class Player : MonoBehaviour
 
         AddEnergy(Time.deltaTime * SpeedEnergy);
        
-        PlayersHotkey();
+ 
 
     }
 
@@ -339,38 +339,5 @@ public class Player : MonoBehaviour
         return ID == 1 ? 2 : 1;
     }
 
-    void PlayersHotkey()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            DragDeckUnit(0);
-            DropDeckUnit();
-            SelectCard(0);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            DragDeckUnit(1);
-            DropDeckUnit();
-            SelectCard(1);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            DragDeckUnit(2);
-            DropDeckUnit();
-            SelectCard(2);
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            DragDeckUnit(3);
-            DropDeckUnit();
-            SelectCard(3);
-
-        }
-    }
+  
 }
