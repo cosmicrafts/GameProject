@@ -59,7 +59,7 @@
     ,
     
     JSClaimNft: function(Index) {
-         ReactUnityWebGL.JSClaimNft(index);
+         ReactUnityWebGL.JSClaimNft(Index);
     }
 
 });
