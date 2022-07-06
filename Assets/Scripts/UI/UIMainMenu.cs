@@ -43,7 +43,7 @@ public class UIMainMenu : MonoBehaviour
     public Text CurrentGameMode;
     public Text CurrentGameModeStatus;
 
-  int tutoGame=0;
+
     //TimeSpan TimeMatch;
     //DateTime StartTime;
 
@@ -103,21 +103,15 @@ public class UIMainMenu : MonoBehaviour
         if(GameData.CurrentPlataform == Plataform.Web)
         {
 
-            if(PlayerPrefs.HasKey("Tuto"))
-                tutoGame = PlayerPrefs.GetInt("Tuto");
+           
        
-                GameData.CurrentMatch = Match.tutorial;
+               
             CheckGameMode();
-            if (tutoGame == 0)
-            {
-                PlayTutorial();
-
-            } else if (tutoGame != 0)
-            {
+           
                 GameData.CurrentMatch = Match.multi;
                 CheckGameMode();
                 MainMenu.SetActive(true);
-            }
+            
          
 
       
