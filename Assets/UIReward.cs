@@ -16,6 +16,7 @@ public class UIReward : MonoBehaviour
         
     public void ClaimNFT(int index)
     {
+        Debug.Log("Index: " + index);
         GameNetwork.JSClaimNft(index);
         LoadingPanel.instance.ActiveLoadingPanel();
     }
