@@ -21,6 +21,10 @@ public class Login : MonoBehaviour
 
     [SerializeField]
     GameObject loadingPanel;
+    
+    [SerializeField]
+    GameObject UIReward;
+    
     [SerializeField]
     private Animator anim;
 
@@ -82,6 +86,13 @@ public class Login : MonoBehaviour
  
     public void OnNameData(int usser)//esta es de PK
     {
+        if (usser == 2)
+        {
+            LoadingPanel.instance.DesactiveLoadingPanel();
+            LoginPanel.SetActive(false);
+            namePanel.SetActive(false);
+            UIReward.SetActive(true);
+        }
         if (usser == 1)
         {
             LoadingPanel.instance.ActiveLoadingPanel();
@@ -89,7 +100,6 @@ public class Login : MonoBehaviour
             //tutorial
         }
         else
-
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
             LoginPanel.SetActive(false);
@@ -112,7 +122,7 @@ public class Login : MonoBehaviour
             playerName = inputNameField.text;
             PlayerPrefs.SetString("AccounName", playerName);
             GameNetwork.JSLoginPanel(playerName);
-            LoginPanel.SetActive(true);
+            LoadingPanel.instance.ActiveLoadingPanel();
         }
 
     }
