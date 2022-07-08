@@ -58,8 +58,7 @@ public class GameMng : MonoBehaviour
     [HideInInspector]
     public Team Winner;
     //Set if the time out is running
-    [HideInInspector]
-    public bool RunTime;
+    bool RunTime;
 
     //Time out controller
     TimeSpan TimeOut;
@@ -123,7 +122,7 @@ public class GameMng : MonoBehaviour
         MT.InitMetrics();
         //Init NFTs dictionary
         AllNfts = new Dictionary<string, NFTsCard>();
-        foreach(NFTsCard nFTsUnit in PlayerCollection.Cards)
+        foreach (NFTsCard nFTsUnit in PlayerCollection.Cards)
         {
             AllNfts.Add(nFTsUnit.KeyId, nFTsUnit);
         }
@@ -140,7 +139,7 @@ public class GameMng : MonoBehaviour
         GT = FindObjectOfType<GameTutorial>();
         BOT = FindObjectOfType<BotEnemy>();
         //Set the IDs of the base stations
-        for (int i=0; i<Targets.Length; i++)
+        for (int i = 0; i < Targets.Length; i++)
         {
             Targets[i].setId(GenerateUnitId());
         }
@@ -152,9 +151,9 @@ public class GameMng : MonoBehaviour
         //Set the size of the clicks and taps collider (the area where player can spawn cards)
         GridColl = GetComponentInChildren<BoxCollider>();
         GridColl.transform.localPosition = new Vector3(30f, 0f, 20f);
-        GridColl.size = new Vector3(MapWidth*2f, 0.1f, MapHeigth*2f);
+        GridColl.size = new Vector3(MapWidth * 2f, 0.1f, MapHeigth * 2f);
         //Check which game mode was selected
-        switch(GlobalManager.GMD.CurrentMatch)
+        switch (GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots: //VS IA
                 {
@@ -252,6 +251,20 @@ public class GameMng : MonoBehaviour
         }
     }
 
+    //Enable or disable Count down
+    public void EnableCountDown(bool enable)
+    {
+        RunTime = enable;
+        if (!enable)
+            UI.UpdateTimeOut(string.Empty);
+    }
+
+    //Get if the count down is enable
+    public bool GetCountDownIsRuning()
+    {
+        return RunTime;
+    }
+
     //Check winner
     void GameDraw()
     {
@@ -328,16 +341,19 @@ public class GameMng : MonoBehaviour
             StopCoroutine(LoopGameNetAsync());
         }
     }
+    
     //Get if the game is over
     public bool IsGameOver()
     {
         return GameOver;
     }
+    
     //Get the remaining seconds of the game
     public int GetRemainingSecs()
     {
         return TimeOut.Add(StartTime - DateTime.Now).Seconds;
     }
+    
     //Get a color for a unit depending the team and id player
     public Color GetColorUnit(Team team, int playerId)
     {
@@ -347,6 +363,7 @@ public class GameMng : MonoBehaviour
         return P.MyTeam != team ? Color.red :
                     (P.ID == playerId ? Color.blue : Color.yellow);
     }
+    
     //Create base stations (from player´s script)
     public void InitBaseStations()
     {
@@ -354,7 +371,7 @@ public class GameMng : MonoBehaviour
         int PIn = P.MyTeam == Team.Blue ? 1 : 0; //Player base station index
         int VsIn = P.MyTeam == Team.Red ? 1 : 0; //Enemy base station index
         //Create the player´s base station
-        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.KeyId), 
+        Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.KeyId),
             BS_Positions[PIn], Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
@@ -364,16 +381,19 @@ public class GameMng : MonoBehaviour
         Targets[0].PlayerId = 2;
         Targets[0].MyTeam = Team.Red;
     }
+    
     //Deply a unit using a prefab game object
-    public Unit CreateUnit(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
+    public Unit CreateUnit(GameObject obj, Vector3 position, Team team, string nftKey = "none", int playerId = -1)
     {
         Unit unit = Instantiate(obj, position, Quaternion.identity).GetComponent<Unit>();
         unit.MyTeam = team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
-        unit.SetNfts(AllNfts[nftKey] as NFTsUnit);
+        if (AllNfts.ContainsKey(nftKey))
+            unit.SetNfts(AllNfts[nftKey] as NFTsUnit);
         return unit;
     }
+    
     //Deply a unit using a nft Key
     public Unit CreateUnit(string nftKey, float x, float z, int team, int playerId = -1)
     {
@@ -382,6 +402,7 @@ public class GameMng : MonoBehaviour
             return null;
         return CreateUnit(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
+    
     //Deply a fake unit using a nft key (for multiplayer client)
     public Unit CreateFakeUnit(string nftKey, int Id, float x, float z, int team, int playerId = -1)
     {
@@ -396,16 +417,19 @@ public class GameMng : MonoBehaviour
         unit.setHasFake();
         return unit;
     }
+    
     //Cast a spell using a prefab game object
-    public Spell CreateSpell(GameObject obj, Vector3 position, Team team, string nftKey, int playerId = -1)
+    public Spell CreateSpell(GameObject obj, Vector3 position, Team team, string nftKey = "none", int playerId = -1)
     {
         Spell spell = Instantiate(obj, position, Quaternion.identity).GetComponent<Spell>();
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setId(GenerateUnitId());
-        spell.SetNfts(AllNfts[nftKey] as NFTsSpell);
+        if (AllNfts.ContainsKey(nftKey))
+            spell.SetNfts(AllNfts[nftKey] as NFTsSpell);
         return spell;
     }
+    
     //Cast a spell using a nft key
     public Spell CreateSpell(string nftKey, float x, float z, int team, int playerId = -1)
     {
@@ -414,6 +438,7 @@ public class GameMng : MonoBehaviour
             return null;
         return CreateSpell(obj, new Vector3(x, 0, z), (Team)team, nftKey, playerId);
     }
+    
     //Cast a fake spell using a nft key (for multiplayer client)
     public Spell CreateFakeSpell(string nftKey, int id, float x, float z, int team, int playerId = -1)
     {
@@ -428,6 +453,7 @@ public class GameMng : MonoBehaviour
         spell.setHasFake();
         return spell;
     }
+    
     //Add a unit to the unit's list
     public void AddUnit(Unit unit)
     {
@@ -436,6 +462,7 @@ public class GameMng : MonoBehaviour
             Units.Add(unit);
         }
     }
+    
     //Add a spell to the spell's list
     public void AddSpell(Spell spell)
     {
@@ -444,6 +471,7 @@ public class GameMng : MonoBehaviour
             Spells.Add(spell);
         }
     }
+    
     //Delete a unit to the unit's list
     public void DeleteUnit(Unit unit)
     {
@@ -453,6 +481,7 @@ public class GameMng : MonoBehaviour
             DeletedUnits.Add(unit.getId());
         }
     }
+    
     //Delete a spell to the spell's list
     public void DeleteSpell(Spell spell)
     {
@@ -461,12 +490,14 @@ public class GameMng : MonoBehaviour
             Spells.Remove(spell);
         }
     }
+    
     //Kill a specific unit
     public void KillUnit(Unit unit)
     {
         if (unit != null)
             unit.Die();
     }
+    
     //Request a deply of a specific unit or spell to the master (used by the client)
     public void RequestUnit(NetUnitPack unit)
     {
@@ -478,16 +509,19 @@ public class GameMng : MonoBehaviour
             GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
         }
     }
+    
     //Returns how many units exist in the game
     public int CountUnits()
     {
         return Units.Count;
     }
+    
     //Returns how many units of a team exist in the game
     public int CountUnits(Team team)
     {
         return Units.Where(f => f.IsMyTeam(team)).Count();
     }
+    
     //Ends the game scene and returns the player to the main menu scene
     public void EndScene()
     {
@@ -498,6 +532,7 @@ public class GameMng : MonoBehaviour
 
         SceneManager.LoadScene(1,LoadSceneMode.Single);
     }
+    
     //Multiplayer data async loop (Send game data)
     IEnumerator LoopGameNetAsync()
     {
@@ -508,6 +543,7 @@ public class GameMng : MonoBehaviour
             SyncNetData();//Send game data
         }
     }
+    
     //Send game data
     public void SyncNetData()
     {
@@ -573,6 +609,7 @@ public class GameMng : MonoBehaviour
             }
         }
     }
+    
     //Sync the recived data from client (called from back end)
     public void GL_SyncMaster(string json)
     {
@@ -601,6 +638,7 @@ public class GameMng : MonoBehaviour
             }
         }
     }
+    
     //Sync the recived data from master (called from back end)
     public void GL_SyncClient(string json)
     {
@@ -682,6 +720,7 @@ public class GameMng : MonoBehaviour
             CheckMultiplayerWinner();
         }
     }
+    
     //Sync winner data
     public void GL_SyncWinner(int winner)
     {
@@ -692,6 +731,7 @@ public class GameMng : MonoBehaviour
             CheckMultiplayerWinner();
         }
     }
+    
     //Check if some player wins the game
     //(used when some player disconets from the game to much time and the other player wins by defaut)
     public void CheckMultiplayerWinner()
@@ -719,17 +759,20 @@ public class GameMng : MonoBehaviour
             }
         }
     }
+    
     //Returns if the main stations still exist
     public bool MainStationsExist()
     {
         return Targets[0] != null && Targets[1] != null;
     }
+    
     //Generate an unic ID for units or spells
     public int GenerateUnitId()
     {
         IdCounter++;
         return IdCounter;
     }
+    
     //Generate an unic ID for requested units or spells
     public int GenerateUnitRequestId()
     {

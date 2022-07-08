@@ -72,7 +72,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         //Get draging cards controller
-        UnitDrag = GetComponentInChildren<DragUnitCtrl>();
+        UnitDrag = FindObjectOfType<DragUnitCtrl>();
+        UnitDrag.gameObject.SetActive(false);
         //Enable the gameplay and the energy generation
         InControl = CanGenEnergy = true;
 
@@ -138,6 +139,14 @@ public class Player : MonoBehaviour
         }
         //Add energy over time
         AddEnergy(Time.deltaTime * SpeedEnergy);
+        //Testing spawn random unit
+        if (Input.GetKeyDown(KeyCode.R) && GameMng.GM.Testing)
+        {
+            string faction = Random.Range(1, 2) == 1 ? "ALL" : "SPI";
+            GameMng.GM.CreateUnit($"U_{faction}_{Random.Range(1, 8)}",
+                Random.Range(-30f, 30f), Random.Range(-24f, 24f), Random.Range(1, -1));
+            //GameMng.UI.Players[0].gameObject.SetActive(false);
+        }
     }
 
     //Check if im the client
