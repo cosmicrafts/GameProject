@@ -73,8 +73,7 @@ public class UIMatchMaking : MonoBehaviour
                 WalletId = "SomeWalletIdRandomNumbers",
                 Level = 23,
                 Xp = 175,
-                Avatar = 2,
-                CharacterKey = "Chr_1"
+                Avatar = 2
             });
             SceneManager.LoadScene(1);
             return;
@@ -120,8 +119,8 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsWalletId.text = Utils.GetWalletIDShort(VsUserData.WalletId);
         Txt_VsNikeName.text = VsUserData.NikeName;
         Txt_VsLevel.text = $"{Lang.GetText("mn_lvl")} {VsUserData.Level}";
-        Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(VsUserData.CharacterKey);
-        Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(VsUserData.CharacterKey);
+        //Img_VsIcon.sprite = ResourcesServices.LoadCharacterIcon(VsUserData.CharacterKey);
+        //Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(VsUserData.CharacterKey);
     }
 
     //Called from the WEB, set the current match info

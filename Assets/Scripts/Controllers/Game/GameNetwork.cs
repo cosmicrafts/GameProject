@@ -171,6 +171,30 @@ public static class GameNetwork
         return GameNetPack.ClientWalletId;
     }
 
+    //Returns the master NFT Character
+    public static NFTsCharacter GetMasterNFTCharacter()
+    {
+        return GameNetPack.MasterCharacter;
+    }
+
+    //Returns the client NFT Character
+    public static NFTsCharacter GetClientNFTCharacter()
+    {
+        return GameNetPack.ClientCharacter;
+    }
+
+    //Gets the master NFTs deck
+    public static List<NFTsCard> GetMasterNFTDeck()
+    {
+        return GameNetPack.MasterDeck;
+    }
+
+    //Gets the client NFTs deck
+    public static List<NFTsCard> GetClientNFTDeck()
+    {
+        return GameNetPack.ClientDeck;
+    }
+
     //Get the enemy´s data
     public static UserGeneral GetVsData()
     {
@@ -180,17 +204,27 @@ public static class GameNetwork
                 WalletId = GameNetPack.ClientWalletId,
                 Xp = GameNetPack.ClientXp,
                 Level = GameNetPack.ClientLvl,
-                Avatar = GameNetPack.ClientAvatar,
-                CharacterKey = GameNetPack.ClientCharacter
+                Avatar = GameNetPack.ClientAvatar
             } : 
             new UserGeneral() { 
                 NikeName = GameNetPack.MasterPlayerName, 
                 WalletId = GameNetPack.MasterWalletId,
                 Xp = GameNetPack.MasterXp,
                 Level = GameNetPack.MasterLvl,
-                Avatar = GameNetPack.MasterAvatar,
-                CharacterKey = GameNetPack.MasterCharacter
+                Avatar = GameNetPack.MasterAvatar
             };
+    }
+
+    //Get the VS player nft character
+    public static NFTsCharacter GetVSnftCharacter()
+    {
+        return GlobalManager.GMD.ImMaster ? GameNetPack.ClientCharacter : GameNetPack.MasterCharacter;
+    }
+
+    //Get the VS player nfts deck
+    public static List<NFTsCard> GetVSnftDeck()
+    {
+        return GlobalManager.GMD.ImMaster ? GameNetPack.ClientDeck : GameNetPack.MasterDeck;
     }
 
     //Check if the game lobby is full (ready to begin)

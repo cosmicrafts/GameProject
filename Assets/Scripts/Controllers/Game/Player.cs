@@ -95,7 +95,10 @@ public class Player : MonoBehaviour
                 {
                     for (int i = 0; i < 8; i++)
                     {
+                        //Load unit prefabs from nft data
                         DeckUnits[i] = ResourcesServices.LoadCardPrefab(CollectionDeck[i].KeyId, CollectionDeck[i] as NFTsSpell != null);
+                        //Save nft data on manager
+                        GameMng.GM.AddNftCardData(CollectionDeck[i], ID);
                     }
                 }
             }

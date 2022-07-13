@@ -143,8 +143,7 @@ public class GameData
             NikeName = PlayerUser.NikeName,
             Level = PlayerProgress.GetLevel(),
             Xp = PlayerProgress.GetXp(),
-            Avatar = PlayerUser.Avatar,
-            CharacterKey = PlayerCharacter.KeyId
+            Avatar = PlayerUser.Avatar
         };
     }
     //Returns the progression of the player

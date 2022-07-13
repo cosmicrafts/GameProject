@@ -48,13 +48,17 @@ public class NetGamePack
 
     public int ClientAvatar { get; set; }
 
-    public string MasterCharacter { get; set; }
-
-    public string ClientCharacter { get; set; }
-
     public string MasterScore { get; set; }
 
     public string ClientScore { get; set; }
+
+    public NFTsCharacter MasterCharacter { get; set; }
+
+    public NFTsCharacter ClientCharacter { get; set; }
+
+    public List<NFTsCard> MasterDeck { get; set; }
+
+    public List<NFTsCard> ClientDeck { get; set; }
 
     public List<NetUnitPack> Units { get; set; }
 

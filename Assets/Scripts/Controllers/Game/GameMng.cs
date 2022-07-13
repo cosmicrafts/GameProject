@@ -73,7 +73,7 @@ public class GameMng : MonoBehaviour
     WaitForSeconds dnet;
 
     //Dictionary of NFTs data of the units <NFTkey, NFTdata> (work in progress)
-    Dictionary<string, NFTsCard> AllNfts;
+    Dictionary<string, NFTsCard> AllPlayersNfts;
 
     //Testing mode
     public bool Testing;
@@ -120,12 +120,8 @@ public class GameMng : MonoBehaviour
         //init metrics controller
         MT = new GameMetrics();
         MT.InitMetrics();
-        //Init NFTs dictionary
-        AllNfts = new Dictionary<string, NFTsCard>();
-        foreach (NFTsCard nFTsUnit in PlayerCollection.Cards)
-        {
-            AllNfts.Add(nFTsUnit.KeyId, nFTsUnit);
-        }
+        //Init players NFTs dictionary
+        AllPlayersNfts = new Dictionary<string, NFTsCard>();
         //Init Ids counters
         IdCounter = IdRequestCounter = 0;
         //Init array of base stations
@@ -191,6 +187,16 @@ public class GameMng : MonoBehaviour
                     //IF IM THE MASTER...
                     if (GlobalManager.GMD.ImMaster)
                     {
+                        //Add the client NFT data
+                        List<NFTsCard> vsNFTs = GameNetwork.GetVSnftDeck();
+                        if (vsNFTs != null)
+                        {
+                            int vsId = P.GetVsId();
+                            foreach(NFTsCard card in vsNFTs)
+                            {
+                                AddNftCardData(card, vsId);
+                            }
+                        }
                         //Set the delta time async (0.33 sec)
                         dnet = new WaitForSeconds(1f / 3f);
                         //Set and send the game status and game start datetime
@@ -375,7 +381,7 @@ public class GameMng : MonoBehaviour
             BS_Positions[PIn], Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
-            GlobalManager.GMD.CurrentMatch == Match.multi ? "Chr_4" : "Chr_4");
+            GlobalManager.GMD.CurrentMatch == Match.multi ? GameNetwork.GetVSnftCharacter().KeyId : "Chr_4");
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn], Quaternion.identity).GetComponent<Unit>();
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
@@ -389,8 +395,7 @@ public class GameMng : MonoBehaviour
         unit.MyTeam = team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
-        if (AllNfts.ContainsKey(nftKey))
-            unit.SetNfts(AllNfts[nftKey] as NFTsUnit);
+        unit.SetNfts(GetNftCardData(nftKey, playerId) as NFTsUnit);
         return unit;
     }
     
@@ -425,8 +430,7 @@ public class GameMng : MonoBehaviour
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setId(GenerateUnitId());
-        if (AllNfts.ContainsKey(nftKey))
-            spell.SetNfts(AllNfts[nftKey] as NFTsSpell);
+        spell.SetNfts(GetNftCardData(nftKey, playerId) as NFTsSpell);
         return spell;
     }
     
@@ -778,5 +782,22 @@ public class GameMng : MonoBehaviour
     {
         IdRequestCounter++;
         return IdRequestCounter;
+    }
+
+    //Gets the NFT card data from player
+    public NFTsCard GetNftCardData(string nftKey, int playerId)
+    {
+        string finalKey = $"{playerId}_{nftKey}";
+        return AllPlayersNfts.ContainsKey(finalKey) ? AllPlayersNfts[finalKey] : null;
+    }
+
+    //Adds a new NFT card data for player
+    public void AddNftCardData(NFTsCard nFTsCard, int playerId)
+    {
+        string finalKey = $"{playerId}_{nFTsCard.KeyId}";
+        if (!AllPlayersNfts.ContainsKey(finalKey))
+        {
+            AllPlayersNfts.Add(finalKey, nFTsCard);
+        }
     }
 }

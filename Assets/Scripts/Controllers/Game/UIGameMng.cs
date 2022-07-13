@@ -74,8 +74,7 @@ public class UIGameMng : MonoBehaviour
                         WalletId = string.Empty,
                         Level = 99,
                         Xp = 0,
-                        Avatar = 4,
-                        CharacterKey = "Chr_4"
+                        Avatar = 4
                     });
                 }
                 break;
@@ -87,8 +86,7 @@ public class UIGameMng : MonoBehaviour
                         WalletId = string.Empty,
                         Level = 99,
                         Xp = 0,
-                        Avatar = 2,
-                        CharacterKey = "Chr_4"
+                        Avatar = 2
                     });
                 }
                 break;
