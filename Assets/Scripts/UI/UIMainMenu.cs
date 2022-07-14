@@ -30,8 +30,10 @@ public class UIMainMenu : MonoBehaviour
     public GameObject CollectionMenu;
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
-   
-  
+    // Intro Door
+
+    [SerializeField]
+    Animator doorAnim;
     //Back button 
     public GameObject BackBtn;
 
@@ -61,7 +63,6 @@ public class UIMainMenu : MonoBehaviour
     int UserDataLoaded;
     int isFirstLogin =0;
     public GameObject welcomePanel;
-    public Sprite noNftSprite;
     private void Awake()
     {
 
@@ -225,7 +226,7 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(LoadNFTsIcons());
         if (!GlobalManager.GMD.DebugMode)
             LoadingPanel.instance.DesactiveLoadingPanel();
-      
+        doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }
 
@@ -456,10 +457,6 @@ public class UIMainMenu : MonoBehaviour
                 yield return www.SendWebRequest();
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 card.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
-            }
-            else
-            {
-                card.IconSprite = noNftSprite;
             }
         }
 
