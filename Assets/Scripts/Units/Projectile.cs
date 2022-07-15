@@ -109,10 +109,14 @@ public class Projectile : MonoBehaviour
     //Target Impact
     void Impact(Unit target)
     {
-        if (target.Shield > 0) //Check if the target has shield
+        if (target.Shield > 0&&!target.haveShieldON) //Check if the target has shield
         {
+         
             //Instantiate the shield impact
+
             GameObject si = Instantiate(ShieldInpact, transform.position, Quaternion.identity);
+            target.StartCoroutine(target.ActiveShield());
+
             FX_ChangeColor fcomp = si.GetComponent<FX_ChangeColor>();
             if (fcomp != null)
             {

@@ -1,6 +1,6 @@
 ﻿using EPOOutline;
 using UnityEngine;
-
+using System.Collections;
 /*
  * This code is the base controller for any unit (ship or station)
  * Manages the basic stats and unit behaviors
@@ -69,7 +69,8 @@ public class Unit : MonoBehaviour
     //This unit can't get damage
     [HideInInspector]
     public bool IsInmortal = false;
-
+    [HideInInspector]
+    public bool haveShieldON;
     //This unit is disabled (can´t do anything)
     [HideInInspector]
     protected bool Disabled = false;
@@ -110,7 +111,7 @@ public class Unit : MonoBehaviour
 
     //The retation target when the unit is fake
     Quaternion FakeRotation;
-
+   
     // Start is called before the first frame update
     virtual protected void Start()
     {
@@ -524,5 +525,11 @@ public class Unit : MonoBehaviour
     public bool InControl()
     {
         return (!Disabled && Casting <= 0f && !IsFake);
+    }
+    public IEnumerator ActiveShield()
+    {
+        haveShieldON = false;
+        yield return new WaitForSeconds(1.5f);
+        haveShieldON = true;
     }
 }
