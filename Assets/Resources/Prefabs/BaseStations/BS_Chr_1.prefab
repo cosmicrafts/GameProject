@@ -29375,6 +29375,7 @@ MonoBehaviour:
   Size: 1
   SpawnAreaSize: 16
   IsInmortal: 0
+  haveShieldON: 0
   Mesh: {fileID: 2198226033516823794}
   SA: {fileID: 7658122148673450234}
   Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
@@ -43671,6 +43672,7 @@ GameObject:
   - component: {fileID: 5580249855106811542}
   - component: {fileID: 292014324983016134}
   - component: {fileID: 8717014747714097797}
+  - component: {fileID: 7536623668762568674}
   m_Layer: 0
   m_Name: Point light
   m_TagString: Untagged
@@ -43772,6 +43774,26 @@ MonoBehaviour:
   amplitude: 0.5
   phase: 0
   frequency: 4
+--- !u!114 &7536623668762568674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222758832642557859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &7658122148673450234
 GameObject:
   m_ObjectHideFlags: 0
@@ -58100,10 +58122,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2198226034328220055}
     m_Modifications:
+    - target: {fileID: 1190684266478502593, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -470754593
+      objectReference: {fileID: 0}
     - target: {fileID: 2912554722822094346, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437837080083151150, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4762258300378028131, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
@@ -58243,7 +58275,7 @@ PrefabInstance:
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.3
+      value: 3.179
       objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
