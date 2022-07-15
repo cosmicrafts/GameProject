@@ -306,6 +306,12 @@ public static class GameNetwork
 
     [DllImport("__Internal")]
     public static extern void JSClaimNft(int nftIndex);
+    
+    [DllImport("__Internal")]
+    public static extern void JSClaimAllNft(string indexArray);
+    
+    [DllImport("__Internal")]
+    public static extern void JSGoToMenu();
 
 
 }
