@@ -61,5 +61,13 @@
     JSClaimNft: function(Index) {
          ReactUnityWebGL.JSClaimNft(Index);
     }
+    ,
+    JSClaimAllNft: function (indexArray) {
+                ReactUnityWebGL.JSClaimAllNft(Pointer_stringify(indexArray));
+    }
+    ,
+    JSGoToMenu: function () {
+                ReactUnityWebGL.JSGoToMenu();
+          }
 
 });

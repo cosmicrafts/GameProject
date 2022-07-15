@@ -145,6 +145,30 @@ public static class GameNetwork
         return ClientNetPack.UnitsRequested;
     }
 
+    //Set master game metrics
+    public static void SetMasterGameMetrics(GameMetrics metrics)
+    {
+        GameNetPack.MasterMetrics = metrics;
+    }
+
+    //Set client game metrics
+    public static void SetClientGameMetrics(GameMetrics metrics)
+    {
+        ClientNetPack.Metrics = metrics;
+    }
+
+    //Get master game metrics
+    public static GameMetrics GetMasterGameMetrics()
+    {
+        return GameNetPack.MasterMetrics;
+    }
+
+    //Get client game metrics
+    public static GameMetrics GetClientGameMetrics()
+    {
+        return ClientNetPack.Metrics;
+    }
+
     //Set the basic master´s data (wallet id and username)
     public static void SetMasterData(string wid, string name)
     {
@@ -282,6 +306,12 @@ public static class GameNetwork
 
     [DllImport("__Internal")]
     public static extern void JSClaimNft(int nftIndex);
+    
+    [DllImport("__Internal")]
+    public static extern void JSClaimAllNft(string indexArray);
+    
+    [DllImport("__Internal")]
+    public static extern void JSGoToMenu();
 
 
 }
