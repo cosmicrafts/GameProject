@@ -1,4 +1,5 @@
 ﻿using EPOOutline;
+using System.Linq;
 using UnityEngine;
 
 /*
@@ -102,6 +103,7 @@ public class Unit : MonoBehaviour
     //The Animator controller reference
     [SerializeField]
     protected Animator MyAnim;
+    protected AnimationClip[] MyClips;
     //Last bullet impact recived
     protected Vector3 LastImpact;
 
@@ -124,6 +126,7 @@ public class Unit : MonoBehaviour
         MyOutline = Mesh.GetComponent<Outlinable>();
         TrigerBase = GetComponent<SphereCollider>();
         SolidBase = Mesh.GetComponent<SphereCollider>();
+        MyClips = MyAnim.runtimeAnimatorController.animationClips;
         //Initialize UI
         UI.Init(MaxHp - 1, MaxShield - 1);
         UI.SetColorBars(!IsMyTeam(GameMng.P.MyTeam));
@@ -447,6 +450,12 @@ public class Unit : MonoBehaviour
     public Animator GetAnimator()
     {
         return MyAnim;
+    }
+
+    //Get animation clip from animator controller
+    public AnimationClip GetAnimationClip(string name)
+    {
+        return MyClips.FirstOrDefault(f => f.name == name);
     }
 
     //Get the max shield points

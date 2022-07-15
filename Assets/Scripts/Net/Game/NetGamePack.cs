@@ -63,4 +63,6 @@ public class NetGamePack
     public List<NetUnitPack> Units { get; set; }
 
     public List<int> DeleteIdsUnits { get; set; }
+
+    public GameMetrics MasterMetrics { get; set; }
 }

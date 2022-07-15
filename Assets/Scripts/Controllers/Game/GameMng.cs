@@ -585,7 +585,10 @@ public class GameMng : MonoBehaviour
             //Make a game data package with currents entities and deleted entities
             GameNetwork.SetGameUnits(upack);
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
-            GameNetwork.SetMasterLastUpdate(DateTime.Now);//Set the last master comunication update
+            //Send metrics
+            GameNetwork.SetMasterGameMetrics(MT);
+            //Set the last master comunication update
+            GameNetwork.SetMasterLastUpdate(DateTime.Now);
             //Try to send the data to the back end
             try
             {
@@ -603,6 +606,8 @@ public class GameMng : MonoBehaviour
             }
         } else //Client send data
         {
+            //Send metrics
+            GameNetwork.SetClientGameMetrics(MT);
             //Set the last client comunication update
             GameNetwork.SetClientLastUpdate(DateTime.Now);
             //Send the data only if the game is runing has production on web
@@ -690,6 +695,12 @@ public class GameMng : MonoBehaviour
                         {
                             //The unit is a ship so set the destination from master data
                             ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
+                        }
+                        //Update metrics
+                        if (!find.IsMyTeam(P.MyTeam) && unit.hp < find.HitPoints)
+                        {
+                            int hp_dif = find.HitPoints - unit.hp;
+                            MT.AddDamage(hp_dif);
                         }
                         //Set the position, rotation and other variables from master data
                         find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
