@@ -20775,8 +20775,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 1
-  HitPoints: 50
-  Shield: 50
+  HitPoints: 40
+  Shield: 40
   ShieldDelay: 2
   Energy: 5
   Size: 1
@@ -20790,8 +20790,8 @@ MonoBehaviour:
   UI: {fileID: 4233155743624421711}
   MyAnim: {fileID: 7798226484418998222}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 0.25
-  MaxSpeed: 5
+  Aceleration: 1
+  MaxSpeed: 1
   DragSpeed: 2
   TurnSpeed: 80
   StopSpeed: 6
@@ -20829,10 +20829,10 @@ MonoBehaviour:
   BulletDamage: 1
   RotateToEnemy: 1
   StopToAttack: 1
-  Bullet: {fileID: 4495777382389081428, guid: 85aea0da2bf89a940a3af1b2431fadfb, type: 3}
-  colorBullet: {r: 0.7924528, g: 0.0073807924, b: 0, a: 1}
-  colorImpact: {r: 0.79215693, g: 0.007843138, b: 0, a: 1}
-  colorShield: {r: 1, g: 1, b: 1, a: 0.5}
+  Bullet: {fileID: 4495777382389081428, guid: d4d6095c68ec207429ecb8709a20bc3f, type: 3}
+  colorBullet: {r: 0.5518868, g: 0.912388, b: 1, a: 0.6313726}
+  colorImpact: {r: 0.5271004, g: 0.89453197, b: 0.9716981, a: 0.5176471}
+  colorShield: {r: 0.54147387, g: 0.90044147, b: 0.9811321, a: 0.49019608}
   Cannons:
   - {fileID: 1381875964513198258}
   - {fileID: 1613953471561693745}
@@ -31615,8 +31615,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6839758655275031896}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 0.61, y: 0.61, z: 0.61}
+  m_LocalPosition: {x: 0.00000046361, y: 0.066848, z: 0}
+  m_LocalScale: {x: 0.906521, y: 0.906521, z: 0.906521}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9155859961571575207}
@@ -31653,7 +31653,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 0
+  - IsVisible: 1
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -31673,8 +31673,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 1, b: 1, a: 1}
-    dilateShift: 1
-    blurShift: 1
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []

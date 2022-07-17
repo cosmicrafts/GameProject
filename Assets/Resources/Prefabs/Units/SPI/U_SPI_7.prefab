@@ -1396,8 +1396,8 @@ MonoBehaviour:
   UI: {fileID: 4233155743624421711}
   MyAnim: {fileID: 3394270348349336109}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 0.25
-  MaxSpeed: 5
+  Aceleration: 1
+  MaxSpeed: 1
   DragSpeed: 2
   TurnSpeed: 80
   StopSpeed: 6
@@ -1438,9 +1438,9 @@ MonoBehaviour:
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: d4d6095c68ec207429ecb8709a20bc3f, type: 3}
-  colorBullet: {r: 0.7924528, g: 0.0073807924, b: 0, a: 1}
-  colorImpact: {r: 0.79215693, g: 0.007843138, b: 0, a: 1}
-  colorShield: {r: 1, g: 1, b: 1, a: 0.5}
+  colorBullet: {r: 0.5518868, g: 0.912388, b: 1, a: 0.6313726}
+  colorImpact: {r: 0.5271004, g: 0.89453197, b: 0.9716981, a: 0.5176471}
+  colorShield: {r: 0.54147387, g: 0.90044147, b: 0.9811321, a: 0.49019608}
   Cannons:
   - {fileID: 890143320873366887}
 --- !u!135 &2198226034328220042
@@ -2091,8 +2091,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6783608013574832605}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000090676, y: -0.016691, z: 0.077281}
-  m_LocalScale: {x: 0.61967623, y: 0.61967623, z: 0.61967623}
+  m_LocalPosition: {x: 0.000000025382, y: -0.14771, z: 0.012733}
+  m_LocalScale: {x: 0.8935112, y: 0.8935112, z: 0.8935112}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1598868420413371585}
@@ -2149,8 +2149,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []

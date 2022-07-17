@@ -360,8 +360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912192409679009869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.61, y: 0.61, z: 0.61}
+  m_LocalPosition: {x: 0, y: 0.018374, z: -0.047381}
+  m_LocalScale: {x: 0.734013, y: 0.734013, z: 0.734013}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6386642299434118839}
@@ -418,8 +418,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
@@ -1642,8 +1642,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 1
-  HitPoints: 25
-  Shield: 25
+  HitPoints: 40
+  Shield: 40
   ShieldDelay: 4
   Energy: 2
   Size: 1
@@ -1657,8 +1657,8 @@ MonoBehaviour:
   UI: {fileID: 8392609784808993549}
   MyAnim: {fileID: 7031931097870829426}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 0.15
-  MaxSpeed: 4
+  Aceleration: 1
+  MaxSpeed: 1
   DragSpeed: 2
   TurnSpeed: 80
   StopSpeed: 6
@@ -1697,10 +1697,10 @@ MonoBehaviour:
   BulletDamage: 4
   RotateToEnemy: 1
   StopToAttack: 1
-  Bullet: {fileID: 4495777382389081428, guid: d6a987a3ed05afd40b156701e7f750b4, type: 3}
-  colorBullet: {r: 0.6179359, g: 0.5424528, b: 1, a: 1}
-  colorImpact: {r: 0.5235849, g: 0.96726924, b: 1, a: 0.6156863}
-  colorShield: {r: 0.5801887, g: 0.90955853, b: 1, a: 0.5}
+  Bullet: {fileID: 4495777382389081428, guid: d4d6095c68ec207429ecb8709a20bc3f, type: 3}
+  colorBullet: {r: 0.5518868, g: 0.912388, b: 1, a: 0.6313726}
+  colorImpact: {r: 0.5271004, g: 0.89453197, b: 0.9716981, a: 0.5176471}
+  colorShield: {r: 0.54147387, g: 0.90044147, b: 0.9811321, a: 0.49019608}
   Cannons:
   - {fileID: 5588955497981610327}
   - {fileID: 5147087725474630885}

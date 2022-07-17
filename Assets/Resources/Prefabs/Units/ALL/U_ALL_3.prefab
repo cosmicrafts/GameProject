@@ -1094,8 +1094,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 0
-  HitPoints: 30
-  Shield: 30
+  HitPoints: 40
+  Shield: 40
   ShieldDelay: 1
   Energy: 3
   Size: 1
@@ -1145,15 +1145,15 @@ MonoBehaviour:
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
   RangeDetector: 20
-  CoolDown: 0.5
+  CoolDown: 0.75
   BulletSpeed: 24
   BulletDamage: 2
   RotateToEnemy: 1
   StopToAttack: 0
-  Bullet: {fileID: 4495777382389081428, guid: c840bc9c6bc570240b1e85e113917ac0, type: 3}
-  colorBullet: {r: 0.042452812, g: 0.25056133, b: 1, a: 1}
-  colorImpact: {r: 0.043137256, g: 0.2509804, b: 1, a: 1}
-  colorShield: {r: 1, g: 1, b: 1, a: 0.5}
+  Bullet: {fileID: 199040, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+  colorBullet: {r: 0.54509807, g: 0.86802596, b: 1, a: 0.46666667}
+  colorImpact: {r: 0.54509807, g: 0.87058824, b: 1, a: 0.5372549}
+  colorShield: {r: 0.54509807, g: 0.87058824, b: 1, a: 0.5}
   Cannons:
   - {fileID: 9168711834048432242}
   - {fileID: 5668229410986332504}
@@ -1878,8 +1878,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7092894655777927554}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0096259, y: -0.33, z: -0.085749}
+  m_LocalScale: {x: 1.2386, y: 1.2386, z: 1.2386}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3925580039016202499}
@@ -2987,7 +2987,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 497044, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1
+      value: -2.23
       objectReference: {fileID: 0}
     - target: {fileID: 497044, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3020,6 +3020,46 @@ PrefabInstance:
     - target: {fileID: 497044, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19805878, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 19805878, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19805878, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8771926
+      objectReference: {fileID: 0}
+    - target: {fileID: 19805878, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.495283
+      objectReference: {fileID: 0}
+    - target: {fileID: 19824842, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19824842, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.5330188
+      objectReference: {fileID: 0}
+    - target: {fileID: 19824842, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.78507954
+      objectReference: {fileID: 0}
+    - target: {fileID: 19892956, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19892956, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.8581311
+      objectReference: {fileID: 0}
+    - target: {fileID: 19892956, guid: 9268c5242d3051548b3e2f05c7d086d4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0.8349056
       objectReference: {fileID: 0}
     - target: {fileID: 822479838472718664, guid: 9268c5242d3051548b3e2f05c7d086d4,
         type: 3}
