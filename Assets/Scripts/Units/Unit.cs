@@ -113,7 +113,12 @@ public class Unit : MonoBehaviour
 
     //The retation target when the unit is fake
     Quaternion FakeRotation;
-   
+
+    private void Awake()
+    {
+        MyClips = MyAnim.runtimeAnimatorController.animationClips;
+    }
+
     // Start is called before the first frame update
     virtual protected void Start()
     {
@@ -127,7 +132,6 @@ public class Unit : MonoBehaviour
         MyOutline = Mesh.GetComponent<Outlinable>();
         TrigerBase = GetComponent<SphereCollider>();
         SolidBase = Mesh.GetComponent<SphereCollider>();
-        MyClips = MyAnim.runtimeAnimatorController.animationClips;
         //Initialize UI
         UI.Init(MaxHp - 1, MaxShield - 1);
         UI.SetColorBars(!IsMyTeam(GameMng.P.MyTeam));
@@ -456,7 +460,7 @@ public class Unit : MonoBehaviour
     //Get animation clip from animator controller
     public AnimationClip GetAnimationClip(string name)
     {
-        return MyClips.FirstOrDefault(f => f.name == name);
+        return MyClips == null ? null : MyClips.FirstOrDefault(f => f.name == name);
     }
 
     //Get the max shield points
