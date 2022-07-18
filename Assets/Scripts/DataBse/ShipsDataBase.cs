@@ -98,19 +98,14 @@ public class ShipsDataBase : ScriptableObject
     #region Variables de Lectura
 
     public string NFTKEY => nftsKey; //Consulta el  nftsKey; 
-
     public string CardName => cardName; //Consultar el Player ID ;
     public int HitPoins => hitPoints;//Consultar el hitPoints ;
     public int MaxHp => maxHp;//Consultar el  MaxHp Iniciales ;
-
     public int Shield => shield; //Consultar el Escudo hitPoints ;
-
     public int MaxShield => maxShield;//Consultar el Maximo Escudo  ;
-
     public float ShieldDelay => shieldDelay;//Consultar el Delay Escudo ;
     public int Energy => energy;//Consultar el consumo de energia ;
     public float Size => size;//Consultar el Tamaño ;
-
     public float SpawnAreaSize => spawnAreaSize;//Consultar el tamaño para el buff de area de invocacion ;
     public float ShieldLoad => shieldLoad;//Consultar el la carga del escudo ;
     public float ShieldCharge => shieldCharge;//Consultar la recarga del escudo;

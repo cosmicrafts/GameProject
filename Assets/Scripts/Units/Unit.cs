@@ -50,9 +50,6 @@ public class Unit : MonoBehaviour
     //Shield regeneration delay
     [Range(1, 10)]
     public float ShieldDelay = 3f;
-    //Energy Cost
-    [Range(1, 9999)]
-    public int Energy = 10;
     //Size of the unit
     [Range(0, 10)]
     public float Size = 1f;
