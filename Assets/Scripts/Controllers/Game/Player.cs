@@ -48,6 +48,8 @@ public class Player : MonoBehaviour
     //Energy regeneration speed 
     [Range(0, 99)]
     public float SpeedEnergy = 1;
+    //Testing Deck
+    public ShipsDataBase[] TestingDeck = new ShipsDataBase[8];
 
     private void Awake()
     {
@@ -86,19 +88,47 @@ public class Player : MonoBehaviour
             {
                 MyCharacter = Instantiate(Character, transform).GetComponent<GameCharacter>();
             }
-            //Get the player´s deck and save the info
-            List<NFTsCard> CollectionDeck = GameMng.PlayerCollection.Deck;
-            
-            if (CollectionDeck != null)
+
+            //Load Deck
+            List<NFTsCard> PlayerDeck;
+            //if (GameMng.GM.Testing)
+            //{
+            //    //Load Testing NFTs Deck
+            //    PlayerDeck = new List<NFTsCard>();
+            //    foreach(ShipsDataBase card in TestingDeck)
+            //    {
+            //        PlayerDeck.Add(new NFTsUnit()
+            //        {
+            //            EnergyCost = 1,
+            //            IconSprite = ResourcesServices.LoadCardIcon($"U_ALL_{1}"),
+            //            Rarity = 1,
+            //            HitPoints = 5,
+            //            Shield = 3,
+            //            Speed = 1,
+            //            Dammage = 1,
+            //            Faction = (int)Factions.Alliance,
+            //            EntType = (int)NFTClass.Ship,
+            //            LocalID = 1
+            //        });
+            //    }
+            //} else
+            //{
+            //    //Get the player´s collection deck
+            //    PlayerDeck = GameMng.PlayerCollection.Deck;
+            //}
+
+            PlayerDeck = GameMng.PlayerCollection.Deck;
+
+            if (PlayerDeck != null)
             {
-                if (CollectionDeck.Count == 8)
+                if (PlayerDeck.Count == 8)
                 {
                     for (int i = 0; i < 8; i++)
                     {
                         //Load unit prefabs from nft data
-                        DeckUnits[i] = ResourcesServices.LoadCardPrefab(CollectionDeck[i].KeyId, CollectionDeck[i] as NFTsSpell != null);
+                        DeckUnits[i] = ResourcesServices.LoadCardPrefab(PlayerDeck[i].KeyId, PlayerDeck[i] as NFTsSpell != null);
                         //Save nft data on manager
-                        GameMng.GM.AddNftCardData(CollectionDeck[i], ID);
+                        GameMng.GM.AddNftCardData(PlayerDeck[i], ID);
                     }
                 }
             }

@@ -243,7 +243,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -418,10 +418,10 @@ MonoBehaviour:
   HitPoints: 10
   Shield: 10
   ShieldDelay: 1
-  Energy: 10
   Size: 1
   SpawnAreaSize: 8
   IsInmortal: 0
+  haveShieldON: 0
   Mesh: {fileID: 2198226033516823794}
   SA: {fileID: 7658122148673450234}
   Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
@@ -782,6 +782,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437837080083151150, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4762258300378028131, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}

@@ -12,25 +12,35 @@ public class UIUnit : MonoBehaviour
     public GameObject Canvas;
 
     //HP lines image
-    public Image HpLine;
+    //public Image HpLine;
 
     //HP bar image
     public Image Hp;
+    public Image GHp;
 
     //Shield lines image
-    public Image ShieldLine;
+    //public Image ShieldLine;
 
     //Shield bar image
     public Image Shield;
+    public Image GShield;
 
     //The main camera of the game
     Camera MainCamera;
 
+    //Dmg diferences values
+    float GhostHp;
+    float GhostSH;
 
     private void Update()
     {
         //The UI always look at the camera
         transform.LookAt(transform.position + MainCamera.transform.rotation * Vector3.back, MainCamera.transform.rotation * Vector3.up);
+        //Lerp Ghost Bars
+        GhostHp = Mathf.Lerp(GhostHp, Hp.fillAmount, Time.deltaTime * 10f);
+        GhostSH = Mathf.Lerp(GhostSH, Shield.fillAmount, Time.deltaTime * 10f);
+        GHp.fillAmount = GhostHp;
+        GShield.fillAmount = GhostSH;
     }
 
     //Init the shield and hp bars
@@ -39,25 +49,31 @@ public class UIUnit : MonoBehaviour
         //Set the main camera
         MainCamera = Camera.main;
 
+        //Init Ghost Bars
+        GhostHp = maxhp;
+        GhostSH = maxshield;
+        GHp.color = Color.yellow;
+        GShield.color = Color.gray;
+
         //Set the number of hp lines
-        int maxLines = maxhp / 4;
+        //int maxLines = maxhp / 4;
 
         //Instantiate the hp lines
-        for (int i = 0; i < maxLines; i++)
-            Instantiate(HpLine, HpLine.transform.parent);
+        //for (int i = 0; i < maxLines; i++)
+        //    Instantiate(HpLine, HpLine.transform.parent);
 
         //Check for shield points
-        if (maxshield > 0)
-        {
-            //Set the number of shield lines
-            maxLines = maxshield / 4;
-            //Instantiate the shield lines
-            for (int i = 0; i < maxLines; i++)
-                Instantiate(ShieldLine, ShieldLine.transform.parent);
-        } else //The unit doesn´t have shield so we hide these elements
-        {
-            Shield.transform.parent.gameObject.SetActive(false);
-        }
+        //if (maxshield > 0)
+        //{
+        //    //Set the number of shield lines
+        //    //maxLines = maxshield / 4;
+        //    //Instantiate the shield lines
+        //    //for (int i = 0; i < maxLines; i++)
+        //    //    Instantiate(ShieldLine, ShieldLine.transform.parent);
+        //} else //The unit doesn´t have shield so we hide these elements
+        //{
+        //    Shield.transform.parent.gameObject.SetActive(false);
+        //}
     }
 
     //Set the hp amount
