@@ -90,4 +90,11 @@ public class UICard : MonoBehaviour
         IsSelected = false;
         Txt_Name.color = Color.white;
     }
+
+    //Refresh icon sprite
+    public void RefreshIcon()
+    {
+        if (Icon != null)
+            Icon.sprite = Data.IconSprite;
+    }
 }

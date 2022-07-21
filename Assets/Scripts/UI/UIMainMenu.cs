@@ -437,6 +437,7 @@ public class UIMainMenu : MonoBehaviour
     //Load NFTs Icons
     private IEnumerator LoadNFTsIcons()
     {
+        Debug.Log("LOADING NFT ICONS");
         //LOAD URL CHARACTERS ICONS
         foreach (NFTsCharacter character in PlayerCollection.Characters)
         {
@@ -458,6 +459,12 @@ public class UIMainMenu : MonoBehaviour
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 card.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
             }
+        }
+
+        //Refresh Cards Icons
+        foreach (UICard card in FindObjectsOfType<UICard>())
+        {
+            card.RefreshIcon();
         }
 
         RefreshAllPropertys();
