@@ -99,8 +99,7 @@ public class UserCollection
             Cards.Add(new NFTsUnit()
             {
                 EnergyCost = i,
-                IconSprite = null,
-                IconURL = "https://lpbdx-syaaa-aaaai-qcmsa-cai.raw.ic0.app/8610000",
+                IconSprite = ResourcesServices.LoadCardIcon($"U_ALL_{i}"),
                 Rarity = 1,
                 HitPoints = 5+(2*i),
                 Shield = 3+(1*i),
