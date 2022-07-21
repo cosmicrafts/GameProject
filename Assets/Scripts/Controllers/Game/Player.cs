@@ -50,6 +50,8 @@ public class Player : MonoBehaviour
     public float SpeedEnergy = 1;
     //Testing Deck
     public ShipsDataBase[] TestingDeck = new ShipsDataBase[8];
+    //Hot Keys
+    KeyCode[] Keys;
 
     private void Awake()
     {
@@ -73,6 +75,9 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        //Init key codes
+        Keys = new KeyCode[8] {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4,
+            KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8};
         //Get draging cards controller
         UnitDrag = FindObjectOfType<DragUnitCtrl>();
         UnitDrag.gameObject.SetActive(false);
@@ -169,6 +174,12 @@ public class Player : MonoBehaviour
         if (!InControl)
         {
             return;
+        }
+        //Hot Keys
+        for (int i = 0; i<8; i++)
+        {
+            if (Input.GetKeyDown(Keys[i]))
+                DeplyUnit(GameCards[i]);
         }
         //Add energy over time
         AddEnergy(Time.deltaTime * SpeedEnergy);
