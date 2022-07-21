@@ -3,6 +3,8 @@
  * Only used for multiplayer comunication
  */
 
+using System.Collections.Generic;
+
 public class UserGeneral : User
 {
     public int Level { get; set; }
@@ -13,4 +15,8 @@ public class UserGeneral : User
     {
         return 100 * Level;
     }
+
+    public int CharacterNFTId;
+
+    public List<int> DeckNFTsId;
 }

@@ -143,7 +143,9 @@ public class GameData
             NikeName = PlayerUser.NikeName,
             Level = PlayerProgress.GetLevel(),
             Xp = PlayerProgress.GetXp(),
-            Avatar = PlayerUser.Avatar
+            Avatar = PlayerUser.Avatar,
+            CharacterNFTId = PlayerCharacter.ID,
+            DeckNFTsId = PlayerCollection.Deck.Select(s => s.ID).ToList()
         };
     }
     //Returns the progression of the player
