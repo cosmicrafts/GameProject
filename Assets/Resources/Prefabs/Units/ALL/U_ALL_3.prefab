@@ -1094,10 +1094,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 0
-  HitPoints: 10
-  Shield: 10
+  HitPoints: 40
+  Shield: 40
   ShieldDelay: 1
-  Energy: 3
   Size: 1
   SpawnAreaSize: 0
   IsInmortal: 0
@@ -1109,23 +1108,15 @@ MonoBehaviour:
   UI: {fileID: 4802250681297559528}
   MyAnim: {fileID: 6250783028145818580}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 1.6
-  MaxSpeed: 99
-  DragSpeed: 37.1
-  TurnSpeed: 96.7
-  StopSpeed: 21.7
-  StoppingDistance: 2.6
-  AvoidanceRange: 9
+  Aceleration: 80
+  MaxSpeed: 2
+  DragSpeed: 4
+  TurnSpeed: 7.2
+  StopSpeed: 4.8
+  StoppingDistance: 0.73
+  AvoidanceRange: 9.3
   AvoidanceSensors:
   - {fileID: 2198226033650733241}
-  - {fileID: 2198226033311181648}
-  - {fileID: 2198226032778397161}
-  - {fileID: 2198226034028049338}
-  - {fileID: 2198226034061418289}
-  - {fileID: 2198226032447877257}
-  - {fileID: 2198226032991477277}
-  - {fileID: 2198226033913644468}
-  - {fileID: 2198226033598466411}
   Thrusters:
   - {fileID: 5157616557153778042}
   - {fileID: 1759292699616222631}
@@ -1144,10 +1135,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 4
+  RangeDetector: 6
   CoolDown: 0.5
-  BulletSpeed: 8
-  BulletDamage: 99
+  BulletSpeed: 30
+  BulletDamage: 10
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 018f51d6b29273a42aaf9813b69addff, type: 3}
@@ -1916,7 +1907,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
