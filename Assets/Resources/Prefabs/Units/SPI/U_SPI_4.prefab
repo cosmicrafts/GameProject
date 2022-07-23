@@ -793,7 +793,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3296585247297508889}
-  m_LocalRotation: {x: 0, y: 0.6312635, z: -0, w: 0.7755684}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -3.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -808,7 +808,7 @@ Transform:
   - {fileID: 3003969671667878726}
   m_Father: {fileID: 6053082723524844264}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 90, z: -35.29741}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1 &3515935782924872530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6330200000558582903}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.40361035, y: 0, z: 3.5997162}
+  m_LocalPosition: {x: 0, y: 0, z: 3.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1250,7 +1250,6 @@ MonoBehaviour:
   HitPoints: 40
   Shield: 40
   ShieldDelay: 2
-  Energy: 1
   Size: 1
   SpawnAreaSize: 0
   IsInmortal: 0
@@ -2263,7 +2262,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7937263907486132786}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.026864, y: -0.044399, z: 0.0047178}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.6936355, y: 0.6936355, z: 0.6936355}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -2321,8 +2320,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 0.1
-    blurShift: 0.1
+    dilateShift: 1
+    blurShift: 1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
