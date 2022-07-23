@@ -188,13 +188,31 @@ public class GameMng : MonoBehaviour
                     if (GlobalManager.GMD.ImMaster)
                     {
                         //Add the client NFT data
-                        List<NFTsCard> vsNFTs = GameNetwork.GetVSnftDeck();
+                        List<NetCardNft> vsNFTs = GameNetwork.GetVSnftDeck();
                         if (vsNFTs != null)
                         {
                             int vsId = P.GetVsId();
-                            foreach(NFTsCard card in vsNFTs)
+                            foreach(NetCardNft card in vsNFTs)
                             {
-                                AddNftCardData(card, vsId);
+                                AddNftCardData(new NFTsUnit()
+                                {
+                                    ID = card.ID,
+                                    Name = card.Name,
+                                    NameID = card.NameID,
+                                    Description = card.Description,
+                                    EntType = card.EntType,
+                                    Faction = card.Faction,
+                                    TypePrefix = NFTsCollection.NFTsPrefix[card.EntType],
+                                    FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.Faction],
+                                    Level = card.Level,
+                                    LocalID = card.LocalID,
+                                    Rarity = card.Rarity,
+                                    Shield = card.Shield,
+                                    Speed = card.Speed,
+                                    EnergyCost = card.EnergyCost,
+                                    HitPoints = card.HitPoints,
+                                    Dammage = card.Dammage
+                                }, vsId);
                             }
                         }
                         //Set the delta time async (0.33 sec)

@@ -208,13 +208,13 @@ public static class GameNetwork
     }
 
     //Gets the master NFTs deck
-    public static List<NFTsCard> GetMasterNFTDeck()
+    public static List<NetCardNft> GetMasterNFTDeck()
     {
         return GameNetPack.MasterDeck;
     }
 
     //Gets the client NFTs deck
-    public static List<NFTsCard> GetClientNFTDeck()
+    public static List<NetCardNft> GetClientNFTDeck()
     {
         return GameNetPack.ClientDeck;
     }
@@ -246,7 +246,7 @@ public static class GameNetwork
     }
 
     //Get the VS player nfts deck
-    public static List<NFTsCard> GetVSnftDeck()
+    public static List<NetCardNft> GetVSnftDeck()
     {
         return GlobalManager.GMD.ImMaster ? GameNetPack.ClientDeck : GameNetPack.MasterDeck;
     }

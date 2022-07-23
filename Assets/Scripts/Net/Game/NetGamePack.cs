@@ -56,9 +56,9 @@ public class NetGamePack
 
     public NFTsCharacter ClientCharacter { get; set; }
 
-    public List<NFTsCard> MasterDeck { get; set; }
+    public List<NetCardNft> MasterDeck { get; set; }
 
-    public List<NFTsCard> ClientDeck { get; set; }
+    public List<NetCardNft> ClientDeck { get; set; }
 
     public List<NetUnitPack> Units { get; set; }
 

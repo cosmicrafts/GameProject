@@ -25,6 +25,10 @@ public class UIUnit : MonoBehaviour
     public Image Shield;
     public Image GShield;
 
+    public float DifDmgSpeed = 10f;
+    public Color DifHpColor = Color.yellow;
+    public Color DifShieldColor = Color.gray;
+
     //The main camera of the game
     Camera MainCamera;
 
@@ -37,8 +41,8 @@ public class UIUnit : MonoBehaviour
         //The UI always look at the camera
         transform.LookAt(transform.position + MainCamera.transform.rotation * Vector3.back, MainCamera.transform.rotation * Vector3.up);
         //Lerp Ghost Bars
-        GhostHp = Mathf.Lerp(GhostHp, Hp.fillAmount, Time.deltaTime * 10f);
-        GhostSH = Mathf.Lerp(GhostSH, Shield.fillAmount, Time.deltaTime * 10f);
+        GhostHp = Mathf.Lerp(GhostHp, Hp.fillAmount, Time.deltaTime * DifDmgSpeed);
+        GhostSH = Mathf.Lerp(GhostSH, Shield.fillAmount, Time.deltaTime * DifDmgSpeed);
         GHp.fillAmount = GhostHp;
         GShield.fillAmount = GhostSH;
     }
@@ -52,8 +56,8 @@ public class UIUnit : MonoBehaviour
         //Init Ghost Bars
         GhostHp = maxhp;
         GhostSH = maxshield;
-        GHp.color = Color.yellow;
-        GShield.color = Color.gray;
+        GHp.color = DifHpColor;
+        GShield.color = DifShieldColor;
 
         //Set the number of hp lines
         //int maxLines = maxhp / 4;
