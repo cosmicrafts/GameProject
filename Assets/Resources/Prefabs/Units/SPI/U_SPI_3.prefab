@@ -942,7 +942,7 @@ MonoBehaviour:
   Shield: 40
   ShieldDelay: 1.5
   Size: 1
-  SpawnAreaSize: 0
+  SpawnAreaSize: 4
   IsInmortal: 0
   haveShieldON: 0
   Mesh: {fileID: 234688349735371873}
@@ -952,8 +952,8 @@ MonoBehaviour:
   UI: {fileID: 7887455258742894303}
   MyAnim: {fileID: 7669330374322997274}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 4
-  MaxSpeed: 2
+  Aceleration: 10
+  MaxSpeed: 4
   DragSpeed: 0.4
   TurnSpeed: 80
   StopSpeed: 6
@@ -987,10 +987,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 32
-  CoolDown: 2
+  RangeDetector: 28
+  CoolDown: 1.5
   BulletSpeed: 32
-  BulletDamage: 8
+  BulletDamage: 12
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: d4d6095c68ec207429ecb8709a20bc3f, type: 3}
@@ -1143,17 +1143,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.932
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
@@ -1173,12 +1173,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9683658
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.24953501
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
@@ -1193,7 +1193,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 28.9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
@@ -1645,6 +1645,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
       objectReference: {fileID: 0}
+    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.87417734
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.87417734
+      objectReference: {fileID: 0}
+    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.87417734
+      objectReference: {fileID: 0}
     - target: {fileID: 6101696531550448781, guid: 7615b2c79f5fce44ebdb172f20559067,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1754,113 +1769,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.859003
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
---- !u!114 &1940016486070594258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234688349735371873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  complexMaskingMode: 0
-  drawingMode: 1
-  outlineLayer: 0
-  outlineTargets:
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 6394532500548969138}
-    SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 1280946388697461460}
-    SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 1280946388697461460}
-    SubmeshIndex: 1
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 1280946388697461460}
-    SubmeshIndex: 2
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  renderStyle: 1
-  outlineParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  backParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  frontParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
+  m_Radius: 1.27
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &7669330374322997274
 Animator:
   serializedVersion: 4
@@ -1893,6 +1803,111 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1940016486070594258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234688349735371873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6394532500548969138}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 1280946388697461460}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 1280946388697461460}
+    SubmeshIndex: 1
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 0
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 1280946388697461460}
+    SubmeshIndex: 2
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 0.05
+    blurShift: 0.05
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
 --- !u!4 &579301216515137243 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,

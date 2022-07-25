@@ -956,9 +956,9 @@ MonoBehaviour:
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
   RangeDetector: 28
-  CoolDown: 0.75
+  CoolDown: 1
   BulletSpeed: 40
-  BulletDamage: 4
+  BulletDamage: 2
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 4de323bf08d5b8d43875a0c5ade678ec, type: 3}
@@ -979,7 +979,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.78
+  m_Radius: 0.25
   m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
@@ -1884,6 +1884,26 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.85
   m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+--- !u!95 &3270977967378185007
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3818959345730047330}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dd37be964c5aebb41bdeb425ea532106, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &270651612015284609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1900,7 +1920,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -1941,26 +1961,6 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
---- !u!95 &3270977967378185007
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3818959345730047330}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dd37be964c5aebb41bdeb425ea532106, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &7751744997629266637
 MonoBehaviour:
   m_ObjectHideFlags: 0

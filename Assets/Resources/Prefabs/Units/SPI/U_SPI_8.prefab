@@ -987,10 +987,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 6
-  CoolDown: 0.1
+  RangeDetector: 8
+  CoolDown: 1
   BulletSpeed: 40
-  BulletDamage: 1
+  BulletDamage: 60
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: d4d6095c68ec207429ecb8709a20bc3f, type: 3}
@@ -1012,7 +1012,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 1.7
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 2.85}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1156,17 +1156,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 87568ac9725c78a4b9aaeee81e236c43,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87568ac9725c78a4b9aaeee81e236c43,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87568ac9725c78a4b9aaeee81e236c43,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 87568ac9725c78a4b9aaeee81e236c43,
         type: 3}
@@ -2029,8 +2029,40 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.859003
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+  m_Radius: 1.39
+  m_Center: {x: 0, y: 0, z: -1.83}
+--- !u!95 &5248375059840912596
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774058248791893753}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba6e9857dccee0045bfe27423aa11966, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &382758690668165153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 774058248791893753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3307152902958164100
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2067,8 +2099,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
@@ -2088,38 +2120,6 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
---- !u!95 &5248375059840912596
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774058248791893753}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ba6e9857dccee0045bfe27423aa11966, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &382758690668165153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 774058248791893753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!137 &997022462096046031 stripped
 SkinnedMeshRenderer:
   m_CorrespondingSourceObject: {fileID: -8383087230902637465, guid: 87568ac9725c78a4b9aaeee81e236c43,

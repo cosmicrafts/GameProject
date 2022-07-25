@@ -906,8 +906,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerId: 1
   MyTeam: 0
-  HitPoints: 40
-  Shield: 40
+  HitPoints: 120
+  Shield: 140
   ShieldDelay: 2
   Size: 1
   SpawnAreaSize: 0
@@ -962,8 +962,8 @@ MonoBehaviour:
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 018f51d6b29273a42aaf9813b69addff, type: 3}
-  colorBullet: {r: 0.042452812, g: 0.25056133, b: 1, a: 1}
-  colorImpact: {r: 0.043137256, g: 0.2509804, b: 1, a: 1}
+  colorBullet: {r: 1, g: 1, b: 1, a: 1}
+  colorImpact: {r: 1, g: 1, b: 1, a: 1}
   colorShield: {r: 1, g: 1, b: 1, a: 0.5}
   Cannons:
   - {fileID: 1596714898762059449}
@@ -978,8 +978,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.7
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+  m_Radius: 1.31
+  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 3.64}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,6 +1169,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifDmgSpeed
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifHpColor.b
+      value: 0.06314157
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifHpColor.g
+      value: 0.0045834924
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifHpColor.r
+      value: 0.9716981
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifShieldColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifShieldColor.g
+      value: 0.9669036
+      objectReference: {fileID: 0}
+    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: DifShieldColor.r
+      value: 0.5896226
       objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}

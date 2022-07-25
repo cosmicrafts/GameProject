@@ -360,8 +360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 912192409679009869}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.018374, z: -0.047381}
-  m_LocalScale: {x: 0.734013, y: 0.734013, z: 0.734013}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6386642299434118839}
@@ -380,7 +380,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.98
+  m_Radius: 1.52
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &972728990
 MonoBehaviour:
@@ -418,8 +418,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
+    dilateShift: 0.05
+    blurShift: 0.05
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
@@ -3310,6 +3310,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7602768063067641132}
     m_Modifications:
+    - target: {fileID: 160714, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 178280, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: m_Name
       value: SwirlyAura
