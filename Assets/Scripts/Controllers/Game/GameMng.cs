@@ -52,6 +52,11 @@ public class GameMng : MonoBehaviour
     public float MapWidth = 60;
     public float MapHeigth = 48;
 
+    //Color Oultiners Ships (set in inspector)
+    public Color ownUnitColor = Color.blue;
+    public Color alliedUnitColor = Color.yellow;
+    public Color enemyUnitColor = Color.red;
+    
     //Game over status
     bool GameOver = false;
     //Team winner
@@ -384,8 +389,8 @@ public class GameMng : MonoBehaviour
         //BLUE (MY OWN UNIT)
         //YELLOW (ALLIED UNIT)
         //RED (ENEMY UNIT)
-        return P.MyTeam != team ? Color.red :
-                    (P.ID == playerId ? Color.blue : Color.yellow);
+        return P.MyTeam != team ? enemyUnitColor :
+                    (P.ID == playerId ? ownUnitColor : alliedUnitColor);
     }
     
     //Create base stations (from player´s script)

@@ -435,10 +435,10 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1888151096819688651}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6591207656255377040}
   m_Father: {fileID: 6156393342447868775}
@@ -1384,7 +1384,6 @@ MonoBehaviour:
   HitPoints: 40
   Shield: 40
   ShieldDelay: 2
-  Energy: 4
   Size: 1
   SpawnAreaSize: 0
   IsInmortal: 0
@@ -1431,10 +1430,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 6
-  CoolDown: 0.1
-  BulletSpeed: 40
-  BulletDamage: 1
+  RangeDetector: 20
+  CoolDown: 0.75
+  BulletSpeed: 60
+  BulletDamage: 20
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: d4d6095c68ec207429ecb8709a20bc3f, type: 3}
@@ -2091,9 +2090,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6783608013574832605}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.000000025382, y: -0.14771, z: 0.012733}
-  m_LocalScale: {x: 0.8935112, y: 0.8935112, z: 0.8935112}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1598868420413371585}
   - {fileID: 3232706341173962130}
@@ -2111,8 +2110,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.859003
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+  m_Radius: 1.52
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4283748701204580849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2129,7 +2128,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -2149,8 +2148,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 0.1
-    blurShift: 0.1
+    dilateShift: 0.05
+    blurShift: 0.05
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
@@ -2878,7 +2877,7 @@ PrefabInstance:
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2
+      value: 2.74
       objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
