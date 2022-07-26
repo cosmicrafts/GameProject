@@ -406,7 +406,8 @@ public class GameMng : MonoBehaviour
             BS_Positions[PIn], Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
         Debug.Log("--VS CHARACTER--");
-        Debug.Log(GameNetwork.GetVSnftCharacter() == null ? "NONE" : GameNetwork.GetVSnftCharacter().KeyId);
+        if (GlobalManager.GMD.CurrentMatch == Match.multi)
+            Debug.Log(GameNetwork.GetVSnftCharacter() == null ? "NONE" : GameNetwork.GetVSnftCharacter().KeyId);
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
             GlobalManager.GMD.CurrentMatch == Match.multi ? GameNetwork.GetVSnftCharacter().KeyId : "Chr_4");
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn], Quaternion.identity).GetComponent<Unit>();
