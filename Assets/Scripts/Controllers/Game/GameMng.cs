@@ -400,9 +400,13 @@ public class GameMng : MonoBehaviour
         int PIn = P.MyTeam == Team.Blue ? 1 : 0; //Player base station index
         int VsIn = P.MyTeam == Team.Red ? 1 : 0; //Enemy base station index
         //Create the player´s base station
+        Debug.Log("--PLAYER CHARACTER--");
+        Debug.Log(PlayerCharacter);
         Targets[PIn] = Instantiate(ResourcesServices.LoadBaseStationPrefab(PlayerCharacter.KeyId),
             BS_Positions[PIn], Quaternion.identity).GetComponent<Unit>();
         //Create the enemy´s base station
+        Debug.Log("--VS CHARACTER--");
+        Debug.Log(GameNetwork.GetVSnftCharacter());
         GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
             GlobalManager.GMD.CurrentMatch == Match.multi ? GameNetwork.GetVSnftCharacter().KeyId : "Chr_4");
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn], Quaternion.identity).GetComponent<Unit>();
