@@ -430,6 +430,6 @@ public class GameTutorial : MonoBehaviour
     //Ends the scene and returns to menu
     public void EndTutorial()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 }
