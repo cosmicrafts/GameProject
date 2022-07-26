@@ -75,7 +75,7 @@ public class UIMatchMaking : MonoBehaviour
                 Xp = 175,
                 Avatar = 2
             });
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
             return;
         }
         //Shown the corresponding UI
@@ -175,7 +175,7 @@ public class UIMatchMaking : MonoBehaviour
         Txt_CountDown.text = CoutDown.ToString();
 
         //Load the game scene but not open it
-        AsyncOperation loading = SceneManager.LoadSceneAsync(1, LoadSceneMode.Single);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
         loading.allowSceneActivation = false;
         //Begin the count down
         yield return DeltaOne;
