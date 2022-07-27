@@ -129,7 +129,10 @@ public class UIMatchMaking : MonoBehaviour
         if (IsCanceled)
             return;
         GameNetwork.UpdateGameData(json);
+        Debug.Log($"Master Wallet: {GameNetwork.GetMasterWalletId()}");
+        Debug.Log($"My Wallet: {MyUserData.WalletId}");
         GlobalManager.GMD.ImMaster = GameNetwork.GetMasterWalletId() == MyUserData.WalletId;
+        Debug.Log($"Master: {GlobalManager.GMD.ImMaster}");
     }
 
     //Searching loop
