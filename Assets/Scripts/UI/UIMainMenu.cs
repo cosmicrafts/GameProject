@@ -160,7 +160,6 @@ public class UIMainMenu : MonoBehaviour
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);
         GlobalManager.GMD.SetUser(user);
-        Debug.Log($"PLAYER: {user.WalletId}");
         AddProgressDataLoaded();
     }
 

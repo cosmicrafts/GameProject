@@ -55,13 +55,13 @@ public class UIMatchMaking : MonoBehaviour
     {
         //Set the delta time
         DeltaOne = new WaitForSeconds(1f);
-        //Get the player's data
-        MyUserData = GlobalManager.GMD.GetUserData();
     }
 
     //Start searching for a match
     public void StartSearch()
     {
+        //Get the player's data
+        MyUserData = GlobalManager.GMD.GetUserData();
         //If this is a debug build...
         if (GlobalManager.GMD.DebugMode)
         {
