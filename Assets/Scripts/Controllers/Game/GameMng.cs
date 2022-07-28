@@ -85,6 +85,7 @@ public class GameMng : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("--GAME MANAGER AWAKE--");
         //Check for the global manager
         if (GlobalManager.GMD == null)
         {
@@ -131,11 +132,13 @@ public class GameMng : MonoBehaviour
         IdCounter = IdRequestCounter = 0;
         //Init array of base stations
         Targets = new Unit[2];
+        Debug.Log("--GAME MANAGER END AWAKE--");
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("--GAME MANAGER START--");
         //Try find BOT controller and Tutorial Controller
         GT = FindObjectOfType<GameTutorial>();
         BOT = FindObjectOfType<BotEnemy>();
@@ -219,6 +222,7 @@ public class GameMng : MonoBehaviour
                                     Dammage = card.Dammage
                                 }, vsId);
                             }
+                            Debug.Log($"--CLIENT DECK DONE ({vsNFTs.Count} cards)--");
                         }
                         //Set the delta time async (0.33 sec)
                         dnet = new WaitForSeconds(1f / 3f);
@@ -239,6 +243,7 @@ public class GameMng : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log("--GAME MANAGER READY--");
     }
 
     // Update is called once per frame
