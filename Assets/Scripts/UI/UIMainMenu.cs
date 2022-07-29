@@ -65,9 +65,6 @@ public class UIMainMenu : MonoBehaviour
     public GameObject welcomePanel;
     private void Awake()
     {
-
-        //LoadingPanel.instance.DesactiveLoadingPanel();
-        Debug.Log("--- MENU START ---");
         //Instanciate Global Manager
         if (FindObjectOfType<GlobalManager>() == null)
         {
@@ -118,8 +115,6 @@ public class UIMainMenu : MonoBehaviour
             //Load the player data (with default vaules)
             InitPlayerData();
         }
-        Debug.Log("--- MENU REDY ---");
-
     }
 
     // Start is called before the first frame update
@@ -218,7 +213,6 @@ public class UIMainMenu : MonoBehaviour
     //Load the player´s data
     void InitPlayerData()
     {
-        Debug.Log("--- MENU SHOW ---");
         PlayerUser = GlobalManager.GMD.GetUserData();
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
@@ -337,7 +331,6 @@ public class UIMainMenu : MonoBehaviour
     //Start the current game mode
     public void PlayCurrentMode()
     {
-        Debug.Log("-- PLAY --");
         switch (GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots:
@@ -437,7 +430,6 @@ public class UIMainMenu : MonoBehaviour
     //Load NFTs Icons
     private IEnumerator LoadNFTsIcons()
     {
-        Debug.Log("LOADING NFT ICONS");
         //LOAD URL CHARACTERS ICONS
         foreach (NFTsCharacter character in PlayerCollection.Characters)
         {

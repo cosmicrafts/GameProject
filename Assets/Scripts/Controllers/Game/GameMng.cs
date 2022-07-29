@@ -112,9 +112,10 @@ public class GameMng : MonoBehaviour
         {
             if (PlayerCollection.Deck == null)
                 PlayerCollection.AddUnitsAndCharactersDefault();
-        } else
+        }
+        //Delete debug Manager in production
+        if (!Debug.isDebugBuild)
         {
-            //Delete debug Manager in production
             GameObject debugConsole = FindObjectOfType<DebugLogManager>().gameObject;
             if (debugConsole != null)
             {
@@ -669,23 +670,18 @@ public class GameMng : MonoBehaviour
         //Check if data is redy
         if (!InitRedy)
             return;
-        Debug.Log("--SYNC MASTER STARTS--");
         //Sync data if im master and data is not empty
         if (GlobalManager.GMD.ImMaster && !string.IsNullOrEmpty(json))
         {
-            Debug.Log("--LOAD JSON--");
             //Update local network data
             GameNetwork.UpdateClientGameData(json);
             //Unpackage the data
-            Debug.Log("--LOAD REQUESTED UNITS--");
             List<NetUnitPack> UnitsRequested = GameNetwork.GetClientGameUnitsRequested();
             //Loop every  requested unit or spell
             if (UnitsRequested == null)
             {
-                Debug.Log("--NO UNITS TO SPAWN--");
                 return;
             }
-            Debug.Log("--SPAWN REQUESTED UNITS--");
             foreach (NetUnitPack unit in UnitsRequested)
             {
                 //Create real Unit or spell if doesn't exist already
@@ -702,7 +698,6 @@ public class GameMng : MonoBehaviour
                 }
             }
         }
-        Debug.Log("--SYNC ENDS--");
     }
     
     //Sync the recived data from master (called from back end)
@@ -711,28 +706,23 @@ public class GameMng : MonoBehaviour
         //Check if data is redy
         if (!InitRedy)
             return;
-        Debug.Log("--SYNC CLIENT STARTS--");
         //Sync if im the client
         if (!GlobalManager.GMD.ImMaster)
         {
-            Debug.Log("--LOAD JSON--");
             //Update local network data
             GameNetwork.UpdateGameData(json);
             //Set the start date time of the game
-            Debug.Log("--LOAD DATA--");
             StartTime = GameNetwork.GetStartTime();
             //Unpack units and spells data
             List <NetUnitPack> units = GameNetwork.GetGameUnits();
             //Unpack the deleted units and spells
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             //Loop every entitie
-            Debug.Log("--SYNC CARDS--");
             foreach (NetUnitPack unit in units)
             {
                 //Check if the entitie is a spell
                 if (unit.is_spell)
                 {
-                    Debug.Log("--SYNC SPELLS--");
                     //Check if the spell doesn´t exist already
                     Spell find = Spells.FirstOrDefault(f => f.getId() == unit.id);
                     //Create fake spell
@@ -742,7 +732,6 @@ public class GameMng : MonoBehaviour
                     }
                 } else//The entitie is a unit
                 {
-                    Debug.Log("--SYNC UNITS--");
                     //Check if the unit doesn´t exist already
                     Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
                     //Create fake unit
@@ -800,7 +789,6 @@ public class GameMng : MonoBehaviour
             //Check if exist a default winner
             CheckMultiplayerWinner();
         }
-        Debug.Log("--SYNC CLIEND ENDS--");
     }
     
     //Sync winner data
