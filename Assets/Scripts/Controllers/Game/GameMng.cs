@@ -154,9 +154,6 @@ public class GameMng : MonoBehaviour
     void Start()
     {
         Debug.Log("--GAME MANAGER START--");
-        //Try find BOT controller and Tutorial Controller
-        GT = FindObjectOfType<GameTutorial>();
-        BOT = FindObjectOfType<BotEnemy>();
         //Set the IDs of the base stations
         for (int i = 0; i < Targets.Length; i++)
         {
@@ -176,35 +173,25 @@ public class GameMng : MonoBehaviour
         {
             case Match.bots: //VS IA
                 {
-                    //Destroy the game tutorial controller
-                    if (GT)
-                        Destroy(GT.gameObject);
-                    //Init the Bot controller
-                    if (BOT)
-                        BOT.gameObject.SetActive(true);
+                    //Instantiate BOT prefab
+                    GameObject bot = ResourcesServices.LoadBot();
+                    BOT = Instantiate(bot).GetComponent<BotEnemy>();
                 }
                 break;
             case Match.tutorial: //TUTORIAL
                 {
-                    //Start the game tutorial controller
-                    GT.gameObject.SetActive(true);
+                    //Instantiate the game tutorial obj
+                    GameObject gt = ResourcesServices.LoadTutorial();
+                    GT = Instantiate(gt).GetComponent<GameTutorial>();
                     //Set a specific deck to the player (from game tutorial controller)
                     P.DeckUnits = GT.DeckUnits;
                     //Stop the time count down
                     RunTime = false;
                     UI.UpdateTimeOut("--");
-                    //Destroy the bot controller
-                    if (BOT)
-                        Destroy(BOT.gameObject);
                 }
                 break;
             case Match.multi: //MULTIPLAYER
                 {
-                    //Destroy the bot and tutorial controller
-                    if (BOT)
-                        Destroy(BOT.gameObject);
-                    if (GT)
-                        Destroy(GT.gameObject);
                     //Start the sync loop of multiplayer
                     StartCoroutine(LoopGameNetAsync());
                     //IF IM THE MASTER...
@@ -290,7 +277,7 @@ public class GameMng : MonoBehaviour
                 UI.UpdateTimeOut("0:00");
                 //Player and bot can´t generate energy
                 P.SetCanGenEnergy(false);
-                if (GlobalManager.GMD.CurrentMatch == Match.bots && BOT)
+                if (GlobalManager.GMD.CurrentMatch == Match.bots && BOT != null)
                 {
                     BOT.SetCanGenEnergy(false);
                 }

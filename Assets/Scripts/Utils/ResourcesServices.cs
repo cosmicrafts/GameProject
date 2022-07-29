@@ -12,6 +12,16 @@ public static class ResourcesServices
     {
         return Resources.Load<GameObject>($"Prefabs/Manager/GlobalManagerObj");
     }
+    //Global Bot Prefab
+    public static GameObject LoadBot()
+    {
+        return Resources.Load<GameObject>($"Prefabs/Manager/BOT");
+    }
+    //Global Tutorial Prefab
+    public static GameObject LoadTutorial()
+    {
+        return Resources.Load<GameObject>($"Prefabs/Manager/Tutorial");
+    }
     //Returns a sprite avatar
     public static Sprite LoadAvatarIcon(int id)
     {

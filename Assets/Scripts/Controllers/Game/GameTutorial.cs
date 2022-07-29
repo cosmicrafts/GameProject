@@ -22,7 +22,7 @@ public class GameTutorial : MonoBehaviour
     //Deck Units for the player
     public GameObject[] DeckUnits = new GameObject[4];
     //UI cards references
-    public UIGameCard[] GameCards = new UIGameCard[8];
+    UIGameCard[] GameCards;
     //UI dialogs game object
     public GameObject Dialog;
     //UI image of the speaking character
@@ -112,6 +112,7 @@ public class GameTutorial : MonoBehaviour
         //Calculate the speed of the typewriter effect
         delaychar = 1f / (float)CharactersPerSec;
         //Desactive all the ui cards and then active only the first one
+        GameCards = GameMng.UI.UIDeck;
         foreach (UIGameCard card in GameCards)
         {
             card.gameObject.SetActive(false);
