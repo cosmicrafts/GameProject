@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("--PLAYER AWAKES--");
         //Defines the current Player controler to the game manager
         GameMng.P = this;
         //Init Deck Units Array
@@ -71,10 +72,12 @@ public class Player : MonoBehaviour
         }
         //Game manager can now spawn the base stations
         GameMng.GM.InitBaseStations();
+        Debug.Log("--PLAYER END AWAKE--");
     }
 
     private void Start()
     {
+        Debug.Log("--PLAYER STARTS--");
         //Init key codes
         Keys = new KeyCode[8] {KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4,
             KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8};
@@ -166,6 +169,7 @@ public class Player : MonoBehaviour
         }
         //Update the UI info
         GameMng.UI.InitGameCards(GameCards);
+        Debug.Log("--PLAYER END START--");
     }
 
     private void Update()
