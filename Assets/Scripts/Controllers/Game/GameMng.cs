@@ -83,8 +83,12 @@ public class GameMng : MonoBehaviour
     //Testing mode
     public bool Testing;
 
+    bool InitRedy = false;
+
     private void Awake()
     {
+        //Manager is initielizing variables
+        InitRedy = false;
         Debug.Log("--GAME MANAGER AWAKE--");
         //Check for the global manager
         if (GlobalManager.GMD == null)
@@ -414,6 +418,8 @@ public class GameMng : MonoBehaviour
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
         Targets[0].MyTeam = Team.Red;
+        //Game is ready to start
+        InitRedy = true;
     }
     
     //Deply a unit using a prefab game object
@@ -650,6 +656,10 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from client (called from back end)
     public void GL_SyncMaster(string json)
     {
+        //Check if data is redy
+        if (!InitRedy)
+            return;
+        Debug.Log("--SYNC DATA--");
         //Sync data if im master and data is not empty
         if (GlobalManager.GMD.ImMaster && !string.IsNullOrEmpty(json))
         {
@@ -674,11 +684,16 @@ public class GameMng : MonoBehaviour
                 }
             }
         }
+        Debug.Log("--SYNC ENDS--");
     }
     
     //Sync the recived data from master (called from back end)
     public void GL_SyncClient(string json)
     {
+        //Check if data is redy
+        if (!InitRedy)
+            return;
+        Debug.Log("--SYNC DATA--");
         //Sync if im the client
         if (!GlobalManager.GMD.ImMaster)
         {
@@ -762,6 +777,7 @@ public class GameMng : MonoBehaviour
             //Check if exist a default winner
             CheckMultiplayerWinner();
         }
+        Debug.Log("--SYNC ENDS--");
     }
     
     //Sync winner data
