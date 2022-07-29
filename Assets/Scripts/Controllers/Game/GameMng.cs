@@ -679,9 +679,7 @@ public class GameMng : MonoBehaviour
             List<NetUnitPack> UnitsRequested = GameNetwork.GetClientGameUnitsRequested();
             //Loop every  requested unit or spell
             if (UnitsRequested == null)
-            {
                 return;
-            }
             foreach (NetUnitPack unit in UnitsRequested)
             {
                 //Create real Unit or spell if doesn't exist already
@@ -717,60 +715,65 @@ public class GameMng : MonoBehaviour
             List <NetUnitPack> units = GameNetwork.GetGameUnits();
             //Unpack the deleted units and spells
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
-            //Loop every entitie
-            foreach (NetUnitPack unit in units)
+            //Check For Units
+            if (units != null)
             {
-                //Check if the entitie is a spell
-                if (unit.is_spell)
+                //Loop every entitie
+                foreach (NetUnitPack unit in units)
                 {
-                    //Check if the spell doesn´t exist already
-                    Spell find = Spells.FirstOrDefault(f => f.getId() == unit.id);
-                    //Create fake spell
-                    if (find == null) 
+                    //Check if the entitie is a spell
+                    if (unit.is_spell)
                     {
-                        CreateFakeSpell(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
-                    }
-                } else//The entitie is a unit
-                {
-                    //Check if the unit doesn´t exist already
-                    Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
-                    //Create fake unit
-                    if (find == null) 
-                    {
-                        if (!string.IsNullOrEmpty(unit.key))
+                        //Check if the spell doesn´t exist already
+                        Spell find = Spells.FirstOrDefault(f => f.getId() == unit.id);
+                        //Create fake spell
+                        if (find == null)
                         {
-                            CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
+                            CreateFakeSpell(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
                         }
                     }
-                    else //Sync data if the unit exist
+                    else//The entitie is a unit
                     {
-                        //Check if the unit is a ship (can move) or a station
-                        Ship ship = find as Ship;
-                        if (ship != null)
+                        //Check if the unit doesn´t exist already
+                        Unit find = Units.FirstOrDefault(f => f.getId() == unit.id);
+                        //Create fake unit
+                        if (find == null)
                         {
-                            //The unit is a ship so set the destination from master data
-                            ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
-                        }
-                        //Update metrics
-                        if (!find.IsMyTeam(P.MyTeam) && unit.hp < find.HitPoints)
-                        {
-                            int hp_dif = find.HitPoints - unit.hp;
-                            MT.AddDamage(hp_dif);
-                        }
-                        //Set the position, rotation and other variables from master data
-                        find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
-                        find.SetFakeHp(unit.hp, unit.max_hp);
-                        find.SetFakeShield(unit.sh, unit.max_sh);
-                        //Set the shooting target if the unit can attack
-                        if (unit.id_target > 0)
-                        {
-                            Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);
-                            if (target != null)
+                            if (!string.IsNullOrEmpty(unit.key))
                             {
-                                Shooter shooter = find.GetComponent<Shooter>();
-                                if (shooter != null)
+                                CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
+                            }
+                        }
+                        else //Sync data if the unit exist
+                        {
+                            //Check if the unit is a ship (can move) or a station
+                            Ship ship = find as Ship;
+                            if (ship != null)
+                            {
+                                //The unit is a ship so set the destination from master data
+                                ship.SetFakeDestination(new Vector3(unit.pos_x, 0f, unit.pos_z));
+                            }
+                            //Update metrics
+                            if (!find.IsMyTeam(P.MyTeam) && unit.hp < find.HitPoints)
+                            {
+                                int hp_dif = find.HitPoints - unit.hp;
+                                MT.AddDamage(hp_dif);
+                            }
+                            //Set the position, rotation and other variables from master data
+                            find.SetFakeRotation(Quaternion.Euler(0f, unit.rot_y, 0f));
+                            find.SetFakeHp(unit.hp, unit.max_hp);
+                            find.SetFakeShield(unit.sh, unit.max_sh);
+                            //Set the shooting target if the unit can attack
+                            if (unit.id_target > 0)
+                            {
+                                Unit target = Units.FirstOrDefault(f => f.getId() == unit.id_target);
+                                if (target != null)
                                 {
-                                    shooter.SetFakeTarget(target);
+                                    Shooter shooter = find.GetComponent<Shooter>();
+                                    if (shooter != null)
+                                    {
+                                        shooter.SetFakeTarget(target);
+                                    }
                                 }
                             }
                         }
@@ -778,12 +781,15 @@ public class GameMng : MonoBehaviour
                 }
             }
             //Check the deleted units from master and delete the same local units
-            foreach(int unitId in deleted)
+            if (deleted != null)
             {
-                Unit find = Units.FirstOrDefault(f => f.getId() == unitId);
-                if (find != null)
+                foreach (int unitId in deleted)
                 {
-                    KillUnit(find);
+                    Unit find = Units.FirstOrDefault(f => f.getId() == unitId);
+                    if (find != null)
+                    {
+                        KillUnit(find);
+                    }
                 }
             }
             //Check if exist a default winner
