@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IngameDebugConsole;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,9 +108,18 @@ public class GameMng : MonoBehaviour
         if (!GlobalManager.GMD.DebugMode)
             Testing = false;
         //Check Default Player units
-        if (Testing && PlayerCollection.Deck == null)
+        if (Testing)
         {
-            PlayerCollection.AddUnitsAndCharactersDefault();
+            if (PlayerCollection.Deck == null)
+                PlayerCollection.AddUnitsAndCharactersDefault();
+        } else
+        {
+            //Delete debug Manager in production
+            GameObject debugConsole = FindObjectOfType<DebugLogManager>().gameObject;
+            if (debugConsole != null)
+            {
+                Destroy(debugConsole);
+            }
         }
         //init Basic variables and basic storages list
         GameOver = false;
@@ -670,6 +680,11 @@ public class GameMng : MonoBehaviour
             Debug.Log("--LOAD REQUESTED UNITS--");
             List<NetUnitPack> UnitsRequested = GameNetwork.GetClientGameUnitsRequested();
             //Loop every  requested unit or spell
+            if (UnitsRequested == null)
+            {
+                Debug.Log("--NO UNITS TO SPAWN--");
+                return;
+            }
             Debug.Log("--SPAWN REQUESTED UNITS--");
             foreach (NetUnitPack unit in UnitsRequested)
             {
