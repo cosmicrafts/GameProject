@@ -635,8 +635,6 @@ public class GameMng : MonoBehaviour
             }
         } else //Client send data
         {
-            Debug.Log("--Send Client Data");
-            Debug.Log($"UNITS TO SEND: {GameNetwork.GetClientGameUnitsRequested().Count}");
             //Send metrics
             GameNetwork.SetClientGameMetrics(MT);
             //Set the last client comunication update
@@ -646,7 +644,6 @@ public class GameMng : MonoBehaviour
             {
                 //Send the data
                 GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
-                Debug.Log($"--CLIENT DATA OK--");
             }
         }
     }
@@ -699,7 +696,7 @@ public class GameMng : MonoBehaviour
             //Set the start date time of the game
             StartTime = GameNetwork.GetStartTime();
             //Unpack units and spells data
-            List <NetUnitPack> units = GameNetwork.GetGameUnits();
+            List<NetUnitPack> units = GameNetwork.GetGameUnits();
             //Unpack the deleted units and spells
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             //Check For Units
@@ -726,6 +723,7 @@ public class GameMng : MonoBehaviour
                         //Create fake unit
                         if (find == null)
                         {
+                            Debug.Log($"--UNIT TO SPAWN: {unit.key}--");
                             if (!string.IsNullOrEmpty(unit.key))
                             {
                                 CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);
