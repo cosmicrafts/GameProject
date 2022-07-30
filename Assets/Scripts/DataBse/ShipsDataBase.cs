@@ -8,6 +8,12 @@ public class ShipsDataBase : ScriptableObject
 
     #region DataBase
 
+    //----Prefab-----------------------------------------------------------
+    [Tooltip("Prefab asociado")]
+    [Header("Prefab")]
+    [SerializeField]
+    protected GameObject Prefab;
+
     //----Ship´s name-----------------------------------------------------------
     [Tooltip("Informa de la Nombre de la carta")]
     [Header("Nombre de la unidad")]
@@ -71,6 +77,8 @@ public class ShipsDataBase : ScriptableObject
 
     #region Variables de Lectura
 
+    public GameObject prefab => Prefab;
+
     public string cardName => Name;
 
     public int localId => LocalID;
@@ -88,6 +96,25 @@ public class ShipsDataBase : ScriptableObject
     public int dmg => Dammage;
 
     public float speed => Speed;
+
+    public NFTsUnit ToNFTCard()
+    {
+        NFTsUnit nFTsCard = new NFTsUnit()
+        {
+            EnergyCost = cost,
+            HitPoints = hp,
+            Shield = shield,
+            Speed = speed,
+            Dammage = dmg,
+            Faction = faction,
+            EntType = type,
+            LocalID = localId,
+            TypePrefix = NFTsCollection.NFTsPrefix[type],
+            FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)faction],
+        };
+        nFTsCard.IconSprite = ResourcesServices.LoadCardIcon(nFTsCard.KeyId);
+        return nFTsCard;
+    }
 
     #endregion
 }

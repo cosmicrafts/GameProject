@@ -7,7 +7,4 @@
 public class GameCard : MonoBehaviour
 {
     public string Alias;
-
-    [Range(0,10)]
-    public int DefaultCost;
 }

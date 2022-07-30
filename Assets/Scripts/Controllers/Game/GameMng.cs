@@ -425,7 +425,7 @@ public class GameMng : MonoBehaviour
         unit.MyTeam = team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
-        unit.SetNfts(GetNftCardData(nftKey, playerId) as NFTsUnit);
+        unit.SetNfts(GetNftCardData(nftKey, unit.PlayerId) as NFTsUnit);
         return unit;
     }
     
@@ -460,7 +460,7 @@ public class GameMng : MonoBehaviour
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setId(GenerateUnitId());
-        spell.SetNfts(GetNftCardData(nftKey, playerId) as NFTsSpell);
+        spell.SetNfts(GetNftCardData(nftKey, spell.PlayerId) as NFTsSpell);
         return spell;
     }
     
@@ -694,23 +694,18 @@ public class GameMng : MonoBehaviour
         //Sync if im the client
         if (!GlobalManager.GMD.ImMaster)
         {
-            Debug.Log("--SYNC JSON DATA--");
             //Update local network data
             GameNetwork.UpdateGameData(json);
             //Set the start date time of the game
-            Debug.Log("--SYNC TIME--");
             StartTime = GameNetwork.GetStartTime();
             //Unpack units and spells data
-            Debug.Log("--GET UNITS--");
             List <NetUnitPack> units = GameNetwork.GetGameUnits();
             //Unpack the deleted units and spells
-            Debug.Log("--GET DELETED UNITS--");
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             //Check For Units
             if (units != null)
             {
                 //Loop every entitie
-                Debug.Log("--SYNC UNITS STATS--");
                 foreach (NetUnitPack unit in units)
                 {
                     //Check if the entitie is a spell
@@ -773,7 +768,6 @@ public class GameMng : MonoBehaviour
                 }
             }
             //Check the deleted units from master and delete the same local units
-            Debug.Log("--SYNC DELETED UNITS--");
             if (deleted != null)
             {
                 foreach (int unitId in deleted)
@@ -785,7 +779,6 @@ public class GameMng : MonoBehaviour
                     }
                 }
             }
-            Debug.Log("--END SYNC--");
             //Check if exist a default winner
             CheckMultiplayerWinner();
         }

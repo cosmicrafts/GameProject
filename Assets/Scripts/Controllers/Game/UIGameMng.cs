@@ -125,7 +125,7 @@ public class UIGameMng : MonoBehaviour
     {
         for (int i=0; i< nftCard.Length; i++)
         {
-            UIDeck[i].SpIcon.sprite = ResourcesServices.LoadCardIcon(nftCard[i].KeyId);
+            UIDeck[i].SpIcon.sprite = nftCard[i].IconSprite;
             UIDeck[i].EnergyCost = nftCard[i].EnergyCost;
             UIDeck[i].TextCost.text = nftCard[i].EnergyCost.ToString();
         }

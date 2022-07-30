@@ -108,19 +108,7 @@ public class Player : MonoBehaviour
             PlayerDeck = new List<NFTsCard>();
             foreach (ShipsDataBase card in TestingDeck)
             {
-                PlayerDeck.Add(new NFTsUnit()
-                {
-                    EnergyCost = card.cost,
-                    HitPoints = card.hp,
-                    Shield = card.shield,
-                    Speed = card.speed,
-                    Dammage = card.dmg,
-                    Faction = card.faction,
-                    EntType = card.type,
-                    LocalID = card.localId,
-                    TypePrefix = NFTsCollection.NFTsPrefix[card.type],
-                    FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.faction],
-                });
+                PlayerDeck.Add(card.ToNFTCard());
             }
         }
         else
