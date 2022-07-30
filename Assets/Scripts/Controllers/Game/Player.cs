@@ -107,16 +107,17 @@ public class Player : MonoBehaviour
                 {
                     PlayerDeck.Add(new NFTsUnit()
                     {
-                        EnergyCost = 1,
-                        IconSprite = ResourcesServices.LoadCardIcon($"U_ALL_{1}"),
-                        Rarity = 1,
-                        HitPoints = 5,
-                        Shield = 3,
-                        Speed = 1,
-                        Dammage = 1,
-                        Faction = (int)Factions.Alliance,
-                        EntType = (int)NFTClass.Ship,
-                        LocalID = 1
+                        EnergyCost = card.cost,
+                        IconSprite = ResourcesServices.LoadCardIcon(card.icon),
+                        HitPoints = card.hp,
+                        Shield = card.shield,
+                        Speed = card.speed,
+                        Dammage = card.dmg,
+                        Faction = card.faction,
+                        EntType = card.type,
+                        LocalID = card.localId,
+                        TypePrefix = NFTsCollection.NFTsPrefix[card.type],
+                        FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.faction],
                     });
                 }
             }

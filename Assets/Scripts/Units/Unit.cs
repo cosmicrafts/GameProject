@@ -414,7 +414,7 @@ public class Unit : MonoBehaviour
     //Get the NFT key
     public string getKey()
     {
-        return NFTs.KeyId;
+        return NFTs == null ? $"U_{Id}" : NFTs.KeyId;
     }
 
     //Get the owners player ID

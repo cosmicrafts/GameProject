@@ -15,33 +15,39 @@ public class ShipsDataBase : ScriptableObject
     protected string Name;
 
     //----Nft local ID-----------------------------------------------------------
-    [Tooltip("Informa el HP de la carta")]
-    [Header("Asignar el HitPoint de la carta")]
+    [Tooltip("ID local del nft")]
+    [Header("ID Local")]
     [SerializeField]
     protected int LocalID;
 
+    //----Icon-----------------------------------------------------------
+    [Tooltip("Icono default de la carta")]
+    [Header("Icono")]
+    [SerializeField]
+    protected string Icon;
+
     //----Nft faction-----------------------------------------------------------
-    [Tooltip("Informa el HP de la carta")]
-    [Header("Asignar el HitPoint de la carta")]
+    [Tooltip("Faccion del Nft")]
+    [Header("Faccion")]
     [SerializeField]
     protected Factions Faction;
 
     //----Nft card type-----------------------------------------------------------
-    [Tooltip("Informa el HP de la carta")]
-    [Header("Asignar el HitPoint de la carta")]
+    [Tooltip("Tipo de NFT")]
+    [Header("Tipo de Nft")]
     [SerializeField]
     protected NFTClass NftType;
 
     //----Unit HP-----------------------------------------------------------
-    [Tooltip("Informa el HP de la carta")]
-    [Header("Asignar el HitPoint de la carta")]
+    [Tooltip("Puntos de vida de la unidad")]
+    [Header("HP")]
     [Range(1, 9999)]
     [SerializeField]
     protected int HitPoints;
 
     //----Unit Shield-----------------------------------------------------------
-    [Tooltip("Informa el Escudo de la carta")]
-    [Header("Asignar el Escudo de la carta")]
+    [Tooltip("Puntos de escudo de la unidad")]
+    [Header("Escudo")]
     [SerializeField]
     [Range(1, 9999)]
     protected int Shield;
@@ -54,15 +60,15 @@ public class ShipsDataBase : ScriptableObject
     protected int EnergyCost;
 
     //----Unit Damage-----------------------------------------------------------
-    [Tooltip("Asignar la tamaño para el escudo")]
-    [Header("Asignar el tamaño para la nave")]
+    [Tooltip("Puntos de daño por bala de la unidad")]
+    [Header("Daño")]
     [SerializeField]
     [Range(0, 9999)]
     protected int Dammage;
 
     //----Unit Speed-----------------------------------------------------------
-    [Tooltip("Asignar la area de buff para el zona invocion")]
-    [Header("Asignar el tamaño para el buff de la zona de invocacion")]
+    [Tooltip("Velocidad de la nave")]
+    [Header("Velocidad de movimiento")]
     [SerializeField]
     [Range(0, 99)]
     protected float Speed;
@@ -70,6 +76,26 @@ public class ShipsDataBase : ScriptableObject
     #endregion
 
     #region Variables de Lectura
+
+    public string cardName => Name;
+
+    public string icon => Icon;
+
+    public int localId => LocalID;
+
+    public int faction => (int)Faction;
+
+    public int type => (int)NftType;
+
+    public int hp => HitPoints;
+
+    public int shield => Shield;
+
+    public int cost => EnergyCost;
+
+    public int dmg => Dammage;
+
+    public float speed => Speed;
 
     #endregion
 }

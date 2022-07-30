@@ -192,8 +192,6 @@ public class GameMng : MonoBehaviour
                 break;
             case Match.multi: //MULTIPLAYER
                 {
-                    //Start the sync loop of multiplayer
-                    StartCoroutine(LoopGameNetAsync());
                     //IF IM THE MASTER...
                     if (GlobalManager.GMD.ImMaster)
                     {
@@ -232,6 +230,8 @@ public class GameMng : MonoBehaviour
                         GameNetwork.SetGameStart(DateTime.Now);
                         GameNetwork.SetGameStatus(NetGameStep.InGame);
                         SyncNetData();
+                        //Start the sync loop of multiplayer
+                        StartCoroutine(LoopGameNetAsync());
                     } else //IF IM THE CLIENT
                     {
                         //Set the delta time async (5 sec)
@@ -587,7 +587,7 @@ public class GameMng : MonoBehaviour
         if (GlobalManager.GMD.ImMaster)
         {
             //Prepare the units and spells data
-            Debug.Log($"--lOADING UNITS INFO--");
+            Debug.Log($"--LOADING UNITS INFO--");
             List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -603,7 +603,7 @@ public class GameMng : MonoBehaviour
                 player_id = s.PlayerId,
                 id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
             }).ToList();
-            Debug.Log($"--lOADING SPELLS INFO--");
+            Debug.Log($"--LOADING SPELLS INFO--");
             var spack = Spells.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -619,13 +619,13 @@ public class GameMng : MonoBehaviour
             //Make a game data package with currents entities and deleted entities
             Debug.Log($"UNITS TO SEND: {upack.Count}");
             GameNetwork.SetGameUnits(upack);
-            Debug.Log($"--lOADING UNITS TO DELETE--");
+            Debug.Log($"--LOADING UNITS TO DELETE--");
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
             //Send metrics
-            Debug.Log($"--lOADING METRICS--");
+            Debug.Log($"--LOADING METRICS--");
             GameNetwork.SetMasterGameMetrics(MT);
             //Set the last master comunication update
-            Debug.Log($"--lOADING TIME--");
+            Debug.Log($"--LOADING TIME--");
             GameNetwork.SetMasterLastUpdate(DateTime.Now);
             //Try to send the data to the back end
             try
