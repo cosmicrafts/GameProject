@@ -101,8 +101,22 @@ public class Player : MonoBehaviour
             }
         }
 
-        //Load Deck
-        if (GameMng.GM.Testing)
+        //Load Deck from context
+        if (GlobalManager.GMD.CurrentMatch == Match.tutorial)
+        {
+            if (GameMng.GM.GT != null)
+            {
+                //Load Tutorial NFTs Deck
+                PlayerDeck = new List<NFTsCard>();
+                foreach (ShipsDataBase card in GameMng.GM.GT.DeckUnits)
+                {
+                    PlayerDeck.Add(card.ToNFTCard());
+                }
+            } else
+            {
+                PlayerDeck = GameMng.PlayerCollection.Deck;
+            }
+        } else if (GameMng.GM.Testing)
         {
             //Load Testing NFTs Deck
             PlayerDeck = new List<NFTsCard>();
@@ -110,8 +124,7 @@ public class Player : MonoBehaviour
             {
                 PlayerDeck.Add(card.ToNFTCard());
             }
-        }
-        else
+        } else
         {
             //Get the player´s collection deck
             PlayerDeck = GameMng.PlayerCollection.Deck;

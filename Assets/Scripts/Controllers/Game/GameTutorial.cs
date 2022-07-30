@@ -20,7 +20,7 @@ public class GameTutorial : MonoBehaviour
     }
 
     //Deck Units for the player
-    public GameObject[] DeckUnits = new GameObject[4];
+    public ShipsDataBase[] DeckUnits = new ShipsDataBase[8];
     //UI cards references
     UIGameCard[] GameCards;
     //UI dialogs game object
