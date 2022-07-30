@@ -99,33 +99,34 @@ public class Player : MonoBehaviour
 
             //Load Deck
             List<NFTsCard> PlayerDeck;
-            //if (GameMng.GM.Testing)
-            //{
-            //    //Load Testing NFTs Deck
-            //    PlayerDeck = new List<NFTsCard>();
-            //    foreach(ShipsDataBase card in TestingDeck)
-            //    {
-            //        PlayerDeck.Add(new NFTsUnit()
-            //        {
-            //            EnergyCost = 1,
-            //            IconSprite = ResourcesServices.LoadCardIcon($"U_ALL_{1}"),
-            //            Rarity = 1,
-            //            HitPoints = 5,
-            //            Shield = 3,
-            //            Speed = 1,
-            //            Dammage = 1,
-            //            Faction = (int)Factions.Alliance,
-            //            EntType = (int)NFTClass.Ship,
-            //            LocalID = 1
-            //        });
-            //    }
-            //} else
-            //{
-            //    //Get the player´s collection deck
-            //    PlayerDeck = GameMng.PlayerCollection.Deck;
-            //}
+            if (GameMng.GM.Testing)
+            {
+                //Load Testing NFTs Deck
+                PlayerDeck = new List<NFTsCard>();
+                foreach (ShipsDataBase card in TestingDeck)
+                {
+                    PlayerDeck.Add(new NFTsUnit()
+                    {
+                        EnergyCost = 1,
+                        IconSprite = ResourcesServices.LoadCardIcon($"U_ALL_{1}"),
+                        Rarity = 1,
+                        HitPoints = 5,
+                        Shield = 3,
+                        Speed = 1,
+                        Dammage = 1,
+                        Faction = (int)Factions.Alliance,
+                        EntType = (int)NFTClass.Ship,
+                        LocalID = 1
+                    });
+                }
+            }
+            else
+            {
+                //Get the player´s collection deck
+                PlayerDeck = GameMng.PlayerCollection.Deck;
+            }
 
-            PlayerDeck = GameMng.PlayerCollection.Deck;
+            //PlayerDeck = GameMng.PlayerCollection.Deck;
 
             if (PlayerDeck != null)
             {

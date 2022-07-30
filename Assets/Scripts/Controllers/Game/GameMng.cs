@@ -574,7 +574,6 @@ public class GameMng : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("--SEND DATA--");
             yield return dnet;//delta time
 
             SyncNetData();//Send game data
@@ -588,6 +587,7 @@ public class GameMng : MonoBehaviour
         if (GlobalManager.GMD.ImMaster)
         {
             //Prepare the units and spells data
+            Debug.Log($"--lOADING UNITS INFO--");
             List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -603,6 +603,7 @@ public class GameMng : MonoBehaviour
                 player_id = s.PlayerId,
                 id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
             }).ToList();
+            Debug.Log($"--lOADING SPELLS INFO--");
             var spack = Spells.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -618,10 +619,13 @@ public class GameMng : MonoBehaviour
             //Make a game data package with currents entities and deleted entities
             Debug.Log($"UNITS TO SEND: {upack.Count}");
             GameNetwork.SetGameUnits(upack);
+            Debug.Log($"--lOADING UNITS TO DELETE--");
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
             //Send metrics
+            Debug.Log($"--lOADING METRICS--");
             GameNetwork.SetMasterGameMetrics(MT);
             //Set the last master comunication update
+            Debug.Log($"--lOADING TIME--");
             GameNetwork.SetMasterLastUpdate(DateTime.Now);
             //Try to send the data to the back end
             try
@@ -637,7 +641,7 @@ public class GameMng : MonoBehaviour
             catch (Exception e)
             {
                 //In case of error, log the error
-                Debug.LogError(e.Message);
+                Debug.LogError($"CATCH ERROR: {e.Message}");
             }
         } else //Client send data
         {
