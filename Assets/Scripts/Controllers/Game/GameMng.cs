@@ -251,6 +251,7 @@ public class GameMng : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("--UPDATE EVENT--");
         //If game is already ended, don´t do nothing
         if (GameOver)
             return;
@@ -574,6 +575,7 @@ public class GameMng : MonoBehaviour
     {
         while (true)
         {
+            Debug.Log("--SEND DATA--");
             yield return dnet;//delta time
 
             SyncNetData();//Send game data
@@ -615,6 +617,7 @@ public class GameMng : MonoBehaviour
             });
             upack.AddRange(spack);
             //Make a game data package with currents entities and deleted entities
+            Debug.Log($"UNITS TO SEND: {upack.Count}");
             GameNetwork.SetGameUnits(upack);
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
             //Send metrics
@@ -629,6 +632,7 @@ public class GameMng : MonoBehaviour
                 {
                     //Send the data
                     GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
+                    Debug.Log($"--MASTER DATA OK--");
                 }
             }
             catch (Exception e)
@@ -638,6 +642,7 @@ public class GameMng : MonoBehaviour
             }
         } else //Client send data
         {
+            Debug.Log($"UNITS TO SEND: {GameNetwork.GetClientGameUnitsRequested().Count}");
             //Send metrics
             GameNetwork.SetClientGameMetrics(MT);
             //Set the last client comunication update
@@ -647,6 +652,7 @@ public class GameMng : MonoBehaviour
             {
                 //Send the data
                 GameNetwork.JSSendClientData(GameNetwork.GetJsonClientGameNetPack());
+                Debug.Log($"--CLIENT DATA OK--");
             }
         }
     }
