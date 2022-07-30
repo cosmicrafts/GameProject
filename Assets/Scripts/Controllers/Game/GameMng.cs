@@ -251,7 +251,6 @@ public class GameMng : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("--UPDATE EVENT--");
         //If game is already ended, don´t do nothing
         if (GameOver)
             return;
