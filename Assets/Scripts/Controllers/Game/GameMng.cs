@@ -154,11 +154,6 @@ public class GameMng : MonoBehaviour
     void Start()
     {
         Debug.Log("--GAME MANAGER START--");
-        //Set the IDs of the base stations
-        for (int i = 0; i < Targets.Length; i++)
-        {
-            Targets[i].setId(GenerateUnitId());
-        }
         //Set the time count down (5 minutes) and when the game begins
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -416,6 +411,11 @@ public class GameMng : MonoBehaviour
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
         Targets[0].MyTeam = Team.Red;
+        //Set the IDs of the base stations
+        for (int i = 0; i < Targets.Length; i++)
+        {
+            Targets[i].setId(GenerateUnitId());
+        }
         //Game is ready to start
         InitRedy = true;
     }
@@ -575,7 +575,6 @@ public class GameMng : MonoBehaviour
         while (true)
         {
             yield return dnet;//delta time
-
             SyncNetData();//Send game data
         }
     }
@@ -587,7 +586,6 @@ public class GameMng : MonoBehaviour
         if (GlobalManager.GMD.ImMaster)
         {
             //Prepare the units and spells data
-            Debug.Log($"--LOADING UNITS INFO--");
             List<NetUnitPack> upack = Units.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -603,7 +601,6 @@ public class GameMng : MonoBehaviour
                 player_id = s.PlayerId,
                 id_target = s.GetComponent<Shooter>() == null ? 0 : s.GetComponent<Shooter>().GetIdTarget()
             }).ToList();
-            Debug.Log($"--LOADING SPELLS INFO--");
             var spack = Spells.Select(s => new NetUnitPack
             {
                 id = s.getId(),
@@ -617,15 +614,11 @@ public class GameMng : MonoBehaviour
             });
             upack.AddRange(spack);
             //Make a game data package with currents entities and deleted entities
-            Debug.Log($"UNITS TO SEND: {upack.Count}");
             GameNetwork.SetGameUnits(upack);
-            Debug.Log($"--LOADING UNITS TO DELETE--");
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
             //Send metrics
-            Debug.Log($"--LOADING METRICS--");
             GameNetwork.SetMasterGameMetrics(MT);
             //Set the last master comunication update
-            Debug.Log($"--LOADING TIME--");
             GameNetwork.SetMasterLastUpdate(DateTime.Now);
             //Try to send the data to the back end
             try
@@ -635,7 +628,6 @@ public class GameMng : MonoBehaviour
                 {
                     //Send the data
                     GameNetwork.JSSendMasterData(GameNetwork.GetJsonGameNetPack());
-                    Debug.Log($"--MASTER DATA OK--");
                 }
             }
             catch (Exception e)
@@ -645,6 +637,7 @@ public class GameMng : MonoBehaviour
             }
         } else //Client send data
         {
+            Debug.Log("--Send Client Data");
             Debug.Log($"UNITS TO SEND: {GameNetwork.GetClientGameUnitsRequested().Count}");
             //Send metrics
             GameNetwork.SetClientGameMetrics(MT);
@@ -703,18 +696,23 @@ public class GameMng : MonoBehaviour
         //Sync if im the client
         if (!GlobalManager.GMD.ImMaster)
         {
+            Debug.Log("--SYNC JSON DATA--");
             //Update local network data
             GameNetwork.UpdateGameData(json);
             //Set the start date time of the game
+            Debug.Log("--SYNC TIME--");
             StartTime = GameNetwork.GetStartTime();
             //Unpack units and spells data
+            Debug.Log("--GET UNITS--");
             List <NetUnitPack> units = GameNetwork.GetGameUnits();
             //Unpack the deleted units and spells
+            Debug.Log("--GET DELETED UNITS--");
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             //Check For Units
             if (units != null)
             {
                 //Loop every entitie
+                Debug.Log("--SYNC UNITS STATS--");
                 foreach (NetUnitPack unit in units)
                 {
                     //Check if the entitie is a spell
@@ -777,6 +775,7 @@ public class GameMng : MonoBehaviour
                 }
             }
             //Check the deleted units from master and delete the same local units
+            Debug.Log("--SYNC DELETED UNITS--");
             if (deleted != null)
             {
                 foreach (int unitId in deleted)
@@ -788,6 +787,7 @@ public class GameMng : MonoBehaviour
                     }
                 }
             }
+            Debug.Log("--END SYNC--");
             //Check if exist a default winner
             CheckMultiplayerWinner();
         }
