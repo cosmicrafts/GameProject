@@ -20,12 +20,6 @@ public class ShipsDataBase : ScriptableObject
     [SerializeField]
     protected int LocalID;
 
-    //----Icon-----------------------------------------------------------
-    [Tooltip("Icono default de la carta")]
-    [Header("Icono")]
-    [SerializeField]
-    protected string Icon;
-
     //----Nft faction-----------------------------------------------------------
     [Tooltip("Faccion del Nft")]
     [Header("Faccion")]
@@ -78,8 +72,6 @@ public class ShipsDataBase : ScriptableObject
     #region Variables de Lectura
 
     public string cardName => Name;
-
-    public string icon => Icon;
 
     public int localId => LocalID;
 

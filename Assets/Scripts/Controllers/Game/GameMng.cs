@@ -178,8 +178,6 @@ public class GameMng : MonoBehaviour
                     //Instantiate the game tutorial obj
                     GameObject gt = ResourcesServices.LoadTutorial();
                     GT = Instantiate(gt).GetComponent<GameTutorial>();
-                    //Set a specific deck to the player (from game tutorial controller)
-                    P.DeckUnits = GT.DeckUnits;
                     //Stop the time count down
                     RunTime = false;
                     UI.UpdateTimeOut("--");

@@ -121,13 +121,13 @@ public class UIGameMng : MonoBehaviour
         UpdateResults();
     }
     //Init the UI Cards
-    public void InitGameCards(GameCard[] gameCards)
+    public void InitGameCards(NFTsCard[] nftCard)
     {
-        for (int i=0; i<gameCards.Length; i++)
+        for (int i=0; i< nftCard.Length; i++)
         {
-            UIDeck[i].SpIcon.sprite = gameCards[i].GetData().IconSprite;
-            UIDeck[i].EnergyCost = gameCards[i].GetData().EnergyCost;
-            UIDeck[i].TextCost.text = gameCards[i].GetData().EnergyCost.ToString();
+            UIDeck[i].SpIcon.sprite = ResourcesServices.LoadCardIcon(nftCard[i].KeyId);
+            UIDeck[i].EnergyCost = nftCard[i].EnergyCost;
+            UIDeck[i].TextCost.text = nftCard[i].EnergyCost.ToString();
         }
     }
     //Update the UI time

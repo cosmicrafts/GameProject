@@ -6,17 +6,8 @@
 
 public class GameCard : MonoBehaviour
 {
-    public string NftsKey;
-
     public string Alias;
 
-    NFTsCard Data;
-
-    public NFTsCard GetData()
-    {
-        if (Data == null)
-            Data = GlobalManager.GMD.GetUserCollection().FindCard(NftsKey);
-
-        return Data;
-    }
+    [Range(0,10)]
+    public int DefaultCost;
 }

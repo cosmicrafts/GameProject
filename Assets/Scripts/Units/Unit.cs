@@ -518,7 +518,7 @@ public class Unit : MonoBehaviour
         NFTs = nFTsUnit;
 
         //Validate the data
-        if (GameMng.GM.Testing || nFTsUnit == null)
+        if (nFTsUnit == null)
             return;
 
         //Remplace the variables

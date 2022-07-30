@@ -23,19 +23,19 @@ public class Player : MonoBehaviour
     DragUnitCtrl UnitDrag;
     //Stores the deck units prefabs
     [HideInInspector]
-    public GameObject[] DeckUnits;
+    public Dictionary<string,GameObject> DeckUnits;
 
-    //Stores the card data from units
-    GameCard[] GameCards;
+    //Deck
+    List<NFTsCard> PlayerDeck;
     //Stores the meshes and materials of the units, for drag and drop previews
     Mesh[] UnitsMeshs;
     Material[] UnitMaterials;
     //Stores the object with particules of the spells, for drag and drop previews
     GameObject[] SpellPreviews;
     //Reference the current dragin card
-    GameCard DragingCard;
+    int DragingCard;
     //Reference the current selected card
-    GameCard SelectedCard;
+    int SelectedCard;
     //Reference the player´s character
     GameCharacter MyCharacter;
 
@@ -59,7 +59,10 @@ public class Player : MonoBehaviour
         //Defines the current Player controler to the game manager
         GameMng.P = this;
         //Init Deck Units Array
-        DeckUnits = new GameObject[8];
+        DeckUnits = new Dictionary<string, GameObject>();
+        //Init defaults
+        DragingCard = -1;
+        SelectedCard = -1;
         //Check if the current game is a multiplayer match
         if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
@@ -96,81 +99,71 @@ public class Player : MonoBehaviour
             {
                 MyCharacter = Instantiate(Character, transform).GetComponent<GameCharacter>();
             }
+        }
 
-            //Load Deck
-            List<NFTsCard> PlayerDeck;
-            if (GameMng.GM.Testing)
+        //Load Deck
+        if (GameMng.GM.Testing)
+        {
+            //Load Testing NFTs Deck
+            PlayerDeck = new List<NFTsCard>();
+            foreach (ShipsDataBase card in TestingDeck)
             {
-                //Load Testing NFTs Deck
-                PlayerDeck = new List<NFTsCard>();
-                foreach (ShipsDataBase card in TestingDeck)
+                PlayerDeck.Add(new NFTsUnit()
                 {
-                    PlayerDeck.Add(new NFTsUnit()
-                    {
-                        EnergyCost = card.cost,
-                        IconSprite = ResourcesServices.LoadCardIcon(card.icon),
-                        HitPoints = card.hp,
-                        Shield = card.shield,
-                        Speed = card.speed,
-                        Dammage = card.dmg,
-                        Faction = card.faction,
-                        EntType = card.type,
-                        LocalID = card.localId,
-                        TypePrefix = NFTsCollection.NFTsPrefix[card.type],
-                        FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.faction],
-                    });
-                }
-            }
-            else
-            {
-                //Get the player´s collection deck
-                PlayerDeck = GameMng.PlayerCollection.Deck;
-            }
-
-            //PlayerDeck = GameMng.PlayerCollection.Deck;
-
-            if (PlayerDeck != null)
-            {
-                if (PlayerDeck.Count == 8)
-                {
-                    for (int i = 0; i < 8; i++)
-                    {
-                        //Load unit prefabs from nft data
-                        DeckUnits[i] = ResourcesServices.LoadCardPrefab(PlayerDeck[i].KeyId, PlayerDeck[i] as NFTsSpell != null);
-                        //Save nft data on manager
-                        GameMng.GM.AddNftCardData(PlayerDeck[i], ID);
-                    }
-                }
+                    EnergyCost = card.cost,
+                    HitPoints = card.hp,
+                    Shield = card.shield,
+                    Speed = card.speed,
+                    Dammage = card.dmg,
+                    Faction = card.faction,
+                    EntType = card.type,
+                    LocalID = card.localId,
+                    TypePrefix = NFTsCollection.NFTsPrefix[card.type],
+                    FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.faction],
+                });
             }
         }
+        else
+        {
+            //Get the player´s collection deck
+            PlayerDeck = GameMng.PlayerCollection.Deck;
+        }
+
         //Init and set the units data arrays
-        GameCards = new GameCard[8];
         SpellPreviews = new GameObject[8];
         UnitsMeshs = new Mesh[8];
         UnitMaterials = new Material[8];
 
-        for (int i = 0; i < DeckUnits.Length; i++)
+        //Load Nfts prefabs and prepare in game deck
+        if (PlayerDeck.Count == 8)
         {
-            if (DeckUnits[i] != null)
+            for (int i = 0; i < 8; i++)
             {
-                GameCards[i] = DeckUnits[i].GetComponent<GameCard>();
-                //NFTsCard nFTsCard = GameMng.PlayerCollection.Cards.FirstOrDefault(f => f.KeyId == GameCards[i].NftsKey);
+                //Load unit prefabs from nft data
+                GameObject prefab = ResourcesServices.LoadCardPrefab(PlayerDeck[i].KeyId, PlayerDeck[i] as NFTsSpell != null);
+                DeckUnits.Add(PlayerDeck[i].KeyId, prefab);
+                //Save nft data on manager
+                GameMng.GM.AddNftCardData(PlayerDeck[i], ID);
+                //Load models
+                GameCard card = prefab.GetComponent<GameCard>();
 
-                if ((NFTClass)GameCards[i].GetData().EntType == NFTClass.Skill)
+                if ((NFTClass)PlayerDeck[i].EntType == NFTClass.Skill)
                 {
-                    SpellCard spell = GameCards[i] as SpellCard;
+                    SpellCard spell = card as SpellCard;
                     SpellPreviews[i] = spell.PreviewEffect;
 
-                } else
+                }
+                else
                 {
-                    UnitCard unit = GameCards[i] as UnitCard;
+                    UnitCard unit = card as UnitCard;
                     UnitsMeshs[i] = unit.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
                     UnitMaterials[i] = unit.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
-                }   
+                }
             }
         }
+
         //Update the UI info
-        GameMng.UI.InitGameCards(GameCards);
+        GameMng.UI.InitGameCards(PlayerDeck.ToArray());
         Debug.Log("--PLAYER END START--");
     }
 
@@ -185,7 +178,7 @@ public class Player : MonoBehaviour
         for (int i = 0; i<8; i++)
         {
             if (Input.GetKeyDown(Keys[i]))
-                DeplyUnit(GameCards[i]);
+                DeplyUnit(PlayerDeck[i]);
         }
         //Add energy over time
         AddEnergy(Time.deltaTime * SpeedEnergy);
@@ -215,23 +208,23 @@ public class Player : MonoBehaviour
         }
 
         //If the card is already selected, deselect the card
-        if (SelectedCard == GameCards[idu])
+        if (SelectedCard == idu)
         {
-            SelectedCard = null;
+            SelectedCard = -1;
             GameMng.UI.DeselectCards();
             UnitDrag.gameObject.SetActive(false);
         } else //Ii the card is not selected, select the card
         {
-            SelectedCard = GameCards[idu];
+            SelectedCard = idu;
             GameMng.UI.SelectCard(idu);
             //Show the preview of the card on the cursor
-            if ((NFTClass)SelectedCard.GetData().EntType == NFTClass.Skill)
+            if ((NFTClass)PlayerDeck[idu].EntType == NFTClass.Skill)
             {
-                PrepareDeploy(SpellPreviews[idu], SelectedCard.GetData().EnergyCost);
+                PrepareDeploy(SpellPreviews[idu], PlayerDeck[idu].EnergyCost);
             }
             else
             {
-                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], SelectedCard.GetData().EnergyCost);
+                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], PlayerDeck[idu].EnergyCost);
             }
         }
     }
@@ -246,23 +239,22 @@ public class Player : MonoBehaviour
         }
 
         //set the dragin card
-        DragingCard = GameCards[idu];
+        DragingCard = idu;
         //If the player has a selected card and is not this card, deselect the card
-        if (SelectedCard != null && SelectedCard != DragingCard)
+        if (SelectedCard != -1 && SelectedCard != DragingCard)
         {
-            SelectedCard = null;
+            SelectedCard = -1;
             GameMng.UI.DeselectCards();
         }
 
         //Show the preview of the card on the cursor
-        if ((NFTClass)DragingCard.GetData().EntType == NFTClass.Skill)
+        if ((NFTClass)PlayerDeck[idu].EntType == NFTClass.Skill)
         {
-            PrepareDeploy(SpellPreviews[idu], DragingCard.GetData().EnergyCost);
+            PrepareDeploy(SpellPreviews[idu], PlayerDeck[idu].EnergyCost);
         }
         {
-            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], DragingCard.GetData().EnergyCost);
+            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], PlayerDeck[idu].EnergyCost);
         }
-        
     }
 
     //Drop the dragin card
@@ -276,15 +268,15 @@ public class Player : MonoBehaviour
 
         //Check if the player is dragin a card or if he has a selected card
         //Also check if the dragin card is on a valid spawn area
-        if (UnitDrag.IsValid() && (DragingCard != null || SelectedCard != null))
+        if (UnitDrag.IsValid() && (DragingCard != -1 || SelectedCard != -1))
         {
             //Deply the unit
-            DeplyUnit(DragingCard == null ? SelectedCard : DragingCard);
+            DeplyUnit(DragingCard == -1 ? PlayerDeck[SelectedCard] : PlayerDeck[DragingCard]);
         }
         //Clear the selection and the dragin object controller
         UnitDrag.gameObject.SetActive(false);
-        DragingCard = null;
-        SelectedCard = null;
+        DragingCard = -1;
+        SelectedCard = -1;
         GameMng.UI.DeselectCards();
     }
 
@@ -295,7 +287,7 @@ public class Player : MonoBehaviour
         if (!InControl)
         {
             UnitDrag.gameObject.SetActive(false);
-            DragingCard = null;
+            DragingCard = -1;
         }
     }
     //Set if the player can generates energy
@@ -331,7 +323,7 @@ public class Player : MonoBehaviour
     //Returns if the player is dragin or selecting a card
     public bool IsPreparingDeploy()
     {
-        return DragingCard != null || SelectedCard != null;
+        return DragingCard != -1 || SelectedCard != -1;
     }
     //Shows the dragin card whit the specific mesh and material
     public void PrepareDeploy(Mesh mesh, Material mat, float cost)
@@ -352,13 +344,13 @@ public class Player : MonoBehaviour
         UnitDrag.TargetCost = cost;
     }
     //Deploy a spell or unit
-    public void DeplyUnit(GameCard unitcard)
+    public void DeplyUnit(NFTsCard nftcard)
     {
         //Check the card cost and current plkayer´s energy
-        if (unitcard.GetData().EnergyCost <= CurrentEnergy)
+        if (nftcard.EnergyCost <= CurrentEnergy)
         {
             //Check if the card is a SHIP OR STATION
-            if (unitcard as UnitCard != null)
+            if ((NFTClass)nftcard.EntType != NFTClass.Skill)
             {
                 //If im am the client, send a request to deploy
                 if (ImFake())
@@ -367,7 +359,7 @@ public class Player : MonoBehaviour
                     NetUnitPack unitdata = new NetUnitPack()
                     {
                         id = GameMng.GM.GenerateUnitRequestId(),
-                        key = unitcard.NftsKey,
+                        key = nftcard.KeyId,
                         pos_x = position.x,
                         pos_z = position.z,
                         is_spell = false
@@ -375,14 +367,14 @@ public class Player : MonoBehaviour
                     GameMng.GM.RequestUnit(unitdata);
                 } else //Im not the client, so is a commun deply
                 {
-                    Unit unit = GameMng.GM.CreateUnit(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
+                    Unit unit = GameMng.GM.CreateUnit(DeckUnits[nftcard.KeyId], CMath.GetMouseWorldPos(), MyTeam, nftcard.KeyId);
                     if (MyCharacter != null)
                     {
                         MyCharacter.DeployUnit(unit);
                     }
                 }
                 //Reduce the energy
-                RestEnergy(unitcard.GetData().EnergyCost);
+                RestEnergy(nftcard.EnergyCost);
                 GameMng.MT.AddDeploys(1);
             } else //THE CARD IS A SPELL
             {
@@ -393,7 +385,7 @@ public class Player : MonoBehaviour
                     NetUnitPack unitdata = new NetUnitPack()
                     {
                         id = GameMng.GM.GenerateUnitRequestId(),
-                        key = unitcard.NftsKey,
+                        key = nftcard.KeyId,
                         pos_x = position.x,
                         pos_z = position.z,
                         is_spell = true
@@ -402,14 +394,14 @@ public class Player : MonoBehaviour
                 }
                 else //Im not the client, so is a commun deply
                 {
-                    Spell spell = GameMng.GM.CreateSpell(unitcard.gameObject, CMath.GetMouseWorldPos(), MyTeam, unitcard.NftsKey);
+                    Spell spell = GameMng.GM.CreateSpell(DeckUnits[nftcard.KeyId], CMath.GetMouseWorldPos(), MyTeam, nftcard.KeyId);
                     if (MyCharacter != null)
                     {
                         MyCharacter.DeploySpell(spell);
                     }
                 }
                 //Reduce the energy
-                RestEnergy(unitcard.GetData().EnergyCost);
+                RestEnergy(nftcard.EnergyCost);
             }
         }
     }
