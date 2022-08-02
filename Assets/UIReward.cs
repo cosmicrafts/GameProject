@@ -30,7 +30,7 @@ public class UIReward : MonoBehaviour
     [SerializeField] private GameObject ButtonOpenAll;
     [SerializeField] private GameObject ButtonNext;
 
-    public List<NFTsCard> Cards;
+    public List<NFTsUnit> Cards;
     
     
     public void ClaimNFT(int index)
@@ -82,6 +82,7 @@ public class UIReward : MonoBehaviour
     {
         Debug.Log("Recibí: " + jsonData);
         Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(jsonData));
+        Debug.Log("Cards List Lenght: " + Cards.Count);
         if (Cards.Count == 1)
         {
             StartCoroutine(LoadNFTsIcons());
@@ -101,7 +102,7 @@ public class UIReward : MonoBehaviour
     {
         Debug.Log("Entre a la coroutine: LoadNFTsIcons");
         
-        foreach (NFTsCard card in Cards)
+        foreach (NFTsUnit card in Cards)
         {
             textsNFT[card.ID].text = card.Name;
             textShowReward.text = card.Name;
@@ -126,7 +127,7 @@ public class UIReward : MonoBehaviour
     {
         Debug.Log("Entre a la coroutine: LoadAllNFTsIcons");
         
-        foreach (NFTsCard card in Cards)
+        foreach (NFTsUnit card in Cards)
         {
             textsNFT[card.ID].text = card.Name;
             NFTName.text = card.Name;
