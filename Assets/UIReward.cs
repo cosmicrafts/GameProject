@@ -30,8 +30,7 @@ public class UIReward : MonoBehaviour
     [SerializeField] private GameObject ButtonOpenAll;
     [SerializeField] private GameObject ButtonNext;
 
-    public List<NFTsUnit> Cards;
-    
+    private List<NFTsUnit> Cards = new List<NFTsUnit>();
     
     public void ClaimNFT(int index)
     {
