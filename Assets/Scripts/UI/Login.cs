@@ -26,6 +26,9 @@ public class Login : MonoBehaviour
     GameObject UIReward;
     
     [SerializeField]
+    GameObject ClosedBetaScreen;
+    
+    [SerializeField]
     private Animator anim;
 
     // Start is called before the first frame update
@@ -86,6 +89,14 @@ public class Login : MonoBehaviour
  
     public void OnNameData(int usser)//esta es de PK
     {
+        if (usser == 3)
+        {
+            LoadingPanel.instance.DesactiveLoadingPanel();
+            LoginPanel.SetActive(false);
+            namePanel.SetActive(false);
+            UIReward.SetActive(false);
+            ClosedBetaScreen.SetActive(true);
+        }
         if (usser == 2)
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
