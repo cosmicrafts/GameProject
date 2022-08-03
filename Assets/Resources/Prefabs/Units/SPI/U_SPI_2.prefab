@@ -865,6 +865,9 @@ GameObject:
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
+  - component: {fileID: 60060717667023962}
+  - component: {fileID: 5432077308180012408}
+  - component: {fileID: 4481142166185967018}
   m_Layer: 0
   m_Name: U_SPI_2
   m_TagString: Unit
@@ -922,7 +925,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Alias: Crab
-  DefaultCost: 3
   UnitMesh: {fileID: 107074499755384209}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
@@ -987,9 +989,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 16
+  RangeDetector: 17
   CoolDown: 3
-  BulletSpeed: 28
+  BulletSpeed: 48
   BulletDamage: 28
   RotateToEnemy: 1
   StopToAttack: 1
@@ -1010,8 +1012,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.4
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+  m_Radius: 1.17
+  m_Center: {x: 0.1, y: -0.22542599, z: 0}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,6 +1046,45 @@ MonoBehaviour:
   MinimumVisibility: 0.5
   LineOfSightUpdateMode: 0
   CheckLineOfSightInterval: 1
+--- !u!135 &60060717667023962
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.37
+  m_Center: {x: 0, y: 0, z: -1.24}
+--- !u!135 &5432077308180012408
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.26
+  m_Center: {x: -1.52, y: -0.42, z: 0}
+--- !u!135 &4481142166185967018
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.24
+  m_Center: {x: 1.54, y: -0.37, z: 0}
 --- !u!1 &3721508634898023609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1388,17 +1429,22 @@ PrefabInstance:
     - target: {fileID: 616634728895702853, guid: b7fba5049f2f1d14abd03200aabeec5b,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.75251
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 616634728895702853, guid: b7fba5049f2f1d14abd03200aabeec5b,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75251
+      value: 0.55
       objectReference: {fileID: 0}
     - target: {fileID: 616634728895702853, guid: b7fba5049f2f1d14abd03200aabeec5b,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75251
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 616634728895702853, guid: b7fba5049f2f1d14abd03200aabeec5b,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b7fba5049f2f1d14abd03200aabeec5b,
         type: 3}
@@ -1594,7 +1640,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.38
+  m_Radius: 0.81
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &4998824768398995776
 Animator:

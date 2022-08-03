@@ -29106,8 +29106,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2198226033516823794}
   m_LocalRotation: {x: 0.008726558, y: 0, z: 0, w: 0.999962}
-  m_LocalPosition: {x: 0, y: -1.4192e-11, z: -0.0023229}
-  m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2198226034328220055}
@@ -29212,8 +29212,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 1, b: 1, a: 0.5686275}
-    dilateShift: 0.25
-    blurShift: 0.25
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
@@ -29389,11 +29389,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 16
-  CoolDown: 1
-  BulletSpeed: 36
-  BulletDamage: 2
-  RotateToEnemy: 0
+  RangeDetector: 21
+  CoolDown: 2
+  BulletSpeed: 48
+  BulletDamage: 42
+  RotateToEnemy: 1
   StopToAttack: 0
   Bullet: {fileID: 4495777382389081428, guid: 4de323bf08d5b8d43875a0c5ade678ec, type: 3}
   colorBullet: {r: 0.6, g: 0.877779, b: 1, a: 0.5254902}
@@ -58109,6 +58109,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2198226034328220055}
     m_Modifications:
+    - target: {fileID: 39843893554630084, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 39843893554630084, guid: 9462dc2e370c96046bb8c0bf799feb25,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1118737077805065158, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_Layer
@@ -58367,7 +58377,7 @@ PrefabInstance:
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.0125
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
@@ -58412,7 +58422,7 @@ PrefabInstance:
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 4.43
+      value: 5.23
       objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}

@@ -897,6 +897,8 @@ GameObject:
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
+  - component: {fileID: 3230148856931808260}
+  - component: {fileID: 5624967472717448487}
   m_Layer: 0
   m_Name: U_SPI_7
   m_TagString: Unit
@@ -954,7 +956,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Alias: Corsair
-  DefaultCost: 3
   UnitMesh: {fileID: 4018455307917411741}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
@@ -1021,7 +1022,7 @@ MonoBehaviour:
   CanAttack: 1
   RangeDetector: 20
   CoolDown: 0.75
-  BulletSpeed: 60
+  BulletSpeed: 48
   BulletDamage: 20
   RotateToEnemy: 1
   StopToAttack: 1
@@ -1042,7 +1043,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.18
+  m_Radius: 2.63
   m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
@@ -1076,6 +1077,32 @@ MonoBehaviour:
   MinimumVisibility: 0.5
   LineOfSightUpdateMode: 0
   CheckLineOfSightInterval: 1
+--- !u!135 &3230148856931808260
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.58
+  m_Center: {x: 0, y: 0, z: 2.48}
+--- !u!135 &5624967472717448487
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.26
+  m_Center: {x: 0, y: 0, z: -2.22}
 --- !u!1 &3721508634898023609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,8 +1857,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.52
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1.16
+  m_Center: {x: 0, y: -0.35, z: 0}
 --- !u!95 &3092728065574355287
 Animator:
   serializedVersion: 4

@@ -865,6 +865,8 @@ GameObject:
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
+  - component: {fileID: 6853728661481435931}
+  - component: {fileID: 8281412919632703703}
   m_Layer: 0
   m_Name: U_SPI_8
   m_TagString: Unit
@@ -922,7 +924,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Alias: Victoria
-  DefaultCost: 3
   UnitMesh: {fileID: 774058248791893753}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
@@ -989,7 +990,7 @@ MonoBehaviour:
   CanAttack: 1
   RangeDetector: 8
   CoolDown: 1
-  BulletSpeed: 40
+  BulletSpeed: 48
   BulletDamage: 60
   RotateToEnemy: 1
   StopToAttack: 1
@@ -1011,8 +1012,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.7
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 2.85}
+  m_Radius: 1.23
+  m_Center: {x: -0.0000014901161, y: 0.45, z: 1.66}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1045,6 +1046,32 @@ MonoBehaviour:
   MinimumVisibility: 0.5
   LineOfSightUpdateMode: 0
   CheckLineOfSightInterval: 1
+--- !u!135 &6853728661481435931
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.77
+  m_Center: {x: 0, y: 0.24, z: -0.18}
+--- !u!135 &8281412919632703703
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.59
+  m_Center: {x: 0, y: 0, z: -1.68}
 --- !u!1 &3721508634898023609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1643,6 +1670,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -4.4822073
       objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8659112
+      objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.4652852
+      objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.72
+      objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -514441958570634656, guid: 87568ac9725c78a4b9aaeee81e236c43,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -375284089100875003, guid: 87568ac9725c78a4b9aaeee81e236c43,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2029,8 +2091,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.39
-  m_Center: {x: 0, y: 0, z: -1.83}
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0.52, z: 0}
 --- !u!95 &5248375059840912596
 Animator:
   serializedVersion: 4

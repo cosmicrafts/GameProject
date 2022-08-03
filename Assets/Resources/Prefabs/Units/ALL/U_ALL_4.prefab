@@ -833,6 +833,8 @@ GameObject:
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
+  - component: {fileID: 5259437994137081315}
+  - component: {fileID: 4407161706331642914}
   m_Layer: 0
   m_Name: U_ALL_4
   m_TagString: Unit
@@ -890,7 +892,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Alias: Farragut
-  DefaultCost: 3
   UnitMesh: {fileID: 2891123842126144130}
 --- !u!114 &2198226034328220053
 MonoBehaviour:
@@ -955,10 +956,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 16
+  RangeDetector: 14
   CoolDown: 0.35
   BulletSpeed: 35
-  BulletDamage: 1
+  BulletDamage: 4
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 018f51d6b29273a42aaf9813b69addff, type: 3}
@@ -978,8 +979,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.31
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 3.64}
+  m_Radius: 2.04
+  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 4.31}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1012,6 +1013,32 @@ MonoBehaviour:
   MinimumVisibility: 0.5
   LineOfSightUpdateMode: 0
   CheckLineOfSightInterval: 1
+--- !u!135 &5259437994137081315
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3.31
+  m_Center: {x: 0, y: 0, z: -1.43}
+--- !u!135 &4407161706331642914
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.84
+  m_Center: {x: 0, y: 0, z: 0.78}
 --- !u!1 &3720653364773229552
 GameObject:
   m_ObjectHideFlags: 0
@@ -1446,8 +1473,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.94
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 0}
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &3620083743056970581
 Animator:
   serializedVersion: 4
