@@ -16,7 +16,8 @@ public class UIReward : MonoBehaviour
     [SerializeField] TMP_Text[] textsNFT;
     
     [SerializeField] Image imageShowReward;
-    [SerializeField] TMP_Text textShowReward;
+    [SerializeField] TMP_Text textNameReward;
+    [SerializeField] TMP_Text textTypeReward;
     [SerializeField] private GameObject UIShowReward;
     
     [Header("Multiple Rewards")]
@@ -104,7 +105,17 @@ public class UIReward : MonoBehaviour
         foreach (NFTsUnit card in Cards)
         {
             textsNFT[card.ID].text = card.Name;
-            textShowReward.text = card.Name;
+            textNameReward.text = card.Name;
+
+            Debug.Log(card.EntType);
+            if (card.EntType == 0)
+            {
+                textTypeReward.text = "YOU RECEIVED A HERO!";
+            }
+            else
+            {
+                textTypeReward.text = "YOU RECEIVED A SPACESHIP!";
+            }
             
             if (!string.IsNullOrEmpty(card.IconURL))
             {
