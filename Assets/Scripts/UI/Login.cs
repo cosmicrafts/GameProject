@@ -135,22 +135,27 @@ public class Login : MonoBehaviour
             GameNetwork.JSLoginPanel(playerName);
             LoadingPanel.instance.ActiveLoadingPanel();
         }
-
     }
 
     public void StoickLogin()
     {
-       
         GameNetwork.JSWalletsLogin("stoicWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
-
     }
     public void IdentityLogin()
     {
-      
         GameNetwork.JSWalletsLogin("identityWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
-
+    }
+    public void InfinityLogin()
+    {
+        GameNetwork.JSWalletsLogin("infinityWallet");
+        LoadingPanel.instance.ActiveLoadingPanel();
+    }
+    public void PlugLogin()
+    {
+        GameNetwork.JSWalletsLogin("plugWallet");
+        LoadingPanel.instance.ActiveLoadingPanel();
     }
 
 }
