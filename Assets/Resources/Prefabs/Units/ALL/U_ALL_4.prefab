@@ -831,7 +831,6 @@ GameObject:
   - component: {fileID: -6724743235806362969}
   - component: {fileID: 2198226034328220053}
   - component: {fileID: 2198226034328220054}
-  - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
   - component: {fileID: 5259437994137081315}
   - component: {fileID: 4407161706331642914}
@@ -916,12 +915,12 @@ MonoBehaviour:
   haveShieldON: 0
   Mesh: {fileID: 2891123842126144130}
   SA: {fileID: 6013082472663296582}
-  Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
+  Explosion: {fileID: 169654, guid: 1dadf691cda82fa44a8a66d7dd374612, type: 3}
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 5723470098889568423}
   MyAnim: {fileID: 3620083743056970581}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 0.5
+  Aceleration: 2
   MaxSpeed: 4
   DragSpeed: 0.4
   TurnSpeed: 80
@@ -957,8 +956,8 @@ MonoBehaviour:
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
   RangeDetector: 14
-  CoolDown: 0.35
-  BulletSpeed: 35
+  CoolDown: 0.45
+  BulletSpeed: 48
   BulletDamage: 4
   RotateToEnemy: 1
   StopToAttack: 1
@@ -968,19 +967,6 @@ MonoBehaviour:
   colorShield: {r: 1, g: 1, b: 1, a: 0.5}
   Cannons:
   - {fileID: 1596714898762059449}
---- !u!135 &2198226034328220042
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2198226034328220048}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.04
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: 4.31}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1473,8 +1459,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 0.75}
 --- !u!95 &3620083743056970581
 Animator:
   serializedVersion: 4
@@ -1531,8 +1517,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []

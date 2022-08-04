@@ -882,12 +882,12 @@ MonoBehaviour:
   haveShieldON: 0
   Mesh: {fileID: 6245011729380265433}
   SA: {fileID: 3966040614498046297}
-  Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
+  Explosion: {fileID: 169654, guid: 1dadf691cda82fa44a8a66d7dd374612, type: 3}
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 8725141663424671622}
   MyAnim: {fileID: 6364282005187429036}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 1.2
+  Aceleration: 2
   MaxSpeed: 0.5
   DragSpeed: 0.4
   TurnSpeed: 80
@@ -923,8 +923,8 @@ MonoBehaviour:
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
   RangeDetector: 26
-  CoolDown: 1
-  BulletSpeed: 24
+  CoolDown: 1.5
+  BulletSpeed: 48
   BulletDamage: 3
   RotateToEnemy: 1
   StopToAttack: 1
@@ -2519,7 +2519,7 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 1, b: 1, a: 1}
-    dilateShift: 0.08
+    dilateShift: 0.1
     blurShift: 0.12
     fillPass:
       shader: {fileID: 0}

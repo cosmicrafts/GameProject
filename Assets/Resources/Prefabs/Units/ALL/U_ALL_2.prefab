@@ -914,12 +914,12 @@ MonoBehaviour:
   haveShieldON: 0
   Mesh: {fileID: 4417847630654236196}
   SA: {fileID: 2346837485352191278}
-  Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
+  Explosion: {fileID: 169654, guid: 1dadf691cda82fa44a8a66d7dd374612, type: 3}
   Portal: {fileID: 3721508634898023609}
   UI: {fileID: 6082675785424991625}
   MyAnim: {fileID: 7499615648972473266}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 0.5
+  Aceleration: 2
   MaxSpeed: 0.5
   DragSpeed: 0.4
   TurnSpeed: 80
@@ -953,9 +953,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 16
-  CoolDown: 0.25
-  BulletSpeed: 45
+  RangeDetector: 22
+  CoolDown: 1.15
+  BulletSpeed: 48
   BulletDamage: 4
   RotateToEnemy: 1
   StopToAttack: 1
@@ -2265,7 +2265,7 @@ MonoBehaviour:
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
+  - IsVisible: 0
     CutoutMask: 8
     edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
@@ -2285,8 +2285,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 1, b: 1, a: 1}
-    dilateShift: 0.25
-    blurShift: 0.25
+    dilateShift: 0.1
+    blurShift: 0.1
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
