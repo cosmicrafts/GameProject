@@ -68,7 +68,7 @@ public class Unit : MonoBehaviour
     [HideInInspector]
     public bool IsInmortal = false;
     [HideInInspector]
-    public bool haveShieldON;
+    public bool flagShield = false;
     //This unit is disabled (can´t do anything)
     [HideInInspector]
     protected bool Disabled = false;
@@ -94,6 +94,8 @@ public class Unit : MonoBehaviour
     public GameObject Explosion;
     //Portal game object reference (Used when the unit is casting)
     public GameObject Portal;
+    //Shield game object reference (Used when the unit is impact)
+    public GameObject ShieldGameObject;
     //The unit UI reference code
     public UIUnit UI;
     //The outline shader effect reference
@@ -536,10 +538,18 @@ public class Unit : MonoBehaviour
     {
         return (!Disabled && Casting <= 0f && !IsFake);
     }
-    public IEnumerator ActiveShield()
+
+    public void OnImpactShield(int dmg)
     {
-        haveShieldON = false;
-        yield return new WaitForSeconds(1.5f);
-        haveShieldON = true;
+        ShieldGameObject.SetActive(true);
+        AddDmg(dmg);
+        StopAllCoroutines();
+        StartCoroutine(DesactiveShield());
+        
+    }
+    public IEnumerator DesactiveShield()
+    {
+        yield return new WaitForSeconds(1f);
+        ShieldGameObject.SetActive(false);
     }
 }
