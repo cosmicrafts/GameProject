@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.InputSystem;
+using UnityEngine.InputSystem;
 
 // This script acts as a single point for all other scripts to get
 // the current input from. It uses Unity's new Input System and
 // functions should be mapped to their corresponding controls
 // using a PlayerInput component with Unity Events.
 
-//[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(PlayerInput))]
 public class InputManager : MonoBehaviour
 {
     private Vector2 moveDirection = Vector2.zero;
@@ -32,53 +32,53 @@ public class InputManager : MonoBehaviour
         return instance;
     }
 
-    //public void MovePressed(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        moveDirection = context.ReadValue<Vector2>();
-    //    }
-    //    else if (context.canceled)
-    //    {
-    //        moveDirection = context.ReadValue<Vector2>();
-    //    } 
-    //}
+    public void MovePressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            moveDirection = context.ReadValue<Vector2>();
+        }
+        else if (context.canceled)
+        {
+            moveDirection = context.ReadValue<Vector2>();
+        } 
+    }
 
-    //public void JumpPressed(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        jumpPressed = true;
-    //    }
-    //    else if (context.canceled)
-    //    {
-    //        jumpPressed = false;
-    //    }
-    //}
+    public void JumpPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            jumpPressed = true;
+        }
+        else if (context.canceled)
+        {
+            jumpPressed = false;
+        }
+    }
 
-    //public void InteractButtonPressed(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        interactPressed = true;
-    //    }
-    //    else if (context.canceled)
-    //    {
-    //        interactPressed = false;
-    //    } 
-    //}
+    public void InteractButtonPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            interactPressed = true;
+        }
+        else if (context.canceled)
+        {
+            interactPressed = false;
+        } 
+    }
 
-    //public void SubmitPressed(InputAction.CallbackContext context)
-    //{
-    //    if (context.performed)
-    //    {
-    //        submitPressed = true;
-    //    }
-    //    else if (context.canceled)
-    //    {
-    //        submitPressed = false;
-    //    } 
-    //}
+    public void SubmitPressed(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            submitPressed = true;
+        }
+        else if (context.canceled)
+        {
+            submitPressed = false;
+        } 
+    }
 
     public Vector2 GetMoveDirection() 
     {

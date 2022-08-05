@@ -60,10 +60,12 @@ public class DialogueManager : MonoBehaviour
         //Language lenguaje = GlobalManager.GMD.GetGameLanguage(); // obtener lenguaje, 
         //GlobalManager.GMD.GetGameLanguage(Language.Spanish);
         //UIMainMenu.ChangeLang(1);
-        GlobalManager.GMD.ChangeLang((Language)0);  /// asignar lenguaje 0=ingle, 1=español
+
+        //GlobalManager.GMD.ChangeLang((Language)1);  /// asignar lenguaje 0=ingle, 1=español
 
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+        //Debug.Log(GlobalManager.GMD.GetGameLanguage());
 
         // get the layout animator
         layoutAnimator = dialoguePanel.GetComponent<Animator>();
@@ -89,7 +91,8 @@ public class DialogueManager : MonoBehaviour
                 //DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
 
                 /// obtiene el lenguaje de archivo inkJSON del array asignado.  0-ingles; 1-español
-                DialogueManager.GetInstance().EnterDialogueMode(inkJSON[(int)GlobalManager.GMD.GetGameLanguage()]);
+                //DialogueManager.GetInstance().EnterDialogueMode(inkJSON[(int)GlobalManager.GMD.GetGameLanguage()]);
+                DialogueManager.GetInstance().EnterDialogueMode(inkJSON[0]);
                 /**
                 if(GlobalManager.GMD.GetGameLanguage() == Language.English)
                 {
