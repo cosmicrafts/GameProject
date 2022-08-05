@@ -6,18 +6,25 @@ using System.Linq;
 */
 public class UserCollection
 {
+    //The user collection is ready to use
     bool DeckReady;
 
+    //All user decks
     public Dictionary<Factions, List<NFTsCard>> Decks;
 
+    //Current selected deck
     public List<NFTsCard> Deck;
 
+    //All user cards collection
     public List<NFTsCard> Cards;
 
+    //All user characters
     public List<NFTsCharacter> Characters;
 
+    //Default character (for testing)
     public NFTsCharacter DefaultCharacter;
 
+    //Init default variables and data structures
     public void InitCollection()
     {
         DeckReady = false;
@@ -31,6 +38,7 @@ public class UserCollection
         DefaultCharacter = new NFTsCharacter()
         {
             ID = 1,
+            Name = "Wengar",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_1"),
             Faction = (int)Factions.Alliance,
             LocalID = 1,
@@ -58,6 +66,7 @@ public class UserCollection
         Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(jsonList));
     }
 
+    //Set decks when the collection data is complete
     public void InitDecks()
     {
         //Check if the decks are already complete
@@ -81,6 +90,7 @@ public class UserCollection
         DeckReady = true;
     }
 
+    //Build a testing collection
     public void AddUnitsAndCharactersDefault()
     {
         //CHARACTERS
@@ -166,6 +176,7 @@ public class UserCollection
         InitDecks();
     }
 
+    //Find a card from key
     public NFTsCard FindCard(string NFTkey)
     {
         return Cards.FirstOrDefault(f => f.KeyId == NFTkey);

@@ -723,7 +723,6 @@ public class GameMng : MonoBehaviour
                         //Create fake unit
                         if (find == null)
                         {
-                            Debug.Log($"--UNIT TO SPAWN: {unit.key}--");
                             if (!string.IsNullOrEmpty(unit.key))
                             {
                                 CreateFakeUnit(unit.key, unit.id, unit.pos_x, unit.pos_z, unit.team, unit.player_id);

@@ -17,7 +17,8 @@ public enum PlayerProperty
     Avatar,
     Score,
     XpProgress,
-    Emblem
+    Emblem,
+    CharacterName
 }
 
 public class UIPTxtInfo : MonoBehaviour
@@ -89,6 +90,13 @@ public class UIPTxtInfo : MonoBehaviour
                     NFTsCharacter nFTsCharacter = GlobalManager.GMD.GetUserCharacter();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = nFTsCharacter.IconSprite;
+                }
+                break;
+            case PlayerProperty.CharacterName:
+                {
+                    NFTsCharacter nFTsCharacter = GlobalManager.GMD.GetUserCharacter();
+                    Text mytext = GetComponent<Text>();
+                    mytext.text = nFTsCharacter.Name;
                 }
                 break;
             case PlayerProperty.Avatar:
