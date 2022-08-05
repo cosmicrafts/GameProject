@@ -77,7 +77,7 @@ MonoBehaviour:
   MyTeam: 0
   Speed: 0
   Dmg: 0
-  Inpact: {fileID: 131410, guid: d5810e0ece7c77f4fbfc76a05006fe1a, type: 3}
+  Inpact: {fileID: 127214, guid: d4287a2e8ade3e34786f23a6ffd63800, type: 3}
   colorImpact: {r: 1, g: 1, b: 1, a: 0.5}
   ShieldInpact: {fileID: 8994491411004452053, guid: a6a405c512eefab4cb21693a2ff0f2d4,
     type: 3}
@@ -93,9 +93,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserSmallMissile
       objectReference: {fileID: 0}
+    - target: {fileID: 440206, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.67927
+      objectReference: {fileID: 0}
     - target: {fileID: 489580, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489580, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 489580, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
       propertyPath: m_LocalPosition.x
@@ -137,6 +145,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 19838880, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838880, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 0.1273585
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838880, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.33059818
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838880, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 19923830, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -148,32 +172,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2802290376639496756, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: f40e0be6468865c4cb614a1a5a4f1cd3, type: 3}
---- !u!1 &4190581016859078142 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 112720, guid: f40e0be6468865c4cb614a1a5a4f1cd3,
-    type: 3}
-  m_PrefabInstance: {fileID: 4190581016859039150}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5234726386640819752
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4190581016859078142}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!4 &4190581016859487682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 489580, guid: f40e0be6468865c4cb614a1a5a4f1cd3,

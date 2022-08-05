@@ -27,13 +27,10 @@ public class BotEnemy : MonoBehaviour
     public readonly Team MyTeam = Team.Red;
 
     //Prefabs Deck units (assign in inspector)
-    public GameObject[] DeckUnits = new GameObject[8];
+    public ShipsDataBase[] DeckUnits = new ShipsDataBase[8];
 
     //IA mode (change in inspector)
     public BotMode Mode = BotMode.Pasive;
-
-    //Cards info
-    List<GameCard> GameCards;
 
     //Current Energy
     [Range(0, 99)]
@@ -52,6 +49,9 @@ public class BotEnemy : MonoBehaviour
 
     //Current own units in the game
     List<Unit> MyUnits;
+
+    //NFTs data
+    Dictionary<ShipsDataBase, NFTsUnit> DeckNfts;
 
     //Bot´s enemy base station
     Unit TargetUnit;
@@ -84,26 +84,24 @@ public class BotEnemy : MonoBehaviour
         if (DeckUnits.Length != 8)
         {
             Debug.LogError("Size of deck must equals 8");
-            DeckUnits = new GameObject[8];
+            return;
         }
 
         //Init Deck Cards info with the units prefabs info
-        GameCards = new List<GameCard>();
-
+        DeckNfts = new Dictionary<ShipsDataBase, NFTsUnit>();
         for (int i = 0; i < DeckUnits.Length; i++)
         {
             if (DeckUnits[i] != null)
             {
-                GameCards.Add(DeckUnits[i].GetComponent<GameCard>());
+                NFTsUnit nFTsCard = DeckUnits[i].ToNFTCard();
+                GameMng.GM.AddNftCardData(nFTsCard, 2);
+                DeckNfts.Add(DeckUnits[i], nFTsCard);
             }
         }
 
-        if (GameCards.Count == 0)
-            return;
-
         //Set the max and min cost of the bot´s deck
-        MaxCostUnit = GameCards.Max(f => f.GetData().EnergyCost);
-        MinCostUnit = GameCards.Min(f => f.GetData().EnergyCost);
+        MaxCostUnit = DeckUnits.Max(f => f.cost);
+        MinCostUnit = DeckUnits.Min(f => f.cost);
 
         //Start IA loop
         StartCoroutine(IA());
@@ -145,9 +143,9 @@ public class BotEnemy : MonoBehaviour
                 break;
             }
             //Select first unit has default to spawn
-            GameCard SelectedUnit = GameCards[0];
+            ShipsDataBase SelectedUnit = DeckUnits[0];
             //Mix game cards
-            GameCards.OrderBy(r => rng.Next());
+            DeckUnits.OrderBy(r => rng.Next());
             //Select a unit depending the ia mode and current energy
             switch (Mode)
             {
@@ -157,20 +155,20 @@ public class BotEnemy : MonoBehaviour
                         {
                             continue;
                         }
-                        SelectedUnit = GameCards.FirstOrDefault(f => f.GetData().EnergyCost <= MaxCostUnit);
+                        SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MaxCostUnit);
                     }
                     break;
                 case BotMode.Pasive: //Select the cheapest card
                     {
-                        SelectedUnit = GameCards.FirstOrDefault(f => f.GetData().EnergyCost <= MinCostUnit);
+                        SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MinCostUnit);
                     }
                     break;
                 default: //Select a random card
                     {
                         for(int i=0; i<10; i++)
                         {
-                            SelectedUnit = GameCards[Random.Range(0, GameCards.Count)];
-                            if (SelectedUnit.GetData().EnergyCost <= CurrentEnergy)
+                            SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                            if (SelectedUnit.cost <= CurrentEnergy)
                             {
                                 break;
                             }
@@ -180,13 +178,13 @@ public class BotEnemy : MonoBehaviour
             }
 
             //Check if the bot have enough energy
-            if (SelectedUnit.GetData().EnergyCost <= CurrentEnergy)
+            if (SelectedUnit.cost <= CurrentEnergy)
             {
                 //Select a random position (check the childs game objects of the bot)
                 Vector3 PositionSpawn = transform.GetChild(Random.Range(0, transform.childCount)).position;
                 //Spawn selected unit and rest energy
-                Unit unit = GameMng.GM.CreateUnit(SelectedUnit.gameObject, PositionSpawn, MyTeam, SelectedUnit.NftsKey);
-                CurrentEnergy -= SelectedUnit.GetData().EnergyCost;
+                Unit unit = GameMng.GM.CreateUnit(SelectedUnit.prefab, PositionSpawn, MyTeam, DeckNfts[SelectedUnit].KeyId, 2);
+                CurrentEnergy -= SelectedUnit.cost;
             }
         }
     }

@@ -154,11 +154,6 @@ public class GameMng : MonoBehaviour
     void Start()
     {
         Debug.Log("--GAME MANAGER START--");
-        //Set the IDs of the base stations
-        for (int i = 0; i < Targets.Length; i++)
-        {
-            Targets[i].setId(GenerateUnitId());
-        }
         //Set the time count down (5 minutes) and when the game begins
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -183,8 +178,6 @@ public class GameMng : MonoBehaviour
                     //Instantiate the game tutorial obj
                     GameObject gt = ResourcesServices.LoadTutorial();
                     GT = Instantiate(gt).GetComponent<GameTutorial>();
-                    //Set a specific deck to the player (from game tutorial controller)
-                    P.DeckUnits = GT.DeckUnits;
                     //Stop the time count down
                     RunTime = false;
                     UI.UpdateTimeOut("--");
@@ -192,8 +185,6 @@ public class GameMng : MonoBehaviour
                 break;
             case Match.multi: //MULTIPLAYER
                 {
-                    //Start the sync loop of multiplayer
-                    StartCoroutine(LoopGameNetAsync());
                     //IF IM THE MASTER...
                     if (GlobalManager.GMD.ImMaster)
                     {
@@ -232,6 +223,8 @@ public class GameMng : MonoBehaviour
                         GameNetwork.SetGameStart(DateTime.Now);
                         GameNetwork.SetGameStatus(NetGameStep.InGame);
                         SyncNetData();
+                        //Start the sync loop of multiplayer
+                        StartCoroutine(LoopGameNetAsync());
                     } else //IF IM THE CLIENT
                     {
                         //Set the delta time async (5 sec)
@@ -416,6 +409,11 @@ public class GameMng : MonoBehaviour
         //Set variables for enemy´s base station
         Targets[0].PlayerId = 2;
         Targets[0].MyTeam = Team.Red;
+        //Set the IDs of the base stations
+        for (int i = 0; i < Targets.Length; i++)
+        {
+            Targets[i].setId(GenerateUnitId());
+        }
         //Game is ready to start
         InitRedy = true;
     }
@@ -427,7 +425,7 @@ public class GameMng : MonoBehaviour
         unit.MyTeam = team;
         unit.PlayerId = playerId == -1 ? P.ID : playerId;
         unit.setId(GenerateUnitId());
-        unit.SetNfts(GetNftCardData(nftKey, playerId) as NFTsUnit);
+        unit.SetNfts(GetNftCardData(nftKey, unit.PlayerId) as NFTsUnit);
         return unit;
     }
     
@@ -462,7 +460,7 @@ public class GameMng : MonoBehaviour
         spell.MyTeam = team;
         spell.PlayerId = playerId == -1 ? P.ID : playerId;
         spell.setId(GenerateUnitId());
-        spell.SetNfts(GetNftCardData(nftKey, playerId) as NFTsSpell);
+        spell.SetNfts(GetNftCardData(nftKey, spell.PlayerId) as NFTsSpell);
         return spell;
     }
     
@@ -575,7 +573,6 @@ public class GameMng : MonoBehaviour
         while (true)
         {
             yield return dnet;//delta time
-
             SyncNetData();//Send game data
         }
     }
@@ -634,7 +631,7 @@ public class GameMng : MonoBehaviour
             catch (Exception e)
             {
                 //In case of error, log the error
-                Debug.LogError(e.Message);
+                Debug.LogError($"CATCH ERROR: {e.Message}");
             }
         } else //Client send data
         {
@@ -699,7 +696,7 @@ public class GameMng : MonoBehaviour
             //Set the start date time of the game
             StartTime = GameNetwork.GetStartTime();
             //Unpack units and spells data
-            List <NetUnitPack> units = GameNetwork.GetGameUnits();
+            List<NetUnitPack> units = GameNetwork.GetGameUnits();
             //Unpack the deleted units and spells
             List<int> deleted = GameNetwork.GetGameUnitsDeleted();
             //Check For Units

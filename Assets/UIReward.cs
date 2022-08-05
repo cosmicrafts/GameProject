@@ -16,7 +16,8 @@ public class UIReward : MonoBehaviour
     [SerializeField] TMP_Text[] textsNFT;
     
     [SerializeField] Image imageShowReward;
-    [SerializeField] TMP_Text textShowReward;
+    [SerializeField] TMP_Text textNameReward;
+    [SerializeField] TMP_Text textTypeReward;
     [SerializeField] private GameObject UIShowReward;
     
     [Header("Multiple Rewards")]
@@ -30,8 +31,7 @@ public class UIReward : MonoBehaviour
     [SerializeField] private GameObject ButtonOpenAll;
     [SerializeField] private GameObject ButtonNext;
 
-    public List<NFTsCard> Cards;
-    
+    private List<NFTsUnit> Cards = new List<NFTsUnit>();
     
     public void ClaimNFT(int index)
     {
@@ -82,6 +82,7 @@ public class UIReward : MonoBehaviour
     {
         Debug.Log("Recibí: " + jsonData);
         Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(jsonData));
+        Debug.Log("Cards List Lenght: " + Cards.Count);
         if (Cards.Count == 1)
         {
             StartCoroutine(LoadNFTsIcons());
@@ -101,10 +102,20 @@ public class UIReward : MonoBehaviour
     {
         Debug.Log("Entre a la coroutine: LoadNFTsIcons");
         
-        foreach (NFTsCard card in Cards)
+        foreach (NFTsUnit card in Cards)
         {
             textsNFT[card.ID].text = card.Name;
-            textShowReward.text = card.Name;
+            textNameReward.text = card.Name;
+
+            Debug.Log(card.EntType);
+            if (card.EntType == 0)
+            {
+                textTypeReward.text = "YOU RECEIVED A HERO!";
+            }
+            else
+            {
+                textTypeReward.text = "YOU RECEIVED A SPACESHIP!";
+            }
             
             if (!string.IsNullOrEmpty(card.IconURL))
             {
@@ -126,7 +137,7 @@ public class UIReward : MonoBehaviour
     {
         Debug.Log("Entre a la coroutine: LoadAllNFTsIcons");
         
-        foreach (NFTsCard card in Cards)
+        foreach (NFTsUnit card in Cards)
         {
             textsNFT[card.ID].text = card.Name;
             NFTName.text = card.Name;

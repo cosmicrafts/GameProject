@@ -228,7 +228,7 @@ public class Ship : Unit
     {
         base.SetNfts(nFTsUnit);
 
-        if (GlobalManager.GMD.DebugMode || nFTsUnit == null)
+        if (nFTsUnit == null)
             return;
 
         MaxSpeed = nFTsUnit.Speed;
