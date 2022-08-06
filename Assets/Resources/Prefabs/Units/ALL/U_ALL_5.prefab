@@ -947,17 +947,17 @@ MonoBehaviour:
   flagShield: 0
   Mesh: {fileID: 4707001342904907440}
   SA: {fileID: 5159638057777293637}
-  Explosion: {fileID: 169654, guid: 1dadf691cda82fa44a8a66d7dd374612, type: 3}
+  Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
   Portal: {fileID: 3721508634898023609}
   ShieldGameObject: {fileID: 4126989396487821499}
   UI: {fileID: 5920258602757578950}
   MyAnim: {fileID: 7549582170885853272}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 2
-  MaxSpeed: 5
-  DragSpeed: 0.4
-  TurnSpeed: 80
-  StopSpeed: 72.5
+  Aceleration: 50
+  MaxSpeed: 1
+  DragSpeed: 0.25
+  TurnSpeed: 0.75
+  StopSpeed: 65
   StoppingDistance: 0.1
   AvoidanceRange: 0.1
   AvoidanceSensors:
@@ -987,10 +987,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 18
+  RangeDetector: 20
   CoolDown: 0.65
   BulletSpeed: 48
-  BulletDamage: 8
+  BulletDamage: 1
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: a6ea5e7b5eba35c40b6bf0e740c51d4e, type: 3}
@@ -1011,7 +1011,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.06
+  m_Radius: 1.84
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
@@ -1926,6 +1926,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mesh_Devastator
       objectReference: {fileID: 0}
+    - target: {fileID: 2010166614087432968, guid: 96916f23fa1f53943adebe291cfcb86e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010166614087432968, guid: 96916f23fa1f53943adebe291cfcb86e,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010166614087432968, guid: 96916f23fa1f53943adebe291cfcb86e,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010166614087432968, guid: 96916f23fa1f53943adebe291cfcb86e,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96916f23fa1f53943adebe291cfcb86e, type: 3}
 --- !u!4 &47165721760520341 stripped
@@ -1981,7 +2001,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 2.15
   m_Center: {x: 0, y: -0.2025426, z: 0}
 --- !u!95 &7549582170885853272
 Animator:
