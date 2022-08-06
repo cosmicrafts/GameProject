@@ -169,8 +169,11 @@ public class GameMng : MonoBehaviour
             case Match.bots: //VS IA
                 {
                     //Instantiate BOT prefab
-                    GameObject bot = ResourcesServices.LoadBot();
-                    BOT = Instantiate(bot).GetComponent<BotEnemy>();
+                    if (FindObjectOfType<BotEnemy>() == null)
+                    {
+                        GameObject bot = ResourcesServices.LoadBot();
+                        BOT = Instantiate(bot).GetComponent<BotEnemy>();
+                    }
                 }
                 break;
             case Match.tutorial: //TUTORIAL
