@@ -924,10 +924,10 @@ MonoBehaviour:
   Aceleration: 50
   MaxSpeed: 1
   DragSpeed: 0.25
-  TurnSpeed: 0.75
-  StopSpeed: 65
-  StoppingDistance: 0.1
-  AvoidanceRange: 0.1
+  TurnSpeed: 2
+  StopSpeed: 0.75
+  StoppingDistance: 2.5
+  AvoidanceRange: 0.25
   AvoidanceSensors:
   - {fileID: 2198226033650733241}
   - {fileID: 2198226033311181648}
@@ -2341,15 +2341,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.39
+      value: 0.47618997
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.39
+      value: 0.47618997
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.39
+      value: 0.47618997
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2393,6 +2393,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19829838, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19868602, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 19896866, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

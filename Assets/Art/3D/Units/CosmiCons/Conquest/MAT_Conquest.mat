@@ -10,16 +10,19 @@ Material:
   m_Name: MAT_Conquest
   m_Shader: {fileID: 4800000, guid: ee7e4c9a5f6364b688a332c67fc32cca, type: 3}
   m_ValidKeywords:
+  - _ALPHATEST_ON
+  - _CLEARCOAT
   - _EMISSION
   - _NORMALMAP
+  - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
   - _SPECULAR_SETUP
   m_InvalidKeywords: []
   m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2450
   stringTagMap:
-    RenderType: Opaque
+    RenderType: TransparentCutout
   disabledShaderPasses: []
   m_SavedProperties:
     serializedVersion: 3
@@ -86,15 +89,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _AlphaClip: 0
+    - _AlphaClip: 1
     - _Blend: 0
     - _BlendOp: 0
     - _BumpScale: 2
-    - _ClearCoat: 0
-    - _ClearCoatMask: 0
-    - _ClearCoatSmoothness: 0
+    - _ClearCoat: 1
+    - _ClearCoatMask: 0.226
+    - _ClearCoatSmoothness: 0.696
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.31
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -107,18 +110,18 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Smoothness: 0.23
-    - _SmoothnessTextureChannel: 0
+    - _Smoothness: 0.507
+    - _SmoothnessTextureChannel: 1
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
     - _WorkflowMode: 0
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 1, g: 0.9103774, b: 0.9103774, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 0.495283, g: 0.8515537, b: 1, a: 1}
-    - _SpecColor: {r: 0, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.084905684, g: 0.03804736, b: 0.03804736, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &312684980104503867
 MonoBehaviour:

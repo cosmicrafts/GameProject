@@ -839,10 +839,10 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2198226034328220048}
   serializedVersion: 2
-  m_Mass: 500
+  m_Mass: 100
   m_Drag: 1
   m_AngularDrag: 4
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 84
@@ -890,13 +890,13 @@ MonoBehaviour:
   UI: {fileID: 978776792581356164}
   MyAnim: {fileID: 4254649818248002262}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 2
+  Aceleration: 50
   MaxSpeed: 1
-  DragSpeed: 0.4
-  TurnSpeed: 92.5
-  StopSpeed: 92.3
-  StoppingDistance: 0.1
-  AvoidanceRange: 0.1
+  DragSpeed: 0.25
+  TurnSpeed: 2
+  StopSpeed: 0.75
+  StoppingDistance: 8
+  AvoidanceRange: 0.25
   AvoidanceSensors:
   - {fileID: 2198226033650733241}
   - {fileID: 2198226033311181648}
@@ -927,8 +927,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 12
-  CoolDown: 0.85
+  RangeDetector: 16
+  CoolDown: 2
   BulletSpeed: 48
   BulletDamage: 2
   RotateToEnemy: 1
@@ -1645,15 +1645,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.63
+      value: 0.87500703
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.63
+      value: 0.87500703
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.63
+      value: 0.87500703
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2444,6 +2444,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -60.772785
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246119421611364761, guid: a63455161dfa2e54a8627e7bfa5caf57,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246119421611364761, guid: a63455161dfa2e54a8627e7bfa5caf57,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246119421611364761, guid: a63455161dfa2e54a8627e7bfa5caf57,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7246119421611364761, guid: a63455161dfa2e54a8627e7bfa5caf57,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7968844254133045475, guid: a63455161dfa2e54a8627e7bfa5caf57,
         type: 3}

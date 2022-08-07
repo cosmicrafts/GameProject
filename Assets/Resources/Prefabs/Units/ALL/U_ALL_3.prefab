@@ -923,12 +923,20 @@ MonoBehaviour:
   MySt: {fileID: 2198226033917351815}
   Aceleration: 50
   MaxSpeed: 1
-  DragSpeed: 0.25
-  TurnSpeed: 0.75
+  DragSpeed: 0.65
+  TurnSpeed: 65
   StopSpeed: 65
-  StoppingDistance: 0.73
-  AvoidanceRange: 9.3
+  StoppingDistance: 6.5
+  AvoidanceRange: 0.1
   AvoidanceSensors:
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
+  - {fileID: 2198226033650733241}
   - {fileID: 2198226033650733241}
   Thrusters:
   - {fileID: 5157616557153778042}
@@ -948,7 +956,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 9
+  RangeDetector: 6.5
   CoolDown: 0.75
   BulletSpeed: 48
   BulletDamage: 1
@@ -972,8 +980,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.65
-  m_Center: {x: -0.0000014901161, y: -0.22542599, z: -0.09}
+  m_Radius: 0.99
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1433,15 +1441,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.6
+      value: 0.6318
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.6
+      value: 0.6318
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.6
+      value: 0.6318
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1485,6 +1493,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 449122, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19829838, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19868602, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 19896866, guid: 9575df930ed65704db77661c5bd8e268, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.a
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1632,6 +1652,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -6495730046727386677, guid: c3f800daa34af8749a43b25db83aa31f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6495730046727386677, guid: c3f800daa34af8749a43b25db83aa31f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -6495730046727386677, guid: c3f800daa34af8749a43b25db83aa31f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -6495730046727386677, guid: c3f800daa34af8749a43b25db83aa31f,
         type: 3}
@@ -2129,8 +2164,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.44
-  m_Center: {x: -0.0000014901161, y: -0.66, z: 0}
+  m_Radius: 0.85
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &2089202080433865243
 Animator:
   serializedVersion: 4
@@ -2187,8 +2222,8 @@ MonoBehaviour:
   outlineParameters:
     enabled: 1
     color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 0.25
-    blurShift: 1
+    dilateShift: 0.1
+    blurShift: 0.5
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
