@@ -59,8 +59,8 @@ public static class ResourcesServices
         return ValidateSprite(Resources.Load<Sprite>($"UI/Characters/Emblems/{nftCharacterKey}_Emb"));
     }
 
-    static Sprite ValidateSprite(Sprite sprite)
+    public static Sprite ValidateSprite(Sprite sprite)
     {
-        return sprite == null ? Resources.Load<Sprite>($"UI/PH_512") : sprite;
+        return sprite == null ? Resources.Load<Sprite>($"UI/Loading") : sprite;
     }
 }

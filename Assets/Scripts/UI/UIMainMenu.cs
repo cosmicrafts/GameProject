@@ -32,8 +32,6 @@ public class UIMainMenu : MonoBehaviour
     public GameObject GameModesMenu;
     // Intro Door
 
-    [SerializeField]
-    Animator doorAnim;
     //Back button 
     public GameObject BackBtn;
 
@@ -220,7 +218,7 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(LoadNFTsIcons());
         if (!GlobalManager.GMD.DebugMode)
             LoadingPanel.instance.DesactiveLoadingPanel();
-        doorAnim.SetTrigger("DoorIntro");
+        //doorAnim.SetTrigger("DoorIntro");
         MenuPanel.SetActive(true);
     }
 

@@ -55,7 +55,7 @@ public class UICard : MonoBehaviour
             Txt_Details.text = Lang.GetEntityDescription(data.KeyId);
         }
         //Set the icon of the NFT
-        Icon.sprite = data.IconSprite;
+        Icon.sprite = ResourcesServices.ValidateSprite(data.IconSprite);
         //Set type of the NFT
         if (data as NFTsSpell != null)
         {
@@ -95,6 +95,6 @@ public class UICard : MonoBehaviour
     public void RefreshIcon()
     {
         if (Icon != null)
-            Icon.sprite = Data.IconSprite;
+            Icon.sprite = ResourcesServices.ValidateSprite(Data.IconSprite);
     }
 }

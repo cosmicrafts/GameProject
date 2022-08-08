@@ -50,7 +50,7 @@ public class UIGameMng : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("--UI AWAKES--");
+        //Debug.Log("--UI AWAKES--");
         //Set the UI controller
         GameMng.UI = this;
         //Init the hp and shield colors
@@ -58,12 +58,12 @@ public class UIGameMng : MonoBehaviour
         FriendShieldBarColor = new Color(0.25f, 0.66f, 1f, 1f);
         EnemyHpBarColor = new Color(1f, 0.25f, 0.25f, 1f);
         EnemyShieldBarColor = new Color(1f, 0.8f, 0.25f, 1f);
-        Debug.Log("--UI END AWAKES--");
+        //Debug.Log("--UI END AWAKES--");
     }
 
     private void Start()
     {
-        Debug.Log("--UI STARTS--");
+        //Debug.Log("--UI STARTS--");
         //Init the UI info of the player
         Players[GameMng.P.ID-1].InitInfo(GameMng.PlayerData, GameMng.PlayerProgress, GameMng.PlayerCharacter);
         //Inits the enemys info depending the match
@@ -99,7 +99,7 @@ public class UIGameMng : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("--UI END STARTS--");
+        //Debug.Log("--UI END STARTS--");
     }
 
     //Shows the game over screen

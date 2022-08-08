@@ -90,7 +90,7 @@ public class GameMng : MonoBehaviour
     {
         //Manager is initielizing variables
         InitRedy = false;
-        Debug.Log("--GAME MANAGER AWAKE--");
+        //Debug.Log("--GAME MANAGER AWAKE--");
         //Check for the global manager
         if (GlobalManager.GMD == null)
         {
@@ -147,13 +147,13 @@ public class GameMng : MonoBehaviour
         IdCounter = IdRequestCounter = 0;
         //Init array of base stations
         Targets = new Unit[2];
-        Debug.Log("--GAME MANAGER END AWAKE--");
+        //Debug.Log("--GAME MANAGER END AWAKE--");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("--GAME MANAGER START--");
+        //Debug.Log("--GAME MANAGER START--");
         //Set the time count down (5 minutes) and when the game begins
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -218,7 +218,7 @@ public class GameMng : MonoBehaviour
                                     Dammage = card.Dammage
                                 }, vsId);
                             }
-                            Debug.Log($"--CLIENT DECK DONE ({vsNFTs.Count} cards)--");
+                            //Debug.Log($"--CLIENT DECK DONE ({vsNFTs.Count} cards)--");
                         }
                         //Set the delta time async (0.33 sec)
                         dnet = new WaitForSeconds(1f / 3f);
@@ -241,7 +241,7 @@ public class GameMng : MonoBehaviour
                 }
                 break;
         }
-        Debug.Log("--GAME MANAGER READY--");
+        //Debug.Log("--GAME MANAGER READY--");
     }
 
     // Update is called once per frame
