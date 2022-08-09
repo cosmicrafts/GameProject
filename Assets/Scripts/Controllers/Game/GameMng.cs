@@ -188,6 +188,7 @@ public class GameMng : MonoBehaviour
                 break;
             case Match.multi: //MULTIPLAYER
                 {
+                    GameNetwork.JSGameStarts();
                     //IF IM THE MASTER...
                     if (GlobalManager.GMD.ImMaster)
                     {

@@ -3,6 +3,10 @@
   // the event listeners name and make sure the
   // parameters match as well.
 
+      JSDashboardStarts: function () {
+            ReactUnityWebGL.DashboardStarts();
+      },
+
       JSSaveScore: function (score) {
             ReactUnityWebGL.SaveScore(score);
       },
@@ -21,6 +25,10 @@
 
       JSSendClientData: function (json) {
             ReactUnityWebGL.SendClientData(Pointer_stringify(json));
+      },
+
+      JSGameStarts: function () {
+            ReactUnityWebGL.GameStarts();
       },
 
       JSExitGame: function () {

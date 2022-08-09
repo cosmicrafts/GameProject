@@ -118,6 +118,11 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (GlobalManager.GMD.IsProductionWeb())
+        {
+            GameNetwork.JSDashboardStarts();
+        }
+
         //Check if we already have the user data
         if (GlobalManager.GMD.UserIsInit())
         {
@@ -145,7 +150,6 @@ public class UIMainMenu : MonoBehaviour
             }
             PlayerPrefs.GetInt("firstLogin");
         }
-
     }
 
     //Called from WEB, for set the base player data

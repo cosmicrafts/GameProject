@@ -257,6 +257,10 @@ public static class GameNetwork
         return !string.IsNullOrEmpty(GameNetPack.ClientWalletId) && !string.IsNullOrEmpty(GameNetPack.MasterWalletId);
     }
 
+    //The main menu starts
+    [DllImport("__Internal")]
+    public static extern void JSDashboardStarts();
+
     //Save the game score
     [DllImport("__Internal")]
     public static extern void JSSaveScore(int score);
@@ -276,6 +280,10 @@ public static class GameNetwork
     //Send the game data (client's data)
     [DllImport("__Internal")]
     public static extern void JSSendClientData(string json);
+
+    //The game starts
+    [DllImport("__Internal")]
+    public static extern void JSGameStarts();
 
     //Ends the game
     [DllImport("__Internal")]
