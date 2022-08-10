@@ -69,18 +69,6 @@ public class DragUnitCtrl : MonoBehaviour
         }
     }
 
-    //Restart variables when the drag ends
-    private void OnDisable()
-    {
-        areas = 0;
-        SetStatusColor(Color.red);
-        DefaultColor = Color.green;
-        if (currentPreview != null)
-        {
-            Destroy(currentPreview);
-        }
-    }
-
     //Return if the player can deploys on the current position
     public bool IsValid()
     {
@@ -104,6 +92,10 @@ public class DragUnitCtrl : MonoBehaviour
     public void setMeshActive(bool active)
     {
         MyMesh.gameObject.SetActive(active);
+        if (!active && currentPreview != null)
+        {
+            Destroy(currentPreview);
+        }
     }
 
     //Set the current preview from a game object

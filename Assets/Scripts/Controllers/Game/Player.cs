@@ -19,7 +19,6 @@ public class Player : MonoBehaviour
     //Allows to generate energy
     bool CanGenEnergy;
     //Reference the drag and drop object
-    [HideInInspector]
     DragUnitCtrl UnitDrag;
     //Stores the deck units prefabs
     [HideInInspector]
@@ -86,7 +85,7 @@ public class Player : MonoBehaviour
             KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8};
         //Get draging cards controller
         UnitDrag = FindObjectOfType<DragUnitCtrl>();
-        UnitDrag.gameObject.SetActive(false);
+        UnitDrag.setMeshActive(false);
         //Enable the gameplay and the energy generation
         InControl = CanGenEnergy = true;
 
@@ -178,19 +177,19 @@ public class Player : MonoBehaviour
         //Hot Keys
         for (int i = 0; i<8; i++)
         {
-            if (Input.GetKeyDown(Keys[i]))
+            if (Input.GetKeyDown(Keys[i]) && UnitDrag.IsValid())
                 DeplyUnit(PlayerDeck[i]);
         }
         //Add energy over time
         AddEnergy(Time.deltaTime * SpeedEnergy);
         //Testing spawn random unit
-        if (Input.GetKeyDown(KeyCode.R) && GameMng.GM.Testing)
-        {
-            string faction = Random.Range(1, 2) == 1 ? "ALL" : "SPI";
-            GameMng.GM.CreateUnit($"U_{faction}_{Random.Range(1, 8)}",
-                Random.Range(-30f, 30f), Random.Range(-24f, 24f), Random.Range(1, -1));
-            //GameMng.UI.Players[0].gameObject.SetActive(false);
-        }
+        //if (Input.GetKeyDown(KeyCode.R) && GameMng.GM.Testing)
+        //{
+        //    string faction = Random.Range(1, 2) == 1 ? "ALL" : "SPI";
+        //    GameMng.GM.CreateUnit($"U_{faction}_{Random.Range(1, 8)}",
+        //        Random.Range(-30f, 30f), Random.Range(-24f, 24f), Random.Range(1, -1));
+        //    //GameMng.UI.Players[0].gameObject.SetActive(false);
+        //}
     }
 
     //Check if im the client
@@ -213,7 +212,7 @@ public class Player : MonoBehaviour
         {
             SelectedCard = -1;
             GameMng.UI.DeselectCards();
-            UnitDrag.gameObject.SetActive(false);
+            UnitDrag.setMeshActive(false);
         } else //Ii the card is not selected, select the card
         {
             SelectedCard = idu;
@@ -275,7 +274,7 @@ public class Player : MonoBehaviour
             DeplyUnit(DragingCard == -1 ? PlayerDeck[SelectedCard] : PlayerDeck[DragingCard]);
         }
         //Clear the selection and the dragin object controller
-        UnitDrag.gameObject.SetActive(false);
+        UnitDrag.setMeshActive(false);
         DragingCard = -1;
         SelectedCard = -1;
         GameMng.UI.DeselectCards();
@@ -287,7 +286,7 @@ public class Player : MonoBehaviour
         InControl = incontrol;
         if (!InControl)
         {
-            UnitDrag.gameObject.SetActive(false);
+            UnitDrag.setMeshActive(false);
             DragingCard = -1;
         }
     }
@@ -329,7 +328,6 @@ public class Player : MonoBehaviour
     //Shows the dragin card whit the specific mesh and material
     public void PrepareDeploy(Mesh mesh, Material mat, float cost)
     {
-        UnitDrag.gameObject.SetActive(true);
         UnitDrag.setMeshActive(true);
         UnitDrag.SetMeshAndTexture(mesh, mat);
         UnitDrag.transform.position = CMath.GetMouseWorldPos();
@@ -338,7 +336,6 @@ public class Player : MonoBehaviour
     //Shows the dragin card whit a game object has preview
     public void PrepareDeploy(GameObject preview, float cost)
     {
-        UnitDrag.gameObject.SetActive(true);
         UnitDrag.setMeshActive(false);
         UnitDrag.CreatePreviewObj(preview);
         UnitDrag.transform.position = CMath.GetMouseWorldPos();
