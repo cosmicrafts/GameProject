@@ -99,6 +99,7 @@ public class UICollection : MonoBehaviour
     //Updates the UI collection with the current data and filters
     void RefreshCollection()
     {
+        //Debug.Log("refresh colection");
         //If the collection data does't exit, exit the function
         if (PlayerCollection == null)
             return;
@@ -142,12 +143,9 @@ public class UICollection : MonoBehaviour
         }
 
         //Initialize the UI Deck data
-        if (PlayerCollection.Deck.Count == 8)
+        for (int i = 0; i < PlayerCollection.Deck.Count; i++)
         {
-            for (int i = 0; i < PlayerCollection.Deck.Count; i++)
-            {
-                Deck[i].SetData(PlayerCollection.Deck[i]);
-            }
+            Deck[i].SetData(PlayerCollection.Deck[i]);
         }
 
         //Hide the default ui card

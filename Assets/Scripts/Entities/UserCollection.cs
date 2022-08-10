@@ -29,11 +29,7 @@ public class UserCollection
     public void InitCollection()
     {
         DeckReady = false;
-        Decks = new Dictionary<Factions, List<NFTsCard>>
-        {
-            {Factions.Alliance, null},
-            {Factions.Spirats, null},
-        };
+        Decks = new Dictionary<Factions, List<NFTsCard>>();
         Cards = new List<NFTsCard>();
         Characters = new List<NFTsCharacter>();
         DefaultCharacter = new NFTsCharacter()
@@ -90,7 +86,15 @@ public class UserCollection
             List<NFTsCard> factionCards = Cards.Where(f => (Factions)f.Faction == faction).ToList();
 
             if (factionCards.Count >= 8)
-                Decks[faction] = factionCards.Take(8).ToList();
+            {
+                if (!Decks.ContainsKey(faction))
+                {
+                    Decks.Add(faction, factionCards.Take(8).ToList());
+                } else
+                {
+                    Decks[faction] = factionCards.Take(8).ToList();
+                }
+            }
         }        
 
         //Set current deck

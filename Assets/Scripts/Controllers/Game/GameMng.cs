@@ -776,6 +776,7 @@ public class GameMng : MonoBehaviour
                     Unit find = Units.FirstOrDefault(f => f.getId() == unitId);
                     if (find != null)
                     {
+                        find.SetFakeHp(0, find.GetMaxHitPoints());
                         KillUnit(find);
                     }
                 }

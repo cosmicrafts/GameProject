@@ -59,7 +59,8 @@ public class UIMainMenu : MonoBehaviour
 
     //Progress of the loaded user data
     int UserDataLoaded;
-    int isFirstLogin =0;
+    int isFirstLogin = 0;
+    int targetCharacterId = 0;
     public GameObject welcomePanel;
     private void Awake()
     {
@@ -163,7 +164,7 @@ public class UIMainMenu : MonoBehaviour
     //Called from WEB, for set the player character
     public void GL_SetCharacterSelected(int NFTid)
     {
-        GlobalManager.GMD.SetUserCharacter(NFTid);
+        targetCharacterId = NFTid;
         AddProgressDataLoaded();
     }
 
@@ -217,8 +218,11 @@ public class UIMainMenu : MonoBehaviour
     {
         PlayerUser = GlobalManager.GMD.GetUserData();
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
-        PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         PlayerCollection.InitDecks();
+        if (targetCharacterId != 0)
+            GlobalManager.GMD.SetUserCharacter(targetCharacterId);
+        PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
+        
         StartCoroutine(LoadNFTsIcons());
         if (!GlobalManager.GMD.DebugMode)
             LoadingPanel.instance.DesactiveLoadingPanel();
