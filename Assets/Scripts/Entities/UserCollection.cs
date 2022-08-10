@@ -50,7 +50,7 @@ public class UserCollection
 
     public void SetCharacters(string jsonList)
     {
-        Characters.AddRange(JsonConvert.DeserializeObject<List<NFTsCharacter>>(jsonList));
+        Characters = JsonConvert.DeserializeObject<List<NFTsCharacter>>(jsonList);
     }
 
     public void SetSpellsCards(string jsonList)

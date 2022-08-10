@@ -171,6 +171,7 @@ public class UIMainMenu : MonoBehaviour
     //Called from WEB, for set the base player progress
     public void GL_SetProgressData(string jsonData)
     {
+        Debug.Log("GL SET PROGRESS DATA");
         Progress progress = JsonConvert.DeserializeObject<Progress>(jsonData);
         UserProgress userProgress = new UserProgress();
         userProgress.InitValues(progress);
@@ -181,6 +182,7 @@ public class UIMainMenu : MonoBehaviour
     //Called from WEB, for set the base player config
     public void GL_SetConfigData(string jsonData)
     {
+        Debug.Log("GL SET CONFIG DATA");
         Config config = JsonConvert.DeserializeObject<Config>(jsonData);
         GlobalManager.GMD.SetConfig(config);
         GlobalManager.GMD.ChangeLang((Language)config.language);
@@ -190,12 +192,14 @@ public class UIMainMenu : MonoBehaviour
     //Called from WEB, for set the player characters collection
     public void GL_SetCollectionCharactersData(string jsonData)
     {
+        Debug.Log("GL SET CHARACTERS DATA");
         PlayerCollection.SetCharacters(jsonData);
     }
 
     //Called from WEB, for set the player Units collection
     public void GL_SetCollectionUnitsData(string jsonData)
     {
+        Debug.Log("GL SET COLLECTION DATA");
         PlayerCollection.SetUnitCards(jsonData);
     }
 
