@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 /*
@@ -81,7 +82,16 @@ public class UserCollection
         }
 
         //Set Factions Decks
-        Decks[Factions.Alliance] = Cards.Where(f => (Factions)f.Faction == Factions.Alliance).Take(8).ToList();
+        foreach (Factions faction in (Factions[])Enum.GetValues(typeof(Factions)))
+        {
+            if (faction == Factions.Neutral)
+                continue;
+
+            List<NFTsCard> factionCards = Cards.Where(f => (Factions)f.Faction == faction).ToList();
+
+            if (factionCards.Count >= 8)
+                Decks[faction] = factionCards.Take(8).ToList();
+        }        
 
         //Set current deck
         Deck = Decks[Factions.Alliance];
@@ -180,5 +190,11 @@ public class UserCollection
     public NFTsCard FindCard(string NFTkey)
     {
         return Cards.FirstOrDefault(f => f.KeyId == NFTkey);
+    }
+
+    //Check if player has a deck for some faction
+    public bool FactionDeckExist(Factions faction)
+    {
+        return Decks.ContainsKey(faction);
     }
 }

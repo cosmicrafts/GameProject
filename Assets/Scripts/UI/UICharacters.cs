@@ -46,6 +46,9 @@ public class UICharacters : MonoBehaviour
         //Show the UI characters from the player collection characters data
         foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.LocalID))
         {
+            if (!PlayerCollection.FactionDeckExist((Factions)character.Faction))
+                continue;
+
             UICharacter uichar = Instantiate(DefaultUIChar.gameObject, DefaultUIChar.transform.parent).GetComponent<UICharacter>();
             uichar.SetData(character);
             uichar.gameObject.SetActive(true);
@@ -71,7 +74,9 @@ public class UICharacters : MonoBehaviour
         CurrentChar = character;
         UpdateUIInfo();
         GlobalManager.GMD.SetUserCharacter(nFTsCharacter.ID);
+        
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Character);
+        UIMainMenu.Menu.RefreshProperty(PlayerProperty.CharacterName);
 
         if (GlobalManager.GMD.IsProductionWeb())
         {
