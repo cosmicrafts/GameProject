@@ -71,6 +71,7 @@ public class UICharacters : MonoBehaviour
         CurrentChar = character;
         UpdateUIInfo();
         GlobalManager.GMD.SetUserCharacter(nFTsCharacter.ID);
+        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Character);
 
         if (GlobalManager.GMD.IsProductionWeb())
         {
