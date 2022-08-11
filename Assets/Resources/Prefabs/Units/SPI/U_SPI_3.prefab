@@ -1,5 +1,775 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &234136290198122356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8940775490252220513}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Root_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8940775490252220513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234136290198122356}
+  m_LocalRotation: {x: 0, y: 0.00000056438654, z: -0, w: 1}
+  m_LocalPosition: {x: -0.0000027903964, y: -0.00000045465865, z: -0.0000022882755}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8565807380458749580}
+  m_Father: {fileID: 8449139591143684404}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &234688349735371873
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 579301216515137243}
+  - component: {fileID: 6642028604092838908}
+  - component: {fileID: 7669330374322997274}
+  - component: {fileID: 1678917067114352495}
+  - component: {fileID: 1940016486070594258}
+  m_Layer: 0
+  m_Name: Mesh_Goblin
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &579301216515137243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234688349735371873}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 8606427209882878213}
+  - {fileID: 6713566277045295707}
+  m_Father: {fileID: 2198226034328220055}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6642028604092838908
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234688349735371873}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.27
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!95 &7669330374322997274
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234688349735371873}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5acc29ffa9c4b224283fc22edec4cd82, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1678917067114352495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234688349735371873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1940016486070594258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234688349735371873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  complexMaskingMode: 0
+  drawingMode: 1
+  outlineLayer: 0
+  outlineTargets:
+  - IsVisible: 1
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 6394532500548969138}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 1
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 1280946388697461460}
+    SubmeshIndex: 0
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 1
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 1280946388697461460}
+    SubmeshIndex: 1
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  - IsVisible: 1
+    CutoutMask: 8
+    edgeDilateAmount: 5
+    frontEdgeDilateAmount: 5
+    backEdgeDilateAmount: 5
+    renderer: {fileID: 1280946388697461460}
+    SubmeshIndex: 2
+    BoundsMode: 0
+    Bounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    CutoutThreshold: 0.5
+    CullMode: 2
+    cutoutTextureName: 
+    DilateRenderingMode: 0
+    cutoutTextureIndex: 0
+  renderStyle: 1
+  outlineParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 0.05
+    blurShift: 0.05
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  backParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+  frontParameters:
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    dilateShift: 1
+    blurShift: 1
+    fillPass:
+      shader: {fileID: 0}
+      serializedProperties: []
+--- !u!1 &264342019248738488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967629589583614675}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Mouth_Back_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &967629589583614675
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264342019248738488}
+  m_LocalRotation: {x: -0.0000000065954633, y: 0.0000008496417, z: 0.007762406, w: 0.9999699}
+  m_LocalPosition: {x: 1.3605193, y: 0.92860395, z: -1.1627482}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6320625718330123052}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &309814962850905231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8505787466997059479}
+  m_Layer: 0
+  m_Name: Goblin_Body_Quarter_Plate_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8505787466997059479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 309814962850905231}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.3877788e-17, y: 1.110223e-16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5249370756817171196}
+  - {fileID: 774918017008178896}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &490713098236991493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2520937884032529721}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Main_Finn_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2520937884032529721
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490713098236991493}
+  m_LocalRotation: {x: -0.41992512, y: 0.56891376, z: 0.56891376, w: -0.41992512}
+  m_LocalPosition: {x: 0.4163897, y: 0.5924122, z: 0.00006462398}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6900435262874164030}
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: -17.136642, y: -90, z: -90}
+--- !u!1 &519629867383171480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3056004865671159218}
+  m_Layer: 0
+  m_Name: Goblin_Body_Root_Tip_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3056004865671159218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519629867383171480}
+  m_LocalRotation: {x: 0, y: -0, z: -0.35035205, w: 0.9366181}
+  m_LocalPosition: {x: -1.0241053, y: 0.72547835, z: 0.039627302}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4996606411727560654}
+  - {fileID: 5025368174208445471}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -41.017696}
+--- !u!1 &605866260949155567
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7356006897059665892}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Root_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7356006897059665892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605866260949155567}
+  m_LocalRotation: {x: 0, y: 0.00000003175396, z: -0, w: 1}
+  m_LocalPosition: {x: 1.7763568e-15, y: 4.440892e-16, z: 8.881784e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2490282866542211642}
+  m_Father: {fileID: 8824382317407809760}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &650403450890131661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8853978083490740900}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_03_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8853978083490740900
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650403450890131661}
+  m_LocalRotation: {x: -0.000000007822348, y: 0.000051806022, z: 0.00015099303, w: 1}
+  m_LocalPosition: {x: 0.1784065, y: 0.000000016486116, z: -0.000000069836396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2699513933301664606}
+  m_Father: {fileID: 3394216198385668125}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &694337191521948711
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4634458566608992608}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Root_Top_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4634458566608992608
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 694337191521948711}
+  m_LocalRotation: {x: 0, y: -0, z: -0.31024978, w: 0.9506551}
+  m_LocalPosition: {x: -0.16552556, y: 1.6694078, z: 0.00014136129}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2767074158100281166}
+  - {fileID: 4441808655983598412}
+  - {fileID: 5051181011464650729}
+  - {fileID: 3291954748134110248}
+  - {fileID: 7763533117102470882}
+  - {fileID: 1235347281118205327}
+  - {fileID: 2520937884032529721}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -36.148567}
+--- !u!1 &732610246557254144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1198934699467403470}
+  m_Layer: 0
+  m_Name: Goblin_Body_Proppeler_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1198934699467403470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732610246557254144}
+  m_LocalRotation: {x: 0.17242366, y: 0.64349395, z: -0.1930217, w: 0.72036684}
+  m_LocalPosition: {x: -0.6924252, y: 1.2365121, z: 0.7505875}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8632597913528124129}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 29.7907, y: 82.56027, z: -3.712013}
+--- !u!1 &944760270025791416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8384709232922448944}
+  m_Layer: 0
+  m_Name: Goblin_Body_Tail_End_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8384709232922448944
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 944760270025791416}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.48603603, y: -0.08006831, z: 0.000000024283317}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1416389458070638305}
+  - {fileID: 7327378219159987948}
+  - {fileID: 1765170952433229907}
+  m_Father: {fileID: 156411534873649253}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &977594026556538951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7531235609325099755}
+  m_Layer: 0
+  m_Name: Goblin_Body_Back_Plate_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7531235609325099755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977594026556538951}
+  m_LocalRotation: {x: -0.51697654, y: -0.47033584, z: 0.45065114, w: 0.5553675}
+  m_LocalPosition: {x: 0.6742212, y: -0.24170329, z: -0.0059978534}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -8.644842, y: -88.664665, z: 86.56137}
+--- !u!1 &1081237977425700646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6909469851181555101}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_Tip_06_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6909469851181555101
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1081237977425700646}
+  m_LocalRotation: {x: 0.088740684, y: 5.4337995e-18, z: 0.99605477, w: -6.0990766e-17}
+  m_LocalPosition: {x: 0.2120961, y: -0.003478553, z: 1.1904231}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -2.5497218e-15, y: 21.307829, z: -180}
+--- !u!1 &1089915034129242267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6623411954109345542}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_03_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6623411954109345542
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1089915034129242267}
+  m_LocalRotation: {x: -0.000000007822348, y: 0.000051806022, z: 0.00015099303, w: 1}
+  m_LocalPosition: {x: -0.1784065, y: -0.000000016486116, z: 0.000000069836396}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1826966486005516167}
+  m_Father: {fileID: 154687205112517687}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1115891731616471386
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 594285292904401368}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_CoG_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &594285292904401368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1115891731616471386}
+  m_LocalRotation: {x: -0.22411929, y: -0.67064935, z: -0.22411929, w: 0.67064935}
+  m_LocalPosition: {x: -0.10519244, y: 1.8434527, z: -0.76948524}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3212184422975446561}
+  - {fileID: 6199168467000506806}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1382634186306801646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2490282866542211642}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Mouth_Front_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2490282866542211642
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382634186306801646}
+  m_LocalRotation: {x: 0, y: 0.00000003175396, z: -0, w: 1}
+  m_LocalPosition: {x: -0.21893287, y: 0.000000099583154, z: -0.0000004979158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7356006897059665892}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1643197965940021699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 156411534873649253}
+  m_Layer: 0
+  m_Name: Goblin_Body_Tail_Root_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &156411534873649253
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1643197965940021699}
+  m_LocalRotation: {x: 6.123234e-17, y: 1, z: -6.123234e-17, w: -6.123234e-17}
+  m_LocalPosition: {x: 0.9830088, y: -0.28043672, z: 0.00014137747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8384709232922448944}
+  - {fileID: 8091934296428134276}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 7.246661e-15, y: -180, z: 7.246661e-15}
+--- !u!1 &1769473691381619315
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 154687205112517687}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_02_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &154687205112517687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769473691381619315}
+  m_LocalRotation: {x: -1.560031e-11, y: -0.000051970084, z: -0.00015099611, w: 1}
+  m_LocalPosition: {x: -0.17284961, y: -0.000000015972654, z: 0.00000006766125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6623411954109345542}
+  m_Father: {fileID: 8573486076197041500}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1788674409372144599
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8749363850401079690}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Elice_Front_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8749363850401079690
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1788674409372144599}
+  m_LocalRotation: {x: -0.0000012025503, y: 0.0000068431386, z: 0.0035151718, w: 0.99999386}
+  m_LocalPosition: {x: 0.15817125, y: -0.0000038423345, z: 0.0000006511501}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 921507174401135974}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1915629464135368541
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,6 +802,70 @@ Transform:
   m_Father: {fileID: 3256540058664614798}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 3.389, z: 0}
+--- !u!1 &2013879403822599427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6569971979135702461}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_Tip_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6569971979135702461
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013879403822599427}
+  m_LocalRotation: {x: -0.03340724, y: -0.021001158, z: 0.0166344, w: 0.9990827}
+  m_LocalPosition: {x: -0.17660299, y: 0.00025160387, z: 1.2335231}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.3324122, y: -13.6119795, z: 2.683305}
+--- !u!1 &2088198465052122688
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5391006391316659927}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_CoG_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5391006391316659927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088198465052122688}
+  m_LocalRotation: {x: 0.67064935, y: -0.22411932, z: 0.67064935, w: 0.22411932}
+  m_LocalPosition: {x: -0.10519246, y: 1.8434529, z: 0.76976836}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1191960134118539089}
+  - {fileID: 921507174401135974}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2198226032447877258
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1922,352 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.1
   m_Center: {x: -2.08, y: -1.03, z: 0}
+--- !u!1 &2242097282673772292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1191960134118539089}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Mouth_Back_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1191960134118539089
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242097282673772292}
+  m_LocalRotation: {x: 0.0416336, y: -0.71377933, z: -0.052484978, w: 0.69715923}
+  m_LocalPosition: {x: 0.412753, y: -0.011740018, z: 0.49091405}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6578288623724413251}
+  m_Father: {fileID: 5391006391316659927}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2489551499066451640
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7869687668699699571}
+  m_Layer: 0
+  m_Name: Goblin_Body_Top_Plate_Tip_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7869687668699699571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2489551499066451640}
+  m_LocalRotation: {x: 0, y: 0.0011251195, z: -0, w: 0.9999994}
+  m_LocalPosition: {x: 0.0074515888, y: -1.5342419e-16, z: 1.0535344}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0.12892874, z: 0}
+--- !u!1 &2508669429291586245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2165006955894599256}
+  m_Layer: 0
+  m_Name: Goblin_Body_Top_Plate_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2165006955894599256
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2508669429291586245}
+  m_LocalRotation: {x: 0, y: 0.048778355, z: -0, w: 0.99880964}
+  m_LocalPosition: {x: -0.053816658, y: -6.454841e-17, z: 0.4277511}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 5.591806, z: 0}
+--- !u!1 &2632853043154572030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4441808655983598412}
+  m_Layer: 0
+  m_Name: Goblin_Body_Locket_Finn_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4441808655983598412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2632853043154572030}
+  m_LocalRotation: {x: 0.77277964, y: 0.041504398, z: -0.63240445, w: 0.033965137}
+  m_LocalPosition: {x: 0.14992839, y: -0.21355425, z: -0.776183}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 6.026592, y: -101.473885, z: 178.77917}
+--- !u!1 &2870259114622564984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1416389458070638305}
+  m_Layer: 0
+  m_Name: Goblin_Body_back_Flipper_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1416389458070638305
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2870259114622564984}
+  m_LocalRotation: {x: -0.12987794, y: -0.098689176, z: 0.9865209, w: -0.012992676}
+  m_LocalPosition: {x: -0.97490966, y: -0.11436198, z: 0.66747797}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8384709232922448944}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 11.425452, y: -15, z: 140.14955}
+--- !u!1 &2923266526198643562
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8573486076197041500}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8573486076197041500
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2923266526198643562}
+  m_LocalRotation: {x: -0.000012853973, y: 0.005331174, z: 0.002411055, w: 0.9999829}
+  m_LocalPosition: {x: -0.8544549, y: 0, z: -1.110223e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 154687205112517687}
+  m_Father: {fileID: 2497225778210803303}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2924694150333651501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3394216198385668125}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_02_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3394216198385668125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2924694150333651501}
+  m_LocalRotation: {x: -1.560031e-11, y: -0.000051970084, z: -0.00015099611, w: 1}
+  m_LocalPosition: {x: 0.17284961, y: 0.000000015972468, z: -0.00000006766125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8853978083490740900}
+  m_Father: {fileID: 6957700577585099823}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2946739129392480918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289131432187050149}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_CoG_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &289131432187050149
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2946739129392480918}
+  m_LocalRotation: {x: 0.7071068, y: 4.3297806e-17, z: 0.7071068, w: -4.3297806e-17}
+  m_LocalPosition: {x: -0.60694546, y: 0.024062976, z: 0.63314134}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6320625718330123052}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3079046113958615503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3701932950456333280}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Wing_Joint_03_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3701932950456333280
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3079046113958615503}
+  m_LocalRotation: {x: 0.13292792, y: 0.0638645, z: -0.0077693523, w: 0.9890355}
+  m_LocalPosition: {x: 0.2425202, y: 0.23421322, z: -0.95592856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 51160702056054974}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3555514447864772153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6578288623724413251}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Elice_Back_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6578288623724413251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3555514447864772153}
+  m_LocalRotation: {x: 0.000000028623303, y: -0.0000000145467425, z: -0.000000012456439,
+    w: 1}
+  m_LocalPosition: {x: 0.17442998, y: 0.00000028679582, z: 0.0000014937926}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1191960134118539089}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3668739245024305426
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6900435262874164030}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Main_Finn_Flipper_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6900435262874164030
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3668739245024305426}
+  m_LocalRotation: {x: -1.4512032e-17, y: -0.8156065, z: 1.4512032e-17, w: 0.578607}
+  m_LocalPosition: {x: -0.29122472, y: 0.0005553023, z: -0.045407787}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2520937884032529721}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.0000051226416, y: -109.29474, z: -32.02194}
 --- !u!1 &3721508634898023609
 GameObject:
   m_ObjectHideFlags: 0
@@ -1121,6 +2301,1156 @@ Transform:
   m_Father: {fileID: 2198226034328220055}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3778899492478051144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134995688679715976}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Wing_Joint_02_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134995688679715976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778899492478051144}
+  m_LocalRotation: {x: 0.0013475273, y: 0.09530808, z: 0.029523334, w: 0.995009}
+  m_LocalPosition: {x: -0.25804204, y: -0.50923, z: 1.8932579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7573967754529248167}
+  m_Father: {fileID: 2563236513660859019}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3898764042191923951
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8091934296428134276}
+  m_Layer: 0
+  m_Name: Goblin_Body_Tail_Plate_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8091934296428134276
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898764042191923951}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 156411534873649253}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3944107832374829742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6713566277045295707}
+  m_Layer: 0
+  m_Name: Goblin_Body_Joints_Grp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6713566277045295707
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944107832374829742}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
+  m_ConstrainProportionsScale: 1
+  m_Children:
+  - {fileID: 6209749073952212311}
+  m_Father: {fileID: 579301216515137243}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4029882975042169027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 51160702056054974}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Wing_Joint_02_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &51160702056054974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4029882975042169027}
+  m_LocalRotation: {x: 0.0013475392, y: 0.09530863, z: 0.02952333, w: 0.995009}
+  m_LocalPosition: {x: 0.25804204, y: 0.50923, z: -1.8932579}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3701932950456333280}
+  m_Father: {fileID: 6320625718330123052}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4297962449260694774
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1235347281118205327}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Head_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1235347281118205327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297962449260694774}
+  m_LocalRotation: {x: 0, y: -0, z: -0.05139091, w: 0.9986786}
+  m_LocalPosition: {x: -1.0403478, y: 0.1947636, z: -0.009152253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2198226033293860269}
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -16.427156}
+--- !u!1 &4534216193668106467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3291954748134110248}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Body_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3291954748134110248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4534216193668106467}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.110223e-16, y: 1.110223e-16, z: -3.008661e-18}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4615044973857430183
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5051181011464650729}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Back_Finn_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5051181011464650729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615044973857430183}
+  m_LocalRotation: {x: -0.08658935, y: 0.82677007, z: -0.020086247, w: 0.5554728}
+  m_LocalPosition: {x: 1.3047878, y: -0.15779413, z: 0.393013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -3.6110296, y: 112.51052, z: -9.545043}
+--- !u!1 &4617541236939823031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7763533117102470882}
+  m_Layer: 0
+  m_Name: Goblin_Body_Rocket_Finn_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7763533117102470882
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4617541236939823031}
+  m_LocalRotation: {x: -0.04150444, y: 0.77277964, z: 0.03396517, w: 0.63240445}
+  m_LocalPosition: {x: 0.1499282, y: -0.2135542, z: 0.77618337}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: -6.0266113, y: 101.473885, z: -1.220829}
+--- !u!1 &4677391323780166776
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6161357786815592267}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6161357786815592267
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4677391323780166776}
+  m_LocalRotation: {x: 0.8577339, y: -0.08915124, z: -0.503592, w: 0.052342463}
+  m_LocalPosition: {x: 0.5450605, y: -0.425047, z: -0.41047564}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0.0000051531338, y: -119.16397, z: -168.13217}
+--- !u!1 &4685507580799917049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1826966486005516167}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_04_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1826966486005516167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4685507580799917049}
+  m_LocalRotation: {x: -0.000000016181831, y: -0.0000000085404075, z: -1.3819943e-16,
+    w: 1}
+  m_LocalPosition: {x: -0.16258654, y: -8.881784e-16, z: 4.5519144e-15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5314879358295758558}
+  m_Father: {fileID: 6623411954109345542}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4896175776328169026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7573967754529248167}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Wing_Joint_03_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7573967754529248167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896175776328169026}
+  m_LocalRotation: {x: 0.13292792, y: 0.0638645, z: -0.0077693523, w: 0.9890355}
+  m_LocalPosition: {x: -0.2425202, y: -0.23421322, z: 0.95592856}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1134995688679715976}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4896638696565268399
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2497225778210803303}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Body_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2497225778210803303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4896638696565268399}
+  m_LocalRotation: {x: -0.0016957802, y: 0.7033249, z: -0.0017139522, w: 0.7108645}
+  m_LocalPosition: {x: -0.13308778, y: -2.220446e-16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8573486076197041500}
+  m_Father: {fileID: 274821864040217739}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4973643638065176623
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8449139591143684404}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Twister_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8449139591143684404
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4973643638065176623}
+  m_LocalRotation: {x: -0.0077623706, y: 0.9999699, z: 0.0000000062017333, w: 0.00000079892425}
+  m_LocalPosition: {x: -1.1577296, y: 0.89938444, z: -1.1625253}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8940775490252220513}
+  m_Father: {fileID: 6320625718330123052}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4982135546303530208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2699513933301664606}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_04_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2699513933301664606
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4982135546303530208}
+  m_LocalRotation: {x: 0, y: -0.000000008540341, z: -0, w: 1}
+  m_LocalPosition: {x: 0.16258654, y: 3.1974423e-14, z: -4.440892e-15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4622108936925275780}
+  m_Father: {fileID: 8853978083490740900}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5021918014287952984
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6320625718330123052}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Wing_Joint_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6320625718330123052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5021918014287952984}
+  m_LocalRotation: {x: 0.0054888725, y: -0.7070857, z: -0.0054888725, w: 0.7070853}
+  m_LocalPosition: {x: 0.5419435, y: 0.0031709764, z: 0.0007971258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 967629589583614675}
+  - {fileID: 8449139591143684404}
+  - {fileID: 51160702056054974}
+  m_Father: {fileID: 289131432187050149}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5027539123726609311
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6020969663326188555}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_Tip_04_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6020969663326188555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027539123726609311}
+  m_LocalRotation: {x: -0.052755788, y: 0.010916962, z: 0.9984723, w: 0.012281209}
+  m_LocalPosition: {x: 0.05340775, y: 0.0010416358, z: 1.7621677}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -1.0401065, y: 5.0907564, z: 178.43018}
+--- !u!1 &5171786029086341542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8861866979426594769}
+  - component: {fileID: 1280946388697461460}
+  - component: {fileID: 2803774101077351045}
+  m_Layer: 0
+  m_Name: Goblin_Props_Geo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8861866979426594769
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171786029086341542}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8606427209882878213}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &1280946388697461460
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171786029086341542}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 68c15d5d7f9a6c049bb91571f26eb9c7, type: 2}
+  - {fileID: 2100000, guid: 68c15d5d7f9a6c049bb91571f26eb9c7, type: 2}
+  - {fileID: 2100000, guid: 68c15d5d7f9a6c049bb91571f26eb9c7, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 8684739879400321204, guid: 7615b2c79f5fce44ebdb172f20559067, type: 3}
+  m_Bones:
+  - {fileID: 1104862614309125469}
+  - {fileID: 156411534873649253}
+  - {fileID: 8384709232922448944}
+  - {fileID: 1765170952433229907}
+  - {fileID: 7327378219159987948}
+  - {fileID: 1416389458070638305}
+  - {fileID: 8091934296428134276}
+  - {fileID: 1479169986933582184}
+  - {fileID: 7531235609325099755}
+  - {fileID: 8448814578875633499}
+  - {fileID: 6767273184087694304}
+  - {fileID: 2165006955894599256}
+  - {fileID: 234036289877307357}
+  - {fileID: 6020969663326188555}
+  - {fileID: 745483064575762927}
+  - {fileID: 3411866725819263431}
+  - {fileID: 6909469851181555101}
+  - {fileID: 6569971979135702461}
+  - {fileID: 7869687668699699571}
+  - {fileID: 8505787466997059479}
+  - {fileID: 5249370756817171196}
+  - {fileID: 774918017008178896}
+  - {fileID: 3056004865671159218}
+  - {fileID: 5025368174208445471}
+  - {fileID: 4996606411727560654}
+  - {fileID: 1198934699467403470}
+  - {fileID: 4634458566608992608}
+  - {fileID: 1235347281118205327}
+  - {fileID: 3291954748134110248}
+  - {fileID: 5051181011464650729}
+  - {fileID: 7763533117102470882}
+  - {fileID: 4441808655983598412}
+  - {fileID: 2520937884032529721}
+  - {fileID: 6900435262874164030}
+  - {fileID: 2767074158100281166}
+  - {fileID: 6161357786815592267}
+  - {fileID: 3256540058664614798}
+  - {fileID: 274821864040217739}
+  - {fileID: 2497225778210803303}
+  - {fileID: 8573486076197041500}
+  - {fileID: 154687205112517687}
+  - {fileID: 6623411954109345542}
+  - {fileID: 1826966486005516167}
+  - {fileID: 5314879358295758558}
+  - {fileID: 6891808457513723363}
+  - {fileID: 3128456939588640703}
+  - {fileID: 6957700577585099823}
+  - {fileID: 3394216198385668125}
+  - {fileID: 8853978083490740900}
+  - {fileID: 2699513933301664606}
+  - {fileID: 4622108936925275780}
+  - {fileID: 594285292904401368}
+  - {fileID: 6199168467000506806}
+  - {fileID: 1582429250911543755}
+  - {fileID: 3212184422975446561}
+  - {fileID: 3590859948317125525}
+  - {fileID: 5391006391316659927}
+  - {fileID: 921507174401135974}
+  - {fileID: 8749363850401079690}
+  - {fileID: 1191960134118539089}
+  - {fileID: 6578288623724413251}
+  - {fileID: 289131432187050149}
+  - {fileID: 6320625718330123052}
+  - {fileID: 51160702056054974}
+  - {fileID: 3701932950456333280}
+  - {fileID: 967629589583614675}
+  - {fileID: 8449139591143684404}
+  - {fileID: 8940775490252220513}
+  - {fileID: 8565807380458749580}
+  - {fileID: 2554319275789196613}
+  - {fileID: 2563236513660859019}
+  - {fileID: 1134995688679715976}
+  - {fileID: 7573967754529248167}
+  - {fileID: 8958800096040479178}
+  - {fileID: 8824382317407809760}
+  - {fileID: 7356006897059665892}
+  - {fileID: 2490282866542211642}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1104862614309125469}
+  m_AABB:
+    m_Center: {x: -0.9270608, y: 0.6115235, z: 0.00008106232}
+    m_Extent: {x: 1.7174661, y: 1.7918707, z: 4.5224376}
+  m_DirtyAABB: 0
+--- !u!114 &2803774101077351045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171786029086341542}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &5413636885640925849
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3128456939588640703}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Body_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3128456939588640703
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5413636885640925849}
+  m_LocalRotation: {x: -0.0016957802, y: 0.7033249, z: -0.0017139522, w: 0.7108645}
+  m_LocalPosition: {x: 0.13308778, y: 2.220446e-16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6957700577585099823}
+  m_Father: {fileID: 6891808457513723363}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5441032277387558098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1104862614309125469}
+  m_Layer: 0
+  m_Name: Goblin_Body_CoG_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1104862614309125469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441032277387558098}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.00014136129, y: -0.761063, z: -0.06594546}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7531235609325099755}
+  - {fileID: 6767273184087694304}
+  - {fileID: 8448814578875633499}
+  - {fileID: 3256540058664614798}
+  - {fileID: 1198934699467403470}
+  - {fileID: 8505787466997059479}
+  - {fileID: 4634458566608992608}
+  - {fileID: 3056004865671159218}
+  - {fileID: 6161357786815592267}
+  - {fileID: 1479169986933582184}
+  - {fileID: 156411534873649253}
+  - {fileID: 274821864040217739}
+  - {fileID: 6891808457513723363}
+  - {fileID: 2554319275789196613}
+  - {fileID: 289131432187050149}
+  - {fileID: 594285292904401368}
+  - {fileID: 5391006391316659927}
+  m_Father: {fileID: 6209749073952212311}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0.4578874, y: 89.99933, z: 18.192434}
+--- !u!1 &5568076981677498254
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3256540058664614798}
+  m_Layer: 0
+  m_Name: Goblin_Body_Proppeler1_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3256540058664614798
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5568076981677498254}
+  m_LocalRotation: {x: -0.64349395, y: 0.17242368, z: 0.72036684, w: 0.19302171}
+  m_LocalPosition: {x: -0.6924255, y: 1.236512, z: -0.75058764}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5887672211436151}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: -29.790705, y: -82.56027, z: 176.28798}
+--- !u!1 &5630480956215967752
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 745483064575762927}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_Tip_03_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &745483064575762927
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5630480956215967752}
+  m_LocalRotation: {x: 0, y: 0.027550507, z: -0, w: 0.99962044}
+  m_LocalPosition: {x: -0.13141118, y: 0.0002915779, z: 1.8057458}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: -7.968045, z: 0}
+--- !u!1 &5826433928424212746
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3590859948317125525}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Elice_Back_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3590859948317125525
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5826433928424212746}
+  m_LocalRotation: {x: 0.000000028623303, y: -0.0000000145467425, z: -0.000000012456439,
+    w: 1}
+  m_LocalPosition: {x: -0.17442966, y: 2.220446e-16, z: -2.220446e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3212184422975446561}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5900420320684273454
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6767273184087694304}
+  m_Layer: 0
+  m_Name: Goblin_Body_Head_Root_Tip_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6767273184087694304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900420320684273454}
+  m_LocalRotation: {x: -0.3678421, y: 0.6038975, z: 0.6038975, w: -0.3678421}
+  m_LocalPosition: {x: -1.2796842, y: 1.7764032, z: 0.00014097276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6569971979135702461}
+  - {fileID: 3411866725819263431}
+  - {fileID: 745483064575762927}
+  - {fileID: 6020969663326188555}
+  - {fileID: 234036289877307357}
+  - {fileID: 6909469851181555101}
+  - {fileID: 2165006955894599256}
+  - {fileID: 7869687668699699571}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -27.307686, y: -90, z: -90}
+--- !u!1 &5914149253965394533
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 774918017008178896}
+  m_Layer: 0
+  m_Name: Goblin_Body_Slider_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &774918017008178896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5914149253965394533}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.08277705, y: -0.9381897, z: 0.26763508}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8505787466997059479}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!1 &5997619973784889795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1582429250911543755}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Elice_Front_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1582429250911543755
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5997619973784889795}
+  m_LocalRotation: {x: -0.0000012025503, y: 0.000006843134, z: 0.0035151718, w: 0.99999386}
+  m_LocalPosition: {x: -0.15816902, y: 6.790124e-13, z: 1.1555201e-12}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6199168467000506806}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6040148572020381935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6209749073952212311}
+  m_Layer: 0
+  m_Name: Goblin_Body_InGame_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6209749073952212311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6040148572020381935}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1104862614309125469}
+  m_Father: {fileID: 6713566277045295707}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6139326380998741815
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6957700577585099823}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6957700577585099823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6139326380998741815}
+  m_LocalRotation: {x: -0.000012853973, y: 0.005331174, z: 0.002411055, w: 0.9999829}
+  m_LocalPosition: {x: 0.8544549, y: -4.440892e-16, z: 9.992007e-16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3394216198385668125}
+  m_Father: {fileID: 3128456939588640703}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6157660881701944230
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3411866725819263431}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_Tip_02_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3411866725819263431
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6157660881701944230}
+  m_LocalRotation: {x: -0.02787866, y: 0.046620257, z: -0.025257427, w: 0.9982041}
+  m_LocalPosition: {x: -0.15568039, y: 0.00030348316, z: 1.534746}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -3.5851479, y: -5.7024574, z: -2.397027}
+--- !u!1 &6250093069864152708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6199168467000506806}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Mouth_Front_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6199168467000506806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6250093069864152708}
+  m_LocalRotation: {x: 0.04042359, y: 0.70595175, z: 0.040425472, w: 0.70594895}
+  m_LocalPosition: {x: -0.4127513, y: -0.11718488, z: 0.5655823}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1582429250911543755}
+  m_Father: {fileID: 594285292904401368}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6354228092098123699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 234036289877307357}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_Tip_05_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &234036289877307357
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6354228092098123699}
+  m_LocalRotation: {x: 0.0056594987, y: -0.0013101698, z: 0.9999831, w: -0.0004298554}
+  m_LocalPosition: {x: 0.13419831, y: 0.001973933, z: 1.4751444}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6767273184087694304}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0.13736866, y: 11.774129, z: -179.9219}
+--- !u!1 &6491922255551204098
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8958800096040479178}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Mouth_Back_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8958800096040479178
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491922255551204098}
+  m_LocalRotation: {x: -0.0000000019441422, y: 0.00000025044858, z: 0.007762406, w: 0.9999699}
+  m_LocalPosition: {x: -1.3605193, y: -0.92860395, z: 1.1627482}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2563236513660859019}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6518810969149332379
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,6 +3483,742 @@ Transform:
   m_Father: {fileID: 1198934699467403470}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -180, y: 3.5, z: 0}
+--- !u!1 &6522207565766645507
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8606427209882878213}
+  m_Layer: 0
+  m_Name: Goblin_Body_Geo_Grp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8606427209882878213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6522207565766645507}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5904171378035873496}
+  - {fileID: 8861866979426594769}
+  m_Father: {fileID: 579301216515137243}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6542642188656206795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6891808457513723363}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_CoG_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6891808457513723363
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6542642188656206795}
+  m_LocalRotation: {x: 0.7071068, y: 4.3297806e-17, z: 0.7071068, w: -4.3297806e-17}
+  m_LocalPosition: {x: -1.1406221, y: -0.43637264, z: 0.5459473}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3128456939588640703}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6637188557052764589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5314879358295758558}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_05_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5314879358295758558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6637188557052764589}
+  m_LocalRotation: {x: -0.000000016181831, y: -0.000000008540403, z: -1.3819937e-16,
+    w: 1}
+  m_LocalPosition: {x: -0.05094382, y: 0.000000031945312, z: 0.00000009298924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1826966486005516167}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6803813989047685055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5025368174208445471}
+  m_Layer: 0
+  m_Name: Goblin_Body_Tip_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5025368174208445471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6803813989047685055}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.330669e-16, y: 3.330669e-16, z: 2.7755576e-17}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3056004865671159218}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6980746435674974810
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8824382317407809760}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Twister_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8824382317407809760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6980746435674974810}
+  m_LocalRotation: {x: -0.0077623706, y: 0.9999699, z: 0.0000000062017333, w: 0.00000079892425}
+  m_LocalPosition: {x: 1.1577269, y: -0.899384, z: 1.162523}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 7356006897059665892}
+  m_Father: {fileID: 2563236513660859019}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7141795476058145462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 921507174401135974}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Mouth_Front_01_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &921507174401135974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7141795476058145462}
+  m_LocalRotation: {x: 0.04042359, y: 0.70595175, z: 0.040425472, w: 0.70594895}
+  m_LocalPosition: {x: 0.412753, y: 0.11718505, z: -0.5655824}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8749363850401079690}
+  m_Father: {fileID: 5391006391316659927}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7440608005389332082
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2554319275789196613}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_CoG_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2554319275789196613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7440608005389332082}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.6069495, y: 0.0243865, z: -0.6329812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2563236513660859019}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7612540866431226715
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 274821864040217739}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_CoG_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &274821864040217739
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7612540866431226715}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -1.1406221, y: -0.43637264, z: -0.5456646}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2497225778210803303}
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7748992009263831327
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1765170952433229907}
+  m_Layer: 0
+  m_Name: Goblin_Body_Back_Flipper_Top_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1765170952433229907
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7748992009263831327}
+  m_LocalRotation: {x: 0, y: 0, z: 0.02557568, w: 0.9996729}
+  m_LocalPosition: {x: -0.9749792, y: 0.6849016, z: -0.00042492163}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8384709232922448944}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: -1.3226037, y: 26.8028, z: 2.6159406}
+--- !u!1 &8062830826228592879
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8565807380458749580}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Cannon_Mouth_Front_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8565807380458749580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8062830826228592879}
+  m_LocalRotation: {x: 0, y: 0.00000003175396, z: -0, w: 1}
+  m_LocalPosition: {x: 0.21893287, y: -0.00000009958315, z: 0.0000004979158}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8940775490252220513}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8516882931439024478
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7327378219159987948}
+  m_Layer: 0
+  m_Name: Goblin_Body_back_Flipper_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7327378219159987948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8516882931439024478}
+  m_LocalRotation: {x: -0.098689176, y: 0.12987794, z: 0.012992676, w: 0.9865209}
+  m_LocalPosition: {x: -0.9749072, y: -0.11436193, z: -0.66747785}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8384709232922448944}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: -11.425449, y: 15, z: -39.85044}
+--- !u!1 &8561462004404175233
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4622108936925275780}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Mid_Cannon_Joint_05_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4622108936925275780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8561462004404175233}
+  m_LocalRotation: {x: 0, y: -0.000000008540403, z: -0, w: 1}
+  m_LocalPosition: {x: 0.05094382, y: -0.0000000319453, z: -0.00000009298924}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2699513933301664606}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8579182033108267542
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8448814578875633499}
+  m_Layer: 0
+  m_Name: Goblin_Body_Mid_Plate_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8448814578875633499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8579182033108267542}
+  m_LocalRotation: {x: 0, y: 0, z: 0.25881907, w: 0.9659259}
+  m_LocalPosition: {x: -0.73978186, y: 0.30264813, z: 0.0001416203}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
+--- !u!1 &8669801424745581625
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4996606411727560654}
+  m_Layer: 0
+  m_Name: Goblin_Body_jaw_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4996606411727560654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8669801424745581625}
+  m_LocalRotation: {x: 0, y: 0, z: 0.6821113, w: 0.7312484}
+  m_LocalPosition: {x: -0.33958727, y: -0.056337085, z: -0.039485537}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3056004865671159218}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 103.10767}
+--- !u!1 &8788157231604552224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2767074158100281166}
+  m_Layer: 0
+  m_Name: Goblin_Body_Locket_Back_Finn_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2767074158100281166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8788157231604552224}
+  m_LocalRotation: {x: 0.8267701, y: 0.08658938, z: -0.55547285, w: -0.02008623}
+  m_LocalPosition: {x: 1.3047874, y: -0.15779434, z: -0.393013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4634458566608992608}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 3.611033, y: -112.51052, z: 170.45494}
+--- !u!1 &8933231106096364535
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1479169986933582184}
+  m_Layer: 0
+  m_Name: Goblin_Body_Spike_R_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1479169986933582184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8933231106096364535}
+  m_LocalRotation: {x: 0.0891512, y: 0.8577339, z: 0.052342482, w: 0.5035921}
+  m_LocalPosition: {x: 0.54506034, y: -0.42504615, z: 0.41047603}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1104862614309125469}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0.000044440538, y: 119.16397, z: 11.867843}
+--- !u!1 &8954174073653814040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2563236513660859019}
+  m_Layer: 0
+  m_Name: Goblin_Prop_Level_01_Wing_Wing_Joint_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2563236513660859019
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8954174073653814040}
+  m_LocalRotation: {x: 0.0054888725, y: -0.7070857, z: -0.0054888725, w: 0.7070853}
+  m_LocalPosition: {x: -0.5419435, y: -0.0031709764, z: -0.0007971258}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8958800096040479178}
+  - {fileID: 8824382317407809760}
+  - {fileID: 1134995688679715976}
+  m_Father: {fileID: 2554319275789196613}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9021547792829992866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5904171378035873496}
+  - component: {fileID: 6394532500548969138}
+  - component: {fileID: 2596513250495994144}
+  m_Layer: 0
+  m_Name: Goblin_Body_Geo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5904171378035873496
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021547792829992866}
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8606427209882878213}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!137 &6394532500548969138
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021547792829992866}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 3
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 61ae934cbe0bc7f4d99184d6f2d5ce78, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 1834146197893507682, guid: 7615b2c79f5fce44ebdb172f20559067, type: 3}
+  m_Bones:
+  - {fileID: 1104862614309125469}
+  - {fileID: 156411534873649253}
+  - {fileID: 8384709232922448944}
+  - {fileID: 1765170952433229907}
+  - {fileID: 7327378219159987948}
+  - {fileID: 1416389458070638305}
+  - {fileID: 8091934296428134276}
+  - {fileID: 1479169986933582184}
+  - {fileID: 7531235609325099755}
+  - {fileID: 8448814578875633499}
+  - {fileID: 774918017008178896}
+  - {fileID: 6767273184087694304}
+  - {fileID: 2165006955894599256}
+  - {fileID: 234036289877307357}
+  - {fileID: 6020969663326188555}
+  - {fileID: 745483064575762927}
+  - {fileID: 3411866725819263431}
+  - {fileID: 6909469851181555101}
+  - {fileID: 6569971979135702461}
+  - {fileID: 7869687668699699571}
+  - {fileID: 8505787466997059479}
+  - {fileID: 3056004865671159218}
+  - {fileID: 5025368174208445471}
+  - {fileID: 4996606411727560654}
+  - {fileID: 1198934699467403470}
+  - {fileID: 4634458566608992608}
+  - {fileID: 1235347281118205327}
+  - {fileID: 3291954748134110248}
+  - {fileID: 5051181011464650729}
+  - {fileID: 7763533117102470882}
+  - {fileID: 4441808655983598412}
+  - {fileID: 2520937884032529721}
+  - {fileID: 6900435262874164030}
+  - {fileID: 2767074158100281166}
+  - {fileID: 6161357786815592267}
+  - {fileID: 3256540058664614798}
+  - {fileID: 5249370756817171196}
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 1104862614309125469}
+  m_AABB:
+    m_Center: {x: -0.23877776, y: 1.4425242, z: 0.00014138222}
+    m_Extent: {x: 3.0405974, y: 2.985545, z: 2.021428}
+  m_DirtyAABB: 0
+--- !u!114 &2596513250495994144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021547792829992866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &9075993010127323885
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3212184422975446561}
+  m_Layer: 0
+  m_Name: Goblin_Props_Level_01_Cannon_Top_Cannon_Mouth_Back_01_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3212184422975446561
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075993010127323885}
+  m_LocalRotation: {x: 0.0416336, y: -0.71377933, z: -0.052484978, w: 0.69715923}
+  m_LocalPosition: {x: -0.41275093, y: 0.011739938, z: -0.49091372}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3590859948317125525}
+  m_Father: {fileID: 594285292904401368}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &9216234033344944234
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5249370756817171196}
+  m_Layer: 0
+  m_Name: Goblin_Body_Slider_L_Jnt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5249370756817171196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216234033344944234}
+  m_LocalRotation: {x: 0.7071068, y: 4.3297806e-17, z: 0.7071068, w: -4.3297806e-17}
+  m_LocalPosition: {x: -0.08277706, y: -0.938187, z: -0.26763463}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8505787466997059479}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -7.246662e-15, y: 90, z: 180}
 --- !u!1001 &994355831829906364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1246,883 +4312,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 994355831829906364}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1117084153119734064
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 2198226034328220055}
-    m_Modifications:
-    - target: {fileID: -9163157627207007123, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.4578874
-      objectReference: {fileID: 0}
-    - target: {fileID: -9163157627207007123, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 89.99933
-      objectReference: {fileID: 0}
-    - target: {fileID: -9163157627207007123, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 18.192434
-      objectReference: {fileID: 0}
-    - target: {fileID: -8844610300746797088, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8304680755418327315, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.13736866
-      objectReference: {fileID: 0}
-    - target: {fileID: -8304680755418327315, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 11.774129
-      objectReference: {fileID: 0}
-    - target: {fileID: -8304680755418327315, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -179.9219
-      objectReference: {fileID: 0}
-    - target: {fileID: -8238489546283443883, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 7.246661e-15
-      objectReference: {fileID: 0}
-    - target: {fileID: -8238489546283443883, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -180
-      objectReference: {fileID: 0}
-    - target: {fileID: -8238489546283443883, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 7.246661e-15
-      objectReference: {fileID: 0}
-    - target: {fileID: -7494117600831104669, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -1.3226037
-      objectReference: {fileID: 0}
-    - target: {fileID: -7494117600831104669, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 26.8028
-      objectReference: {fileID: 0}
-    - target: {fileID: -7494117600831104669, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.6159406
-      objectReference: {fileID: 0}
-    - target: {fileID: -7194314951039387695, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 11.425452
-      objectReference: {fileID: 0}
-    - target: {fileID: -7194314951039387695, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -15
-      objectReference: {fileID: 0}
-    - target: {fileID: -7194314951039387695, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 140.14955
-      objectReference: {fileID: 0}
-    - target: {fileID: -7041804721181766684, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 68c15d5d7f9a6c049bb91571f26eb9c7, type: 2}
-    - target: {fileID: -7041804721181766684, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_Materials.Array.data[1]
-      value: 
-      objectReference: {fileID: 2100000, guid: 68c15d5d7f9a6c049bb91571f26eb9c7, type: 2}
-    - target: {fileID: -7041804721181766684, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_Materials.Array.data[2]
-      value: 
-      objectReference: {fileID: 2100000, guid: 68c15d5d7f9a6c049bb91571f26eb9c7, type: 2}
-    - target: {fileID: -6979498741471409666, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 29.7907
-      objectReference: {fileID: 0}
-    - target: {fileID: -6979498741471409666, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 82.56027
-      objectReference: {fileID: 0}
-    - target: {fileID: -6979498741471409666, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -3.712013
-      objectReference: {fileID: 0}
-    - target: {fileID: -5945730381566309367, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -17.136642
-      objectReference: {fileID: 0}
-    - target: {fileID: -5945730381566309367, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -5945730381566309367, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: -4082182133026501684, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -7.246662e-15
-      objectReference: {fileID: 0}
-    - target: {fileID: -4082182133026501684, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: -4082182133026501684, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: -3919881821325162791, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -3.6110296
-      objectReference: {fileID: 0}
-    - target: {fileID: -3919881821325162791, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 112.51052
-      objectReference: {fileID: 0}
-    - target: {fileID: -3919881821325162791, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -9.545043
-      objectReference: {fileID: 0}
-    - target: {fileID: -3873905311008680657, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -3873905311008680657, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -3873905311008680657, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -3472194372197040048, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -36.148567
-      objectReference: {fileID: 0}
-    - target: {fileID: -3430634442390379347, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -2.5497218e-15
-      objectReference: {fileID: 0}
-    - target: {fileID: -3430634442390379347, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 21.307829
-      objectReference: {fileID: 0}
-    - target: {fileID: -3430634442390379347, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -180
-      objectReference: {fileID: 0}
-    - target: {fileID: -2737867115878838661, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000051531338
-      objectReference: {fileID: 0}
-    - target: {fileID: -2737867115878838661, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -119.16397
-      objectReference: {fileID: 0}
-    - target: {fileID: -2737867115878838661, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -168.13217
-      objectReference: {fileID: 0}
-    - target: {fileID: -2590020464120263365, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -1.0401065
-      objectReference: {fileID: 0}
-    - target: {fileID: -2590020464120263365, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 5.0907564
-      objectReference: {fileID: 0}
-    - target: {fileID: -2590020464120263365, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 178.43018
-      objectReference: {fileID: 0}
-    - target: {fileID: -2110480532802019261, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -2110480532802019261, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.12892874
-      objectReference: {fileID: 0}
-    - target: {fileID: -2110480532802019261, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -1571547683034996772, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -11.425449
-      objectReference: {fileID: 0}
-    - target: {fileID: -1571547683034996772, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: -1571547683034996772, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -39.85044
-      objectReference: {fileID: 0}
-    - target: {fileID: -298127621753099008, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -298127621753099008, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -298127621753099008, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421318543337904351, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 421318543337904351, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -7.968045
-      objectReference: {fileID: 0}
-    - target: {fileID: 421318543337904351, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_Name
-      value: Mesh_Goblin
-      objectReference: {fileID: 0}
-    - target: {fileID: 1264113214677030760, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1264113214677030760, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 5.591806
-      objectReference: {fileID: 0}
-    - target: {fileID: 1264113214677030760, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1947735758260605016, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.000044440538
-      objectReference: {fileID: 0}
-    - target: {fileID: 1947735758260605016, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 119.16397
-      objectReference: {fileID: 0}
-    - target: {fileID: 1947735758260605016, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 11.867843
-      objectReference: {fileID: 0}
-    - target: {fileID: 2208025854823427263, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2208025854823427263, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2208025854823427263, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -16.427156
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367148117050380535, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -3.5851479
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367148117050380535, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -5.7024574
-      objectReference: {fileID: 0}
-    - target: {fileID: 2367148117050380535, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -2.397027
-      objectReference: {fileID: 0}
-    - target: {fileID: 2463453021071920408, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2463453021071920408, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2463453021071920408, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499818797224149694, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -29.790705
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499818797224149694, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -82.56027
-      objectReference: {fileID: 0}
-    - target: {fileID: 2499818797224149694, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 176.28798
-      objectReference: {fileID: 0}
-    - target: {fileID: 2731910523122263170, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -41.017696
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019154850573291134, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 3.611033
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019154850573291134, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -112.51052
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019154850573291134, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 170.45494
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613249669557330556, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 6.026592
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613249669557330556, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -101.473885
-      objectReference: {fileID: 0}
-    - target: {fileID: 3613249669557330556, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 178.77917
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392828627951724286, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392828627951724286, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5392828627951724286, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 103.10767
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783725083320836622, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000051226416
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783725083320836622, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -109.29474
-      objectReference: {fileID: 0}
-    - target: {fileID: 5783725083320836622, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -32.02194
-      objectReference: {fileID: 0}
-    - target: {fileID: 5938700918617383632, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -27.307686
-      objectReference: {fileID: 0}
-    - target: {fileID: 5938700918617383632, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5938700918617383632, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 5957082441338905451, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6101696531550448781, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -3.3324122
-      objectReference: {fileID: 0}
-    - target: {fileID: 6101696531550448781, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -13.6119795
-      objectReference: {fileID: 0}
-    - target: {fileID: 6101696531550448781, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 2.683305
-      objectReference: {fileID: 0}
-    - target: {fileID: 7222984502408433618, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -6.0266113
-      objectReference: {fileID: 0}
-    - target: {fileID: 7222984502408433618, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 101.473885
-      objectReference: {fileID: 0}
-    - target: {fileID: 7222984502408433618, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: -1.220829
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423336245334582235, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: -8.644842
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423336245334582235, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -88.664665
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423336245334582235, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 86.56137
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757828629678732967, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757828629678732967, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8757828629678732967, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8845234624460060267, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8845234624460060267, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8845234624460060267, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 9209013792716703412, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9209013792716703412, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9209013792716703412, guid: 7615b2c79f5fce44ebdb172f20559067,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 7615b2c79f5fce44ebdb172f20559067, type: 3}
---- !u!1 &234688349735371873 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!135 &6642028604092838908
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234688349735371873}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.27
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &7669330374322997274
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234688349735371873}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5acc29ffa9c4b224283fc22edec4cd82, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1678917067114352495
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234688349735371873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf03c66472a8a13448b4a024e936fc6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1940016486070594258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 234688349735371873}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  complexMaskingMode: 0
-  drawingMode: 1
-  outlineLayer: 0
-  outlineTargets:
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 6394532500548969138}
-    SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 1280946388697461460}
-    SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 1280946388697461460}
-    SubmeshIndex: 1
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
-    frontEdgeDilateAmount: 5
-    backEdgeDilateAmount: 5
-    renderer: {fileID: 1280946388697461460}
-    SubmeshIndex: 2
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
-    CutoutThreshold: 0.5
-    CullMode: 2
-    cutoutTextureName: 
-    DilateRenderingMode: 0
-    cutoutTextureIndex: 0
-  renderStyle: 1
-  outlineParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 0.05
-    blurShift: 0.05
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  backParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
-  frontParameters:
-    enabled: 1
-    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    dilateShift: 1
-    blurShift: 1
-    fillPass:
-      shader: {fileID: 0}
-      serializedProperties: []
---- !u!4 &579301216515137243 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1198934699467403470 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -6979498741471409666, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1235347281118205327 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2208025854823427263, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!137 &1280946388697461460 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7041804721181766684, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &3256540058664614798 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2499818797224149694, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5171786029086341542 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4015678270326472554, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2803774101077351045
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5171786029086341542}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!137 &6394532500548969138 stripped
-SkinnedMeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -2937086431949874302, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &9021547792829992866 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -958607059937642862, guid: 7615b2c79f5fce44ebdb172f20559067,
-    type: 3}
-  m_PrefabInstance: {fileID: 1117084153119734064}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2596513250495994144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9021547792829992866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2439611443802905783
 PrefabInstance:
   m_ObjectHideFlags: 0

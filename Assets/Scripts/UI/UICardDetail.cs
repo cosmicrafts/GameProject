@@ -33,7 +33,7 @@ public class UICardDetail : UICard
         //Set the basic properties
         Data = data;
         IsSelected = false;
-        IsSkill = data as NFTsSpell != null;
+        IsSkill = (NFTClass)data.EntType == NFTClass.Skill;
 
         //Set the name, description and cost of the card
         Txt_Name.text = Lang.GetEntityName(data.KeyId);
@@ -59,6 +59,7 @@ public class UICardDetail : UICard
             Txt_Type.text = Lang.GetText("mn_skill");
         } else
         {
+            Debug.Log("Show Preview Model");
             //UNITS
             Model.SetActive(true);
             UnitCard UnitPrefab = ResourcesServices.LoadCardPrefab(data.KeyId, IsSkill).GetComponent<UnitCard>();
