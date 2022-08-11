@@ -98,7 +98,7 @@ public class UserCollection
         }        
 
         //Set current deck
-        Deck = Decks[Factions.Alliance];
+        Deck = Decks[Decks.Keys.First()];
         
         //Decks are redy
         DeckReady = true;
