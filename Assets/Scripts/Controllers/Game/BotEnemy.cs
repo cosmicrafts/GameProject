@@ -178,7 +178,7 @@ public class BotEnemy : MonoBehaviour
             }
 
             //Check if the bot have enough energy
-            if (SelectedUnit.cost <= CurrentEnergy)
+            if (SelectedUnit.cost <= CurrentEnergy && GameMng.GM.CountUnits(Team.Red) < 25)
             {
                 //Select a random position (check the childs game objects of the bot)
                 Vector3 PositionSpawn = transform.GetChild(Random.Range(0, transform.childCount)).position;
