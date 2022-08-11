@@ -70,6 +70,10 @@ public class UserCollection
         if (DeckReady || Decks == null)
             return;
 
+        //Distinct values
+        Characters = Characters.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
+        Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
+
         //Init Cards
         foreach (NFTsCard card in Cards)
         {
