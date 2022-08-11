@@ -655,6 +655,8 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from client (called from back end)
     public void GL_SyncMaster(string json)
     {
+        Debug.Log("GL SYNC MASTER DATA");
+        Debug.Log(json);
         //Check if data is redy
         if (!InitRedy)
             return;
@@ -689,6 +691,8 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from master (called from back end)
     public void GL_SyncClient(string json)
     {
+        Debug.Log("GL SYNC CLIENT DATA");
+        Debug.Log(json);
         //Check if data is redy
         if (!InitRedy)
             return;
