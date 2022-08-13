@@ -11,6 +11,6 @@ public class NetClientGamePack
     public DateTime LastUpdate { get; set; }
     //The list of requested units from the client
     public List<NetUnitPack> UnitsRequested { get; set; }
-    //Client game metrics
-    public GameMetrics Metrics { get; set; }
+    //Score
+    public int ClientScore { get; set; }
 }

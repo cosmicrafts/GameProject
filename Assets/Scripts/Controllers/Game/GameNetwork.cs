@@ -145,28 +145,16 @@ public static class GameNetwork
         return ClientNetPack.UnitsRequested;
     }
 
-    //Set master game metrics
-    public static void SetMasterGameMetrics(GameMetrics metrics)
+    //Set master game score
+    public static void SetMasterScore(int score)
     {
-        GameNetPack.MasterMetrics = metrics;
+        GameNetPack.MasterScore = score;
     }
 
-    //Set client game metrics
-    public static void SetClientGameMetrics(GameMetrics metrics)
+    //Set client game score
+    public static void SetClientScore(int score)
     {
-        ClientNetPack.Metrics = metrics;
-    }
-
-    //Get master game metrics
-    public static GameMetrics GetMasterGameMetrics()
-    {
-        return GameNetPack.MasterMetrics;
-    }
-
-    //Get client game metrics
-    public static GameMetrics GetClientGameMetrics()
-    {
-        return ClientNetPack.Metrics;
+        ClientNetPack.ClientScore = score;
     }
 
     //Set the basic master´s data (wallet id and username)

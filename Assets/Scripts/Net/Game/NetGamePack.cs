@@ -48,9 +48,7 @@ public class NetGamePack
 
     public int ClientAvatar { get; set; }
 
-    public string MasterScore { get; set; }
-
-    public string ClientScore { get; set; }
+    public int MasterScore { get; set; }
 
     public NFTsCharacter MasterCharacter { get; set; }
 
@@ -63,6 +61,4 @@ public class NetGamePack
     public List<NetUnitPack> Units { get; set; }
 
     public List<int> DeleteIdsUnits { get; set; }
-
-    public GameMetrics MasterMetrics { get; set; }
 }

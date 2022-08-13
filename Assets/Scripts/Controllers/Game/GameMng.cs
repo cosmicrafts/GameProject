@@ -619,7 +619,7 @@ public class GameMng : MonoBehaviour
             GameNetwork.SetGameUnits(upack);
             GameNetwork.SetGameDeletedUnits(DeletedUnits);
             //Send metrics
-            GameNetwork.SetMasterGameMetrics(MT);
+            GameNetwork.SetMasterScore(MT.GetScore());
             //Set the last master comunication update
             GameNetwork.SetMasterLastUpdate(DateTime.Now);
             //Try to send the data to the back end
@@ -640,7 +640,7 @@ public class GameMng : MonoBehaviour
         } else //Client send data
         {
             //Send metrics
-            GameNetwork.SetClientGameMetrics(MT);
+            GameNetwork.SetClientScore(MT.GetScore());
             //Set the last client comunication update
             GameNetwork.SetClientLastUpdate(DateTime.Now);
             //Send the data only if the game is runing has production on web

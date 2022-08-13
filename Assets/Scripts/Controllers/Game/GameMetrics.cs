@@ -44,7 +44,7 @@ public class GameMetrics
         EnergyChargeRatePerSec = GameMng.P.SpeedEnergy;
         SecRemaining = GameMng.GM.GetRemainingSecs();
 
-        Score = (int)Damage + (Kills * 10) + (Deploys * 10) + (SecRemaining * 3) + (int)EnergyUsed - (int) EnergyWasted;
+        //Score = (int)Damage + (Kills * 10) + (Deploys * 10) + (SecRemaining * 3) + (int)EnergyUsed - (int) EnergyWasted;
 
         if (GlobalManager.GMD.CurrentMatch == Match.bots)
         {
@@ -78,12 +78,14 @@ public class GameMetrics
     public void AddDamage(float value)
     {
         Damage += value;
+        Score += (int)value;
     }
 
     //TakeDowns
     public void AddKills(int value)
     {
         Kills += value;
+        Score += value * 1000;
     }
 
     //Player cards deploys
