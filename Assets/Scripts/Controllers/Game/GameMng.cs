@@ -227,8 +227,6 @@ public class GameMng : MonoBehaviour
                         GameNetwork.SetGameStart(DateTime.Now);
                         GameNetwork.SetGameStatus(NetGameStep.InGame);
                         SyncNetData();
-                        //Start the sync loop of multiplayer
-                        StartCoroutine(LoopGameNetAsync());
                     } else //IF IM THE CLIENT
                     {
                         //Set the delta time async (5 sec)
@@ -239,6 +237,8 @@ public class GameMng : MonoBehaviour
                             Targets[i].setHasFake();
                         }
                     }
+                    //Start the sync loop of multiplayer
+                    StartCoroutine(LoopGameNetAsync());
                 }
                 break;
         }
