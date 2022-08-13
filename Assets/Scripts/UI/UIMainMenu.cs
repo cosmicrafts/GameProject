@@ -59,8 +59,7 @@ public class UIMainMenu : MonoBehaviour
 
     //Progress of the loaded user data
     int UserDataLoaded;
-    int isFirstLogin = 0;
-    int targetCharacterId = 0;
+    int targetCharacterId;
     public GameObject welcomePanel;
     private void Awake()
     {
@@ -72,6 +71,7 @@ public class UIMainMenu : MonoBehaviour
         //initialize variables
         Menu = this;
         UserDataLoaded = 0;
+        targetCharacterId = 0;
         //Find and save all the UI player properties
         UIPropertys = new List<UIPTxtInfo>();
         foreach (UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
@@ -79,28 +79,28 @@ public class UIMainMenu : MonoBehaviour
             UIPropertys.Add(prop);
         }
 
-        //Show the login page
-        //LoadingPanel.instance.ActiveLoadingPanel();
-
+        //Hide Menu
         MenuPanel.SetActive(false);
+        //Init Player Collection
+        PlayerCollection = GlobalManager.GMD.GetUserCollection();
 
         //If the essential data doesn't exist...
         if (!GlobalManager.GMD.DataReady)
         {
             //Initialize the essential data
             SaveData.LoadGameConfig();
-            //Load the player NFTs collection
-            PlayerCollection = GlobalManager.GMD.GetUserCollection();
-            //Add default NFTs if we are debuging
-            if (GlobalManager.GMD.DebugMode)
-                PlayerCollection.AddUnitsAndCharactersDefault();
+            //Show Wellcome Panel
+            if (!GlobalManager.GMD.DebugMode)
+                welcomePanel.SetActive(true);
         }
         else
         {
+            Debug.Log("INIT PLAYER DATA");
             //Load the player data
             InitPlayerData();
         }
 
+        Debug.Log("CHECK GAMES MODES");
         //Check the current game mode
         CheckGameMode();
 
@@ -109,7 +109,6 @@ public class UIMainMenu : MonoBehaviour
         {
             //Set the game mode as bots
             GlobalManager.GMD.CurrentMatch = Match.bots;
-            //Set the default test units
 
             //Load the player data (with default vaules)
             InitPlayerData();
@@ -122,34 +121,6 @@ public class UIMainMenu : MonoBehaviour
         if (GlobalManager.GMD.IsProductionWeb())
         {
             GameNetwork.JSDashboardStarts();
-        }
-
-        //Check if we already have the user data
-        if (GlobalManager.GMD.UserIsInit())
-        {
-            //Show the main menu
-
-            //LoginPanel.SetActive(false);
-         
-
-            MenuPanel.SetActive(true);
-
-            if (!PlayerPrefs.HasKey("firstLogin"))
-            {
-
-                if (isFirstLogin == 0)
-                {
-
-                    welcomePanel.SetActive(true);
-                    isFirstLogin = 1;
-                    PlayerPrefs.SetInt("firstLogin", 1);
-                }
-                else
-                {
-                    welcomePanel.SetActive(false);
-                }
-            }
-            PlayerPrefs.GetInt("firstLogin");
         }
     }
 
@@ -220,17 +191,27 @@ public class UIMainMenu : MonoBehaviour
     //Load the player´s data
     void InitPlayerData()
     {
+        //Load basic user data
         PlayerUser = GlobalManager.GMD.GetUserData();
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
+        //Add default NFTs if we are debuging
+        if (GlobalManager.GMD.DebugMode)
+        {
+            PlayerCollection.AddUnitsAndCharactersDefault();
+        }
+        //Init Deck
         PlayerCollection.InitDecks();
+        //Set Character
         if (targetCharacterId != 0)
+        {
             GlobalManager.GMD.SetUserCharacter(targetCharacterId);
+        }
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
-        
+        //Load icons
         StartCoroutine(LoadNFTsIcons());
         if (!GlobalManager.GMD.DebugMode)
             LoadingPanel.instance.DesactiveLoadingPanel();
-        //doorAnim.SetTrigger("DoorIntro");
+        //Start Menu        
         GlobalManager.GMD.DataReady = true;
         MenuPanel.SetActive(true);
     }
@@ -286,11 +267,7 @@ public class UIMainMenu : MonoBehaviour
     {
         GlobalManager.GMD.ChangeLang((Language)lang);
     }
-    public void OnClaimWelcomeNft(int nftIndex)
-    {
-        GameNetwork.JSClaimNft(nftIndex);
-       welcomePanel.SetActive(false);
-    }
+
     //Load the game scene for a Tutorial o PVIA game
     IEnumerator LoadLocalGame()
     {
