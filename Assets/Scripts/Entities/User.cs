@@ -33,7 +33,7 @@ public class User
 
     public string SocialId { get; set; }
 
-    public bool FirstGame { get; set; }
+    //public bool FirstGame { get; set; }
 
     public DateTime LastConnection { get; set; }
 

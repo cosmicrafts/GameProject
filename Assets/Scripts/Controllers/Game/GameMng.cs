@@ -348,7 +348,7 @@ public class GameMng : MonoBehaviour
         //Player has not control now
         P.SetInControl(false);
         //Set the first game has false
-        PlayerData.FirstGame = false;
+        //PlayerData.FirstGame = false;
         //Disable all the units
         foreach (Unit unit in Units)
         {

@@ -231,14 +231,13 @@ public class UIMainMenu : MonoBehaviour
         if (!GlobalManager.GMD.DebugMode)
             LoadingPanel.instance.DesactiveLoadingPanel();
         //doorAnim.SetTrigger("DoorIntro");
+        GlobalManager.GMD.DataReady = true;
         MenuPanel.SetActive(true);
     }
 
     //Start the IA game mode
     void PlayIA()
     {
-        PlayerUser.FirstGame = false;
-
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
 
@@ -248,8 +247,6 @@ public class UIMainMenu : MonoBehaviour
     //Start the Tutorial
     void PlayTutorial()
     {
-        PlayerUser.FirstGame = true;
-
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
 
@@ -259,8 +256,6 @@ public class UIMainMenu : MonoBehaviour
     //Serch for a multiplayer match
     void PlayMulti()
     {
-        PlayerUser.FirstGame = true;
-
         MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
     }
 
@@ -341,6 +336,7 @@ public class UIMainMenu : MonoBehaviour
     //Start the current game mode
     public void PlayCurrentMode()
     {
+        Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
         switch (GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots:
