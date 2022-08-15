@@ -360,25 +360,8 @@ public class GameMng : MonoBehaviour
         {
             unit.DisableUnit();
         }
-        //Update UI
-        UI.SetGameOver(Winner);
-        //Check if the game mode is multiplayer
-        if (GlobalManager.GMD.CurrentMatch == Match.multi)
-        {
-            //if im master...
-            if (GlobalManager.GMD.ImMaster)
-            {
-                //Set the winner in network and end the game in backend
-                if (GameNetwork.GetWinner() == 0)
-                {
-                    GameNetwork.SetWinner(winner == P.MyTeam ? 1 : 2);
-                }
-                GameNetwork.SetGameStatus(NetGameStep.Results);
-                SyncNetData();
-            }
-            //Stop multiplayer sync loop 
-            StopCoroutine(LoopGameNetAsync());
-        }
+        //Show Game Over Screen
+        StartCoroutine(ShowGameOver());
     }
     
     //Get if the game is over
@@ -587,6 +570,31 @@ public class GameMng : MonoBehaviour
         }
     }
     
+    //Show game results
+    IEnumerator ShowGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        //Update UI
+        UI.SetGameOver(Winner);
+        //Check if the game mode is multiplayer
+        if (GlobalManager.GMD.CurrentMatch == Match.multi)
+        {
+            //if im master...
+            if (GlobalManager.GMD.ImMaster)
+            {
+                //Set the winner in network and end the game in backend
+                if (GameNetwork.GetWinner() == 0)
+                {
+                    GameNetwork.SetWinner(Winner == P.MyTeam ? 1 : 2);
+                }
+                GameNetwork.SetGameStatus(NetGameStep.Results);
+                SyncNetData();
+            }
+            //Stop multiplayer sync loop 
+            StopCoroutine(LoopGameNetAsync());
+        }
+    }
+
     //Send game data
     public void SyncNetData()
     {
