@@ -77,6 +77,7 @@ public class GameMng : MonoBehaviour
 
     //Delta multiplayer refresh
     WaitForSeconds dnet;
+    float dwebgl;
 
     //Dictionary of NFTs data of the units <NFTkey, NFTdata> (work in progress)
     Dictionary<string, NFTsCard> AllPlayersNfts;
@@ -130,6 +131,7 @@ public class GameMng : MonoBehaviour
         RequestedUnits = new List<NetUnitPack>();
         DeletedUnits = new List<int>();
         CreatedUnits = new List<int>();
+        dwebgl = 0.0f;
         //Default Base Positions
         if (BS_Positions == null)
         {
@@ -251,6 +253,10 @@ public class GameMng : MonoBehaviour
         //If game is already ended, don´t do nothing
         if (GameOver)
             return;
+
+        //WEB GL DELAY SYNC
+        if (dwebgl > 0f)
+            dwebgl -= Time.deltaTime;
 
         //Time count down controller
         TimeControl();
@@ -655,8 +661,10 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from client (called from back end)
     public void GL_SyncMaster(string json)
     {
+        if (dwebgl > 0f)
+            return;
+        dwebgl = 0.3f;
         Debug.Log("GL SYNC MASTER DATA");
-        Debug.Log(json);
         //Check if data is redy
         if (!InitRedy)
             return;
@@ -691,8 +699,10 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from master (called from back end)
     public void GL_SyncClient(string json)
     {
+        if (dwebgl > 0f)
+            return;
+        dwebgl = 0.3f;
         Debug.Log("GL SYNC CLIENT DATA");
-        Debug.Log(json);
         //Check if data is redy
         if (!InitRedy)
             return;
