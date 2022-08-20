@@ -98,6 +98,7 @@ public class GameMng : MonoBehaviour
             Instantiate(ResourcesServices.LoadGlobalManager());
             GlobalManager.GMD.CurrentMatch = Match.testing;
         }
+        Debug.Log("--GAME GLOBAL READY--");
         //Init static unique controllers
         GM = this;
         CONFIG = GlobalManager.GMD.GetConfig();
@@ -105,6 +106,7 @@ public class GameMng : MonoBehaviour
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         PlayerCollection = GlobalManager.GMD.GetUserCollection();
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
+        Debug.Log("--GAME MANAGERS READY--");
         //Check production
         if (!GlobalManager.GMD.DebugMode)
             Testing = false;
@@ -123,6 +125,7 @@ public class GameMng : MonoBehaviour
                 Destroy(debugConsole);
             }
         }
+        Debug.Log("--GAME DEBUGS READY--");
         //init Basic variables and basic storages list
         GameOver = false;
         RunTime = !Testing;
@@ -132,6 +135,7 @@ public class GameMng : MonoBehaviour
         DeletedUnits = new List<int>();
         CreatedUnits = new List<int>();
         dwebgl = 0.0f;
+        Debug.Log("--GAME VARIABLES READY--");
         //Default Base Positions
         if (BS_Positions == null)
         {
@@ -140,9 +144,11 @@ public class GameMng : MonoBehaviour
             BS_Positions[0] = new Vector3(17f, 0f, -19f);
             BS_Positions[1] = new Vector3(-17f, 0f, 19f);
         }
+        Debug.Log("--GAME POSITIONS READY--");
         //init metrics controller
         MT = new GameMetrics();
         MT.InitMetrics();
+        Debug.Log("--GAME METRICS READY--");
         //Init players NFTs dictionary
         AllPlayersNfts = new Dictionary<string, NFTsCard>();
         //Init Ids counters
