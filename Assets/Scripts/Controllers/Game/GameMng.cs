@@ -89,9 +89,9 @@ public class GameMng : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("--GAME MANAGER AWAKE--");
         //Manager is initielizing variables
         InitRedy = false;
-        //Debug.Log("--GAME MANAGER AWAKE--");
         //Check for the global manager
         if (GlobalManager.GMD == null)
         {
@@ -149,13 +149,13 @@ public class GameMng : MonoBehaviour
         IdCounter = IdRequestCounter = 0;
         //Init array of base stations
         Targets = new Unit[2];
-        //Debug.Log("--GAME MANAGER END AWAKE--");
+        Debug.Log("--GAME MANAGER END AWAKE--");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("--GAME MANAGER START--");
+        Debug.Log("--GAME MANAGER START--");
         //Set the time count down (5 minutes) and when the game begins
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
@@ -244,7 +244,7 @@ public class GameMng : MonoBehaviour
                 }
                 break;
         }
-        //Debug.Log("--GAME MANAGER READY--");
+        Debug.Log("--GAME MANAGER READY--");
     }
 
     // Update is called once per frame
