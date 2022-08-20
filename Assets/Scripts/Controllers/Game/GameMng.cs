@@ -125,6 +125,7 @@ public class GameMng : MonoBehaviour
                 Destroy(debugConsole);
             }
         }
+        Debug.Log($"-- game mode:{GlobalManager.GMD.CurrentMatch}, testing: {Testing}, debug: {GlobalManager.GMD.DebugMode} --");
         Debug.Log("--GAME DEBUGS READY--");
         //init Basic variables and basic storages list
         GameOver = false;
