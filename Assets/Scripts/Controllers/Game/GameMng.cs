@@ -98,19 +98,13 @@ public class GameMng : MonoBehaviour
             Instantiate(ResourcesServices.LoadGlobalManager());
             GlobalManager.GMD.CurrentMatch = Match.testing;
         }
-        Debug.Log("--GAME GLOBAL READY--");
         //Init static unique controllers
         GM = this;
         CONFIG = GlobalManager.GMD.GetConfig();
-        Debug.Log("--GAME CONFIG READY--");
         PlayerData = GlobalManager.GMD.GetUserData();
-        Debug.Log("--GAME PLAYER DATA READY--");
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
-        Debug.Log("--GAME PROGRESS READY--");
         PlayerCollection = GlobalManager.GMD.GetUserCollection();
-        Debug.Log("--GAME COLLECTION READY--");
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
-        Debug.Log("--GAME CHARACTER READY--");
         //Check production
         if (!GlobalManager.GMD.DebugMode)
             Testing = false;
@@ -121,14 +115,14 @@ public class GameMng : MonoBehaviour
                 PlayerCollection.AddUnitsAndCharactersDefault();
         }
         //Delete debug Manager in production
-        if (!Debug.isDebugBuild)
-        {
-            GameObject debugConsole = FindObjectOfType<DebugLogManager>().gameObject;
-            if (debugConsole != null)
-            {
-                Destroy(debugConsole);
-            }
-        }
+        //if (!Debug.isDebugBuild)
+        //{
+        //    GameObject debugConsole = FindObjectOfType<DebugLogManager>().gameObject;
+        //    if (debugConsole != null)
+        //    {
+        //        Destroy(debugConsole);
+        //    }
+        //}
         Debug.Log($"-- game mode:{GlobalManager.GMD.CurrentMatch}, testing: {Testing}, debug: {GlobalManager.GMD.DebugMode} --");
         Debug.Log("--GAME DEBUGS READY--");
         //init Basic variables and basic storages list
