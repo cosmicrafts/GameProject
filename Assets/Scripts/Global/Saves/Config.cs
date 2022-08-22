@@ -18,7 +18,7 @@ public class Config
 
     public string UserName = string.Empty;
 
-    public string Password = string.Empty;
+    //public string Password = string.Empty;
 
     public bool AutoLog = true;
 

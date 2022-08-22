@@ -102,11 +102,15 @@ public class GameMng : MonoBehaviour
         //Init static unique controllers
         GM = this;
         CONFIG = GlobalManager.GMD.GetConfig();
+        Debug.Log("--GAME CONFIG READY--");
         PlayerData = GlobalManager.GMD.GetUserData();
+        Debug.Log("--GAME PLAYER DATA READY--");
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
+        Debug.Log("--GAME PROGRESS READY--");
         PlayerCollection = GlobalManager.GMD.GetUserCollection();
+        Debug.Log("--GAME COLLECTION READY--");
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
-        Debug.Log("--GAME MANAGERS READY--");
+        Debug.Log("--GAME CHARACTER READY--");
         //Check production
         if (!GlobalManager.GMD.DebugMode)
             Testing = false;

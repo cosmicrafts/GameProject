@@ -17,7 +17,7 @@ public class User
 
     public string NikeName { get; set; } //*
 
-    public string PassWord { get; set; }
+    //public string PassWord { get; set; }
 
     public int Avatar { get; set; } //*
 
