@@ -677,7 +677,7 @@ public class GameMng : MonoBehaviour
         if (dwebgl > 0f)
             return;
         dwebgl = 0.3f;
-        Debug.Log("GL SYNC MASTER DATA");
+        Debug.Log($"GL SYNC MASTER DATA (GAME ID {GameNetwork.GetId()})");
         //Check if data is redy
         if (!InitRedy)
             return;
@@ -715,7 +715,7 @@ public class GameMng : MonoBehaviour
         if (dwebgl > 0f)
             return;
         dwebgl = 0.3f;
-        Debug.Log("GL SYNC CLIENT DATA");
+        Debug.Log($"GL SYNC CLIENT DATA (GAME ID {GameNetwork.GetId()})");
         //Check if data is redy
         if (!InitRedy)
             return;
