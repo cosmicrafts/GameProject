@@ -349,27 +349,6 @@ public class GameMng : MonoBehaviour
     {
         return BS_Positions[(int)team];
     }
-
-    //GAME OVER
-    public void EndGame(Team winner)
-    {
-        //Set the team winner and end the game
-        GameOver = true;
-        Winner = winner;
-        //Player has not control now
-        P.SetInControl(false);
-        //Set the first game has false
-        //PlayerData.FirstGame = false;
-        //Disable all the units
-        foreach (Unit unit in Units)
-        {
-            unit.DisableUnit();
-        }
-        //Stop Couroutines
-        StopAllCoroutines();
-        //Show Game Over Screen
-        StartCoroutine(ShowGameOver());
-    }
     
     //Get if the game is over
     public bool IsGameOver()
@@ -576,7 +555,30 @@ public class GameMng : MonoBehaviour
             SyncNetData();//Send game data
         }
     }
-    
+
+    //GAME OVER
+    public void EndGame(Team winner)
+    {
+        //Set the team winner and end the game
+        GameOver = true;
+        Winner = winner;
+        //Player has not control now
+        P.SetInControl(false);
+        //Set the first game has false
+        //PlayerData.FirstGame = false;
+        //Disable all the units
+        foreach (Unit unit in Units)
+        {
+            unit.DisableUnit();
+        }
+        //Sync Winer
+        SyncNetData();
+        //Stop Couroutines
+        StopAllCoroutines();
+        //Show Game Over Screen
+        StartCoroutine(ShowGameOver());
+    }
+
     //Show game results
     IEnumerator ShowGameOver()
     {
@@ -595,7 +597,6 @@ public class GameMng : MonoBehaviour
                     GameNetwork.SetWinner(Winner == P.MyTeam ? 1 : 2);
                 }
                 GameNetwork.SetGameStatus(NetGameStep.Results);
-                SyncNetData();
             }
         }
     }
