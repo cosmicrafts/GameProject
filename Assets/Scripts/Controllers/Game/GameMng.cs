@@ -574,8 +574,6 @@ public class GameMng : MonoBehaviour
         
         //Stop Couroutines
         StopAllCoroutines();
-        //Show Game Over Screen
-        StartCoroutine(ShowGameOver());
         //Check if the game mode is multiplayer
         if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
@@ -592,6 +590,8 @@ public class GameMng : MonoBehaviour
                 SyncNetData();
             }
         }
+        //Show Game Over Screen
+        StartCoroutine(ShowGameOver());
     }
 
     //Show game results
