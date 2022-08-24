@@ -365,6 +365,8 @@ public class GameMng : MonoBehaviour
         {
             unit.DisableUnit();
         }
+        //Stop Couroutines
+        StopAllCoroutines();
         //Show Game Over Screen
         StartCoroutine(ShowGameOver());
     }
@@ -595,8 +597,6 @@ public class GameMng : MonoBehaviour
                 GameNetwork.SetGameStatus(NetGameStep.Results);
                 SyncNetData();
             }
-            //Stop multiplayer sync loop 
-            StopCoroutine(LoopGameNetAsync());
         }
     }
 
@@ -674,7 +674,7 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from client (called from back end)
     public void GL_SyncMaster(string json)
     {
-        if (dwebgl > 0f)
+        if (dwebgl > 0f || GameOver)
             return;
         dwebgl = 0.3f;
         Debug.Log($"GL SYNC MASTER DATA (GAME ID {GameNetwork.GetId()})");
@@ -712,7 +712,7 @@ public class GameMng : MonoBehaviour
     //Sync the recived data from master (called from back end)
     public void GL_SyncClient(string json)
     {
-        if (dwebgl > 0f)
+        if (dwebgl > 0f || GameOver)
             return;
         dwebgl = 0.3f;
         Debug.Log($"GL SYNC CLIENT DATA (GAME ID {GameNetwork.GetId()})");
