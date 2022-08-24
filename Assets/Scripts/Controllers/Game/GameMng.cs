@@ -574,6 +574,14 @@ public class GameMng : MonoBehaviour
         
         //Stop Couroutines
         StopAllCoroutines();
+        //Show Game Over Screen
+        StartCoroutine(ShowGameOver());
+    }
+
+    //Show game results
+    IEnumerator ShowGameOver()
+    {
+        yield return new WaitForSeconds(1f);
         //Check if the game mode is multiplayer
         if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
@@ -590,14 +598,7 @@ public class GameMng : MonoBehaviour
                 SyncNetData();
             }
         }
-        //Show Game Over Screen
-        StartCoroutine(ShowGameOver());
-    }
-
-    //Show game results
-    IEnumerator ShowGameOver()
-    {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(2f);
         //Update UI
         UI.SetGameOver(Winner);
     }
