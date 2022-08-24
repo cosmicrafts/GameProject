@@ -571,20 +571,11 @@ public class GameMng : MonoBehaviour
         {
             unit.DisableUnit();
         }
-        //Sync Winer
-        SyncNetData();
+        
         //Stop Couroutines
         StopAllCoroutines();
         //Show Game Over Screen
         StartCoroutine(ShowGameOver());
-    }
-
-    //Show game results
-    IEnumerator ShowGameOver()
-    {
-        yield return new WaitForSeconds(3f);
-        //Update UI
-        UI.SetGameOver(Winner);
         //Check if the game mode is multiplayer
         if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
@@ -597,8 +588,18 @@ public class GameMng : MonoBehaviour
                     GameNetwork.SetWinner(Winner == P.MyTeam ? 1 : 2);
                 }
                 GameNetwork.SetGameStatus(NetGameStep.Results);
+                //Sync Winer
+                SyncNetData();
             }
         }
+    }
+
+    //Show game results
+    IEnumerator ShowGameOver()
+    {
+        yield return new WaitForSeconds(3f);
+        //Update UI
+        UI.SetGameOver(Winner);
     }
 
     //Send game data
