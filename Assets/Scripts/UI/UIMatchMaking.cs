@@ -81,7 +81,7 @@ public class UIMatchMaking : MonoBehaviour
         //Shown the corresponding UI
         SearchingScreen.SetActive(true);
         MatchScreen.SetActive(false);
-        CancelButton.SetActive(true);
+        CancelButton.SetActive(false);
         SearchIcon.SetActive(true);
         FoundIcon.SetActive(false);
         StatusGame.text = Lang.GetText("mn_matchmaking");
@@ -155,7 +155,7 @@ public class UIMatchMaking : MonoBehaviour
         //Update the match info
         GameNetwork.SetClientGameId(GameNetwork.GetId());
         //Update the UI
-        CancelButton.SetActive(GlobalManager.GMD.ImMaster);
+        CancelButton.SetActive(true);
         SearchIcon.SetActive(false);
         FoundIcon.SetActive(true);
 
