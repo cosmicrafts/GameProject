@@ -1723,7 +1723,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &164335986
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1790,9 +1790,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: PlayCurrentMode
+      - m_Target: {fileID: 561116218}
+        m_TargetAssemblyTypeName: WebLogin, Assembly-CSharp
+        m_MethodName: OnLogin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6323,6 +6323,7 @@ GameObject:
   - component: {fileID: 561116212}
   - component: {fileID: 561116217}
   - component: {fileID: 561116216}
+  - component: {fileID: 561116218}
   m_Layer: 5
   m_Name: LoginCanvas
   m_TagString: Untagged
@@ -6456,6 +6457,18 @@ MonoBehaviour:
   UIReward: {fileID: 8952923034547086129}
   ClosedBetaScreen: {fileID: 1764580626}
   anim: {fileID: 561116216}
+--- !u!114 &561116218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 561116211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa6e5a3cdd404aeebca024db9afeae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &564184065
 GameObject:
   m_ObjectHideFlags: 0
