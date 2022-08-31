@@ -7,7 +7,7 @@ public class OasisWallet : MonoBehaviour
     public Text walletId;
     void Start()
     {
-        
+        walletId.text = PlayerPrefs.GetString("Account");
     }
 
     // Update is called once per frame
