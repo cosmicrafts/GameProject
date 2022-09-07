@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.XR;
 /* 
  * This is the IA controller
  * Works with a timing loop and has 3 behaviour modes
@@ -15,7 +17,10 @@ public class BotEnemy : MonoBehaviour
     {
         Pasive,
         Aggressive,
-        Random
+        Random,
+        Easy,
+        Medium,
+        Hard
     }
 
     //Bot player ID (always 2)
@@ -66,7 +71,11 @@ public class BotEnemy : MonoBehaviour
 
     //Allows to generate energy
     bool CanGenEnergy;
-
+    private void Awake()
+    {
+        
+       
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -124,6 +133,11 @@ public class BotEnemy : MonoBehaviour
         }
     }
 
+
+    public void SetBotType(BotMode botMode)
+    {
+        Mode = botMode;
+    }
     //Set if the bot can generate energy
     public void SetCanGenEnergy(bool can)
     {
@@ -163,6 +177,27 @@ public class BotEnemy : MonoBehaviour
                         SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MinCostUnit);
                     }
                     break;
+
+                case BotMode.Easy: // Easy Mode// es lo que va hacer si esta en facil
+
+                    SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MaxCostUnit);
+                   
+                    SpeedEnergy = 0.25f;
+                    break;
+                case BotMode.Medium:  // medium Mode// es lo que va hacer si esta en medio
+                    SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MinCostUnit);
+                    SpeedEnergy = 0.7f;
+                    break;
+
+                case BotMode.Hard:   // hard Mode// es lo que va hacer si esta en dificil
+                    SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MinCostUnit);
+                    SpeedEnergy = 1.5f;
+                    break; 
+
+
+
+
+
                 default: //Select a random card
                     {
                         for(int i=0; i<10; i++)

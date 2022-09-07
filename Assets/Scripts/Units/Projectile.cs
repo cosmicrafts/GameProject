@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 /*
  * This is the bullet code (shooted by ships or stations)
@@ -22,6 +23,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector]
     public int Dmg;
 
+    public GameObject canvasDamageRef;
     //The game object effect to instantiate when the bullet impacts directly
     public GameObject Inpact;
     public Color colorImpact = new Color(1,1,1,0.5f);
@@ -85,6 +87,7 @@ public class Projectile : MonoBehaviour
         {
             //Impact
             Unit target = Target.GetComponent<Unit>();
+            
             Impact(target);
             return;
         }
@@ -142,6 +145,15 @@ public class Projectile : MonoBehaviour
 
         }
         //Add damage to the target
+
+        if (canvasDamageRef)
+        {
+            var cloneDamageCanvas = (GameObject)Instantiate(canvasDamageRef, transform.position, Quaternion.Euler(Vector3.zero));
+
+            CanvasDamage tempDamage = cloneDamageCanvas.GetComponent<CanvasDamage>();
+            tempDamage.SetDamage(Dmg);
+        }
+      
         target.AddDmg(Dmg);
         target.SetImpactPosition(transform.position);
         //Destroy the bullet

@@ -33,6 +33,8 @@ public class GameData
 {
     //Save the selected game mode
     public Match CurrentMatch = Match.multi;
+
+  
     //Save if the player is the multiplayer master
     public bool ImMaster = false;
     //Save if the game is running in Debug mode

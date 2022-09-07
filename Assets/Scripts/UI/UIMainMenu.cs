@@ -8,6 +8,9 @@ using Newtonsoft.Json;
 using System.Linq;
 using UnityEngine.Networking;
 
+using static BotEnemy;
+
+
 /*
  * This is the UI Main menu controller
  * Manages the UI references and windows to navigate through the game menus and start the in-game scenes
@@ -44,6 +47,8 @@ public class UIMainMenu : MonoBehaviour
     public UserCollection PlayerCollection;
     public NFTsCharacter PlayerCharacter;
 
+
+
     //UI Text references for game mode and game status
     public Text CurrentGameMode;
     public Text CurrentGameModeStatus;
@@ -61,7 +66,9 @@ public class UIMainMenu : MonoBehaviour
     int UserDataLoaded;
     int targetCharacterId;
     public GameObject welcomePanel;
-    private void Awake()
+
+    public Dropdown botMode;
+   private void Awake()
     {
         //Instanciate Global Manager
         if (FindObjectOfType<GlobalManager>() == null)
@@ -219,10 +226,14 @@ public class UIMainMenu : MonoBehaviour
     //Start the IA game mode
     void PlayIA()
     {
+        int mode = botMode.value;
+       
+        PlayerPrefs.SetInt("BotMode", mode);
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
-
+       
         StartCoroutine(LoadLocalGame());
+        
     }
 
     //Start the Tutorial
@@ -249,7 +260,7 @@ public class UIMainMenu : MonoBehaviour
         Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
 #endif
     }
-
+    
     //Open the cosmicrafts discord
     public void GoDiscordPage()
     {
@@ -314,10 +325,15 @@ public class UIMainMenu : MonoBehaviour
     public void PlayCurrentMode()
     {
         Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
-        switch (GlobalManager.GMD.CurrentMatch)
+        PlayIA();
+
+        //momentariamente
+        #region COMENTADO POR AHORA
+        /*  switch (GlobalManager.GMD.CurrentMatch)
         {
             case Match.bots:
                 {
+
                     PlayIA();
                 }
                 break;
@@ -337,6 +353,9 @@ public class UIMainMenu : MonoBehaviour
                 }
                 break;
         }
+      */
+        #endregion 
+
     }
 
     //Go back to the main menu
@@ -419,6 +438,7 @@ public class UIMainMenu : MonoBehaviour
             if (!string.IsNullOrEmpty(character.IconURL) && character.IconSprite == null)
             {
                 UnityWebRequest www = UnityWebRequestTexture.GetTexture(character.IconURL);
+                
                 yield return www.SendWebRequest();
                 Texture2D webTexture = ((DownloadHandlerTexture)www.downloadHandler).texture;
                 character.IconSprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);

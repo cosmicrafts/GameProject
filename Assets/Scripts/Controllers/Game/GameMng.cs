@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static BotEnemy;
 
 /*
  * This is the in-game main controller
@@ -180,6 +181,33 @@ public class GameMng : MonoBehaviour
                     {
                         GameObject bot = ResourcesServices.LoadBot();
                         BOT = Instantiate(bot).GetComponent<BotEnemy>();
+
+                       
+
+                        if (PlayerPrefs.HasKey("BotMode"))
+                        {
+
+                            int mode = PlayerPrefs.GetInt("BotMode");
+
+                            switch (mode)
+                            {
+                                case 0:
+                                    BOT.SetBotType(BotMode.Easy);
+                                    break;
+                                case 1:
+                                    BOT.SetBotType(BotMode.Medium);
+                                    break;
+                                case 2:
+                                    BOT.SetBotType(BotMode.Hard);
+                                    break;
+                            }
+
+                       
+
+
+                        }
+                      
+
                     }
                 }
                 break;
