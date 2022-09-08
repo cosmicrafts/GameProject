@@ -229,7 +229,8 @@ public class UIMainMenu : MonoBehaviour
         int mode = botMode.value;
        
         PlayerPrefs.SetInt("BotMode", mode);
-        MainMenu.SetActive(false);
+        GlobalManager.GMD.CurrentMatch = Match.bots;
+      MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
        
         StartCoroutine(LoadLocalGame());
