@@ -27,13 +27,13 @@ public class UIMainMenu : MonoBehaviour
     public GameObject MenuPanel;
     public GameObject MatchPanel;
     public GameObject MultiPanel;
-
+    public GameObject UIReward;
+    
     //Sub sections
     public GameObject MainMenu;
     public GameObject CollectionMenu;
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
-    // Intro Door
 
     //Back button 
     public GameObject BackBtn;
@@ -185,6 +185,14 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetCollectionSkillsData(string jsonData)
     {
         PlayerCollection.SetSpellsCards(jsonData);
+    }
+    
+    //Called from WEB, for show UIReward (Claim)
+    public void GL_SetReward(string jsonData)
+    {
+        Debug.Log("GL SET REWARD");
+        UIReward.SetActive(true);
+        LoadingPanel.instance.DesactiveLoadingPanel();
     }
 
     //Add progress of the player loaded data
