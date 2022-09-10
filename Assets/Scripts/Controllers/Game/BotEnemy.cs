@@ -191,6 +191,8 @@ public class BotEnemy : MonoBehaviour
                     SpeedEnergy = 0.25f;
                     break;
                 case BotMode.Medium:  // medium Mode// es lo que va hacer si esta en medio
+
+                    MaxEnergy =15f;
                     for (int i = 0; i < 10; i++)
                     {
                         SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
@@ -199,10 +201,16 @@ public class BotEnemy : MonoBehaviour
                             break;
                         }
                     }
-                    SpeedEnergy = 0.7f;
+                    SpeedEnergy =1.35f;
                     break;
 
                 case BotMode.Hard:   // hard Mode// es lo que va hacer si esta en dificil
+
+                    MaxEnergy = 30f;
+                    if (CurrentEnergy < MaxCostUnit)
+                    {
+                        continue;
+                    }
                     for (int i = 0; i < 10; i++)
                     {
                         SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
@@ -211,7 +219,7 @@ public class BotEnemy : MonoBehaviour
                             break;
                         }
                     }
-                    SpeedEnergy = 1.5f;
+                    SpeedEnergy = 2.8f;
                     break; 
 
 
