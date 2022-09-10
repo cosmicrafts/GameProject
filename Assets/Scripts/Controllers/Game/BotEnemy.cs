@@ -179,18 +179,38 @@ public class BotEnemy : MonoBehaviour
                     break;
 
                 case BotMode.Easy: // Easy Mode// es lo que va hacer si esta en facil
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                        if (SelectedUnit.cost <= CurrentEnergy)
+                        {
+                            break;
+                        }
+                    }
 
-                    SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MaxCostUnit);
-                   
                     SpeedEnergy = 0.25f;
                     break;
                 case BotMode.Medium:  // medium Mode// es lo que va hacer si esta en medio
-                    SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MinCostUnit);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                        if (SelectedUnit.cost <= CurrentEnergy)
+                        {
+                            break;
+                        }
+                    }
                     SpeedEnergy = 0.7f;
                     break;
 
                 case BotMode.Hard:   // hard Mode// es lo que va hacer si esta en dificil
-                    SelectedUnit = DeckUnits.FirstOrDefault(f => f.cost <= MinCostUnit);
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                        if (SelectedUnit.cost <= CurrentEnergy)
+                        {
+                            break;
+                        }
+                    }
                     SpeedEnergy = 1.5f;
                     break; 
 
