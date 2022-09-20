@@ -35,8 +35,8 @@ public class Projectile : MonoBehaviour
     //A fake bullet is used for multiplayer, to show a visual representation of the original bullet in master
     bool IsFake;
 
-    public bool useAreaOfEffectDamage = true;
-    public float areaOfEffectRange = 100f;
+    public bool useAreaOfEffectDamage = false;
+    public float areaOfEffectRange = 2.5f;
 
     private void Update()
     {
