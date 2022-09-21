@@ -35,9 +35,6 @@ public class Projectile : MonoBehaviour
     //A fake bullet is used for multiplayer, to show a visual representation of the original bullet in master
     bool IsFake;
 
-    public bool useAreaOfEffectDamage = false;
-    public float areaOfEffectRange = 2.5f;
-
     private void Update()
     {
         //If this bullet is fake
@@ -89,62 +86,21 @@ public class Projectile : MonoBehaviour
         if (other.gameObject == Target)
         {
             //Impact
-
-            if(!useAreaOfEffectDamage){
-                // Single target damage
-                Unit target = Target.GetComponent<Unit>();
-                Impact(target);
-            }else{
-                // Area of effect damage
-                // Grab colliders of every object in range
-                Collider[] colliders;
-                colliders = Physics.OverlapSphere(transform.position, areaOfEffectRange);
-
-                // Check whether they have a unit object attached to them, if they are a unit object and are not in our team. If all of the previous are true, impact the objects
-                for(int i = 0;i<=colliders.Length-1;i++){
-                    Unit target = colliders[i].gameObject.GetComponent<Unit>();
-                    if(target != null && !target.IsMyTeam(MyTeam) && colliders[i].gameObject.CompareTag("Unit")){
-                        if(i == colliders.Length-1){
-                            Impact(target, true);
-                        }else{
-                            Impact(target, false);
-                        }
-                    }
-                }
-            }
+            Unit target = Target.GetComponent<Unit>();
+            
+            Impact(target);
             return;
         }
 
         //If the other object is a unit...
         if (other.CompareTag("Unit"))
         {
-            if(!useAreaOfEffectDamage){
-                // Single target damage
-                //And is an enemy unit...
-                Unit target = other.gameObject.GetComponent<Unit>();
-                if (!target.IsMyTeam(MyTeam))
-                {
-                    //Impact
-                    Impact(target);
-                }
-            }
-            else{
-                // Area of effect damage
-                // Grab colliders of every object in range
-                Collider[] colliders;
-                colliders = Physics.OverlapSphere(transform.position, areaOfEffectRange);
-
-                // Check whether they have a unit object attached to them, if they are a unit object and are not in our team. If all of the previous are true, impact the objects
-                for(int i = 0;i<=colliders.Length-1;i++){
-                    Unit target = colliders[i].gameObject.GetComponent<Unit>();
-                    if(target != null && !target.IsMyTeam(MyTeam) && colliders[i].gameObject.CompareTag("Unit")){
-                        if(i == colliders.Length-1){
-                            Impact(target, true);
-                        }else{
-                            Impact(target, false);
-                        }
-                    }
-                }
+            //And is an enemy unit...
+            Unit target = other.gameObject.GetComponent<Unit>();
+            if (!target.IsMyTeam(MyTeam))
+            {
+                //Impact
+                Impact(target);
             }
         } else if (other.CompareTag("Out")) //If the bullets go out of the map...
         {
@@ -154,7 +110,7 @@ public class Projectile : MonoBehaviour
     }
 
     //Target Impact
-    void Impact(Unit target, bool destroy = true)
+    void Impact(Unit target)
     {
         if (target.Shield > 0 && !target.flagShield) //Check if the target has shield
         {
@@ -198,13 +154,10 @@ public class Projectile : MonoBehaviour
             tempDamage.SetDamage(Dmg);
         }
       
-        Debug.Log("Projectile: Hit object '" + target.name + "' for " + Dmg + " damage.");
         target.AddDmg(Dmg);
         target.SetImpactPosition(transform.position);
         //Destroy the bullet
-        if(destroy){
-            Destroy(gameObject);
-        }
+        Destroy(gameObject);
     }
 
     //Rotate the bullet looking to the target
