@@ -172,6 +172,7 @@ public class UIMainMenu : MonoBehaviour
     {
         Debug.Log("GL SET CHARACTERS DATA");
         PlayerCollection.SetCharacters(jsonData);
+        Debug.Log(jsonData);
     }
 
     //Called from WEB, for set the player Units collection
