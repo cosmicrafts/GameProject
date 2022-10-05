@@ -47,6 +47,10 @@ public class UIMainMenu : MonoBehaviour
     public UserCollection PlayerCollection;
     public NFTsCharacter PlayerCharacter;
 
+    //public UserTokens PlayerTokens; //New user data for cryptocurrencies
+    
+
+
 
 
     //UI Text references for game mode and game status
