@@ -20,7 +20,8 @@ public class BotEnemy : MonoBehaviour
         Random,
         Easy,
         Medium,
-        Hard
+        Hard,
+        Impossible,
     }
 
     //Bot player ID (always 2)
@@ -48,6 +49,9 @@ public class BotEnemy : MonoBehaviour
     //Energy regeneration speed
     [Range(0, 99)]
     public float SpeedEnergy = 1;
+
+    //Random Number created for the time between AI Spawn Units
+    float randomNumber = Random.Range(0.5f, 1.5f);
 
     //Delta time to make a decision
     WaitForSeconds IADelta;
@@ -80,7 +84,7 @@ public class BotEnemy : MonoBehaviour
     void Start()
     {
         //Init Basic variables
-        IADelta = new WaitForSeconds(2);
+        IADelta = new WaitForSeconds(randomNumber);
         MyUnits = new List<Unit>();
         CanGenEnergy = true;
         rng = new System.Random();
@@ -201,7 +205,7 @@ public class BotEnemy : MonoBehaviour
                             break;
                         }
                     }
-                    SpeedEnergy =1.35f;
+                    SpeedEnergy = 1.25f;
                     break;
 
                 case BotMode.Hard:   // hard Mode// es lo que va hacer si esta en dificil
@@ -219,8 +223,26 @@ public class BotEnemy : MonoBehaviour
                             break;
                         }
                     }
-                    SpeedEnergy = 2.8f;
+                    SpeedEnergy = 2f;
                     break; 
+
+                    case BotMode.Impossible:   //Impossible
+
+                    MaxEnergy = 30f;
+                    if (CurrentEnergy < MaxCostUnit)
+                    {
+                        continue;
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                        if (SelectedUnit.cost <= CurrentEnergy)
+                        {
+                            break;
+                        }
+                    }
+                    SpeedEnergy = 3f;
+                    break;
 
 
 
@@ -245,8 +267,13 @@ public class BotEnemy : MonoBehaviour
             {
                 //Select a random position (check the childs game objects of the bot)
                 Vector3 PositionSpawn = transform.GetChild(Random.Range(0, transform.childCount)).position;
+
                 //Spawn selected unit and rest energy
-                Unit unit = GameMng.GM.CreateUnit(SelectedUnit.prefab, PositionSpawn, MyTeam, DeckNfts[SelectedUnit].KeyId, 2);
+                Unit unit = GameMng.GM.CreateUnit(SelectedUnit.prefab,
+                                                 PositionSpawn,
+                                                 MyTeam,
+                                                 DeckNfts[SelectedUnit].KeyId, 2);
+
                 CurrentEnergy -= SelectedUnit.cost;
             }
         }
