@@ -66,6 +66,7 @@ public class UIPTxtInfo : MonoBehaviour
                 break;
             case PlayerProperty.Xp:
                 {
+                    //Cantidad de CXP que aparece
                     UserProgress userProgress = GlobalManager.GMD.GetUserProgress();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{userProgress.GetXp()}"; //{Lang.GetText("mn_xp")} add for multilang
@@ -75,7 +76,7 @@ public class UIPTxtInfo : MonoBehaviour
                 {
                     UserProgress userProgress = GlobalManager.GMD.GetUserProgress();
                     Text mytext = GetComponent<Text>();
-                    mytext.text = $"{userProgress.GetXp()} / {userProgress.GetNextXpGoal()} {Lang.GetText("mn_xp")}";
+                    mytext.text = $"{userProgress.GetXp()} / {userProgress.GetNextXpGoal()} ";//{Lang.GetText("mn_xp")}
                 }
                 break;
             case PlayerProperty.Xpbar:

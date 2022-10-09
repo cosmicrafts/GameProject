@@ -51,7 +51,7 @@ public class BotEnemy : MonoBehaviour
     public float SpeedEnergy = 1;
 
     //Random Number created for the time between AI Spawn Units
-    float randomNumber = Random.Range(0.5f, 1.5f);
+    //float randomNumber = Random.Range(0.1f, 1.5f);
 
     //Delta time to make a decision
     WaitForSeconds IADelta;
@@ -84,7 +84,7 @@ public class BotEnemy : MonoBehaviour
     void Start()
     {
         //Init Basic variables
-        IADelta = new WaitForSeconds(randomNumber);
+        IADelta = new WaitForSeconds(0.1f);
         MyUnits = new List<Unit>();
         CanGenEnergy = true;
         rng = new System.Random();

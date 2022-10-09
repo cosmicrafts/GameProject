@@ -178,11 +178,12 @@ public class Projectile : MonoBehaviour
     {
         if (target == null)
         {
-            Destroy(gameObject, 1f);
+            Destroy(gameObject);
         } else
         {
             Target = target;
             LastTargetPosition = target.transform.position;
+            Destroy(gameObject, 0.5f);
         }
     }
 

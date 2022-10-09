@@ -48,10 +48,10 @@ public class Unit : MonoBehaviour
     //Max Shield points
     int MaxShield = 0;
     //Shield regeneration delay
-    [Range(1, 10)]
+    [Range(0, 10)]
     public float ShieldDelay = 3f;
     //Size of the unit
-    [Range(0, 10)]
+    [Range(0.1f, 10)]
     public float Size = 1f;
     //Spawn area size for other units
     [Range(0, 30)]
@@ -188,7 +188,7 @@ public class Unit : MonoBehaviour
                     ShieldCharge += Time.deltaTime;
                 } else
                 {
-                    ShieldCharge = 0f;
+                    ShieldCharge = 45.5f;
                     Shield++;
                     UI.SetShieldBar((float)Shield / (float)MaxShield);
                 }

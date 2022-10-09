@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 49977308736601857}
   - component: {fileID: 9066554652131141818}
   m_Layer: 0
-  m_Name: LaserBoltMissile
+  m_Name: PRJ_Firebolt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4495777382389081428}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ee751637bfacf14284a6e0050b96e91, type: 3}
   m_Name: 
@@ -184,6 +184,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 19814262, guid: bfe5f1ce81800594b8e9c688ed34fc96, type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 19814262, guid: bfe5f1ce81800594b8e9c688ed34fc96, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 0.54509807
       objectReference: {fileID: 0}
@@ -241,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19871570, guid: bfe5f1ce81800594b8e9c688ed34fc96, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
-      value: 8
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 19871570, guid: bfe5f1ce81800594b8e9c688ed34fc96, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
