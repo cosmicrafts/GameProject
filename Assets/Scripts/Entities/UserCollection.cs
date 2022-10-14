@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+
 /*
 * Here we save and manages the player NFTs
 */
@@ -51,6 +53,10 @@ public class UserCollection
     public void SetCharacters(string jsonList)
     {
         Characters = JsonConvert.DeserializeObject<List<NFTsCharacter>>(jsonList);
+        foreach (var nfTsCharacter in Characters)
+        {
+            Debug.Log(nfTsCharacter.Name);
+        }
     }
 
     public void SetSpellsCards(string jsonList)
@@ -61,6 +67,10 @@ public class UserCollection
     public void SetUnitCards(string jsonList)
     {
         Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(jsonList));
+        foreach (var nfTsCard in Cards)
+        {
+            Debug.Log(nfTsCard.Name);
+        }
     }
 
     //Set decks when the collection data is complete
