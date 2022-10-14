@@ -35,6 +35,9 @@ public class Projectile : MonoBehaviour
     //A fake bullet is used for multiplayer, to show a visual representation of the original bullet in master
     bool IsFake;
 
+    public float DestroyTime=0;
+
+
     private void Update()
     {
         //If this bullet is fake
@@ -69,7 +72,7 @@ public class Projectile : MonoBehaviour
                     fcomp.color = colorImpact;
                     fcomp.UpdateColor();
                 }
-                Destroy(impactPrefab, 0.5f);
+                Destroy(impactPrefab, 0.75f);
                 Destroy(gameObject);
             }
         }
@@ -183,7 +186,7 @@ public class Projectile : MonoBehaviour
         {
             Target = target;
             LastTargetPosition = target.transform.position;
-            Destroy(gameObject, 0.5f);
+            Destroy(gameObject, DestroyTime);
         }
     }
 

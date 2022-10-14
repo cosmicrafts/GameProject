@@ -28,6 +28,15 @@ public class UIUnit : MonoBehaviour
     public float DifDmgSpeed = 10f;
     public Color DifHpColor = Color.yellow;
     public Color DifShieldColor = Color.gray;
+    public Transform camTransform;
+
+	Quaternion originalRotation;
+
+    void Start()
+    {
+        originalRotation = transform.rotation;
+    }
+
 
     //The main camera of the game
     Camera MainCamera;
@@ -39,7 +48,7 @@ public class UIUnit : MonoBehaviour
     private void Update()
     {
         //The UI always look at the camera
-        transform.LookAt(transform.position + MainCamera.transform.rotation * Vector3.back, MainCamera.transform.rotation * Vector3.up);
+        transform.rotation = camTransform.rotation * originalRotation;
         //Lerp Ghost Bars
         GhostHp = Mathf.Lerp(GhostHp, Hp.fillAmount, Time.deltaTime * DifDmgSpeed);
         GhostSH = Mathf.Lerp(GhostSH, Shield.fillAmount, Time.deltaTime * DifDmgSpeed);
@@ -50,8 +59,6 @@ public class UIUnit : MonoBehaviour
     //Init the shield and hp bars
     public void Init(int maxhp, int maxshield)
     {
-        //Set the main camera
-        MainCamera = Camera.main;
 
         //Init Ghost Bars
         GhostHp = maxhp;
@@ -104,4 +111,8 @@ public class UIUnit : MonoBehaviour
     {
         Canvas.SetActive(false);
     }
+
+
+
+
 }
