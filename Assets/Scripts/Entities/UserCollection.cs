@@ -81,7 +81,15 @@ public class UserCollection
         }
         Debug.Log(list);
         
+        //Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
         
+        string list2 ="";
+        foreach (var card in Cards)
+        {
+            list2 += "Name: " + card.Name + " ID: " + card.KeyId + " | ";
+        }
+        Debug.Log(list2);
+
         string list3 ="";
         //Init Cards
         foreach (NFTsCard card in Cards)
@@ -91,14 +99,6 @@ public class UserCollection
             list3 +=  "Name: " + card.Name + " Type: " + card.TypePrefix + " Faction: " + card.FactionPrefix + " | ";
         }
         Debug.Log(list3);
-        
-        Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
-        string list2 ="";
-        foreach (var card in Cards)
-        {
-            list2 += "Name: " + card.Name + " ID: " + card.KeyId + " | ";
-        }
-        Debug.Log(list2);
 
         //Set Factions Decks
         foreach (Factions faction in (Factions[])Enum.GetValues(typeof(Factions)))
