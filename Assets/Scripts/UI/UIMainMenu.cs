@@ -175,8 +175,9 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetCollectionCharactersData(string jsonData)
     {
         Debug.Log("GL SET CHARACTERS DATA");
-        PlayerCollection.SetCharacters(jsonData);
         Debug.Log(jsonData);
+        PlayerCollection.SetCharacters(jsonData);
+        
     }
 
     //Called from WEB, for set the player Units collection
@@ -216,7 +217,6 @@ public class UIMainMenu : MonoBehaviour
         PlayerUser = GlobalManager.GMD.GetUserData();
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         //Add default NFTs if we are debuging
-        Debug.Log("Debug Mode: " + GlobalManager.GMD.DebugMode);
         if (GlobalManager.GMD.DebugMode)
         {
             PlayerCollection.AddUnitsAndCharactersDefault();

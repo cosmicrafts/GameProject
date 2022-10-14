@@ -178,14 +178,6 @@ public class GameData
         if (PlayerCharacter == null)
         {
             var Characters = GetUserCollection().Characters;
-            
-            string list6 = "";
-            foreach (var nfTsCharacter in Characters)
-            {
-                list6 += "NameCharacter: " + nfTsCharacter.Name + "|";
-            }
-            Debug.Log(list6);
-            
             if (Characters == null)
             {
                 PlayerCharacter = GetUserCollection().DefaultCharacter;

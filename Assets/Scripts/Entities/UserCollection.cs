@@ -53,6 +53,10 @@ public class UserCollection
     public void SetCharacters(string jsonList)
     {
         Characters = JsonConvert.DeserializeObject<List<NFTsCharacter>>(jsonList);
+        foreach (var nfTsCharacter in Characters)
+        {
+            Debug.Log(nfTsCharacter.Name);
+        }
     }
 
     public void SetSpellsCards(string jsonList)
@@ -63,6 +67,10 @@ public class UserCollection
     public void SetUnitCards(string jsonList)
     {
         Cards.AddRange(JsonConvert.DeserializeObject<List<NFTsUnit>>(jsonList));
+        foreach (var nfTsCard in Cards)
+        {
+            Debug.Log(nfTsCard.Name);
+        }
     }
 
     //Set decks when the collection data is complete
@@ -74,30 +82,14 @@ public class UserCollection
 
         //Distinct values
         Characters = Characters.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
-        string list ="";
-        foreach (var nfTsCharacter in Characters)
-        {
-            list += "Name: " + nfTsCharacter.Name + " ID: " + nfTsCharacter.KeyId + " | ";
-        }
-        Debug.Log(list);
-        
         Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
-        string list2 ="";
-        foreach (var card in Cards)
-        {
-            list2 += "Name: " + card.Name + " ID: " + card.KeyId + " | ";
-        }
-        Debug.Log(list2);
 
-        string list3 ="";
         //Init Cards
         foreach (NFTsCard card in Cards)
         {
             card.TypePrefix = NFTsCollection.NFTsPrefix[card.EntType];
             card.FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.Faction];
-            list3 +=  "Name: " + card.Name + " Type: " + card.TypePrefix + " Faction: " + card.FactionPrefix + " | ";
         }
-        Debug.Log(list3);
 
         //Set Factions Decks
         foreach (Factions faction in (Factions[])Enum.GetValues(typeof(Factions)))
@@ -106,14 +98,6 @@ public class UserCollection
                 continue;
 
             List<NFTsCard> factionCards = Cards.Where(f => (Factions)f.Faction == faction).ToList();
-            
-            string list4 ="Faction: "+ faction+" ";
-            foreach (NFTsCard card in factionCards)
-            {
-                list4 +="Name: "+ card.Name + " Type: "+card.TypePrefix + " Faction: " +card.FactionPrefix + " | ";
-            }
-            Debug.Log(list4);
-            
 
             if (factionCards.Count >= 8)
             {
@@ -129,13 +113,6 @@ public class UserCollection
 
         //Set current deck
         Deck = Decks[Decks.Keys.First()];
-        
-        string list5 ="Deck: ";
-        foreach (NFTsCard card in Deck)
-        {
-            list5 +="Name: "+ card.Name + " Type: "+card.TypePrefix + " Faction: " +card.FactionPrefix + " | ";
-        }
-        Debug.Log(list5);
         
         //Decks are redy
         DeckReady = true;
