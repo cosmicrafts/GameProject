@@ -81,7 +81,8 @@ public class UserCollection
         }
         Debug.Log(list);
         
-        Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
+        //Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
+        
         string list2 ="";
         foreach (var card in Cards)
         {
