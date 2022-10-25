@@ -1470,7 +1470,7 @@ MonoBehaviour:
   Aceleration: 0.5
   MaxSpeed: 1
   DragSpeed: 0.25
-  TurnSpeed: 2
+  TurnSpeed: 60
   StopSpeed: 0.75
   StoppingDistance: 2.5
   AvoidanceRange: 0.25
@@ -4066,6 +4066,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 19838946, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838946, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19838946, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
       value: 0.5686275
       objectReference: {fileID: 0}
@@ -4080,6 +4088,14 @@ PrefabInstance:
     - target: {fileID: 19838946, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
       propertyPath: InitialModule.startColor.maxColor.r
       value: 0.7347901
+      objectReference: {fileID: 0}
+    - target: {fileID: 19861528, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19861528, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19861528, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
       propertyPath: ColorModule.enabled
@@ -4154,8 +4170,16 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 19882502, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882502, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
       propertyPath: prewarm
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882502, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19882502, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a

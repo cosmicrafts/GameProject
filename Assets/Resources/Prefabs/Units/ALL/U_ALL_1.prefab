@@ -989,7 +989,7 @@ MonoBehaviour:
   Aceleration: 0.5
   MaxSpeed: 1
   DragSpeed: 0.25
-  TurnSpeed: 2
+  TurnSpeed: 60
   StopSpeed: 0.75
   StoppingDistance: 2.5
   AvoidanceRange: 0.25
@@ -2935,7 +2935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19800846, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19800846, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: ShapeModule.angle
@@ -2986,8 +2986,12 @@ PrefabInstance:
       value: 0.5132492
       objectReference: {fileID: 0}
     - target: {fileID: 19800846, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19800846, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[2].time
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19800846, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
@@ -3063,7 +3067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19818700, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19818700, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3099,7 +3103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19835798, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19835798, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3119,7 +3123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19835798, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[1].time
-      value: 2
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19835798, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[2].time
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19835798, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: startDelay.maxCurve.m_Curve.Array.data[0].value
@@ -3135,7 +3143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19836378, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19836378, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3163,7 +3171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19848894, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19848894, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3199,7 +3207,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19858152, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: lengthInSec
-      value: 2
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19858152, guid: 13da087118b467142b889aa5f3fb291d, type: 3}
       propertyPath: EmissionModule.enabled
@@ -3350,7 +3358,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19826732, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19826732, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
@@ -3374,7 +3382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19855324, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19855324, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -3402,7 +3410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19881156, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19881156, guid: 982d6dc9a579877478af73641bd15e36, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a

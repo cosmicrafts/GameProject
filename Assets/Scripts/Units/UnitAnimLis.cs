@@ -18,7 +18,7 @@ public class UnitAnimLis : MonoBehaviour
         AnimationClip attack_clip = MyUnit.GetAnimationClip("Attack");
         Shooter shooter = transform.parent.GetComponent<Shooter>();
         if (attack_clip != null && shooter != null)
-            MyUnit.GetAnimator().SetFloat("AttackSpeed", attack_clip.length / shooter.CoolDown);
+            MyUnit.GetAnimator().SetFloat("AttackSpeed", attack_clip.length / shooter.CoolDown * 2);
     }
 
     //Called when the deth animation ends
