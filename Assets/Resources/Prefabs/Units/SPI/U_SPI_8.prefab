@@ -1639,7 +1639,7 @@ MonoBehaviour:
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
   RangeDetector: 6.5
-  CoolDown: 0.64
+  CoolDown: 0.45
   BulletSpeed: 48
   BulletDamage: 1
   RotateToEnemy: 1
@@ -1650,6 +1650,7 @@ MonoBehaviour:
   colorShield: {r: 0.54147387, g: 0.90044147, b: 0.9811321, a: 0.49019608}
   Cannons:
   - {fileID: 5902276807595434677}
+  - {fileID: 2198226033293860269}
 --- !u!135 &2198226034328220042
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3784,15 +3785,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19806586, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19806586, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[1].time
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19806586, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[2].time
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19808704, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: looping
@@ -3800,7 +3801,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19808704, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19827540, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: looping
@@ -3808,15 +3809,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19827540, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19827540, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 19827540, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[1].time
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 19827540, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: EmissionModule.m_Bursts.Array.data[2].time
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19855736, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: looping
@@ -3824,7 +3829,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19855736, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19855736, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: EmissionModule.rateOverTime.scalar
@@ -3840,7 +3845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19860614, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 19893502, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: looping
@@ -3848,7 +3853,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 19893502, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
       propertyPath: lengthInSec
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94dd603fd2f41c34b99ff826df39241b, type: 3}
@@ -3935,6 +3940,10 @@ PrefabInstance:
     - target: {fileID: 475044, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 19882502, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
+      propertyPath: lengthInSec
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 067189eb4a12f8943a80ace0d0a37583, type: 3}
