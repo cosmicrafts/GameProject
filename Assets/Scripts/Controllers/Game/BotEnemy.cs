@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
+
+
 /* 
  * This is the IA controller
  * Works with a timing loop and has 3 behaviour modes
@@ -24,6 +26,7 @@ public class BotEnemy : MonoBehaviour
         Impossible,
     }
 
+
     //Bot player ID (always 2)
     [HideInInspector]
     public readonly int ID = 2;
@@ -36,19 +39,19 @@ public class BotEnemy : MonoBehaviour
     public ShipsDataBase[] DeckUnits = new ShipsDataBase[8];
 
     //IA mode (change in inspector)
-    public BotMode Mode = BotMode.Pasive;
+    public BotMode Mode = BotMode.Easy;
 
     //Current Energy
     [Range(0, 99)]
-    public float CurrentEnergy = 5;
+    public float CurrentEnergy = 30;
 
     //Max Energy
     [Range(0, 99)]
-    public float MaxEnergy = 10;
+    public float MaxEnergy = 30;
 
     //Energy regeneration speed
     [Range(0, 99)]
-    public float SpeedEnergy = 1;
+    public float SpeedEnergy = 5;
 
     //Random Number created for the time between AI Spawn Units
     //float randomNumber = Random.Range(0.1f, 1.5f);
@@ -83,8 +86,10 @@ public class BotEnemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+
         //Init Basic variables
-        IADelta = new WaitForSeconds(0.1f);
+        IADelta = new WaitForSeconds(0.01f);
         MyUnits = new List<Unit>();
         CanGenEnergy = true;
         rng = new System.Random();
@@ -92,13 +97,6 @@ public class BotEnemy : MonoBehaviour
         //Add bot´s base station to bot's units list and set the bot´s enemy base station
         MyUnits.Add(GameMng.GM.Targets[0]);
         TargetUnit = GameMng.GM.Targets[1];
-
-        //Check the correct size of the deck prefabs
-        if (DeckUnits.Length != 8)
-        {
-            Debug.LogError("Size of deck must equals 8");
-            return;
-        }
 
         //Init Deck Cards info with the units prefabs info
         DeckNfts = new Dictionary<ShipsDataBase, NFTsUnit>();
@@ -182,35 +180,9 @@ public class BotEnemy : MonoBehaviour
                     }
                     break;
 
-                case BotMode.Easy: // Easy Mode// es lo que va hacer si esta en facil
-                    for (int i = 0; i < 10; i++)
-                    {
-                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
-                        if (SelectedUnit.cost <= CurrentEnergy)
-                        {
-                            break;
-                        }
-                    }
 
-                    SpeedEnergy = 0.25f;
-                    break;
-                case BotMode.Medium:  // medium Mode// es lo que va hacer si esta en medio
-
-                    MaxEnergy =15f;
-                    for (int i = 0; i < 10; i++)
-                    {
-                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
-                        if (SelectedUnit.cost <= CurrentEnergy)
-                        {
-                            break;
-                        }
-                    }
-                    SpeedEnergy = 1.25f;
-                    break;
-
-                case BotMode.Hard:   // hard Mode// es lo que va hacer si esta en dificil
-
-                    MaxEnergy = 30f;
+                // Easy Mode// 
+                case BotMode.Easy: 
                     if (CurrentEnergy < MaxCostUnit)
                     {
                         continue;
@@ -223,12 +195,12 @@ public class BotEnemy : MonoBehaviour
                             break;
                         }
                     }
-                    SpeedEnergy = 2f;
+                    SpeedEnergy = .25f;
                     break; 
 
-                    case BotMode.Impossible:   //Impossible
 
-                    MaxEnergy = 30f;
+                // medium Mode//
+                    case BotMode.Medium:
                     if (CurrentEnergy < MaxCostUnit)
                     {
                         continue;
@@ -241,12 +213,48 @@ public class BotEnemy : MonoBehaviour
                             break;
                         }
                     }
-                    SpeedEnergy = 3f;
-                    break;
+                    SpeedEnergy = 0.5f;
+                    MaxEnergy = 10f;
+                    CurrentEnergy = 4f;
+                    break; 
 
 
+                 //Hard Mode//
+                case BotMode.Hard:
+                    if (CurrentEnergy < MaxCostUnit)
+                    {
+                        continue;
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                        if (SelectedUnit.cost <= CurrentEnergy)
+                        {
+                            break;
+                        }
+                    }
+                    SpeedEnergy = .5f;
+                    break; 
 
 
+                    //Impossible Mode//
+                    case BotMode.Impossible: 
+                    if (CurrentEnergy < MaxCostUnit)
+                    {
+                        continue;
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SelectedUnit = DeckUnits[Random.Range(0, DeckUnits.Length)];
+                        if (SelectedUnit.cost <= CurrentEnergy)
+                        {
+                            break;
+                        }
+                    }
+                    SpeedEnergy = 0.5f;
+                    MaxEnergy = 10f;
+                    CurrentEnergy = 10f;
+                    break; 
 
                 default: //Select a random card
                     {
@@ -259,11 +267,13 @@ public class BotEnemy : MonoBehaviour
                             }
                         }
                     }
+                    MaxEnergy = 10f;
                     break;
             }
 
+
             //Check if the bot have enough energy
-            if (SelectedUnit.cost <= CurrentEnergy && GameMng.GM.CountUnits(Team.Red) < 25)
+            if (SelectedUnit.cost <= CurrentEnergy && GameMng.GM.CountUnits(Team.Red) < 30)
             {
                 //Select a random position (check the childs game objects of the bot)
                 Vector3 PositionSpawn = transform.GetChild(Random.Range(0, transform.childCount)).position;

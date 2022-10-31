@@ -104,7 +104,7 @@ public class UIPTxtInfo : MonoBehaviour
                 {
                     User user = GlobalManager.GMD.GetUserData();
                     Image myimage = GetComponent<Image>();
-                    myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
+                    //myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
                 }
                 break;
             case PlayerProperty.Score:
