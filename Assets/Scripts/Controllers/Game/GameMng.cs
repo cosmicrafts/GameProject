@@ -31,7 +31,8 @@ public class GameMng : MonoBehaviour
     public GameTutorial GT;
     [HideInInspector]
     public BotEnemy BOT;
-
+    [HideInInspector]
+    public GameObject BotPrefab;
     //Code of the base stations
     [HideInInspector]
     public Unit[] Targets;
@@ -155,6 +156,16 @@ public class GameMng : MonoBehaviour
         IdCounter = IdRequestCounter = 0;
         //Init array of base stations
         Targets = new Unit[2];
+        //Search Bot Prefab
+        if (GlobalManager.GMD.CurrentMatch == Match.bots)
+        {
+            int mode = 0;
+            if (PlayerPrefs.HasKey("BotMode")) { mode = PlayerPrefs.GetInt("BotMode");}
+                        
+            BotPrefab = ResourcesServices.LoadBot(mode); Debug.Log($"Searching Bot_{mode}");
+            if (BotPrefab == null) { BotPrefab = ResourcesServices.LoadBot(0); Debug.Log($"Not found Bot_{mode}"); }
+            if (BotPrefab == null) { Debug.Log("Not found Bot Default"); }
+        }
         Debug.Log("--GAME MANAGER END AWAKE--");
     }
 
@@ -179,35 +190,7 @@ public class GameMng : MonoBehaviour
                     //Instantiate BOT prefab
                     if (FindObjectOfType<BotEnemy>() == null)
                     {
-                        GameObject bot = ResourcesServices.LoadBot();
-                        BOT = Instantiate(bot).GetComponent<BotEnemy>();
-
-                       
-
-                        if (PlayerPrefs.HasKey("BotMode"))
-                        {
-
-                            int mode = PlayerPrefs.GetInt("BotMode");
-
-                            switch (mode)
-                            {
-                                case 0:
-                                    BOT.SetBotType(BotMode.Easy);
-                                    break;
-                                case 1:
-                                    BOT.SetBotType(BotMode.Medium);
-                                    break;
-                                case 2:
-                                    BOT.SetBotType(BotMode.Hard);
-                                    break;
-                            }
-
-                       
-
-
-                        }
-                      
-
+                        BOT = Instantiate(BotPrefab).GetComponent<BotEnemy>();
                     }
                 }
                 break;
@@ -412,8 +395,10 @@ public class GameMng : MonoBehaviour
 
 
         //Create the enemy´s base station
-        GameObject VsStation = ResourcesServices.LoadBaseStationPrefab(
-            GlobalManager.GMD.CurrentMatch == Match.multi ? GameNetwork.GetVSnftCharacter().KeyId : "Chr_11");
+        GameObject VsStation = GlobalManager.GMD.CurrentMatch == Match.multi ?
+            ResourcesServices.LoadBaseStationPrefab(GameNetwork.GetVSnftCharacter().KeyId ):
+            BotPrefab.GetComponent<BotEnemy>().prefabBaseStation;
+            
         Targets[VsIn] = Instantiate(VsStation, BS_Positions[VsIn], Quaternion.identity).GetComponent<Unit>();
 
 

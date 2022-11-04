@@ -1173,7 +1173,7 @@ GameObject:
   - component: {fileID: 614409388736174088}
   - component: {fileID: 614409388736174091}
   m_Layer: 0
-  m_Name: BOT
+  m_Name: BOT_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1225,6 +1225,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02e479c5bf7fefc469048b81a423d6e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  botName: 'Pumpkin '
+  botLv: 25
+  botAvatar: 7
+  prefabBaseStation: {fileID: 2198226034328220048, guid: dd8385223b3d6c849bab7b877efbc5d0,
+    type: 3}
   DeckUnits:
   - {fileID: 11400000, guid: f5d40dae2c2e1264bb56a35b17585b12, type: 2}
   - {fileID: 11400000, guid: 761e09d77475d2645b20dd67406db9f5, type: 2}
@@ -1234,10 +1239,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c8640b3140b5d9d47993c9ced6835051, type: 2}
   - {fileID: 11400000, guid: 983d946661ea7d54b9edf6dec43b2fdc, type: 2}
   - {fileID: 11400000, guid: af0cbbe7b6d5d014d89d59c1787265bc, type: 2}
-  Mode: 2
   CurrentEnergy: 20
   MaxEnergy: 20
   SpeedEnergy: 3
+  waitSpawn: 1
 --- !u!1 &2664854898657336211
 GameObject:
   m_ObjectHideFlags: 0

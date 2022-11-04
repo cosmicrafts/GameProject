@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 /*
  * This is the game resources services
@@ -13,9 +14,22 @@ public static class ResourcesServices
         return Resources.Load<GameObject>($"Prefabs/Manager/GlobalManagerObj");
     }
     //Global Bot Prefab
-    public static GameObject LoadBot()
+    public static GameObject LoadBot(int id)
     {
-        return Resources.Load<GameObject>($"Prefabs/Manager/BOT");
+        return Resources.Load<GameObject>($"Prefabs/Manager/BOTS/BOT_{id}");
+    }
+    //Name Bots Prefabs
+    public static List<string> GetNameBots()
+    {
+        List<string> names = new List<string>(); 
+        GameObject[] bots = Resources.LoadAll<GameObject>($"Prefabs/Manager/BOTS");
+
+        foreach (var bot in bots)
+        {
+            names.Add(bot.GetComponent<BotEnemy>().botName);
+        }
+
+        return names;
     }
     //Global Tutorial Prefab
     public static GameObject LoadTutorial()

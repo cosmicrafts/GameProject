@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
+using Mono.CompilerServices.SymbolWriter;
 using UnityEngine.Networking;
 
 using static BotEnemy;
@@ -133,6 +134,11 @@ public class UIMainMenu : MonoBehaviour
         {
             GameNetwork.JSDashboardStarts();
         }
+
+        //Fill dropdown with bot names
+        botMode.ClearOptions();
+        List<string> nameBots = ResourcesServices.GetNameBots();
+        botMode.AddOptions(nameBots);
     }
 
     //Called from WEB, for set the base player data
@@ -243,7 +249,7 @@ public class UIMainMenu : MonoBehaviour
        
         PlayerPrefs.SetInt("BotMode", mode);
         GlobalManager.GMD.CurrentMatch = Match.bots;
-      MainMenu.SetActive(false);
+        MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
        
         StartCoroutine(LoadLocalGame());

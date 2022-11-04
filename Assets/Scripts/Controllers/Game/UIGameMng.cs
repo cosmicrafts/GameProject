@@ -86,11 +86,11 @@ public class UIGameMng : MonoBehaviour
                 {
                     Players[1].InitInfo(new UserGeneral()
                     {
-                        NikeName = "Pumpkin Bot",
+                        NikeName = GameMng.GM.BOT.botName,
                         WalletId = string.Empty,
-                        Level = 41,
+                        Level = GameMng.GM.BOT.botLv,
                         Xp = 0,
-                        Avatar = 7
+                        Avatar = GameMng.GM.BOT.botAvatar
                     });
                 }
                 break;
