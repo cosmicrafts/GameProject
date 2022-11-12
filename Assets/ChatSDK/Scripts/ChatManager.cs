@@ -32,7 +32,7 @@ public class ChatManager : MonoBehaviour
     [Header("Side Panel : ")]
     public GameObject sidePanel;
     //[SerializeField] private Button addButton;
-    public GameObject addQuestionPanel, addUserPanel, groupObject; /*popupPanel*/ /*addGroupPanel*/
+    public GameObject addQuestionPanel, addUserPanel, groupObject, loadingSendAnimation; /*popupPanel*/ /*addGroupPanel*/
     //[SerializeField] private Button addGroupOptionButton;
     //[SerializeField] private Button newGroupButton;
     public InputField newGroupInput;
@@ -63,6 +63,8 @@ public class ChatManager : MonoBehaviour
 
     /// WebGL
     [DllImport("__Internal")]
+    private static extern void JSCheckLogin();
+    [DllImport("__Internal")]
     private static extern void JSLogin();
     [DllImport("__Internal")]
     private static extern void JSCreateUser(string text);
@@ -83,6 +85,7 @@ public class ChatManager : MonoBehaviour
         newNamePanel.SetActive(false);
         loadingPanel.SetActive(false);
         chatCanvas.SetActive(false);
+        loadingSendAnimation.SetActive(false);
         //popupPanel.SetActive(false);
         fullPanel.SetActive(true);
         loginButton.onClick.AddListener (() => { LoginRequest(); });
@@ -101,6 +104,12 @@ public class ChatManager : MonoBehaviour
         closedPanel.SetActive(false);
         closePanel.onClick.AddListener(() => { ToggleFullPanel(); });
         openPanel.onClick.AddListener(() => { ToggleFullPanel(); });
+        JSCheckLogin();
+    }
+
+    void Awake() {
+        Debug.Log("Awake");
+        JSCheckLogin();
     }
 
     void Update()
@@ -159,6 +168,11 @@ public class ChatManager : MonoBehaviour
 
     private void LoginRequest(){
         JSLogin();
+        loadingPanel.SetActive(true);
+        canvasLoginButton.SetActive(false);
+    }
+
+    public void LoadingLogin(){
         loadingPanel.SetActive(true);
         canvasLoginButton.SetActive(false);
     }

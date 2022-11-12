@@ -7,6 +7,10 @@ mergeInto(LibraryManager.library, {
     ReactUnityWebGL.Login();
   },
 
+  JSCheckLogin : function () {
+    ReactUnityWebGL.CheckLogin();
+  },
+
   JSCreateUser: function (username) {
     ReactUnityWebGL.CreateUser(Pointer_stringify(username));
     ///ReactUnityWebGL.SavePlayerConfig(Pointer_stringify(json));
