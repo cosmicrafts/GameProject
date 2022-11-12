@@ -11,8 +11,8 @@ public class Character_1 : GameCharacter
         Shooter shooter = unit.GetComponent<Shooter>();
         if (shooter != null)
         {
-            shooter.BulletDamage = (int)((float)shooter.BulletDamage * 5f);
-            shooter.CoolDown *= 0.1f;
+            shooter.BulletDamage = (int)((float)shooter.BulletDamage * 1.1f);
+            shooter.CoolDown *= 0.9f;
         }
     }
 }
