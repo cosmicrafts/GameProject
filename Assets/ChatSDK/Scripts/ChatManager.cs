@@ -122,6 +122,7 @@ public class ChatManager : MonoBehaviour
                     JSSendMessage(chatBox.text);
                     //This is going to reset the chatBox to empty
                     chatBox.text = "";
+                    loadingSendAnimation.SetActive(true);
                     /// Close the New Popup
                     //popupPanel.SetActive(false);
                     //openAddPopup = false;
@@ -175,6 +176,10 @@ public class ChatManager : MonoBehaviour
     public void LoadingLogin(){
         loadingPanel.SetActive(true);
         canvasLoginButton.SetActive(false);
+    }
+
+    public void MessageSent(){
+        loadingSendAnimation.SetActive(false);
     }
 
     public void SetNewUser(){
