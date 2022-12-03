@@ -142,8 +142,8 @@ public class GameMng : MonoBehaviour
         {
             //From world reference
             BS_Positions = new Vector3[2];
-            BS_Positions[0] = new Vector3(17f, 0f, -19f);
-            BS_Positions[1] = new Vector3(-17f, 0f, 19f);
+            BS_Positions[0] = new Vector3(0, 0f, 0f);
+            BS_Positions[1] = new Vector3(0f, 0f, -100f);
         }
         Debug.Log("--GAME POSITIONS READY--");
         //init metrics controller
@@ -177,11 +177,11 @@ public class GameMng : MonoBehaviour
         TimeOut = new TimeSpan(0, 5, 0);
         StartTime = DateTime.Now;
         //Set Defautl Manager position
-        transform.position = new Vector3(-30f, 0f, -20f);
+        transform.position = new Vector3(0f, 0f, 0f);
         //Set the size of the clicks and taps collider (the area where player can spawn cards)
         GridColl = GetComponentInChildren<BoxCollider>();
-        GridColl.transform.localPosition = new Vector3(30f, 0f, 20f);
-        GridColl.size = new Vector3(MapWidth * 2f, 0.1f, MapHeigth * 2f);
+        GridColl.transform.localPosition = new Vector3(0f, 0f, 0f);
+       // GridColl.size = new Vector3(MapWidth * f, 0.1f, MapHeigth * 2f);
         //Check which game mode was selected
         switch (GlobalManager.GMD.CurrentMatch)
         {
@@ -598,7 +598,7 @@ public class GameMng : MonoBehaviour
     //Show game results
     IEnumerator ShowGameOver()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         //Check if the game mode is multiplayer
         if (GlobalManager.GMD.CurrentMatch == Match.multi)
         {
@@ -615,7 +615,7 @@ public class GameMng : MonoBehaviour
                 SyncNetData();
             }
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.1f);
         //Update UI
         UI.SetGameOver(Winner);
     }

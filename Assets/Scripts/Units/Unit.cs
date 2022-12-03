@@ -392,7 +392,7 @@ public class Unit : MonoBehaviour
         //Instantiate explosion object effect
         GameObject explosion = Instantiate(Explosion, transform.position, Quaternion.identity);
         explosion.transform.localScale = transform.localScale * 1.8f;
-        Destroy(explosion, 1f);
+        Destroy(explosion, 4f);
     }
 
     //Set the last impact position recived

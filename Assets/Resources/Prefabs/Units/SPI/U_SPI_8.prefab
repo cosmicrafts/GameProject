@@ -1608,8 +1608,8 @@ MonoBehaviour:
   Aceleration: 65
   MaxSpeed: 0.25
   DragSpeed: 0.65
-  TurnSpeed: 65
-  StopSpeed: 65
+  TurnSpeed: 90
+  StopSpeed: 30
   StoppingDistance: 6.5
   AvoidanceRange: 0.1
   AvoidanceSensors:
@@ -1640,12 +1640,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 8
+  RangeDetector: 7
   CoolDown: 0.45
   BulletSpeed: 48
   BulletDamage: 1
   RotateToEnemy: 1
-  StopToAttack: 0
+  StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 10b9ed6b2dbdca342884a06ca3095f80, type: 3}
   colorBullet: {r: 0.5518868, g: 0.912388, b: 1, a: 0.6313726}
   colorImpact: {r: 0.5271004, g: 0.89453197, b: 0.9716981, a: 0.5176471}
@@ -3514,6 +3514,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: WitchHat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07519bef0f9e71241bbb65cdab708f29,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07519bef0f9e71241bbb65cdab708f29, type: 3}
 --- !u!4 &603917412316692282 stripped
@@ -4199,7 +4204,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1a9cb4489c19fe341b0bb0a3d6fbd853,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1227553299556507864, guid: 1a9cb4489c19fe341b0bb0a3d6fbd853,
         type: 3}
@@ -4364,7 +4369,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1a9cb4489c19fe341b0bb0a3d6fbd853,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1227553299556507864, guid: 1a9cb4489c19fe341b0bb0a3d6fbd853,
         type: 3}

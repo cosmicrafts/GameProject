@@ -28,7 +28,7 @@ public class UIUnit : MonoBehaviour
     public float DifDmgSpeed = 10f;
     public Color DifHpColor = Color.yellow;
     public Color DifShieldColor = Color.gray;
-    public Transform camTransform;
+    //public Transform camTransform;
 
 	Quaternion originalRotation;
 
@@ -48,7 +48,7 @@ public class UIUnit : MonoBehaviour
     private void Update()
     {
         //The UI always look at the camera
-        transform.rotation = camTransform.rotation * originalRotation;
+    //transform.rotation = camTransform.rotation * originalRotation;
         //Lerp Ghost Bars
         GhostHp = Mathf.Lerp(GhostHp, Hp.fillAmount, Time.deltaTime * DifDmgSpeed);
         GhostSH = Mathf.Lerp(GhostSH, Shield.fillAmount, Time.deltaTime * DifDmgSpeed);
