@@ -176,7 +176,7 @@ public class Unit : MonoBehaviour
         }
 
         //Shield regeneration controller
-        if (ShieldLoad > 0f)
+        if (ShieldLoad > 0.1f)
         {
             ShieldLoad -= Time.deltaTime;
         } else if (!IsFake)
@@ -188,7 +188,7 @@ public class Unit : MonoBehaviour
                     ShieldCharge += Time.deltaTime;
                 } else
                 {
-                    ShieldCharge = 45.5f;
+                    ShieldCharge = 12.5f;
                     Shield++;
                     UI.SetShieldBar((float)Shield / (float)MaxShield);
                 }
