@@ -31,16 +31,16 @@ public class UIUnit : MonoBehaviour
     //public Transform camTransform;
 
 	Quaternion originalRotation;
-
+    
+    //The main camera of the game
+    Camera mainCamera;
     void Start()
     {
         originalRotation = transform.rotation;
+        
+        mainCamera = Camera.main;
     }
-
-
-    //The main camera of the game
-    Camera MainCamera;
-
+    
     //Dmg diferences values
     float GhostHp;
     float GhostSH;
@@ -48,7 +48,7 @@ public class UIUnit : MonoBehaviour
     private void Update()
     {
         //The UI always look at the camera
-    //transform.rotation = camTransform.rotation * originalRotation;
+        transform.rotation = mainCamera.transform.rotation * originalRotation;
         //Lerp Ghost Bars
         GhostHp = Mathf.Lerp(GhostHp, Hp.fillAmount, Time.deltaTime * DifDmgSpeed);
         GhostSH = Mathf.Lerp(GhostSH, Shield.fillAmount, Time.deltaTime * DifDmgSpeed);
