@@ -15,7 +15,7 @@ public class CanvasDamage : MonoBehaviour
     
     void Start()
     {
-        float timeScale = Random.Range(2.1f, 5.5f);
+        float timeScale = Random.Range(1.1f, 4.5f);
         damageCanvasSpeed = timeScale;
         damageText.text = "" + (int)damageValue;
     }
@@ -24,7 +24,7 @@ public class CanvasDamage : MonoBehaviour
     void Update()
     {
         transform.position= new Vector3(transform.position.x, transform.position.y +damageCanvasSpeed *Time.deltaTime, transform.position.z);
-        Destroy(gameObject, 0.5f);
+        Destroy(gameObject, 2.5f);
     }
 
     public void SetDamage(float newDamage)
