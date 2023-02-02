@@ -23,7 +23,6 @@ public class CanvasDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position= new Vector3(transform.position.x, transform.position.y +damageCanvasSpeed *Time.deltaTime, transform.position.z);
         Destroy(gameObject, 2.5f);
     }
 
