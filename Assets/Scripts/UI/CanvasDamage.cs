@@ -15,7 +15,7 @@ public class CanvasDamage : MonoBehaviour
     
     void Start()
     {
-        float timeScale = Random.Range(1.1f, 4.5f);
+        float timeScale = Random.Range(0.25f, 2.5f);
         damageCanvasSpeed = timeScale;
         damageText.text = "" + (int)damageValue;
     }
