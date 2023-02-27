@@ -49,9 +49,10 @@ public class UIMainMenu : MonoBehaviour
     public NFTsCharacter PlayerCharacter;
 
     //public UserTokens PlayerTokens; //New user data for cryptocurrencies
-    
 
-
+    public bool defaultPrefabs = true;
+    public List<ShipsDataBase> ShipsDataBasesAlliance;
+    public List<ShipsDataBase> ShipsDataBasesSpirats;
 
 
     //UI Text references for game mode and game status
@@ -221,9 +222,10 @@ public class UIMainMenu : MonoBehaviour
         PlayerUser = GlobalManager.GMD.GetUserData();
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         //Add default NFTs if we are debuging
-        if (GlobalManager.GMD.DebugMode)
+        
+        /*if (GlobalManager.GMD.DebugMode)*/ if(defaultPrefabs)
         {
-            PlayerCollection.AddUnitsAndCharactersDefault();
+            PlayerCollection.AddUnitsAndCharactersDefault(ShipsDataBasesAlliance, ShipsDataBasesSpirats);
         }
         //Init Deck
         PlayerCollection.InitDecks();

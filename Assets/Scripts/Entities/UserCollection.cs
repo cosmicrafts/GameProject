@@ -24,6 +24,7 @@ public class UserCollection
 
     //Default character (for testing)
     public NFTsCharacter DefaultCharacter;
+    public NFTsCharacter DefaultCharacter2;
 
     //Init default variables and data structures
     public void InitCollection()
@@ -37,15 +38,29 @@ public class UserCollection
             ID = 1,
             Name = "Wengar",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_1"),
-            Faction = (int)Factions.Alliance,
+            Faction = (int) Factions.Alliance,
             LocalID = 1,
-            EntType = (int)NFTClass.Character
+            EntType = (int) NFTClass.Character,
+            Level = 10
         };
+        DefaultCharacter2 = new NFTsCharacter()
+        {
+            ID = 2,
+            Name = "Sotzeer",
+            IconSprite = ResourcesServices.LoadCharacterIcon("Chr_4"),
+            Faction = (int) Factions.Spirats,
+            LocalID = 4,
+            EntType = (int) NFTClass.Character,
+            Level = 10
+        };
+        
     }
+
+
 
     public void ChangeDeckFaction(NFTsCharacter nFTsCharacter)
     {
-        Deck = Decks[(Factions)nFTsCharacter.Faction];
+        Deck = Decks[(Factions) nFTsCharacter.Faction];
     }
 
     public void SetCharacters(string jsonList)
@@ -74,45 +89,48 @@ public class UserCollection
         foreach (NFTsCard card in Cards)
         {
             card.TypePrefix = NFTsCollection.NFTsPrefix[card.EntType];
-            card.FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions)card.Faction];
+            card.FactionPrefix = NFTsCollection.NFTsFactionsPrefixs[(Factions) card.Faction];
         }
-        
+
         //Distinct values
         Characters = Characters.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
         Cards = Cards.GroupBy(g => g.KeyId).Select(s => s.First()).ToList();
-        
+
         //Set Factions Decks
-        foreach (Factions faction in (Factions[])Enum.GetValues(typeof(Factions)))
+        foreach (Factions faction in (Factions[]) Enum.GetValues(typeof(Factions)))
         {
             if (faction == Factions.Neutral)
                 continue;
 
-            List<NFTsCard> factionCards = Cards.Where(f => (Factions)f.Faction == faction).ToList();
+            List<NFTsCard> factionCards = Cards.Where(f => (Factions) f.Faction == faction).ToList();
 
             if (factionCards.Count >= 8)
             {
                 if (!Decks.ContainsKey(faction))
                 {
                     Decks.Add(faction, factionCards.Take(8).ToList());
-                } else
+                }
+                else
                 {
                     Decks[faction] = factionCards.Take(8).ToList();
                 }
             }
-        }        
+        }
 
         //Set current deck
         Deck = Decks[Decks.Keys.First()];
-        
+
         //Decks are redy
         DeckReady = true;
     }
 
     //Build a testing collection
-    public void AddUnitsAndCharactersDefault()
-    {
+    public void AddUnitsAndCharactersDefault(List<ShipsDataBase> listAlliance = null, List<ShipsDataBase> listSpirats = null)
+
+{
         //CHARACTERS
         Characters.Add(DefaultCharacter);
+        Characters.Add(DefaultCharacter2);
         //Characters.Add(new NFTsCharacter()
         //{
         //    Icon = "Character_4",
@@ -122,7 +140,11 @@ public class UserCollection
         //});
         //ALL CARDS
         //ALLIANCE
-        for (int i = 1; i <= 8; i++)
+        foreach (ShipsDataBase shipsDataBase in listAlliance)
+        {
+            Cards.Add(shipsDataBase.ToNFTCard());
+        }
+        /*for (int i = 1; i <= 8; i++)
         {
             Cards.Add(new NFTsUnit()
             {
@@ -137,7 +159,7 @@ public class UserCollection
                 EntType = (int)NFTClass.Ship,
                 LocalID = i
             });
-        }
+        }*/
         //Cards.Add(new NFTsUnit()
         //{
         //    EnergyCost = 5,
@@ -161,7 +183,11 @@ public class UserCollection
             LocalID = 1
         });
         //SPIRATS
-        for (int i = 1; i <= 8; i++)
+        foreach (ShipsDataBase shipsDataBase in listSpirats)
+        {
+            Cards.Add(shipsDataBase.ToNFTCard());
+        }
+        /*for (int i = 1; i <= 8; i++)
         {
             Cards.Add(new NFTsUnit()
             {
@@ -176,7 +202,7 @@ public class UserCollection
                 EntType = (int)NFTClass.Ship,
                 LocalID = i
             });
-        }
+        }*/
         //Cards.Add(new NFTsUnit()
         //{
         //    EnergyCost = 5,
