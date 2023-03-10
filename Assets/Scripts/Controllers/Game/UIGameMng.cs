@@ -170,7 +170,7 @@ public class UIGameMng : MonoBehaviour
         MTxtEnergyWasted.text = GameMng.MT.GetEnergyWasted().ToString("F0");
         MTxtEnergyChargeRatePerSec.text = GameMng.MT.GetEnergyChargeRatePerSec().ToString()+"/s";
 
-        MTxtXpEarned.text = "+" + GameMng.MT.GetDamage().ToString();
+        MTxtXpEarned.text = "+" + GameMng.MT.GetScore().ToString();//GameMng.MT.GetDamage().ToString();
             
         MTxtDamage.text = GameMng.MT.GetDamage().ToString();
         MTxtKills.text = GameMng.MT.GetKills().ToString();
