@@ -100,9 +100,10 @@ public class UIMainMenu : MonoBehaviour
         //If the essential data doesn't exist...
         if (!GlobalManager.GMD.DataReady)
         {
+            Debug.Log("Load Game Config");
             //Initialize the essential data
             SaveData.LoadGameConfig();
-            //Show Wellcome Panel
+            //Show Welcome Panel
             if (!GlobalManager.GMD.DebugMode)
                 welcomePanel.SetActive(true);
         }
@@ -223,7 +224,8 @@ public class UIMainMenu : MonoBehaviour
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
         //Add default NFTs if we are debuging
         
-        /*if (GlobalManager.GMD.DebugMode)*/ if(defaultPrefabs)
+        /*if (GlobalManager.GMD.DebugMode)*/ 
+        if(defaultPrefabs && PlayerCollection.Characters.Count == 0 && PlayerCollection.Cards.Count == 0)
         {
             PlayerCollection.AddUnitsAndCharactersDefault(ShipsDataBasesAlliance, ShipsDataBasesSpirats);
         }
