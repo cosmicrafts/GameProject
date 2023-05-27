@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class HoverTip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public string tipToShow;
-    private float timeToWait = 0.95f;
+    private float timeToWait = 1.15f;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
