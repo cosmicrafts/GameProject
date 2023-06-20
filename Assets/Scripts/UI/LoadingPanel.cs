@@ -5,9 +5,11 @@ using UnityEngine;
 public class LoadingPanel : MonoBehaviour
 {
     public static LoadingPanel instance;
-    public  GameObject loadingPanel;
+    private Animator animator;
     private void Awake()
     {
+        animator = this.GetComponent<Animator>();
+        
         if (!instance)
         {
             instance = this;
@@ -21,11 +23,11 @@ public class LoadingPanel : MonoBehaviour
     }
     public void ActiveLoadingPanel()
     {
-        loadingPanel.SetActive(true);
+        animator.Play("OnChain_transaction");
     }
     public void DesactiveLoadingPanel()
     {
-        loadingPanel.SetActive(false);
+        animator.Play("OnChain_transaction_finished");
     }
 }
 

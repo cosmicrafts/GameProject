@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,101 +8,51 @@ using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour
 {
 
-    public InputField inputNameField;
-    [SerializeField]
-    GameObject namePanel;
+    public TMP_InputField inputNameField;
+    
     string playerName;
-    [SerializeField]
-    Text walletID;
     private string account;
+    
+    [SerializeField] Text walletID;
     string mainScene = "Menu";
 
-    [SerializeField]
-    GameObject LoginPanel;
-
-    [SerializeField]
-    GameObject loadingPanel;
+    [SerializeField] GameObject UIReward;
+    [SerializeField] GameObject ClosedBetaScreen;
     
-    [SerializeField]
-    GameObject UIReward;
+    [SerializeField] private Animator chooseLoginAnim;
+    [SerializeField] private Animator chooseUserAnim;
     
-    [SerializeField]
-    GameObject ClosedBetaScreen;
-    
-    [SerializeField]
-    private Animator anim;
-
-    // Start is called before the first frame update
-
-
-    public void CloseLogin()
-    {
-        if (anim != null)
-        {
-            anim.Play("Close_PanelLogin");
-        }
-    }
-    public void ClosePanelLoading()
-    {
-        if (anim != null)
-        {
-            anim.Play("Close_PanelLoading");
-        }
-    }
-
-    void Start()
-    {
-     
-        namePanel.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void OnConnectToWallet()
     {
-
-        GameNetwork.JSLoginPanel(account); //esto aca se la manda a pk
-                                           // reset login message
-
-        LoginPanel.SetActive(true);
+        GameNetwork.JSLoginPanel(account); //esto aca se la manda a pk// reset login message
+        //LoginPanel.SetActive(true);
     }
 
     public void OnRecibeNameData(string usser)//esta es de PK
     {
         if (string.IsNullOrEmpty(usser))
         {
-
-            LoginPanel.SetActive(false);
-            namePanel.SetActive(true);
+            chooseUserAnim.Play("ChooseUsername_Intro");
         }
         else
         {
             LoadingPanel.instance.ActiveLoadingPanel();
             SceneManager.LoadScene(mainScene);
-
         }
 
     }
-
- 
+    
     public void OnNameData(int usser)//esta es de PK
     {
         if (usser == 3)
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
-            LoginPanel.SetActive(false);
-            namePanel.SetActive(false);
             UIReward.SetActive(false);
             ClosedBetaScreen.SetActive(true);
         }
         if (usser == 2)
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
-            LoginPanel.SetActive(false);
-            namePanel.SetActive(false);
             UIReward.SetActive(true);
         }
         if (usser == 1)
@@ -113,17 +64,14 @@ public class Login : MonoBehaviour
         else
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
-            LoginPanel.SetActive(false);
-            namePanel.SetActive(true);
             walletID.text = ""+ account;
         }
 
     }
     public void BackLoginMenu()
     {
-        namePanel.SetActive(false);
-        LoginPanel.SetActive(true);
-       
+        chooseUserAnim.Play("ChooseUsername_Outro"); 
+        chooseLoginAnim.Play("ChooseLogin_Intro");
     }
 
     public void SetPlayerName()
@@ -141,21 +89,26 @@ public class Login : MonoBehaviour
     {
         GameNetwork.JSWalletsLogin("stoicWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
+        chooseLoginAnim.Play("ChooseLogin_Outro");
+        
     }
     public void IdentityLogin()
     {
         GameNetwork.JSWalletsLogin("identityWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
+        chooseLoginAnim.Play("ChooseLogin_Outro");
     }
     public void InfinityLogin()
     {
         GameNetwork.JSWalletsLogin("infinityWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
+        chooseLoginAnim.Play("ChooseLogin_Outro");
     }
     public void PlugLogin()
     {
         GameNetwork.JSWalletsLogin("plugWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
+        chooseLoginAnim.Play("ChooseLogin_Outro");
     }
 
 }
