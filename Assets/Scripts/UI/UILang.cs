@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 /*
@@ -6,7 +7,7 @@ using UnityEngine.UI;
  * Requires the TEXT component and the key of the string
  */
 
-[RequireComponent(typeof(Text))]
+[RequireComponent(typeof(TMP_Text))]
 public class UILang : MonoBehaviour
 {
     //The key of the string
@@ -24,7 +25,8 @@ public class UILang : MonoBehaviour
     //Loads and shows the string
     public void SetMyText()
     {
-        GetComponent<Text>().text = Lang.GetText(ID);
+        GetComponent<TMP_Text>().text = Lang.GetText(ID);
+        
     }
 
     //Loads and shows the string if is required
