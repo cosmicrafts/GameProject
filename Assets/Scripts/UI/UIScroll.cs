@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Globalization;
 using UnityEngine;
 
 public class UIScroll : MonoBehaviour
@@ -8,8 +9,8 @@ public class UIScroll : MonoBehaviour
     private float Ref = 768f;
     public float timeAnimation = 0.5f;
 
-    private int column = 0;
-    private int row = 0;
+    private float column = 0;
+    private float row = 0;
     private int indexUI = 0;
     
     public GameObject[] sections;
@@ -17,8 +18,8 @@ public class UIScroll : MonoBehaviour
     public void MoveTo(string item = "0,0,0")
     {
         string[] split = item.Split(",");
-        column = int.Parse(split[0]);
-        row = int.Parse(split[1]);
+        column = float.Parse(split[0], CultureInfo.InvariantCulture);
+        row = float.Parse(split[1], CultureInfo.InvariantCulture);
         indexUI = int.Parse(split[2]);
         Debug.Log("Column: "+column+"  Row: "+ row);
            
@@ -28,7 +29,7 @@ public class UIScroll : MonoBehaviour
         StartCoroutine(AnimationCoRoutine(column,row, indexUI));
     }
        
-    private IEnumerator AnimationCoRoutine(int column, int row, int indexUI)
+    private IEnumerator AnimationCoRoutine(float column, float row, int indexUI)
     {
         sections[indexUI].SetActive(true);
         

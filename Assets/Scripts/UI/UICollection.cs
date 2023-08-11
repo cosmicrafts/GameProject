@@ -184,6 +184,7 @@ public class UICollection : MonoBehaviour
         DragingCard = card;
         DragIcon.gameObject.SetActive(true);
         DragIcon.Icon.sprite = card.Icon.sprite;
+        card.Icon.enabled = false;
         DragIcon.transform.position = Input.mousePosition;
     }
 
@@ -201,7 +202,7 @@ public class UICollection : MonoBehaviour
 
             SortAndFilterCollection();
         }
-        
+        DragingCard.Icon.enabled = true;
         DragingCard = null;
         DragIcon.gameObject.SetActive(false);
     }
