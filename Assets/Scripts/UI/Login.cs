@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
@@ -13,25 +15,26 @@ public class Login : MonoBehaviour
     string playerName;
     private string account;
     
-    [SerializeField] Text walletID;
-    string mainScene = "Menu";
-
+    //[SerializeField] Text walletID;
     [SerializeField] GameObject UIReward;
     [SerializeField] GameObject ClosedBetaScreen;
+    string mainScene = "Menu";
     
     [SerializeField] private Animator chooseLoginAnim;
     [SerializeField] private Animator chooseUserAnim;
     
-    public void OnConnectToWallet()
+    /*public void OnConnectToWallet()
     {
         GameNetwork.JSLoginPanel(account); //esto aca se la manda a pk// reset login message
         //LoginPanel.SetActive(true);
-    }
+    }*/
 
     public void OnRecibeNameData(string usser)//esta es de PK
     {
+        Debug.Log("OnRecibeNameData: " + usser);
         if (string.IsNullOrEmpty(usser))
         {
+            LoadingPanel.instance.DesactiveLoadingPanel();
             chooseUserAnim.Play("ChooseUsername_Intro");
         }
         else
@@ -41,9 +44,18 @@ public class Login : MonoBehaviour
         }
 
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            OnNameData(0);
+        }
+    }
+
     public void OnNameData(int usser)//esta es de PK
     {
+        Debug.Log("OnNameData  " + usser);
         if (usser == 3)
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
@@ -64,7 +76,8 @@ public class Login : MonoBehaviour
         else
         {
             LoadingPanel.instance.DesactiveLoadingPanel();
-            walletID.text = ""+ account;
+            chooseUserAnim.Play("ChooseUsername_Intro");
+            //walletID.text = ""+ account;
         }
 
     }
@@ -106,9 +119,9 @@ public class Login : MonoBehaviour
     }
     public void PlugLogin()
     {
-        GameNetwork.JSWalletsLogin("plugWallet");
         LoadingPanel.instance.ActiveLoadingPanel();
         chooseLoginAnim.Play("ChooseLogin_Outro");
+        GameNetwork.JSWalletsLogin("plugWallet");
     }
 
 }

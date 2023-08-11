@@ -14,7 +14,7 @@ public class LoadingPanel : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-            DesactiveLoadingPanel();
+            //DesactiveLoadingPanel();
         }
         else
         {
