@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -128,6 +129,7 @@ public class UICollection : MonoBehaviour
         
         //Sort the data by name (default sort)
         List<NFTsCard> Sorted = AvCards.OrderBy(f => UnitNames[f.KeyId]).ToList();
+        
 
         //instantiate the ui cards with the NFTs data
         AllCards = new List<UICard>();
@@ -184,6 +186,7 @@ public class UICollection : MonoBehaviour
         DragingCard = card;
         DragIcon.gameObject.SetActive(true);
         DragIcon.Icon.sprite = card.Icon.sprite;
+        card.Icon.enabled = false;
         DragIcon.transform.position = Input.mousePosition;
     }
 
@@ -197,11 +200,14 @@ public class UICollection : MonoBehaviour
             PlayerCollection.Deck[EnterCard.DeckSlot] = todeck;
 
             EnterCard.SetData(todeck);
+            
+            EnterCard.animator.Play("DeckChange", -1, 0f);
             DragingCard.SetData(tocol);
-
+            DragingCard.animator.Play("DeckChange", -1, 0f);
+            
             SortAndFilterCollection();
         }
-        
+        DragingCard.Icon.enabled = true;
         DragingCard = null;
         DragIcon.gameObject.SetActive(false);
     }
