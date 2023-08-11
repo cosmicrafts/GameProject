@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -128,6 +129,7 @@ public class UICollection : MonoBehaviour
         
         //Sort the data by name (default sort)
         List<NFTsCard> Sorted = AvCards.OrderBy(f => UnitNames[f.KeyId]).ToList();
+        
 
         //instantiate the ui cards with the NFTs data
         AllCards = new List<UICard>();
