@@ -198,8 +198,11 @@ public class UICollection : MonoBehaviour
             PlayerCollection.Deck[EnterCard.DeckSlot] = todeck;
 
             EnterCard.SetData(todeck);
+            
+            EnterCard.animator.Play("DeckChange", -1, 0f);
             DragingCard.SetData(tocol);
-
+            DragingCard.animator.Play("DeckChange", -1, 0f);
+            
             SortAndFilterCollection();
         }
         DragingCard.Icon.enabled = true;

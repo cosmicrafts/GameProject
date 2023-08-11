@@ -18,6 +18,8 @@ public class UICard : MonoBehaviour
     public Text Txt_Details;
     //UI Icon reference
     public Image Icon;
+    //UI Animator reference
+    public Animator animator;
     //Is a skill or unit
     protected bool IsSkill;
 

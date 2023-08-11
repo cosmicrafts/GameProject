@@ -2820,6 +2820,7 @@ GameObject:
   - component: {fileID: 71041498}
   - component: {fileID: 71041499}
   - component: {fileID: 71041500}
+  - component: {fileID: 71041501}
   m_Layer: 5
   m_Name: DeckCard_2
   m_TagString: Untagged
@@ -2867,6 +2868,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 781778260}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 1359749479}
+  animator: {fileID: 71041501}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -2933,6 +2935,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &71041501
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 71041497}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &78450549
 GameObject:
   m_ObjectHideFlags: 0
@@ -4699,6 +4721,7 @@ GameObject:
   - component: {fileID: 137162852}
   - component: {fileID: 137162853}
   - component: {fileID: 137162854}
+  - component: {fileID: 137162855}
   m_Layer: 5
   m_Name: Card
   m_TagString: Untagged
@@ -4746,6 +4769,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 1263640192}
   Txt_Details: {fileID: 434935770}
   Icon: {fileID: 1615132729}
+  animator: {fileID: 137162855}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -4812,6 +4836,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &137162855
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 137162851}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &139713037
 GameObject:
   m_ObjectHideFlags: 0
@@ -13022,6 +13066,7 @@ GameObject:
   - component: {fileID: 304092172}
   - component: {fileID: 304092173}
   - component: {fileID: 304092174}
+  - component: {fileID: 304092175}
   m_Layer: 5
   m_Name: DeckCard_4
   m_TagString: Untagged
@@ -13069,6 +13114,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 1939188607}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 1849230901}
+  animator: {fileID: 304092175}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -13135,6 +13181,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &304092175
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304092171}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &308558903
 GameObject:
   m_ObjectHideFlags: 0
@@ -23964,6 +24030,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594334765}
   m_CullTransparentMesh: 1
+--- !u!1 &595583800
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 595583801}
+  - component: {fileID: 595583803}
+  - component: {fileID: 595583802}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &595583801
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595583800}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1631971257}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0.000037432, y: -34.7}
+  m_SizeDelta: {x: 100, y: 61.77}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &595583802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595583800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 657776612248185734, guid: 8d3f811be7f298247aee49aa5e6c5aec, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &595583803
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595583800}
+  m_CullTransparentMesh: 1
 --- !u!1 &597042239
 GameObject:
   m_ObjectHideFlags: 0
@@ -28067,6 +28209,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 586984794}
   Txt_Details: {fileID: 1928274591}
   Icon: {fileID: 0}
+  animator: {fileID: 0}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -42614,7 +42757,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1080099648
 RectTransform:
   m_ObjectHideFlags: 0
@@ -47599,7 +47742,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 674226022}
   m_HandleRect: {fileID: 674226021}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999726
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -48347,6 +48490,7 @@ GameObject:
   - component: {fileID: 1206521731}
   - component: {fileID: 1206521732}
   - component: {fileID: 1206521733}
+  - component: {fileID: 1206521734}
   m_Layer: 5
   m_Name: DeckCard_5
   m_TagString: Untagged
@@ -48394,6 +48538,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 1064620051}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 2043474632}
+  animator: {fileID: 1206521734}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -48460,6 +48605,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1206521734
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1206521730}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1208193279
 GameObject:
   m_ObjectHideFlags: 0
@@ -49818,6 +49983,7 @@ GameObject:
   - component: {fileID: 1253823001}
   - component: {fileID: 1253823002}
   - component: {fileID: 1253823003}
+  - component: {fileID: 1253823004}
   m_Layer: 5
   m_Name: DeckCard_1
   m_TagString: Untagged
@@ -49865,6 +50031,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 1515964852}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 2099511865}
+  animator: {fileID: 1253823004}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -49931,6 +50098,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1253823004
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1253823000}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1255645385
 GameObject:
   m_ObjectHideFlags: 0
@@ -53505,6 +53692,7 @@ GameObject:
   - component: {fileID: 1348159587}
   - component: {fileID: 1348159588}
   - component: {fileID: 1348159589}
+  - component: {fileID: 1348159590}
   m_Layer: 5
   m_Name: DeckCard_3
   m_TagString: Untagged
@@ -53552,6 +53740,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 1640630455}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 588284964}
+  animator: {fileID: 1348159590}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -53618,6 +53807,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1348159590
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348159586}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1350004478
 GameObject:
   m_ObjectHideFlags: 0
@@ -59181,7 +59390,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.0007478107}
+  m_AnchoredPosition: {x: 0, y: 0.0017790941}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1504793241
@@ -60382,6 +60591,7 @@ GameObject:
   - component: {fileID: 1520908537}
   - component: {fileID: 1520908538}
   - component: {fileID: 1520908539}
+  - component: {fileID: 1520908540}
   m_Layer: 5
   m_Name: DeckCard_0
   m_TagString: Untagged
@@ -60429,6 +60639,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 13155808}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 1226895752}
+  animator: {fileID: 1520908540}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -60495,6 +60706,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1520908540
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1520908536}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1523978252
 GameObject:
   m_ObjectHideFlags: 0
@@ -64621,6 +64852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1631971257}
   - component: {fileID: 1631971258}
+  - component: {fileID: 1631971259}
   m_Layer: 5
   m_Name: DragIcon
   m_TagString: Untagged
@@ -64642,6 +64874,7 @@ RectTransform:
   m_Children:
   - {fileID: 1756294300}
   - {fileID: 1586974664}
+  - {fileID: 595583801}
   m_Father: {fileID: 2090544677}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64664,6 +64897,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Icon: {fileID: 1586974665}
   canvas: {fileID: 536574842}
+--- !u!111 &1631971259
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631971256}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 88525bc4a7940664280338485cd3a013, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 88525bc4a7940664280338485cd3a013, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &1632459592
 GameObject:
   m_ObjectHideFlags: 0
@@ -79854,6 +80103,7 @@ GameObject:
   - component: {fileID: 1981624548}
   - component: {fileID: 1981624549}
   - component: {fileID: 1981624550}
+  - component: {fileID: 1981624551}
   m_Layer: 5
   m_Name: DeckCard_7
   m_TagString: Untagged
@@ -79901,6 +80151,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 906226621}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 1708621138}
+  animator: {fileID: 1981624551}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -79967,6 +80218,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &1981624551
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981624547}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1982398762
 GameObject:
   m_ObjectHideFlags: 0
@@ -81368,6 +81639,7 @@ GameObject:
   - component: {fileID: 2009149790}
   - component: {fileID: 2009149791}
   - component: {fileID: 2009149792}
+  - component: {fileID: 2009149793}
   m_Layer: 5
   m_Name: DeckCard_6
   m_TagString: Untagged
@@ -81415,6 +81687,7 @@ MonoBehaviour:
   Txt_Type: {fileID: 635504671}
   Txt_Details: {fileID: 0}
   Icon: {fileID: 1779461450}
+  animator: {fileID: 2009149793}
   IsSelected: 0
   TypeCard: 0
   NameCard: 
@@ -81481,6 +81754,26 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!95 &2009149793
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009149789}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2b56f0dc9939f4d4592b37906575d928, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2014258985
 GameObject:
   m_ObjectHideFlags: 0
