@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.09037428, g: 0.08149911, b: 0.1416474, a: 1}
+  m_IndirectSpecularColor: {r: 0.090294965, g: 0.08157388, b: 0.14167014, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -43043,7 +43043,7 @@ GameObject:
   - component: {fileID: 1177459439}
   m_Layer: 0
   m_Name: VerticalCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92861,14 +92861,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697417429954438960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: -20}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 697417430648073629}
   - {fileID: 697417430798489177}
   - {fileID: 697417429600388975}
-  - {fileID: 697417431163022883}
+  - {fileID: 697417431163022884}
   - {fileID: 3577802465411675848}
   - {fileID: 201565989}
   - {fileID: 1177459438}
@@ -101367,8 +101367,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 697417431163022883}
+  - component: {fileID: 697417431163022884}
   - component: {fileID: 697417431163022882}
+  - component: {fileID: 697417431163022883}
   m_Layer: 9
   m_Name: MapGrid
   m_TagString: Untagged
@@ -101389,21 +101390,34 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 200, y: 0.1, z: 200}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!4 &697417431163022883
-Transform:
+--- !u!222 &697417431163022883
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 697417431163022881}
+  m_CullTransparentMesh: 1
+--- !u!224 &697417431163022884
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 697417431163022881}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 30, y: 0, z: 20}
+  m_LocalPosition: {x: 0, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 697417429954438962}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 30, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &697417431163769249
 GameObject:
   m_ObjectHideFlags: 0
@@ -105006,7 +105020,7 @@ GameObject:
   - component: {fileID: 3577802465411675855}
   m_Layer: 0
   m_Name: HorizontalCamera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
