@@ -86,7 +86,8 @@ public class GameMng : MonoBehaviour
 
     //Testing mode
     public bool Testing;
-
+    public bool TestingDeck = false;
+    
     bool InitRedy = false;
 
     private void Awake()

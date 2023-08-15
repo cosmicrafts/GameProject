@@ -115,7 +115,8 @@ public class Player : MonoBehaviour
             {
                 PlayerDeck = GameMng.PlayerCollection.Deck;
             }
-        } else if (GameMng.GM.Testing)
+        }
+        else if (GameMng.GM.TestingDeck)
         {
             //Load Testing NFTs Deck
             PlayerDeck = new List<NFTsCard>();
