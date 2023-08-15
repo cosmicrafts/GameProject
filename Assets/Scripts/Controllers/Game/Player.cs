@@ -216,6 +216,7 @@ public class Player : MonoBehaviour
             UnitDrag.setMeshActive(false);
         } else //Ii the card is not selected, select the card
         {
+            GameMng.UI.DeselectCards();
             SelectedCard = idu;
             GameMng.UI.SelectCard(idu);
             //Show the preview of the card on the cursor
