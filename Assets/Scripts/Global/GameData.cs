@@ -184,7 +184,11 @@ public class GameData
             } else if (Characters.Count == 0)
             {
                 PlayerCharacter = GetUserCollection().DefaultCharacter;
-            } else
+            } else if (PlayerPrefs.HasKey("CharacterSaved"))
+            {
+                PlayerCharacter = Characters.FirstOrDefault(f=>f.ID == PlayerPrefs.GetInt("CharacterSaved") );
+            }
+            else
             {
                 PlayerCharacter = Characters[0];
             }
