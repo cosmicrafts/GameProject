@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
+
 /*
 * Here we save and manages the player NFTs
 */
@@ -12,7 +14,13 @@ public class UserCollection
 
     //All user decks
     public Dictionary<Factions, List<NFTsCard>> Decks;
+    //String saved deck ID
+    
+    [Serializable] public class SavedKeyIds
+    { public List<String> listSavedKeyIds = new List<string>(); }
 
+    public SavedKeyIds savedKeyIds = new SavedKeyIds();
+    
     //Current selected deck
     public List<NFTsCard> Deck;
 
@@ -102,17 +110,46 @@ public class UserCollection
             if (faction == Factions.Neutral)
                 continue;
 
-            List<NFTsCard> factionCards = Cards.Where(f => (Factions) f.Faction == faction).ToList();
+            List<NFTsCard> factionCards = Cards.Where(f => (Factions) f.Faction == faction || (Factions) f.Faction == Factions.Neutral).ToList();
 
+            if (PlayerPrefs.HasKey("savedKeyIds")) { savedKeyIds = JsonUtility.FromJson<SavedKeyIds>(PlayerPrefs.GetString("savedKeyIds")); }
+            
+            List<NFTsCard> listCards = new List<NFTsCard>();
+           
+            if (savedKeyIds.listSavedKeyIds.Count == 8)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    NFTsCard nfTsCard = factionCards.Find(card => card.KeyId == savedKeyIds.listSavedKeyIds[i]);
+                    if (nfTsCard != null) { listCards.Add(nfTsCard); }
+                }
+            }
+            
             if (factionCards.Count >= 8)
             {
                 if (!Decks.ContainsKey(faction))
                 {
-                    Decks.Add(faction, factionCards.Take(8).ToList());
+                    if (listCards.Count == 8)
+                    {
+                        Decks.Add(faction, listCards);
+                    }
+                    else
+                    {
+                        Decks.Add(faction, factionCards.Take(8).ToList());
+                    }
+
                 }
                 else
                 {
-                    Decks[faction] = factionCards.Take(8).ToList();
+                    if (listCards.Count == 8)
+                    {
+                        Decks[faction] = listCards;
+                    }
+                    else
+                    {
+                        Decks[faction] = factionCards.Take(8).ToList();
+                    }
+                    
                 }
             }
         }

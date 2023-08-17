@@ -210,6 +210,21 @@ public class UICollection : MonoBehaviour
         DragingCard.Icon.enabled = true;
         DragingCard = null;
         DragIcon.gameObject.SetActive(false);
+
+        PlayerCollection.savedKeyIds.listSavedKeyIds.Clear();
+        for (int i = 0; i < 8; i++)
+        {
+            PlayerCollection.savedKeyIds.listSavedKeyIds.Add( PlayerCollection.Deck[i].KeyId );
+        }
+        /*PlayerCollection.savedKeyIds = new[] {
+            PlayerCollection.Deck[0].KeyId,  PlayerCollection.Deck[1].KeyId,  PlayerCollection.Deck[2].KeyId,  PlayerCollection.Deck[3].KeyId,
+            PlayerCollection.Deck[4].KeyId,  PlayerCollection.Deck[5].KeyId,  PlayerCollection.Deck[6].KeyId,  PlayerCollection.Deck[7].KeyId };*/
+        PlayerPrefs.SetString("savedKeyIds", JsonUtility.ToJson(PlayerCollection.savedKeyIds));
+        Debug.Log(JsonUtility.ToJson(PlayerCollection.savedKeyIds));
+        
+        
+        
+
     }
 
     //Mouse over enter to deck
