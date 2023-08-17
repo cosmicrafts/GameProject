@@ -211,14 +211,19 @@ public class UICollection : MonoBehaviour
         DragingCard = null;
         DragIcon.gameObject.SetActive(false);
 
-        PlayerCollection.savedKeyIds.listSavedKeyIds.Clear();
-        for (int i = 0; i < 8; i++)
-        {
-            PlayerCollection.savedKeyIds.listSavedKeyIds.Add( PlayerCollection.Deck[i].KeyId );
+        List<String> listSavedKeys = new List<string>();
+
+        for (int i = 0; i < 8; i++) {
+            listSavedKeys.Add( PlayerCollection.Deck[i].KeyId );
+            
         }
         /*PlayerCollection.savedKeyIds = new[] {
             PlayerCollection.Deck[0].KeyId,  PlayerCollection.Deck[1].KeyId,  PlayerCollection.Deck[2].KeyId,  PlayerCollection.Deck[3].KeyId,
             PlayerCollection.Deck[4].KeyId,  PlayerCollection.Deck[5].KeyId,  PlayerCollection.Deck[6].KeyId,  PlayerCollection.Deck[7].KeyId };*/
+      
+        if( (Factions)PlayerCharacter.Faction == Factions.Alliance ) {PlayerCollection.savedKeyIds.AllSavedKeyIds = listSavedKeys; }
+        if( (Factions)PlayerCharacter.Faction == Factions.Spirats  ) {PlayerCollection.savedKeyIds.SpiSavedKeyIds = listSavedKeys; }
+        
         PlayerPrefs.SetString("savedKeyIds", JsonUtility.ToJson(PlayerCollection.savedKeyIds));
         Debug.Log(JsonUtility.ToJson(PlayerCollection.savedKeyIds));
         

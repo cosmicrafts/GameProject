@@ -15,10 +15,13 @@ public class UserCollection
     //All user decks
     public Dictionary<Factions, List<NFTsCard>> Decks;
     //String saved deck ID
-    
-    [Serializable] public class SavedKeyIds
-    { public List<String> listSavedKeyIds = new List<string>(); }
 
+    [Serializable]
+    public class SavedKeyIds
+    {
+        public List<String> SpiSavedKeyIds = new List<string>(); 
+        public List<String> AllSavedKeyIds = new List<string>(); 
+    }
     public SavedKeyIds savedKeyIds = new SavedKeyIds();
     
     //Current selected deck
@@ -113,14 +116,18 @@ public class UserCollection
             List<NFTsCard> factionCards = Cards.Where(f => (Factions) f.Faction == faction || (Factions) f.Faction == Factions.Neutral).ToList();
 
             if (PlayerPrefs.HasKey("savedKeyIds")) { savedKeyIds = JsonUtility.FromJson<SavedKeyIds>(PlayerPrefs.GetString("savedKeyIds")); }
+
+            List<String> listSavedKeys = new List<string>();
+            if(faction == Factions.Alliance){ listSavedKeys = savedKeyIds.AllSavedKeyIds; }
+            if(faction == Factions.Spirats) { listSavedKeys = savedKeyIds.SpiSavedKeyIds; }
             
             List<NFTsCard> listCards = new List<NFTsCard>();
            
-            if (savedKeyIds.listSavedKeyIds.Count == 8)
+            if (listSavedKeys.Count == 8)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    NFTsCard nfTsCard = factionCards.Find(card => card.KeyId == savedKeyIds.listSavedKeyIds[i]);
+                    NFTsCard nfTsCard = factionCards.Find(card => card.KeyId == listSavedKeys[i]);
                     if (nfTsCard != null) { listCards.Add(nfTsCard); }
                 }
             }
