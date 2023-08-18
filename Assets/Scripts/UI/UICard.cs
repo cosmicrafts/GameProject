@@ -16,6 +16,11 @@ public class UICard : MonoBehaviour
     public Text Txt_Cost;
     public Text Txt_Type;
     public Text Txt_Details;
+    //UI Text references
+    public Text Txt_Name2;
+    public Text Txt_Cost2;
+    public Text Txt_Type2;
+    public Text Txt_Details2;
     //UI Icon reference
     public Image Icon;
     //UI Animator reference

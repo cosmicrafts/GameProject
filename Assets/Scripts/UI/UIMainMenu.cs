@@ -7,6 +7,7 @@ using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
 using Mono.CompilerServices.SymbolWriter;
+using TMPro;
 using UnityEngine.Networking;
 
 using static BotEnemy;
@@ -61,6 +62,13 @@ public class UIMainMenu : MonoBehaviour
 
     //Current section title
     public Text TopTitle;
+    
+    //UI Text references for game mode and game status
+    public TMP_Text CurrentGameMode2;
+    public TMP_Text CurrentGameModeStatus2;
+
+    //Current section title
+    public TMP_Text TopTitle2;
 
     //Loading Bar (used when a new scene is loading)
     public Image LocalGameLoadingBar;

@@ -27,11 +27,20 @@ public class UICharacters : MonoBehaviour
     public Text CharDesc;
     public Text CharAka;
     public Text CharLvl;
-
     public Text CosRunsAv;
-
     public Text[] SkillNames = new Text[4];
     public Text[] SkillDesc = new Text[4];
+    [Header("TMP TEXTS")]
+    public Text CharName2;
+    public Text CharTitle2;
+    public Text CharDesc2;
+    public Text CharAka2;
+    public Text CharLvl2;
+    public Text CosRunsAv2;
+    public Text[] SkillNames2 = new Text[4];
+    public Text[] SkillDesc2 = new Text[4];
+
+    
 
     // Start is called before the first frame update
     void Start()
