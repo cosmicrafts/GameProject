@@ -26,7 +26,6 @@ public class UILang : MonoBehaviour
     public void SetMyText()
     {
         GetComponent<TMP_Text>().text = Lang.GetText(ID);
-        
     }
 
     //Loads and shows the string if is required
