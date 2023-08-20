@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 /*
  * This is a detailed view of the selected card on the deck collection menu
@@ -15,9 +16,9 @@ public class UICardDetail : UICard
     public MeshFilter ModelFilter;
 
     //The text references of specific card stats
-    public Text Txt_HP;
-    public Text Txt_Shield;
-    public Text Txt_Dmg;
+    public TMP_Text Txt_HP;
+    public TMP_Text Txt_Shield;
+    public TMP_Text Txt_Dmg;
 
     //The images bars references of specific card stats
     public Image Bar_HP;

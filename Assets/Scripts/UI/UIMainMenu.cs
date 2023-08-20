@@ -54,21 +54,13 @@ public class UIMainMenu : MonoBehaviour
     public bool defaultPrefabs = true;
     public List<ShipsDataBase> ShipsDataBasesAlliance;
     public List<ShipsDataBase> ShipsDataBasesSpirats;
-
-
-    //UI Text references for game mode and game status
-    public Text CurrentGameMode;
-    public Text CurrentGameModeStatus;
-
-    //Current section title
-    public Text TopTitle;
     
     //UI Text references for game mode and game status
-    public TMP_Text CurrentGameMode2;
-    public TMP_Text CurrentGameModeStatus2;
+    public TMP_Text CurrentGameMode;
+    public TMP_Text CurrentGameModeStatus;
 
     //Current section title
-    public TMP_Text TopTitle2;
+    public TMP_Text TopTitle;
 
     //Loading Bar (used when a new scene is loading)
     public Image LocalGameLoadingBar;
@@ -83,8 +75,8 @@ public class UIMainMenu : MonoBehaviour
 
     public Dropdown botMode;
    private void Awake()
-    {
-        //Instanciate Global Manager
+   {
+       //Instanciate Global Manager
         if (FindObjectOfType<GlobalManager>() == null)
         {
             Instantiate(ResourcesServices.LoadGlobalManager());

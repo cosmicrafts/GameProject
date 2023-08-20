@@ -55,6 +55,7 @@ public static class ResourcesServices
     public static GameObject LoadCardPrefab(string key, bool isSkill)
     {
         string folder = isSkill ? "Skills" : "Units";
+        Debug.Log($"Prefabs/{folder}/{key.Substring(2, 3)}/{key}");
         return Resources.Load<GameObject>($"Prefabs/{folder}/{key.Substring(2, 3)}/{key}");
     }
     //Returns the prefab base station from a faction

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -22,26 +23,15 @@ public class UICharacters : MonoBehaviour
     //UI Stats of the selected character
     public Image PreviewAvatar;
     public Image Emblem;
-    public Text CharName;
-    public Text CharTitle;
-    public Text CharDesc;
-    public Text CharAka;
-    public Text CharLvl;
-    public Text CosRunsAv;
-    public Text[] SkillNames = new Text[4];
-    public Text[] SkillDesc = new Text[4];
-    [Header("TMP TEXTS")]
-    public Text CharName2;
-    public Text CharTitle2;
-    public Text CharDesc2;
-    public Text CharAka2;
-    public Text CharLvl2;
-    public Text CosRunsAv2;
-    public Text[] SkillNames2 = new Text[4];
-    public Text[] SkillDesc2 = new Text[4];
-
+    public TMP_Text CharName;
+    public TMP_Text CharTitle;
+    public TMP_Text CharDesc;
+    public TMP_Text CharAka;
+    public TMP_Text CharLvl;
+    public TMP_Text CosRunsAv;
+    public TMP_Text[] SkillNames = new TMP_Text[3];
+    public TMP_Text[] SkillDesc = new TMP_Text[3];
     
-
     // Start is called before the first frame update
     void Start()
     {
@@ -111,7 +101,7 @@ public class UICharacters : MonoBehaviour
         CharAka.text = Lang.GetText($"{key}_aka");
         CharLvl.text = $"{Lang.GetText("mn_level")} 1";
         CosRunsAv.text = $"{Lang.GetText("mn_cr_left")} 0";
-        for(int i=0; i<4; i++)
+        for(int i=0; i<3; i++)
         {
             SkillNames[i].text = Lang.GetText("mn_comingsoon");
             SkillDesc[i].text = Lang.GetText("mn_comingsoon");

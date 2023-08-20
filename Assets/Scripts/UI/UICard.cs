@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -12,15 +13,11 @@ public class UICard : MonoBehaviour
     protected NFTsCard Data;
 
     //UI Text references
-    public Text Txt_Name;
-    public Text Txt_Cost;
-    public Text Txt_Type;
-    public Text Txt_Details;
-    //UI Text references
-    public Text Txt_Name2;
-    public Text Txt_Cost2;
-    public Text Txt_Type2;
-    public Text Txt_Details2;
+    public TMP_Text Txt_Name;
+    public TMP_Text Txt_Cost;
+    public TMP_Text Txt_Type;
+    public TMP_Text Txt_Details;
+    
     //UI Icon reference
     public Image Icon;
     //UI Animator reference
