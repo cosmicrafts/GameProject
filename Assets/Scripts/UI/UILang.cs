@@ -25,7 +25,16 @@ public class UILang : MonoBehaviour
     //Loads and shows the string
     public void SetMyText()
     {
-        GetComponent<TMP_Text>().text = Lang.GetText(ID);
+        TMP_Text tmp = GetComponent<TMP_Text>();
+        if(tmp){tmp.text = Lang.GetText(ID);}
+        
+        Text text = GetComponent<Text>();
+        if(text){text.text = Lang.GetText(ID);}
+
+        if (!text & !tmp)
+        {
+            Debug.Log("El objeto: " + gameObject.name+ " No tiene el campo de texto para asignar el valor");
+        }
     }
 
     //Loads and shows the string if is required
