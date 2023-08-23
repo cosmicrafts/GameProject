@@ -217,18 +217,14 @@ public class UICollection : MonoBehaviour
             listSavedKeys.Add( PlayerCollection.Deck[i].KeyId );
             
         }
-        /*PlayerCollection.savedKeyIds = new[] {
-            PlayerCollection.Deck[0].KeyId,  PlayerCollection.Deck[1].KeyId,  PlayerCollection.Deck[2].KeyId,  PlayerCollection.Deck[3].KeyId,
-            PlayerCollection.Deck[4].KeyId,  PlayerCollection.Deck[5].KeyId,  PlayerCollection.Deck[6].KeyId,  PlayerCollection.Deck[7].KeyId };*/
-      
+        
         if( (Factions)PlayerCharacter.Faction == Factions.Alliance ) {PlayerCollection.savedKeyIds.AllSavedKeyIds = listSavedKeys; }
         if( (Factions)PlayerCharacter.Faction == Factions.Spirats  ) {PlayerCollection.savedKeyIds.SpiSavedKeyIds = listSavedKeys; }
+        if( (Factions)PlayerCharacter.Faction == Factions.Webe  )    {PlayerCollection.savedKeyIds.WebSavedKeyIds = listSavedKeys; }
         
         PlayerPrefs.SetString("savedKeyIds", JsonUtility.ToJson(PlayerCollection.savedKeyIds));
         Debug.Log(JsonUtility.ToJson(PlayerCollection.savedKeyIds));
-        
-        
-        
+
 
     }
 

@@ -41,7 +41,7 @@ public class UICharacters : MonoBehaviour
         PlayerCollection = GlobalManager.GMD.GetUserCollection();
         //Get the current player character
         NFTsCharacter pCharacter = GlobalManager.GMD.GetUserCharacter();
-        PlayerCollection.ChangeDeckFaction(pCharacter); //||||||||||||||||||||||||||||||||||||||||| Agregue esta linea para Local Selección de caracter
+        PlayerCollection.ChangeDeckFaction(pCharacter); //||||||| Agregue esta linea para Local Selección de caracter
 
         //Show the UI characters from the player collection characters data
         foreach (NFTsCharacter character in PlayerCollection.Characters.OrderByDescending(o => o.LocalID))

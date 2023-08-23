@@ -20,7 +20,8 @@ public class UserCollection
     public class SavedKeyIds
     {
         public List<String> SpiSavedKeyIds = new List<string>(); 
-        public List<String> AllSavedKeyIds = new List<string>(); 
+        public List<String> AllSavedKeyIds = new List<string>();
+        public List<String> WebSavedKeyIds = new List<string>(); 
     }
     public SavedKeyIds savedKeyIds = new SavedKeyIds();
     
@@ -40,8 +41,6 @@ public class UserCollection
     public NFTsCharacter DefaultCharacter4;
     public NFTsCharacter DefaultCharacter5;
     public NFTsCharacter DefaultCharacter6;
-    public NFTsCharacter DefaultCharacter7;
-    public NFTsCharacter DefaultCharacter8;
 
     //Init default variables and data structures
     public void InitCollection()
@@ -50,12 +49,13 @@ public class UserCollection
         Decks = new Dictionary<Factions, List<NFTsCard>>();
         Cards = new List<NFTsCard>();
         Characters = new List<NFTsCharacter>();
+       
         DefaultCharacter = new NFTsCharacter()
         {
             ID = 1,
-            Name = "Wengar",
+            Name = "Alpha-9",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_1"),
-            Faction = (int) Factions.Alliance,
+            Faction = (int) Factions.Webe,
             LocalID = 1,
             EntType = (int) NFTClass.Character,
             Level = 10
@@ -63,9 +63,9 @@ public class UserCollection
         DefaultCharacter2 = new NFTsCharacter()
         {
             ID = 2,
-            Name = "Sotzeer",
+            Name = "Epsilon",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_2"),
-            Faction = (int) Factions.Alliance,
+            Faction = (int) Factions.Webe,
             LocalID = 2,
             EntType = (int) NFTClass.Character,
             Level = 10
@@ -73,7 +73,7 @@ public class UserCollection
         DefaultCharacter3 = new NFTsCharacter()
         {
             ID = 3,
-            Name = "Alpha-9",
+            Name = "Elara Dawnstrider",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_3"),
             Faction = (int) Factions.Alliance,
             LocalID = 3,
@@ -83,7 +83,7 @@ public class UserCollection
         DefaultCharacter4 = new NFTsCharacter()
         {
             ID = 4,
-            Name = "Epsilon",
+            Name = "Talon Frostbane",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_4"),
             Faction = (int) Factions.Alliance,
             LocalID = 4,
@@ -93,9 +93,9 @@ public class UserCollection
         DefaultCharacter5 = new NFTsCharacter()
         {
             ID = 5,
-            Name = "Elara Dawnstrider",
+            Name = "Echo Nodeblast",
             IconSprite = ResourcesServices.LoadCharacterIcon("Chr_5"),
-            Faction = (int) Factions.Alliance,
+            Faction = (int) Factions.Spirats,
             LocalID = 5,
             EntType = (int) NFTClass.Character,
             Level = 10
@@ -103,38 +103,16 @@ public class UserCollection
         DefaultCharacter6 = new NFTsCharacter()
         {
             ID = 6,
-            Name = "Talon Frostbane",
-            IconSprite = ResourcesServices.LoadCharacterIcon("Chr_6"),
-            Faction = (int) Factions.Alliance,
-            LocalID = 6,
-            EntType = (int) NFTClass.Character,
-            Level = 10
-        };
-        DefaultCharacter7 = new NFTsCharacter()
-        {
-            ID = 7,
-            Name = "Echo Nodeblast",
-            IconSprite = ResourcesServices.LoadCharacterIcon("Chr_7"),
-            Faction = (int) Factions.Spirats,
-            LocalID = 7,
-            EntType = (int) NFTClass.Character,
-            Level = 10
-        };
-        DefaultCharacter8 = new NFTsCharacter()
-        {
-            ID = 8,
             Name = "Lucius Darkstorm",
-            IconSprite = ResourcesServices.LoadCharacterIcon("Chr_8"),
+            IconSprite = ResourcesServices.LoadCharacterIcon("Chr_6"),
             Faction = (int) Factions.Spirats,
-            LocalID = 8,
+            LocalID = 6,
             EntType = (int) NFTClass.Character,
             Level = 10
         };
         
     }
-
-
-
+    
     public void ChangeDeckFaction(NFTsCharacter nFTsCharacter)
     {
         Deck = Decks[(Factions) nFTsCharacter.Faction];
@@ -186,6 +164,7 @@ public class UserCollection
             List<String> listSavedKeys = new List<string>();
             if(faction == Factions.Alliance){ listSavedKeys = savedKeyIds.AllSavedKeyIds; }
             if(faction == Factions.Spirats) { listSavedKeys = savedKeyIds.SpiSavedKeyIds; }
+            if(faction == Factions.Webe)    { listSavedKeys = savedKeyIds.WebSavedKeyIds; }
             
             List<NFTsCard> listCards = new List<NFTsCard>();
            
@@ -235,7 +214,7 @@ public class UserCollection
     }
 
     //Build a testing collection
-    public void AddUnitsAndCharactersDefault(List<ShipsDataBase> listAlliance = null, List<ShipsDataBase> listSpirats = null)
+    public void AddUnitsAndCharactersDefault(List<ShipsDataBase> listAlliance = null, List<ShipsDataBase> listSpirats = null, List<ShipsDataBase> listWebe = null)
 
 {
         //CHARACTERS
@@ -245,8 +224,6 @@ public class UserCollection
         Characters.Add(DefaultCharacter4);
         Characters.Add(DefaultCharacter5);
         Characters.Add(DefaultCharacter6);
-        Characters.Add(DefaultCharacter7);
-        Characters.Add(DefaultCharacter8);
         //Characters.Add(new NFTsCharacter()
         //{
         //    Icon = "Character_4",
@@ -257,6 +234,10 @@ public class UserCollection
         //ALL CARDS
         //ALLIANCE
         foreach (ShipsDataBase shipsDataBase in listAlliance)
+        {
+            Cards.Add(shipsDataBase.ToNFTCard());
+        }
+        foreach (ShipsDataBase shipsDataBase in listWebe)
         {
             Cards.Add(shipsDataBase.ToNFTCard());
         }

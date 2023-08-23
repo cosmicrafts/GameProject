@@ -54,6 +54,7 @@ public class UIMainMenu : MonoBehaviour
     public bool defaultPrefabs = true;
     public List<ShipsDataBase> ShipsDataBasesAlliance;
     public List<ShipsDataBase> ShipsDataBasesSpirats;
+    public List<ShipsDataBase> ShipsDataBasesWebe;
     
     //UI Text references for game mode and game status
     public TMP_Text CurrentGameMode;
@@ -227,7 +228,7 @@ public class UIMainMenu : MonoBehaviour
         /*if (GlobalManager.GMD.DebugMode)*/ 
         if(defaultPrefabs && PlayerCollection.Characters.Count == 0 && PlayerCollection.Cards.Count == 0)
         {
-            PlayerCollection.AddUnitsAndCharactersDefault(ShipsDataBasesAlliance, ShipsDataBasesSpirats);
+            PlayerCollection.AddUnitsAndCharactersDefault(ShipsDataBasesAlliance, ShipsDataBasesSpirats, ShipsDataBasesWebe);
         }
         //Init Deck
         PlayerCollection.InitDecks();

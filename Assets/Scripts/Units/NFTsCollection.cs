@@ -5,7 +5,8 @@ public enum Factions
 {
     Neutral,
     Alliance,
-    Spirats
+    Spirats,
+    Webe
 }
 
 public class NFTsCollection
@@ -15,7 +16,8 @@ public class NFTsCollection
     public static Dictionary<Factions,string> NFTsFactionsPrefixs = new Dictionary<Factions, string> {
         {Factions.Neutral, "NEU"},
         {Factions.Alliance, "ALL"},
-        {Factions.Spirats, "SPI"}
+        {Factions.Spirats, "SPI"},
+        {Factions.Webe, "WEB"},
     };
 
     public List<NFTsCard> AllCards;
