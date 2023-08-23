@@ -103,8 +103,8 @@ public class UICharacters : MonoBehaviour
         CosRunsAv.text = $"{Lang.GetText("mn_cr_left")} 0";
         for(int i=0; i<3; i++)
         {
-            SkillNames[i].text = Lang.GetText("mn_comingsoon");
-            SkillDesc[i].text = Lang.GetText("mn_comingsoon");
+            SkillNames[i].text = Lang.GetText($"{key}_skill_{i+1}_name");
+            SkillDesc[i].text = Lang.GetText($"{key}_skill_{i+1}_description");
         }
     }
 
