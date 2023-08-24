@@ -73,7 +73,10 @@ public static class ResourcesServices
     {
         return ValidateSprite(Resources.Load<Sprite>($"UI/Characters/Emblems/{nftCharacterKey}_Emb"));
     }
-
+    public static Sprite LoadCharacterSkill(string nftCharacterKey)
+    {
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Skills/{nftCharacterKey}"));
+    }
     public static Sprite ValidateSprite(Sprite sprite)
     {
         return sprite == null ? Resources.Load<Sprite>($"UI/Loading") : sprite;
