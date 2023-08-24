@@ -56,6 +56,9 @@ public class Unit : MonoBehaviour
     //Spawn area size for other units
     [Range(0, 30)]
     public float SpawnAreaSize = 0f;
+    //Chances to dodge an attack 
+    [Range(0, 1)]
+    public float DodgeChance = 0f; // 0% chance
 
     //Returns if this unit is the base station
     [HideInInspector]
@@ -229,7 +232,7 @@ public class Unit : MonoBehaviour
     public void AddDmg(int dmg, TypeDmg typeDmg)
     {
         //Check the state of the unit (can get damage?)
-        if (IsDeath || !InControl() || dmg <= 0)
+        if (IsDeath || !InControl() || dmg <= 0 )
             return;
 
         //Reset the shield regeneation delay

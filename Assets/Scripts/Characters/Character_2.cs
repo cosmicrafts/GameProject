@@ -4,10 +4,15 @@
  */
 public class Character_2 : GameCharacter
 {
-    //Reduce time to recover shields to units
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);
-        unit.ShieldDelay *= 0.75f;
+        Shooter shooter = unit.GetComponent<Shooter>();
+        if (shooter != null)
+        {
+            shooter.BulletDamage = (int)(shooter.BulletDamage * 1.2f); //Increment Damage bullet by 20% (Skill 2)
+        }
+        
     }
+    
 }

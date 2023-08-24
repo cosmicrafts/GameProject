@@ -115,6 +115,13 @@ public class Projectile : MonoBehaviour
     //Target Impact
     void Impact(Unit target)
     {
+        //Utiliza posibilidades para ver si el ataque acertará o no
+        if (Random.value < target.DodgeChance)
+        {
+            Debug.Log("Dodge hit!");
+            Dmg = 0;
+        }
+        
         if (target.Shield > 0 && !target.flagShield) //Check if the target has shield
         {
          

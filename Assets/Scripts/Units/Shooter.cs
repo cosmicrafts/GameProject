@@ -32,6 +32,11 @@ public class Shooter : MonoBehaviour
     [Range(1, 99)]
     public int BulletDamage = 1;
 
+    //Bullets criticalStrike
+    [Range(0f, 1f)]
+    public float criticalStrikeChance = 0f; // 0% chance
+    public float criticalStrikeMultiplier = 2.0f; // 200% damage on critical hit
+    
     //Enables if the unit must look at the enemy target
     public bool RotateToEnemy = true;
 
@@ -147,7 +152,17 @@ public class Shooter : MonoBehaviour
                     bullet.MyTeam = MyUnit.MyTeam;
                     bullet.SetTarget(Target.gameObject);
                     bullet.Speed = BulletSpeed;
-                    bullet.Dmg = BulletDamage;
+                    if (Random.value < criticalStrikeChance)
+                    {
+                        Debug.Log("Critical hit!");
+                        bullet.Dmg = (int) (BulletDamage * criticalStrikeMultiplier);
+                    }
+                    else
+                    {
+                        Debug.Log("Not Critical hit!");
+                        bullet.Dmg = BulletDamage;
+                    }
+                    
                     if (MuzzleFlash[i] != null)
                     {
                         MuzzleFlash[i].Clear();
