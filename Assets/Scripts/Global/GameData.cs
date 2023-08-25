@@ -123,7 +123,9 @@ public class GameData
     {
         if (PlayerUser == null)
         {
-            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", Avatar = 1};
+            
+            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", 
+                Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 };
         }
 
         return PlayerUser;
