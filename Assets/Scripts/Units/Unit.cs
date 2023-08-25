@@ -31,7 +31,7 @@ public class Unit : MonoBehaviour
     //A fake unit is used for multiplayer, to show a visual representation of the original unit in master
     protected bool IsFake;
     //This unit is Death
-    protected bool IsDeath;
+    public bool IsDeath;
     //The Player owner
     public int PlayerId = 1;
     //My game team

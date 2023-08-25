@@ -90,6 +90,11 @@ public class Projectile : MonoBehaviour
         {
             //Impact
             Unit target = Target.GetComponent<Unit>();
+           
+            if (target.IsDeath) {
+                Debug.Log("Target is death");
+                return; 
+            }
             
             Impact(target);
             return;
@@ -158,6 +163,7 @@ public class Projectile : MonoBehaviour
 
         if (canvasDamageRef)
         {
+            Debug.Log("Instancie un canvasDamage");
             var cloneDamageCanvas = (GameObject)Instantiate(canvasDamageRef, transform.position, Quaternion.Euler(Vector3.zero));
 
             CanvasDamage tempDamage = cloneDamageCanvas.GetComponent<CanvasDamage>();
