@@ -156,7 +156,7 @@ public class UICollection : MonoBehaviour
         //Select the first card
         if (AllCards.Count > 0)
         {
-            SelectCard(AllCards[0]);
+           // SelectCard(AllCards[0]);
         }
 
         //Apply the sort and filters values
@@ -178,6 +178,7 @@ public class UICollection : MonoBehaviour
         CurrentSelected = card;
         card.SelectCard();
         CardPreview.SetData(card.GetData());
+        CardPreview.gameObject.SetActive(true);
     }
     
     //Drags a card
