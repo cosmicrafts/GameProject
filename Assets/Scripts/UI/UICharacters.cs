@@ -29,8 +29,8 @@ public class UICharacters : MonoBehaviour
     public TMP_Text CharAka;
     public TMP_Text CharLvl;
     public TMP_Text CosRunsAv;
-    public TMP_Text[] SkillNames = new TMP_Text[3];
-    public TMP_Text[] SkillDesc = new TMP_Text[3];
+    public UILang[] SkillNames = new UILang[3];
+    public UILang[] SkillDesc = new UILang[3];
     public Image[] skillImage = new Image[3];
     
     // Start is called before the first frame update
@@ -104,8 +104,8 @@ public class UICharacters : MonoBehaviour
         CosRunsAv.text = $"{Lang.GetText("mn_cr_left")} 0";
         for(int i=0; i<3; i++)
         {
-            SkillNames[i].text = Lang.GetText($"{key}_skill_{i+1}_name"); Debug.Log(Lang.GetText($"{key}_skill_{i+1}_name") );
-            SkillDesc[i].text = Lang.GetText($"{key}_skill_{i+1}_description");
+            SkillNames[i].ID = $"{key}_skill_{i + 1}_name";  SkillNames[i].SetMyText();
+            SkillDesc[i].ID  = $"{key}_skill_{i + 1}_description"; SkillDesc[i].SetMyText();
             skillImage[i].sprite = ResourcesServices.LoadCharacterSkill($"Skill_{key}_{i+1}");
         }
     }
