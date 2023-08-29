@@ -23,9 +23,11 @@ public class UICharacters : MonoBehaviour
     //UI Stats of the selected character
     public Image PreviewAvatar;
     public Image Emblem;
-    public TMP_Text CharName;
-    public TMP_Text CharTitle;
-    public TMP_Text CharDesc;
+    //public TMP_Text CharName;
+    //public TMP_Text CharName2;
+    public UILang CharTitle;
+    public UILang CharTitle2;
+   // public TMP_Text CharDesc;
     public TMP_Text CharAka;
     public TMP_Text CharLvl;
     public TMP_Text CosRunsAv;
@@ -78,7 +80,9 @@ public class UICharacters : MonoBehaviour
         
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Character);
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.CharacterName);
-
+        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Description);
+        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Emblem);
+        
         if (GlobalManager.GMD.IsProductionWeb())
         {
             GameNetwork.JSSavePlayerCharacter(CurrentChar.GetData().ID);
@@ -96,9 +100,11 @@ public class UICharacters : MonoBehaviour
         string key = CurrentChar.GetData().KeyId;
         PreviewAvatar.sprite = CurrentChar.GetData().IconSprite;
         Emblem.sprite = ResourcesServices.LoadCharacterEmblem(key);
-        CharName.text = Lang.GetEntityName(key);
-        CharDesc.text = Lang.GetEntityDescription(key);
-        CharTitle.text = Lang.GetText($"{key}_title");
+        /*CharName.text = Lang.GetEntityName(key);
+        CharName2.text = Lang.GetEntityName(key);
+        CharDesc.text = Lang.GetEntityDescription(key);*/
+        CharTitle.ID = $"{key}_title"; CharTitle.SetMyText();
+        CharTitle2.ID = $"{key}_title"; CharTitle2.SetMyText();
         CharAka.text = Lang.GetText($"{key}_aka");
         CharLvl.text = $"{Lang.GetText("mn_level")} 1";
         CosRunsAv.text = $"{Lang.GetText("mn_cr_left")} 0";
@@ -108,6 +114,7 @@ public class UICharacters : MonoBehaviour
             SkillDesc[i].ID  = $"{key}_skill_{i + 1}_description"; SkillDesc[i].SetMyText();
             skillImage[i].sprite = ResourcesServices.LoadCharacterSkill($"Skill_{key}_{i+1}");
         }
+        
     }
 
     //Scrolls to the right limit of the characters list

@@ -14,7 +14,7 @@ public class UICharacter : MonoBehaviour
 
     //UI Text and image references (for name and avatar)
     public Image MyAvatar;
-    public Text MyName;
+    public TMP_Text MyName;
 
     //UI icon used when the character is selected
     public GameObject IconSelected;

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 /*
@@ -18,7 +19,8 @@ public enum PlayerProperty
     Score,
     XpProgress,
     Emblem,
-    CharacterName
+    CharacterName,
+    Description
 }
 
 public class UIPTxtInfo : MonoBehaviour
@@ -32,6 +34,14 @@ public class UIPTxtInfo : MonoBehaviour
         LoadProperty();
     }
 
+    public void SetText(string text)
+    {
+        Text mytext = GetComponent<Text>();
+        if (mytext != null) { mytext.text = text; }
+
+        TMP_Text mytmp = GetComponent<TMP_Text>();
+        if (mytmp != null) { mytmp.text = text; }
+    }
     public void LoadProperty()
     {
         //Check if the player data exist
@@ -46,37 +56,32 @@ public class UIPTxtInfo : MonoBehaviour
             case PlayerProperty.Name:
                 {
                     User user = GlobalManager.GMD.GetUserData();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = user.NikeName;
+                    SetText(user.NikeName);
                 }
                 break;
             case PlayerProperty.WalletId:
                 {
                     User user = GlobalManager.GMD.GetUserData();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = Utils.GetWalletIDShort(user.WalletId);
+                    SetText(Utils.GetWalletIDShort(user.WalletId)); 
                 }
                 break;
             case PlayerProperty.Level:
                 {
                     UserProgress userProgress = GlobalManager.GMD.GetUserProgress();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = $"{Lang.GetText("mn_lvl")} {userProgress.GetLevel()}";
+                    SetText($"{Lang.GetText("mn_lvl")} {userProgress.GetLevel()}");
                 }
                 break;
             case PlayerProperty.Xp:
                 {
                     //Cantidad de CXP que aparece
                     UserProgress userProgress = GlobalManager.GMD.GetUserProgress();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = $"{userProgress.GetXp()}"; //{Lang.GetText("mn_xp")} add for multilang
+                    SetText($"{userProgress.GetXp()}");
                 }
                 break;
             case PlayerProperty.XpProgress:
                 {
                     UserProgress userProgress = GlobalManager.GMD.GetUserProgress();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = $"{userProgress.GetXp()} / {userProgress.GetNextXpGoal()} ";//{Lang.GetText("mn_xp")}
+                    SetText($"{userProgress.GetXp()} / {userProgress.GetNextXpGoal()}");
                 }
                 break;
             case PlayerProperty.Xpbar:
@@ -95,9 +100,8 @@ public class UIPTxtInfo : MonoBehaviour
                 break;
             case PlayerProperty.CharacterName:
                 {
-                    NFTsCharacter nFTsCharacter = GlobalManager.GMD.GetUserCharacter();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = nFTsCharacter.Name;
+                    string key = GlobalManager.GMD.GetUserCharacter().KeyId;
+                    SetText(Lang.GetEntityName(key));
                 }
                 break;
             case PlayerProperty.Avatar:
@@ -110,8 +114,7 @@ public class UIPTxtInfo : MonoBehaviour
             case PlayerProperty.Score:
                 {
                     UserProgress progress = GlobalManager.GMD.GetUserProgress();
-                    Text mytext = GetComponent<Text>();
-                    mytext.text = progress.GetBattlePoints().ToString();
+                    SetText(progress.GetBattlePoints().ToString());
                 }
                 break;
             case PlayerProperty.Emblem:
@@ -119,6 +122,12 @@ public class UIPTxtInfo : MonoBehaviour
                     NFTsCharacter nFTsCharacter = GlobalManager.GMD.GetUserCharacter();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = ResourcesServices.LoadCharacterEmblem(nFTsCharacter.KeyId);
+                }
+                break;
+            case PlayerProperty.Description:
+                {
+                    string key = GlobalManager.GMD.GetUserCharacter().KeyId;
+                    SetText(Lang.GetEntityDescription(key));
                 }
                 break;
         }

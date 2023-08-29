@@ -302,6 +302,7 @@ public class UIMainMenu : MonoBehaviour
     public void ChangeLang(int lang)
     {
         GlobalManager.GMD.ChangeLang((Language)lang);
+        RefreshAllPropertys();
     }
 
     //Load the game scene for a Tutorial o PVIA game
