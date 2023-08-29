@@ -34,7 +34,7 @@ public class UICharacters : MonoBehaviour
     public UILang[] SkillNames = new UILang[3];
     public UILang[] SkillDesc = new UILang[3];
     public Image[] skillImage = new Image[3];
-    
+    public Image statsImage;
     // Start is called before the first frame update
     void Start()
     {
@@ -114,7 +114,7 @@ public class UICharacters : MonoBehaviour
             SkillDesc[i].ID  = $"{key}_skill_{i + 1}_description"; SkillDesc[i].SetMyText();
             skillImage[i].sprite = ResourcesServices.LoadCharacterSkill($"Skill_{key}_{i+1}");
         }
-        
+        statsImage.sprite = ResourcesServices.LoadCharacterStats($"Stats_{key}");
     }
 
     //Scrolls to the right limit of the characters list
