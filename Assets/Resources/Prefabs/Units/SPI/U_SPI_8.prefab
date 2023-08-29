@@ -641,7 +641,7 @@ Transform:
   m_GameObject: {fileID: 1918627285773329320}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.72, z: 0}
-  m_LocalScale: {x: 0.55, y: 0.8659112, z: 0.4652852}
+  m_LocalScale: {x: 0.85, y: 1.3382263, z: 0.7190771}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3433133557338190239}
@@ -1588,6 +1588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0a022c518df8c4a93db57a89a8b10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDeath: 0
   PlayerId: 1
   MyTeam: 1
   HitPoints: 40
@@ -1595,6 +1596,7 @@ MonoBehaviour:
   ShieldDelay: 2
   Size: 1
   SpawnAreaSize: 0
+  DodgeChance: 0
   IsInmortal: 0
   flagShield: 0
   Mesh: {fileID: 774058248791893753}
@@ -1644,6 +1646,8 @@ MonoBehaviour:
   CoolDown: 0.9
   BulletSpeed: 48
   BulletDamage: 1
+  criticalStrikeChance: 0
+  criticalStrikeMultiplier: 2
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 10b9ed6b2dbdca342884a06ca3095f80, type: 3}
