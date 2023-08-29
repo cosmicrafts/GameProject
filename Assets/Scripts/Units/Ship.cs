@@ -174,9 +174,13 @@ public class Ship : Unit
     {
         if (!InControl())
             return;
-
-        MySt.Destination = Target.position;
-        MySt.StoppingDistance = StoppingDistance;
+        
+        if (Target != null)
+        {
+            MySt.Destination = Target.position;
+            MySt.StoppingDistance = StoppingDistance;
+        }
+        
     }
 
     //Set the current destination

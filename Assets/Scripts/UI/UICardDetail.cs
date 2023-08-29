@@ -63,13 +63,18 @@ public class UICardDetail : UICard
             Debug.Log("Show Preview Model");
             //UNITS
             Model.SetActive(true);
-            UnitCard UnitPrefab = ResourcesServices.LoadCardPrefab(data.KeyId, IsSkill).GetComponent<UnitCard>();
-            ModelFilter.mesh = UnitPrefab.UnitMesh.GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
-            ModelRender.material = UnitPrefab.UnitMesh.GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
-
+            GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(data.KeyId, IsSkill);
+            UnitPrefab.GetComponent<Ship>().CanMove = false;
+            CurrentObjPrev = Instantiate(UnitPrefab, Model.transform);
+            
+            //ModelFilter.mesh = UnitPrefab.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
+            //ModelRender.material = UnitPrefab.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
+            
             Txt_HP.transform.parent.gameObject.SetActive(true);
             Txt_Shield.transform.parent.gameObject.SetActive(true);
             Txt_Dmg.transform.parent.gameObject.SetActive(true);
+            
+            Debug.Log("3");
 
             NFTsUnit unitdata = data as NFTsUnit;
             Txt_HP.text = unitdata.HitPoints.ToString();
