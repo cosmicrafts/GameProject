@@ -1020,6 +1020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b0a022c518df8c4a93db57a89a8b10c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsDeath: 0
   PlayerId: 1
   MyTeam: 0
   HitPoints: 40
@@ -1027,11 +1028,13 @@ MonoBehaviour:
   ShieldDelay: 3
   Size: 1
   SpawnAreaSize: 0
+  DodgeChance: 0
   IsInmortal: 0
   flagShield: 0
   Mesh: {fileID: 8171184085125373908}
   SA: {fileID: 5320221334846034425}
-  Explosion: {fileID: 137586, guid: 0a73ef3872695c14c87225f786afcf7a, type: 3}
+  Explosion: {fileID: 6271241949191652176, guid: 739d19610906a434a8d67ca770434aca,
+    type: 3}
   Portal: {fileID: 3721508634898023609}
   ShieldGameObject: {fileID: 7149568989052941217}
   UI: {fileID: 978776792581356164}
@@ -1076,6 +1079,8 @@ MonoBehaviour:
   CoolDown: 0.75
   BulletSpeed: 40
   BulletDamage: 40
+  criticalStrikeChance: 0
+  criticalStrikeMultiplier: 2
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 10b9ed6b2dbdca342884a06ca3095f80, type: 3}
@@ -1327,9 +1332,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6329675100900933901}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: -1.29, z: -0.29}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4457324362325519842}
   m_Father: {fileID: 8804027155803096430}
@@ -1360,7 +1365,7 @@ Transform:
   m_GameObject: {fileID: 6458190323747340857}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.25, y: 2.25, z: 2.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 3580708858269563564}
