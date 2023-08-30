@@ -41,6 +41,10 @@ public static class ResourcesServices
     {
         return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Avatars/Avatar_{id}"));
     }
+    public static Sprite LoadAvatarUser(int id)
+    {
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Avatars_User/avatar_{id}"));
+    }
     //Returns a sprite character icon
     public static Sprite LoadCharacterIcon(string nftCharacterKey)
     {
