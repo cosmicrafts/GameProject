@@ -62,7 +62,7 @@ public class Unit : MonoBehaviour
 
     //Returns if this unit is the base station
     [HideInInspector]
-    bool IsBaseStation = false;
+    public bool IsBaseStation = false;
     //Main Station Source code (can be null)
     [HideInInspector]
     MainStation MainStationData;

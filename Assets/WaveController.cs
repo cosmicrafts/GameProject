@@ -19,7 +19,13 @@ public class WaveController : MonoBehaviour
 
     private void Start()
     {
+        GameMng.GM.Targets[0].gameObject.SetActive(false);
         waves[actualWave].SetActive(true);
+        GameMng.GM.Targets[0] = BSwaves[0].GetComponent<Unit>();;
+        GameMng.GM.Targets[0].IsBaseStation = true;
+        GameMng.GM.Targets[0].gameObject.AddComponent<MainStation>();
+        GameMng.GM.Targets[0].MyTeam = Team.Red; GameMng.GM.Targets[0].PlayerId = 2;
+        
     }
 
     public void OnBaseDestroyed()
@@ -30,7 +36,9 @@ public class WaveController : MonoBehaviour
         if (waves.Length > actualWave)
         {
             waves[actualWave].SetActive(true);
-            GameMng.GM.Targets[0] = Instantiate(BSwaves[actualWave], GameMng.GM.BS_Positions[0], Quaternion.identity).GetComponent<Unit>();
+            GameMng.GM.Targets[0] = BSwaves[actualWave].GetComponent<Unit>();; //GameMng.GM.Targets[0] = Instantiate(BSwaves[actualWave], GameMng.GM.BS_Positions[0], Quaternion.identity).GetComponent<Unit>();
+            GameMng.GM.Targets[0].IsBaseStation = true;
+            GameMng.GM.Targets[0].gameObject.AddComponent<MainStation>();
             GameMng.GM.Targets[0].MyTeam = Team.Red; GameMng.GM.Targets[0].PlayerId = 2;
             
             Ship[] ships = FindObjectsOfType<Ship>();
