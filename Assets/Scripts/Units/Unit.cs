@@ -375,8 +375,16 @@ public class Unit : MonoBehaviour
         //Chec if is the base station
         if (!GameMng.GM.IsGameOver() && IsBaseStation)
         {
-            //End the game
-            GameMng.GM.EndGame(MyTeam == Team.Blue ? Team.Red : Team.Blue);
+            if (WaveController.instance != null && MyTeam == Team.Red)
+            {
+                WaveController.instance.OnBaseDestroyed();
+            }
+            else
+            {
+                //End the game
+                GameMng.GM.EndGame(MyTeam == Team.Blue ? Team.Red : Team.Blue);
+            }
+            
         }
 
         //Add metrics data
@@ -387,6 +395,9 @@ public class Unit : MonoBehaviour
 
         //Destroy the object
         Destroy(gameObject);
+
+        //Call WaveController to Verify if Wave is completed
+        
     }
 
     //Explosion Effect
