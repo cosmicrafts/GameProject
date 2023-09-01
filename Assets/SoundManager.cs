@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SoundManager : MonoBehaviour
+/* public class SoundManager : MonoBehaviour
 {
     // Audio players components.
     public AudioSource EffectsSource;
@@ -35,4 +35,4 @@ public class SoundManager : MonoBehaviour
         MusicSource.Play();
     }
 
-}
+} */
