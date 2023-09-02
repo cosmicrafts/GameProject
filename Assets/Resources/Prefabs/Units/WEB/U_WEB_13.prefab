@@ -5920,7 +5920,6 @@ MonoBehaviour:
   Size: 1
   SpawnAreaSize: 0
   DodgeChance: 0
-  IsBaseStation: 0
   IsInmortal: 0
   flagShield: 0
   Mesh: {fileID: 3975718314198590062}
@@ -5931,7 +5930,7 @@ MonoBehaviour:
   UI: {fileID: 978776792581356164}
   MyAnim: {fileID: 4254649818248002262}
   MySt: {fileID: 2198226033917351815}
-  Aceleration: 30
+  Aceleration: 0.5
   MaxSpeed: 0.25
   DragSpeed: 0.25
   TurnSpeed: 99
@@ -5965,9 +5964,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDetector: {fileID: 2198226032576818155}
   CanAttack: 1
-  RangeDetector: 12
+  RangeDetector: 10
   CoolDown: 2
-  BulletSpeed: 99
+  BulletSpeed: 72
   BulletDamage: 2
   criticalStrikeChance: 0
   criticalStrikeMultiplier: 2
@@ -5990,8 +5989,8 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 4.11
-  m_Center: {x: 0, y: -2.27, z: 2.01}
+  m_Radius: 2
+  m_Center: {x: 0, y: -2.27, z: -2.4}
 --- !u!114 &2198226034328220043
 MonoBehaviour:
   m_ObjectHideFlags: 0
