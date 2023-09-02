@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 
 /*
@@ -8,9 +9,9 @@ using UnityEngine.UI;
 public class UIPlayerGameInfo : MonoBehaviour
 {
     //Player UI stats and icons references
-    public Text PlayerName;
-    public Text WalletId;
-    public Text Level;
+    public TMP_Text PlayerName;
+    public TMP_Text WalletId;
+    public TMP_Text Level;
     public Image XpBar;
     public Image Avatar;
 

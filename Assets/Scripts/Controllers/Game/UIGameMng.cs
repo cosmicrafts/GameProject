@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 /*
  * This is the in-game UI controller
@@ -20,24 +21,24 @@ public class UIGameMng : MonoBehaviour
     public UIGameCard[] UIDeck = new UIGameCard[8];
 
     //Time, energy number and energy bar references
-    public Text TimeOut;
-    public Text EnergyLabel;
+    public TMP_Text TimeOut;
+    public TMP_Text EnergyLabel;
     public Image EnergyBar;
 
     //Trigger grid for deploy cards
     public GameObject AreaDeploy;
 
     //Results Metrics text references
-    public Text MTxtEnergyUsed;
-    public Text MTxtEnergyGenerated;
-    public Text MTxtEnergyWasted;
-    public Text MTxtEnergyChargeRatePerSec;
-    public Text MTxtXpEarned;
-    public Text MTxtDamage;
-    public Text MTxtKills;
-    public Text MTxtDeploys;
-    public Text MTxtSecRemaining;
-    public Text MTxtScore;
+    public TMP_Text MTxtEnergyUsed;
+    public TMP_Text MTxtEnergyGenerated;
+    public TMP_Text MTxtEnergyWasted;
+    public TMP_Text MTxtEnergyChargeRatePerSec;
+    public TMP_Text MTxtXpEarned;
+    public TMP_Text MTxtDamage;
+    public TMP_Text MTxtDeploys;
+    public TMP_Text MTxtKills;
+    public TMP_Text MTxtSecRemaining;
+    public TMP_Text MTxtScore;
 
     //Players panels references
     public UIPlayerGameInfo[] Players = new UIPlayerGameInfo[2];
