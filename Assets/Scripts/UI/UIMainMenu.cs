@@ -147,7 +147,6 @@ public class UIMainMenu : MonoBehaviour
     //Called from WEB, for set the base player data
     public void GL_SetPlayerData(string jsonData)
     {
-        Debug.Log("GL_SetPlayerData");
         User user = JsonConvert.DeserializeObject<User>(jsonData);
         GlobalManager.GMD.SetUser(user);
         AddProgressDataLoaded();
@@ -156,7 +155,6 @@ public class UIMainMenu : MonoBehaviour
     //Called from WEB, for set the player character
     public void GL_SetCharacterSelected(int NFTid)
     {
-        Debug.Log("GL_SetCharacterSelected");
         targetCharacterId = NFTid;
         AddProgressDataLoaded();
     }
@@ -222,7 +220,6 @@ public class UIMainMenu : MonoBehaviour
     //Load the player´s data
     void InitPlayerData()
     {
-        Debug.Log("INIT Player Data");
         //Load basic user data
         PlayerUser = GlobalManager.GMD.GetUserData();
         PlayerProgress = GlobalManager.GMD.GetUserProgress();
