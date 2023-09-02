@@ -38,6 +38,9 @@ public class GameMng : MonoBehaviour
     public Unit[] Targets;
     //Base stations initial positions (set in inspector)
     public Vector3[] BS_Positions;
+    
+    //Bg Maps
+    public GameObject[] BgGameObjects;
 
     //Storage all game units and spells
     List<Unit> Units;
@@ -167,6 +170,11 @@ public class GameMng : MonoBehaviour
             if (BotPrefab == null) { BotPrefab = ResourcesServices.LoadBot(0); Debug.Log($"Not found Bot_{mode}"); }
             if (BotPrefab == null) { Debug.Log("Not found Bot Default"); }
         }
+
+        //Set random BG
+        foreach (GameObject bg in BgGameObjects) { bg.SetActive(false); }
+        BgGameObjects[ UnityEngine.Random.Range(0, BgGameObjects.Length)].SetActive(true);
+        
         Debug.Log("--GAME MANAGER END AWAKE--");
     }
 
