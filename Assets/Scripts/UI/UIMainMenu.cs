@@ -33,10 +33,13 @@ public class UIMainMenu : MonoBehaviour
     
     //Sub sections
     public GameObject MainMenu;
+    public GameObject Persistent;
     public GameObject CollectionMenu;
     public GameObject CharactersMenu;
     public GameObject GameModesMenu;
-
+        public GameObject GameModes_Modes;
+        public GameObject GameModes_Enemies;
+        
     //Back button 
     public GameObject BackBtn;
 
@@ -58,6 +61,7 @@ public class UIMainMenu : MonoBehaviour
     
     //UI Text references for game mode and game status
     public TMP_Text CurrentGameMode;
+    public Image CurrentImageGameMode;
     public TMP_Text CurrentGameModeStatus;
 
     //Current section title
@@ -74,7 +78,10 @@ public class UIMainMenu : MonoBehaviour
     int targetCharacterId;
     public GameObject welcomePanel;
 
-    public Dropdown botMode;
+    //public Dropdown botMode;
+    public Dropdown botDificulty;
+    public int modeSelected = 0;
+    
    private void Awake()
    {
        //Instanciate Global Manager
@@ -139,9 +146,9 @@ public class UIMainMenu : MonoBehaviour
         }
 
         //Fill dropdown with bot names
-        botMode.ClearOptions();
+        /*botMode.ClearOptions();
         List<string> nameBots = ResourcesServices.GetNameBots();
-        botMode.AddOptions(nameBots);
+        botMode.AddOptions(nameBots);*/
     }
 
     //Called from WEB, for set the base player data
@@ -250,14 +257,26 @@ public class UIMainMenu : MonoBehaviour
     //Start the IA game mode
     void PlayIA()
     {
-        int mode = botMode.value;
+        int dificulty = botDificulty.value;
        
-        PlayerPrefs.SetInt("BotMode", mode);
+        PlayerPrefs.SetInt("Dificulty", dificulty);
         GlobalManager.GMD.CurrentMatch = Match.bots;
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
        
         StartCoroutine(LoadLocalGame());
+        
+    }
+    public void ChangeModeGame(GameModeCard gameModeCard)
+    {
+        modeSelected = gameModeCard.idMode;
+        PlayerPrefs.SetInt("BotMode", modeSelected);
+        CurrentImageGameMode.sprite = gameModeCard.imageMode.sprite;
+        CurrentGameMode.text = gameModeCard.nameMode.text;
+        
+        Persistent.SetActive(true);
+        MainMenu.SetActive(true);
+        GameModesMenu.SetActive(false);
         
     }
 
@@ -342,6 +361,8 @@ public class UIMainMenu : MonoBehaviour
     {
         MainMenu.SetActive(false);
         GameModesMenu.SetActive(true);
+            GameModes_Modes.SetActive(true);
+            GameModes_Enemies.SetActive(false);
         BackBtn.SetActive(true);
         TopTitle.text = Lang.GetText("mn_gamemodes");
         //GameTitle.gameObject.SetActive(false);

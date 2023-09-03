@@ -14,9 +14,11 @@ public static class ResourcesServices
         return Resources.Load<GameObject>($"Prefabs/Manager/GlobalManagerObj");
     }
     //Global Bot Prefab
-    public static GameObject LoadBot(int id)
+    public static GameObject LoadBot(int id, int dificulty)
     {
-        return Resources.Load<GameObject>($"Prefabs/Manager/BOTS/BOT_{id}");
+        //Debug.Log("Bot: " + $"Prefabs/Manager/BOTS/BOT_{id}_{dificulty}");
+        return Resources.Load<GameObject>($"Prefabs/Manager/BOTS/BOT_{id}_{dificulty}");
+        
     }
     //Name Bots Prefabs
     public static List<string> GetNameBots()

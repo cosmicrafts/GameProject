@@ -164,10 +164,12 @@ public class GameMng : MonoBehaviour
         if (GlobalManager.GMD.CurrentMatch == Match.bots)
         {
             int mode = 0;
+            int dificulty = 0;
             if (PlayerPrefs.HasKey("BotMode")) { mode = PlayerPrefs.GetInt("BotMode");}
-                        
-            BotPrefab = ResourcesServices.LoadBot(mode); Debug.Log($"Searching Bot_{mode}");
-            if (BotPrefab == null) { BotPrefab = ResourcesServices.LoadBot(0); Debug.Log($"Not found Bot_{mode}"); }
+            if (PlayerPrefs.HasKey("Dificulty")) { dificulty = PlayerPrefs.GetInt("Dificulty");}
+            
+            BotPrefab = ResourcesServices.LoadBot(mode, dificulty); Debug.Log($"Searching Bot_{mode}_{dificulty}");
+            if (BotPrefab == null) { BotPrefab = ResourcesServices.LoadBot(0,0); Debug.Log($"Not found Bot_{mode}_{dificulty}"); }
             if (BotPrefab == null) { Debug.Log("Not found Bot Default"); }
         }
 
