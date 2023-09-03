@@ -155,7 +155,7 @@ public class UIGameMng : MonoBehaviour
     //Update the energy bar and text
     public void UpdateEnergy(float energy, float max)
     {
-        EnergyLabel.text = energy.ToString(energy == max ? "F0" : "F1");
+        EnergyLabel.text = ((int)energy).ToString(energy == max ? "F0" : "F0"); //F1  F1"); 
         EnergyBar.fillAmount = energy / max;
 
         foreach (UIGameCard card in UIDeck)
