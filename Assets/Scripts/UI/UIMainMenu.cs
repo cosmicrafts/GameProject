@@ -114,6 +114,7 @@ public class UIMainMenu : MonoBehaviour
             //Show Welcome Panel
             if (!GlobalManager.GMD.DebugMode)
                 welcomePanel.SetActive(true);
+
         }
         else
         {
