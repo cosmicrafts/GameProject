@@ -371,6 +371,7 @@ public class UIMainMenu : MonoBehaviour
     //Start the current game mode
     public void PlayCurrentMode()
     {
+        Persistent.SetActive(false);
         Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
         PlayIA();
 
