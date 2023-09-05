@@ -1698,10 +1698,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6764808752486651747}
-  - component: {fileID: 1072412129478779946}
   - component: {fileID: 6364282005187429036}
   - component: {fileID: 410243200799843250}
-  - component: {fileID: 6124787399388253779}
+  - component: {fileID: 953729098420294387}
+  - component: {fileID: 6800171134341490053}
   m_Layer: 0
   m_Name: Mesh_Barracuda
   m_TagString: Untagged
@@ -1726,19 +1726,6 @@ Transform:
   m_Father: {fileID: 2198226034328220055}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1072412129478779946
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6245011729380265433}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 2.41
-  m_Center: {x: 0, y: 0, z: 0.5}
 --- !u!95 &6364282005187429036
 Animator:
   serializedVersion: 4
@@ -1816,7 +1803,20 @@ MonoBehaviour:
     fillPass:
       shader: {fileID: 0}
       serializedProperties: []
---- !u!114 &6124787399388253779
+--- !u!135 &953729098420294387
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6245011729380265433}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.85
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6800171134341490053
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

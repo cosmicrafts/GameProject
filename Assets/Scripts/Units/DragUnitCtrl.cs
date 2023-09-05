@@ -102,5 +102,11 @@ public class DragUnitCtrl : MonoBehaviour
     public void CreatePreviewObj(GameObject preview)
     {
         currentPreview = Instantiate(preview, transform);
+
+        UnitAnimLis unitAnimLis = currentPreview.GetComponent<UnitAnimLis>();
+        if(unitAnimLis != null) { DestroyImmediate(unitAnimLis, true);}
+
+        SphereCollider sphereCollider = currentPreview.GetComponent<SphereCollider>(); 
+        if(sphereCollider != null) { DestroyImmediate(sphereCollider, true);}
     }
 }

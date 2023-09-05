@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     //Stores the meshes and materials of the units, for drag and drop previews
     Mesh[] UnitsMeshs;
     Material[] UnitMaterials;
+    GameObject[] ShipPreviews;
     //Stores the object with particules of the spells, for drag and drop previews
     GameObject[] SpellPreviews;
     //Reference the current dragin card
@@ -132,6 +133,7 @@ public class Player : MonoBehaviour
 
         //Init and set the units data arrays
         SpellPreviews = new GameObject[8];
+        ShipPreviews = new GameObject[8];
         UnitsMeshs = new Mesh[8];
         UnitMaterials = new Material[8];
 
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour
                 else
                 {
                     UnitCard unit = card as UnitCard;
+                    ShipPreviews[i] = unit.UnitMesh;
                     UnitsMeshs[i] = unit.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
                     UnitMaterials[i] = unit.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMaterial;
                 }
@@ -226,7 +229,8 @@ public class Player : MonoBehaviour
             }
             else
             {
-                PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], PlayerDeck[idu].EnergyCost);
+                PrepareDeploy(ShipPreviews[idu], PlayerDeck[idu].EnergyCost);
+                //repareDeploy(UnitsMeshs[idu], UnitMaterials[idu], PlayerDeck[idu].EnergyCost);
             }
         }
     }
@@ -254,8 +258,11 @@ public class Player : MonoBehaviour
         {
             PrepareDeploy(SpellPreviews[idu], PlayerDeck[idu].EnergyCost);
         }
+        else
         {
-            PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], PlayerDeck[idu].EnergyCost);
+            
+            PrepareDeploy(ShipPreviews[idu], PlayerDeck[idu].EnergyCost);
+             //PrepareDeploy(UnitsMeshs[idu], UnitMaterials[idu], PlayerDeck[idu].EnergyCost);
         }
     }
 
