@@ -435,26 +435,26 @@ public class UIMainMenu : MonoBehaviour
         {
             case Match.bots:
                 {
-                    CurrentGameMode.text = Lang.GetText("mn_pve");
-                    CurrentGameModeStatus.text = string.Empty;
+                    //CurrentGameMode.text = Lang.GetText("mn_pve");
+                    //CurrentGameModeStatus.text = string.Empty;
                 }
                 break;
             case Match.multi:
                 {
-                    CurrentGameMode.text = Lang.GetText("mn_pvp");
-                    CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
+                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
+                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
                 }
                 break;
             case Match.tutorial:
                 {
-                    CurrentGameMode.text = Lang.GetText("mn_tutorial");
-                    CurrentGameModeStatus.text = string.Empty;
+                   // CurrentGameMode.text = Lang.GetText("mn_tutorial");
+                    //CurrentGameModeStatus.text = string.Empty;
                 }
                 break;
             default:
                 {
-                    CurrentGameMode.text = Lang.GetText("mn_pvp");
-                    CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
+                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
+                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
                 }
                 break;
         }

@@ -22,7 +22,7 @@ public class UIPlayerGameInfo : MonoBehaviour
         PlayerName.text = user.NikeName;
         Level.text = $"{Lang.GetText("mn_lvl")} {progress.GetLevel()}";
         XpBar.fillAmount = (float)progress.GetXp() / (float)progress.GetNextXpGoal();
-        Avatar.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
+        Avatar.sprite = ResourcesServices.LoadAvatarUser(user.Avatar);
     }
 
     //Update the UI banner with a resume of some player data (for multiplayer)
@@ -32,6 +32,7 @@ public class UIPlayerGameInfo : MonoBehaviour
         PlayerName.text = user.NikeName;
         Level.text = $"{Lang.GetText("mn_lvl")} {user.Level}";
         XpBar.fillAmount = (float)user.Xp / (float)user.GetNextXpGoal();
-        Avatar.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
+        Avatar.sprite = ResourcesServices.LoadAvatarUser(user.Avatar);
+        //Avatar.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
     }
 }

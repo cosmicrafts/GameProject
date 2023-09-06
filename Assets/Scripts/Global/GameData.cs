@@ -127,6 +127,11 @@ public class GameData
             PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", 
                 Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 };
         }
+        else{
+            
+            PlayerUser.Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 ;
+            
+        }
 
         return PlayerUser;
     }
