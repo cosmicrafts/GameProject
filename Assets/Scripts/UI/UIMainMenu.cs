@@ -81,6 +81,8 @@ public class UIMainMenu : MonoBehaviour
     //public Dropdown botMode;
     public Dropdown botDificulty;
     public int modeSelected = 0;
+
+    public GameModeCard[] gamemodes;
     
    private void Awake()
    {
@@ -281,6 +283,44 @@ public class UIMainMenu : MonoBehaviour
         
     }
 
+    //Update the UI for the current game mode
+    void CheckGameMode()
+    {
+        if(PlayerPrefs.HasKey("BotMode")){
+            int currentBotMode = PlayerPrefs.GetInt("BotMode");
+            CurrentImageGameMode.sprite = gamemodes[currentBotMode].imageMode.sprite;
+            CurrentGameMode.text = gamemodes[currentBotMode].nameMode.text;
+        }
+
+        switch (GlobalManager.GMD.CurrentMatch)
+        {
+            case Match.bots:
+                {
+                    //CurrentGameMode.text = Lang.GetText("mn_pve");
+                    //CurrentGameModeStatus.text = string.Empty;
+                }
+                break;
+            case Match.multi:
+                {
+                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
+                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
+                }
+                break;
+            case Match.tutorial:
+                {
+                   // CurrentGameMode.text = Lang.GetText("mn_tutorial");
+                    //CurrentGameModeStatus.text = string.Empty;
+                }
+                break;
+            default:
+                {
+                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
+                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
+                }
+                break;
+        }
+    }
+
     //Start the Tutorial
     void PlayTutorial()
     {
@@ -428,37 +468,7 @@ public class UIMainMenu : MonoBehaviour
         BackMainSection();
     }
 
-    //Update the UI for the current game mode
-    void CheckGameMode()
-    {
-        switch (GlobalManager.GMD.CurrentMatch)
-        {
-            case Match.bots:
-                {
-                    //CurrentGameMode.text = Lang.GetText("mn_pve");
-                    //CurrentGameModeStatus.text = string.Empty;
-                }
-                break;
-            case Match.multi:
-                {
-                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
-                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
-                }
-                break;
-            case Match.tutorial:
-                {
-                   // CurrentGameMode.text = Lang.GetText("mn_tutorial");
-                    //CurrentGameModeStatus.text = string.Empty;
-                }
-                break;
-            default:
-                {
-                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
-                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
-                }
-                break;
-        }
-    }
+    
 
     //Refresh a specific UI propertie of the player
     public void RefreshProperty(PlayerProperty property)
