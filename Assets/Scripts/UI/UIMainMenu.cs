@@ -83,7 +83,7 @@ public class UIMainMenu : MonoBehaviour
     public int modeSelected = 0;
 
     public GameModeCard[] gamemodes;
-    
+    public UIMatchMaking_2 uiMatchMaking;
    private void Awake()
    {
        //Instanciate Global Manager
@@ -412,38 +412,47 @@ public class UIMainMenu : MonoBehaviour
     //Start the current game mode
     public void PlayCurrentMode()
     {
-        Persistent.SetActive(false);
-        Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
-        PlayIA();
-
-        //momentariamente
-        #region COMENTADO POR AHORA
-        /*  switch (GlobalManager.GMD.CurrentMatch)
+        
+        if ( PlayerPrefs.GetInt("BotMode") == 9)
         {
-            case Match.bots:
-                {
-
-                    PlayIA();
-                }
-                break;
-            case Match.multi:
-                {
-                    PlayMulti();
-                }
-                break;
-            case Match.tutorial:
-                {
-                    PlayTutorial();
-                }
-                break;
-            default:
-                {
-                    PlayMulti();
-                }
-                break;
+            uiMatchMaking.StartSearch();
         }
-      */
-        #endregion 
+        else
+        {
+            Persistent.SetActive(false);
+            Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
+            PlayIA();
+
+            //momentariamente
+            #region COMENTADO POR AHORA
+            /*  switch (GlobalManager.GMD.CurrentMatch)
+            {
+                case Match.bots:
+                    {
+    
+                        PlayIA();
+                    }
+                    break;
+                case Match.multi:
+                    {
+                        PlayMulti();
+                    }
+                    break;
+                case Match.tutorial:
+                    {
+                        PlayTutorial();
+                    }
+                    break;
+                default:
+                    {
+                        PlayMulti();
+                    }
+                    break;
+            }
+          */
+            #endregion 
+        }
+        
 
     }
 

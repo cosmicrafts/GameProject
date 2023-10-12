@@ -77,5 +77,30 @@
     JSGoToMenu: function () {
                 ReactUnityWebGL.JSGoToMenu();
           }
+    ,
+    
+    
+    
+    JS_SearchGame: function () {
+        ReactUnityWebGL.JS_SearchGame();
+    },
+    JS_CancelSearchGame: function () {
+        ReactUnityWebGL.JS_CancelSearchGame();
+    },
+    JS_AcceptMatch: function (idCharacter) {
+        ReactUnityWebGL.JS_AcceptMatch(idCharacter);
+    },
+    JS_RejectMatch: function () {
+        ReactUnityWebGL.JS_RejectMatch();
+    },
+    
+    
+    JS_SearchGame: function (idChat) {
+        ReactUnityWebGL.SelectChatGroup(idChat);
+    },
+    
+    JSSendMessage: function (message) {
+        ReactUnityWebGL.SendMessage(Pointer_stringify(message));
+    },
 
 });
