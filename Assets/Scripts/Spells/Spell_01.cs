@@ -57,7 +57,7 @@ public class Spell_01 : Spell
             delaydmg = 0.25f;
             foreach(Unit unit in Targets)
             {
-                unit.AddDmg(10, TypeDmg.Shield);
+                unit.AddDmg(10,false, TypeDmg.Shield);
             }
         }
     }

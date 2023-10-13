@@ -22,6 +22,9 @@ public class Projectile : MonoBehaviour
     //The damage to done on the target
     [HideInInspector]
     public int Dmg;
+    
+    [HideInInspector]
+    public bool isCritic = false;
 
     public GameObject canvasDamageRef;
     //The game object effect to instantiate when the bullet impacts directly
@@ -124,6 +127,7 @@ public class Projectile : MonoBehaviour
         if (Random.value < target.DodgeChance)
         {
             Debug.Log("Dodge hit!");
+            GameMng.MT.AddDamageEvaded(Dmg);
             Dmg = 0;
         }
         
@@ -134,7 +138,7 @@ public class Projectile : MonoBehaviour
             GameObject si = Instantiate(ShieldInpact, transform.position, Quaternion.identity);
             */
             
-            target.OnImpactShield(Dmg);
+            target.OnImpactShield(Dmg, isCritic);
             
 
             /*FX_ChangeColor fcomp = si.GetComponent<FX_ChangeColor>();
@@ -170,7 +174,7 @@ public class Projectile : MonoBehaviour
             tempDamage.SetDamage(Dmg);
         }
       
-        target.AddDmg(Dmg);
+        target.AddDmg(Dmg, isCritic);
         target.SetImpactPosition(transform.position);
         //Destroy the bullet
         Destroy(gameObject);

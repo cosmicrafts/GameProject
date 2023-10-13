@@ -78,9 +78,7 @@
                 ReactUnityWebGL.JSGoToMenu();
           }
     ,
-    
-    
-    
+        
     JS_SearchGame: function () {
         ReactUnityWebGL.JS_SearchGame();
     },
@@ -93,11 +91,11 @@
     JS_RejectMatch: function () {
         ReactUnityWebGL.JS_RejectMatch();
     },
-    
-    
-    JS_SearchGame: function (idChat) {
-        ReactUnityWebGL.SelectChatGroup(idChat);
+    JS_SendStats: function (json) {
+        ReactUnityWebGL.JS_SendStats(Pointer_stringify(json));
     },
+    
+    
     
     JSSendMessage: function (message) {
         ReactUnityWebGL.SendMessage(Pointer_stringify(message));

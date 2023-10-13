@@ -12,6 +12,10 @@ public class GameMetrics
 
     //Battle variables
     float Damage;
+    float DamageReceived;
+    float DamageCritic;
+    float DamageEvaded;
+    
     int Kills;
     int Deploys;
 
@@ -30,6 +34,10 @@ public class GameMetrics
         EnergyChargeRatePerSec = 0f;
 
         Damage = 0f;
+        DamageReceived= 0f;
+        DamageCritic= 0f;
+        DamageEvaded= 0f;
+        
         Kills = 0;
         Deploys = 0;
         SecRemaining = 0;
@@ -80,6 +88,18 @@ public class GameMetrics
         Damage += value;
         Score += (int)value;
     }
+    public void AddDamageReceived(float value)
+    {
+        DamageReceived += value;
+    }
+    public void AddDamageCritic(float value)
+    {
+        DamageCritic += value;
+    }
+    public void AddDamageEvaded(float value)
+    {
+        DamageEvaded += value;
+    }
 
     //TakeDowns
     public void AddKills(int value)
@@ -115,6 +135,18 @@ public class GameMetrics
     public float GetDamage()
     {
         return Damage;
+    }
+    public float GetDamageReceived()
+    {
+        return DamageReceived;
+    }
+    public float GetDamageCritic()
+    {
+        return DamageCritic;
+    }
+    public float GetDamageEvaded()
+    {
+        return DamageEvaded;
     }
     public int GetKills()
     {

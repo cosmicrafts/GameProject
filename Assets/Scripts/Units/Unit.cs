@@ -229,7 +229,7 @@ public class Unit : MonoBehaviour
     }
 
     //Add specific kind of damage to the unit
-    public void AddDmg(int dmg, TypeDmg typeDmg)
+    public void AddDmg(int dmg, bool isCritic, TypeDmg typeDmg)
     {
         //Check the state of the unit (can get damage?)
         if (IsDeath || !InControl() || dmg <= 0 )
@@ -267,6 +267,11 @@ public class Unit : MonoBehaviour
         if (!IsMyTeam(GameMng.P.MyTeam))
         {
             GameMng.MT.AddDamage(DirectDmg);
+            if (isCritic) { GameMng.MT.AddDamageCritic(DirectDmg); }
+        }
+        else
+        {
+            GameMng.MT.AddDamageReceived(DirectDmg);
         }
 
         //Check if the unit is already death
@@ -282,9 +287,9 @@ public class Unit : MonoBehaviour
     }
 
     //Add normal damage
-    public void AddDmg(int dmg)
+    public void AddDmg(int dmg, bool isCritic)
     {
-        AddDmg(dmg, TypeDmg.Normal);
+        AddDmg(dmg, isCritic, TypeDmg.Normal);
     }
 
     //Kill the unit
@@ -553,10 +558,10 @@ public class Unit : MonoBehaviour
         return (!Disabled && Casting <= 0f && !IsFake);
     }
 
-    public void OnImpactShield(int dmg)
+    public void OnImpactShield(int dmg, bool isCritic)
     {
         ShieldGameObject.SetActive(true);
-        AddDmg(dmg);
+        AddDmg(dmg, isCritic);
         StopAllCoroutines();
         StartCoroutine(DesactiveShield());
         

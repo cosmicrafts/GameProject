@@ -156,6 +156,7 @@ public class Shooter : MonoBehaviour
                     {
                         Debug.Log("Critical hit!");
                         bullet.Dmg = (int) (BulletDamage * criticalStrikeMultiplier);
+                        bullet.isCritic = true;
                     }
                     else
                     {
