@@ -132,14 +132,14 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
         //Iniciar el Juego aqui
         lobbyTxt.text = "InGame";
         connectedToGame = true;
-        GameManager.IsPaused = false;
+        GameManager.Pause(false);
         GameManager.Init();
     }
     private void ReconnectingGame()
     {
         lobbyTxt.text = "Loading or Connecting";
         connectedToGame = false;
-        GameManager.IsPaused = true;
+        GameManager.Pause(true);
     }
     public void ExitGame()
     {

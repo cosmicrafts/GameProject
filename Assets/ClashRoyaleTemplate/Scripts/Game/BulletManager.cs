@@ -11,6 +11,8 @@ public class BulletManager : MonoBehaviour
     public int AttackDamage { get; private set; }
     public GameObjectManager TargetObject { get; private set; }
     [SerializeField] private GameObject explosionImpact;
+
+    public bool IsPaused = false;
     
     public void Shot(float velocity, int attackDamage, GameObjectManager gameObjectManager)
     {
@@ -28,10 +30,14 @@ public class BulletManager : MonoBehaviour
         
         while(gameObjectManager && time < shotTime)
         {
-            time += Time.deltaTime * velocity;
-            transform.position = Vector3.up + Vector3.Lerp(startPosition, gameObjectManager.transform.position, time / shotTime);
+            if (!IsPaused)
+            {
+                time += Time.deltaTime * velocity;
+                transform.position = Vector3.up + Vector3.Lerp(startPosition, gameObjectManager.transform.position, time / shotTime);
+            }
             yield return new WaitForEndOfFrame();
         }
+        
         OnBulletImpact?.Invoke(this);
         GameObject explosion = Instantiate(explosionImpact, transform.position, transform.rotation);
         Destroy(explosion, 2); 

@@ -185,13 +185,17 @@ public class GameManager : MonoBehaviour
         Pause(false);
     }
 
-    private void Pause(bool pause)
+    public void Pause(bool pause)
     {
         IsPaused = pause;
-        if (!pause || myGameTime - otherGameTime > 1.25f)
+        if (!pause || myGameTime - otherGameTime > 1.25f) { uiManager.OnPaused(pause); }
+        
+        if (IsInitialized)
         {
-            uiManager.OnPaused(pause);
+            foreach (BulletManager bullet in groups[0].Bullets) { bullet.IsPaused = pause; }
+            foreach (BulletManager bullet in groups[1].Bullets) { bullet.IsPaused = pause; }
         }
+        
     }
 
     private void StartGame()

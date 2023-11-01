@@ -13,7 +13,7 @@ public class SimpleHeroManager : HeroManager
         BulletManager bullet = gameObject.AddComponent<BulletManager>();
         bullet.Shot(5, AttackDamage, TargetObject);
         animator.Play("Attack");
-       
+
         return bullet;
     }
 
