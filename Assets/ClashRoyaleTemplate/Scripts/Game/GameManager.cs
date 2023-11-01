@@ -95,12 +95,12 @@ public class GameManager : MonoBehaviour
     public void OnPing(float otherGameTime) {
         this.otherGameTime = otherGameTime;
     }
-
-    private void AddMyHeroToWaitingList(int index, SimpleVector2 position)
+  
+    private void AddMyHeroToWaitingList(int index, SimpleVector2 position, IEnumerator wait)
     {
         if (!MyGroup.HeroesWaitingList.ContainsKey(GameTime + 1) && !MyGroup.HeroesWaitingList.ContainsKey(GameTime + 2))
         {
-            // uiManager.HeroCreateTime = 2.0f - secondsPass; StartCoroutine(wait);
+            uiManager.HeroCreateTime = (2.0f - secondsPass); StartCoroutine(wait);
             AddMyHeroToWaitingList(index, GameTime + 2, position);
         }
         else
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
             {
                 addTime++;
             }
-            //uiManager.HeroCreateTime = addTime - secondsPass; StartCoroutine(wait);
+            uiManager.HeroCreateTime = (addTime - secondsPass); StartCoroutine(wait);
             AddMyHeroToWaitingList(index, GameTime + addTime, position);
         }
     }

@@ -5,7 +5,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public delegate void CreateHeroHandler(int index, SimpleVector2 position);
+
+public delegate void CreateHeroHandler(int index, SimpleVector2 position, IEnumerator wait);
 
 public class UIManager : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class UIManager : MonoBehaviour
                 if (Input.GetMouseButtonUp(0))
                 {
                     SimpleVector2 position = new SimpleVector2((int)hit.point.x, (int)hit.point.z);
-                    OnCreateHero?.Invoke(selectedHeroIndex, position);
+                    OnCreateHero?.Invoke(selectedHeroIndex, position, OnSendInfoToDeployShip() );
                 }
             }
             else
@@ -117,23 +118,21 @@ public class UIManager : MonoBehaviour
             skinnedRenderer.materials = mats;
         }
         
-        
-        
-        
     }
-    
-    
-    /*IEnumerator AnimateHeroButton(HeroButton button, GameObject heroSpown)
+
+    IEnumerator OnSendInfoToDeployShip()
     {
+        GameObject tempObjPreview = heroObjPrev; heroObjPrev = null;
+        tempObjPreview.transform.SetParent(null);
+        
         float time = 0.0f;
         float createTime = HeroCreateTime;
         while (time < createTime)
         {
             time += Time.deltaTime;
-            button.image.fillAmount = time / createTime;
             yield return new WaitForEndOfFrame();
         }
-        Destroy(heroSpown);
-    }*/
+        Destroy(tempObjPreview);
+    }
     
 }
