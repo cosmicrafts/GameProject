@@ -62,7 +62,8 @@ public class GameManager : MonoBehaviour
             {
                 SimpleVector2 towerPosition = groups[i].Positions[0][(x+1) * arena.sizeHalf.x];
                 simpleTowers[x].Init(i, towerPosition, null, materials[i]);
-
+                simpleTowers[x].OnMustAttack+= UpdateHeroShooter;
+                
                 SimpleVector2 towerEnemyPosition =  groups[i].Positions[1][(x+1) * arena.sizeHalf.x];
                 simpleTowers[x].transform.LookAt(new Vector3(towerEnemyPosition.x, 0.0f, towerEnemyPosition.z) , Vector3.up);
                 
@@ -167,7 +168,7 @@ public class GameManager : MonoBehaviour
         
         secondsPass += Time.deltaTime;
         myGameTime += Time.deltaTime;
-        if (secondsPass >= 1.0f)
+        if (secondsPass >= 1f)
         {
             GameTime++;
             secondsPass = 0.0f;
@@ -194,6 +195,10 @@ public class GameManager : MonoBehaviour
         {
             foreach (BulletManager bullet in groups[0].Bullets) { bullet.IsPaused = pause; }
             foreach (BulletManager bullet in groups[1].Bullets) { bullet.IsPaused = pause; }
+            foreach (HeroManager hero in groups[0].Heroes) { hero.IsPaused = pause; }
+            foreach (HeroManager hero in groups[1].Heroes) { hero.IsPaused = pause; }
+            foreach (TowerManager tower in groups[0].Towers) { tower.IsPaused = pause; }
+            foreach (TowerManager tower in groups[1].Towers) { tower.IsPaused = pause; }
         }
         
     }
@@ -240,6 +245,8 @@ public class GameManager : MonoBehaviour
         HeroManager newHero = Instantiate(heroesPrefabs[index]);
         arena.AddHero(newHero);
         newHero.Init(groupIndex, heroPosition, GetTargetTowerOrHero(newHero, heroPosition, otherGroup), materials[groupIndex]);
+        newHero.OnMustAttack += UpdateHeroShooter;
+        
         if (!newHero.IsBomb)
         {
             dynamicPositions.Add(heroPosition);
@@ -373,42 +380,33 @@ public class GameManager : MonoBehaviour
                 }
             } 
         }
-        
     }
-    private void UpdateHeroes(Group group1, Group group2)
+    private void UpdateHeroShooter(GameObjectManager heroShooter)
     {
         HeroManager bomb = null;
-        
-        /*for (int i = group1.Bullets.Count - 1; i >= 0; i--)
+
+        if (heroShooter.IsBomb) { heroShooter.OnFight(); }//bomb = heroShooter; }
+        else if (heroShooter.CanShoot_IsInRange())
         {
-            BulletManager bullet = group1.Bullets[i];
-            Debug.Log(bullet.IsImpactInTarget);
-            if (bullet.IsImpactInTarget)
-            {
-                bullet.OnImpact();
-                group1.Bullets.RemoveAt(i);
-                        
-                if (bullet.TargetObject.Damage(bullet.AttackDamage))
-                {
-                    dynamicPositions.Remove(bullet.TargetObject.Position);
-                    bullet.TargetObject.RemoveFromGroup(group2);
-                    Destroy( bullet.TargetObject);
-                    if(group2.Towers.Count == 0)
-                    {
-                        gameIsEnd = true;
-                        StartCoroutine(OnWinOrLose(group2.Index != GroupIndex));
-                    }
-                }
-            }
-        }*/
+            BulletManager bulletInstanced = heroShooter.OnFight();
+            bulletInstanced.OnBulletImpact += UpdateBulletOnImpact;
+            groups[heroShooter.MyOwnerGroup].Bullets.Add(bulletInstanced );
+        }
         
+        if(bomb)
+        {
+            bomb.RemoveFromGroup(groups[heroShooter.MyOwnerGroup]);
+            bomb.Remove();
+        }
+    }
+    
+    private void UpdateHeroes(Group group1, Group group2)
+    {
         foreach (HeroManager hero in group1.Heroes)
         {
             GameObjectManager target = GetTargetTowerOrHero(hero, hero.Position, group2);
-            if(target)
-            {
-                hero.SetTargetObject(target);
-            }
+            if (target) { hero.SetTargetObject(target); }
+           
             if (hero.GetNewPosition(staticPositions, dynamicPositions, out SimpleVector2 newPosition))
             {
                 dynamicPositions.Remove(hero.Position);
@@ -416,29 +414,11 @@ public class GameManager : MonoBehaviour
                 hero.MoveTo(newPosition);
             }
             hero.UpdateLookAtPosition(newPosition);
-            
-            if(hero.IsBomb) {  hero.OnFight();  bomb = hero; }
-            else if (hero.CanShoot_IsInRange())
-            {
-                BulletManager bulletInstanced = hero.OnFight();
-                bulletInstanced.OnBulletImpact += UpdateBulletOnImpact;
-                group1.Bullets.Add(bulletInstanced );
-                
-            }
         }
-        
-        if(bomb)
-        {
-            bomb.RemoveFromGroup(group1);
-            bomb.Remove();
-        }
-        
         foreach (TowerManager tower in group1.Towers)
         {
             HeroManager target = GetTargetHero(tower, group2.Heroes, out int distance);
-            tower.SetTargetObject(target);
-         
-            if (tower.CanShoot_IsInRange()) { group1.Bullets.Add(tower.OnFight() ); }
+            if(target) {tower.SetTargetObject(target);}
         }
     }
     private IEnumerator OnWinOrLose(bool isWin)

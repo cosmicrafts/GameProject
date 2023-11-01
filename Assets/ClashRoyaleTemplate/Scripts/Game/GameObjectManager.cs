@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 public abstract class GameObjectManager : MonoBehaviour
 {
+    public Action<GameObjectManager> OnMustAttack;
+    public bool IsInitialized { get; set; } = false;
+    [HideInInspector] public bool IsPaused = false;
+    [HideInInspector] public int MyOwnerGroup;
     public SimpleVector2 Position { get; protected set; }
     public int HitPoints { get; private set; }
     public int AttackDamage { get; private set; }
@@ -23,19 +28,26 @@ public abstract class GameObjectManager : MonoBehaviour
     [SerializeField] public GameObject previewMeshObject;
     [SerializeField] public Material transparentMaterial;
     
+    [Header("Attack Speed parameters")]
+    [HideInInspector]public float timePass = 0.0f;
+    [SerializeField] public float cooldown = 2.5f;
+    
     public virtual void Init(int groupIndex, SimpleVector2 initPosition, GameObjectManager initTargetObject, Material groupMaterial)
     {
+        MyOwnerGroup = groupIndex;
         HitPoints = MaxHitPoints;
         AttackDamage = startAttackDamage;
         Position = initPosition;
         TargetObject = initTargetObject;
         transform.position = new Vector3(initPosition.x, 0.0f, initPosition.z);
-        if (UIUnit)
-        {
-            UIUnit.SetColorBars(groupMaterial.color);
-        }
+        if (UIUnit) { UIUnit.SetColorBars(groupMaterial.color); }
+        
         MinTargetDistancePow = minTargetDistance * minTargetDistance;
         IsBomb = isBomb;
+
+        if (!isBomb) { StartCoroutine(ShouldAttack_Routine()); }
+        
+        IsInitialized = true;
     }
     public void SetTargetObject(GameObjectManager targetObject)
     {
@@ -78,6 +90,7 @@ public abstract class GameObjectManager : MonoBehaviour
     
     public bool CanShoot_IsInRange()
     {
+        Debug.Log("Estoy en rango?Mi cooldown: " + cooldown);
         if (TargetObject && GetType() == typeof(HeroBombManager))
         {
             Debug.Log((Position - TargetObject.Position).SqrMagnitude +  "  " + MinTargetDistancePow);
@@ -85,6 +98,25 @@ public abstract class GameObjectManager : MonoBehaviour
         
         return TargetObject && (Position - TargetObject.Position).SqrMagnitude < MinTargetDistancePow + 1;
     }
+    
+    private IEnumerator ShouldAttack_Routine()
+    {
+        while (true)
+        {
+            if (!IsPaused && IsInitialized)
+            {
+                timePass += Time.deltaTime;
+                if (timePass >= cooldown)
+                {
+                    OnMustAttack?.Invoke(this);
+                    if (CanShoot_IsInRange()) { timePass = 0.0f; }
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+
     public abstract BulletManager OnFight();
     public abstract bool CanBeAsTarget(HeroManager target);
     public abstract void RemoveFromGroup(Group group);

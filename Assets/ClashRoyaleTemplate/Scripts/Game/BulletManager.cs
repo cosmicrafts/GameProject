@@ -12,7 +12,7 @@ public class BulletManager : MonoBehaviour
     public GameObjectManager TargetObject { get; private set; }
     [SerializeField] private GameObject explosionImpact;
 
-    public bool IsPaused = false;
+    [HideInInspector] public bool IsPaused = false;
     
     public void Shot(float velocity, int attackDamage, GameObjectManager gameObjectManager)
     {
