@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
         
         GroupIndex = PunNetworkManager.NetworkManager.PlayerIndex;
-        uiManager.SetGroupIndex(GroupIndex);
+        
         for (int i = 0; i < groups.Length; i++)
         {
             groups[i].Init2Group(arena, i);
@@ -74,7 +74,11 @@ public class GameManager : MonoBehaviour
 
         foreach (HeroManager hero in heroesPrefabs)
         {   uiManager.previewMeshs.Add(hero.previewMeshObject);
-            uiManager.PreviewMaterials.Add(hero.transparentMaterial); }
+            uiManager.PreviewMaterials.Add(hero.transparentMaterial);
+            uiManager.CardEnergyCost.Add(hero.energyCost); }
+        
+        uiManager.SetGroupIndex(GroupIndex);
+
         uiManager.OnCreateHero += AddMyHeroToWaitingList;
         PunNetworkManager.NetworkManager.Messenger.OnAddOtherHeroToWaitingList += AddOtherHeroToWaitingList;
         PunNetworkManager.NetworkManager.Messenger.OnStartGame += StartGame;
@@ -114,6 +118,7 @@ public class GameManager : MonoBehaviour
             uiManager.HeroCreateTime = (addTime - secondsPass); StartCoroutine(wait);
             AddMyHeroToWaitingList(index, GameTime + addTime, position);
         }
+        RestEnergy( uiManager.CardEnergyCost[index] );
     }
     private void AddMyHeroToWaitingList(int index, long addTime, SimpleVector2 position)
     {

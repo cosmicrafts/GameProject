@@ -21,6 +21,8 @@ public abstract class GameObjectManager : MonoBehaviour
     [Range(1, 9999)] [SerializeField] protected int MaxHitPoints = 500;
     [Range(1, 99)]   [SerializeField] protected int startAttackDamage = 50;
     [Range(1, 25)]   [SerializeField] protected int minTargetDistance = 1;
+    [Range(1, 30)]   [SerializeField] public int energyCost = 0;
+    
     [SerializeField] private UIUnit_Multi UIUnit;
     [SerializeField] private bool isBomb = false;
     [SerializeField] protected Animator animator;

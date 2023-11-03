@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     private GameObject heroObjPrev;
     [HideInInspector] public List<GameObject> previewMeshs = new List<GameObject>();
     [HideInInspector] public List<Material> PreviewMaterials = new List<Material>();
+    [HideInInspector] public List<int> CardEnergyCost = new List<int>();
     
     [Header("EnergyUI")]
     public TMP_Text EnergyLabel;
@@ -37,7 +38,6 @@ public class UIManager : MonoBehaviour
         heroSpawnPoint.RotateAround (transform.position, transform.up, 180f * index);
         
         
-        
         foreach (HeroButton heroButton in heroButtons)
         {
             heroButton.OnDown += (HeroButton btn) =>
@@ -46,6 +46,9 @@ public class UIManager : MonoBehaviour
                 selectedHeroIndex = heroButton.Index + (groupIndex * 8);
                 CreatePreviewObj(heroButton.Index + (groupIndex * 8) );
             };
+            //Fill Button UI INFO
+            heroButton.EnergyCost = CardEnergyCost[heroButton.Index + (groupIndex * 8)];
+            heroButton.TextCost.text = heroButton.EnergyCost.ToString();
         }
         
     }
@@ -60,7 +63,7 @@ public class UIManager : MonoBehaviour
     
     private void Update()
     {
-        if (selectedHeroIndex != -1)
+        if (selectedHeroIndex != -1 )
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -97,6 +100,7 @@ public class UIManager : MonoBehaviour
         foreach (HeroButton heroButton in heroButtons)
         {
             heroButton.TextCost.color = energy >= heroButton.EnergyCost ? Color.white : Color.red;
+            heroButton.enabled = energy >= heroButton.EnergyCost ? true : false;
         }
     }
 
