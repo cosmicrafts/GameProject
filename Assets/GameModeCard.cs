@@ -9,4 +9,7 @@ public class GameModeCard : MonoBehaviour
     public TMP_Text nameMode;
     public Image imageMode;
     public int idMode;
+    public Match match;
+    
+    
 }

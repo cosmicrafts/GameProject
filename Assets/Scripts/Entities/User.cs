@@ -1,25 +1,18 @@
 ﻿using System;
-/*
- * Here we save the essential player information
- */
-public enum userRol
-{
-    None,
-    User,
-    Admin
-}
+using System.Collections.Generic;
 
 public class User
 {
     public int Id { get; set; }
-
     public string WalletId { get; set; } //*
-
     public string NikeName { get; set; } //*
-
+    public int Level { get; set; }
     //public string PassWord { get; set; }
-
     public int Avatar { get; set; } //*
+    
+    public int CharacterNFTId;
+
+    public List<int> DeckNFTsId;
 
     public string Token { get; set; }
 

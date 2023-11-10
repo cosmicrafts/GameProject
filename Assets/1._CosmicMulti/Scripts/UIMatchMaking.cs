@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UIMatchMaking_2 : MonoBehaviour
+public class UIMatchMaking : MonoBehaviour
 {
     public Button btnGameModes;
     public Text StatusGame;
@@ -35,7 +35,7 @@ public class UIMatchMaking_2 : MonoBehaviour
 
     //Player data
     User MyUserData;
-    UserGeneral VsUserData;
+    User VsUserData;
 
     //The current serching was canceled
     bool IsCanceled;
@@ -52,15 +52,6 @@ public class UIMatchMaking_2 : MonoBehaviour
         public int characterId = 0;
     }
     
-    [DllImport("__Internal")]
-    public static extern void JS_SearchGame();
-    [DllImport("__Internal")]
-    public static extern void JS_CancelSearchGame();
-    [DllImport("__Internal")]
-    public static extern void JS_AcceptMatch(int idCharacter);
-    [DllImport("__Internal")]
-    public static extern void JS_RejectMatch();
-
     //Start searching for a match
     public void StartSearch()
     {

@@ -4,17 +4,9 @@
  */
 public class Character_1 : GameCharacter
 {
-    public override void DeployUnit(Unit unit)
+    public override void DeployUnit()
     {
-        base.DeployUnit(unit);
-        Shooter shooter = unit.GetComponent<Shooter>();
-        if (shooter != null)
-        {
-            shooter.criticalStrikeChance += 0.2f; //Increment Chance critical strike by 20% (Skill 1)
-            shooter.CoolDown *= 0.8f; //Increment Speed attack to Units (Skill 2)
-        }
-        unit.Shield = (int)(unit.Shield * 1.3f); //Increment shield by 30% (Skill 3)
-        unit.SetMaxShield(unit.Shield);
+        base.DeployUnit();
     }
 }
 

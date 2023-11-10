@@ -1,96 +1,58 @@
-﻿using System.Linq;
 using UnityEngine;
-/*
-    Here we save and manage the global data of the game like
-    player's data, game configuration, game language, current game mode, etc.
-    This data always exist
- */
+using System.Linq;
+using UnityEngine;
 
-//Enum Game Modes Types
-public enum Match
+public class GlobalManager : MonoBehaviour
 {
-    testing,
-    tutorial,
-    bots,
-    multi
-}
-//Enum Plataforms Types
-public enum Plataform
-{
-    Web,
-    Pc
+    public static GameData GMD;
+
+    private void Awake()
+    {
+        if(GMD != null){Destroy(gameObject);}
+        GMD = new GameData();
+        DontDestroyOnLoad(gameObject);
+    }
+    private void OnDestroy() { GMD = null; }
+    
 }
 
-//Types of NFTS
-public enum NFTClass
-{
-    Character,
-    Skill,
-    Station,
-    Ship
-}
+public enum Match { bots, multi }
+public enum Plataform { Web, Pc }
+public enum NFTClass { Character, Skill, Station, Ship }
+
 public class GameData
 {
-    //Save the selected game mode
+    
     public Match CurrentMatch = Match.multi;
-
-  
-    //Save if the player is the multiplayer master
-    public bool ImMaster = false;
-    //Save if the game is running in Debug mode
-    public bool DebugMode = false;
-    //Save the current plataform
     public Plataform CurrentPlataform = Plataform.Pc;
-    //Save if the player data is loaded and ready
     public bool DataReady = false;
-    //Save the game configuration
     Config config;
-    //Save the basic data of the player
     User PlayerUser;
-    //Save the basic data of Vs player (for multiplayer)
-    UserGeneral VsPlayerUser;
-    //Save the data progression of the player
     UserProgress PlayerProgress;
-    //Save the NFTs collection data of the player
+    
     UserCollection PlayerCollection;
-    //Save the current character selected by the player
     NFTsCharacter PlayerCharacter;
-    //Save all the NFTs types in the game
     NFTsCollection NFTCollection;
-    //Save te current region of the game
-    public string Region = "LAN";
-
-    //Returns the current game config, if is null, create a new one
+   
+    
     public Config GetConfig()
     {
-        if (config == null)
-        {
-            config = new Config();
-        }
-
+        if (config == null) { config = new Config(); }
         return config;
     }
-    //Set the current game config
     public void SetConfig(Config newconfig)
     {
         config = newconfig;
     }
-    //Get the current game language
     public Language GetGameLanguage()
     {
         return (Language)GetConfig().language;
     }
-    //Set the basic player data
     public void SetUser(User user)
     {
         PlayerUser = user;
     }
-    //Set the basic Vs player data
-    public void SetVsUser(UserGeneral user)
-    {
-        VsPlayerUser = user;
-    }
-    //Set the player's progression
+    
     public void SetUserProgress(UserProgress userprogress)
     {
         PlayerProgress = userprogress;
@@ -135,29 +97,7 @@ public class GameData
 
         return PlayerUser;
     }
-    //Returns the basic Vs Player data
-    public UserGeneral GetVsUser()
-    {
-        return VsPlayerUser;
-    }
-    //Create a data resume of the player, used to send it to the network
-    public UserGeneral BuildMyProfileHasVS()
-    {
-        if (PlayerUser == null || PlayerProgress == null)
-            return null;
-
-        return new UserGeneral()
-        {
-            WalletId = PlayerUser.WalletId,
-            NikeName = PlayerUser.NikeName,
-            Level = PlayerProgress.GetLevel(),
-            Xp = PlayerProgress.GetXp(),
-            Avatar = PlayerUser.Avatar,
-            CharacterNFTId = PlayerCharacter.ID,
-            DeckNFTsId = PlayerCollection.Deck.Select(s => s.ID).ToList()
-        };
-    }
-    //Returns the progression of the player
+    
     public UserProgress GetUserProgress()
     {
         if (PlayerProgress == null)
@@ -234,16 +174,7 @@ public class GameData
         PlayerProgress = null;
         PlayerCharacter = null;
         PlayerCollection = null;
-        ImMaster = false;
     }
-    //Returns the current version of the game
-    public string GetVersion()
-    {
-        return Application.version;
-    }
-    //Returns if the game is running on web and if is a production build
-    public bool IsProductionWeb()
-    {
-        return CurrentPlataform == Plataform.Web && !DebugMode;
-    }
+    public string GetVersion() { return Application.version; }
+    
 }

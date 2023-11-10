@@ -25,11 +25,9 @@ public class UIMainMenu : MonoBehaviour
     public static UIMainMenu Menu;
 
     //Main sections
-    //  public GameObject LoginPanel;
     public GameObject MenuPanel;
     public GameObject MatchPanel;
     public GameObject MultiPanel;
-    public GameObject UIReward;
     
     //Sub sections
     public GameObject MainMenu;
@@ -83,14 +81,11 @@ public class UIMainMenu : MonoBehaviour
     public int modeSelected = 0;
 
     public GameModeCard[] gamemodes;
-    public UIMatchMaking_2 uiMatchMaking;
+    public UIMatchMaking uiMatchMaking;
+    
    private void Awake()
    {
-       //Instanciate Global Manager
-        if (FindObjectOfType<GlobalManager>() == null)
-        {
-            Instantiate(ResourcesServices.LoadGlobalManager());
-        }
+     
         //initialize variables
         Menu = this;
         UserDataLoaded = 0;
@@ -143,11 +138,9 @@ public class UIMainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (GlobalManager.GMD.IsProductionWeb())
-        {
-            GameNetwork.JSDashboardStarts();
-        }
-
+        //Llamar funciones para cargar la info
+        
+        
         //Fill dropdown with bot names
         /*botMode.ClearOptions();
         List<string> nameBots = ResourcesServices.GetNameBots();
@@ -211,13 +204,8 @@ public class UIMainMenu : MonoBehaviour
         PlayerCollection.SetSpellsCards(jsonData);
     }
     
-    //Called from WEB, for show UIReward (Claim)
-    public void GL_SetReward(string jsonData)
-    {
-        Debug.Log("GL SET REWARD");
-        UIReward.SetActive(true);
-        LoadingPanel.instance.DesactiveLoadingPanel();
-    }
+   
+    
 
     //Add progress of the player loaded data
     void AddProgressDataLoaded()
@@ -329,13 +317,7 @@ public class UIMainMenu : MonoBehaviour
 
         StartCoroutine(LoadLocalGame());
     }
-
-    //Serch for a multiplayer match
-    void PlayMulti()
-    {
-        MultiPanel.GetComponent<UIMatchMaking>().StartSearch();
-    }
-
+    
     //Redirect to the login page
     public void GoLoginPage()
     {
@@ -406,54 +388,32 @@ public class UIMainMenu : MonoBehaviour
             GameModes_Enemies.SetActive(false);
         BackBtn.SetActive(true);
         TopTitle.text = Lang.GetText("mn_gamemodes");
-        //GameTitle.gameObject.SetActive(false);
     }
 
     //Start the current game mode
     public void PlayCurrentMode()
     {
-        
-        if ( PlayerPrefs.GetInt("BotMode") == 9)
+        switch (GlobalManager.GMD.CurrentMatch)
         {
-            uiMatchMaking.StartSearch();
-        }
-        else
-        {
-            Persistent.SetActive(false);
-            Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
-            PlayIA();
-
-            //momentariamente
-            #region COMENTADO POR AHORA
-            /*  switch (GlobalManager.GMD.CurrentMatch)
+            case Match.multi:
             {
-                case Match.bots:
-                    {
-    
-                        PlayIA();
-                    }
-                    break;
-                case Match.multi:
-                    {
-                        PlayMulti();
-                    }
-                    break;
-                case Match.tutorial:
-                    {
-                        PlayTutorial();
-                    }
-                    break;
-                default:
-                    {
-                        PlayMulti();
-                    }
-                    break;
+                uiMatchMaking.StartSearch();
+                break;
             }
-          */
-            #endregion 
+            case Match.bots:
+            {
+                Persistent.SetActive(false);
+                Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
+                PlayIA();
+                break;
+            }
+            default:
+            {
+                PlayIA();
+                break;
+            }
+                
         }
-        
-
     }
 
     //Go back to the main menu
@@ -466,35 +426,18 @@ public class UIMainMenu : MonoBehaviour
         GameModesMenu.SetActive(false);
         BackBtn.SetActive(false);
         TopTitle.text = string.Empty;
-        //GameTitle.gameObject.SetActive(true);
     }
 
-    //Change the current game mode
-    public void ChangeCurrentGameMode(int newMode)
-    {
-        GlobalManager.GMD.CurrentMatch = (Match)newMode;
-        CheckGameMode();
-        BackMainSection();
-    }
-
-    
 
     //Refresh a specific UI propertie of the player
     public void RefreshProperty(PlayerProperty property)
     {
-        foreach (UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property))
-        {
-            prop.LoadProperty();
-        }
+        foreach (UIPTxtInfo prop in UIPropertys.Where(f => f.Property == property)) { prop.LoadProperty(); }
     }
-
     //Refresh all the UI references properties of the player
     public void RefreshAllPropertys()
     {
-        foreach (UIPTxtInfo prop in UIPropertys)
-        {
-            prop.LoadProperty();
-        }
+        foreach (UIPTxtInfo prop in UIPropertys) { prop.LoadProperty(); }
     }
 
     //Load NFTs Icons

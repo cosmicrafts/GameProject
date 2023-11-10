@@ -10,12 +10,12 @@ public class GameCharacter : MonoBehaviour
     public Sprite Icon;
 
     //Do something when player deploy units
-    public virtual void DeployUnit(Unit unit)
+    public virtual void DeployUnit( )
     {
         //Stay empty, write code in child class
     }
     //Do something when player casts spells
-    public virtual void DeploySpell(Spell spell)
+    public virtual void DeploySpell()
     {
         //Stay empty, write code in child class
     }

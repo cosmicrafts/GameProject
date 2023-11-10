@@ -1,127 +1,133 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Boom;
+using Boom.Patterns.Broadcasts;
+using Boom.Values;
+using Candid;
+using EdjCase.ICP.Candid.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.VirtualTexturing;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour
 {
-
     public TMP_InputField inputNameField;
-    
-    string playerName;
-    private string account;
-    
-    //[SerializeField] Text walletID;
-    [SerializeField] GameObject UIReward;
-    [SerializeField] GameObject ClosedBetaScreen;
+    public TMP_Text infoTxt;
     string mainScene = "Menu";
     
     [SerializeField] private Animator chooseLoginAnim;
     [SerializeField] private Animator chooseUserAnim;
+
+    private void Awake()
+    {
+        BroadcastState.Register<CanLogin>(UpdateWindow, true);
+        UserUtil.RegisterToLoginDataChange(UpdateWindow, true);
+    }
+    private void OnDestroy()
+    {
+        LoginManager.Instance.CancelLogin();
+        UserUtil.UnregisterToLoginDataChange(UpdateWindow);
+        BroadcastState.Unregister<CanLogin>(UpdateWindow);
+    }
     
-    /*public void OnConnectToWallet()
+    private void UpdateWindow(CanLogin state)
     {
-        GameNetwork.JSLoginPanel(account); //esto aca se la manda a pk// reset login message
-        //LoginPanel.SetActive(true);
-    }*/
+       //Apagar boton de login
+       // logInBtn.interactable = state.value;
+    }
+    private void UpdateWindow(DataState<LoginData> state)
+    {
+        bool isLoading = state.IsLoading();
+        var getIsLoginResult = UserUtil.GetLogInType();
 
-    public void OnRecibeNameData(string usser)//esta es de PK
-    {
-        Debug.Log("OnRecibeNameData: " + usser);
-        if (string.IsNullOrEmpty(usser))
+        if (getIsLoginResult.Tag == UResultTag.Ok)
         {
-            LoadingPanel.instance.DesactiveLoadingPanel();
-            chooseUserAnim.Play("ChooseUsername_Intro");
+            if(getIsLoginResult.AsOk() == UserUtil.LoginType.User)
+            {
+                Debug.Log("Logged In");
+                Debug.Log($"Principal: <b>\"{state.data.principal}\"</b>\nAccountId: <b>\"{state.data.accountIdentifier}\"</b>");
+                UserLoginSuccessfull();
+            }
+            else//Logged In As Anon
+            {
+                Debug.Log("Logged in as Anon");
+                Debug.Log($"Principal: <b>\"{state.data.principal}\"</b>\nAccountId: <b>\"{state.data.accountIdentifier}\"</b>");
+            }
         }
         else
         {
-            LoadingPanel.instance.ActiveLoadingPanel();
-            SceneManager.LoadScene(mainScene);
-        }
-
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            OnNameData(0);
+            if (isLoading) Debug.Log($"Loading Data...Loading");
+            else  Debug.Log($"Error Not Loading Data...Loading");
         }
     }
 
-    public void OnNameData(int usser)//esta es de PK
+
+    public void StartWebLogin()
     {
-        Debug.Log("OnNameData  " + usser);
-        if (usser == 3)
+        LoadingPanel.instance.ActiveLoadingPanel();
+        chooseLoginAnim.Play("ChooseLogin_Outro");
+        
+        UserUtil.StartLogin(); //codigo de ICP+NFID
+    }
+    
+    public async void UserLoginSuccessfull()
+    { 
+        var playerInfo = await CandidApiManager.Instance.CanisterLogin.GetPlayer();
+
+        if (playerInfo.HasValue)
         {
-            LoadingPanel.instance.DesactiveLoadingPanel();
-            UIReward.SetActive(false);
-            ClosedBetaScreen.SetActive(true);
-        }
-        if (usser == 2)
-        {
-            LoadingPanel.instance.DesactiveLoadingPanel();
-            UIReward.SetActive(true);
-        }
-        if (usser == 1)
-        {
-            LoadingPanel.instance.ActiveLoadingPanel();
-            SceneManager.LoadScene(mainScene);
-            //tutorial
+            CanisterPK.CanisterLogin.Models.Player player = playerInfo.ValueOrDefault;
+            Debug.Log(" ID: " + player.Id + " Lv: "+player.Level + " Name: " + player.Name);
+            GoToMenuScene();
         }
         else
         {
+            Debug.Log("Player 2 Dont has value");
             LoadingPanel.instance.DesactiveLoadingPanel();
             chooseUserAnim.Play("ChooseUsername_Intro");
-            //walletID.text = ""+ account;
         }
-
     }
+
+    public void GoToMenuScene()
+    {
+        LoadingPanel.instance.ActiveLoadingPanel();
+        SceneManager.LoadScene(mainScene);
+    }
+    
+    public async void SetPlayerName()
+    {
+        if (inputNameField.text != null)
+        {
+            LoadingPanel.instance.ActiveLoadingPanel();
+            var request =  await CandidApiManager.Instance.CanisterLogin.CreatePlayer(inputNameField.text);
+            if (request.Arg0)
+            {
+                Debug.Log(request.Arg1);
+                GoToMenuScene();
+            }
+            else
+            {
+                infoTxt.text = request.Arg1;
+                LoadingPanel.instance.DesactiveLoadingPanel();
+            }
+            
+        }
+    }
+    
+    
     public void BackLoginMenu()
     {
         chooseUserAnim.Play("ChooseUsername_Outro"); 
         chooseLoginAnim.Play("ChooseLogin_Intro");
     }
 
-    public void SetPlayerName()
-    {
-        if (inputNameField.text != null)
-        {
-            playerName = inputNameField.text;
-            PlayerPrefs.SetString("AccounName", playerName);
-            GameNetwork.JSLoginPanel(playerName);
-            LoadingPanel.instance.ActiveLoadingPanel();
-        }
-    }
+    
 
-    public void StoickLogin()
-    {
-        GameNetwork.JSWalletsLogin("stoicWallet");
-        LoadingPanel.instance.ActiveLoadingPanel();
-        chooseLoginAnim.Play("ChooseLogin_Outro");
-        
-    }
-    public void IdentityLogin()
-    {
-        GameNetwork.JSWalletsLogin("identityWallet");
-        LoadingPanel.instance.ActiveLoadingPanel();
-        chooseLoginAnim.Play("ChooseLogin_Outro");
-    }
-    public void InfinityLogin()
-    {
-        GameNetwork.JSWalletsLogin("infinityWallet");
-        LoadingPanel.instance.ActiveLoadingPanel();
-        chooseLoginAnim.Play("ChooseLogin_Outro");
-    }
-    public void PlugLogin()
-    {
-        LoadingPanel.instance.ActiveLoadingPanel();
-        chooseLoginAnim.Play("ChooseLogin_Outro");
-        GameNetwork.JSWalletsLogin("plugWallet");
-    }
+    
+   
 
 }

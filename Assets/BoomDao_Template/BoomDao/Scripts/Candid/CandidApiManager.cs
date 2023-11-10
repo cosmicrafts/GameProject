@@ -85,6 +85,7 @@ namespace Candid
             }
 
             Instance = this;
+            DontDestroyOnLoad(gameObject);
 
             Broadcast.Register<StartLogin>(StartLogin);
             Broadcast.Register<UserLogout>(UserLogoutHandler);
