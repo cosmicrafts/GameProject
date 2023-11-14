@@ -9,7 +9,7 @@ public class Spell : MonoBehaviour
     //The NFT data source
     protected NFTsSpell NFTs;
     //The spell's team in the game
-    public Team MyTeam;
+    public float MyTeam;
     //The owner of this spell
     public int PlayerId = 1;
     //The spell ID in the game
@@ -23,7 +23,7 @@ public class Spell : MonoBehaviour
     protected virtual void Start()
     {
         //Save the reference in the game manager
-        GameMng.GM.AddSpell(this);
+       // GameMng.GM.AddSpell(this);
         //Destroy after duration
         if (Duration > 0)
         {
@@ -64,18 +64,12 @@ public class Spell : MonoBehaviour
     //When destroys, delete the reference on the game manager
     private void OnDestroy()
     {
-        if (GameMng.GM != null)
-        {
-            GameMng.GM.DeleteSpell(this);
-        }
+        
     }
 
     //Sets the NFT data source
     public virtual void SetNfts(NFTsSpell nFTsSpell)
     {
         NFTs = nFTsSpell;
-
-        if (GlobalManager.GMD.DebugMode || nFTsSpell == null)
-            return;
     }
 }

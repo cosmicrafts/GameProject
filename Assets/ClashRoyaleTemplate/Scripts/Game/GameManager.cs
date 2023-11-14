@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private UIManager uiManager;
+    [SerializeField] private UIGame uiGame;
     [SerializeField] private Arena arena;
     [SerializeField] private HeroManager[] heroesPrefabs;
     [SerializeField] private Group[] groups;
@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         if(IsInitialized) { return; }
         
-        uiManager.OnPaused(false);
+        uiGame.OnPaused(false);
         dynamicPositions = new List<SimpleVector2>(0);
         staticPositions = new List<SimpleVector2>(0);
         //FillArrayStaticPosition
@@ -73,13 +73,13 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("group index " + GroupIndex);
 
         foreach (HeroManager hero in heroesPrefabs)
-        {   uiManager.previewMeshs.Add(hero.previewMeshObject);
-            uiManager.PreviewMaterials.Add(hero.transparentMaterial);
-            uiManager.CardEnergyCost.Add(hero.energyCost); }
+        {   uiGame.previewMeshs.Add(hero.previewMeshObject);
+            uiGame.PreviewMaterials.Add(hero.transparentMaterial);
+            uiGame.CardEnergyCost.Add(hero.energyCost); }
         
-        uiManager.SetGroupIndex(GroupIndex);
+        uiGame.SetGroupIndex(GroupIndex);
 
-        uiManager.OnCreateHero += AddMyHeroToWaitingList;
+        uiGame.OnCreateHero += AddMyHeroToWaitingList;
         PunNetworkManager.NetworkManager.Messenger.OnAddOtherHeroToWaitingList += AddOtherHeroToWaitingList;
         PunNetworkManager.NetworkManager.Messenger.OnStartGame += StartGame;
         PunNetworkManager.NetworkManager.Messenger.OnPing += OnPing;
@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     {
         if (!MyGroup.HeroesWaitingList.ContainsKey(GameTime + 1) && !MyGroup.HeroesWaitingList.ContainsKey(GameTime + 2))
         {
-            uiManager.HeroCreateTime = (2.0f - secondsPass); StartCoroutine(wait);
+            uiGame.HeroCreateTime = (2.0f - secondsPass); StartCoroutine(wait);
             AddMyHeroToWaitingList(index, GameTime + 2, position);
         }
         else
@@ -115,10 +115,10 @@ public class GameManager : MonoBehaviour
             {
                 addTime++;
             }
-            uiManager.HeroCreateTime = (addTime - secondsPass); StartCoroutine(wait);
+            uiGame.HeroCreateTime = (addTime - secondsPass); StartCoroutine(wait);
             AddMyHeroToWaitingList(index, GameTime + addTime, position);
         }
-        RestEnergy( uiManager.CardEnergyCost[index] );
+        RestEnergy( uiGame.CardEnergyCost[index] );
     }
     private void AddMyHeroToWaitingList(int index, long addTime, SimpleVector2 position)
     {
@@ -194,7 +194,7 @@ public class GameManager : MonoBehaviour
     public void Pause(bool pause)
     {
         IsPaused = pause;
-        if (!pause || myGameTime - otherGameTime > 1.25f) { uiManager.OnPaused(pause); }
+        if (!pause || myGameTime - otherGameTime > 1.25f) { uiGame.OnPaused(pause); }
         
         if (IsInitialized)
         {
@@ -230,12 +230,12 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentEnergy < MaxEnergy) { CurrentEnergy += value;} // GameMng.MT.AddEnergyGenerated(value);
         else if (CurrentEnergy >= MaxEnergy) { CurrentEnergy = MaxEnergy;} //GameMng.MT.AddEnergyWasted(value); 
-        uiManager.UpdateEnergyUI(CurrentEnergy, MaxEnergy);
+        uiGame.UpdateEnergyUI(CurrentEnergy, MaxEnergy);
     }
     public void RestEnergy(float value)
     {
         CurrentEnergy -= value; // GameMng.MT.AddEnergyUsed(value);
-        uiManager.UpdateEnergyUI(CurrentEnergy, MaxEnergy);
+        uiGame.UpdateEnergyUI(CurrentEnergy, MaxEnergy);
     }
 
     private void CreateHero(HeroWaitingList heroWaitingList, int groupIndex, Group myGroup, Group otherGroup)
@@ -428,7 +428,7 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator OnWinOrLose(bool isWin)
     {
-        uiManager.OnWinOrLose(isWin);
+        uiGame.OnWinOrLose(isWin);
         yield return new WaitForSeconds(2.5f);
         PunNetworkManager.NetworkManager.ExitGame();
     }
