@@ -11,6 +11,7 @@ public delegate void CreateHeroHandler(int index, SimpleVector2 position, IEnume
 public class UIGame : MonoBehaviour
 {
     public CreateHeroHandler OnCreateHero;
+    
     [SerializeField] private UIGameCard[] heroButtons;
     [SerializeField] private Text pausedText;
     [SerializeField] private Text winLoseText;
@@ -26,16 +27,27 @@ public class UIGame : MonoBehaviour
     public TMP_Text EnergyLabel;
     public Image EnergyBar;
    
+    [Header("PlayersUI")]
+    public UIGamePlayer[] Players = new UIGamePlayer[2];
+    
+    
     public float HeroCreateTime { get; set; }
     private int selectedHeroIndex = -1;
     private int groupIndex;
 
-    private void Awake() { winLoseText.gameObject.SetActive(false); }
+    private void Awake()
+    {
+        winLoseText.gameObject.SetActive(false);
+        
+    }
 
     public void SetGroupIndex(int index)
     {
         groupIndex = index;
         heroSpawnPoint.RotateAround (transform.position, transform.up, 180f * index);
+
+        if (index == 0) { Players[0].InitInfo(GlobalManager.GMD.GetUserData()); Players[1].InitInfo(GlobalManager.GMD.GetVsUserData()); }
+                   else { Players[1].InitInfo(GlobalManager.GMD.GetUserData()); Players[0].InitInfo(GlobalManager.GMD.GetVsUserData()); }
         
         
         foreach (UIGameCard heroButton in heroButtons)

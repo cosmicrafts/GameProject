@@ -2,17 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LoadingPanel : MonoBehaviour
 {
-    public static LoadingPanel instance;
+   
+    
+    private static LoadingPanel _instance; // field
+    public static LoadingPanel Instance   // property
+    {
+        get
+        {
+            if (_instance == null) { _instance = Instantiate( ResourcesServices.LoadLoadingPanel() ).GetComponent<LoadingPanel>(); }
+            return _instance;
+        }   
+        private set { _instance = value; }  
+    }
+    
+ 
+    
     private Animator animator;
     private void Awake()
     {
         animator = this.GetComponent<Animator>();
         
-        if (!instance)
+        if (!_instance)
         {
-            instance = this;
+            _instance = this;
             DontDestroyOnLoad(gameObject);
             //DesactiveLoadingPanel();
         }

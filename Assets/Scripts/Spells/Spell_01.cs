@@ -6,7 +6,7 @@ using UnityEngine;
 public class Spell_01 : Spell
 {
     //List of the affected units
-    List<Unit> Targets;
+    List<GameObject> Targets;
     //Damage delays
     float delaydmg;
     //Line renderer reference
@@ -21,13 +21,13 @@ public class Spell_01 : Spell
     {
         //Initialize basic variables
         base.Start();
-        Targets = new List<Unit>();
+        Targets = new List<GameObject>();
         delaydmg = 0.25f;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 50f, 0f));
 
         //Set the position and orientation of the lazer
-        if (GameMng.GM.MainStationsExist())
+        /*if (GameMng.GM.MainStationsExist())
         {
             Vector3 target = GameMng.GM.Targets[MyTeam == Team.Blue ? 0 : 1].transform.position;
             Vector3 origin = GameMng.GM.Targets[MyTeam == Team.Blue ? 1 : 0].transform.position;
@@ -36,7 +36,7 @@ public class Spell_01 : Spell
             StartLazer.transform.position = origin;
             EndLazer.transform.position = target;
             StartLazer.transform.localRotation = Quaternion.Euler(new Vector3(0, MyTeam == Team.Blue ? 90 : 270, 0));
-        }
+        }*/
     }
 
     protected override void Update()
@@ -55,10 +55,7 @@ public class Spell_01 : Spell
         {
             //Apply damage to the targets
             delaydmg = 0.25f;
-            foreach(Unit unit in Targets)
-            {
-                unit.AddDmg(10,false, TypeDmg.Shield);
-            }
+         
         }
     }
 
@@ -69,29 +66,6 @@ public class Spell_01 : Spell
         GetComponent<BoxCollider>().enabled = false;
     }
 
-    //Add enemy´s units as targets when they collide with the laser
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Unit"))
-        {
-            Unit unit = other.gameObject.GetComponent<Unit>();
-            if (!Targets.Contains(unit) && !unit.IsMyTeam(MyTeam))
-            {
-                Targets.Add(unit);
-            }
-        }
-    }
-
-    //Delete targets when they get out from the laser
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Unit"))
-        {
-            Unit unit = other.gameObject.GetComponent<Unit>();
-            if (Targets.Contains(unit))
-            {
-                Targets.Remove(unit);
-            }
-        }
-    }
+   
+    
 }

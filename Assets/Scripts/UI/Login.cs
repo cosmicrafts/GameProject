@@ -68,7 +68,7 @@ public class Login : MonoBehaviour
 
     public void StartWebLogin()
     {
-        LoadingPanel.instance.ActiveLoadingPanel();
+        LoadingPanel.Instance.ActiveLoadingPanel();
         chooseLoginAnim.Play("ChooseLogin_Outro");
         
         UserUtil.StartLogin(); //codigo de ICP+NFID
@@ -87,14 +87,14 @@ public class Login : MonoBehaviour
         else
         {
             Debug.Log("Player 2 Dont has value");
-            LoadingPanel.instance.DesactiveLoadingPanel();
+            LoadingPanel.Instance.DesactiveLoadingPanel();
             chooseUserAnim.Play("ChooseUsername_Intro");
         }
     }
 
     public void GoToMenuScene()
     {
-        LoadingPanel.instance.ActiveLoadingPanel();
+        LoadingPanel.Instance.ActiveLoadingPanel();
         SceneManager.LoadScene(mainScene);
     }
     
@@ -102,7 +102,7 @@ public class Login : MonoBehaviour
     {
         if (inputNameField.text != null)
         {
-            LoadingPanel.instance.ActiveLoadingPanel();
+            LoadingPanel.Instance.ActiveLoadingPanel();
             var request =  await CandidApiManager.Instance.CanisterLogin.CreatePlayer(inputNameField.text);
             if (request.Arg0)
             {
@@ -112,7 +112,7 @@ public class Login : MonoBehaviour
             else
             {
                 infoTxt.text = request.Arg1;
-                LoadingPanel.instance.DesactiveLoadingPanel();
+                LoadingPanel.Instance.DesactiveLoadingPanel();
             }
             
         }

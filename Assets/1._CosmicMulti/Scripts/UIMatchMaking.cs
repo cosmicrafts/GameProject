@@ -61,14 +61,14 @@ public class UIMatchMaking : MonoBehaviour
         SearchingScreen.SetActive(true);
         AcceptMatchScreen.SetActive(false);
         MatchScreen.SetActive(false);
-        JS_SearchGame();
+        //JS_SearchGame();
     }
     
     public void CancelSearch()
     {
         SearchingScreen.SetActive(false);
         btnGameModes.interactable = true;
-        JS_CancelSearchGame();
+       // JS_CancelSearchGame();
     }
     
     public void GL_MatchFound()
@@ -84,7 +84,7 @@ public class UIMatchMaking : MonoBehaviour
         btn_Accept.SetActive(false);
         txt_WaitingPlayer.SetActive(true);
         StopCoroutine(WaitingForAccept());
-        JS_AcceptMatch(PlayerPrefs.GetInt("CharacterSaved"));
+        //JS_AcceptMatch(PlayerPrefs.GetInt("CharacterSaved"));
     }
     
     IEnumerator WaitingForAccept()
@@ -98,7 +98,7 @@ public class UIMatchMaking : MonoBehaviour
         }
         SearchingScreen.SetActive(false);
         MatchScreen.SetActive(false);
-        JS_RejectMatch();
+        //JS_RejectMatch();
     }
     public void GL_UserAcceptedButNotCouple()
     {

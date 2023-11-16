@@ -84,14 +84,8 @@ public class UICharacters : MonoBehaviour
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Description);
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Emblem);
         
-        if (GlobalManager.GMD.IsProductionWeb())
-        {
-            GameNetwork.JSSavePlayerCharacter(CurrentChar.GetData().ID);
-        }
-        else
-        {
-            PlayerPrefs.SetInt("CharacterSaved", CurrentChar.GetData().ID);
-        }
+        GlobalManager.GMD.ChangeCharSelected(CurrentChar.GetData().ID);
+        
     }
 
     //Updates the UI info of the selected character

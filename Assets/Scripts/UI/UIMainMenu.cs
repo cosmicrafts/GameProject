@@ -10,7 +10,6 @@ using Mono.CompilerServices.SymbolWriter;
 using TMPro;
 using UnityEngine.Networking;
 
-using static BotEnemy;
 
 
 /*
@@ -85,8 +84,8 @@ public class UIMainMenu : MonoBehaviour
     
    private void Awake()
    {
-     
-        //initialize variables
+       
+       //initialize variables
         Menu = this;
         UserDataLoaded = 0;
         targetCharacterId = 0;
@@ -108,10 +107,7 @@ public class UIMainMenu : MonoBehaviour
             Debug.Log("Load Game Config");
             //Initialize the essential data
             SaveData.LoadGameConfig();
-            //Show Welcome Panel
-            if (!GlobalManager.GMD.DebugMode)
-                welcomePanel.SetActive(true);
-
+            
         }
         else
         {
@@ -119,20 +115,16 @@ public class UIMainMenu : MonoBehaviour
             //Load the player data
             InitPlayerData();
         }
+        
+#if UNITY_EDITOR
+        InitPlayerData();
+#endif
 
         Debug.Log("CHECK GAMES MODES");
         //Check the current game mode
         CheckGameMode();
 
-        //If this is a debug runtime...
-        if (GlobalManager.GMD.DebugMode)
-        {
-            //Set the game mode as bots
-            GlobalManager.GMD.CurrentMatch = Match.bots;
-
-            //Load the player data (with default vaules)
-            InitPlayerData();
-        }
+       
     }
 
     // Start is called before the first frame update
@@ -238,8 +230,8 @@ public class UIMainMenu : MonoBehaviour
         PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
         //Load icons
         StartCoroutine(LoadNFTsIcons());
-        if (!GlobalManager.GMD.DebugMode)
-            LoadingPanel.instance.DesactiveLoadingPanel();
+        
+        LoadingPanel.Instance.DesactiveLoadingPanel();
         //Start Menu        
         GlobalManager.GMD.DataReady = true;
         MenuPanel.SetActive(true);
@@ -294,12 +286,7 @@ public class UIMainMenu : MonoBehaviour
                     //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
                 }
                 break;
-            case Match.tutorial:
-                {
-                   // CurrentGameMode.text = Lang.GetText("mn_tutorial");
-                    //CurrentGameModeStatus.text = string.Empty;
-                }
-                break;
+           
             default:
                 {
                     //CurrentGameMode.text = Lang.GetText("mn_pvp");
@@ -308,25 +295,8 @@ public class UIMainMenu : MonoBehaviour
                 break;
         }
     }
-
-    //Start the Tutorial
-    void PlayTutorial()
-    {
-        MainMenu.SetActive(false);
-        MatchPanel.SetActive(true);
-
-        StartCoroutine(LoadLocalGame());
-    }
     
-    //Redirect to the login page
-    public void GoLoginPage()
-    {
-#if UNITY_EDITOR
-        InitPlayerData();
-#else
-        Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
-#endif
-    }
+    
     
     //Open the cosmicrafts discord
     public void GoDiscordPage()

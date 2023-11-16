@@ -2,18 +2,24 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine;
 
+
 public class GlobalManager : MonoBehaviour
 {
-    public static GameData GMD;
-
-    private void Awake()
-    {
-        if(GMD != null){Destroy(gameObject);}
-        GMD = new GameData();
-        DontDestroyOnLoad(gameObject);
-    }
-    private void OnDestroy() { GMD = null; }
     
+    private static GameData _GMD;
+    public static GameData GMD {
+        get {
+            if (_GMD == null) {  Instantiate( ResourcesServices.LoadGlobalManager() ); }
+            return _GMD;
+        }
+    }
+    
+    private void Awake() {  
+        if(_GMD != null){Destroy(gameObject);} 
+        _GMD = new GameData(); DontDestroyOnLoad(gameObject);
+    }
+    
+    private void OnDestroy() { _GMD = null; Debug.Log("GMD IS NULL"); }
 }
 
 public enum Match { bots, multi }
@@ -22,12 +28,12 @@ public enum NFTClass { Character, Skill, Station, Ship }
 
 public class GameData
 {
-    
     public Match CurrentMatch = Match.multi;
     public Plataform CurrentPlataform = Plataform.Pc;
     public bool DataReady = false;
     Config config;
     User PlayerUser;
+    User VsPlayerUser;
     UserProgress PlayerProgress;
     
     UserCollection PlayerCollection;
@@ -48,11 +54,8 @@ public class GameData
     {
         return (Language)GetConfig().language;
     }
-    public void SetUser(User user)
-    {
-        PlayerUser = user;
-    }
-    
+    public void SetUser(User user) { PlayerUser = user; }
+    public void SetVsUser(User user) { VsPlayerUser = user; }
     public void SetUserProgress(UserProgress userprogress)
     {
         PlayerProgress = userprogress;
@@ -97,7 +100,23 @@ public class GameData
 
         return PlayerUser;
     }
-    
+    public User GetVsUserData()
+    {
+        if (VsPlayerUser == null)
+        {
+            
+            VsPlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", 
+                Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 };
+        }
+        else{
+            
+            VsPlayerUser.Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 ;
+            
+        }
+
+        return VsPlayerUser;
+    }
+
     public UserProgress GetUserProgress()
     {
         if (PlayerProgress == null)
@@ -160,6 +179,11 @@ public class GameData
         Lang.SetLang(newlang);
 
         config.language = (int)newlang;
+        SaveData.SaveGameConfig();
+    }
+    public void ChangeCharSelected(int CharSelected)
+    {
+        config.characterSavedID = CharSelected;
         SaveData.SaveGameConfig();
     }
     //Returns if the player information is loaded and ready

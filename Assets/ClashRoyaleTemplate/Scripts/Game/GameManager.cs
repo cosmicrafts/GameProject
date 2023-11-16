@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    
+    public static GameMetrics MT;
+    
     [SerializeField] private UIGame uiGame;
+    [SerializeField] private UIGameResults uiGameResults;
     [SerializeField] private Arena arena;
     [SerializeField] private HeroManager[] heroesPrefabs;
     [SerializeField] private Group[] groups;
@@ -77,7 +81,8 @@ public class GameManager : MonoBehaviour
             uiGame.PreviewMaterials.Add(hero.transparentMaterial);
             uiGame.CardEnergyCost.Add(hero.energyCost); }
         
-        uiGame.SetGroupIndex(GroupIndex);
+        uiGame.SetGroupIndex(GroupIndex);         //Init UIbyIndex
+        MT = new GameMetrics(); MT.InitMetrics(); //Init Metrics
 
         uiGame.OnCreateHero += AddMyHeroToWaitingList;
         PunNetworkManager.NetworkManager.Messenger.OnAddOtherHeroToWaitingList += AddOtherHeroToWaitingList;
@@ -382,6 +387,7 @@ public class GameManager : MonoBehaviour
                 {
                     gameIsEnd = true;
                     StartCoroutine(OnWinOrLose(bulletTargetGroup.Index != GroupIndex));
+                    
                 }
             } 
         }
@@ -428,7 +434,11 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator OnWinOrLose(bool isWin)
     {
+        MT.CalculateLastMetrics(CurrentEnergy, SpeedEnergy);
         uiGame.OnWinOrLose(isWin);
+        uiGameResults.SetGameOver(isWin);
+        
+        
         yield return new WaitForSeconds(2.5f);
         PunNetworkManager.NetworkManager.ExitGame();
     }

@@ -64,7 +64,7 @@ public class UICardDetail : UICard
             //UNITS
             Model.SetActive(true);
             GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(data.KeyId, IsSkill);
-            UnitPrefab.GetComponent<Ship>().CanMove = false;
+            //UnitPrefab.GetComponent<GameCharacter>().CanMove = false;
             CurrentObjPrev = Instantiate(UnitPrefab, Model.transform);
             
             //ModelFilter.mesh = UnitPrefab.UnitMesh.transform.GetChild(0).GetComponentInChildren<SkinnedMeshRenderer>().sharedMesh;
