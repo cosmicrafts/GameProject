@@ -46,8 +46,8 @@ public class UIGame : MonoBehaviour
         groupIndex = index;
         heroSpawnPoint.RotateAround (transform.position, transform.up, 180f * index);
 
-        if (index == 0) { Players[0].InitInfo(GlobalManager.GMD.GetUserData()); Players[1].InitInfo(GlobalManager.GMD.GetVsUserData()); }
-                   else { Players[1].InitInfo(GlobalManager.GMD.GetUserData()); Players[0].InitInfo(GlobalManager.GMD.GetVsUserData()); }
+        if (index == 0) { Players[0].InitInfo(GlobalGameData.Instance.GetUserData()); Players[1].InitInfo(GlobalGameData.Instance.GetVsUserData()); }
+                   else { Players[1].InitInfo(GlobalGameData.Instance.GetUserData()); Players[0].InitInfo(GlobalGameData.Instance.GetVsUserData()); }
         
         
         foreach (UIGameCard heroButton in heroButtons)

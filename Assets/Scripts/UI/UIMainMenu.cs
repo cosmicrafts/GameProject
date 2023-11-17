@@ -99,10 +99,10 @@ public class UIMainMenu : MonoBehaviour
         //Hide Menu
         MenuPanel.SetActive(false);
         //Init Player Collection
-        PlayerCollection = GlobalManager.GMD.GetUserCollection();
+        PlayerCollection = GlobalGameData.Instance.GetUserCollection();
 
         //If the essential data doesn't exist...
-        if (!GlobalManager.GMD.DataReady)
+        if (!GlobalGameData.Instance.DataReady)
         {
             Debug.Log("Load Game Config");
             //Initialize the essential data
@@ -143,7 +143,7 @@ public class UIMainMenu : MonoBehaviour
     public void GL_SetPlayerData(string jsonData)
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);
-        GlobalManager.GMD.SetUser(user);
+        GlobalGameData.Instance.SetUser(user);
         AddProgressDataLoaded();
     }
 
@@ -161,7 +161,7 @@ public class UIMainMenu : MonoBehaviour
         Progress progress = JsonConvert.DeserializeObject<Progress>(jsonData);
         UserProgress userProgress = new UserProgress();
         userProgress.InitValues(progress);
-        GlobalManager.GMD.SetUserProgress(userProgress);
+        GlobalGameData.Instance.SetUserProgress(userProgress);
         AddProgressDataLoaded();
     }
 
@@ -170,8 +170,8 @@ public class UIMainMenu : MonoBehaviour
     {
         Debug.Log("GL SET CONFIG DATA");
         Config config = JsonConvert.DeserializeObject<Config>(jsonData);
-        GlobalManager.GMD.SetConfig(config);
-        GlobalManager.GMD.ChangeLang((Language)config.language);
+        GlobalGameData.Instance.SetConfig(config);
+        GlobalGameData.Instance.ChangeLang((Language)config.language);
         AddProgressDataLoaded();
     }
 
@@ -211,8 +211,8 @@ public class UIMainMenu : MonoBehaviour
     void InitPlayerData()
     {
         //Load basic user data
-        PlayerUser = GlobalManager.GMD.GetUserData();
-        PlayerProgress = GlobalManager.GMD.GetUserProgress();
+        PlayerUser = GlobalGameData.Instance.GetUserData();
+        PlayerProgress = GlobalGameData.Instance.GetUserProgress();
         //Add default NFTs if we are debuging
         
         /*if (GlobalManager.GMD.DebugMode)*/ 
@@ -225,15 +225,15 @@ public class UIMainMenu : MonoBehaviour
         //Set Character
         if (targetCharacterId != 0)
         {
-            GlobalManager.GMD.SetUserCharacter(targetCharacterId);
+            GlobalGameData.Instance.SetUserCharacter(targetCharacterId);
         }
-        PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
+        PlayerCharacter = GlobalGameData.Instance.GetUserCharacter();
         //Load icons
         StartCoroutine(LoadNFTsIcons());
         
         LoadingPanel.Instance.DesactiveLoadingPanel();
         //Start Menu        
-        GlobalManager.GMD.DataReady = true;
+        GlobalGameData.Instance.DataReady = true;
         MenuPanel.SetActive(true);
     }
 
@@ -243,7 +243,7 @@ public class UIMainMenu : MonoBehaviour
         int dificulty = botDificulty.value;
        
         PlayerPrefs.SetInt("Dificulty", dificulty);
-        GlobalManager.GMD.CurrentMatch = Match.bots;
+        GlobalGameData.Instance.CurrentMatch = Match.bots;
         MainMenu.SetActive(false);
         MatchPanel.SetActive(true);
        
@@ -272,7 +272,7 @@ public class UIMainMenu : MonoBehaviour
             CurrentGameMode.text = gamemodes[currentBotMode].nameMode.text;
         }
 
-        switch (GlobalManager.GMD.CurrentMatch)
+        switch (GlobalGameData.Instance.CurrentMatch)
         {
             case Match.bots:
                 {
@@ -313,7 +313,7 @@ public class UIMainMenu : MonoBehaviour
     //Change the game language
     public void ChangeLang(int lang)
     {
-        GlobalManager.GMD.ChangeLang((Language)lang);
+        GlobalGameData.Instance.ChangeLang((Language)lang);
         RefreshAllPropertys();
     }
 
@@ -363,7 +363,7 @@ public class UIMainMenu : MonoBehaviour
     //Start the current game mode
     public void PlayCurrentMode()
     {
-        switch (GlobalManager.GMD.CurrentMatch)
+        switch (GlobalGameData.Instance.CurrentMatch)
         {
             case Match.multi:
             {
@@ -373,7 +373,7 @@ public class UIMainMenu : MonoBehaviour
             case Match.bots:
             {
                 Persistent.SetActive(false);
-                Debug.Log($"CURRENT MATCH: {GlobalManager.GMD.CurrentMatch}");
+                Debug.Log($"CURRENT MATCH: {GlobalGameData.Instance.CurrentMatch}");
                 PlayIA();
                 break;
             }

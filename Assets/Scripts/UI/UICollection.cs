@@ -86,7 +86,7 @@ public class UICollection : MonoBehaviour
         });
 
         //Gets the user collection data
-        PlayerCollection = GlobalManager.GMD.GetUserCollection();
+        PlayerCollection = GlobalGameData.Instance.GetUserCollection();
         //Refresh de UI
         RefreshCollection();
     }
@@ -106,7 +106,7 @@ public class UICollection : MonoBehaviour
             return;
 
         //Gets the current player character
-        PlayerCharacter = GlobalManager.GMD.GetUserCharacter();
+        PlayerCharacter = GlobalGameData.Instance.GetUserCharacter();
 
         //Clean the collection section
         foreach (Transform child in CardCollection.transform.parent)

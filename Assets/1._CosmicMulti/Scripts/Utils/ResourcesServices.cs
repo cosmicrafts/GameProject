@@ -33,7 +33,7 @@ public static class ResourcesServices
     }*/
     
     public static GameObject LoadLoadingPanel() { return Resources.Load<GameObject>($"Prefabs/CanvasLoading"); }
-    public static GameObject LoadGlobalManager() { return Resources.Load<GameObject>($"Prefabs/GlobalManagerObj"); }
+    public static GameObject LoadGlobalManager() { return Resources.Load<GameObject>($"Prefabs/GlobalGameData"); }
     
     
     

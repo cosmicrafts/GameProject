@@ -20,7 +20,7 @@ public class UIVsPInfo : MonoBehaviour
     public void LoadProperty()
     {
         //Check if we have an enemy data
-        if (GlobalManager.GMD.GetVersion() == null)
+        if (GlobalGameData.Instance.GetVersion() == null)
         {
             return;
         }
@@ -30,35 +30,35 @@ public class UIVsPInfo : MonoBehaviour
         {
             case PlayerProperty.Name:
                 {
-                    User user = GlobalManager.GMD.GetVsUserData();
+                    User user = GlobalGameData.Instance.GetVsUserData();
                     Text mytext = GetComponent<Text>();
                     mytext.text = user.NikeName;
                 }
                 break;
             case PlayerProperty.WalletId:
                 {
-                    User user = GlobalManager.GMD.GetVsUserData();
+                    User user = GlobalGameData.Instance.GetVsUserData();
                     Text mytext = GetComponent<Text>();
                     mytext.text = Utils.GetWalletIDShort(user.WalletId);
                 }
                 break;
             case PlayerProperty.Level:
                 {
-                    User user = GlobalManager.GMD.GetVsUserData();
+                    User user = GlobalGameData.Instance.GetVsUserData();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{Lang.GetText("mn_lvl")} {user.Level}";
                 }
                 break;
             case PlayerProperty.Xp:
                 {
-                    User user = GlobalManager.GMD.GetVsUserData();
+                    User user = GlobalGameData.Instance.GetVsUserData();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{user.Level} {Lang.GetText("mn_xp")}";
                 }
                 break;
             case PlayerProperty.Character:
                 {
-                    NFTsCharacter character = GlobalManager.GMD.GetUserCharacter();
+                    NFTsCharacter character = GlobalGameData.Instance.GetUserCharacter();
                     if (character != null)
                     {
                         Image myimage = GetComponent<Image>();
@@ -68,7 +68,7 @@ public class UIVsPInfo : MonoBehaviour
                 break;
             case PlayerProperty.Avatar:
                 {
-                    User user = GlobalManager.GMD.GetVsUserData();
+                    User user = GlobalGameData.Instance.GetVsUserData();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
                 }

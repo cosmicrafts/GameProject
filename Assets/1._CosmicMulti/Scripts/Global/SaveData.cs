@@ -28,20 +28,20 @@ public static class SaveData
         {
             //Create a new game config and set it
             Config newConfig = new Config();
-            GlobalManager.GMD.SetConfig(newConfig);
+            GlobalGameData.Instance.SetConfig(newConfig);
             Lang.InitLanguage((Language)newConfig.language);
         }
         else
         {
             //Set the configuration
-            GlobalManager.GMD.SetConfig(config);
+            GlobalGameData.Instance.SetConfig(config);
             Lang.InitLanguage((Language)config.language);
         }
         
 
     }
     //Save the current game configuration locally
-    public static void SaveGameConfig(){ PlayerPrefs.SetString( keyConfig, JsonConvert.SerializeObject(GlobalManager.GMD.GetConfig()) ); }
+    public static void SaveGameConfig(){ PlayerPrefs.SetString( keyConfig, JsonConvert.SerializeObject(GlobalGameData.Instance.GetConfig()) ); }
     
     
     

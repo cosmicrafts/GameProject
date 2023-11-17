@@ -2,32 +2,26 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine;
 
-
-public class GlobalManager : MonoBehaviour
-{
-    
-    private static GameData _GMD;
-    public static GameData GMD {
-        get {
-            if (_GMD == null) {  Instantiate( ResourcesServices.LoadGlobalManager() ); }
-            return _GMD;
-        }
-    }
-    
-    private void Awake() {  
-        if(_GMD != null){Destroy(gameObject);} 
-        _GMD = new GameData(); DontDestroyOnLoad(gameObject);
-    }
-    
-    private void OnDestroy() { _GMD = null; Debug.Log("GMD IS NULL"); }
-}
-
 public enum Match { bots, multi }
 public enum Plataform { Web, Pc }
 public enum NFTClass { Character, Skill, Station, Ship }
 
-public class GameData
+public class GlobalGameData : MonoBehaviour
 {
+    private static GlobalGameData _instance;
+    public static GlobalGameData Instance {
+        get 
+        {
+            if (_instance == null) { _instance = Instantiate( ResourcesServices.LoadGlobalManager().GetComponent<GlobalGameData>() ); }
+            return _instance;
+        }
+    }
+    private void Awake() {  
+        if(!_instance){ _instance = this; DontDestroyOnLoad(gameObject); }
+        else { Destroy(gameObject); }
+    }
+    //private void OnDestroy() { _instance = null; Debug.Log("GMD IS NULL"); }
+
     public Match CurrentMatch = Match.multi;
     public Plataform CurrentPlataform = Plataform.Pc;
     public bool DataReady = false;
@@ -39,7 +33,6 @@ public class GameData
     UserCollection PlayerCollection;
     NFTsCharacter PlayerCharacter;
     NFTsCollection NFTCollection;
-   
     
     public Config GetConfig()
     {
@@ -201,4 +194,11 @@ public class GameData
     }
     public string GetVersion() { return Application.version; }
     
+    
+    
+    
+    
+    
+    
 }
+

@@ -113,7 +113,7 @@ public class UIMatchMaking : MonoBehaviour
         Txt_VsNikeName.text = vsUser.nikename;
         Txt_VsLevel.text = vsUser.level.ToString();
         
-        var Characters = GlobalManager.GMD.GetUserCollection().Characters;
+        var Characters = GlobalGameData.Instance.GetUserCollection().Characters;
         NFTsCharacter vsCharacter = Characters.FirstOrDefault(f=>f.ID == vsUser.characterId );
         if (vsCharacter != null)
         {

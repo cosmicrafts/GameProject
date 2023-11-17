@@ -5,37 +5,21 @@ using UnityEngine;
 
 public class LoadingPanel : MonoBehaviour
 {
-   
-    
-    private static LoadingPanel _instance; // field
-    public static LoadingPanel Instance   // property
-    {
-        get
+    private Animator animator;
+    private static LoadingPanel _instance;
+    public static LoadingPanel Instance {
+        get 
         {
             if (_instance == null) { _instance = Instantiate( ResourcesServices.LoadLoadingPanel() ).GetComponent<LoadingPanel>(); }
             return _instance;
-        }   
-        private set { _instance = value; }  
+        }
     }
-    
- 
-    
-    private Animator animator;
-    private void Awake()
-    {
+    private void Awake() {
         animator = this.GetComponent<Animator>();
-        
-        if (!_instance)
-        {
-            _instance = this;
-            DontDestroyOnLoad(gameObject);
-            //DesactiveLoadingPanel();
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (!_instance) { _instance = this; DontDestroyOnLoad(gameObject); } //DesactiveLoadingPanel();
+        else { Destroy(gameObject); }
     }
+    
     public void ActiveLoadingPanel()
     {
         animator.Play("OnChain_transaction");

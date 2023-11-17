@@ -86,9 +86,9 @@ public class UIGameResults : MonoBehaviour
         staticsResults.deploys = GameManager.MT.GetDeploys();
         staticsResults.secRemaining = GameManager.MT.GetSecRemaining();
         staticsResults.isWin = isWin ? 1 : 0;
-        staticsResults.faction = GlobalManager.GMD.GetUserCharacter().Faction;
-        staticsResults.characterID = GlobalManager.GMD.GetUserCharacter().KeyId;
-        staticsResults.gameMode = (int)GlobalManager.GMD.CurrentMatch;
+        staticsResults.faction = GlobalGameData.Instance.GetUserCharacter().Faction;
+        staticsResults.characterID = GlobalGameData.Instance.GetUserCharacter().KeyId;
+        staticsResults.gameMode = (int)GlobalGameData.Instance.CurrentMatch;
         staticsResults.botMode = PlayerPrefs.GetInt("BotMode");
         staticsResults.botDificult = PlayerPrefs.GetInt("Dificulty");
         

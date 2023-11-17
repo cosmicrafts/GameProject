@@ -42,9 +42,9 @@ public class UICharacters : MonoBehaviour
         //Initialize the UI characters list
         AllCharacters = new List<UICharacter>();
         //Get the player collection data
-        PlayerCollection = GlobalManager.GMD.GetUserCollection();
+        PlayerCollection = GlobalGameData.Instance.GetUserCollection();
         //Get the current player character
-        NFTsCharacter pCharacter = GlobalManager.GMD.GetUserCharacter();
+        NFTsCharacter pCharacter = GlobalGameData.Instance.GetUserCharacter();
         PlayerCollection.ChangeDeckFaction(pCharacter); //||||||| Agregue esta linea para Local Selección de caracter
 
         //Show the UI characters from the player collection characters data
@@ -77,14 +77,14 @@ public class UICharacters : MonoBehaviour
         NFTsCharacter nFTsCharacter = character.GetData();
         CurrentChar = character;
         UpdateUIInfo();
-        GlobalManager.GMD.SetUserCharacter(nFTsCharacter.ID);
+        GlobalGameData.Instance.SetUserCharacter(nFTsCharacter.ID);
         
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Character);
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.CharacterName);
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Description);
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Emblem);
         
-        GlobalManager.GMD.ChangeCharSelected(CurrentChar.GetData().ID);
+        GlobalGameData.Instance.ChangeCharSelected(CurrentChar.GetData().ID);
         
     }
 

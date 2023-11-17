@@ -33,9 +33,9 @@ public class AvatarImages : MonoBehaviour
     {
         PlayerPrefs.SetInt("savedAvatar", newAvatarIndex);
 
-        User userData = GlobalManager.GMD.GetUserData();
+        User userData = GlobalGameData.Instance.GetUserData();
         userData.Avatar = newAvatarIndex;
-        GlobalManager.GMD.SetUser(userData);
+        GlobalGameData.Instance.SetUser(userData);
         
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Avatar);
     }
