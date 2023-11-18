@@ -23,13 +23,7 @@ public class UIMatchMaking : MonoBehaviour
     public GameObject txt_WaitingPlayer;
     public TMP_Text   tmp_Countdown;
     
-    [Header("UI Match and Stats from Game")]
-    public GameObject MatchScreen;
-    public Text Txt_VsWalletId;
-    public Text Txt_VsNikeName;
-    public Text Txt_VsLevel;
-    public Image Img_VsIcon;
-    public Image Img_VsEmblem;
+    
     
     public Text Txt_Tips;
 
@@ -60,7 +54,6 @@ public class UIMatchMaking : MonoBehaviour
         StatusGame.text = Lang.GetText("mn_matchmaking");
         SearchingScreen.SetActive(true);
         AcceptMatchScreen.SetActive(false);
-        MatchScreen.SetActive(false);
         //JS_SearchGame();
     }
     
@@ -74,7 +67,6 @@ public class UIMatchMaking : MonoBehaviour
     public void GL_MatchFound()
     {
         SearchingScreen.SetActive(false);
-        MatchScreen.SetActive(false);
         AcceptMatchScreen.SetActive(true);
         StartCoroutine(WaitingForAccept());
     }
@@ -97,43 +89,15 @@ public class UIMatchMaking : MonoBehaviour
             yield return null;
         }
         SearchingScreen.SetActive(false);
-        MatchScreen.SetActive(false);
         //JS_RejectMatch();
     }
     public void GL_UserAcceptedButNotCouple()
     {
         StartSearch();
     }
-    public void GL_MatchStarting(string json)
-    {
-        Debug.Log("MATCH STARTING");
-        VsUser vsUser = JsonConvert.DeserializeObject<VsUser>(json);
-        
-        Txt_VsWalletId.text = vsUser.walletID;
-        Txt_VsNikeName.text = vsUser.nikename;
-        Txt_VsLevel.text = vsUser.level.ToString();
-        
-        var Characters = GlobalGameData.Instance.GetUserCollection().Characters;
-        NFTsCharacter vsCharacter = Characters.FirstOrDefault(f=>f.ID == vsUser.characterId );
-        if (vsCharacter != null)
-        {
-            Img_VsIcon.sprite = vsCharacter.IconSprite;
-            Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(vsCharacter.KeyId);
-        }
-        
-        SearchingScreen.SetActive(false);
-        AcceptMatchScreen.SetActive(false);
-        MatchScreen.SetActive(true);
-    }
     
-    public void GL_FinishMatch()
-    {
-        Debug.Log("MATCH FINISH");
-        
-        SearchingScreen.SetActive(false);
-        AcceptMatchScreen.SetActive(false);
-        MatchScreen.SetActive(false);
-    }
+    
+   
 
     
 

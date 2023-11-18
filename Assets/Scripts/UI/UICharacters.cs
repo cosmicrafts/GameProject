@@ -23,11 +23,8 @@ public class UICharacters : MonoBehaviour
     //UI Stats of the selected character
     public Image PreviewAvatar;
     public Image Emblem;
-    //public TMP_Text CharName;
-    //public TMP_Text CharName2;
     public UILang CharTitle;
     public UILang CharTitle2;
-   // public TMP_Text CharDesc;
     public TMP_Text CharAka;
     public TMP_Text CharLvl;
     public TMP_Text CosRunsAv;
@@ -79,12 +76,11 @@ public class UICharacters : MonoBehaviour
         UpdateUIInfo();
         GlobalGameData.Instance.SetUserCharacter(nFTsCharacter.ID);
         
-        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Character);
-        UIMainMenu.Menu.RefreshProperty(PlayerProperty.CharacterName);
-        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Description);
-        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Emblem);
+        UIMainMenu.Instance.RefreshProperty(PlayerProperty.Character);
+        UIMainMenu.Instance.RefreshProperty(PlayerProperty.CharacterName);
+        UIMainMenu.Instance.RefreshProperty(PlayerProperty.Description);
+        UIMainMenu.Instance.RefreshProperty(PlayerProperty.Emblem);
         
-        GlobalGameData.Instance.ChangeCharSelected(CurrentChar.GetData().ID);
         
     }
 

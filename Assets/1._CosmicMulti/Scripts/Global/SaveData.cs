@@ -7,6 +7,10 @@ public class Config
 {
     public int language = 0;
     public int characterSavedID = 0;
+    public int avatarSavedID = 1;
+
+    public Match currentMatch = Match.multi;
+    public int modeSelected = 9;
     //public bool AutoLog = true;
     //public SocialLogs TypeLog = SocialLogs.None;    
 }

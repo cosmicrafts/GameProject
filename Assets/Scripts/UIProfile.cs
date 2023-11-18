@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AvatarImages : MonoBehaviour
+public class UIProfile : MonoBehaviour
 {
 
 
@@ -31,12 +31,7 @@ public class AvatarImages : MonoBehaviour
     
     public void SetAvatarsSprites(int newAvatarIndex)
     {
-        PlayerPrefs.SetInt("savedAvatar", newAvatarIndex);
-
-        User userData = GlobalGameData.Instance.GetUserData();
-        userData.Avatar = newAvatarIndex;
-        GlobalGameData.Instance.SetUser(userData);
-        
-        UIMainMenu.Menu.RefreshProperty(PlayerProperty.Avatar);
+        GlobalGameData.Instance.SetUserAvatar(newAvatarIndex);
+        UIMainMenu.Instance.RefreshProperty(PlayerProperty.Avatar);
     }
 }

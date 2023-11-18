@@ -21,8 +21,7 @@ public class GlobalGameData : MonoBehaviour
         else { Destroy(gameObject); }
     }
     //private void OnDestroy() { _instance = null; Debug.Log("GMD IS NULL"); }
-
-    public Match CurrentMatch = Match.multi;
+    
     public Plataform CurrentPlataform = Plataform.Pc;
     public bool DataReady = false;
     Config config;
@@ -70,6 +69,19 @@ public class GlobalGameData : MonoBehaviour
             PlayerCharacter = character;
         }
         PlayerCollection.ChangeDeckFaction(PlayerCharacter);
+        
+        config.characterSavedID = NFTid;
+        SaveData.SaveGameConfig();
+    }
+    public void SetUserAvatar(int AvatarSelected)
+    {
+        config.avatarSavedID = AvatarSelected;
+        SaveData.SaveGameConfig();
+    }
+    public void SetCurrentMatch(Match match)
+    {
+        config.currentMatch = match;
+        SaveData.SaveGameConfig();
     }
     //Set the global NFTs Collection
     public void SetNFTsCollection(NFTsCollection nFTsCollection)
@@ -83,11 +95,11 @@ public class GlobalGameData : MonoBehaviour
         {
             
             PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", 
-                Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 };
+                Avatar = config.avatarSavedID };
         }
         else{
             
-            PlayerUser.Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 ;
+            PlayerUser.Avatar = config.avatarSavedID ;
             
         }
 
@@ -143,9 +155,9 @@ public class GlobalGameData : MonoBehaviour
             } else if (Characters.Count == 0)
             {
                 PlayerCharacter = GetUserCollection().DefaultCharacter;
-            } else if (PlayerPrefs.HasKey("CharacterSaved"))
+            } else if ( GetConfig().characterSavedID != 0)
             {
-                PlayerCharacter = Characters.FirstOrDefault(f=>f.ID == PlayerPrefs.GetInt("CharacterSaved") );
+                PlayerCharacter = Characters.FirstOrDefault(f=>f.ID == GetConfig().characterSavedID );
             }
             else
             {
@@ -174,11 +186,8 @@ public class GlobalGameData : MonoBehaviour
         config.language = (int)newlang;
         SaveData.SaveGameConfig();
     }
-    public void ChangeCharSelected(int CharSelected)
-    {
-        config.characterSavedID = CharSelected;
-        SaveData.SaveGameConfig();
-    }
+    
+    
     //Returns if the player information is loaded and ready
     public bool UserIsInit()
     {

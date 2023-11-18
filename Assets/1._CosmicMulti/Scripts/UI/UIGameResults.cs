@@ -88,7 +88,7 @@ public class UIGameResults : MonoBehaviour
         staticsResults.isWin = isWin ? 1 : 0;
         staticsResults.faction = GlobalGameData.Instance.GetUserCharacter().Faction;
         staticsResults.characterID = GlobalGameData.Instance.GetUserCharacter().KeyId;
-        staticsResults.gameMode = (int)GlobalGameData.Instance.CurrentMatch;
+        staticsResults.gameMode = (int)GlobalGameData.Instance.GetConfig().currentMatch;
         staticsResults.botMode = PlayerPrefs.GetInt("BotMode");
         staticsResults.botDificult = PlayerPrefs.GetInt("Dificulty");
         

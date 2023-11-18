@@ -21,12 +21,12 @@ using UnityEngine.Networking;
 public class UIMainMenu : MonoBehaviour
 {
     //Self public reference
-    public static UIMainMenu Menu;
+    public static UIMainMenu Instance;
 
     //Main sections
     public GameObject MenuPanel;
-    public GameObject MatchPanel;
-    public GameObject MultiPanel;
+    public GameObject LoadingMatchPanel;
+    
     
     //Sub sections
     public GameObject MainMenu;
@@ -44,10 +44,7 @@ public class UIMainMenu : MonoBehaviour
     public UICollection Collection;
 
     //User data
-    public User PlayerUser;
-    public UserProgress PlayerProgress;
     public UserCollection PlayerCollection;
-    public NFTsCharacter PlayerCharacter;
 
     //public UserTokens PlayerTokens; //New user data for cryptocurrencies
 
@@ -73,11 +70,9 @@ public class UIMainMenu : MonoBehaviour
     //Progress of the loaded user data
     int UserDataLoaded;
     int targetCharacterId;
-    public GameObject welcomePanel;
 
     //public Dropdown botMode;
     public Dropdown botDificulty;
-    public int modeSelected = 0;
 
     public GameModeCard[] gamemodes;
     public UIMatchMaking uiMatchMaking;
@@ -86,15 +81,12 @@ public class UIMainMenu : MonoBehaviour
    {
        
        //initialize variables
-        Menu = this;
+        Instance = this;
         UserDataLoaded = 0;
-        targetCharacterId = 0;
+       
         //Find and save all the UI player properties
         UIPropertys = new List<UIPTxtInfo>();
-        foreach (UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>())
-        {
-            UIPropertys.Add(prop);
-        }
+        foreach (UIPTxtInfo prop in FindObjectsOfType<UIPTxtInfo>()) { UIPropertys.Add(prop); }
 
         //Hide Menu
         MenuPanel.SetActive(false);
@@ -115,10 +107,14 @@ public class UIMainMenu : MonoBehaviour
             //Load the player data
             InitPlayerData();
         }
-        
-#if UNITY_EDITOR
+
+        if (defaultPrefabs)
+        {
+            InitPlayerData();
+        }
+        /*#if UNITY_EDITOR
         InitPlayerData();
-#endif
+        #endif*/
 
         Debug.Log("CHECK GAMES MODES");
         //Check the current game mode
@@ -127,33 +123,15 @@ public class UIMainMenu : MonoBehaviour
        
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Llamar funciones para cargar la info
-        
-        
-        //Fill dropdown with bot names
-        /*botMode.ClearOptions();
-        List<string> nameBots = ResourcesServices.GetNameBots();
-        botMode.AddOptions(nameBots);*/
-    }
-
+ 
     //Called from WEB, for set the base player data
-    public void GL_SetPlayerData(string jsonData)
+    public void GetUserData(string jsonData)
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);
         GlobalGameData.Instance.SetUser(user);
         AddProgressDataLoaded();
     }
-
-    //Called from WEB, for set the player character
-    public void GL_SetCharacterSelected(int NFTid)
-    {
-        targetCharacterId = NFTid;
-        AddProgressDataLoaded();
-    }
-
+    
     //Called from WEB, for set the base player progress
     public void GL_SetProgressData(string jsonData)
     {
@@ -210,11 +188,7 @@ public class UIMainMenu : MonoBehaviour
     //Load the player´s data
     void InitPlayerData()
     {
-        //Load basic user data
-        PlayerUser = GlobalGameData.Instance.GetUserData();
-        PlayerProgress = GlobalGameData.Instance.GetUserProgress();
-        //Add default NFTs if we are debuging
-        
+       
         /*if (GlobalManager.GMD.DebugMode)*/ 
         if(defaultPrefabs && PlayerCollection.Characters.Count == 0 && PlayerCollection.Cards.Count == 0)
         {
@@ -222,18 +196,17 @@ public class UIMainMenu : MonoBehaviour
         }
         //Init Deck
         PlayerCollection.InitDecks();
+        
         //Set Character
-        if (targetCharacterId != 0)
-        {
-            GlobalGameData.Instance.SetUserCharacter(targetCharacterId);
-        }
-        PlayerCharacter = GlobalGameData.Instance.GetUserCharacter();
+        GlobalGameData.Instance.SetUserCharacter(GlobalGameData.Instance.GetConfig().characterSavedID );
+        
         //Load icons
         StartCoroutine(LoadNFTsIcons());
         
         LoadingPanel.Instance.DesactiveLoadingPanel();
         //Start Menu        
         GlobalGameData.Instance.DataReady = true;
+       
         MenuPanel.SetActive(true);
     }
 
@@ -241,21 +214,18 @@ public class UIMainMenu : MonoBehaviour
     void PlayIA()
     {
         int dificulty = botDificulty.value;
-       
         PlayerPrefs.SetInt("Dificulty", dificulty);
-        GlobalGameData.Instance.CurrentMatch = Match.bots;
         MainMenu.SetActive(false);
-        MatchPanel.SetActive(true);
-       
+        LoadingMatchPanel.SetActive(true);
         StartCoroutine(LoadLocalGame());
-        
     }
     public void ChangeModeGame(GameModeCard gameModeCard)
     {
-        modeSelected = gameModeCard.idMode;
-        PlayerPrefs.SetInt("BotMode", modeSelected);
+        PlayerPrefs.SetInt("BotMode", gameModeCard.idMode);
         CurrentImageGameMode.sprite = gameModeCard.imageMode.sprite;
         CurrentGameMode.text = gameModeCard.nameMode.text;
+        
+        GlobalGameData.Instance.SetCurrentMatch(gameModeCard.match);
         
         Persistent.SetActive(true);
         MainMenu.SetActive(true);
@@ -271,46 +241,12 @@ public class UIMainMenu : MonoBehaviour
             CurrentImageGameMode.sprite = gamemodes[currentBotMode].imageMode.sprite;
             CurrentGameMode.text = gamemodes[currentBotMode].nameMode.text;
         }
-
-        switch (GlobalGameData.Instance.CurrentMatch)
-        {
-            case Match.bots:
-                {
-                    //CurrentGameMode.text = Lang.GetText("mn_pve");
-                    //CurrentGameModeStatus.text = string.Empty;
-                }
-                break;
-            case Match.multi:
-                {
-                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
-                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
-                }
-                break;
-           
-            default:
-                {
-                    //CurrentGameMode.text = Lang.GetText("mn_pvp");
-                    //CurrentGameModeStatus.text = Lang.GetText("mn_unranked");
-                }
-                break;
-        }
     }
     
+ 
+    public void GoDiscordPage() { Application.OpenURL("http://discord.gg/cosmicrafts"); }
+    public void GoAirdropsPage() { Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/"); }
     
-    
-    //Open the cosmicrafts discord
-    public void GoDiscordPage()
-    {
-        Application.OpenURL("http://discord.gg/cosmicrafts");
-    }
-
-    //Open the airdrip page
-    public void GoAirdropsPage()
-    {
-        Application.OpenURL("https://4nxsr-yyaaa-aaaaj-aaboq-cai.ic0.app/");
-    }
-
-    //Change the game language
     public void ChangeLang(int lang)
     {
         GlobalGameData.Instance.ChangeLang((Language)lang);
@@ -329,25 +265,9 @@ public class UIMainMenu : MonoBehaviour
         }
     }
 
-    //Show the collection menu
-    public void GoCollectionMenu()
-    {
-        MainMenu.SetActive(false);
-        CollectionMenu.SetActive(true);
-        BackBtn.SetActive(true);
-        TopTitle.text = Lang.GetText("mn_chyur_deck");
-        //GameTitle.gameObject.SetActive(false);
-    }
+    
 
-    //Show the characters menu
-    public void GoCharactersMenu()
-    {
-        MainMenu.SetActive(false);
-        CharactersMenu.SetActive(true);
-        BackBtn.SetActive(true);
-        TopTitle.text = Lang.GetText("mn_chyur_char");
-        //GameTitle.gameObject.SetActive(false);
-    }
+  
 
     //Show the games mode menu
     public void GoGamesModesMenu()
@@ -363,7 +283,7 @@ public class UIMainMenu : MonoBehaviour
     //Start the current game mode
     public void PlayCurrentMode()
     {
-        switch (GlobalGameData.Instance.CurrentMatch)
+        switch (GlobalGameData.Instance.GetConfig().currentMatch)
         {
             case Match.multi:
             {
@@ -373,7 +293,7 @@ public class UIMainMenu : MonoBehaviour
             case Match.bots:
             {
                 Persistent.SetActive(false);
-                Debug.Log($"CURRENT MATCH: {GlobalGameData.Instance.CurrentMatch}");
+                Debug.Log($"CURRENT MATCH: {GlobalGameData.Instance.GetConfig().currentMatch}");
                 PlayIA();
                 break;
             }
