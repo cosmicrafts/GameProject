@@ -13,7 +13,9 @@ public class User
     public int CharacterNFTId;
 
     public List<int> DeckNFTsId;
-
+    
+    public List<string> DeckNFTsKeyIds;
+    
     public string Token { get; set; }
 
     public string Email { get; set; }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 
 public class GameManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private UIGame uiGame;
     [SerializeField] private UIGameResults uiGameResults;
     [SerializeField] private Arena arena;
-    [SerializeField] private HeroManager[] heroesPrefabs;
+    [SerializeField] private List<HeroManager> heroesPrefabs;
     [SerializeField] private Group[] groups;
     [SerializeField] private Material[] materials;
     
@@ -26,13 +27,16 @@ public class GameManager : MonoBehaviour
     private float otherGameTime;
     private List<SimpleVector2> dynamicPositions;
     private List<SimpleVector2> staticPositions;
-   
-    public int GroupIndex { get; private set; }
+
+    public int GroupIndex { get; set; } = 0;
     public Group MyGroup { get; private set; }
     public Group OtherGroup { get; private set; }
     public bool IsPaused { get; set; } = true;
     public bool IsInitialized { get; set; } 
     private bool gameIsEnd;
+
+    public User UserData1 = new User();
+    public User UserData2 = new User();
     
     
 
@@ -54,7 +58,28 @@ public class GameManager : MonoBehaviour
         }
 
         
-        GroupIndex = PunNetworkManager.NetworkManager.PlayerIndex;
+        if (UserData1.DeckNFTsKeyIds.Count == 8 && UserData2.DeckNFTsKeyIds.Count == 8) { heroesPrefabs.Clear(); }
+        
+        if (UserData1.DeckNFTsKeyIds.Count == 8)
+        {
+            foreach (string keyId in UserData1.DeckNFTsKeyIds)
+            {
+                GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(keyId, false);
+                if(UnitPrefab != null ){heroesPrefabs.Add(UnitPrefab.GetComponent<HeroManager>());}
+            }
+        }
+        if (UserData2.DeckNFTsKeyIds.Count == 8)
+        {
+            foreach (string keyId in UserData2.DeckNFTsKeyIds)
+            {
+                GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(keyId, false);
+                if(UnitPrefab != null ){heroesPrefabs.Add(UnitPrefab.GetComponent<HeroManager>());}
+            }
+        }
+        
+        
+
+        //GroupIndex = PunNetworkManager.NetworkManager.PlayerIndex;
         
         for (int i = 0; i < groups.Length; i++)
         {

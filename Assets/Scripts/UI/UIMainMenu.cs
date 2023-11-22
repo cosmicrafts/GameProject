@@ -61,8 +61,7 @@ public class UIMainMenu : MonoBehaviour
     //Current section title
     public TMP_Text TopTitle;
 
-    //Loading Bar (used when a new scene is loading)
-    public Image LocalGameLoadingBar;
+    
 
     //UI User data references
     List<UIPTxtInfo> UIPropertys;
@@ -217,7 +216,7 @@ public class UIMainMenu : MonoBehaviour
         PlayerPrefs.SetInt("Dificulty", dificulty);
         MainMenu.SetActive(false);
         LoadingMatchPanel.SetActive(true);
-        StartCoroutine(LoadLocalGame());
+        
     }
     public void ChangeModeGame(GameModeCard gameModeCard)
     {
@@ -261,13 +260,11 @@ public class UIMainMenu : MonoBehaviour
         while (!loading.isDone)
         {
             yield return null;
-            LocalGameLoadingBar.fillAmount = loading.progress;
+            //LocalGameLoadingBar.fillAmount = loading.progress;
         }
     }
 
     
-
-  
 
     //Show the games mode menu
     public void GoGamesModesMenu()

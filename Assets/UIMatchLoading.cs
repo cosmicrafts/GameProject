@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIMatchLoading : MonoBehaviour
@@ -14,6 +15,12 @@ public class UIMatchLoading : MonoBehaviour
     public Text Txt_VsLevel;
     public Image Img_VsIcon;
     public Image Img_VsEmblem;
+    
+    //Loading Bar (used when a new scene is loading)
+    public Image LocalGameLoadingBar;
+
+    public User MyUser = new User();
+    public User VsUser = new User();
 
 
     private void Awake()
@@ -27,6 +34,9 @@ public class UIMatchLoading : MonoBehaviour
     
     public void GL_MatchStarting(User MyUserData, User VsUserData)
     {
+        MyUser = MyUserData;
+        VsUser = VsUserData;
+        
         Debug.Log("MATCH STARTING");
         
         Txt_VsWalletId.text = VsUserData.WalletId;
@@ -44,6 +54,21 @@ public class UIMatchLoading : MonoBehaviour
        // SearchingScreen.SetActive(false);
         //AcceptMatchScreen.SetActive(false);
         MatchLoadingScreen.SetActive(true);
+        StartCoroutine(LoadLocalGame());
+        
+    }
+    
+    IEnumerator LoadLocalGame()
+    {
+        yield return new WaitForSeconds(1f);
+        
+        AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
+
+        while (!loading.isDone)
+        {
+            yield return null;
+            LocalGameLoadingBar.fillAmount = loading.progress;
+        }
     }
     
     public void OnInitMatch()

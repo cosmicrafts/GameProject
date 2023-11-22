@@ -1,5 +1,5 @@
 using CanisterPK.CanisterLogin;
-using CanisterPK.CanisterPK;
+using CanisterPK.CanisterMatchMaking;
 
 namespace Candid
 {
@@ -39,8 +39,8 @@ namespace Candid
         // Canister APIs
         public WorldApiClient WorldApiClient { get; private set; }
         public WorldHubApiClient WorldHub { get; private set; }
-        public CanisterPKApiClient CanisterPk { get; private set; }
         public CanisterLoginApiClient CanisterLogin { get; private set; }
+        public CanisterMatchMakingApiClient CanisterMatchMaking { get; private set; }
 
         [SerializeField, ShowOnly] string principal;
         [SerializeField, ShowOnly] string paymentHubIdentifier;
@@ -220,8 +220,8 @@ namespace Candid
                     //Build Interfaces
                     WorldHub = new WorldHubApiClient(agent, Principal.FromText(Env.CanisterIds.WORLD_HUB));
                     WorldApiClient = new WorldApiClient(agent, Principal.FromText(Env.CanisterIds.WORLD));
-                    CanisterPk = new CanisterPKApiClient(agent, Principal.FromText("etqmj-zyaaa-aaaap-aakaq-cai"));
                     CanisterLogin =  new CanisterLoginApiClient(agent, Principal.FromText("woimf-oyaaa-aaaan-qegia-cai"));
+                    CanisterMatchMaking =  new CanisterMatchMakingApiClient(agent, Principal.FromText("vqzll-jiaaa-aaaan-qegba-cai"));
 
                 }
                 //Else fetch required dependencies and catch it
@@ -230,9 +230,8 @@ namespace Candid
                     //Build Interfaces
                     WorldHub = new WorldHubApiClient(agent, Principal.FromText(Env.CanisterIds.WORLD_HUB));
                     WorldApiClient = new WorldApiClient(agent, Principal.FromText(Env.CanisterIds.WORLD));
-                    CanisterPk = new CanisterPKApiClient(agent, Principal.FromText("etqmj-zyaaa-aaaap-aakaq-cai"));
                     CanisterLogin =  new CanisterLoginApiClient(agent, Principal.FromText("woimf-oyaaa-aaaan-qegia-cai"));
-
+                    CanisterMatchMaking =  new CanisterMatchMakingApiClient(agent, Principal.FromText("vqzll-jiaaa-aaaan-qegba-cai"));
                     
                     cachedAnonAgent.Value = agent;
 
@@ -255,9 +254,8 @@ namespace Candid
                 //Build Interfaces
                 WorldHub = new WorldHubApiClient(agent, Principal.FromText(Env.CanisterIds.WORLD_HUB));
                 WorldApiClient = new WorldApiClient(agent, Principal.FromText(Env.CanisterIds.WORLD));
-                CanisterPk = new CanisterPKApiClient(agent, Principal.FromText("etqmj-zyaaa-aaaap-aakaq-cai"));
                 CanisterLogin =  new CanisterLoginApiClient(agent, Principal.FromText("woimf-oyaaa-aaaan-qegia-cai"));
-
+                CanisterMatchMaking =  new CanisterMatchMakingApiClient(agent, Principal.FromText("vqzll-jiaaa-aaaan-qegba-cai"));
                 
                 userAccountIdentity = await WorldHub.GetAccountIdentifier(userPrincipal);
 

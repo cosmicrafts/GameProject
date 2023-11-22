@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using Candid;
+using CanisterPK.CanisterMatchMaking.Models;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
@@ -20,7 +22,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
 
     public string nameRoom = "Cosmicrafts_Room0";
     private bool connectedToGame = false;
-
+    
     public bool IsMaster {
         get { return PhotonNetwork.IsMasterClient; }
     }
@@ -57,12 +59,56 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
 
     private IEnumerator Start()
     {
+        GetInfoFromCanister();
+        
         while(true)
         {
             UpdateConnecting();
             Debug.Log("UpdateConnecting");
             yield return new WaitForSeconds(1.0f);
         }
+    }
+
+    public async void GetInfoFromCanister()
+    {
+         var matchDataRequest = await CandidApiManager.Instance.CanisterMatchMaking.GetMyMatchData();
+                        
+        if (matchDataRequest.Arg0.HasValue)
+        {
+            CanisterPK.CanisterMatchMaking.Models.MatchData matchData = matchDataRequest.Arg0.ValueOrDefault;
+            nameRoom = "Game: " + matchData.GameId;
+            
+            User UserData1 = new User();
+            User UserData2 = new User();
+
+            CanisterPK.CanisterMatchMaking.Models.PlayerInfo tempData1 = new PlayerInfo();
+            CanisterPK.CanisterMatchMaking.Models.PlayerInfo tempData2 = new PlayerInfo();
+
+                                              tempData1 = matchData.Player1;
+            if (matchData.Player2.HasValue) { tempData2 = matchData.Player2.ValueOrDefault; }
+
+            UserData1.WalletId = tempData1.Id.ToString();
+            UserData1.NikeName = "Falta este valor";
+            UserData1.Level = (int) tempData1.Elo;
+            UserData1.CharacterNFTId = (int) tempData1.CharacterSelected;
+            UserData1.DeckNFTsKeyIds = tempData1.DeckSavedKeyIds;
+          
+            UserData2.WalletId = tempData2.Id.ToString();
+            UserData2.NikeName = "Falta este valor";
+            UserData2.Level = (int) tempData2.Elo;
+            UserData2.CharacterNFTId = (int) tempData2.CharacterSelected;
+            UserData2.DeckNFTsKeyIds = tempData2.DeckSavedKeyIds;
+
+            GameManager.UserData1 = UserData1;
+            GameManager.UserData2 = UserData2;
+            if ((int) matchDataRequest.Arg1 != 0) {  GameManager.GroupIndex = (int)matchDataRequest.Arg1;  }
+            
+        }
+        else
+        {
+            //No hay Mathf Info
+        }
+        
     }
 
     public void RPCToOthers(string methodName, params object[] parameters)
