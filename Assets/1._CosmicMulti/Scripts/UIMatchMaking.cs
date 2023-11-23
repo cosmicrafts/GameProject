@@ -64,10 +64,14 @@ public class UIMatchMaking : MonoBehaviour
         
         var matchSearchingInfo = await CandidApiManager.Instance.CanisterMatchMaking.GetMatchSearching();
 
+        Debug.Log("Status: "+ matchSearchingInfo.Arg0 + " Int: " + matchSearchingInfo.Arg1);
+
         if (matchSearchingInfo.Arg0 == SearchStatus.Available)
         {
             var matchAssignInfo = await CandidApiManager.Instance.CanisterMatchMaking.AssignPlayer2(matchSearchingInfo.Arg1);
 
+            Debug.Log( matchAssignInfo.Arg1);
+            
             if (matchAssignInfo.Arg0) { GL_MatchFound(); }
             else { StartSearch(); }
         }
@@ -85,6 +89,7 @@ public class UIMatchMaking : MonoBehaviour
                 while (!isGameMatched)
                 {
                     var isGameMatchedRequest = await CandidApiManager.Instance.CanisterMatchMaking.IsGameMatched();
+                    Debug.Log("Cree una sala: " + createdRoom.Arg1 +" espero ser matched: " + isGameMatchedRequest.Arg1);
                     isGameMatched = isGameMatchedRequest.Arg0;
                     await Task.Delay(500);
                 }
@@ -100,6 +105,7 @@ public class UIMatchMaking : MonoBehaviour
             while (!isGameMatched)
             {
                 var isGameMatchedRequest = await CandidApiManager.Instance.CanisterMatchMaking.IsGameMatched();
+                Debug.Log("Ya estoy asignado a una sala: " + matchSearchingInfo.Arg1 +" espero ser matched: " + isGameMatchedRequest.Arg1);
                 isGameMatched = isGameMatchedRequest.Arg0;
                 await Task.Delay(500);
             }
@@ -112,6 +118,7 @@ public class UIMatchMaking : MonoBehaviour
     public async void CancelSearch()
     {
         var cancelMatchmaking = await CandidApiManager.Instance.CanisterMatchMaking.CancelMatchmaking();
+        Debug.Log("Quiero Cancelar la busqueda: " + cancelMatchmaking.Arg1);
         if (cancelMatchmaking.Arg0)
         {
             SearchingScreen.SetActive(false);
@@ -123,6 +130,8 @@ public class UIMatchMaking : MonoBehaviour
     {
         SearchingScreen.SetActive(false);
         AcceptMatchScreen.SetActive(true);
+        btn_Accept.SetActive(true);
+        txt_WaitingPlayer.SetActive(false);
         StartCoroutine(WaitingForAccept());
     }
     
@@ -155,6 +164,9 @@ public class UIMatchMaking : MonoBehaviour
                
                 /*(0, "Game not accepted yet") (1, "Game accepted")
                     (2, "Other player rejected the game")(3, "Game not found for this player")*/
+
+
+                Debug.Log("Yo acepte el Match: " +acceptGame.Arg1+" Espero a adversario: "+isGameAcceptedRequest.Arg1);
                 switch (isGameAcceptedCase)
                 {
                     case 0: break;
@@ -237,8 +249,14 @@ public class UIMatchMaking : MonoBehaviour
     }
     public async void RejectMatch()
     {
-        SearchingScreen.SetActive(false);
+        btn_Accept.SetActive(false);
+        
         var rejectMatch = await CandidApiManager.Instance.CanisterMatchMaking.RejectMatch();
+        if (rejectMatch.Arg0)
+        {
+            SearchingScreen.SetActive(false);
+        }
+        Debug.Log("Quiero rechazar: " + rejectMatch.Arg1 + "Reject: " + rejectMatch.Arg0);
     }
     
     
