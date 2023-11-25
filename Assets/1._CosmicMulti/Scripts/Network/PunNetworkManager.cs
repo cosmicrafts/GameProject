@@ -90,14 +90,16 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
             UserData1.WalletId = tempData1.Id.ToString();
             UserData1.NikeName = "Falta este valor";
             UserData1.Level = (int) tempData1.Elo;
-            UserData1.CharacterNFTId = (int) tempData1.CharacterSelected;
-            UserData1.DeckNFTsKeyIds = tempData1.DeckSavedKeyIds;
+            UIMatchLoading.MatchPlayerData matchPlayerData1 = JsonUtility.FromJson<UIMatchLoading.MatchPlayerData>(tempData1.PlayerGameData);
+            UserData1.CharacterNFTId = matchPlayerData1.userAvatar;
+            UserData1.DeckNFTsKeyIds = matchPlayerData1.listSavedKeys;
           
             UserData2.WalletId = tempData2.Id.ToString();
             UserData2.NikeName = "Falta este valor";
             UserData2.Level = (int) tempData2.Elo;
-            UserData2.CharacterNFTId = (int) tempData2.CharacterSelected;
-            UserData2.DeckNFTsKeyIds = tempData2.DeckSavedKeyIds;
+            UIMatchLoading.MatchPlayerData matchPlayerData2 = JsonUtility.FromJson<UIMatchLoading.MatchPlayerData>(tempData2.PlayerGameData);
+            UserData2.CharacterNFTId = matchPlayerData2.userAvatar;
+            UserData2.DeckNFTsKeyIds = matchPlayerData2.listSavedKeys;
 
             GameManager.UserData1 = UserData1;
             GameManager.UserData2 = UserData2;

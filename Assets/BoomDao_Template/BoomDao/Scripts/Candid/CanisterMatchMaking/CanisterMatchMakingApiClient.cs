@@ -2,7 +2,6 @@ using EdjCase.ICP.Agent.Agents;
 using EdjCase.ICP.Candid.Models;
 using EdjCase.ICP.Candid;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using CanisterPK.CanisterMatchMaking;
 using EdjCase.ICP.Agent.Responses;
 
@@ -23,11 +22,18 @@ namespace CanisterPK.CanisterMatchMaking
 			this.Converter = converter;
 		}
 
-		public async Task<(bool Arg0, string Arg1)> AcceptMatch(UnboundedUInt arg0, List<string> arg1)
+		public async Task<(bool Arg0, string Arg1)> AcceptMatch(string arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0), CandidTypedValue.FromObject(arg1));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "acceptMatch", arg);
 			return reply.ToObjects<bool, string>(this.Converter);
+		}
+
+		public async Task<bool> AddMatchPlayerData(string arg0)
+		{
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "addMatchPlayerData", arg);
+			return reply.ToObjects<bool>(this.Converter);
 		}
 
 		public async Task<(bool Arg0, UnboundedUInt Arg1)> AddPlayerSearching()
@@ -62,8 +68,7 @@ namespace CanisterPK.CanisterMatchMaking
 		public async Task<(Models.SearchStatus Arg0, UnboundedUInt Arg1, string Arg2)> GetMatchSearching()
 		{
 			CandidArg arg = CandidArg.FromCandid();
-			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "getMatchSearching", arg);
-			CandidArg reply = response.ThrowOrGetReply();
+			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "getMatchSearching", arg);
 			return reply.ToObjects<Models.SearchStatus, UnboundedUInt, string>(this.Converter);
 		}
 
