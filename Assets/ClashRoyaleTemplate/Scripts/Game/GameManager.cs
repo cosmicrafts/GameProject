@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
 
     public User UserData1 = new User();
     public User UserData2 = new User();
+    public bool updateHeroesPrefab = false;
     
     
 
@@ -57,24 +58,30 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        
-        if (UserData1.DeckNFTsKeyIds.Count == 8 && UserData2.DeckNFTsKeyIds.Count == 8) { heroesPrefabs.Clear(); }
-        
-        if (UserData1.DeckNFTsKeyIds.Count == 8)
+        if (updateHeroesPrefab)
         {
-            foreach (string keyId in UserData1.DeckNFTsKeyIds)
+            if (UserData1.DeckNFTsKeyIds.Count == 8 && UserData2.DeckNFTsKeyIds.Count == 8) { heroesPrefabs.Clear(); }
+        
+            if (UserData1.DeckNFTsKeyIds.Count == 8)
             {
-                GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(keyId, false);
-                if(UnitPrefab != null ){heroesPrefabs.Add(UnitPrefab.GetComponent<HeroManager>());}
+                foreach (string keyId in UserData1.DeckNFTsKeyIds)
+                {
+                    GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(keyId, false);
+                    if(UnitPrefab != null ){heroesPrefabs.Add(UnitPrefab.GetComponent<HeroManager>());}
+                }
+            }
+            if (UserData2.DeckNFTsKeyIds.Count == 8)
+            {
+                foreach (string keyId in UserData2.DeckNFTsKeyIds)
+                {
+                    GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(keyId, false);
+                    if(UnitPrefab != null ){heroesPrefabs.Add(UnitPrefab.GetComponent<HeroManager>());}
+                }
             }
         }
-        if (UserData2.DeckNFTsKeyIds.Count == 8)
+        else
         {
-            foreach (string keyId in UserData2.DeckNFTsKeyIds)
-            {
-                GameObject UnitPrefab = ResourcesServices.LoadCardPrefab(keyId, false);
-                if(UnitPrefab != null ){heroesPrefabs.Add(UnitPrefab.GetComponent<HeroManager>());}
-            }
+            GroupIndex = PunNetworkManager.NetworkManager.PlayerIndex;
         }
         
         

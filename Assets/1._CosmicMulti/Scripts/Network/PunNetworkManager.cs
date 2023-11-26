@@ -14,6 +14,7 @@ public class NetworkRPC : PunRPC { }
 
 public class PunNetworkManager : MonoBehaviourPunCallbacks
 {
+    public bool getInfoFromCanister = false;
     public GameManager GameManager;
     public NetworkMessenger Messenger;
     public static PunNetworkManager NetworkManager;
@@ -59,8 +60,11 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
 
     private IEnumerator Start()
     {
-        GetInfoFromCanister();
-        
+        if (getInfoFromCanister)
+        {
+            GetInfoFromCanister();
+        }
+       
         while(true)
         {
             UpdateConnecting();
@@ -103,6 +107,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
 
             GameManager.UserData1 = UserData1;
             GameManager.UserData2 = UserData2;
+            GameManager.updateHeroesPrefab = true;
             if ((int) matchDataRequest.Arg1 != 0) {  GameManager.GroupIndex = (int)matchDataRequest.Arg1;  }
             
         }

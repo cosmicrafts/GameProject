@@ -93,9 +93,9 @@ public class GlobalGameData : MonoBehaviour
     {
         if (PlayerUser == null)
         {
-            
-            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", 
-                Avatar = config.avatarSavedID };
+            Debug.Log("GetUser");
+            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", Avatar = GetConfig().avatarSavedID };
+            Debug.Log(PlayerUser.NikeName);
         }
         else{
             
