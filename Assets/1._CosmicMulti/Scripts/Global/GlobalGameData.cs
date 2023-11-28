@@ -75,7 +75,7 @@ public class GlobalGameData : MonoBehaviour
     }
     public void SetUserAvatar(int AvatarSelected)
     {
-        config.avatarSavedID = AvatarSelected;
+        GetConfig().avatarSavedID = AvatarSelected;
         SaveData.SaveGameConfig();
     }
     public void SetCurrentMatch(Match match)
@@ -99,7 +99,7 @@ public class GlobalGameData : MonoBehaviour
         }
         else{
             
-            PlayerUser.Avatar = config.avatarSavedID ;
+            PlayerUser.Avatar = GetConfig().avatarSavedID;
             
         }
 
@@ -164,7 +164,8 @@ public class GlobalGameData : MonoBehaviour
                 PlayerCharacter = Characters[0];
             }
         }
-
+        
+        
         return PlayerCharacter;
     }
     //Returns the Global NFTs collection

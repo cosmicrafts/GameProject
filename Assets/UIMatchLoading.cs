@@ -36,13 +36,7 @@ public class UIMatchLoading : MonoBehaviour
         
     VsUser vsUser = JsonConvert.DeserializeObject<VsUser>(json);*/
 
-    [System.Serializable]
-    public class MatchPlayerData
-    {
-        public int userAvatar;
-        public List<String> listSavedKeys;
-
-    }
+    
     public async void GL_MatchPreStarting()
     {
 
@@ -61,33 +55,9 @@ public class UIMatchLoading : MonoBehaviour
         }
         
         MatchLoadingScreen.SetActive(true);
-        //StartCoroutine(LoadLocalGame());
         
-        //Obtener lista del deck para enviar al canister
-        UserCollection.SavedKeyIds savedKeyIds = new UserCollection.SavedKeyIds();
-        if (PlayerPrefs.HasKey("savedKeyIds")) { savedKeyIds = JsonUtility.FromJson<UserCollection.SavedKeyIds>(PlayerPrefs.GetString("savedKeyIds")); }
-        List<String> listSavedKeys = new List<string>(); 
-        if((Factions)GlobalGameData.Instance.GetUserCharacter().Faction == Factions.Alliance){ listSavedKeys = savedKeyIds.AllSavedKeyIds; } 
-        if((Factions)GlobalGameData.Instance.GetUserCharacter().Faction == Factions.Spirats) { listSavedKeys = savedKeyIds.SpiSavedKeyIds; }
-        if((Factions)GlobalGameData.Instance.GetUserCharacter().Faction == Factions.Webe)    { listSavedKeys = savedKeyIds.WebSavedKeyIds; }
+        GetMatchData();
 
-        MatchPlayerData matchPlayerData = new MatchPlayerData();
-        matchPlayerData.userAvatar = GlobalGameData.Instance.GetUserData().Avatar;
-        matchPlayerData.listSavedKeys = listSavedKeys;
-
-        Debug.Log(JsonUtility.ToJson(matchPlayerData));
-        var AddMatchPlayerDataRequest = await CandidApiManager.Instance.CanisterMatchMaking.AddMatchPlayerData(JsonUtility.ToJson(matchPlayerData));
-
-        if (AddMatchPlayerDataRequest)
-        {
-            Debug.Log("Data subida, llamando GetMachtData");
-            GetMatchData();
-        }
-        else
-        {
-            Debug.Log("Ocurrio un error en AddMatchPlayerDataRequest");
-        }
-        
     }
 
     public async void GetMatchData()
@@ -107,46 +77,34 @@ public class UIMatchLoading : MonoBehaviour
 
             tempData1 = matchData.Player1;
             if (matchData.Player2.HasValue) { tempData2 = matchData.Player2.ValueOrDefault; }
+            
 
-            if (tempData1.PlayerGameData.IsNullOrEmpty() || tempData2.PlayerGameData.IsNullOrEmpty() )
-            {
-                Debug.Log("Aun ambos usuarios no han subido la información, volviendo a consultar:");
-                await Task.Delay(500);
-                if (this.gameObject != null)
-                {
-                    GetMatchData();
-                }
-            }
-            else
-            {
-                UserData1.WalletId = tempData1.Id.ToString();
-                UserData1.NikeName = "Falta este valor";
-                UserData1.Level = (int) tempData1.Elo;
-                Debug.Log(tempData1.PlayerGameData);
-                MatchPlayerData matchPlayerData1 = JsonUtility.FromJson<MatchPlayerData>(tempData1.PlayerGameData);
-                UserData1.CharacterNFTId = matchPlayerData1.userAvatar;
-                UserData1.DeckNFTsKeyIds = matchPlayerData1.listSavedKeys;
+            UserData1.WalletId = tempData1.Id.ToString();
+            UserData1.NikeName = "Falta este valor";
+            UserData1.Level = (int) tempData1.Elo;
+            Debug.Log(tempData1.PlayerGameData);
+            UIMatchMaking.MatchPlayerData matchPlayerData1 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData1.PlayerGameData);
+            UserData1.CharacterNFTId = matchPlayerData1.userAvatar;
+            UserData1.DeckNFTsKeyIds = matchPlayerData1.listSavedKeys;
           
-                UserData2.WalletId = tempData2.Id.ToString();
-                UserData2.NikeName = "Falta este valor";
-                UserData2.Level = (int) tempData2.Elo;
-                Debug.Log(tempData2.PlayerGameData);
-                MatchPlayerData matchPlayerData2 = JsonUtility.FromJson<MatchPlayerData>(tempData2.PlayerGameData);
-                UserData2.CharacterNFTId = matchPlayerData2.userAvatar;
-                UserData2.DeckNFTsKeyIds = matchPlayerData2.listSavedKeys;
+            UserData2.WalletId = tempData2.Id.ToString();
+            UserData2.NikeName = "Falta este valor";
+            UserData2.Level = (int) tempData2.Elo;
+            Debug.Log(tempData2.PlayerGameData);
+            UIMatchMaking.MatchPlayerData matchPlayerData2 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData2.PlayerGameData);
+            UserData2.CharacterNFTId = matchPlayerData2.userAvatar;
+            UserData2.DeckNFTsKeyIds = matchPlayerData2.listSavedKeys;
 
-                if ((int) matchDataRequest.Arg1 != 0)
+            if ((int) matchDataRequest.Arg1 != 0)
+            {
+                if ((int) matchDataRequest.Arg1 == 1)
                 {
-                    if ((int) matchDataRequest.Arg1 == 1)
-                    {
-                        GL_MatchStarting(UserData1, UserData2);
-                    }
-                    else if ((int) matchDataRequest.Arg1 == 2)
-                    {
-                        GL_MatchStarting(UserData2, UserData1);
-                    }
+                    GL_MatchStarting(UserData1, UserData2);
                 }
-                
+                else if ((int) matchDataRequest.Arg1 == 2)
+                {
+                    GL_MatchStarting(UserData2, UserData1);
+                }
             }
             
             
@@ -170,6 +128,7 @@ public class UIMatchLoading : MonoBehaviour
         Txt_VsLevel.text = VsUserData.Level.ToString();
         
         var Characters = GlobalGameData.Instance.GetUserCollection().Characters;
+        foreach (NFTsCharacter nfTsCharacter in Characters) { Debug.Log(nfTsCharacter.ID); }
         NFTsCharacter vsCharacter = Characters.FirstOrDefault(f=>f.ID == VsUserData.CharacterNFTId );
         if (vsCharacter != null)
         {
@@ -177,16 +136,14 @@ public class UIMatchLoading : MonoBehaviour
             Img_VsEmblem.sprite = ResourcesServices.LoadCharacterEmblem(vsCharacter.KeyId);
         }
         
-       // SearchingScreen.SetActive(false);
-        //AcceptMatchScreen.SetActive(false);
-        MatchLoadingScreen.SetActive(true);
+       
         StartCoroutine(LoadLocalGame());
         
     }
     
     IEnumerator LoadLocalGame()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(4f);
         
         AsyncOperation loading = SceneManager.LoadSceneAsync(2, LoadSceneMode.Single);
 
@@ -195,6 +152,8 @@ public class UIMatchLoading : MonoBehaviour
             yield return null;
             LocalGameLoadingBar.fillAmount = loading.progress;
         }
+        
+        
     }
     
     public void OnInitMatch()

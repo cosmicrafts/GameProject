@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 52712133}
-  m_IndirectSpecularColor: {r: 0.08955752, g: 0.08063199, b: 0.14111468, a: 1}
+  m_IndirectSpecularColor: {r: 0.0894522, g: 0.080663584, b: 0.14111364, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -505,7 +505,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.15124102, y: 0.028}
   m_AnchorMax: {x: 0.95132536, y: 0.528}
-  m_AnchoredPosition: {x: 465.40012, y: 308.37}
+  m_AnchoredPosition: {x: 465.4001, y: 308.37}
   m_SizeDelta: {x: -827.07, y: -137.68}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3592530
@@ -4276,7 +4276,7 @@ MonoBehaviour:
   nameMode: {fileID: 1758407995}
   imageMode: {fileID: 1464408574}
   idMode: 9
-  match: 0
+  match: 1
 --- !u!222 &93252241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6673,7 +6673,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -79.81387, y: -222.68008}
+  m_AnchoredPosition: {x: -79.813866, y: -222.68008}
   m_SizeDelta: {x: 124.97847, y: 84.390656}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &162588845
@@ -20868,7 +20868,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7bf91f269f9089c47baf31dc2ffb88af, type: 2}
   - {fileID: 11400000, guid: 308417930d78c654590e3ea35ce21d9a, type: 2}
   - {fileID: 11400000, guid: 7e09baf43482768438e2286f33636a87, type: 2}
-  - {fileID: 11400000, guid: 54ddd721d9e76794f9fc87ea3a478e63, type: 2}
+  - {fileID: 11400000, guid: c1697e288037d7e498e50afc22766f85, type: 2}
   ShipsDataBasesSpirats:
   - {fileID: 11400000, guid: c82e04682366f4c439ab0946fce9a81a, type: 2}
   - {fileID: 11400000, guid: 1ef2cc8f925477c47855e05ccbe57d0f, type: 2}
@@ -48110,7 +48110,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36.2
+  m_fontSize: 36.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -55919,7 +55919,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 950169014}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.9999986
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -59377,7 +59377,6 @@ GameObject:
   - component: {fileID: 1510164011}
   - component: {fileID: 1510164010}
   - component: {fileID: 1510164007}
-  - component: {fileID: 1510164009}
   - component: {fileID: 1510164008}
   m_Layer: 5
   m_Name: Preview
@@ -59445,19 +59444,6 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
---- !u!114 &1510164009
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1510164006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d7106edc7fc2b4ca6cebac7a4df3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Property: 5
 --- !u!222 &1510164010
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -62705,6 +62691,7 @@ MonoBehaviour:
   DefaultUIChar: {fileID: 1866579366}
   CharactersScroll: {fileID: 1426752141}
   PreviewAvatar: {fileID: 1510164007}
+  AvatarCharacter: {fileID: 1844418899}
   Emblem: {fileID: 1390959523}
   CharTitle: {fileID: 1019422457}
   CharTitle2: {fileID: 597976782}
@@ -70808,7 +70795,6 @@ GameObject:
   - component: {fileID: 1844418898}
   - component: {fileID: 1844418900}
   - component: {fileID: 1844418899}
-  - component: {fileID: 1844418901}
   - component: {fileID: 1844418902}
   m_Layer: 5
   m_Name: PreviewAvatar
@@ -70879,19 +70865,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844418897}
   m_CullTransparentMesh: 0
---- !u!114 &1844418901
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1844418897}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d7106edc7fc2b4ca6cebac7a4df3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Property: 5
 --- !u!114 &1844418902
 MonoBehaviour:
   m_ObjectHideFlags: 0

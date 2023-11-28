@@ -65,9 +65,9 @@ namespace CanisterPK.CanisterMatchMaking
 			return reply.ToObjects<OptionalValue<Models.MatchData>>(this.Converter);
 		}
 
-		public async Task<(Models.SearchStatus Arg0, UnboundedUInt Arg1, string Arg2)> GetMatchSearching()
+		public async Task<(Models.SearchStatus Arg0, UnboundedUInt Arg1, string Arg2)> GetMatchSearching(string arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid();
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "getMatchSearching", arg);
 			return reply.ToObjects<Models.SearchStatus, UnboundedUInt, string>(this.Converter);
 		}

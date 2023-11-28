@@ -35,6 +35,12 @@ public class UIMatchMaking : MonoBehaviour
         public int level = 0;
         public int characterId = 0;
     }
+    [System.Serializable]
+    public class MatchPlayerData
+    {
+        public int userAvatar;
+        public List<String> listSavedKeys;
+    }
     
     //Start searching for a match
     public async void StartSearch()
@@ -44,7 +50,21 @@ public class UIMatchMaking : MonoBehaviour
         StatusGame.text = Lang.GetText("mn_matchmaking");
         SearchingScreen.SetActive(true);
         
-        var matchSearchingInfo = await CandidApiManager.Instance.CanisterMatchMaking.GetMatchSearching();
+        //Obtener lista del deck para enviar al canister
+        UserCollection.SavedKeyIds savedKeyIds = new UserCollection.SavedKeyIds();
+        if (PlayerPrefs.HasKey("savedKeyIds")) { savedKeyIds = JsonUtility.FromJson<UserCollection.SavedKeyIds>(PlayerPrefs.GetString("savedKeyIds")); }
+        List<String> listSavedKeys = new List<string>(); 
+        if((Factions)GlobalGameData.Instance.GetUserCharacter().Faction == Factions.Alliance){ listSavedKeys = savedKeyIds.AllSavedKeyIds; } 
+        if((Factions)GlobalGameData.Instance.GetUserCharacter().Faction == Factions.Spirats) { listSavedKeys = savedKeyIds.SpiSavedKeyIds; }
+        if((Factions)GlobalGameData.Instance.GetUserCharacter().Faction == Factions.Webe)    { listSavedKeys = savedKeyIds.WebSavedKeyIds; }
+
+        MatchPlayerData matchPlayerData = new MatchPlayerData();
+        matchPlayerData.userAvatar = GlobalGameData.Instance.GetConfig().characterSavedID;
+        matchPlayerData.listSavedKeys = listSavedKeys;
+
+        Debug.Log(JsonUtility.ToJson(matchPlayerData));
+
+        var matchSearchingInfo = await CandidApiManager.Instance.CanisterMatchMaking.GetMatchSearching(JsonUtility.ToJson(matchPlayerData));
 
         Debug.Log("Status: "+ matchSearchingInfo.Arg0 + " Int: " + matchSearchingInfo.Arg1 + " text: " + matchSearchingInfo.Arg2);
         

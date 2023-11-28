@@ -22,6 +22,7 @@ public class UICharacters : MonoBehaviour
 
     //UI Stats of the selected character
     public Image PreviewAvatar;
+    public Image AvatarCharacter;
     public Image Emblem;
     public UILang CharTitle;
     public UILang CharTitle2;
@@ -80,6 +81,7 @@ public class UICharacters : MonoBehaviour
         UIMainMenu.Instance.RefreshProperty(PlayerProperty.CharacterName);
         UIMainMenu.Instance.RefreshProperty(PlayerProperty.Description);
         UIMainMenu.Instance.RefreshProperty(PlayerProperty.Emblem);
+        UIMainMenu.Instance.RefreshAllPropertys();
         
         
     }
@@ -90,6 +92,7 @@ public class UICharacters : MonoBehaviour
         CurrentChar.SetSelection(true);
         string key = CurrentChar.GetData().KeyId;
         PreviewAvatar.sprite = CurrentChar.GetData().IconSprite;
+        AvatarCharacter.sprite = CurrentChar.GetData().IconSprite;
         Emblem.sprite = ResourcesServices.LoadCharacterEmblem(key);
         /*CharName.text = Lang.GetEntityName(key);
         CharName2.text = Lang.GetEntityName(key);
