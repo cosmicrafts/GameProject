@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Boom;
-using Boom.Patterns.Broadcasts;
-using Boom.Values;
+
 using Candid;
 using EdjCase.ICP.Candid.Models;
 using TMPro;
@@ -15,6 +13,9 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class Login : MonoBehaviour
 {
+
+    public static Login Instance { get; private set; }
+    
     public TMP_InputField inputNameField;
     public TMP_Text infoTxt;
     string mainScene = "Menu";
@@ -24,45 +25,30 @@ public class Login : MonoBehaviour
 
     private void Awake()
     {
-        BroadcastState.Register<CanLogin>(UpdateWindow, true);
-        UserUtil.RegisterToLoginDataChange(UpdateWindow, true);
+        Instance = this;
     }
     private void OnDestroy()
     {
         LoginManager.Instance.CancelLogin();
-        UserUtil.UnregisterToLoginDataChange(UpdateWindow);
-        BroadcastState.Unregister<CanLogin>(UpdateWindow);
     }
     
-    private void UpdateWindow(CanLogin state)
+    
+    public void UpdateWindow(CandidApiManager.LoginData state)
     {
-       //Apagar boton de login
-       // logInBtn.interactable = state.value;
-    }
-    private void UpdateWindow(DataState<LoginData> state)
-    {
-        bool isLoading = state.IsLoading();
-        var getIsLoginResult = UserUtil.GetLogInType();
+        bool isLoading = state.state == CandidApiManager.DataState.Loading; ;
 
-        if (getIsLoginResult.Tag == UResultTag.Ok)
+        if(!state.asAnon)
         {
-            if(getIsLoginResult.AsOk() == UserUtil.LoginType.User)
-            {
-                Debug.Log("Logged In");
-                Debug.Log($"Principal: <b>\"{state.data.principal}\"</b>\nAccountId: <b>\"{state.data.accountIdentifier}\"</b>");
-                UserLoginSuccessfull();
-            }
-            else//Logged In As Anon
-            {
-                Debug.Log("Logged in as Anon");
-                Debug.Log($"Principal: <b>\"{state.data.principal}\"</b>\nAccountId: <b>\"{state.data.accountIdentifier}\"</b>");
-            }
+            Debug.Log("Logged In");
+            Debug.Log($"Principal: <b>\"{state.principal}\"</b>\nAccountId: <b>\"{state.accountIdentifier}\"</b>");
+            UserLoginSuccessfull();
         }
-        else
+        else//Logged In As Anon
         {
-            if (isLoading) Debug.Log($"Loading Data...Loading");
-            else  Debug.Log($"Error Not Loading Data...Loading");
+            Debug.Log("Logged in as Anon");
+            Debug.Log($"Principal: <b>\"{state.principal}\"</b>\nAccountId: <b>\"{state.accountIdentifier}\"</b>");
         }
+        
     }
 
 
@@ -71,7 +57,7 @@ public class Login : MonoBehaviour
         LoadingPanel.Instance.ActiveLoadingPanel();
         chooseLoginAnim.Play("ChooseLogin_Outro");
         
-        UserUtil.StartLogin(); //codigo de ICP+NFID
+        CandidApiManager.Instance.StartLogin();
     }
     
     public async void UserLoginSuccessfull()
