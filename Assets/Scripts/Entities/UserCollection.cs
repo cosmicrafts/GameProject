@@ -203,11 +203,26 @@ public class UserCollection
                     }
                     
                 }
+
+                List<String> listKeysToSave = new List<string>();
+                foreach (NFTsCard nfTCard in Decks[faction])
+                {
+                    listKeysToSave.Add(nfTCard.KeyId);
+                }
+                
+                if( faction == Factions.Alliance ) {savedKeyIds.AllSavedKeyIds = listKeysToSave; }
+                if( faction == Factions.Spirats  ) {savedKeyIds.SpiSavedKeyIds = listKeysToSave; }
+                if( faction == Factions.Webe  )    {savedKeyIds.WebSavedKeyIds = listKeysToSave; }
+        
+                PlayerPrefs.SetString("savedKeyIds", JsonUtility.ToJson(savedKeyIds));
+                Debug.Log(JsonUtility.ToJson(savedKeyIds));
+                
             }
         }
 
         //Set current deck
         Deck = Decks[Decks.Keys.First()];
+        
 
         //Decks are redy
         DeckReady = true;
