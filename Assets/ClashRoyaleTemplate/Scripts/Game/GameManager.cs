@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public long GameTime { get; private set; }
     private float secondsPass;
     private float myGameTime;
-    private float otherGameTime;
+    public float otherGameTime;
     private List<SimpleVector2> dynamicPositions;
     private List<SimpleVector2> staticPositions;
 
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
     public Group OtherGroup { get; private set; }
     public bool IsPaused { get; set; } = true;
     public bool IsInitialized { get; set; } 
-    private bool gameIsEnd;
+    public bool gameIsEnd;
 
     public User UserData1 = new User();
     public User UserData2 = new User();
@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Start()
     {
-        while (true)
+        while (!gameIsEnd)
         {
             PunNetworkManager.NetworkManager.RPCToOthers("Ping", myGameTime);
             yield return new WaitForSeconds(0.25f);
@@ -174,7 +174,10 @@ public class GameManager : MonoBehaviour
         if (GameTime >= addTime)
         {
             Debug.LogWarning("Bed Network");
-            PunNetworkManager.NetworkManager.ExitGame();
+            //PunNetworkManager.NetworkManager.ExitGame();
+            gameIsEnd = true;
+            Debug.Log("Bad network you lose...");
+            StartCoroutine(OnWinOrLose(false));
             return;
         }
         if (!OtherGroup.HeroesWaitingList.ContainsKey(addTime))
@@ -466,6 +469,7 @@ public class GameManager : MonoBehaviour
     }
     private IEnumerator OnWinOrLose(bool isWin)
     {
+        this.Pause(true);
         MT.CalculateLastMetrics(CurrentEnergy, SpeedEnergy);
         uiGame.OnWinOrLose(isWin);
         uiGameResults.SetGameOver(isWin);

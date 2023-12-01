@@ -1,5 +1,6 @@
 using CanisterPK.CanisterLogin;
 using CanisterPK.CanisterMatchMaking;
+using CanisterPK.CanisterStats;
 using UnityEngine.SceneManagement;
 
 namespace Candid
@@ -26,6 +27,8 @@ namespace Candid
         // Canister APIs
         public CanisterLoginApiClient CanisterLogin { get; private set; }
         public CanisterMatchMakingApiClient CanisterMatchMaking { get; private set; }
+        
+        public CanisterStatsApiClient CanisterStats { get; private set; }
 
         // Login Data
         public enum DataState { None, Loading, Ready }
@@ -165,6 +168,7 @@ namespace Candid
             {
                 CanisterLogin =  new CanisterLoginApiClient(agent, Principal.FromText("woimf-oyaaa-aaaan-qegia-cai"));
                 CanisterMatchMaking =  new CanisterMatchMakingApiClient(agent, Principal.FromText("vqzll-jiaaa-aaaan-qegba-cai"));
+                CanisterStats =  new CanisterStatsApiClient(agent, Principal.FromText("jybso-3iaaa-aaaan-qeima-cai"));
                 //Set Login Data
                 loginData = new LoginData(agent, userPrincipal, null, asAnon, DataState.Ready);
                 
@@ -174,6 +178,7 @@ namespace Candid
                 //Build Interfaces
                 CanisterLogin =  new CanisterLoginApiClient(agent, Principal.FromText("woimf-oyaaa-aaaan-qegia-cai"));
                 CanisterMatchMaking =  new CanisterMatchMakingApiClient(agent, Principal.FromText("vqzll-jiaaa-aaaan-qegba-cai"));
+                CanisterStats =  new CanisterStatsApiClient(agent, Principal.FromText("jybso-3iaaa-aaaan-qeima-cai"));
                 //Set Login Data
                 loginData = new LoginData(agent, userPrincipal, null, asAnon, DataState.Ready);
 
@@ -187,6 +192,7 @@ namespace Candid
         {
             CanisterLogin = null;
             CanisterMatchMaking = null;
+            CanisterStats = null;
             //Set Login Data
             loginData = new LoginData(null, null, null, false, DataState.None);
         }

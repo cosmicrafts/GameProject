@@ -22,6 +22,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
     public TMP_Text lobbyTxt;
 
     public string nameRoom = "Cosmicrafts_Room0";
+    public int gameId = 0;
     private bool connectedToGame = false;
     
     public bool IsMaster {
@@ -65,7 +66,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
             GetInfoFromCanister();
         }
        
-        while(true)
+        while(!GameManager.gameIsEnd)
         {
             UpdateConnecting();
             Debug.Log("UpdateConnecting");
@@ -81,6 +82,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
         {
             CanisterPK.CanisterMatchMaking.Models.MatchData matchData = matchDataRequest.Arg0.ValueOrDefault;
             nameRoom = "Game: " + matchData.GameId;
+            gameId = (int)matchData.GameId;
             
             User UserData1 = new User();
             User UserData2 = new User();
@@ -167,16 +169,20 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
     }
     public override void OnPlayerLeftRoom(Photon.Realtime.Player otherPlayer)
     {
-        PhotonNetwork.LeaveRoom();
+        GameManager.otherGameTime = 99999;
+        Debug.Log("OnPlayerLeftRoom");
+        //PhotonNetwork.LeaveRoom();
     }
     public override void OnLeftRoom()
     {
+        Debug.Log("OnLeftRoom");
         Messenger.ClearActions();
-        ReconnectingGame();
+        //ReconnectingGame();
     }
     public override void OnDisconnected(DisconnectCause cause)
     {
-        ReconnectingGame();
+        Debug.Log("OnDisconnected");
+        //ReconnectingGame();
     }
 
 
@@ -196,8 +202,14 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
     }
     public void ExitGame()
     {
+        Debug.Log("OnExit");
         Messenger.ClearActions();
         PhotonNetwork.Disconnect();
+    }
+
+    public void LoadSceneMenu()
+    {
+        SceneManager.LoadScene(1);
     }
     
 }

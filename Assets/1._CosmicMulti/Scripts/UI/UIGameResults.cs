@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using Candid;
+using CanisterPK.CanisterStats.Models;
+using EdjCase.ICP.Candid.Models;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -52,7 +55,7 @@ public class UIGameResults : MonoBehaviour
     }
    
    
-    public void UpdateResults(bool isWin)
+    public async void UpdateResults(bool isWin)
     {
         MTxtEnergyUsed.text = GameManager.MT.GetEnergyUsed().ToString();
         MTxtEnergyGenerated.text = GameManager.MT.GetEnergyGenerated().ToString("F0");
@@ -71,57 +74,30 @@ public class UIGameResults : MonoBehaviour
         MTxtSecRemaining.text = GameManager.MT.GetSecRemaining().ToString()+" s";
 
         MTxtScore.text = GameManager.MT.GetScore().ToString();
-
-        StaticsResults staticsResults = new StaticsResults();
-        staticsResults.energyUsed = GameManager.MT.GetEnergyUsed();
-        staticsResults.energyGenerated = GameManager.MT.GetEnergyGenerated();
-        staticsResults.energyWasted = GameManager.MT.GetEnergyWasted();
-        staticsResults.energyChargeRate = GameManager.MT.GetEnergyChargeRatePerSec();
-        staticsResults.xpEarned = GameManager.MT.GetScore();
-        staticsResults.damage = GameManager.MT.GetDamage();
-        staticsResults.damageReceived = GameManager.MT.GetDamageReceived();
-        staticsResults.damageCritic = GameManager.MT.GetDamageCritic();
-        staticsResults.damageEvaded = GameManager.MT.GetDamageEvaded();
-        staticsResults.kills = GameManager.MT.GetKills();
-        staticsResults.deploys = GameManager.MT.GetDeploys();
-        staticsResults.secRemaining = GameManager.MT.GetSecRemaining();
-        staticsResults.isWin = isWin ? 1 : 0;
-        staticsResults.faction = GlobalGameData.Instance.GetUserCharacter().Faction;
-        staticsResults.characterID = GlobalGameData.Instance.GetUserCharacter().KeyId;
-        staticsResults.gameMode = (int)GlobalGameData.Instance.GetConfig().currentMatch;
-        staticsResults.botMode = PlayerPrefs.GetInt("BotMode");
-        staticsResults.botDificult = PlayerPrefs.GetInt("Dificulty");
         
-        string json = JsonUtility.ToJson(staticsResults);
-        Debug.Log(json);
+        BasicStats basicStats = new BasicStats();
+        basicStats.EnergyUsed = GameManager.MT.GetEnergyUsed();
+        basicStats.EnergyGenerated = GameManager.MT.GetEnergyGenerated();
+        basicStats.EnergyWasted = GameManager.MT.GetEnergyWasted();
+        basicStats. EnergyChargeRate = GameManager.MT.GetEnergyChargeRatePerSec();
+        basicStats.XpEarned = GameManager.MT.GetScore();
+        basicStats.DamageDealt = GameManager.MT.GetDamage();
+        basicStats.DamageTaken = GameManager.MT.GetDamageReceived(); 
+        basicStats.DamageCritic = GameManager.MT.GetDamageCritic();
+        basicStats.DamageEvaded = GameManager.MT.GetDamageEvaded();
+        basicStats.Kills = GameManager.MT.GetKills();
+        basicStats.Deploys = GameManager.MT.GetDeploys();
+        basicStats.SecRemaining = GameManager.MT.GetSecRemaining();
+        basicStats.WonGame = isWin;
+        basicStats.Faction = (UnboundedUInt)GlobalGameData.Instance.GetUserCharacter().Faction;
+        basicStats.CharacterID = GlobalGameData.Instance.GetUserCharacter().KeyId;
+        basicStats.GameMode = (UnboundedUInt)(int)GlobalGameData.Instance.GetConfig().currentMatch;
+        basicStats.BotMode = (UnboundedUInt) PlayerPrefs.GetInt("BotMode");
+        basicStats.BotDifficulty = (UnboundedUInt) PlayerPrefs.GetInt("Dificulty");
         
-        
-        //Mnadar info al canister  JS_SendStats(json);
-
-
+        var statsSend = await CandidApiManager.Instance.CanisterStats.SaveFinishedGame((UnboundedUInt) PunNetworkManager.NetworkManager.gameId, basicStats);
+        Debug.Log(statsSend);   
     }
-    [System.Serializable]
-    public class StaticsResults
-    {
-        public float energyUsed;
-        public float energyGenerated;
-        public float energyWasted;
-        public float energyChargeRate;
-        public float xpEarned;
-        public float damage;
-        public float damageReceived;
-        public float damageCritic;
-        public float damageEvaded;
-        public float kills;
-        public float deploys;
-        public float secRemaining;
-        public int isWin;
-        public int faction;
-        public string characterID;
-        public int gameMode;
-        public int botMode;
-        public int botDificult;
-    }
-    
+   
    
 }

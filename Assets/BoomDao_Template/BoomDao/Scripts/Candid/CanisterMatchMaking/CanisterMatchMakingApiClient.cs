@@ -103,9 +103,9 @@ namespace CanisterPK.CanisterMatchMaking
 			return reply.ToObjects<bool, string>(this.Converter);
 		}
 
-		public async Task<(bool Arg0, string Arg1)> SetGameOver()
+		public async Task<(bool Arg0, string Arg1)> SetGameOver(Principal arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid();
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "setGameOver", arg);
 			return reply.ToObjects<bool, string>(this.Converter);
 		}
