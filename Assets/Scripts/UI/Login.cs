@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Threading.Tasks;
 using Candid;
 using EdjCase.ICP.Candid.Models;
 using TMPro;
@@ -61,13 +61,16 @@ public class Login : MonoBehaviour
     }
     
     public async void UserLoginSuccessfull()
-    { 
+    {
+        Debug.Log("Antes de getPlayer");
         var playerInfo = await CandidApiManager.Instance.CanisterLogin.GetPlayer();
-
+        Debug.Log("despues de getPlayer");
         if (playerInfo.HasValue)
         {
             CanisterPK.CanisterLogin.Models.Player player = playerInfo.ValueOrDefault;
             Debug.Log(" ID: " + player.Id + " Lv: "+player.Level + " Name: " + player.Name);
+            //await Task.Delay(200);
+            StartCoroutine(GoToMenuScene());
             GoToMenuScene();
         }
         else
@@ -78,10 +81,19 @@ public class Login : MonoBehaviour
         }
     }
 
-    public void GoToMenuScene()
+    IEnumerator GoToMenuScene()
     {
+        Debug.Log("Antes de cambiar de escena");
         LoadingPanel.Instance.ActiveLoadingPanel();
-        SceneManager.LoadScene(mainScene);
+       // SceneManager.LoadScene(mainScene);
+        AsyncOperation loading = SceneManager.LoadSceneAsync(mainScene, LoadSceneMode.Single);
+        
+        while (!loading.isDone)
+        {
+            yield return null;
+            Debug.Log("Estoy cargando: "+ loading.progress);
+            //LocalGameLoadingBar.fillAmount = loading.progress;
+        }
     }
     
     public async void SetPlayerName()
