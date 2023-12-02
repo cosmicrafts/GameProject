@@ -259,7 +259,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6127081699608609184
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -276,7 +276,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1505780870612966925
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +459,7 @@ MonoBehaviour:
   MaxHitPoints: 120
   startAttackDamage: 55
   minTargetDistance: 22
-  energyCost: 10
+  energyCost: 1
   UIUnit: {fileID: 7842426709684183527}
   isBomb: 0
   animator: {fileID: 6127081699608609184}
