@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Newtonsoft.Json;
 using System.Linq;
+using Candid;
+using EdjCase.ICP.Candid.Models;
 using TMPro;
 using UnityEngine.Networking;
 
@@ -47,6 +49,7 @@ public class UIMainMenu : MonoBehaviour
 
     //public UserTokens PlayerTokens; //New user data for cryptocurrencies
 
+    public bool getInfoFromCanister = true;
     public bool defaultPrefabs = true;
     public List<ShipsDataBase> ShipsDataBasesAlliance;
     public List<ShipsDataBase> ShipsDataBasesSpirats;
@@ -101,15 +104,21 @@ public class UIMainMenu : MonoBehaviour
         }
         else
         {
-            Debug.Log("INIT PLAYER DATA");
+            Debug.Log("Ya existe informacion de globalGameData");
             //Load the player data
-            InitPlayerData();
+            //InitPlayerData();
         }
 
-        if (defaultPrefabs)
+        if (getInfoFromCanister)
+        {
+            GetInfoUserFromCanister();
+        }
+        else
         {
             InitPlayerData();
         }
+        
+        
         /*#if UNITY_EDITOR
         InitPlayerData();
         #endif*/
@@ -121,8 +130,30 @@ public class UIMainMenu : MonoBehaviour
        
     }
 
- 
-    //Called from WEB, for set the base player data
+    public async void GetInfoUserFromCanister()
+    {
+        var playerDataRequest = await CandidApiManager.Instance.CanisterLogin.GetMyPlayerData();
+
+        if (playerDataRequest.HasValue)
+        {
+            CanisterPK.CanisterLogin.Models.Player playerData = playerDataRequest.ValueOrDefault;
+            User user = GlobalGameData.Instance.GetUserData();
+            user.Level = (int)playerData.Level;
+            user.NikeName = playerData.Name;
+            user.WalletId = playerData.Id.ToString();
+
+            Debug.Log("Nickname: " + user.NikeName +  " Level: " + user.Level + " WalletId: " + user.WalletId );
+        }
+        else
+        {
+            Debug.Log("playerDataRequest Dont HasValue");
+        }
+        
+        InitPlayerData();
+        
+    }
+
+       //Called from WEB, for set the base player data
     public void GetUserData(string jsonData)
     {
         User user = JsonConvert.DeserializeObject<User>(jsonData);

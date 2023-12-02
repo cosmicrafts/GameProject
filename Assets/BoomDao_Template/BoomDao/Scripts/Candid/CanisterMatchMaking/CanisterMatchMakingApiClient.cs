@@ -72,12 +72,11 @@ namespace CanisterPK.CanisterMatchMaking
 			return reply.ToObjects<Models.SearchStatus, UnboundedUInt, string>(this.Converter);
 		}
 
-		public async Task<(OptionalValue<Models.MatchData> Arg0, UnboundedUInt Arg1)> GetMyMatchData()
+		public async Task<(OptionalValue<Models.FullMatchData> Arg0, UnboundedUInt Arg1)> GetMyMatchData()
 		{
 			CandidArg arg = CandidArg.FromCandid();
-			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "getMyMatchData", arg);
-			CandidArg reply = response.ThrowOrGetReply();
-			return reply.ToObjects<OptionalValue<Models.MatchData>, UnboundedUInt>(this.Converter);
+			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "getMyMatchData", arg);
+			return reply.ToObjects<OptionalValue<Models.FullMatchData>, UnboundedUInt>(this.Converter);
 		}
 
 		public async Task<(UnboundedUInt Arg0, string Arg1)> IsGameAccepted()

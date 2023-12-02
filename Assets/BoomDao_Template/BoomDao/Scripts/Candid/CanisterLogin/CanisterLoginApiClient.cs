@@ -3,6 +3,7 @@ using EdjCase.ICP.Candid.Models;
 using EdjCase.ICP.Candid;
 using System.Threading.Tasks;
 using CanisterPK.CanisterLogin;
+using EdjCase.ICP.Agent.Responses;
 using EdjCase.ICP.Candid.Mapping;
 
 namespace CanisterPK.CanisterLogin
@@ -36,10 +37,26 @@ namespace CanisterPK.CanisterLogin
 			return reply.ToObjects<CanisterLoginApiClient.GetICPBalanceArg0>(this.Converter);
 		}
 
+		public async Task<OptionalValue<Models.Player>> GetMyPlayerData()
+		{
+			CandidArg arg = CandidArg.FromCandid();
+			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "getMyPlayerData", arg);
+			CandidArg reply = response.ThrowOrGetReply();
+			return reply.ToObjects<OptionalValue<Models.Player>>(this.Converter);
+		}
+
 		public async Task<OptionalValue<Models.Player>> GetPlayer()
 		{
 			CandidArg arg = CandidArg.FromCandid();
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "getPlayer", arg);
+			return reply.ToObjects<OptionalValue<Models.Player>>(this.Converter);
+		}
+
+		public async Task<OptionalValue<Models.Player>> GetPlayerData(Principal arg0)
+		{
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "getPlayerData", arg);
+			CandidArg reply = response.ThrowOrGetReply();
 			return reply.ToObjects<OptionalValue<Models.Player>>(this.Converter);
 		}
 

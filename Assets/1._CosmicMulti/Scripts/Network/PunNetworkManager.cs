@@ -80,28 +80,28 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
                         
         if (matchDataRequest.Arg0.HasValue)
         {
-            CanisterPK.CanisterMatchMaking.Models.MatchData matchData = matchDataRequest.Arg0.ValueOrDefault;
+            CanisterPK.CanisterMatchMaking.Models.FullMatchData matchData = matchDataRequest.Arg0.ValueOrDefault;
             nameRoom = "Game: " + matchData.GameId;
             gameId = (int)matchData.GameId;
             
             User UserData1 = new User();
             User UserData2 = new User();
 
-            CanisterPK.CanisterMatchMaking.Models.PlayerInfo tempData1 = new PlayerInfo();
-            CanisterPK.CanisterMatchMaking.Models.PlayerInfo tempData2 = new PlayerInfo();
+            CanisterPK.CanisterMatchMaking.Models.FullPlayerInfo tempData1 = new FullPlayerInfo();
+            CanisterPK.CanisterMatchMaking.Models.FullPlayerInfo tempData2 = new FullPlayerInfo();
 
                                               tempData1 = matchData.Player1;
             if (matchData.Player2.HasValue) { tempData2 = matchData.Player2.ValueOrDefault; }
 
             UserData1.WalletId = tempData1.Id.ToString();
-            UserData1.NikeName = "Falta este valor";
+            UserData1.NikeName = tempData1.PlayerName;
             UserData1.Level = (int) tempData1.Elo;
             UIMatchMaking.MatchPlayerData matchPlayerData1 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData1.PlayerGameData);
             UserData1.CharacterNFTId = matchPlayerData1.userAvatar;
             UserData1.DeckNFTsKeyIds = matchPlayerData1.listSavedKeys;
           
             UserData2.WalletId = tempData2.Id.ToString();
-            UserData2.NikeName = "Falta este valor";
+            UserData2.NikeName = tempData2.PlayerName;
             UserData2.Level = (int) tempData2.Elo;
             UIMatchMaking.MatchPlayerData matchPlayerData2 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData2.PlayerGameData);
             UserData2.CharacterNFTId = matchPlayerData2.userAvatar;

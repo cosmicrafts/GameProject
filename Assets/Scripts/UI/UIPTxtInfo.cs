@@ -67,8 +67,10 @@ public class UIPTxtInfo : MonoBehaviour
                 break;
             case PlayerProperty.Level:
                 {
-                    UserProgress userProgress = GlobalGameData.Instance.GetUserProgress();
-                    SetText($"{Lang.GetText("mn_lvl")} {userProgress.GetLevel()}");
+                    //UserProgress userProgress = GlobalGameData.Instance.GetUserProgress();
+                    //SetText($"{Lang.GetText("mn_lvl")} {userProgress.GetLevel()}");
+                    
+                    SetText($"{Lang.GetText("mn_lvl")} {GlobalGameData.Instance.GetUserData().Level}");
                 }
                 break;
             case PlayerProperty.Xp:
