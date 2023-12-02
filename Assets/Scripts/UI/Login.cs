@@ -69,9 +69,9 @@ public class Login : MonoBehaviour
         {
             CanisterPK.CanisterLogin.Models.Player player = playerInfo.ValueOrDefault;
             Debug.Log(" ID: " + player.Id + " Lv: "+player.Level + " Name: " + player.Name);
-            //await Task.Delay(200);
-            StartCoroutine(GoToMenuScene());
+            await Task.Delay(2000);
             GoToMenuScene();
+
         }
         else
         {
@@ -81,19 +81,11 @@ public class Login : MonoBehaviour
         }
     }
 
-    IEnumerator GoToMenuScene()
+    public void GoToMenuScene()
     {
         Debug.Log("Antes de cambiar de escena");
         LoadingPanel.Instance.ActiveLoadingPanel();
-       // SceneManager.LoadScene(mainScene);
-        AsyncOperation loading = SceneManager.LoadSceneAsync(mainScene, LoadSceneMode.Single);
-        
-        while (!loading.isDone)
-        {
-            yield return null;
-            Debug.Log("Estoy cargando: "+ loading.progress);
-            //LocalGameLoadingBar.fillAmount = loading.progress;
-        }
+        SceneManager.LoadScene(1);
     }
     
     public async void SetPlayerName()
