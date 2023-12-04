@@ -111,7 +111,9 @@ public class GameManager : MonoBehaviour
         foreach (HeroManager hero in heroesPrefabs)
         {   uiGame.previewMeshs.Add(hero.previewMeshObject);
             uiGame.PreviewMaterials.Add(hero.transparentMaterial);
-            uiGame.CardEnergyCost.Add(hero.energyCost); }
+            uiGame.CardEnergyCost.Add(hero.energyCost); 
+            uiGame.CardSprites.Add(hero.spriteIcon);
+        }
         
         uiGame.SetGroupIndex(GroupIndex);         //Init UIbyIndex
         MT = new GameMetrics(); MT.InitMetrics(); //Init Metrics

@@ -22,6 +22,7 @@ public class UIGame : MonoBehaviour
     [HideInInspector] public List<GameObject> previewMeshs = new List<GameObject>();
     [HideInInspector] public List<Material> PreviewMaterials = new List<Material>();
     [HideInInspector] public List<int> CardEnergyCost = new List<int>();
+    [HideInInspector] public List<Sprite> CardSprites = new List<Sprite>();
     
     [Header("EnergyUI")]
     public TMP_Text EnergyLabel;
@@ -61,6 +62,7 @@ public class UIGame : MonoBehaviour
             //Fill Button UI INFO
             heroButton.EnergyCost = CardEnergyCost[heroButton.Index + (groupIndex * 8)];
             heroButton.TextCost.text = heroButton.EnergyCost.ToString();
+            heroButton.SpIcon.sprite = CardSprites[heroButton.Index + (groupIndex * 8)];
         }
         
     }
