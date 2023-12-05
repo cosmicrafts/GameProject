@@ -95,11 +95,11 @@ public abstract class GameObjectManager : MonoBehaviour
     
     public bool CanShoot_IsInRange()
     {
-        Debug.Log("Estoy en rango?Mi cooldown: " + cooldown);
+        /*Debug.Log("Estoy en rango?Mi cooldown: " + cooldown);
         if (TargetObject && GetType() == typeof(HeroBombManager))
         {
             Debug.Log((Position - TargetObject.Position).SqrMagnitude +  "  " + MinTargetDistancePow);
-        }
+        }*/
         
         return TargetObject && (Position - TargetObject.Position).SqrMagnitude < MinTargetDistancePow + 1;
     }
@@ -113,8 +113,11 @@ public abstract class GameObjectManager : MonoBehaviour
                 timePass += Time.deltaTime;
                 if (timePass >= cooldown)
                 {
+                    if (CanShoot_IsInRange()) 
+                    { 
                     OnMustAttack?.Invoke(this);
-                    if (CanShoot_IsInRange()) { timePass = 0.0f; }
+                    timePass = 0.0f; 
+                    }
                 }
             }
             yield return new WaitForEndOfFrame();

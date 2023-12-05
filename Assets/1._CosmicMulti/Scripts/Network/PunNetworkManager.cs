@@ -69,7 +69,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
         while(!GameManager.gameIsEnd)
         {
             UpdateConnecting();
-            Debug.Log("UpdateConnecting");
+            //Debug.Log("UpdateConnecting");
             yield return new WaitForSeconds(1.0f);
         }
     }
