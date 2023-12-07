@@ -18,8 +18,8 @@ public class UIGame : MonoBehaviour
     [SerializeField] private LayerMask uiMask;
     
     [SerializeField] private Transform heroSpawnPoint;
-    private GameObject heroObjPrev;
-    [HideInInspector] public List<GameObject> previewMeshs = new List<GameObject>();
+    private GameObjectManager heroObjPrev;
+    [HideInInspector] public List<GameObjectManager> previewGameObjectMeshs = new List<GameObjectManager>();
     [HideInInspector] public List<Material> PreviewMaterials = new List<Material>();
     [HideInInspector] public List<int> CardEnergyCost = new List<int>();
     [HideInInspector] public List<Sprite> CardSprites = new List<Sprite>();
@@ -123,12 +123,9 @@ public class UIGame : MonoBehaviour
     {
         if (heroObjPrev != null) { Destroy(heroObjPrev); }
         
-        heroObjPrev = Instantiate(previewMeshs[index], heroSpawnPoint);
-
-        Animator animationInPrefab = heroObjPrev.GetComponent<Animator>();
-        if(animationInPrefab != null) { DestroyImmediate(animationInPrefab, true);}
+        heroObjPrev = Instantiate(previewGameObjectMeshs[index], heroSpawnPoint);
         
-        SkinnedMeshRenderer skinnedRenderer = heroObjPrev.GetComponentInChildren<SkinnedMeshRenderer>();
+        SkinnedMeshRenderer skinnedRenderer = heroObjPrev.previewMeshObject.GetComponentInChildren<SkinnedMeshRenderer>();
         if (skinnedRenderer)
         {  
             Material[] mats = skinnedRenderer.materials;
@@ -136,11 +133,18 @@ public class UIGame : MonoBehaviour
             skinnedRenderer.materials = mats;
         }
         
+        HeroManager previewHero = heroObjPrev.GetComponent<HeroManager>();
+        if(previewHero){ previewHero.portalGameobject.SetActive(false); }
+            
+        Animator animationInPrefab = heroObjPrev.GetComponent<Animator>();
+        if(animationInPrefab != null) { DestroyImmediate(animationInPrefab, true);}
+        
+        
     }
 
     IEnumerator OnSendInfoToDeployShip()
     {
-        GameObject tempObjPreview = heroObjPrev; heroObjPrev = null;
+        GameObject tempObjPreview = heroObjPrev.gameObject; heroObjPrev = null;
         tempObjPreview.transform.SetParent(null);
         
         float time = 0.0f;

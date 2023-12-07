@@ -109,7 +109,7 @@ public class GameManager : MonoBehaviour
         Debug.LogWarning("group index " + GroupIndex);
 
         foreach (HeroManager hero in heroesPrefabs)
-        {   uiGame.previewMeshs.Add(hero.previewMeshObject);
+        {   uiGame.previewGameObjectMeshs.Add(hero);
             uiGame.PreviewMaterials.Add(hero.transparentMaterial);
             uiGame.CardEnergyCost.Add(hero.energyCost); 
             uiGame.CardSprites.Add(hero.spriteIcon);

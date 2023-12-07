@@ -46,7 +46,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1312006751872512917
 Transform:
   m_ObjectHideFlags: 0
@@ -394,6 +394,11 @@ MonoBehaviour:
   timePass: 0
   cooldown: 0.9
   initVelocity: 1
+  portalGameobject: {fileID: 4363390563295469113}
+  propulsorsGameobject:
+  - {fileID: 8131195478146763703}
+  - {fileID: 278012841220718091}
+  - {fileID: 4472043666190990945}
   shotVelocity: 12
   bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
     type: 3}
@@ -912,7 +917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8418645044614977226
 Transform:
   m_ObjectHideFlags: 0
@@ -1705,7 +1710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7644702990418013128
 Transform:
   m_ObjectHideFlags: 0
@@ -2293,6 +2298,12 @@ PrefabInstance:
 --- !u!4 &4363390563295199317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 409388, guid: 633da1bf183184c4692a9fda643c798c,
+    type: 3}
+  m_PrefabInstance: {fileID: 4363390563295608697}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4363390563295469113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 139584, guid: 633da1bf183184c4692a9fda643c798c,
     type: 3}
   m_PrefabInstance: {fileID: 4363390563295608697}
   m_PrefabAsset: {fileID: 0}

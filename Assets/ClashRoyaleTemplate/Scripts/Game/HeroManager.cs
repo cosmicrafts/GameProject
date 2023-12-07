@@ -12,9 +12,16 @@ public abstract class HeroManager : GameObjectManager
     
     [Header("SpaceShipMovement Parameters: ")]
     [SerializeField] private int initVelocity = 2;
-
+    [SerializeField] public GameObject portalGameobject;
+    [SerializeField] private GameObject[] propulsorsGameobject;
     private void Update()
     {
+        foreach (GameObject propulsor in propulsorsGameobject)
+        {
+            propulsor.SetActive(oldPosition != newPosition);
+        }
+       
+        
         if (TargetObject)
         {
             updtateTime += Time.deltaTime;
@@ -31,6 +38,7 @@ public abstract class HeroManager : GameObjectManager
         Velocity = initVelocity;
         oldPosition = new Vector2(initPosition.x, initPosition.z);
         newPosition = oldPosition;
+        portalGameobject.SetActive(true);
     }
     
     public bool GetNewPosition(List<SimpleVector2> staticPositions, List<SimpleVector2> dynamicPositions, out SimpleVector2 position)
