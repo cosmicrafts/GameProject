@@ -25,7 +25,6 @@ public abstract class HeroManager : GameObjectManager
         if (TargetObject && isDeployReady)
         {
             updtateTime += Time.deltaTime;
-            Debug.Log(updtateTime);
             Vector2 position = Vector2.Lerp(oldPosition, newPosition, updtateTime);
             transform.position = new Vector3(position.x, 0.0f, position.y);
             transform.LookAt(lookAtPosition, Vector3.up);
