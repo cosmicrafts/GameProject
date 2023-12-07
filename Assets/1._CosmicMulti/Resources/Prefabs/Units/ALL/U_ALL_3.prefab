@@ -424,7 +424,7 @@ Transform:
   m_GameObject: {fileID: 2957334457353352149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4325721830119239780}
@@ -452,9 +452,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MyOwnerGroup: 0
-  MaxHitPoints: 180
-  startAttackDamage: 25
-  minTargetDistance: 4
+  MaxHitPoints: 6
+  startAttackDamage: 7
+  minTargetDistance: 1
   energyCost: 1
   spriteIcon: {fileID: 21300000, guid: 548e6257d9815a14eac2da685e8dd65b, type: 3}
   UIUnit: {fileID: 7842426709684183527}
@@ -464,9 +464,9 @@ MonoBehaviour:
   previewMeshObject: {fileID: 5587094503527706463}
   transparentMaterial: {fileID: 2100000, guid: 56af709ab291f8d4cb6d60c9b55432a5, type: 2}
   timePass: 0
-  cooldown: 0.75
+  cooldown: 0.6
   initVelocity: 1
-  shotVelocity: 24
+  shotVelocity: 12
   bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
     type: 3}
   shotPivot: {fileID: 4325721830119239780}

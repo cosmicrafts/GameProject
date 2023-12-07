@@ -77,7 +77,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1312006751872512917
 Transform:
   m_ObjectHideFlags: 0
@@ -216,8 +216,8 @@ Transform:
   m_GameObject: {fileID: 1410083914823236379}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.83, z: -2.08}
-  m_LocalScale: {x: 0.95581, y: 1.1381785, z: 0.95581}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7674501319068008245}
   - {fileID: 6900178359997903244}
@@ -430,7 +430,7 @@ Transform:
   m_GameObject: {fileID: 2957334457353352149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.78, y: 0.78, z: 0.78}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4325721830119239780}
@@ -459,9 +459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MyOwnerGroup: 0
-  MaxHitPoints: 250
-  startAttackDamage: 30
-  minTargetDistance: 4
+  MaxHitPoints: 10
+  startAttackDamage: 6
+  minTargetDistance: 5
   energyCost: 1
   spriteIcon: {fileID: 21300000, guid: 2cc4dab451797304fbdc7cdffc5ab784, type: 3}
   UIUnit: {fileID: 7842426709684183527}
@@ -471,9 +471,9 @@ MonoBehaviour:
   previewMeshObject: {fileID: 1410083914823236379}
   transparentMaterial: {fileID: 2100000, guid: 398fb65cd133355419b3e0ee9b10be96, type: 2}
   timePass: 0
-  cooldown: 0.75
+  cooldown: 1.5
   initVelocity: 1
-  shotVelocity: 24
+  shotVelocity: 6
   bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
     type: 3}
   shotPivot: {fileID: 4325721830119239780}
@@ -684,7 +684,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8418645044614977226
 Transform:
   m_ObjectHideFlags: 0
@@ -1043,7 +1043,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7644702990418013128
 Transform:
   m_ObjectHideFlags: 0
