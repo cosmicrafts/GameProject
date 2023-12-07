@@ -96,11 +96,11 @@ public class GameManager : MonoBehaviour
             List<TowerManager> simpleTowers = groups[i].Towers;
             for (int x = 0; x < simpleTowers.Count; x++)
             {
-                SimpleVector2 towerPosition = groups[i].Positions[0][(x+1) * arena.sizeHalf.x];
+                SimpleVector2 towerPosition = groups[i].Positions[2][(x+1) * arena.sizeHalf.x];
                 simpleTowers[x].Init(i, towerPosition, null, materials[i]);
                 simpleTowers[x].OnMustAttack+= UpdateHeroShooter;
                 
-                SimpleVector2 towerEnemyPosition =  groups[i].Positions[1][(x+1) * arena.sizeHalf.x];
+                SimpleVector2 towerEnemyPosition =  groups[i].Positions[3][(x+1) * arena.sizeHalf.x];
                 simpleTowers[x].transform.LookAt(new Vector3(towerEnemyPosition.x, 0.0f, towerEnemyPosition.z) , Vector3.up);
                 
                 dynamicPositions.Add(towerPosition);
