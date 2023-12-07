@@ -22,9 +22,10 @@ public abstract class HeroManager : GameObjectManager
         }
        
         
-        if (TargetObject)
+        if (TargetObject && isDeployReady)
         {
             updtateTime += Time.deltaTime;
+            Debug.Log(updtateTime);
             Vector2 position = Vector2.Lerp(oldPosition, newPosition, updtateTime);
             transform.position = new Vector3(position.x, 0.0f, position.y);
             transform.LookAt(lookAtPosition, Vector3.up);
@@ -44,6 +45,7 @@ public abstract class HeroManager : GameObjectManager
     public bool GetNewPosition(List<SimpleVector2> staticPositions, List<SimpleVector2> dynamicPositions, out SimpleVector2 position)
     {
         position = Position;
+        if (!isDeployReady) {return false;}
         if(initVelocity == 0) { return false; }
         if (TargetObject == null) { return false; }
 

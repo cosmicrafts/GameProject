@@ -292,6 +292,8 @@ public class GameManager : MonoBehaviour
         HeroManager newHero = Instantiate(heroesPrefabs[index]);
         arena.AddHero(newHero);
         newHero.Init(groupIndex, heroPosition, GetTargetTowerOrHero(newHero, heroPosition, otherGroup), materials[groupIndex]);
+        newHero.transform.RotateAround(newHero.transform.position, transform.up, 180f * groupIndex);
+        
         newHero.OnMustAttack += UpdateHeroShooter;
         
         if (!newHero.IsBomb)

@@ -37,6 +37,11 @@ public abstract class GameObjectManager : MonoBehaviour
     [HideInInspector]public float timePass = 0.0f;
     [SerializeField] public float cooldown = 2.5f;
     
+    [Header("Delay in Deploy parameters")]
+    [HideInInspector]public float timeDelayToReady = 1.5f;
+    [SerializeField] public bool isDeployReady = false;
+    
+    
     public virtual void Init(int groupIndex, SimpleVector2 initPosition, GameObjectManager initTargetObject, Material groupMaterial)
     {
         MyOwnerGroup = groupIndex;
@@ -51,8 +56,11 @@ public abstract class GameObjectManager : MonoBehaviour
         IsBomb = isBomb;
 
         if (!isBomb) { StartCoroutine(ShouldAttack_Routine()); }
+        if (!isBomb) { StartCoroutine(TimerDeployDelay_Routine()); }
         
         IsInitialized = true;
+        
+        
     }
     public void SetTargetObject(GameObjectManager targetObject)
     {
@@ -104,11 +112,30 @@ public abstract class GameObjectManager : MonoBehaviour
         return TargetObject && (Position - TargetObject.Position).SqrMagnitude < MinTargetDistancePow + 1;
     }
     
+    private IEnumerator TimerDeployDelay_Routine()
+    {
+        float timeTranscurred = 0.0f;
+        while (!isDeployReady)
+        {
+            if (!IsPaused && IsInitialized)
+            {
+                timeTranscurred += Time.deltaTime;
+                if (timeTranscurred >= timeDelayToReady)
+                {
+                    isDeployReady = true;
+                    yield break;
+                }
+        
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+    
     private IEnumerator ShouldAttack_Routine()
     {
         while (true)
         {
-            if (!IsPaused && IsInitialized)
+            if (!IsPaused && IsInitialized && isDeployReady)
             {
                 timePass += Time.deltaTime;
                 if (timePass >= cooldown)
