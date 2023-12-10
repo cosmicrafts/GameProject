@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Newtonsoft.Json;
+
 
 [System.Serializable]
 public class EventList
@@ -24,6 +26,7 @@ public class Choice
     public string choiceDescription;
     public List<int> outcomeIndexes; // List of potential outcome indexes
 }
+
 
 public class EventHandling : MonoBehaviour
 {
@@ -101,21 +104,19 @@ public class EventHandling : MonoBehaviour
         }
     }
 
-        public PlayerInventory playerInventory;
-        public void MakeChoice(int choiceIndex)
+       public void MakeChoice(int choiceIndex)
+{
+    int nextEventIndex;
+    do
     {
-        int nextEventIndex;
-        do
-        {
-            nextEventIndex = Random.Range(0, events.Count); // Randomly select an event index
-        } 
-        while (nextEventIndex == currentEventIndex); // Ensure the next event is different from the current one
+        nextEventIndex = Random.Range(0, events.Count); // Randomly select an event index
+    } 
+    while (nextEventIndex == currentEventIndex); // Ensure the next event is different from the current one
 
-        
-        
-        currentEventIndex = nextEventIndex;
-        LoadEvent(currentEventIndex);
-    }
+    currentEventIndex = nextEventIndex;
+    LoadEvent(currentEventIndex);
+}
+
 
     void SetupButtonListeners()
     {
