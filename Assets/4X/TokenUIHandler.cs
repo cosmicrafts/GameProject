@@ -102,6 +102,18 @@ public class TokenUIHandler : MonoBehaviour
         }
     }
 
+    public string GetTokenBalance(string tokenName)
+    {
+        if (tokenDictionary.TryGetValue(tokenName, out TokenData tokenData))
+        {
+            if (tokenData.balances.TryGetValue("Address1", out string balance))
+            {
+                return balance;
+            }
+        }
+        return "0"; // Return 0 if token not found
+    }
+
     public void UpdateTokenData(string tokenName, string newBalance)
     {
         if (tokenDictionary.TryGetValue(tokenName, out TokenData tokenData))
