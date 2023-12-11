@@ -86,6 +86,7 @@ namespace Candid
 
         private void Start()
         {
+            /*
             if (PlayerPrefs.HasKey("authTokenId"))
             {
                 Debug.Log("Ya tení login guardado, estoy registrando ApiCandis");
@@ -96,6 +97,8 @@ namespace Candid
             {
                 Debug.Log("No tengo login guardado");
             }
+            */
+            
         }
 
 
