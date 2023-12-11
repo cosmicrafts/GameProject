@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Newtonsoft.Json;
+using UnityEngine.UI; // Required for using UI components
 
 public class TokenUIHandler : MonoBehaviour
 {
+    // Define a class to hold token data
     [System.Serializable]
     public class TokenData
     {
@@ -13,9 +15,11 @@ public class TokenUIHandler : MonoBehaviour
         public string tokenSymbol;
         public int decimals;
         public string totalSupply;
-        public Dictionary<string, string> balances;
+        public string imageUrl; // Path to the token's image
+        public Dictionary<string, string> balances; // Balances associated with addresses
     }
 
+    // Define a class to hold a list of TokenData
     [System.Serializable]
     public class TokenList
     {
@@ -23,14 +27,15 @@ public class TokenUIHandler : MonoBehaviour
     }
 
     private Dictionary<string, TokenData> tokenDictionary = new Dictionary<string, TokenData>();
-    private Dictionary<string, GameObject> tokenUIInstances = new Dictionary<string, GameObject>();
-    public GameObject tokenTemplate;
+    public GameObject tokenTemplate; // Prefab for displaying tokens
 
     void Start()
     {
+        // Start loading token data asynchronously
         StartCoroutine(LoadTokenDataAsync("4X/Tokens"));
     }
 
+    // Coroutine to load token data from a JSON file
     IEnumerator LoadTokenDataAsync(string path)
     {
         ResourceRequest request = Resources.LoadAsync<TextAsset>(path);
@@ -38,10 +43,9 @@ public class TokenUIHandler : MonoBehaviour
 
         if (request.asset is TextAsset fileData)
         {
-            Debug.Log("JSON data loaded asynchronously.");
             TokenList tokenList = JsonConvert.DeserializeObject<TokenList>(fileData.text);
             ProcessTokenList(tokenList);
-            tokenTemplate.SetActive(false);
+            tokenTemplate.SetActive(false); // Deactivate the template as it's only used for instantiation
         }
         else
         {
@@ -49,31 +53,34 @@ public class TokenUIHandler : MonoBehaviour
         }
     }
 
+    // Process the list of tokens and create UI elements for each
     void ProcessTokenList(TokenList tokenList)
     {
         foreach (var tokenData in tokenList.tokens)
         {
             tokenDictionary[tokenData.tokenName] = tokenData;
-            GameObject tokenUI = CreateTokenUI(tokenData);
-            tokenUIInstances[tokenData.tokenName] = tokenUI;
+            CreateAndDisplayTokenUI(tokenData);
         }
     }
 
-    GameObject CreateTokenUI(TokenData tokenData)
+    // Create and display UI elements for a given token
+    void CreateAndDisplayTokenUI(TokenData tokenData)
     {
-        GameObject tokenInstance = Instantiate(tokenTemplate, transform);
-        tokenInstance.SetActive(true);
-        UpdateTokenUI(tokenInstance, tokenData);
-        return tokenInstance;
+        GameObject tokenUI = Instantiate(tokenTemplate, transform);
+        tokenUI.SetActive(true);
+        UpdateTokenUI(tokenUI, tokenData);
     }
 
-    void UpdateTokenUI(GameObject tokenInstance, TokenData tokenData)
+    // Update the UI elements with token data
+    void UpdateTokenUI(GameObject tokenUI, TokenData tokenData)
     {
-        SetTextComponent(tokenInstance, "Name", tokenData.tokenName);
-        SetTextComponent(tokenInstance, "Symbol", tokenData.tokenSymbol);
-        SetBalanceComponent(tokenInstance, tokenData);
+        SetTextComponent(tokenUI, "Name", tokenData.tokenName);
+        SetTextComponent(tokenUI, "Symbol", tokenData.tokenSymbol);
+        SetBalanceComponent(tokenUI, tokenData);
+        SetImageComponent(tokenUI, "Image", tokenData.imageUrl); // Set the token image
     }
 
+    // Helper method to set text components
     void SetTextComponent(GameObject parent, string childName, string text)
     {
         var textComponent = parent.transform.Find(childName)?.GetComponent<TextMeshProUGUI>();
@@ -81,6 +88,7 @@ public class TokenUIHandler : MonoBehaviour
         else Debug.LogError($"{childName} Text component not found for: {text}");
     }
 
+    // Helper method to set the balance text
     void SetBalanceComponent(GameObject parent, TokenData tokenData)
     {
         var balanceText = parent.transform.Find("Balance")?.GetComponent<TextMeshProUGUI>();
@@ -102,6 +110,23 @@ public class TokenUIHandler : MonoBehaviour
         }
     }
 
+    // Helper method to set the image component
+    void SetImageComponent(GameObject parent, string childName, string imagePath)
+    {
+        var imageComponent = parent.transform.Find(childName)?.GetComponent<Image>();
+        if (imageComponent != null)
+        {
+            Sprite sprite = Resources.Load<Sprite>(imagePath);
+            if (sprite != null) imageComponent.sprite = sprite;
+            else Debug.LogError($"Image not found at path: {imagePath}");
+        }
+        else
+        {
+            Debug.LogError($"{childName} Image component not found for: {imagePath}");
+        }
+    }
+
+    // Public method to get the balance of a token
     public string GetTokenBalance(string tokenName)
     {
         if (tokenDictionary.TryGetValue(tokenName, out TokenData tokenData))
@@ -114,14 +139,20 @@ public class TokenUIHandler : MonoBehaviour
         return "0"; // Return 0 if token not found
     }
 
+    // Public method to update token data and UI
     public void UpdateTokenData(string tokenName, string newBalance)
     {
         if (tokenDictionary.TryGetValue(tokenName, out TokenData tokenData))
         {
             tokenData.balances["Address1"] = newBalance;
-            if (tokenUIInstances.TryGetValue(tokenName, out GameObject tokenUI))
+            // Find and update the UI object
+            foreach (Transform child in transform)
             {
-                UpdateTokenUI(tokenUI, tokenData);
+                if (child.name == tokenName)
+                {
+                    UpdateTokenUI(child.gameObject, tokenData);
+                    break;
+                }
             }
         }
         else
