@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     
     public long GameTime { get; private set; }
     private float secondsPass;
+    private float secondsPassToUpdateHeroes;
     private float myGameTime;
     public float otherGameTime;
     private List<SimpleVector2> dynamicPositions;
@@ -221,6 +222,14 @@ public class GameManager : MonoBehaviour
             secondsPass = 0.0f;
             UpdateGame();
         }
+        
+        secondsPassToUpdateHeroes += Time.deltaTime;;
+        if (secondsPassToUpdateHeroes >= 0.1f)
+        {
+            secondsPassToUpdateHeroes = 0.0f;
+            UpdateHeroesTarget(groups[0], groups[1]);
+            UpdateHeroesTarget(groups[1], groups[0]);
+        }
     }
     private Coroutine waitForOtherPlayer;
     IEnumerator WaitForOtherPlayer(float waitingTime)
@@ -265,8 +274,8 @@ public class GameManager : MonoBehaviour
         {
             CreateHero(groups[1].HeroesWaitingList[GameTime], 1, groups[1], groups[0]);
         }
-        UpdateHeroes(groups[0], groups[1]);
-        UpdateHeroes(groups[1], groups[0]);
+        UpdateHeroesPosition(groups[0], groups[1]);
+        UpdateHeroesPosition(groups[1], groups[0]);
     }
     private void AddEnergy(float value)
     {
@@ -450,13 +459,36 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    private void UpdateHeroes(Group group1, Group group2)
+    private void UpdateHeroesTarget(Group group1, Group group2)
     {
         foreach (HeroManager hero in group1.Heroes)
         {
-            GameObjectManager target = GetTargetTowerOrHero(hero, hero.Position, group2);
+            GameObjectManager target = null;
+                
+            if (hero.TargetObject)
+            {
+                if (hero.TargetObject.gameObject.GetComponent<TowerManager>())
+                {
+                    target = GetTargetTowerOrHero(hero, hero.Position, group2);
+                }
+            }
+            else
+            {
+                 target = GetTargetTowerOrHero(hero, hero.Position, group2);
+            }
+
             if (target) { hero.SetTargetObject(target); }
-           
+        }
+        foreach (TowerManager tower in group1.Towers)
+        {
+            HeroManager target = GetTargetHero(tower, group2.Heroes, out int distance);
+            if(target) {tower.SetTargetObject(target);}
+        }
+    }
+    private void UpdateHeroesPosition(Group group1, Group group2)
+    {
+        foreach (HeroManager hero in group1.Heroes)
+        {
             if (hero.GetNewPosition(staticPositions, dynamicPositions, out SimpleVector2 newPosition))
             {
                 dynamicPositions.Remove(hero.Position);
@@ -465,11 +497,7 @@ public class GameManager : MonoBehaviour
             }
             hero.UpdateLookAtPosition(newPosition);
         }
-        foreach (TowerManager tower in group1.Towers)
-        {
-            HeroManager target = GetTargetHero(tower, group2.Heroes, out int distance);
-            if(target) {tower.SetTargetObject(target);}
-        }
+        
     }
     private IEnumerator OnWinOrLose(bool isWin)
     {
