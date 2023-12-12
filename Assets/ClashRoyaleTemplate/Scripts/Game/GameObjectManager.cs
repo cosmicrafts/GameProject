@@ -10,7 +10,6 @@ public abstract class GameObjectManager : MonoBehaviour
     public bool IsInitialized { get; set; } = false;
     [HideInInspector] public bool IsPaused = false;
     [HideInInspector] public int MyOwnerGroup;
-    public SimpleVector2 Position { get; protected set; }
     public int HitPoints { get; private set; }
     public int AttackDamage { get; private set; }
     public int MinTargetDistancePow { get; private set; }
@@ -47,7 +46,6 @@ public abstract class GameObjectManager : MonoBehaviour
         MyOwnerGroup = groupIndex;
         HitPoints = MaxHitPoints;
         AttackDamage = startAttackDamage;
-        Position = initPosition;
         TargetObject = initTargetObject;
         transform.position = new Vector3(initPosition.x, 0.0f, initPosition.z);
         if (UIUnit) { UIUnit.SetColorBars(groupMaterial.color); }
@@ -109,7 +107,7 @@ public abstract class GameObjectManager : MonoBehaviour
             Debug.Log((Position - TargetObject.Position).SqrMagnitude +  "  " + MinTargetDistancePow);
         }*/
         
-        return TargetObject && (Position - TargetObject.Position).SqrMagnitude < MinTargetDistancePow + 1;
+        return TargetObject && (transform.position - TargetObject.transform.position).sqrMagnitude < MinTargetDistancePow + 1;
     }
     
     private IEnumerator TimerDeployDelay_Routine()

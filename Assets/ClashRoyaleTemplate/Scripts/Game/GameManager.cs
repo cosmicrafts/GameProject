@@ -26,8 +26,7 @@ public class GameManager : MonoBehaviour
     private float secondsPassToUpdateHeroes;
     private float myGameTime;
     public float otherGameTime;
-    private List<SimpleVector2> dynamicPositions;
-    private List<SimpleVector2> staticPositions;
+    
 
     public int GroupIndex { get; set; } = 0;
     public Group MyGroup { get; private set; }
@@ -47,15 +46,12 @@ public class GameManager : MonoBehaviour
         if(IsInitialized) { return; }
         
         uiGame.OnPaused(false);
-        dynamicPositions = new List<SimpleVector2>(0);
-        staticPositions = new List<SimpleVector2>(0);
         //FillArrayStaticPosition
         for (int i = -arena.sizeHalf.x; i <= arena.sizeHalf.x; i++)
         {
             for (int j = -arena.sizeHalf.z; j <= arena.sizeHalf.z; j++)
             {
                 SimpleVector2 position = new SimpleVector2(i, j);
-                staticPositions.Add(position);
             }
         }
 
@@ -104,7 +100,6 @@ public class GameManager : MonoBehaviour
                 SimpleVector2 towerEnemyPosition =  groups[i].Positions[3][(x+1) * arena.sizeHalf.x];
                 simpleTowers[x].transform.LookAt(new Vector3(towerEnemyPosition.x, 0.0f, towerEnemyPosition.z) , Vector3.up);
                 
-                dynamicPositions.Add(towerPosition);
             }
         }
         Debug.LogWarning("group index " + GroupIndex);
@@ -274,8 +269,6 @@ public class GameManager : MonoBehaviour
         {
             CreateHero(groups[1].HeroesWaitingList[GameTime], 1, groups[1], groups[0]);
         }
-        UpdateHeroesPosition(groups[0], groups[1]);
-        UpdateHeroesPosition(groups[1], groups[0]);
     }
     private void AddEnergy(float value)
     {
@@ -300,21 +293,21 @@ public class GameManager : MonoBehaviour
     {
         HeroManager newHero = Instantiate(heroesPrefabs[index]);
         arena.AddHero(newHero);
-        newHero.Init(groupIndex, heroPosition, GetTargetTowerOrHero(newHero, heroPosition, otherGroup), materials[groupIndex]);
+        newHero.Init(groupIndex, heroPosition, GetTargetTowerOrHero(newHero.transform.position, otherGroup), materials[groupIndex]);
         newHero.transform.RotateAround(newHero.transform.position, transform.up, 180f * groupIndex);
         
         newHero.OnMustAttack += UpdateHeroShooter;
         
         if (!newHero.IsBomb)
         {
-            dynamicPositions.Add(heroPosition);
+           // dynamicPositions.Add(heroPosition);
         }
         return newHero;
     }
-    private GameObjectManager GetTargetTowerOrHero(HeroManager newHero, SimpleVector2 heroPosition, Group otherGroup)
+    private GameObjectManager GetTargetTowerOrHero(Vector3 heroPosition, Group otherGroup)
     {
-        GameObjectManager target = GetTargetTower(heroPosition, otherGroup.Towers, out int distance);
-        HeroManager otherHero = GetTargetHero(newHero, heroPosition, otherGroup.Heroes, out int heroDistance);
+        GameObjectManager target = GetTargetTower(heroPosition, otherGroup.Towers, out float distance);
+        HeroManager otherHero = GetTargetHero(heroPosition, otherGroup.Heroes, out float heroDistance);
         if (otherHero && distance > heroDistance)
         {
             distance = heroDistance;
@@ -323,21 +316,20 @@ public class GameManager : MonoBehaviour
         return target;
     }
 
-    private TowerManager GetTargetTower(SimpleVector2 heroPosition, List<TowerManager> towers, out int distance)
+    private TowerManager GetTargetTower(Vector3 heroPosition, List<TowerManager> towers, out float distance)
     {
-        distance = int.MaxValue;
-        if (towers.Count == 0)
-        {
-            return null;
-        }
+        distance = float.MaxValue;
+        if (towers.Count == 0) { return null; }
         TowerManager target = towers[0];
-        distance = SimpleVector2.SqrDistance(heroPosition, target.Position);
+        
+        distance = Vector3.Distance(heroPosition, target.transform.position);
+        
         for (int i = 1; i < towers.Count; i++)
         {
             TowerManager newTarget = towers[i];
             if (newTarget != null)
             {
-                int newDistance = SimpleVector2.SqrDistance(heroPosition, newTarget.Position);
+                float newDistance = Vector3.Distance(heroPosition, newTarget.transform.position);
                 if (distance > newDistance)
                 {
                     distance = newDistance;
@@ -348,25 +340,20 @@ public class GameManager : MonoBehaviour
         return target;
     }
 
-    private HeroManager GetTargetHero(TowerManager tower, List<HeroManager> heroes, out int distance)
+    private HeroManager GetTargetHero(Vector3 towerHeroPosition, List<HeroManager> heroes, out float distance)
     {
-        distance = int.MaxValue;
-        if (heroes.Count == 0)
-        {
-            return null;
-        }
+        distance = float.MaxValue;
+        if (heroes.Count == 0) { return null; }
         HeroManager target = heroes[0].IsBomb ? null :heroes[0];
-        if (target)
-        {
-            distance = SimpleVector2.SqrDistance(tower.Position, target.Position);
-        }
+       
+        if (target) { distance = Vector3.Distance(towerHeroPosition, target.transform.position); }
 
         for (int i = 1; i < heroes.Count; i++)
         {
             HeroManager newTarget = heroes[i];
             if (newTarget != null && !newTarget.IsBomb)
             {
-                int newDistance = SimpleVector2.SqrDistance(tower.Position, newTarget.Position);
+                float newDistance = Vector3.Distance(towerHeroPosition, newTarget.transform.position);
                 if (distance > newDistance)
                 {
                     distance = newDistance;
@@ -376,34 +363,7 @@ public class GameManager : MonoBehaviour
         }
         return target;
     }
-
-    private HeroManager GetTargetHero(HeroManager hero, SimpleVector2 heroPosition, List<HeroManager> heroes, out int distance)
-    {
-        distance = int.MaxValue;
-        if (heroes.Count == 0)
-        {
-            return null;
-        }
-        HeroManager target = heroes[0].IsBomb? null : heroes[0];
-        if (target)
-        {
-            distance = SimpleVector2.SqrDistance(heroPosition, target.Position);
-        }
-        for (int i = 1; i < heroes.Count; i++)
-        {
-            HeroManager newTarget = heroes[i];
-            if (newTarget != null && !newTarget.IsBomb && hero.CanBeAsTarget(newTarget))
-            {
-                int newDistance = SimpleVector2.SqrDistance(heroPosition, newTarget.Position);
-                if (distance > newDistance)
-                {
-                    distance = newDistance;
-                    target = newTarget;
-                }
-            }
-        }
-        return target;
-    }
+    
 
     private void ResetTo(long timeToResset)
     {
@@ -425,7 +385,7 @@ public class GameManager : MonoBehaviour
         {
             if (bullet.TargetObject.Damage(bullet.AttackDamage))
             {
-                dynamicPositions.Remove(bullet.TargetObject.Position);
+                //dynamicPositions.Remove(bullet.TargetObject.Position);
                 bullet.TargetObject.RemoveFromGroup(bulletTargetGroup);
            
                 bullet.TargetObject.Remove();
@@ -469,36 +429,24 @@ public class GameManager : MonoBehaviour
             {
                 if (hero.TargetObject.gameObject.GetComponent<TowerManager>())
                 {
-                    target = GetTargetTowerOrHero(hero, hero.Position, group2);
+                    target = GetTargetTowerOrHero(hero.transform.position, group2);
                 }
             }
             else
             {
-                 target = GetTargetTowerOrHero(hero, hero.Position, group2);
+                 target = GetTargetTowerOrHero(hero.transform.position, group2);
             }
 
             if (target) { hero.SetTargetObject(target); }
         }
+        
         foreach (TowerManager tower in group1.Towers)
         {
-            HeroManager target = GetTargetHero(tower, group2.Heroes, out int distance);
+            HeroManager target = GetTargetHero(tower.transform.position, group2.Heroes, out float distance);
             if(target) {tower.SetTargetObject(target);}
         }
     }
-    private void UpdateHeroesPosition(Group group1, Group group2)
-    {
-        foreach (HeroManager hero in group1.Heroes)
-        {
-            if (hero.GetNewPosition(staticPositions, dynamicPositions, out SimpleVector2 newPosition))
-            {
-                dynamicPositions.Remove(hero.Position);
-                dynamicPositions.Add(newPosition);
-                hero.MoveTo(newPosition);
-            }
-            hero.UpdateLookAtPosition(newPosition);
-        }
-        
-    }
+   
     private IEnumerator OnWinOrLose(bool isWin)
     {
         this.Pause(true);

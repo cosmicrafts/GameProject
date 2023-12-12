@@ -42,6 +42,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2957334457353352150}
   - component: {fileID: 1359702038038668862}
+  - component: {fileID: 3701401581323537593}
   m_Layer: 0
   m_Name: U_SPI_13
   m_TagString: Untagged
@@ -99,6 +100,7 @@ MonoBehaviour:
   timeDelayToReady: 1.5
   isDeployReady: 0
   initVelocity: 1
+  rigidbody: {fileID: 3701401581323537593}
   portalGameobject: {fileID: 19883916738293613}
   propulsorsGameobject:
   - {fileID: 7753163921189237164}
@@ -109,6 +111,22 @@ MonoBehaviour:
     type: 3}
   shotPivot: {fileID: 4325721830119239780}
   MuzzleFlash: {fileID: 8508780895317216553}
+--- !u!54 &3701401581323537593
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957334457353352149}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &3519129006329836033
 GameObject:
   m_ObjectHideFlags: 0

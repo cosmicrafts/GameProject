@@ -876,6 +876,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2957334457353352150}
   - component: {fileID: 1359702038038668862}
+  - component: {fileID: 3612314915059079954}
   m_Layer: 0
   m_Name: U_ALL_8
   m_TagString: Untagged
@@ -933,6 +934,7 @@ MonoBehaviour:
   timeDelayToReady: 1.5
   isDeployReady: 0
   initVelocity: 1
+  rigidbody: {fileID: 3612314915059079954}
   portalGameobject: {fileID: 5553677482214063585}
   propulsorsGameobject:
   - {fileID: 1657300539447553308}
@@ -944,6 +946,22 @@ MonoBehaviour:
     type: 3}
   shotPivot: {fileID: 4325721830119239780}
   MuzzleFlash: {fileID: 9049739255301541248}
+--- !u!54 &3612314915059079954
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2957334457353352149}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 84
+  m_CollisionDetection: 0
 --- !u!1 &3077142172846908549
 GameObject:
   m_ObjectHideFlags: 0

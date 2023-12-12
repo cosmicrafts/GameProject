@@ -61,11 +61,15 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
 
     private IEnumerator Start()
     {
+        Application.targetFrameRate = 60;
+        Time.timeScale              = 1f;
+        Screen.sleepTimeout         = SleepTimeout.NeverSleep;
+        
         if (getInfoFromCanister)
         {
             GetInfoFromCanister();
         }
-       
+
         while(!GameManager.gameIsEnd)
         {
             UpdateConnecting();
