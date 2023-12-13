@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Linq;
-using UnityEngine;
 
 public enum Match { bots, multi }
 public enum Plataform { Web, Pc }

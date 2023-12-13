@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Newtonsoft.Json;
-using UnityEngine.UI; // Required for using UI components
+using UnityEngine.UI;
 
 public class TokenUIHandler : MonoBehaviour
 {
+    private string[] suffixes = {"", "K", "M", "B", "T"};
     // Define a class to hold token data
     [System.Serializable]
     public class TokenData
@@ -96,7 +97,17 @@ public class TokenUIHandler : MonoBehaviour
         {
             if (tokenData.balances.TryGetValue("Address1", out string balance))
             {
-                balanceText.text = balance;
+                // Format the balance using the formatting logic
+                float formattedBalance = float.Parse(balance);
+                int index = 0;
+
+                while (formattedBalance >= 1000 && index < suffixes.Length - 1)
+                {
+                    formattedBalance /= 1000;
+                    index++;
+                }
+
+                balanceText.text = $"{formattedBalance:F2}{suffixes[index]}";
             }
             else
             {
@@ -109,6 +120,7 @@ public class TokenUIHandler : MonoBehaviour
             Debug.LogError("Balance Text component or balances dictionary not found for: " + tokenData.tokenName);
         }
     }
+
 
     // Helper method to set the image component
     void SetImageComponent(GameObject parent, string childName, string imagePath)

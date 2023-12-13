@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class NFTHandler : MonoBehaviour
 {
+    private string[] suffixes = { "", "K", "M", "B", "T" };
+
     [System.Serializable]
     public class NFTData
     {
@@ -73,6 +75,34 @@ public class NFTHandler : MonoBehaviour
         nftUI.transform.Find("Description").GetComponent<TextMeshProUGUI>().text = nftData.description;
         nftUI.transform.Find("Image").GetComponent<Image>().sprite = LoadSprite(nftData.image);
         nftUI.transform.Find("Balances").GetComponent<TextMeshProUGUI>().text = "Quantity: " + nftData.balances["Address1"];
+        var quantityText = nftUI.transform.Find("Balances").GetComponent<TextMeshProUGUI>();
+        
+        if (quantityText != null && nftData.balances != null)
+        {
+        if (nftData.balances.TryGetValue("Address1", out string quantity))
+        {
+            // Format the quantity using the formatting logic
+            float formattedQuantity = float.Parse(quantity);
+            int index = 0;
+
+            while (formattedQuantity >= 1000 && index < suffixes.Length - 1)
+            {
+                formattedQuantity /= 1000;
+                index++;
+            }
+
+            quantityText.text = "Quantity: " + $"{formattedQuantity:F2}{suffixes[index]}";
+        }
+        else
+        {
+            quantityText.text = "Quantity: Not available";
+            Debug.LogError("Quantity for Address1 not found or balances dictionary is null for: " + nftData.nftName);
+        }
+    }
+    else
+    {
+        Debug.LogError("Quantity Text component or balances dictionary not found for: " + nftData.nftName);
+    }
     }
 
     Sprite LoadSprite(string imagePath)

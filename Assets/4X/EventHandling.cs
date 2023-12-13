@@ -1,13 +1,13 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Newtonsoft.Json;
-using Random = UnityEngine.Random; // To avoid confusion with System.Random
+using System.IO;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
-public class EventList
+public class EventList : ScriptableObject
 {
     public List<CosmicEvent> events;
 }
@@ -15,16 +15,7 @@ public class EventList
 [System.Serializable]
 public class CosmicEvent
 {
-    public string title;
-    public string description;
-    public List<Choice> choices;
-}
-
-[System.Serializable]
-public class Choice
-{
-    public string choiceDescription;
-    public List<int> outcomeIndexes; // List of potential outcome indexes
+    public EventSO eventSO;
 }
 
 public class EventHandling : MonoBehaviour
@@ -37,34 +28,66 @@ public class EventHandling : MonoBehaviour
 
     private List<CosmicEvent> events = new List<CosmicEvent>();
     private int currentEventIndex = 0;
-    private TokenUIHandler tokenUIHandler; // Reference to TokenUIHandler
+    private TokenUIHandler tokenUIHandler;
+    bool jsonLoaded = false;
 
     void Start()
     {
-        LoadJson();
+        Transform canvasTransform = transform.Find("Canvas");
+
+        Event_Name = GetChildComponent<TextMeshProUGUI>(canvasTransform, "Event_Name");
+        Event_Description = GetChildComponent<TextMeshProUGUI>(canvasTransform, "Event_Description");
+        Choice1_Btn = GetChildComponent<Button>(canvasTransform, "Choice1_Btn");
+        Choice2_Btn = GetChildComponent<Button>(canvasTransform, "Choice2_Btn");
+        Outcome = GetChildComponent<TextMeshProUGUI>(canvasTransform, "Outcome");
+
+        if (Event_Name == null || Event_Description == null || Choice1_Btn == null || Choice2_Btn == null || Outcome == null)
+        {
+            Debug.LogError("One or more UI components are not assigned.");
+            return;
+        }
+
+        if (!jsonLoaded)
+        {
+            LoadJson("Events.json");
+            jsonLoaded = true;
+        }
+
         SetupButtonListeners();
         tokenUIHandler = FindObjectOfType<TokenUIHandler>();
     }
 
-    void LoadJson()
+    void LoadJson(string jsonFileName)
     {
-        TextAsset fileData = Resources.Load<TextAsset>("4X/Events");
-        if (fileData != null)
+        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(jsonFileName);
+        EventList eventList = Resources.Load<EventList>(fileNameWithoutExtension);
+
+        if (eventList != null)
         {
-            EventList eventList = JsonUtility.FromJson<EventList>(fileData.text);
             events = eventList.events;
-            if (events.Count > 0)
-            {
-                LoadEvent(currentEventIndex);
-            }
-            else
-            {
-                Debug.LogError("Events list is empty!");
-            }
         }
         else
         {
-            Debug.LogError("Cannot find file!");
+            Debug.LogError("Failed to load JSON content for file: " + jsonFileName);
+        }
+    }
+
+    T GetChildComponent<T>(Transform parent, string componentName) where T : Component
+    {
+        Transform child = parent.Find(componentName);
+        if (child != null)
+        {
+            T component = child.GetComponent<T>();
+            if (component == null)
+            {
+                Debug.LogError(componentName + " component is missing.");
+            }
+            return component;
+        }
+        else
+        {
+            Debug.LogError(componentName + " not found.");
+            return null;
         }
     }
 
@@ -73,18 +96,16 @@ public class EventHandling : MonoBehaviour
         if (index >= 0 && index < events.Count)
         {
             CosmicEvent currentEvent = events[index];
-            Event_Name.text = currentEvent.title;
-            Event_Description.text = currentEvent.description;
+            Event_Name.text = currentEvent.eventSO.eventType;
+            Event_Description.text = currentEvent.eventSO.description;
 
-            Choice1_Btn.gameObject.SetActive(currentEvent.choices.Count > 0);
-            Choice2_Btn.gameObject.SetActive(currentEvent.choices.Count > 1);
+            Choice1_Btn.gameObject.SetActive(currentEvent.eventSO.choices.Count > 0);
+            Choice2_Btn.gameObject.SetActive(currentEvent.eventSO.choices.Count > 1);
 
-            if (currentEvent.choices.Count > 0)
-                Choice1_Btn.GetComponentInChildren<TextMeshProUGUI>().text = currentEvent.choices[0].choiceDescription;
-            if (currentEvent.choices.Count > 1)
-                Choice2_Btn.GetComponentInChildren<TextMeshProUGUI>().text = currentEvent.choices[1].choiceDescription;
-
-            Debug.Log("Loaded Event: " + currentEvent.title);
+            if (currentEvent.eventSO.choices.Count > 0)
+                Choice1_Btn.GetComponentInChildren<TextMeshProUGUI>().text = currentEvent.eventSO.choices[0].description;
+            if (currentEvent.eventSO.choices.Count > 1)
+                Choice2_Btn.GetComponentInChildren<TextMeshProUGUI>().text = currentEvent.eventSO.choices[1].description;
         }
         else
         {
@@ -95,14 +116,13 @@ public class EventHandling : MonoBehaviour
     public void MakeChoice(int choiceIndex)
     {
         DeductEventCost();
-        ApplyChoiceEffects(events[currentEventIndex].choices[choiceIndex]);
+        ApplyChoiceEffects(events[currentEventIndex].eventSO.choices[choiceIndex]);
         LoadNextEvent();
     }
 
-    void ApplyChoiceEffects(Choice choice)
+    void ApplyChoiceEffects(ChoiceSO choice)
     {
-        // Randomly gain or lose tokens
-        foreach (var outcomeIndex in choice.outcomeIndexes)
+        foreach (var outcome in choice.outcomes)
         {
             RandomlyAdjustTokenBalance("Energy");
             RandomlyAdjustTokenBalance("Matter");
@@ -111,8 +131,8 @@ public class EventHandling : MonoBehaviour
 
     void RandomlyAdjustTokenBalance(string tokenName)
     {
-        bool gainTokens = Random.Range(0, 2) == 0; // 50% chance
-        int tokenAmount = Random.Range(1, 9); // Random amount between 1 and 8
+        bool gainTokens = Random.Range(0, 2) == 0;
+        int tokenAmount = Random.Range(1, 9);
 
         int currentBalance = int.Parse(tokenUIHandler.GetTokenBalance(tokenName));
         int updatedBalance = gainTokens ? currentBalance + tokenAmount : currentBalance - tokenAmount;
@@ -122,7 +142,6 @@ public class EventHandling : MonoBehaviour
 
     void DeductEventCost()
     {
-        // Deduct 3 Energy and 2 Matter as cost of starting an event
         tokenUIHandler.UpdateTokenData("Energy", (int.Parse(tokenUIHandler.GetTokenBalance("Energy")) - 3).ToString());
         tokenUIHandler.UpdateTokenData("Matter", (int.Parse(tokenUIHandler.GetTokenBalance("Matter")) - 2).ToString());
     }
