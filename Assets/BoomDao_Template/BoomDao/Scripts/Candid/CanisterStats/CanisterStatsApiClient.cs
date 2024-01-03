@@ -33,7 +33,7 @@ namespace CanisterPK.CanisterStats
 
 		public async Task<OptionalValue<Models.BasicStats>> GetBasicStats(GameID arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "getBasicStats", arg);
 			CandidArg reply = response.ThrowOrGetReply();
 			return reply.ToObjects<OptionalValue<Models.BasicStats>>(this.Converter);
@@ -65,7 +65,7 @@ namespace CanisterPK.CanisterStats
 
 		public async Task<bool> SaveFinishedGame(GameID arg0, Models.BasicStats arg1)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0), CandidTypedValue.FromObject(arg1));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter), CandidTypedValue.FromObject(arg1, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "saveFinishedGame", arg);
 			return reply.ToObjects<bool>(this.Converter);
 		}

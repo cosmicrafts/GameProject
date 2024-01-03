@@ -94,14 +94,14 @@ public class Login : MonoBehaviour
         {
             LoadingPanel.Instance.ActiveLoadingPanel();
             var request =  await CandidApiManager.Instance.CanisterLogin.CreatePlayer(inputNameField.text);
-            if (request.Arg0)
+            if (request.ReturnArg0)
             {
-                Debug.Log(request.Arg1);
+                Debug.Log(request.ReturnArg1);
                 GoToMenuScene();
             }
             else
             {
-                infoTxt.text = request.Arg1;
+                infoTxt.text = request.ReturnArg1;
                 LoadingPanel.Instance.DesactiveLoadingPanel();
             }
             

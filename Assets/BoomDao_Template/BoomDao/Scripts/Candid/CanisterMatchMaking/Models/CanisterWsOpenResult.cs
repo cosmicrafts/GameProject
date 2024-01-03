@@ -4,13 +4,13 @@ using System;
 
 namespace CanisterPK.CanisterMatchMaking.Models
 {
-	[Variant(typeof(CanisterWsOpenResultTag))]
+	[Variant]
 	public class CanisterWsOpenResult
 	{
-		[VariantTagProperty()]
+		[VariantTagProperty]
 		public CanisterWsOpenResultTag Tag { get; set; }
 
-		[VariantValueProperty()]
+		[VariantValueProperty]
 		public object? Value { get; set; }
 
 		public CanisterWsOpenResult(CanisterWsOpenResultTag tag, object? value)
@@ -50,7 +50,6 @@ namespace CanisterPK.CanisterMatchMaking.Models
 
 	public enum CanisterWsOpenResultTag
 	{
-		[VariantOptionType(typeof(string))]
 		Err,
 		Ok
 	}

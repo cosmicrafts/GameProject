@@ -65,9 +65,9 @@ public class UIMatchLoading : MonoBehaviour
         
         var matchDataRequest = await CandidApiManager.Instance.CanisterMatchMaking.GetMyMatchData();
         
-        if (matchDataRequest.Arg0.HasValue)
+        if (matchDataRequest.ReturnArg0.HasValue)
         {
-            CanisterPK.CanisterMatchMaking.Models.FullMatchData matchData = matchDataRequest.Arg0.ValueOrDefault;
+            CanisterPK.CanisterMatchMaking.Models.FullMatchData matchData = matchDataRequest.ReturnArg0.ValueOrDefault;
 
             User UserData1 = new User();
             User UserData2 = new User();
@@ -92,13 +92,13 @@ public class UIMatchLoading : MonoBehaviour
             UserData2.CharacterNFTId = matchPlayerData2.userAvatar;
             UserData2.DeckNFTsKeyIds = matchPlayerData2.listSavedKeys;
 
-            if ((int) matchDataRequest.Arg1 != 0)
+            if ((int) matchDataRequest.ReturnArg1 != 0)
             {
-                if ((int) matchDataRequest.Arg1 == 1)
+                if ((int) matchDataRequest.ReturnArg1 == 1)
                 {
                     GL_MatchStarting(UserData1, UserData2);
                 }
-                else if ((int) matchDataRequest.Arg1 == 2)
+                else if ((int) matchDataRequest.ReturnArg1 == 2)
                 {
                     GL_MatchStarting(UserData2, UserData1);
                 }

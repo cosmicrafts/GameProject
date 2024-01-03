@@ -26,6 +26,9 @@ public class UIMatchMaking : MonoBehaviour
     //Player data
     User MyUserData;
     User VsUserData;
+
+    private bool sendPlayerActive = false;
+        
     
     [System.Serializable]
     public class VsUser
@@ -65,35 +68,53 @@ public class UIMatchMaking : MonoBehaviour
         Debug.Log(JsonUtility.ToJson(matchPlayerData));
 
         var matchSearchingInfo = await CandidApiManager.Instance.CanisterMatchMaking.GetMatchSearching(JsonUtility.ToJson(matchPlayerData));
-
-        Debug.Log("Status: "+ matchSearchingInfo.Arg0 + " Int: " + matchSearchingInfo.Arg1 + " text: " + matchSearchingInfo.Arg2);
         
-        if(matchSearchingInfo.Arg0 == SearchStatus.Assigned)
+        Debug.Log("Status: "+ matchSearchingInfo.ReturnArg0 + " Int: " + matchSearchingInfo.ReturnArg1 + " text: " + matchSearchingInfo.ReturnArg2);
+        
+        if(matchSearchingInfo.ReturnArg0 == SearchStatus.Assigned)
         {
             bool isGameMatched = false;
-
+            sendPlayerActive = true; SendPlayerActive();
             //Verificar si IsGameMatched, en un bucle recursivo
             while (!isGameMatched && SearchingScreen.activeSelf)
             {
                 if(this.gameObject == null) { break; }
                 var isGameMatchedRequest = await CandidApiManager.Instance.CanisterMatchMaking.IsGameMatched();
-                Debug.Log("Ya estoy asignado a una sala: " + matchSearchingInfo.Arg1 +" espero ser matched: " + isGameMatchedRequest.Arg1);
-                isGameMatched = isGameMatchedRequest.Arg0;
+                Debug.Log("Ya estoy asignado a una sala: " + matchSearchingInfo.ReturnArg1 +" espero ser matched: " + isGameMatchedRequest.ReturnArg1);
+                isGameMatched = isGameMatchedRequest.ReturnArg0;
                 await Task.Delay(500);
                 
-                if(isGameMatched){GL_MatchFound();}
+                if(isGameMatched) { sendPlayerActive = false; GL_MatchFound(); }
             }
                 
             
         }
         
     }
-    
+
+    private async void SendPlayerActive()
+    {
+        while (sendPlayerActive && SearchingScreen.activeSelf)
+        {
+            if(this.gameObject == null) { break; }
+            var isActive = await CandidApiManager.Instance.CanisterMatchMaking.SetPlayerActive();
+            Debug.Log("estoy activo: "+ isActive);
+
+            if (!isActive)
+            {
+                CancelSearch();
+                break;
+            }
+            
+            await Task.Delay(2000);
+        }
+    }
+
     public async void CancelSearch()
     {
         var cancelMatchmaking = await CandidApiManager.Instance.CanisterMatchMaking.CancelMatchmaking();
-        Debug.Log("Quiero Cancelar la busqueda: " + cancelMatchmaking.Arg1);
-        if (cancelMatchmaking.Arg0)
+        Debug.Log("Quiero Cancelar la busqueda: " + cancelMatchmaking.ReturnArg1);
+        if (cancelMatchmaking.ReturnArg0)
         {
             SearchingScreen.SetActive(false);
             btnGameModes.interactable = true;

@@ -27,7 +27,6 @@ namespace Candid
         // Canister APIs
         public CanisterLoginApiClient CanisterLogin { get; private set; }
         public CanisterMatchMakingApiClient CanisterMatchMaking { get; private set; }
-        
         public CanisterStatsApiClient CanisterStats { get; private set; }
 
         // Login Data
@@ -86,7 +85,7 @@ namespace Candid
 
         private void Start()
         {
-            /*
+            
             if (PlayerPrefs.HasKey("authTokenId"))
             {
                 Debug.Log("Ya tení login guardado, estoy registrando ApiCandis");
@@ -97,7 +96,7 @@ namespace Candid
             {
                 Debug.Log("No tengo login guardado");
             }
-            */
+            
             
         }
 

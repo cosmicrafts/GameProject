@@ -23,18 +23,18 @@ namespace CanisterPK.CanisterLogin
 			this.Converter = converter;
 		}
 
-		public async Task<(bool Arg0, string Arg1)> CreatePlayer(string arg0)
+		public async Task<(bool ReturnArg0, string ReturnArg1)> CreatePlayer(string arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "createPlayer", arg);
 			return reply.ToObjects<bool, string>(this.Converter);
 		}
 
-		public async Task<CanisterLoginApiClient.GetICPBalanceArg0> GetICPBalance()
+		public async Task<CanisterLoginApiClient.GetICPBalanceReturnArg0> GetICPBalance()
 		{
 			CandidArg arg = CandidArg.FromCandid();
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "getICPBalance", arg);
-			return reply.ToObjects<CanisterLoginApiClient.GetICPBalanceArg0>(this.Converter);
+			return reply.ToObjects<CanisterLoginApiClient.GetICPBalanceReturnArg0>(this.Converter);
 		}
 
 		public async Task<OptionalValue<Models.Player>> GetMyPlayerData()
@@ -54,7 +54,7 @@ namespace CanisterPK.CanisterLogin
 
 		public async Task<OptionalValue<Models.Player>> GetPlayerData(Principal arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "getPlayerData", arg);
 			CandidArg reply = response.ThrowOrGetReply();
 			return reply.ToObjects<OptionalValue<Models.Player>>(this.Converter);
@@ -67,38 +67,45 @@ namespace CanisterPK.CanisterLogin
 			return reply.ToObjects<OptionalValue<Models.PlayerPreferences>>(this.Converter);
 		}
 
-		public async Task<(bool Arg0, string Arg1)> SavePlayerChar(string arg0)
+		public async Task<(bool ReturnArg0, string ReturnArg1)> SavePlayerChar(string arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "savePlayerChar", arg);
 			return reply.ToObjects<bool, string>(this.Converter);
 		}
 
-		public async Task<(bool Arg0, string Arg1)> SavePlayerLanguage(UnboundedUInt arg0)
+		public async Task<(bool ReturnArg0, string ReturnArg1)> SavePlayerLanguage(UnboundedUInt arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "savePlayerLanguage", arg);
 			return reply.ToObjects<bool, string>(this.Converter);
 		}
 
 		public async Task<bool> SavePlayerName(string arg0)
 		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0));
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "savePlayerName", arg);
 			return reply.ToObjects<bool>(this.Converter);
 		}
 
-		public class GetICPBalanceArg0
+		public async Task<bool> UpgradeNFT(UnboundedUInt arg0)
+		{
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
+			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "upgradeNFT", arg);
+			return reply.ToObjects<bool>(this.Converter);
+		}
+
+		public class GetICPBalanceReturnArg0
 		{
 			[CandidName("e8s")]
 			public ulong E8s { get; set; }
 
-			public GetICPBalanceArg0(ulong e8s)
+			public GetICPBalanceReturnArg0(ulong e8s)
 			{
 				this.E8s = e8s;
 			}
 
-			public GetICPBalanceArg0()
+			public GetICPBalanceReturnArg0()
 			{
 			}
 		}

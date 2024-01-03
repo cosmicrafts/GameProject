@@ -82,9 +82,9 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
     {
          var matchDataRequest = await CandidApiManager.Instance.CanisterMatchMaking.GetMyMatchData();
                         
-        if (matchDataRequest.Arg0.HasValue)
+        if (matchDataRequest.ReturnArg0.HasValue)
         {
-            CanisterPK.CanisterMatchMaking.Models.FullMatchData matchData = matchDataRequest.Arg0.ValueOrDefault;
+            CanisterPK.CanisterMatchMaking.Models.FullMatchData matchData = matchDataRequest.ReturnArg0.ValueOrDefault;
             nameRoom = "Game: " + matchData.GameId;
             gameId = (int)matchData.GameId;
             
@@ -114,7 +114,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
             GameManager.UserData1 = UserData1;
             GameManager.UserData2 = UserData2;
             GameManager.updateHeroesPrefab = true;
-            if ((int) matchDataRequest.Arg1 != 0) {  GameManager.GroupIndex = (int)matchDataRequest.Arg1;  }
+            if ((int) matchDataRequest.ReturnArg1 != 0) {  GameManager.GroupIndex = (int)matchDataRequest.ReturnArg1;  }
             
         }
         else

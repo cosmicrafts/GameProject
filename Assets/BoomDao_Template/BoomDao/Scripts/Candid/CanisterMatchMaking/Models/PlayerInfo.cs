@@ -12,16 +12,20 @@ namespace CanisterPK.CanisterMatchMaking.Models
 		[CandidName("id")]
 		public UserId Id { get; set; }
 
+		[CandidName("lastPlayerActive")]
+		public ulong LastPlayerActive { get; set; }
+
 		[CandidName("matchAccepted")]
 		public bool MatchAccepted { get; set; }
 
 		[CandidName("playerGameData")]
 		public string PlayerGameData { get; set; }
 
-		public PlayerInfo(UnboundedUInt elo, UserId id, bool matchAccepted, string playerGameData)
+		public PlayerInfo(UnboundedUInt elo, UserId id, ulong lastPlayerActive, bool matchAccepted, string playerGameData)
 		{
 			this.Elo = elo;
 			this.Id = id;
+			this.LastPlayerActive = lastPlayerActive;
 			this.MatchAccepted = matchAccepted;
 			this.PlayerGameData = playerGameData;
 		}
