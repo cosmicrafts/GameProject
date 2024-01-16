@@ -11,27 +11,23 @@ public class UIScroll : MonoBehaviour
 
     private float column = 0;
     private float row = 0;
-    private int indexUI = 0;
     
-    public GameObject[] sections;
     
-    public void MoveTo(string item = "0,0,0")
+    public void MoveTo(string item = "0,0")
     {
         string[] split = item.Split(",");
         column = float.Parse(split[0], CultureInfo.InvariantCulture);
         row = float.Parse(split[1], CultureInfo.InvariantCulture);
-        indexUI = int.Parse(split[2]);
         Debug.Log("Column: "+column+"  Row: "+ row);
            
         h = Screen.height;
         w = Screen.width;
         StopAllCoroutines();
-        StartCoroutine(AnimationCoRoutine(column,row, indexUI));
+        StartCoroutine(AnimationCoRoutine(column,row));
     }
        
-    private IEnumerator AnimationCoRoutine(float column, float row, int indexUI)
+    private IEnumerator AnimationCoRoutine(float column, float row)
     {
-        sections[indexUI].SetActive(true);
         
         Vector3 start = transform.localPosition;
         float targetX = (w / h) * Ref * column;
@@ -44,12 +40,7 @@ public class UIScroll : MonoBehaviour
             transform.localPosition = Vector3.Lerp(start, targetPosition, accumTime / timeAnimation);
             yield return null;
         }
-
-        foreach (var section in sections)
-        {
-            section.SetActive(false);
-        }
-        sections[indexUI].SetActive(true);
+        
            
         transform.localPosition = targetPosition;
     }

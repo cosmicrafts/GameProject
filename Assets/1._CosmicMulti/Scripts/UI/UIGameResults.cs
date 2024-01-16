@@ -79,7 +79,7 @@ public class UIGameResults : MonoBehaviour
         basicStats.EnergyUsed = GameManager.MT.GetEnergyUsed();
         basicStats.EnergyGenerated = GameManager.MT.GetEnergyGenerated();
         basicStats.EnergyWasted = GameManager.MT.GetEnergyWasted();
-        basicStats. EnergyChargeRate = GameManager.MT.GetEnergyChargeRatePerSec();
+        basicStats.EnergyChargeRate = GameManager.MT.GetEnergyChargeRatePerSec();
         basicStats.XpEarned = GameManager.MT.GetScore();
         basicStats.DamageDealt = GameManager.MT.GetDamage();
         basicStats.DamageTaken = GameManager.MT.GetDamageReceived(); 
