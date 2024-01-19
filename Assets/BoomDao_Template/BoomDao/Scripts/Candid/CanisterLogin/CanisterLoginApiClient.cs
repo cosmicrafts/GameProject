@@ -88,13 +88,6 @@ namespace CanisterPK.CanisterLogin
 			return reply.ToObjects<bool>(this.Converter);
 		}
 
-		public async Task<bool> UpgradeNFT(UnboundedUInt arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "upgradeNFT", arg);
-			return reply.ToObjects<bool>(this.Converter);
-		}
-
 		public class GetICPBalanceReturnArg0
 		{
 			[CandidName("e8s")]

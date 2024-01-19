@@ -116,34 +116,5 @@ namespace CanisterPK.CanisterMatchMaking
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "setPlayerActive", arg);
 			return reply.ToObjects<bool>(this.Converter);
 		}
-
-		public async Task<Models.CanisterWsCloseResult> WsClose(Models.CanisterWsCloseArguments arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "ws_close", arg);
-			return reply.ToObjects<Models.CanisterWsCloseResult>(this.Converter);
-		}
-
-		public async Task<Models.CanisterWsGetMessagesResult> WsGetMessages(Models.CanisterWsGetMessagesArguments arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "ws_get_messages", arg);
-			CandidArg reply = response.ThrowOrGetReply();
-			return reply.ToObjects<Models.CanisterWsGetMessagesResult>(this.Converter);
-		}
-
-		public async Task<Models.CanisterWsMessageResult> WsMessage(Models.CanisterWsMessageArguments arg0, OptionalValue<ReservedValue> arg1)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter), CandidTypedValue.FromObject(arg1, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "ws_message", arg);
-			return reply.ToObjects<Models.CanisterWsMessageResult>(this.Converter);
-		}
-
-		public async Task<Models.CanisterWsOpenResult> WsOpen(Models.CanisterWsOpenArguments arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "ws_open", arg);
-			return reply.ToObjects<Models.CanisterWsOpenResult>(this.Converter);
-		}
 	}
 }
