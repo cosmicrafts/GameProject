@@ -13,6 +13,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
+--- !u!114 &-525858783071075126
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 0
 --- !u!21 &2100000
 Material:
   serializedVersion: 8
@@ -20,12 +33,14 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MAT_Farragut Trans
-  m_Shader: {fileID: -6465566751694194690, guid: 7afea951fc498ea4b98f9b2569b279c5,
+  m_Name: MAT_Farragut TRANS
+  m_Shader: {fileID: -6465566751694194690, guid: e4e5f6245b47a4e439d0e587aedf0643,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _USE_SLICE_GLITCHES
+  - _USE_VERTEX_GLITCHES
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 1
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -105,66 +120,67 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
-    - _AlphaClipThreshold: 0.5
+    - _AlphaClipThreshold: 0
     - _AmbientOcclusion: 1
     - _BUILTIN_QueueControl: -1
     - _BUILTIN_QueueOffset: 0
-    - _Blend: 2
+    - _Blend: 0
     - _BlendOp: 0
-    - _BumpScale: 0
+    - _BumpScale: 1
     - _ClearCoat: 0
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
-    - _Cutoff: 0.5
+    - _Cutoff: 0.533
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
-    - _DstBlend: 1
-    - _EnvironmentReflections: 0
-    - _FresnelPower: 1
+    - _DstBlend: 0
+    - _EnvironmentReflections: 1
+    - _Fresnel_Power: 8
+    - _GlitchFrequency: 1
+    - _GlitchOffset: 0
+    - _GlitchSensitivity: 0.997
+    - _GlitchSpeed: 1
+    - _GlitchStrength: 0.25
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _GridDensity: 5
-    - _Line_Falloff: 0.1
-    - _Line_Thickness: 0.1
     - _Metallic: 0
     - _NormalStrength: 1
     - _OcclusionStrength: 1
+    - _OutlineWidth: 0.283
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReceiveShadows: 0
-    - _RotationRadians: 0
-    - _Smoothness: 0.984
+    - _ReceiveShadows: 1
+    - _RimStep: 0.354
+    - _RimStepSmooth: 0.299
+    - _ShadowStep: 0.859
+    - _ShadowStepSmooth: 0.095
+    - _SliceDuration: 0.5
+    - _SliceFrequency: 0.1
+    - _SliceJitter: 0.05
+    - _SliceWidth: 0.2
+    - _Smoothness: 0.583
     - _SmoothnessTextureChannel: 0
-    - _SpecularHighlights: 0
-    - _SrcBlend: 5
-    - _Surface: 1
+    - _SpecularHighlights: 1
+    - _SpecularStep: 0.212
+    - _SpecularStepSmooth: 0.128
+    - _SrcBlend: 1
+    - _Surface: 0
+    - _USE_SLICE_GLITCHES: 1
+    - _USE_VERTEX_GLITCHES: 1
     - _WorkflowMode: 1
-    - _ZWrite: 0
+    - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 0.34117648}
-    - _BaseEmissionColor: {r: 0, g: 3.513726, b: 32, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 0.34117648}
-    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BaseColor: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+    - _BaseEmissionColor: {r: 0, g: 0.1647059, b: 1.498039, a: 0.1568628}
+    - _Color: {r: 0.8301887, g: 0.8301887, b: 0.8301887, a: 1}
+    - _EmissionColor: {r: 0, g: 0.6877451, b: 1, a: 1}
     - _FresnelColor: {r: 0, g: 3.513726, b: 32, a: 1}
-    - _GridOffset: {r: 0, g: 0, b: 0, a: 0}
-    - _Grid_Velocity: {r: 0, g: 0.1, b: 0, a: 0}
-    - _PerAxisStrength: {r: 1, g: 1, b: 1, a: 0}
-    - _RotationAxis: {r: 1, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SliceDirection: {r: 0.2, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &8010711332568127334
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 639247ca83abc874e893eb93af2b5e44, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 0
