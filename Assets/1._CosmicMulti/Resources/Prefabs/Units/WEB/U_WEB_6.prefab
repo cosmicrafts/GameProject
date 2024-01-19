@@ -538,9 +538,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MyOwnerGroup: 0
-  MaxHitPoints: 650
-  startAttackDamage: 20
-  minTargetDistance: 4
+  MaxHitPoints: 20
+  startAttackDamage: 1
+  minTargetDistance: 8
   energyCost: 1
   spriteIcon: {fileID: 21300000, guid: b4311c4ab6016aa45afbd21ec3cb0397, type: 3}
   UIUnit: {fileID: 7842426709684183527}
@@ -550,7 +550,7 @@ MonoBehaviour:
   previewMeshObject: {fileID: 6574144246784103365}
   transparentMaterial: {fileID: 2100000, guid: 96385182f701f6a4f9e11e28faa64b3a, type: 2}
   timePass: 0
-  cooldown: 0.25
+  cooldown: 1
   timeDelayToReady: 1.5
   isDeployReady: 0
   initVelocity: 1
@@ -558,11 +558,11 @@ MonoBehaviour:
   portalGameobject: {fileID: 3571814330453445255}
   propulsorsGameobject:
   - {fileID: 3165010043465279368}
-  shotVelocity: 24
-  bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
+  shotVelocity: 2
+  bulletPrefab: {fileID: 3093188415042371263, guid: 73ae195ff6763d54098774f807cd6096,
     type: 3}
   shotPivot: {fileID: 2251444490965096845}
-  MuzzleFlash: {fileID: 0}
+  MuzzleFlash: {fileID: 6448883598307568873}
 --- !u!54 &-6891169298706623049
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2344,6 +2344,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee0b4127c0de0946a3f0ad60894a811, type: 3}
+--- !u!198 &6448883598307568873 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 19871838, guid: 9ee0b4127c0de0946a3f0ad60894a811,
+    type: 3}
+  m_PrefabInstance: {fileID: 6448883598322308279}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6448883598322720239 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 411992, guid: 9ee0b4127c0de0946a3f0ad60894a811,

@@ -326,9 +326,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MyOwnerGroup: 0
-  MaxHitPoints: 650
-  startAttackDamage: 20
-  minTargetDistance: 4
+  MaxHitPoints: 20
+  startAttackDamage: 1
+  minTargetDistance: 12
   energyCost: 1
   spriteIcon: {fileID: 21300000, guid: c18b7acac002b9148b30e7cebbf999d4, type: 3}
   UIUnit: {fileID: 7842426709684183527}
@@ -338,16 +338,16 @@ MonoBehaviour:
   previewMeshObject: {fileID: 861167124885288555}
   transparentMaterial: {fileID: 2100000, guid: 812fbd1f0ee6ee34dab5c7189a6f47a3, type: 2}
   timePass: 0
-  cooldown: 0.25
+  cooldown: 0.75
   timeDelayToReady: 1.5
   isDeployReady: 0
-  initVelocity: 1
+  initVelocity: 2
   rigidbody: {fileID: 1496997339944443547}
   portalGameobject: {fileID: 1726841524237362142}
   propulsorsGameobject:
   - {fileID: 3216272833878994340}
-  shotVelocity: 24
-  bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
+  shotVelocity: 2
+  bulletPrefab: {fileID: 3093188415042371263, guid: 09f8747a7a151ff438fcda3d0a7ace22,
     type: 3}
   shotPivot: {fileID: 8817054819536778183}
   MuzzleFlash: {fileID: 3321443679828970265}
@@ -809,7 +809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8265138386686815615}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0.46, z: 3.11}
+  m_LocalPosition: {x: 0.17, y: -0.13, z: 3.69}
   m_LocalScale: {x: 1.7126552, y: 1.712655, z: 1.3287976}
   m_ConstrainProportionsScale: 0
   m_Children:

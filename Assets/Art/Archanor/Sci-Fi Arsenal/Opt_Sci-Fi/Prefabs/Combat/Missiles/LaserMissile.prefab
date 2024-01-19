@@ -4783,7 +4783,6 @@ GameObject:
   - component: {fileID: 19988278}
   - component: {fileID: 19875712}
   - component: {fileID: 1342486268305066995}
-  - component: {fileID: 6446765387497573464}
   m_Layer: 0
   m_Name: LaserMissile
   m_TagString: Untagged
@@ -5085,7 +5084,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 0.48235294}
+      maxColor: {r: 0.52852964, g: 0, b: 1, a: 0.48235294}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9656,20 +9655,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6446765387497573464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad815caa2b827045ade257ca234662f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  defaultAudioLevel: 1
 --- !u!1 &190178
 GameObject:
   m_ObjectHideFlags: 0
@@ -9893,7 +9878,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.013207495, g: 0.7211438, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -14554,9 +14539,9 @@ TrailRenderer:
     colorGradient:
       serializedVersion: 2
       key0: {r: 0, g: 0, b: 0, a: 0}
-      key1: {r: 1, g: 1, b: 1, a: 1}
-      key2: {r: 1, g: 1, b: 1, a: 1}
-      key3: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 0, g: 0.75219584, b: 1, a: 1}
+      key2: {r: 0.7373171, g: 0, b: 1, a: 1}
+      key3: {r: 1, g: 0, b: 0.54102945, a: 0}
       key4: {r: 1, g: 1, b: 1, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
       key6: {r: 0, g: 0, b: 0, a: 0}
@@ -14564,7 +14549,7 @@ TrailRenderer:
       ctime0: 0
       ctime1: 16384
       ctime2: 32768
-      ctime3: 49151
+      ctime3: 48573
       ctime4: 65535
       ctime5: 0
       ctime6: 0

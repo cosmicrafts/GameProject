@@ -179,8 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MyOwnerGroup: 0
-  MaxHitPoints: 650
-  startAttackDamage: 20
+  MaxHitPoints: 20
+  startAttackDamage: 1
   minTargetDistance: 4
   energyCost: 1
   spriteIcon: {fileID: 21300000, guid: 8e45b14ee3cb19e41a9af879e32f6375, type: 3}
@@ -194,13 +194,13 @@ MonoBehaviour:
   cooldown: 0.25
   timeDelayToReady: 1.5
   isDeployReady: 0
-  initVelocity: 1
+  initVelocity: 8
   rigidbody: {fileID: -5777862869839342636}
   portalGameobject: {fileID: 6331384342171316042}
   propulsorsGameobject:
   - {fileID: 6814732427515461579}
   - {fileID: 8228494437657956146}
-  shotVelocity: 24
+  shotVelocity: 2
   bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
     type: 3}
   shotPivot: {fileID: 6889018835515886303}
@@ -213,8 +213,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2957334457353352149}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 4
+  m_Drag: 2
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 1
