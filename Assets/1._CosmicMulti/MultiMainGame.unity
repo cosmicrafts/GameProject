@@ -20595,8 +20595,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
         type: 3}
+      propertyPath: cooldown
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
+      propertyPath: MaxHitPoints
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
+      propertyPath: shotVelocity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
       propertyPath: minTargetDistance
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
+      propertyPath: startAttackDamage
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5027086743310186429, guid: c33bd92918f6fcb4e83579bc3b231eb7,
         type: 3}
@@ -55389,13 +55409,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
         type: 3}
+      propertyPath: cooldown
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
+      propertyPath: MaxHitPoints
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
+      propertyPath: shotVelocity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
+        type: 3}
       propertyPath: minTargetDistance
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3806583797338973281, guid: c33bd92918f6fcb4e83579bc3b231eb7,
         type: 3}
       propertyPath: startAttackDamage
-      value: 40
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7786985408309769179, guid: c33bd92918f6fcb4e83579bc3b231eb7,
         type: 3}
@@ -94394,7 +94429,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3494457797605447214
 RectTransform:
   m_ObjectHideFlags: 0
@@ -94484,22 +94519,22 @@ MonoBehaviour:
   uiGameResults: {fileID: 697417430798489178}
   arena: {fileID: 5986855460261927923}
   heroesPrefabs:
-  - {fileID: 1359702038038668862, guid: eca906b55cca2b14aa1eef5e19b07b67, type: 3}
-  - {fileID: 1359702038038668862, guid: cf6268fed820d7a4f97feddadc0b82e5, type: 3}
-  - {fileID: 1359702038038668862, guid: 25cff1daec9219345acbfe5939dedd04, type: 3}
+  - {fileID: 1359702038038668862, guid: c0f8b1338e58f7c42a6fd19e11ed69e8, type: 3}
   - {fileID: 1359702038038668862, guid: 4ddd71d4c4689804d886fd8adffab73b, type: 3}
-  - {fileID: 1359702038038668862, guid: d8fbb2f0e2f3ee6429d7384d09f1927a, type: 3}
-  - {fileID: 1359702038038668862, guid: 69f347fd9fd103d4ab56b92ea82d219c, type: 3}
-  - {fileID: 1359702038038668862, guid: 6a877eb428f11104287b735c14ecd4da, type: 3}
-  - {fileID: 1359702038038668862, guid: ae50b5e27129aa5418f306b816efdd3b, type: 3}
-  - {fileID: 1359702038038668862, guid: 3be0ba1d378f54549a8e54337bff04b1, type: 3}
-  - {fileID: 1359702038038668862, guid: 20f9725f37ea85d499889c39714f063e, type: 3}
-  - {fileID: 1359702038038668862, guid: eca906b55cca2b14aa1eef5e19b07b67, type: 3}
-  - {fileID: 1359702038038668862, guid: a0f1e8c82c11912479b2d92839c14afa, type: 3}
+  - {fileID: 1359702038038668862, guid: 0ad65ff731cfffa4dae7eb964782cac6, type: 3}
+  - {fileID: 1359702038038668862, guid: f109d0694c8a9554b8749701a346bbec, type: 3}
+  - {fileID: 1359702038038668862, guid: cf6268fed820d7a4f97feddadc0b82e5, type: 3}
+  - {fileID: 1359702038038668862, guid: 0b23a115d0f3fd9428be381976d43734, type: 3}
+  - {fileID: 1359702038038668862, guid: 93f924b0863bf8c4796078a8ac533521, type: 3}
   - {fileID: 1359702038038668862, guid: 3819cfb174ab76d4fb20c445ca4e4afc, type: 3}
+  - {fileID: 1359702038038668862, guid: 1554dee876053ec4c8bffe8b8643176f, type: 3}
+  - {fileID: 1359702038038668862, guid: 995d4dbf300015641acd3361ac8d3567, type: 3}
+  - {fileID: 1359702038038668862, guid: 5c467da663c618347b867e3c44c68ea5, type: 3}
+  - {fileID: 1359702038038668862, guid: d008c019388944e44a7a21a290d4c163, type: 3}
   - {fileID: 1359702038038668862, guid: 99dbaef42c8630d409111d0df86bcd1d, type: 3}
-  - {fileID: 1359702038038668862, guid: 8152a432f310b9b4f96f31f812fe2dec, type: 3}
-  - {fileID: 1359702038038668862, guid: 189246805671362469d66882de932857, type: 3}
+  - {fileID: 1359702038038668862, guid: ae50b5e27129aa5418f306b816efdd3b, type: 3}
+  - {fileID: 1359702038038668862, guid: eca906b55cca2b14aa1eef5e19b07b67, type: 3}
+  - {fileID: 1359702038038668862, guid: 3819cfb174ab76d4fb20c445ca4e4afc, type: 3}
   groups:
   - towers:
     - {fileID: 1736057669}
@@ -94508,9 +94543,9 @@ MonoBehaviour:
   materials:
   - {fileID: 2100000, guid: 9ed533a99b7c0470a96808ada663aef9, type: 2}
   - {fileID: 2100000, guid: fc7acf0cf5c8849d09d7ab6fbae45a48, type: 2}
-  CurrentEnergy: 5
-  MaxEnergy: 30
-  SpeedEnergy: 1
+  CurrentEnergy: 25
+  MaxEnergy: 50
+  SpeedEnergy: 2
   otherGameTime: 0
   gameIsEnd: 0
   updateHeroesPrefab: 0

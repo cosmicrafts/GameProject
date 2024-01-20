@@ -345,10 +345,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPaused: 0
   MyOwnerGroup: 0
-  MaxHitPoints: 20
-  startAttackDamage: 1
-  minTargetDistance: 2
-  energyCost: 1
+  MaxHitPoints: 85
+  startAttackDamage: 32
+  minTargetDistance: 4
+  energyCost: 6
   spriteIcon: {fileID: 21300000, guid: ffdbe48a3927d39408166d2280980cb4, type: 3}
   UIUnit: {fileID: 7842426709684183527}
   isBomb: 0
@@ -357,16 +357,16 @@ MonoBehaviour:
   previewMeshObject: {fileID: 2957334457353352149}
   transparentMaterial: {fileID: 2100000, guid: 5eda6cc31d50f4f4fbdcf7a85234cbc3, type: 2}
   timePass: 0
-  cooldown: 1
+  cooldown: 1.2
   timeDelayToReady: 1.5
   isDeployReady: 0
-  initVelocity: 1
+  initVelocity: 5
   rigidbody: {fileID: -4914565210713777707}
   portalGameobject: {fileID: 834317246158717242}
   propulsorsGameobject:
   - {fileID: 2499751233024334753}
-  shotVelocity: 12
-  bulletPrefab: {fileID: 3093188415042371263, guid: 0ead0b026d0434d438ba4c09254e8a3b,
+  shotVelocity: 4
+  bulletPrefab: {fileID: 3093188415042371263, guid: 39e16eb224384df46b2ca0a1534b5a50,
     type: 3}
   shotPivot: {fileID: 4325721830119239780}
   MuzzleFlash: {fileID: 6897093089195449789}
@@ -1221,7 +1221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5690131088457166866}
   m_LocalRotation: {x: -0.036142353, y: -0, z: -0, w: 0.9993467}
-  m_LocalPosition: {x: 0, y: 2.3541489, z: 2.6357203}
+  m_LocalPosition: {x: 0, y: 4.07, z: 1.26}
   m_LocalScale: {x: 0.29353476, y: 0.29353476, z: 0.29353476}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2110,17 +2110,17 @@ PrefabInstance:
     - target: {fileID: 1030833510306021447, guid: d2c4aa0c3182242438d73c0a55869a3a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 8.869507
+      value: 2.4159896
       objectReference: {fileID: 0}
     - target: {fileID: 1030833510306021447, guid: d2c4aa0c3182242438d73c0a55869a3a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 17.510685
+      value: 4.7697845
       objectReference: {fileID: 0}
     - target: {fileID: 1030833510306021447, guid: d2c4aa0c3182242438d73c0a55869a3a,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 4.843895
+      value: 2.1430378
       objectReference: {fileID: 0}
     - target: {fileID: 1030833510306021447, guid: d2c4aa0c3182242438d73c0a55869a3a,
         type: 3}
