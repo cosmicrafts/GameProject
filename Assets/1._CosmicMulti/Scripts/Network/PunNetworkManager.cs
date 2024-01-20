@@ -85,7 +85,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
         if (matchDataRequest.ReturnArg0.HasValue)
         {
             CanisterPK.CanisterMatchMaking.Models.FullMatchData matchData = matchDataRequest.ReturnArg0.ValueOrDefault;
-            nameRoom = "Game: " + matchData.GameId;
+            nameRoom = "GameCosmicVVV: " + matchData.GameId;
             gameId = (int)matchData.GameId;
             
             User UserData1 = new User();
