@@ -17,7 +17,7 @@ using UnityEngine.UI;
 public class UIMatchMaking : MonoBehaviour
 {
     public Button btnGameModes;
-    public Text StatusGame;
+    public TMP_Text StatusGame;
     
     [Header("UI Search")]
     public GameObject SearchingScreen;
