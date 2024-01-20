@@ -22,6 +22,8 @@ namespace Candid
 
     public class CandidApiManager : MonoBehaviour
     {
+
+        public bool autoLogin = true;
         public static CandidApiManager Instance { get; private set; }
         
         // Canister APIs
@@ -86,7 +88,7 @@ namespace Candid
         private void Start()
         {
             
-            if (PlayerPrefs.HasKey("authTokenId"))
+            if (PlayerPrefs.HasKey("authTokenId") && autoLogin)
             {
                 Debug.Log("Ya tení login guardado, estoy registrando ApiCandis");
                 LoadingPanel.Instance.ActiveLoadingPanel();

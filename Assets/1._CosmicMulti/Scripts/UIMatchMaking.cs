@@ -82,6 +82,8 @@ public class UIMatchMaking : MonoBehaviour
                 var isGameMatchedRequest = await CandidApiManager.Instance.CanisterMatchMaking.IsGameMatched();
                 Debug.Log("Ya estoy asignado a una sala: " + matchSearchingInfo.ReturnArg1 +" espero ser matched: " + isGameMatchedRequest.ReturnArg1);
                 isGameMatched = isGameMatchedRequest.ReturnArg0;
+                Debug.Log("IsGameMatched: "+ isGameMatched );
+                
                 await Task.Delay(500);
                 
                 if(isGameMatched) { sendPlayerActive = false; GL_MatchFound(); }

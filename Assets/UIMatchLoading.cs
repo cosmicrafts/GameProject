@@ -81,16 +81,41 @@ public class UIMatchLoading : MonoBehaviour
             UserData1.WalletId = tempData1.Id.ToString();
             UserData1.NikeName = tempData1.PlayerName;
             UserData1.Level = (int) tempData1.Elo;
-            UIMatchMaking.MatchPlayerData matchPlayerData1 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData1.PlayerGameData);
-            UserData1.CharacterNFTId = matchPlayerData1.userAvatar;
-            UserData1.DeckNFTsKeyIds = matchPlayerData1.listSavedKeys;
+           
+            if (tempData1.PlayerGameData.IsNullOrEmpty())
+            {
+                UserData1.CharacterNFTId = 1;
+                UserData1.DeckNFTsKeyIds = new List<string>();
+                Debug.Log("Error el jugador no tiene datos guardados");
+            }
+            else
+            {
+                UIMatchMaking.MatchPlayerData matchPlayerData1 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData1.PlayerGameData);
+                UserData1.CharacterNFTId = matchPlayerData1.userAvatar;
+                UserData1.DeckNFTsKeyIds = matchPlayerData1.listSavedKeys; 
+            }
+            
+            if (tempData2.PlayerGameData.IsNullOrEmpty())
+            {
+                UserData2.WalletId = "Error, no información";
+                UserData2.NikeName = "Error, no información";
+                UserData2.Level = 999;
+                UserData1.CharacterNFTId = 1;
+                UserData1.DeckNFTsKeyIds = new List<string>();
+                Debug.Log("Error el jugador no tiene datos guardados");
+            }
+            else
+            {
+                UserData2.WalletId = tempData2.Id.ToString();
+                UserData2.NikeName = tempData2.PlayerName;
+                UserData2.Level = (int) tempData2.Elo;
+                UIMatchMaking.MatchPlayerData matchPlayerData2 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData2.PlayerGameData);
+                UserData2.CharacterNFTId = matchPlayerData2.userAvatar;
+                UserData2.DeckNFTsKeyIds = matchPlayerData2.listSavedKeys;
+            }
+
           
-            UserData2.WalletId = tempData2.Id.ToString();
-            UserData2.NikeName = tempData2.PlayerName;
-            UserData2.Level = (int) tempData2.Elo;
-            UIMatchMaking.MatchPlayerData matchPlayerData2 = JsonUtility.FromJson<UIMatchMaking.MatchPlayerData>(tempData2.PlayerGameData);
-            UserData2.CharacterNFTId = matchPlayerData2.userAvatar;
-            UserData2.DeckNFTsKeyIds = matchPlayerData2.listSavedKeys;
+           
 
             if ((int) matchDataRequest.ReturnArg1 != 0)
             {
