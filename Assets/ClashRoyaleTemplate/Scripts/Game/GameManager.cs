@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
             uiGame.CardSprites.Add(hero.spriteIcon);
         }
         
-        uiGame.SetGroupIndex(GroupIndex - 1);         //Init UIbyIndex
+        uiGame.SetGroupIndex(GroupIndex);         //Init UIbyIndex
         MT = new GameMetrics(); MT.InitMetrics(); //Init Metrics
 
         uiGame.OnCreateHero += AddMyHeroToWaitingList;

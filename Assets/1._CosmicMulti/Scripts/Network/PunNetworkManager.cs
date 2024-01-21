@@ -114,7 +114,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
             GameManager.UserData1 = UserData1;
             GameManager.UserData2 = UserData2;
             GameManager.updateHeroesPrefab = true;
-            if ((int) matchDataRequest.ReturnArg1 != 0) {  GameManager.GroupIndex = (int)matchDataRequest.ReturnArg1;  }
+            if ((int) matchDataRequest.ReturnArg1 != 0) {  GameManager.GroupIndex = ((int)matchDataRequest.ReturnArg1) - 1;  }
             
         }
         else
