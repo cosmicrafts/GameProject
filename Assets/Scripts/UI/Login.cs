@@ -47,6 +47,7 @@ public class Login : MonoBehaviour
         {
             Debug.Log("Logged in as Anon");
             Debug.Log($"Principal: <b>\"{state.principal}\"</b>\nAccountId: <b>\"{state.accountIdentifier}\"</b>");
+            UserLoginSuccessfull();
         }
         
     }

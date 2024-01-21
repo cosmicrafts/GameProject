@@ -18,6 +18,12 @@ namespace Candid
             Instance = this;
         }
 
+        public void StartLoginRandom()
+        {
+            Debug.Log("Starting Random Login Flow");
+            BrowserUtils.ToggleLoginIframe(true);
+            CandidApiManager.Instance.OnLoginRandomAgent();
+        }
         /// <summary>
         /// This is the login flow using localstorage for WebGL
         /// </summary>

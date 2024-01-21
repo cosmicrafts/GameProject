@@ -59,30 +59,6 @@ namespace Candid
             Instance = this;
             DontDestroyOnLoad(gameObject);
             
-            /*IAgent CreateAgentWithRandomIdentity(bool useLocalHost = false)
-            {
-                IAgent randomAgent = null;
-
-                var httpClient = new UnityHttpClient();
-
-                try
-                {
-                    if (useLocalHost)
-                        randomAgent = new HttpAgent(Ed25519Identity.Generate(), new Uri("http://localhost:4943"));
-                    else
-                        randomAgent = new HttpAgent(httpClient, Ed25519Identity.Generate());
-                }
-                catch (Exception e)
-                {
-                    Debug.Log(e.ToString());
-                }
-
-                return randomAgent;
-            }
-            InitializeCandidApis(CreateAgentWithRandomIdentity(), true).Forget();*/
-
-           
-            
         }
 
         private void Start()
@@ -116,7 +92,7 @@ namespace Candid
             LoginManager.Instance.StartLoginFlow(OnLoginCompleted);
         }
         
-        void OnLoginCompleted(string json)
+        public void OnLoginCompleted(string json)
         {
             CreateAgentUsingIdentityJson(json, false).Forget();
             
@@ -148,6 +124,54 @@ namespace Candid
             }
         }
 
+        public void OnLoginRandomAgent()
+        {
+            LoadingPanel.Instance.ActiveLoadingPanel();
+            CreateAgentRandom().Forget();
+        }
+        public async UniTaskVoid CreateAgentRandom()
+        {
+            await UniTask.SwitchToMainThread();
+            
+            try
+            {
+                IAgent CreateAgentWithRandomIdentity(bool useLocalHost = false)
+                {
+                    IAgent randomAgent = null;
+
+                    var httpClient = new UnityHttpClient();
+
+                    try
+                    {
+                        if (useLocalHost)
+                            randomAgent = new HttpAgent(Ed25519Identity.Generate(), new Uri("http://localhost:4943"));
+                        else
+                            randomAgent = new HttpAgent(httpClient, Ed25519Identity.Generate());
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log(e.ToString());
+                    }
+
+                    return randomAgent;
+                }
+                await InitializeCandidApis(CreateAgentWithRandomIdentity(), true);
+
+                Debug.Log("Terminé de crear el agente random, ahora estoy logueado");
+
+                if (Login.Instance != null)
+                {
+                    Login.Instance.UpdateWindow(loginData);
+                }
+                
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e.Message);
+            }
+        }
+
+        
         public void LogOut( )
         {
             PlayerPrefs.DeleteKey("authTokenId");
