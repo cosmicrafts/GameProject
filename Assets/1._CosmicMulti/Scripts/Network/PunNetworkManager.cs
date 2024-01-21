@@ -20,6 +20,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
     public static PunNetworkManager NetworkManager;
     private PhotonView view;
     public TMP_Text lobbyTxt;
+    public Canvas myCanvas;
 
     public string nameRoom = "Cosmicrafts_Room0";
     public int gameId = 0;
@@ -56,6 +57,10 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
                 Messenger
             };
             DontDestroyOnLoad(gameObject);
+        }
+        if (!view)
+        {
+            view = GetComponent<PhotonView>();
         }
     }
 
@@ -129,6 +134,15 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
         view.RPC(methodName, RpcTarget.Others, parameters);
     }
 
+     [PunRPC]
+    public void DisableCanvasRPC()
+    {
+        if (myCanvas != null) 
+        {
+            myCanvas.enabled = false;
+        }
+    }
+
     private void UpdateConnecting()
     {
         if (Application.internetReachability == NetworkReachability.NotReachable)
@@ -164,6 +178,7 @@ public class PunNetworkManager : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Photon.Realtime.Player newPlayer)
     {
         Debug.Log("OnPlayerEnteredRoom " + newPlayer.NickName);
+        view.RPC("DisableCanvasRPC", RpcTarget.All);
         LoadGame();
     }
     

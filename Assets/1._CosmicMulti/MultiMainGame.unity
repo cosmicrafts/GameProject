@@ -26730,7 +26730,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 41.36
+  m_fontSize: 30.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -53553,7 +53553,7 @@ GameObject:
   - component: {fileID: 1555174770}
   - component: {fileID: 1555174769}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Logo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67605,7 +67605,7 @@ GameObject:
   - component: {fileID: 1980314648}
   - component: {fileID: 1980314647}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94240,10 +94240,10 @@ MonoBehaviour:
   m_enableVertexGradient: 1
   m_colorMode: 2
   m_fontColorGradient:
-    topLeft: {r: 1, g: 0.8991537, b: 0.44716978, a: 1}
-    topRight: {r: 1, g: 0.8991537, b: 0.44716978, a: 1}
-    bottomLeft: {r: 1, g: 0.6207677, b: 0, a: 1}
-    bottomRight: {r: 1, g: 0.6207677, b: 0, a: 1}
+    topLeft: {r: 0.82452834, g: 0.9361847, b: 1, a: 1}
+    topRight: {r: 0.82452834, g: 0.9361847, b: 1, a: 1}
+    bottomLeft: {r: 0, g: 0.6098695, b: 1, a: 1}
+    bottomRight: {r: 0, g: 0.6098695, b: 1, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -94315,10 +94315,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8a46cad242004bf3bbd714ff475914e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  getInfoFromCanister: 1
+  getInfoFromCanister: 0
   GameManager: {fileID: 3494457798130101478}
   Messenger: {fileID: 3494457797535734111}
   lobbyTxt: {fileID: 3494457797263207430}
+  myCanvas: {fileID: 3494457797605447209}
   nameRoom: CosmicraftSalaV
   gameId: 0
 --- !u!4 &3494457797535734105
@@ -94429,7 +94430,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3494457797605447214
 RectTransform:
   m_ObjectHideFlags: 0
