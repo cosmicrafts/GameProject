@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CanisterPK.CanisterLogin;
 using EdjCase.ICP.Agent.Responses;
 using EdjCase.ICP.Candid.Mapping;
+using TokenID = EdjCase.ICP.Candid.Models.UnboundedUInt;
 
 namespace CanisterPK.CanisterLogin
 {
@@ -86,6 +87,13 @@ namespace CanisterPK.CanisterLogin
 			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
 			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "savePlayerName", arg);
 			return reply.ToObjects<bool>(this.Converter);
+		}
+
+		public async Task<(bool ReturnArg0, string ReturnArg1)> UpgradeNFT(TokenID arg0)
+		{
+			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
+			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "upgradeNFT", arg);
+			return reply.ToObjects<bool, string>(this.Converter);
 		}
 
 		public class GetICPBalanceReturnArg0

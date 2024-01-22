@@ -22,34 +22,6 @@ namespace CanisterPK.CanisterMatchMaking
 			this.Converter = converter;
 		}
 
-		public async Task<(bool ReturnArg0, string ReturnArg1)> AcceptMatch(string arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "acceptMatch", arg);
-			return reply.ToObjects<bool, string>(this.Converter);
-		}
-
-		public async Task<bool> AddMatchPlayerData(string arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "addMatchPlayerData", arg);
-			return reply.ToObjects<bool>(this.Converter);
-		}
-
-		public async Task<(bool ReturnArg0, UnboundedUInt ReturnArg1)> AddPlayerSearching()
-		{
-			CandidArg arg = CandidArg.FromCandid();
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "addPlayerSearching", arg);
-			return reply.ToObjects<bool, UnboundedUInt>(this.Converter);
-		}
-
-		public async Task<(bool ReturnArg0, string ReturnArg1)> AssignPlayer2(UnboundedUInt arg0)
-		{
-			CandidArg arg = CandidArg.FromCandid(CandidTypedValue.FromObject(arg0, this.Converter));
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "assignPlayer2", arg);
-			return reply.ToObjects<bool, string>(this.Converter);
-		}
-
 		public async Task<(bool ReturnArg0, string ReturnArg1)> CancelMatchmaking()
 		{
 			CandidArg arg = CandidArg.FromCandid();
@@ -80,26 +52,11 @@ namespace CanisterPK.CanisterMatchMaking
 			return reply.ToObjects<OptionalValue<Models.FullMatchData>, UnboundedUInt>(this.Converter);
 		}
 
-		public async Task<(UnboundedUInt ReturnArg0, string ReturnArg1)> IsGameAccepted()
-		{
-			CandidArg arg = CandidArg.FromCandid();
-			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "isGameAccepted", arg);
-			CandidArg reply = response.ThrowOrGetReply();
-			return reply.ToObjects<UnboundedUInt, string>(this.Converter);
-		}
-
 		public async Task<(bool ReturnArg0, string ReturnArg1)> IsGameMatched()
 		{
 			CandidArg arg = CandidArg.FromCandid();
 			QueryResponse response = await this.Agent.QueryAsync(this.CanisterId, "isGameMatched", arg);
 			CandidArg reply = response.ThrowOrGetReply();
-			return reply.ToObjects<bool, string>(this.Converter);
-		}
-
-		public async Task<(bool ReturnArg0, string ReturnArg1)> RejectMatch()
-		{
-			CandidArg arg = CandidArg.FromCandid();
-			CandidArg reply = await this.Agent.CallAndWaitAsync(this.CanisterId, "rejectMatch", arg);
 			return reply.ToObjects<bool, string>(this.Converter);
 		}
 
