@@ -4,8 +4,6 @@ using System.Net;
 using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Candid;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -48,11 +46,8 @@ public class UnityHttpClient : IHttpClient
     {
         if (request.result != UnityWebRequest.Result.Success)
         {
-            CandidApiManager.Instance.LogOut();
             throw new Exception("Failed UnityWebRequest: " + request.error);
-            Debug.Log("2");
         }
-        
         HttpStatusCode statusCode = (HttpStatusCode)request.responseCode;
         byte[] data = request.downloadHandler.data;
         return new HttpResponse(statusCode, () => Task.FromResult(data));
