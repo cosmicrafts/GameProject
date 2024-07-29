@@ -142,9 +142,9 @@ public class Unit : MonoBehaviour
 
     virtual protected void FixedUpdate()
     {
-        if (MyRb.velocity.magnitude > 0f)
+        if (MyRb.linearVelocity.magnitude > 0f)
         {
-            MyRb.velocity = Vector3.zero;
+            MyRb.linearVelocity = Vector3.zero;
         }
         if (MyRb.angularVelocity.magnitude > 0.5f)
         {

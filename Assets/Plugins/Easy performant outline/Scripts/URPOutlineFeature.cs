@@ -60,7 +60,7 @@ public class URPOutlineFeature : ScriptableRendererFeature
                 Parameters.TargetHeight = descriptor.height;
             }
             else
-            { 
+            {
                 Parameters.TargetWidth = targetTexture != null ? targetTexture.width : (int)(camera.scaledPixelWidth * renderingData.cameraData.renderScale);
                 Parameters.TargetHeight = targetTexture != null ? targetTexture.height : (int)(camera.scaledPixelHeight * renderingData.cameraData.renderScale);
             }
@@ -68,18 +68,8 @@ public class URPOutlineFeature : ScriptableRendererFeature
             Parameters.Antialiasing = renderingData.cameraData.cameraTargetDescriptor.msaaSamples;
 
             var useCustomRenderTarget = Outliner.HasCutomRenderTarget && !renderingData.cameraData.isSceneViewCamera;
-            Parameters.Target = RenderTargetUtility.ComposeTarget(Parameters, useCustomRenderTarget ? Outliner.GetRenderTarget(Parameters) : Renderer.cameraColorTarget);
-            Parameters.DepthTarget =
-#if UNITY_2019_3_OR_NEWER && !UNITY_2019_3_0 && !UNITY_2019_3_1 && !UNITY_2019_3_2 && !UNITY_2019_3_3 && !UNITY_2019_3_4 && !UNITY_2019_3_5 && !UNITY_2019_3_6 && !UNITY_2019_3_7 && !UNITY_2019_3_8
-            RenderTargetUtility.ComposeTarget(Parameters, UseColorTargetForDepth ? Renderer.cameraColorTarget :
-#if UNITY_2020_2_OR_NEWER
-                Renderer.cameraDepthTarget);
-#else
-                Renderer.cameraDepth);
-#endif
-#else
-                RenderTargetUtility.ComposeTarget(Parameters, Renderer.cameraColorTarget);
-#endif
+            Parameters.Target = RenderTargetUtility.ComposeTarget(Parameters, useCustomRenderTarget ? Outliner.GetRenderTarget(Parameters) : Renderer.cameraColorTargetHandle);
+            Parameters.DepthTarget = RenderTargetUtility.ComposeTarget(Parameters, UseColorTargetForDepth ? Renderer.cameraColorTargetHandle : Renderer.cameraDepthTargetHandle);
 
             Parameters.Buffer.Clear();
             if (Outliner.RenderingStrategy == OutlineRenderingStrategy.Default)
@@ -206,7 +196,7 @@ public class URPOutlineFeature : ScriptableRendererFeature
 
             outline.Outliner = outliner;
 
-            outline.UseColorTargetForDepth = !shouldUseDepthTarget;//(additionalCameraData == null || activeStackCount == 0 && additionalCameraData.renderType != CameraRenderType.Overlay) &&
+            outline.UseColorTargetForDepth = !shouldUseDepthTarget;
 
             outline.Renderer = renderer;
             outline.renderPassEvent = RenderPassEvent.BeforeRenderingPostProcessing;
