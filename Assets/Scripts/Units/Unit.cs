@@ -1,5 +1,4 @@
-﻿using EPOOutline;
-using System.Linq;
+﻿using System.Linq;
 using UnityEngine;
 using System.Collections;
 /*
@@ -102,7 +101,6 @@ public class Unit : MonoBehaviour
     //The unit UI reference code
     public UIUnit UI;
     //The outline shader effect reference
-    protected Outlinable MyOutline;
     //The Animator controller reference
     [SerializeField]
     protected Animator MyAnim;
@@ -131,14 +129,12 @@ public class Unit : MonoBehaviour
         MaxShield = Shield;
         MaxHp = HitPoints;
         MyRb = GetComponent<Rigidbody>();
-        MyOutline = Mesh.GetComponent<Outlinable>();
         TrigerBase = GetComponent<SphereCollider>();
         SolidBase = Mesh.GetComponent<SphereCollider>();
         //Initialize UI
         UI.Init(MaxHp - 1, MaxShield - 1);
         UI.SetColorBars(!IsMyTeam(GameMng.P.MyTeam));
         //Set the outline color
-        MyOutline.OutlineParameters.Color = GameMng.GM.GetColorUnit(MyTeam, PlayerId);
         //Initialize more variables
         TrigerBase.radius = SolidBase.radius;
         transform.localScale = new Vector3(Size, Size, Size);
@@ -202,9 +198,9 @@ public class Unit : MonoBehaviour
     //Normalize and control the physics boundaries
     virtual protected void FixedUpdate()
     {
-        if (MyRb.velocity.magnitude > 0f)
+        if (MyRb.linearVelocity.magnitude > 0f)
         {
-            MyRb.velocity = Vector3.zero;
+            MyRb.linearVelocity = Vector3.zero;
         }
         if (MyRb.angularVelocity.magnitude > 0.5f)
         {

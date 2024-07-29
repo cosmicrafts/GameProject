@@ -1,35 +1,33 @@
 ﻿using UnityEngine;
-using EPOOutline;
 
 /*
- * This script controls and validates the draging cards to deploy them (in-game)
+ * This script controls and validates the dragging cards to deploy them (in-game)
  */
 
 public class DragUnitCtrl : MonoBehaviour
 {
-    //The number of valid detected areas for deploying
+    // The number of valid detected areas for deploying
     int areas;
-    //The enemy base position
+    // The enemy base position
     Vector3 target;
 
-    //The preview 3d model and effects of the card to deploy
+    // The preview 3d model and effects of the card to deploy
     public MeshRenderer MyMesh;
     public MeshFilter MyMeshFilter;
-    public Outlinable Outline;
     GameObject currentPreview;
 
-    //The energy cost of the current draging card
+    // The energy cost of the current dragging card
     public float TargetCost;
 
-    //The default outline color of the model
+    // The default outline color of the model
     Color DefaultColor;
 
-    //The player data reference
+    // The player data reference
     Player player;
 
     private void Start()
     {
-        //Initialize variables
+        // Initialize variables
         areas = 0;
         SetStatusColor(Color.red);
         target = GameMng.GM.GetDefaultTargetPosition(GameMng.P.MyTeam);
@@ -39,19 +37,19 @@ public class DragUnitCtrl : MonoBehaviour
 
     private void Update()
     {
-        //Update the outline color (green when the draging card can be deployed on the current position)
+        // Update the outline color (green when the dragging card can be deployed on the current position)
         DefaultColor = TargetCost > player.CurrentEnergy ? Color.blue : Color.green;
         SetStatusColor(areas > 0 ? DefaultColor : Color.red);
     }
 
     private void FixedUpdate()
     {
-        //Update the position and rotation of the draging card
+        // Update the position and rotation of the dragging card
         transform.position = CMath.GetMouseWorldPos();
         transform.LookAt(CMath.LookToY(transform.position, target));
     }
 
-    //spawnable area detected
+    // Spawnable area detected
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Spawnarea"))
@@ -60,7 +58,7 @@ public class DragUnitCtrl : MonoBehaviour
         }
     }
 
-    //spawnable area lost
+    // Spawnable area lost
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Spawnarea"))
@@ -69,26 +67,26 @@ public class DragUnitCtrl : MonoBehaviour
         }
     }
 
-    //Return if the player can deploys on the current position
+    // Return if the player can deploy on the current position
     public bool IsValid()
     {
         return areas > 0;
     }
 
-    //Set the current draging status color
+    // Set the current dragging status color
     void SetStatusColor(Color color)
     {
-        Outline.OutlineParameters.Color = color;
+        // No longer using outline
     }
 
-    //Set the current preview from a mesh and material
+    // Set the current preview from a mesh and material
     public void SetMeshAndTexture(Mesh mesh, Material mat)
     {
         MyMesh.material = mat;
         MyMeshFilter.mesh = mesh;
     }
 
-    //Shows and hides the current preview game object
+    // Shows and hides the current preview game object
     public void setMeshActive(bool active)
     {
         MyMesh.gameObject.SetActive(active);
@@ -98,15 +96,15 @@ public class DragUnitCtrl : MonoBehaviour
         }
     }
 
-    //Set the current preview from a game object
+    // Set the current preview from a game object
     public void CreatePreviewObj(GameObject preview)
     {
         currentPreview = Instantiate(preview, transform);
 
         UnitAnimLis unitAnimLis = currentPreview.GetComponent<UnitAnimLis>();
-        if(unitAnimLis != null) { DestroyImmediate(unitAnimLis, true);}
+        if (unitAnimLis != null) { DestroyImmediate(unitAnimLis, true); }
 
-        SphereCollider sphereCollider = currentPreview.GetComponent<SphereCollider>(); 
-        if(sphereCollider != null) { DestroyImmediate(sphereCollider, true);}
+        SphereCollider sphereCollider = currentPreview.GetComponent<SphereCollider>();
+        if (sphereCollider != null) { DestroyImmediate(sphereCollider, true); }
     }
 }
