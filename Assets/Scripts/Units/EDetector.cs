@@ -6,41 +6,47 @@
 
 public class EDetector : MonoBehaviour
 {
-    //Unit data reference
+    // Unit data reference
     public Unit MyUnit;
 
-    //Shooter script reference
+    // Shooter script reference
     public Shooter MyShooter;
 
-    //New enemy detected (add to enemys list)
+    // New enemy detected (add to enemies list)
     private void OnTriggerEnter(Collider other)
     {
-        //Check if the detected object is an unit
+        // Check if the detected object is a unit
         if (other.CompareTag("Unit"))
         {
-            //Check if the unit is an enemy unit and still alive
+            // Check if the unit is an enemy unit and still alive
             Unit OtherUnit = other.gameObject.GetComponent<Unit>();
-            if (!OtherUnit.IsMyTeam(MyUnit.MyTeam) && !OtherUnit.GetIsDeath())
+            if (OtherUnit != null && !OtherUnit.IsMyTeam(MyUnit.MyTeam) && !OtherUnit.GetIsDeath())
             {
-                //Add the unit to the enemys list
+                // Add the unit to the enemies list
                 MyShooter.AddEnemy(OtherUnit);
             }
         }
     }
 
-    //Enemy out of range (delete from enemys list)
+    // Enemy out of range (delete from enemies list)
     private void OnTriggerExit(Collider other)
     {
-        //Check if the detected object is an unit
+        // Check if the detected object is a unit
         if (other.CompareTag("Unit"))
         {
-            //Check if the unit is an enemy unit
+            // Check if the unit is an enemy unit
             Unit OtherUnit = other.gameObject.GetComponent<Unit>();
-            if (!OtherUnit.IsMyTeam(MyUnit.MyTeam))
+            if (OtherUnit != null && !OtherUnit.IsMyTeam(MyUnit.MyTeam))
             {
-                //Delete the unit from the enemys list
+                // Delete the unit from the enemies list
                 MyShooter.RemoveEnemy(OtherUnit);
             }
         }
+    }
+
+    // Clean up destroyed or inactive units
+    public void CleanUpEnemies()
+    {
+        MyShooter.CleanEnemies();
     }
 }
