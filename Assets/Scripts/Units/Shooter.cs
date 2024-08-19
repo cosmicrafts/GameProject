@@ -85,9 +85,16 @@ public class Shooter : MonoBehaviour
             Cannons = new Transform[0];
         }
         MuzzleFlash = new ParticleSystem[Cannons.Length];
-        for (int i=0; i<Cannons.Length; i++)
+        for (int i = 0; i < Cannons.Length; i++)
         {
-            MuzzleFlash[i] = Cannons[i].GetChild(0).GetComponent<ParticleSystem>();
+            if (Cannons[i].childCount > 0)
+            {
+                MuzzleFlash[i] = Cannons[i].GetChild(0).GetComponent<ParticleSystem>();
+            }
+            else
+            {
+                MuzzleFlash[i] = null;
+            }
         }
         if (CoolDown <= 0f)
             CoolDown = 0.1f;
