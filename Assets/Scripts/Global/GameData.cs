@@ -221,8 +221,9 @@ public class GameData
         Lang.SetLang(newlang);
 
         config.language = (int)newlang;
-        SaveData.SaveGameConfig();
+
     }
+
     //Returns if the player information is loaded and ready
     public bool UserIsInit()
     {

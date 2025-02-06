@@ -112,7 +112,7 @@ public class UIMainMenu : MonoBehaviour
         {
             Debug.Log("Load Game Config");
             //Initialize the essential data
-            SaveData.LoadGameConfig();
+           // SaveData.LoadGameConfig();
             //Show Welcome Panel
             if (!GlobalManager.GMD.DebugMode)
                 welcomePanel.SetActive(true);
