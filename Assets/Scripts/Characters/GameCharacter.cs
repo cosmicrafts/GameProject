@@ -1,22 +1,60 @@
 ﻿using UnityEngine;
-/* 
- * This is the parent class for characters controllers 
- */
-public class GameCharacter : MonoBehaviour
-{
-    //Key NFT ID
-    public string IdKey;
-    //Character Icon
-    public Sprite Icon;
 
-    //Do something when player deploy units
-    public virtual void DeployUnit(Unit unit)
+namespace CosmicraftsSP
+{
+    public class GameCharacter : MonoBehaviour
     {
-        //Stay empty, write code in child class
-    }
-    //Do something when player casts spells
-    public virtual void DeploySpell(Spell spell)
-    {
-        //Stay empty, write code in child class
+        public CharacterBaseSO characterBaseSO;
+
+        // Initialize the character using the SO
+        public void InitializeCharacter(CharacterBaseSO characterSO)
+        {
+            characterBaseSO = characterSO;
+            ApplyGameplayModifiers();
+        }
+
+        // ✅ Fix: Mark this method as virtual to allow overriding in child classes
+        public virtual void DeployUnit(Unit unit)
+        {
+            if (characterBaseSO != null)
+            {
+                foreach (var skill in characterBaseSO.Skills)
+                {
+                    if (skill.ApplicationType == SkillApplicationType.OnDeployUnit)
+                    {
+                        skill.ApplySkill(unit);
+                    }
+                }
+            }
+        }
+
+        // Optional: Mark this as virtual if you want to allow overrides for spells
+        public virtual void DeploySpell(Spell spell)
+        {
+            if (characterBaseSO != null)
+            {
+                foreach (var skill in characterBaseSO.Skills)
+                {
+                    if (skill.ApplicationType == SkillApplicationType.OnDeployUnit)
+                    {
+                        skill.ApplySkill(spell);
+                    }
+                }
+            }
+        }
+
+        public void ApplyGameplayModifiers()
+        {
+            if (characterBaseSO != null)
+            {
+                foreach (var skill in characterBaseSO.Skills)
+                {
+                    if (skill.ApplicationType == SkillApplicationType.GameplayModifier)
+                    {
+                        skill.ApplyGameplayModifier();
+                    }
+                }
+            }
+        }
     }
 }

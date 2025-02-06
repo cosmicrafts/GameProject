@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+    using UnityEngine;
 using UnityEngine.UI;
 
 /*
@@ -34,13 +35,13 @@ public class UIVsPInfo : MonoBehaviour
                     Text mytext = GetComponent<Text>();
                     mytext.text = user.NikeName;
                 }
-                break;
+                break;/*
             case PlayerProperty.WalletId:
                 {
                     UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Text mytext = GetComponent<Text>();
                     mytext.text = Utils.GetWalletIDShort(user.WalletId);
-                }
+                }*/
                 break;
             case PlayerProperty.Level:
                 {
@@ -76,4 +77,5 @@ public class UIVsPInfo : MonoBehaviour
                 break;
         }
     }
+}
 }

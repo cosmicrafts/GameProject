@@ -1,3 +1,4 @@
+namespace CosmicraftsSP {
 using UnityEngine;
 
 public class GlobalManager : MonoBehaviour
@@ -11,7 +12,7 @@ public class GlobalManager : MonoBehaviour
         //Set persistent
         DontDestroyOnLoad(gameObject);
         //Check the build type
-        GMD.DebugMode = false;
+        GMD.DebugMode = true;
 #if UNITY_EDITOR
         GMD.DebugMode = true;
 #endif
@@ -25,4 +26,5 @@ public class GlobalManager : MonoBehaviour
     {
         GMD = null;
     }
+}
 }

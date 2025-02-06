@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace CosmicraftsSP {
+    
+using System.Collections.Generic;
 using UnityEngine;
 /*
  * Spell 1 Laser Beam
@@ -42,10 +44,6 @@ public class Spell_01 : Spell
     protected override void Update()
     {
         base.Update();
-        
-        //If this spell is fake, dont do nothing
-        if (IsFake)
-            return;
 
         //Damage time delay 
         if (delaydmg > 0f)
@@ -60,13 +58,6 @@ public class Spell_01 : Spell
                 unit.AddDmg(10, TypeDmg.Shield);
             }
         }
-    }
-
-    //Set this spell as fake
-    public override void setHasFake()
-    {
-        base.setHasFake();
-        GetComponent<BoxCollider>().enabled = false;
     }
 
     //Add enemy´s units as targets when they collide with the laser
@@ -94,4 +85,4 @@ public class Spell_01 : Spell
             }
         }
     }
-}
+}}

@@ -1,11 +1,11 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+using UnityEngine;
 /*
     This is the in-game parent spell controller
  */
 public class Spell : MonoBehaviour
 {
-    //Defines if this spell is only a mirror of other spell (used for multiplayer)
-    protected bool IsFake = false;
+
     //The NFT data source
     protected NFTsSpell NFTs;
     //The spell's team in the game
@@ -35,12 +35,6 @@ public class Spell : MonoBehaviour
     protected virtual void Update()
     {
         
-    }
-
-    //Sets if this spell is fake
-    public virtual void setHasFake()
-    {
-        IsFake = true;
     }
 
     //Returns the NFT key
@@ -78,4 +72,5 @@ public class Spell : MonoBehaviour
         if (GlobalManager.GMD.DebugMode || nFTsSpell == null)
             return;
     }
+}
 }

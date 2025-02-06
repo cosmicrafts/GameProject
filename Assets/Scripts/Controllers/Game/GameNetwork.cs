@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿namespace CosmicraftsSP {
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
@@ -310,4 +311,5 @@ public static class GameNetwork
     public static extern void JSGoToMenu();
 
 
+}
 }

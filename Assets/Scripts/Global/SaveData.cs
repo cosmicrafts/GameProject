@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿namespace CosmicraftsSP {
+    using Newtonsoft.Json;
 using UnityEngine;
 /*
  * This is the local data controller
@@ -51,4 +52,5 @@ public static class SaveData
     {
         error = result == SaveResult.Error;
     }
+}
 }

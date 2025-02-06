@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+namespace CosmicraftsSP {
 /*
  * This code shows a player property on a UI element (UI component)
  */
@@ -132,4 +132,5 @@ public class UIPTxtInfo : MonoBehaviour
                 break;
         }
     }
+}
 }

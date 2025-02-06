@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+    using UnityEngine;
 
 /*
  * The animation controller script for units
@@ -34,4 +35,5 @@ public class UnitAnimLis : MonoBehaviour
         //Kill the unit
         MyUnit.BlowUpEffect();
     }
+}
 }

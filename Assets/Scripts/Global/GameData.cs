@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿namespace CosmicraftsSP {
+    using System.Linq;
 using UnityEngine;
 /*
     Here we save and manage the global data of the game like
@@ -246,4 +247,5 @@ public class GameData
     {
         return CurrentPlataform == Plataform.Web && !DebugMode;
     }
+}
 }

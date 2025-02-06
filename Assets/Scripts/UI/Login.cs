@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 using UnityEngine.SceneManagement;
+namespace CosmicraftsSP {
 public class Login : MonoBehaviour
 {
 
@@ -124,4 +125,5 @@ public class Login : MonoBehaviour
         GameNetwork.JSWalletsLogin("plugWallet");
     }
 
+}
 }

@@ -1,4 +1,5 @@
-using System.Collections;
+namespace CosmicraftsSP {
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,4 +52,5 @@ public class TestNft : MonoBehaviour
         spriteX.sprite = Sprite.Create(webTexture, new Rect(0.0f, 0.0f, webTexture.width, webTexture.height), new Vector2(0.5f, 0.5f), 100.0f);
     }
 
+}
 }

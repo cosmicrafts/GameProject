@@ -1,3 +1,4 @@
+namespace CosmicraftsSP {
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,4 +40,5 @@ public class AvatarImages : MonoBehaviour
         
         UIMainMenu.Menu.RefreshProperty(PlayerProperty.Avatar);
     }
+}
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿namespace CosmicraftsSP {
+    using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -290,4 +291,5 @@ public class UICollection : MonoBehaviour
                 );
         }
     }
+}
 }

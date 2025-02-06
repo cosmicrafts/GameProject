@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+using UnityEngine;
 
 /*
  * This is the unit enemy detector
@@ -43,4 +44,5 @@ public class EDetector : MonoBehaviour
             }
         }
     }
+}
 }

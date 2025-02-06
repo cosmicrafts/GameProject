@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿namespace CosmicraftsSP {
+    using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -165,7 +166,7 @@ public class GameTutorial : MonoBehaviour
         //Set the name of the player in dialogs
         for (int i = 0; i < Dialogs.Length; i++)
         {
-            Dialogs[i] = Dialogs[i].Replace("$PLAYER", GameMng.PlayerData.NikeName);
+          //  Dialogs[i] = Dialogs[i].Replace("$PLAYER", GameMng.PlayerData.NikeName);
         }
     }
 
@@ -433,4 +434,5 @@ public class GameTutorial : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+}
 }

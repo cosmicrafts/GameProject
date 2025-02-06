@@ -2,6 +2,7 @@
  * This is the 4° in-game character controller 
  * Sotzeer
  */
+ namespace CosmicraftsSP {
 public class Character_6 : GameCharacter
 {
     //Add 2 shield points and movement speed to units
@@ -24,3 +25,4 @@ public class Character_6 : GameCharacter
         unit.Size *= 0.8f; //decrease size spaceship to 80% (Skill 3)
     }
 }
+ }

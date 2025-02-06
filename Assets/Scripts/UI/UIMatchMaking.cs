@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿namespace CosmicraftsSP {
+    using Newtonsoft.Json;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -190,4 +191,5 @@ public class UIMatchMaking : MonoBehaviour
         Debug.Log("--LOADING GAME SCENE--");
         loading.allowSceneActivation = true;
     }
+}
 }

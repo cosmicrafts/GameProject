@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿namespace CosmicraftsSP {
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,4 +125,5 @@ public class UICharacters : MonoBehaviour
     {
         CharactersScroll.value = 1;
     }
+}
 }

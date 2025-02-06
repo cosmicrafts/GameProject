@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+using UnityEngine;
 
 /*
  * This is the base station script (for unique behaviors) 
@@ -13,4 +14,5 @@ public class MainStation : MonoBehaviour
     {
         MyUnit = GetComponent<Unit>();
     }
+}
 }

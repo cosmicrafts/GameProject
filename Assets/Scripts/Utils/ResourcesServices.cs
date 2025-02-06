@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿namespace CosmicraftsSP {
+using System.Collections.Generic;
 using UnityEngine;
 
 /*
@@ -95,4 +96,5 @@ public static class ResourcesServices
     {
         return sprite == null ? Resources.Load<Sprite>($"UI/Loading") : sprite;
     }
+}
 }

@@ -2,6 +2,8 @@
  * This is the 4° in-game character controller 
  * Sotzeer
  */
+  namespace CosmicraftsSP
+{
 public class Character_5 : GameCharacter
 {
     void Start()
@@ -14,4 +16,5 @@ public class Character_5 : GameCharacter
         base.DeployUnit(unit);
         unit.DodgeChance += 0.1f; //Increment dodge chance in 100% (skill 3)
     }
+}
 }

@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace CosmicraftsSP {
 public class WaveController : MonoBehaviour
 {
 
@@ -57,4 +57,5 @@ public class WaveController : MonoBehaviour
         }
     }
    
+}
 }

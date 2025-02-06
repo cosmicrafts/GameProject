@@ -1,4 +1,5 @@
-﻿/*
+﻿namespace CosmicraftsSP {
+    /*
  * This is the in-game metrics controller
  * Save the game statistics and calculates the game results
 */
@@ -43,17 +44,6 @@ public class GameMetrics
         EnergyWasted += GameMng.P.CurrentEnergy;
         EnergyChargeRatePerSec = GameMng.P.SpeedEnergy;
         SecRemaining = GameMng.GM.GetRemainingSecs();
-
-        //Score = (int)Damage + (Kills * 10) + (Deploys * 10) + (SecRemaining * 3) + (int)EnergyUsed - (int) EnergyWasted;
-
-        if (GlobalManager.GMD.CurrentMatch == Match.bots)
-        {
-            if (GlobalManager.GMD.IsProductionWeb())
-            {
-                GameNetwork.JSSaveScore(Score);
-            }
-            GlobalManager.GMD.GetUserProgress().AddBattlePoints(Score);
-        }
     }
 
     //Add energy used
@@ -133,4 +123,5 @@ public class GameMetrics
         return Score;
     }
     #endregion
+}
 }

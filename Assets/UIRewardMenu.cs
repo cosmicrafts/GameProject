@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Image = UnityEngine.UI.Image;
-
+namespace CosmicraftsSP {
 public class UIRewardMenu : MonoBehaviour
 {
     
@@ -76,4 +76,5 @@ public class UIRewardMenu : MonoBehaviour
     }
     
     
+}
 }

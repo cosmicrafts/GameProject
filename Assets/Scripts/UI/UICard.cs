@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿namespace CosmicraftsSP {
+    using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -101,4 +102,5 @@ public class UICard : MonoBehaviour
         if (Icon != null)
             Icon.sprite = ResourcesServices.ValidateSprite(Data.IconSprite);
     }
+}
 }

@@ -2,6 +2,9 @@
  * This is the 3° in-game character controller 
  * Plagnor
  */
+
+ namespace CosmicraftsSP
+{
 public class Character_3 : GameCharacter
 {
     public override void DeployUnit(Unit unit)
@@ -23,4 +26,5 @@ public class Character_3 : GameCharacter
             shooter.RangeDetector += 2f;  //Increment range detection in+2 (Skill 3)
         }
     }
+}
 }

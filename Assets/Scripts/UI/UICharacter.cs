@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+namespace CosmicraftsSP {
 /*
  * This code represents a character instance on the characters menu
  * The instance has the icon and name UI references
@@ -38,4 +38,5 @@ public class UICharacter : MonoBehaviour
     {
         IconSelected.SetActive(selected);
     }
+}
 }

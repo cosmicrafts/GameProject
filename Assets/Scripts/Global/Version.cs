@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+    using UnityEngine;
 using UnityEngine.UI;
 /*
  * This code show the game´s version on a text component
@@ -11,4 +12,5 @@ public class Version : MonoBehaviour
     {
         GetComponent<Text>().text = GlobalManager.GMD.GetVersion();
     }
+}
 }

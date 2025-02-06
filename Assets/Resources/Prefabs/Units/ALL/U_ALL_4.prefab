@@ -137,7 +137,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6325535560473148706}
   - component: {fileID: 8299634045159298403}
-  - component: {fileID: 7783165872224863482}
   m_Layer: 0
   m_Name: Farragut_Geo
   m_TagString: Untagged
@@ -228,18 +227,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.7493278, y: 0.26916313, z: -0.0013949871}
     m_Extent: {x: 4.3483553, y: 2.4126348, z: 3.5752866}
   m_DirtyAABB: 0
---- !u!114 &7783165872224863482
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598563729404177345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 034bc47afcbf5e141a58d5c20b7808e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1216548174179694636
 GameObject:
   m_ObjectHideFlags: 0
@@ -1103,7 +1090,7 @@ GameObject:
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220043}
   - component: {fileID: 4407161706331642914}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: U_ALL_4
   m_TagString: Unit
   m_Icon: {fileID: 0}
@@ -1183,6 +1170,7 @@ MonoBehaviour:
   Size: 1
   SpawnAreaSize: 0
   DodgeChance: 0
+  Level: 1
   IsBaseStation: 0
   IsInmortal: 0
   flagShield: 0
@@ -1239,9 +1227,6 @@ MonoBehaviour:
   RotateToEnemy: 1
   StopToAttack: 1
   Bullet: {fileID: 4495777382389081428, guid: 10b9ed6b2dbdca342884a06ca3095f80, type: 3}
-  colorBullet: {r: 1, g: 1, b: 1, a: 1}
-  colorImpact: {r: 1, g: 1, b: 1, a: 1}
-  colorShield: {r: 1, g: 1, b: 1, a: 0.5}
   Cannons:
   - {fileID: 1596714898762059449}
 --- !u!114 &2198226034328220043
@@ -1372,7 +1357,7 @@ SphereCollider:
   m_Center: {x: 0, y: 0, z: 0.75}
 --- !u!95 &3620083743056970581
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1389,7 +1374,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7694876696134715422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1402,21 +1388,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3fe91dc294731a9428c0941ea7579110, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  complexMaskingMode: 0
   drawingMode: 1
   outlineLayer: 0
   outlineTargets:
-  - IsVisible: 1
-    CutoutMask: 8
-    edgeDilateAmount: 5
+  - edgeDilateAmount: 5
     frontEdgeDilateAmount: 5
     backEdgeDilateAmount: 5
-    renderer: {fileID: 8299634045159298403}
+    Renderer: {fileID: 0}
     SubmeshIndex: 0
-    BoundsMode: 0
-    Bounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.5, y: 0.5, z: 0.5}
+    ForceRecalculateBounds: 0
+    CutoutDescriptionType: 0
     CutoutThreshold: 0.5
     CullMode: 2
     cutoutTextureName: 
@@ -2010,41 +1991,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifDmgSpeed
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifHpColor.b
-      value: 0.06314157
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifHpColor.g
-      value: 0.0045834924
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifHpColor.r
-      value: 0.9716981
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifShieldColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifShieldColor.g
-      value: 0.95381
-      objectReference: {fileID: 0}
-    - target: {fileID: 6464043107035257864, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: DifShieldColor.r
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}
       propertyPath: m_Pivot.x
@@ -2089,21 +2035,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 320
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.01
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6971450709809201329, guid: 9462dc2e370c96046bb8c0bf799feb25,
         type: 3}

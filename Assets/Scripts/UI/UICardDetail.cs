@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿namespace CosmicraftsSP {
+    using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 /*
@@ -86,4 +87,5 @@ public class UICardDetail : UICard
             Txt_Type.text = Lang.GetText(unitdata.EntType == (int)NFTClass.Station ? "mn_station" : "mn_ship");
         }
     }
+}
 }

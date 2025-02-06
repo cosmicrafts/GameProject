@@ -1,4 +1,5 @@
-﻿using System;
+﻿namespace CosmicraftsSP {
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,7 +82,7 @@ public class UIMainMenu : MonoBehaviour
     public Dropdown botDificulty;
     public int modeSelected = 0;
 
-    public GameModeCard[] gamemodes;
+   // public GameModeCard[] gamemodes;
     
    private void Awake()
    {
@@ -215,7 +216,7 @@ public class UIMainMenu : MonoBehaviour
     {
         Debug.Log("GL SET REWARD");
         UIReward.SetActive(true);
-        LoadingPanel.instance.DesactiveLoadingPanel();
+       // LoadingPanel.instance.DesactiveLoadingPanel();
     }
 
     //Add progress of the player loaded data
@@ -250,7 +251,7 @@ public class UIMainMenu : MonoBehaviour
         //Load icons
         StartCoroutine(LoadNFTsIcons());
         if (!GlobalManager.GMD.DebugMode)
-            LoadingPanel.instance.DesactiveLoadingPanel();
+           // LoadingPanel.instance.DesactiveLoadingPanel();
         //Start Menu        
         GlobalManager.GMD.DataReady = true;
         MenuPanel.SetActive(true);
@@ -269,7 +270,7 @@ public class UIMainMenu : MonoBehaviour
         StartCoroutine(LoadLocalGame());
         
     }
-    public void ChangeModeGame(GameModeCard gameModeCard)
+    /*public void ChangeModeGame(GameModeCard gameModeCard)
     {
         modeSelected = gameModeCard.idMode;
         PlayerPrefs.SetInt("BotMode", modeSelected);
@@ -280,15 +281,15 @@ public class UIMainMenu : MonoBehaviour
         MainMenu.SetActive(true);
         GameModesMenu.SetActive(false);
         
-    }
+    }*/
 
     //Update the UI for the current game mode
     void CheckGameMode()
     {
         if(PlayerPrefs.HasKey("BotMode")){
             int currentBotMode = PlayerPrefs.GetInt("BotMode");
-            CurrentImageGameMode.sprite = gamemodes[currentBotMode].imageMode.sprite;
-            CurrentGameMode.text = gamemodes[currentBotMode].nameMode.text;
+           // CurrentImageGameMode.sprite = gamemodes[currentBotMode].imageMode.sprite;
+            //CurrentGameMode.text = gamemodes[currentBotMode].nameMode.text;
         }
 
         switch (GlobalManager.GMD.CurrentMatch)
@@ -522,4 +523,5 @@ public class UIMainMenu : MonoBehaviour
 
         RefreshAllPropertys();
     }
+}
 }

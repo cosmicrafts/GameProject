@@ -2,6 +2,8 @@
  * This is the first in-game character controller 
  * Wegnar
  */
+  namespace CosmicraftsSP
+{
 public class Character_1 : GameCharacter
 {
     public override void DeployUnit(Unit unit)
@@ -26,3 +28,4 @@ public class Character_1 : GameCharacter
         {
             GameMng.P.MaxEnergy += 5f;
         }*/
+}

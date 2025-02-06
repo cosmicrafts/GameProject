@@ -2,6 +2,8 @@
  * This is the 4° in-game character controller 
  * Sotzeer
  */
+ namespace CosmicraftsSP
+{
 public class Character_4 : GameCharacter
 {
     public override void DeployUnit(Unit unit)
@@ -23,4 +25,5 @@ public class Character_4 : GameCharacter
         unit.HitPoints = (int)(unit.HitPoints * 1.2f); //Increment HP in 20%(Skill 3)
         unit.SetMaxHitPoints(unit.HitPoints);
     }
+}
 }

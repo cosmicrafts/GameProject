@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿namespace CosmicraftsSP {
+    using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -183,4 +184,5 @@ public static class NetClient
     {
         return await Base(uri, EMethod.DELETE);
     }
+}
 }

@@ -2,6 +2,8 @@
  * This is the 2° in-game character controller 
  * Dofshlu
  */
+  namespace CosmicraftsSP
+{
 public class Character_2 : GameCharacter
 {
     public override void DeployUnit(Unit unit)
@@ -16,4 +18,5 @@ public class Character_2 : GameCharacter
         unit.DodgeChance += 0.1f; //Increment dodge chance in 100% (skill 3)
     }
     
+}
 }
