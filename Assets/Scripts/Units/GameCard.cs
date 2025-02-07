@@ -1,22 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public enum CardType
-{
-    Unit,
-    Spell
-}
+/*
+ * This is the basic game card data used on the units and spells prefabs
+ */
 
 public class GameCard : MonoBehaviour
 {
-    public string NftsKey;
-
-    public string Name;
-
-    public int EnergyCost;
-
-    public Sprite Icon;
-
-    public CardType cardType;
+    public string Alias;
 }

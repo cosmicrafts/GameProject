@@ -1,9 +1,22 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace EPOOutline
 {
+    public class SerializedPassInfoAttribute : Attribute
+    {
+        public readonly string Title;
+        public readonly string ShadersFolder;
+
+        public SerializedPassInfoAttribute(string title, string shadersFolder)
+        {
+            Title = title;
+            ShadersFolder = shadersFolder;
+        }
+    }
+
     [System.Serializable]
     public class SerializedPass : ISerializationCallbackReceiver
     {
@@ -44,7 +57,6 @@ namespace EPOOutline
 #pragma warning restore CS0649
         }
 
-
         [SerializeField]
         private Shader shader;
 
@@ -57,6 +69,7 @@ namespace EPOOutline
 
             set
             {
+                propertiesIsDirty = true;
                 shader = value;
             }
         }
@@ -68,6 +81,8 @@ namespace EPOOutline
         private Dictionary<string,  SerializedPassProperty> propertiesByName    = new Dictionary<string, SerializedPassProperty>();
 
         private Material material;
+
+        private bool propertiesIsDirty = false;
 
         public Material Material
         {
@@ -83,6 +98,9 @@ namespace EPOOutline
 
                     material = new Material(shader);
                 }
+
+                if (!propertiesIsDirty)
+                    return material;
 
                 foreach (var property in propertiesById)
                 {
@@ -104,6 +122,8 @@ namespace EPOOutline
                             break;
                     }
                 }
+
+                propertiesIsDirty = false;
 
                 return material;
             }
@@ -157,6 +177,7 @@ namespace EPOOutline
 
         public void SetVector(string name, Vector4 value)
         {
+            propertiesIsDirty = true;
             SerializedPassProperty result = null;
             if (!propertiesByName.TryGetValue(name, out result))
             {
@@ -177,6 +198,7 @@ namespace EPOOutline
 
         public void SetVector(int hash, Vector4 value)
         {
+            propertiesIsDirty = true;
             SerializedPassProperty result = null;
             if (!propertiesById.TryGetValue(hash, out result))
             {
@@ -231,6 +253,7 @@ namespace EPOOutline
 
         public void SetFloat(string name, float value)
         {
+            propertiesIsDirty = true;
             SerializedPassProperty result = null;
             if (!propertiesByName.TryGetValue(name, out result))
             {
@@ -240,7 +263,7 @@ namespace EPOOutline
                 propertiesById.Add(Shader.PropertyToID(name), result);
             }
 
-            if (result.PropertyType != PropertyType.Float)
+            if (result.PropertyType != PropertyType.Float && result.PropertyType != PropertyType.Range)
             {
                 Debug.LogError("The property " + name + " is not a float property");
                 return;
@@ -251,6 +274,7 @@ namespace EPOOutline
 
         public void SetFloat(int hash, float value)
         {
+            propertiesIsDirty = true;
             SerializedPassProperty result = null;
             if (!propertiesById.TryGetValue(hash, out result))
             {
@@ -302,6 +326,7 @@ namespace EPOOutline
 
         public void SetColor(string name, Color value)
         {
+            propertiesIsDirty = true;
             SerializedPassProperty result = null;
             if (!propertiesByName.TryGetValue(name, out result))
             {
@@ -322,6 +347,7 @@ namespace EPOOutline
 
         public void SetColor(int hash, Color value)
         {
+            propertiesIsDirty = true;
             SerializedPassProperty result = null;
             if (!propertiesById.TryGetValue(hash, out result))
             {
@@ -354,6 +380,7 @@ namespace EPOOutline
 
         public void OnAfterDeserialize()
         {
+            propertiesIsDirty = true;
             propertiesById.Clear();
             propertiesByName.Clear();
             foreach (var serialized in serializedProperties)

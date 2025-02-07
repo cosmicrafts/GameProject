@@ -1,6 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
+﻿/*
+ * Here we save and manage the player progression
+ */
 public class UserProgress
 {
     int Level { get; set; }

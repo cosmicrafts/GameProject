@@ -1,13 +1,17 @@
-﻿using Newtonsoft.Json;
+﻿namespace CosmicraftsSP {
+    using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using UnityEngine;
+
+/*
+ * This is a API request controller
+ * Used to communicate with WEB APIS
+ */
 
 //Estado de respuesta
 public enum EStatus
@@ -67,7 +71,7 @@ public static class NetClient
 
     public static void InitNetClient()
     {
-        if (GameData.DebugMode)
+        if (GlobalManager.GMD.DebugMode)
             TimeOut = 99;
         else
             TimeOut = 8;
@@ -75,7 +79,7 @@ public static class NetClient
 
     public static string GetApiUrl()
     {
-        if (GameData.DebugMode)
+        if (GlobalManager.GMD.DebugMode)
             return "http://localhost:5000/api/";
 
         return BaseUri + "/api/";
@@ -98,9 +102,9 @@ public static class NetClient
         HttpClient _client = new HttpClient();
         _client.Timeout = TimeSpan.FromSeconds(TimeOut);
         //Auth
-        if (GameData.UserIsInit())
+        if (GlobalManager.GMD.UserIsInit())
         {
-            User user = GameData.GetUserData();
+            User user = GlobalManager.GMD.GetUserData();
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
         } else
         {
@@ -180,4 +184,5 @@ public static class NetClient
     {
         return await Base(uri, EMethod.DELETE);
     }
+}
 }

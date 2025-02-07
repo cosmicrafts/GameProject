@@ -2,21 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+#if UNITY_EDITOR
+using UnityEditor.SceneManagement;
+using UnityEditor.Experimental.SceneManagement;
+#endif
+
 namespace EPOOutline
 {
     public static class RendererFilteringUtility
     {
         private static List<Outlinable> filteredOutlinables = new List<Outlinable>();
 
-        public static void Filter(OutlineParameters parameters)
+        public static void Filter(Camera camera, OutlineParameters parameters)
         {
             filteredOutlinables.Clear();
 
-            var mask = parameters.Mask.value & parameters.Camera.cullingMask;
+            var mask = parameters.Mask.value & camera.cullingMask;
 
             foreach (var outlinable in parameters.OutlinablesToRender)
             {
-                if ((parameters.OutlineLayerMask & (1L << outlinable.OutlineLayer)) == 0)
+                var layer = 1L << outlinable.OutlineLayer;
+                if ((parameters.OutlineLayerMask & layer) == 0)
                     continue;
 
                 var go = outlinable.gameObject;
@@ -28,7 +34,7 @@ namespace EPOOutline
                     continue;
 
 #if UNITY_EDITOR
-                var stage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
+                var stage = PrefabStageUtility.GetCurrentPrefabStage();
 
                 if (stage != null && !stage.IsPartOfPrefabContents(outlinable.gameObject))
                     continue;

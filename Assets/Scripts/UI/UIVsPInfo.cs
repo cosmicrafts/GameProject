@@ -1,11 +1,18 @@
-﻿using UnityEngine;
+﻿namespace CosmicraftsSP {
+    using UnityEngine;
 using UnityEngine.UI;
+
+/*
+ * This code shows a enemy player property on a UI element (UI component)
+ * Is only used for multiplayer
+ */
 
 public class UIVsPInfo : MonoBehaviour
 {
+    //The enemy player property
     public PlayerProperty Property;
 
-    // Start is called before the first frame update
+    //Load and show the property when begins
     void Start()
     {
         LoadProperty();
@@ -13,56 +20,62 @@ public class UIVsPInfo : MonoBehaviour
 
     public void LoadProperty()
     {
-        if (GameData.GetVersion() == null)
+        //Check if we have an enemy data
+        if (GlobalManager.GMD.GetVersion() == null)
         {
             return;
         }
 
+        //Show the selected property
         switch (Property)
         {
             case PlayerProperty.Name:
                 {
-                    UserGeneral user = GameData.GetVsUser();
+                    UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Text mytext = GetComponent<Text>();
                     mytext.text = user.NikeName;
                 }
-                break;
+                break;/*
             case PlayerProperty.WalletId:
                 {
-                    UserGeneral user = GameData.GetVsUser();
+                    UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Text mytext = GetComponent<Text>();
                     mytext.text = Utils.GetWalletIDShort(user.WalletId);
-                }
+                }*/
                 break;
             case PlayerProperty.Level:
                 {
-                    UserGeneral user = GameData.GetVsUser();
+                    UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{Lang.GetText("mn_lvl")} {user.Level}";
                 }
                 break;
             case PlayerProperty.Xp:
                 {
-                    UserGeneral user = GameData.GetVsUser();
+                    UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Text mytext = GetComponent<Text>();
                     mytext.text = $"{user.Xp} {Lang.GetText("mn_xp")}";
                 }
                 break;
             case PlayerProperty.Character:
                 {
-                    UserGeneral user = GameData.GetVsUser();
-                    Image myimage = GetComponent<Image>();
-                    NFTsCharacter nFTsCharacter = GameMng.PlayerCollection.GetCharacterByKey(user.CharacterKey);
-                    myimage.sprite = ResourcesServices.LoadCharacterIcon(nFTsCharacter.Icon);
+                    NFTsCharacter character = GameNetwork.GetVSnftCharacter();
+                    //UserGeneral user = GlobalManager.GMD.GetVsUser();
+                    if (character != null)
+                    {
+                        Image myimage = GetComponent<Image>();
+                        myimage.sprite = ResourcesServices.LoadCharacterIcon(character.KeyId);
+                    }
                 }
                 break;
             case PlayerProperty.Avatar:
                 {
-                    UserGeneral user = GameData.GetVsUser();
+                    UserGeneral user = GlobalManager.GMD.GetVsUser();
                     Image myimage = GetComponent<Image>();
                     myimage.sprite = ResourcesServices.LoadAvatarIcon(user.Avatar);
                 }
                 break;
         }
     }
+}
 }

@@ -23,8 +23,19 @@ namespace EPOOutline
 
             NewLine(ref drawingPosition);
 
-            EditorGUI.HelpBox(drawingPosition, "Dilate and blur setting will only work if 'Use info buffer' setting is set on Outliner", MessageType.Warning);
+            //var style = property.FindPropertyRelative("outlineRenderingPass");
+            //var styleHeight = EditorGUI.GetPropertyHeight(style);
+            //var propertyDrawingPosition = drawingPosition;
+            //EditorGUI.PropertyField(propertyDrawingPosition, style);
 
+            //drawingPosition.y += styleHeight + EditorGUIUtility.standardVerticalSpacing;
+
+            var infoPosition = drawingPosition;
+            infoPosition.height = EditorGUIUtility.singleLineHeight * 3.0f + EditorGUIUtility.standardVerticalSpacing * 2.0f;
+            EditorGUI.HelpBox(infoPosition, "Changing dilate and blur settings will enable info buffer which will increase draw calls and will have some performance impact. Use Outliner settings if you don't need per object settings.", MessageType.Warning);
+
+            NewLine(ref drawingPosition);
+            NewLine(ref drawingPosition);
             NewLine(ref drawingPosition);
 
             var colorPosition = drawingPosition;
@@ -71,7 +82,8 @@ namespace EPOOutline
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 3.0f + EditorGUI.GetPropertyHeight(property.FindPropertyRelative("fillPass"));
+            return (EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing) * 3.0f + EditorGUI.GetPropertyHeight(property.FindPropertyRelative("fillPass")) +
+                EditorGUIUtility.singleLineHeight * 2.0f + EditorGUIUtility.standardVerticalSpacing * 1.0f;// + EditorGUI.GetPropertyHeight(property.FindPropertyRelative("outlineRenderingPass"));
         }
     }
 }

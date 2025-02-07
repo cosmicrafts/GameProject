@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
 
+/*
+ * This script has some Math utils functions
+ */
+
 public static class CMath
 {
+    //Returns the angle between 2 vector (0 to 360)
     public static float AngleBetweenVector2(Vector2 vec1, Vector2 vec2)
     {
         Vector2 diference = vec2 - vec1;
@@ -11,16 +16,12 @@ public static class CMath
         return angle;
     }
 
+    //Returns the world mouse position (requires a trigger collider)
     public static Vector3 GetMouseWorldPos()
     {
-        //float wx = (Input.mousePosition.x * GameMng.GM.MapWidth) / Screen.width;
-        //float wz = (Input.mousePosition.y * GameMng.GM.MapHeigth) / Screen.height;
-
-        //Vector3 WorldPos = new Vector3(GameMng.GM.MapX + wx, 0f, GameMng.GM.MapZ + wz - 4f);
-
         RaycastHit hit;
 
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 100f, 1 << 9))
+        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000f, 1 << 9))
         {
             return hit.point;
         }
@@ -28,9 +29,9 @@ public static class CMath
         return Vector3.zero;
     }
 
+    //Returns the Y rotation to look from vector A to vector B
     public static Vector3 LookToY(Vector3 from, Vector3 to)
     {
-        Vector3 rotation = new Vector3(to.x, from.y, to.z);
-        return rotation;
+        return new Vector3(to.x, from.y, to.z);
     }
 }

@@ -1,47 +1,68 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿namespace CosmicraftsSP {
+    using System.Linq;
 using UnityEngine;
+/*
+    Here we save and manage the global data of the game like
+    player's data, game configuration, game language, current game mode, etc.
+    This data always exist
+ */
 
+//Enum Game Modes Types
 public enum Match
 {
+    testing,
     tutorial,
     bots,
     multi
 }
+//Enum Plataforms Types
 public enum Plataform
 {
     Web,
     Pc
 }
-public static class GameData
+
+//Types of NFTS
+public enum NFTClass
 {
-    public static Match CurrentMatch = Match.multi;
+    Character,
+    Skill,
+    Station,
+    Ship
+}
+public class GameData
+{
+    //Save the selected game mode
+    public Match CurrentMatch = Match.multi;
 
-    public static bool ImMaster = false;
+  
+    //Save if the player is the multiplayer master
+    public bool ImMaster = false;
+    //Save if the game is running in Debug mode
+    public bool DebugMode = false;
+    //Save the current plataform
+    public Plataform CurrentPlataform = Plataform.Pc;
+    //Save if the player data is loaded and ready
+    public bool DataReady = false;
+    //Save the game configuration
+    Config config;
+    //Save the basic data of the player
+    User PlayerUser;
+    //Save the basic data of Vs player (for multiplayer)
+    UserGeneral VsPlayerUser;
+    //Save the data progression of the player
+    UserProgress PlayerProgress;
+    //Save the NFTs collection data of the player
+    UserCollection PlayerCollection;
+    //Save the current character selected by the player
+    NFTsCharacter PlayerCharacter;
+    //Save all the NFTs types in the game
+    NFTsCollection NFTCollection;
+    //Save te current region of the game
+    public string Region = "LAN";
 
-    public static bool DebugMode = false;
-
-    public static Plataform CurrentPlataform = Plataform.Pc;
-
-    public static bool DataReady = false;
-
-    static Config config;
-
-    static User PlayerUser;
-
-    static UserGeneral VsPlayerUser;
-
-    static UserProgress PlayerProgress;
-
-    static UserCollection PlayerCollection;
-
-    static NFTsCharacter PlayerCharacter;
-
-    public static string Region = "LAN";
-
-    public static Config GetConfig()
+    //Returns the current game config, if is null, create a new one
+    public Config GetConfig()
     {
         if (config == null)
         {
@@ -50,35 +71,40 @@ public static class GameData
 
         return config;
     }
-
-    public static void SetConfig(Config newconfig)
+    //Set the current game config
+    public void SetConfig(Config newconfig)
     {
         config = newconfig;
     }
-
-    public static void SetUser(User user)
+    //Get the current game language
+    public Language GetGameLanguage()
+    {
+        return (Language)GetConfig().language;
+    }
+    //Set the basic player data
+    public void SetUser(User user)
     {
         PlayerUser = user;
     }
-
-    public static void SetVsUser(UserGeneral user)
+    //Set the basic Vs player data
+    public void SetVsUser(UserGeneral user)
     {
         VsPlayerUser = user;
     }
-
-    public static void SetUserProgress(UserProgress userprogress)
+    //Set the player's progression
+    public void SetUserProgress(UserProgress userprogress)
     {
         PlayerProgress = userprogress;
     }
-
-    public static void SetUserCollection(UserCollection userCollection)
+    //Set the NFTs collection data for the player
+    public void SetUserCollection(UserCollection userCollection)
     {
         PlayerCollection = userCollection;
     }
-
-    public static void SetUserCharacter(string keyId)
+    //Set the current player character
+    public void SetUserCharacter(int NFTid)
     {
-        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.KeyId == keyId);
+        NFTsCharacter character = GetUserCollection().Characters.FirstOrDefault(f => f.ID == NFTid);
         if (character == null)
         {
             PlayerCharacter = PlayerCollection.Characters[0];
@@ -88,23 +114,35 @@ public static class GameData
         }
         PlayerCollection.ChangeDeckFaction(PlayerCharacter);
     }
-
-    public static User GetUserData()
+    //Set the global NFTs Collection
+    public void SetNFTsCollection(NFTsCollection nFTsCollection)
+    {
+        NFTCollection = nFTsCollection;
+    }
+    //Returns the basic Player data
+    public User GetUserData()
     {
         if (PlayerUser == null)
         {
-            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", Avatar = 1};
+            
+            PlayerUser = new User() {NikeName = "Tester", WalletId = "TestWalletId", 
+                Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 };
+        }
+        else{
+            
+            PlayerUser.Avatar = PlayerPrefs.HasKey("savedAvatar") ? PlayerPrefs.GetInt("savedAvatar") : 1 ;
+            
         }
 
         return PlayerUser;
     }
-
-    public static UserGeneral GetVsUser()
+    //Returns the basic Vs Player data
+    public UserGeneral GetVsUser()
     {
         return VsPlayerUser;
     }
-
-    public static UserGeneral BuildMyProfileHasVS()
+    //Create a data resume of the player, used to send it to the network
+    public UserGeneral BuildMyProfileHasVS()
     {
         if (PlayerUser == null || PlayerProgress == null)
             return null;
@@ -116,11 +154,12 @@ public static class GameData
             Level = PlayerProgress.GetLevel(),
             Xp = PlayerProgress.GetXp(),
             Avatar = PlayerUser.Avatar,
-            CharacterKey = PlayerCharacter.KeyId
+            CharacterNFTId = PlayerCharacter.ID,
+            DeckNFTsId = PlayerCollection.Deck.Select(s => s.ID).ToList()
         };
     }
-
-    public static UserProgress GetUserProgress()
+    //Returns the progression of the player
+    public UserProgress GetUserProgress()
     {
         if (PlayerProgress == null)
         {
@@ -130,8 +169,8 @@ public static class GameData
 
         return PlayerProgress;
     }
-
-    public static UserCollection GetUserCollection()
+    //Returns the NFTs data of the player
+    public UserCollection GetUserCollection()
     {
         if (PlayerCollection == null)
         {
@@ -141,43 +180,73 @@ public static class GameData
 
         return PlayerCollection;
     }
-
-    public static NFTsCharacter GetUserCharacter()
+    //Returns the current player character
+    public NFTsCharacter GetUserCharacter()
     {
         if (PlayerCharacter == null)
         {
-            PlayerCharacter = PlayerCollection.Characters[0];
+            var Characters = GetUserCollection().Characters;
+            if (Characters == null)
+            {
+                PlayerCharacter = GetUserCollection().DefaultCharacter;
+            } else if (Characters.Count == 0)
+            {
+                PlayerCharacter = GetUserCollection().DefaultCharacter;
+            } else if (PlayerPrefs.HasKey("CharacterSaved"))
+            {
+                PlayerCharacter = Characters.FirstOrDefault(f=>f.ID == PlayerPrefs.GetInt("CharacterSaved") );
+            }
+            else
+            {
+                PlayerCharacter = Characters[0];
+            }
         }
 
         return PlayerCharacter;
     }
+    //Returns the Global NFTs collection
+    public NFTsCollection GetNFTsCollection()
+    {
+        if (NFTCollection == null)
+        {
+            NFTCollection = new NFTsCollection();
+            NFTCollection.InitGlobalCollection();
+        }
 
-    public static void ChangeLang(Language newlang)
+        return NFTCollection;
+    }
+    //Change the language of the game
+    public void ChangeLang(Language newlang)
     {
         Lang.SetLang(newlang);
 
         config.language = (int)newlang;
-        SaveData.SaveGameConfig();
+
     }
 
-    public static bool UserIsInit()
+    //Returns if the player information is loaded and ready
+    public bool UserIsInit()
     {
         return PlayerUser != null;
     }
-
-    public static void ClearUser()
+    //Clear the player information
+    public void ClearUser()
     {
         PlayerUser = null;
         PlayerProgress = null;
+        PlayerCharacter = null;
+        PlayerCollection = null;
+        ImMaster = false;
     }
-
-    public static string GetVersion()
+    //Returns the current version of the game
+    public string GetVersion()
     {
         return Application.version;
     }
-
-    public static bool IsProductionWeb()
+    //Returns if the game is running on web and if is a production build
+    public bool IsProductionWeb()
     {
         return CurrentPlataform == Plataform.Web && !DebugMode;
     }
+}
 }

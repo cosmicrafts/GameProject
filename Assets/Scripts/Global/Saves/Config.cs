@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿/*
+ * Here we save the game configuration
+ */
 
+//Enum Login Types
 public enum SocialLogs
 {
     None,
@@ -9,6 +10,7 @@ public enum SocialLogs
     Twitch
 }
 
+//Game configuration structure (will be encrypted)
 [System.Serializable]
 public class Config
 {
@@ -16,7 +18,7 @@ public class Config
 
     public string UserName = string.Empty;
 
-    public string Password = string.Empty;
+    //public string Password = string.Empty;
 
     public bool AutoLog = true;
 

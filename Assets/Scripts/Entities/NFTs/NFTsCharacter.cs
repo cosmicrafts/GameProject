@@ -1,12 +1,12 @@
-﻿using UnityEngine;
+﻿//NFT character class
+
+using UnityEngine;
 
 public class NFTsCharacter : NFTs
 {
-    public string Skill { get; set; }
+    public override string KeyId { get => $"Chr_{LocalID}"; set => base.KeyId = value; }
 
-    public string PassiveSkill { get; set; }
+    public string Skill { get; set; } 
 
-    public string Faction { get; set; }
-
-    public int CharacterId { get; set; }
+    public string PassiveSkill { get; set; } 
 }

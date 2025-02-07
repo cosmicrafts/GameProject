@@ -1,24 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿/* 
+ * This is the 3° in-game character controller 
+ * Plagnor
+ */
 
+ namespace CosmicraftsSP
+{
 public class Character_3 : GameCharacter
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameMng.P.MaxEnergy += 5f;
-    }
-
     public override void DeployUnit(Unit unit)
     {
         base.DeployUnit(unit);
-        unit.Shield += 1;
+        
+        Ship ship = unit.GetComponent<Ship>();
+        if (ship != null)
+        {
+            ship.SpawnAreaSize += 2f; //Increment Spawn area in +2 (Skill 1)
+        }
+        
+        unit.Shield = (int)(unit.Shield * 1.2f); //Increment shield by 20% (Skill 2)
         unit.SetMaxShield(unit.Shield);
+        
         Shooter shooter = unit.GetComponent<Shooter>();
         if (shooter != null)
         {
-            shooter.RangeDetector += 1f; 
+            shooter.RangeDetector += 2f;  //Increment range detection in+2 (Skill 3)
         }
     }
+}
 }

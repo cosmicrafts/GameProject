@@ -1,6 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
+﻿
+//Unit package structure for multiplayer comunication
 public class NetUnitPack
 {
     public int id { get; set; }

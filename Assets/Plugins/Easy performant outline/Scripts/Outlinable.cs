@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.Serialization;
 
 namespace EPOOutline
 {
@@ -22,15 +20,43 @@ namespace EPOOutline
     public enum OutlinableDrawingMode
     {
         Normal = 1,
-        ZOnly = 2
+        ZOnly = 2,
+        GenericMask = 4,
+        Obstacle = 8,
+        Mask = 16
+    }
+
+    [Flags]
+    public enum RenderersAddingMode
+    {
+        All = -1,
+        None = 0,
+        MeshRenderer = 1,
+        SkinnedMeshRenderer = 2,
+        SpriteRenderer = 4,
+        Others = 4096
+    }
+
+    public enum BoundsMode
+    {
+        Default,
+        ForceRecalculate,
+        Manual
+    }
+
+    public enum ComplexMaskingMode
+    {
+        None,
+        ObstaclesMode,
+        MaskingMode
     }
 
     [ExecuteAlways]
     public class Outlinable : MonoBehaviour
     {
+        private static List<TargetStateListener> tempListeners = new List<TargetStateListener>();
+        
         private static HashSet<Outlinable> outlinables = new HashSet<Outlinable>();
-
-        private static Plane[] frustrumPlanes = new Plane[6];
 
         [System.Serializable]
         public class OutlineProperties
@@ -102,7 +128,7 @@ namespace EPOOutline
                 }
             }
 
-            [SerializeField]
+            [SerializeField, SerializedPassInfo("Fill style", "Hidden/EPO/Fill/")]
             private SerializedPass fillPass = new SerializedPass();
 
             public SerializedPass FillPass
@@ -115,6 +141,9 @@ namespace EPOOutline
 #pragma warning restore CS0649
         }
 
+        [SerializeField]
+        private ComplexMaskingMode complexMaskingMode;
+        
         [SerializeField]
         private OutlinableDrawingMode drawingMode = OutlinableDrawingMode.Normal;
 
@@ -137,6 +166,8 @@ namespace EPOOutline
         [SerializeField]
         private OutlineProperties frontParameters = new OutlineProperties();
 
+        private bool shouldValidateTargets = false;
+        
 #pragma warning restore CS0649
 
         public RenderStyle RenderStyle
@@ -152,11 +183,37 @@ namespace EPOOutline
             }
         }
 
+        public ComplexMaskingMode ComplexMaskingMode
+        {
+            get
+            {
+                return complexMaskingMode;
+            }
+
+            set
+            {
+                complexMaskingMode = value;
+            }
+        }
+
+        public bool ComplexMaskingEnabled
+        {
+            get
+            {
+                return complexMaskingMode != ComplexMaskingMode.None;
+            }
+        }
+
         public OutlinableDrawingMode DrawingMode
         {
             get
             {
                 return drawingMode;
+            }
+
+            set
+            {
+                drawingMode = value;
             }
         }
 
@@ -173,8 +230,7 @@ namespace EPOOutline
             }
         }
 
-
-        public List<OutlineTarget> OutlineTargets
+        public IReadOnlyList<OutlineTarget> OutlineTargets
         {
             get
             {
@@ -197,6 +253,20 @@ namespace EPOOutline
                 return backParameters;
             }
         }
+        
+        public bool NeedFillMask
+        {
+            get
+            {
+                if ((drawingMode & OutlinableDrawingMode.Normal) == 0)
+                    return false;
+
+                if (renderStyle == RenderStyle.FrontBack)
+                    return backParameters.Enabled && backParameters.FillPass.Material != null;
+                else
+                    return false;
+            }
+        }
 
         public OutlineProperties FrontParameters
         {
@@ -206,31 +276,107 @@ namespace EPOOutline
             }
         }
 
-        private bool IsVisible(Plane[] planes)
+        public bool IsObstacle
         {
-            var visibleCount = 0;
-            foreach (var target in outlineTargets)
+            get
             {
-                if (target.Renderer != null && GeometryUtility.TestPlanesAABB(planes, target.Renderer.bounds))
-                    visibleCount++;
+                return (drawingMode & OutlinableDrawingMode.Obstacle) != 0;
+            }
+        }
+
+        public bool TryAddTarget(OutlineTarget target)
+        {
+            outlineTargets.Add(target);
+            ValidateTargets();
+
+            return true;
+        }
+
+        public void RemoveTarget(OutlineTarget target)
+        {
+            outlineTargets.Remove(target);
+            if (target.renderer != null)
+            {
+                var listener = target.renderer.GetComponent<TargetStateListener>();
+                if (listener == null)
+                    return;
+                
+                listener.RemoveCallback(this, UpdateVisibility);
+            }
+        }
+        
+        public OutlineTarget this[int index]
+        {
+            get
+            {
+                return outlineTargets[index];
             }
 
-            return visibleCount > 0;
+            set
+            {
+                outlineTargets[index] = value;
+                ValidateTargets();
+            }
         }
 
         private void Reset()
         {
-            AddAllChildRenderersToRenderingList();
+            AddAllChildRenderersToRenderingList(RenderersAddingMode.SkinnedMeshRenderer | RenderersAddingMode.MeshRenderer | RenderersAddingMode.SpriteRenderer);
         }
 
         private void OnValidate()
         {
             outlineLayer = Mathf.Clamp(outlineLayer, 0, 63);
+            shouldValidateTargets = true;
+        }
+
+        private void SubscribeToVisibilityChange(GameObject go)
+        {
+            var listener = go.GetComponent<TargetStateListener>();
+            if (listener == null)
+            {
+                listener = go.AddComponent<TargetStateListener>();
+#if UNITY_EDITOR
+                UnityEditor.EditorUtility.SetDirty(listener);
+                UnityEditor.EditorUtility.SetDirty(go);
+#endif
+            }
+
+            listener.RemoveCallback(this, UpdateVisibility);
+            listener.AddCallback(this, UpdateVisibility);
+
+            listener.ForceUpdate();
+        }
+
+        private void UpdateVisibility()
+        {
+            if (!enabled)
+            {
+                outlinables.Remove(this);
+                return;
+            }
+
+            outlineTargets.RemoveAll(x => x.renderer == null);
+            foreach (var target in OutlineTargets)
+                target.IsVisible = target.renderer.isVisible;
+
+            outlineTargets.RemoveAll(x => x.renderer == null);
+
+            foreach (var target in outlineTargets)
+            {
+                if (target.IsVisible)
+                {
+                    outlinables.Add(this);
+                    return;
+                }
+            }
+
+            outlinables.Remove(this);
         }
 
         private void OnEnable()
         {
-            outlinables.Add(this);
+            UpdateVisibility();
         }
 
         private void OnDisable()
@@ -238,13 +384,28 @@ namespace EPOOutline
             outlinables.Remove(this);
         }
 
+        private void Awake()
+        {
+            ValidateTargets();
+        }
+
+        private void ValidateTargets()
+        {
+            outlineTargets.RemoveAll(x => x.renderer == null);
+            foreach (var target in outlineTargets)
+                SubscribeToVisibilityChange(target.renderer.gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            outlinables.Remove(this);
+        }
+        
         public static void GetAllActiveOutlinables(Camera camera, List<Outlinable> outlinablesList)
         {
             outlinablesList.Clear();
-            GeometryUtility.CalculateFrustumPlanes(camera, frustrumPlanes);
             foreach (var outlinable in outlinables)
-                if (outlinable.IsVisible(frustrumPlanes))
-                    outlinablesList.Add(outlinable);
+                outlinablesList.Add(outlinable);
         }
 
         private int GetSubmeshCount(Renderer renderer)
@@ -257,16 +418,60 @@ namespace EPOOutline
                 return 1;
         }
 
-        public void AddAllChildRenderersToRenderingList()
+        public void AddAllChildRenderersToRenderingList(RenderersAddingMode renderersAddingMode = RenderersAddingMode.All)
         {
             outlineTargets.Clear();
             var renderers = GetComponentsInChildren<Renderer>(true);
             foreach (var renderer in renderers)
             {
+                if (!MatchingMode(renderer, renderersAddingMode))
+                    continue;
+
                 var submeshesCount = GetSubmeshCount(renderer);
                 for (var index = 0; index < submeshesCount; index++)
-                    outlineTargets.Add(new OutlineTarget(renderer, index));
+                    TryAddTarget(new OutlineTarget(renderer, index));
             }
         }
+
+        private void Update()
+        {
+            if (!shouldValidateTargets)
+                return;
+
+            shouldValidateTargets = false;
+            ValidateTargets();
+        }
+
+        private bool MatchingMode(Renderer renderer, RenderersAddingMode mode)
+        {
+            return 
+                (!(renderer is MeshRenderer) && !(renderer is SkinnedMeshRenderer) && !(renderer is SpriteRenderer) && (mode & RenderersAddingMode.Others) != RenderersAddingMode.None) ||
+                (renderer is MeshRenderer && (mode & RenderersAddingMode.MeshRenderer) != RenderersAddingMode.None) ||
+                (renderer is SpriteRenderer && (mode & RenderersAddingMode.SpriteRenderer) != RenderersAddingMode.None) ||
+                (renderer is SkinnedMeshRenderer && (mode & RenderersAddingMode.SkinnedMeshRenderer) != RenderersAddingMode.None);
+        }
+
+#if UNITY_EDITOR
+        public void OnDrawGizmosSelected()
+        {
+            foreach (var target in outlineTargets)
+            {
+                if (target.Renderer == null || target.BoundsMode != BoundsMode.Manual)
+                    continue;
+
+                Gizmos.matrix = target.Renderer.transform.localToWorldMatrix;
+
+                Gizmos.color = new Color(1.0f, 0.5f, 0.0f, 0.2f);
+                var size = target.Bounds.size;
+                var scale = target.Renderer.transform.localScale;
+                size.x /= scale.x;
+                size.y /= scale.y;
+                size.z /= scale.z;
+
+                Gizmos.DrawCube(target.Bounds.center, size);
+                Gizmos.DrawWireCube(target.Bounds.center, size);
+            }
+        }
+#endif
     }
 }

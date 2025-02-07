@@ -1,23 +1,34 @@
-﻿using System.Collections;
+﻿namespace CosmicraftsSP {
+    
 using System.Collections.Generic;
 using UnityEngine;
-
+/*
+ * Spell 1 Laser Beam
+ */
 public class Spell_01 : Spell
 {
+    //List of the affected units
     List<Unit> Targets;
+    //Damage delays
     float delaydmg;
+    //Line renderer reference
     public LineRenderer Lazer;
+    //The start of the laser
     public GameObject StartLazer;
+    //The end of the laser
     public GameObject EndLazer;
+
     // Start is called before the first frame update
     protected override void Start()
     {
+        //Initialize basic variables
         base.Start();
         Targets = new List<Unit>();
         delaydmg = 0.25f;
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 50f, 0f));
 
+        //Set the position and orientation of the lazer
         if (GameMng.GM.MainStationsExist())
         {
             Vector3 target = GameMng.GM.Targets[MyTeam == Team.Blue ? 0 : 1].transform.position;
@@ -33,15 +44,14 @@ public class Spell_01 : Spell
     protected override void Update()
     {
         base.Update();
-        
-        if (IsFake)
-            return;
 
+        //Damage time delay 
         if (delaydmg > 0f)
         {
             delaydmg -= Time.deltaTime;
         } else
         {
+            //Apply damage to the targets
             delaydmg = 0.25f;
             foreach(Unit unit in Targets)
             {
@@ -50,12 +60,7 @@ public class Spell_01 : Spell
         }
     }
 
-    public override void setHasFake()
-    {
-        base.setHasFake();
-        GetComponent<BoxCollider>().enabled = false;
-    }
-
+    //Add enemy´s units as targets when they collide with the laser
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Unit"))
@@ -68,6 +73,7 @@ public class Spell_01 : Spell
         }
     }
 
+    //Delete targets when they get out from the laser
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Unit"))
@@ -79,4 +85,4 @@ public class Spell_01 : Spell
             }
         }
     }
-}
+}}

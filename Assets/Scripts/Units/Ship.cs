@@ -1,47 +1,41 @@
-﻿using SensorToolkit;
-using UnityEngine;
-
-public class Ship : Unit
+﻿namespace CosmicraftsSP
 {
-    public SteeringRig MySt;
+    using SensorToolkit;
+    using UnityEngine;
 
-    float Speed = 0f;
-
-    [Range(0,99)]
-    public float Aceleration = 1f;
-    [Range(0,99)]
-    public float MaxSpeed = 10f;
-    [Range(0,99)]
-    public float DragSpeed = 1f;
-    [Range(0, 99)]
-    public float TurnSpeed = 5f;
-    [Range(0, 99)]
-    public float StopSpeed = 5f;
-    [Range(0, 10)]
-    public float StoppingDistance = 0.5f;
-    [Range(0, 50)]
-    public float AvoidanceRange = 3f;
-
-    Transform Target;
-    Vector3 FakeDestination;
-    public RaySensor[] AvoidanceSensors;
-    public GameObject MainThruster;
-
-    [HideInInspector]
-    public bool CanMove = true;
-
-    Vector3 DeathRot;
-
-    protected override void Start()
+    public class Ship : Unit
     {
-        base.Start();
-        Target = GameMng.GM.GetFinalTarget(MyTeam);
-        FakeDestination = transform.position;
-        if (IsFake)
+        public SteeringRig MySt;
+        float Speed = 0f;
+
+        [Range(0, 99)]
+        public float Aceleration = 1f;
+        [Range(0, 99)]
+        public float MaxSpeed = 10f;
+        [Range(0, 99)]
+        public float DragSpeed = 1f;
+        [Range(0, 99)]
+        public float TurnSpeed = 5f;
+        [Range(0, 99)]
+        public float StopSpeed = 5f;
+        [Range(0, 10)]
+        public float StoppingDistance = 0.5f;
+        [Range(0, 50)]
+        public float AvoidanceRange = 3f;
+
+        Transform Target;
+        public RaySensor[] AvoidanceSensors;
+        public GameObject[] Thrusters;
+
+        [HideInInspector]
+        public bool CanMove = true;
+
+        Vector3 DeathRot;
+
+        protected override void Start()
         {
-            MySt.enabled = false;
-        } else
-        {
+            base.Start();
+            Target = GameMng.GM.GetFinalTransformTarget(MyTeam);
             MySt.Destination = Target.position;
             MySt.StoppingDistance = StoppingDistance;
             foreach (RaySensor sensor in AvoidanceSensors)
@@ -49,44 +43,37 @@ public class Ship : Unit
                 sensor.Length = AvoidanceRange;
             }
         }
-    }
 
-    protected override void Update()
-    {
-        base.Update();
-        Move();
-    }
-
-    protected override void FixedUpdate()
-    {
-        if (MyRb.velocity.magnitude > MaxSpeed+1f)
+        protected override void Update()
         {
-            MyRb.velocity = MyRb.velocity.normalized * (MaxSpeed + 1f);
-        }
-        if (MyRb.angularVelocity.magnitude > 0.5f)
-        {
-            MyRb.angularVelocity = Vector3.zero;
-        }
-        if (transform.rotation.x != 0f || transform.rotation.y != 0f)
-        {
-            transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
-        }
-    }
-
-    void Move()
-    {
-        if (IsDeath)
-        {
-            transform.Rotate(DeathRot, 100f * Time.deltaTime, Space.Self);
-            return;
+            base.Update();
+            Move();
         }
 
-        if (IsFake)
+        protected override void FixedUpdate()
         {
-            transform.position = Vector3.Lerp(transform.position, FakeDestination, Time.deltaTime * MaxSpeed);
-            MainThruster.SetActive(Vector3.Distance(transform.position, FakeDestination) > Speed);
-        } else
+            if (MyRb.linearVelocity.magnitude > MaxSpeed + 1f)
+            {
+                MyRb.linearVelocity = MyRb.linearVelocity.normalized * (MaxSpeed + 1f);
+            }
+            if (MyRb.angularVelocity.magnitude > 0.5f)
+            {
+                MyRb.angularVelocity = Vector3.zero;
+            }
+            if (transform.rotation.x != 0f || transform.rotation.y != 0f)
+            {
+                transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, 0f);
+            }
+        }
+
+        void Move()
         {
+            if (IsDeath)
+            {
+                transform.Rotate(DeathRot, 100f * Time.deltaTime, Space.Self);
+                return;
+            }
+
             if (InControl())
             {
                 if (CanMove)
@@ -112,79 +99,88 @@ public class Ship : Unit
                     Speed = 0f;
                 }
 
-                if (MySt.hasReachedDestination() && MainThruster.activeSelf)
+                if (MySt.hasReachedDestination() && ThrustersAreEnable())
                 {
-                    MainThruster.SetActive(false);
+                    EnableThrusters(false);
                 }
-                if (!MySt.hasReachedDestination() && !MainThruster.activeSelf)
+                if (!MySt.hasReachedDestination() && !ThrustersAreEnable())
                 {
-                    MainThruster.SetActive(true);
+                    EnableThrusters(true);
                 }
             }
-            else if (MainThruster.activeSelf)
+            else if (ThrustersAreEnable())
             {
-                MainThruster.SetActive(false);
+                EnableThrusters(false);
                 MySt.TurnForce = 0f;
                 MySt.MoveForce = 0f;
                 Speed = 0f;
             }
         }
-    }
 
-    public void ResetDestination()
-    {
-        if (!InControl())
-            return;
+        public void ResetDestination()
+        {
+            if (!InControl())
+                return;
 
-        MySt.Destination = Target.position;
-        MySt.StoppingDistance = StoppingDistance;
-    }
+            if (Target != null)
+            {
+                MySt.Destination = Target.position;
+                MySt.StoppingDistance = StoppingDistance;
+            }
+        }
 
-    public void SetDestination(Vector3 des, float stopdistance)
-    {
-        MySt.Destination = des;
-        MySt.StoppingDistance = stopdistance;
-    }
+        public void SetDestination(Vector3 des, float stopdistance)
+        {
+            MySt.Destination = des;
+            MySt.StoppingDistance = stopdistance;
+        }
 
-    public void SetFakeDestination(Vector3 des)
-    {
-        FakeDestination = des;
-    }
+        protected override void CastComplete()
+        {
+            base.CastComplete();
+        }
 
-    protected override void CastComplete()
-    {
-        base.CastComplete();
-    }
+        public override void Die()
+        {
+            base.Die();
+            MySt.enabled = false;
+            EnableThrusters(false);
+            float AngleDeathRot = CMath.AngleBetweenVector2(LastImpact, transform.position);
 
-    public override void Die()
-    {
-        base.Die();
-        MySt.enabled = false;
-        MainThruster.SetActive(false);
-        float AngleDeathRot = CMath.AngleBetweenVector2(LastImpact, transform.position);
+            float z = Mathf.Sin(AngleDeathRot * Mathf.Deg2Rad);
+            float x = Mathf.Cos(AngleDeathRot * Mathf.Deg2Rad);
+            DeathRot = new Vector3(x, 0, z);
+        }
 
-        float z = Mathf.Sin(AngleDeathRot * Mathf.Deg2Rad);
-        float x = Mathf.Cos(AngleDeathRot * Mathf.Deg2Rad);
-        DeathRot = new Vector3(x, 0, z);
-    }
+        public override void DisableUnit()
+        {
+            base.DisableUnit();
+        }
 
-    public override void DisableUnit()
-    {
-        base.DisableUnit();
-    }
+        public override void EnableUnit()
+        {
+            base.EnableUnit();
+        }
 
-    public override void EnableUnit()
-    {
-        base.EnableUnit();
-    }
+        public override void SetNfts(NFTsUnit nFTsUnit)
+        {
+            base.SetNfts(nFTsUnit);
 
-    public override void SetNfts(NFTsUnit nFTsUnit)
-    {
-        base.SetNfts(nFTsUnit);
+            if (nFTsUnit == null)
+                return;
 
-        if (GameData.DebugMode || nFTsUnit == null)
-            return;
+            MaxSpeed = nFTsUnit.Speed;
+        }
 
-        MaxSpeed = nFTsUnit.Speed;
+        void EnableThrusters(bool enable)
+        {
+            foreach (GameObject t in Thrusters)
+                t.SetActive(enable);
+        }
+
+        bool ThrustersAreEnable()
+        {
+            return Thrusters == null ? false : (Thrusters.Length > 0 ? Thrusters[0].activeSelf : false);
+        }
     }
 }

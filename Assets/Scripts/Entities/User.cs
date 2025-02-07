@@ -1,5 +1,7 @@
 ﻿using System;
-
+/*
+ * Here we save the essential player information
+ */
 public enum userRol
 {
     None,
@@ -11,13 +13,13 @@ public class User
 {
     public int Id { get; set; }
 
-    public string WalletId { get; set; }
+    public string WalletId { get; set; } //*
 
-    public string NikeName { get; set; }
+    public string NikeName { get; set; } //*
 
-    public string PassWord { get; set; }
+    //public string PassWord { get; set; }
 
-    public int Avatar { get; set; }
+    public int Avatar { get; set; } //*
 
     public string Token { get; set; }
 
@@ -31,7 +33,7 @@ public class User
 
     public string SocialId { get; set; }
 
-    public bool FirstGame { get; set; }
+    //public bool FirstGame { get; set; }
 
     public DateTime LastConnection { get; set; }
 

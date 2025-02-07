@@ -16,11 +16,7 @@ using UnityEditor;
 #endif
 
 #if HDRP_OUTLINE
-#if UNITY_2019_3_OR_NEWER
 using UnityEngine.Rendering.HighDefinition;
-#else
-using UnityEngine.Experimental.Rendering.HDPipeline;
-#endif
 #endif
 
 namespace EPOOutline
@@ -29,6 +25,9 @@ namespace EPOOutline
     {
         public static int GetMSAA(Camera camera)
         {
+            if (camera.targetTexture != null)
+                return camera.targetTexture.antiAliasing;
+
             var antialiasing = GetRenderPipelineMSAA();
 
             var msaa = Mathf.Max(antialiasing, 1);

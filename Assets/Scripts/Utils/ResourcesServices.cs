@@ -1,61 +1,100 @@
-﻿using System.Collections;
+﻿namespace CosmicraftsSP {
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+ * This is the game resources services
+ * Returns assets from the resources folder
+ */
+
 public static class ResourcesServices
 {
-    static Dictionary<string, string> Factions = new Dictionary<string, string>
+    //Global Manager Prefab
+    public static GameObject LoadGlobalManager()
     {
-        {"ALL","Alliance" },
-        {"SPI","Spirats" },
-        {"NEU","Neutral" },
-    };
-
-    static Dictionary<string, string> Emblems = new Dictionary<string, string>
+        return Resources.Load<GameObject>($"Prefabs/Manager/GlobalManagerObj");
+    }
+    //Global Bot Prefab
+    public static GameObject LoadBot(int id, int dificulty)
     {
-        {"Chr_0","Emblem_0" },
-        {"Chr_1","Emblem_1" },
-        {"Chr_2","Emblem_2" },
-        {"Chr_3","Emblem_3" },
-        {"Chr_4","Emblem_4" },
-        {"Chr_5","Emblem_5" },
-        {"Chr_6","Emblem_6" },
-    };
+        //Debug.Log("Bot: " + $"Prefabs/Manager/BOTS/BOT_{id}_{dificulty}");
+        return Resources.Load<GameObject>($"Prefabs/Manager/BOTS/BOT_{id}_{dificulty}");
+        
+    }
+    //Name Bots Prefabs
+    public static List<string> GetNameBots()
+    {
+        List<string> names = new List<string>(); 
+        GameObject[] bots = Resources.LoadAll<GameObject>($"Prefabs/Manager/BOTS");
 
+        foreach (var bot in bots)
+        {
+            names.Add(bot.GetComponent<BotEnemy>().botName);
+        }
+
+        return names;
+    }
+    //Global Tutorial Prefab
+    public static GameObject LoadTutorial()
+    {
+        return Resources.Load<GameObject>($"Prefabs/Manager/Tutorial");
+    }
+    //Returns a sprite avatar
     public static Sprite LoadAvatarIcon(int id)
     {
-        return Resources.Load<Sprite>($"UI/Icons/Avatars/Avatar_{id}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Avatars/Avatar_{id}"));
     }
-
-    public static Sprite LoadCharacterIcon(string icon)
+    public static Sprite LoadAvatarUser(int id)
     {
-        return Resources.Load<Sprite>($"UI/Characters/{icon}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Avatars_User/avatar_{id}"));
     }
-
-    public static Sprite LoadCardIcon(string icon, bool isSkill)
+    //Returns a sprite character icon
+    public static Sprite LoadCharacterIcon(string nftCharacterKey)
     {
-        string folder = isSkill ? "Skills" : "Units";
-        return Resources.Load<Sprite>($"UI/Icons/{folder}/{icon}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Characters/Ico_{nftCharacterKey}"));
     }
-
+    //Returns a sprite card icon
+    public static Sprite LoadCardIcon(string nftCardKey)
+    {
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Cards/Ico_{nftCardKey}"));
+    }
+    //Returns the prefab of a spell or unit
     public static GameObject LoadCardPrefab(string key, bool isSkill)
     {
         string folder = isSkill ? "Skills" : "Units";
-        return Resources.Load<GameObject>($"Prefabs/{folder}/{Factions[key.Substring(2,3)]}/{key}");
+        Debug.Log($"Prefabs/{folder}/{key.Substring(2, 3)}/{key}");
+        return Resources.Load<GameObject>($"Prefabs/{folder}/{key.Substring(2, 3)}/{key}");
     }
-
-    public static GameObject LoadBaseStationPrefab(string faction)
+    //Returns the prefab base station from a faction
+    public static GameObject LoadBaseStationPrefab(string nftCharacterKey)
     {
-        return Resources.Load<GameObject>($"Prefabs/BaseStations/BS_{faction}");
+        return Resources.Load<GameObject>($"Prefabs/BaseStations/BS_{nftCharacterKey}");
     }
-
+    //Returns the prefab of a character
     public static GameObject LoadCharacterPrefab(string key)
     {
         return Resources.Load<GameObject>($"Prefabs/Characters/{key}");
     }
-
-    public static Sprite LoadCharacterEmblem(string key)
+    //Returns the sprite emblem of a character
+    public static Sprite LoadCharacterEmblem(string nftCharacterKey)
     {
-        return Resources.Load<Sprite>($"UI/Characters/Emblems/{Emblems[key]}");
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Characters/Emblems/{nftCharacterKey}_Emb"));
     }
+    public static Sprite LoadCharacterSkill(string nftCharacterKey)
+    {
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Skills/{nftCharacterKey}"));
+    }
+    public static Sprite LoadCharacterStats(string nftCharacterKey)
+    {
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/Stats/{nftCharacterKey}"));
+    }
+    public static Sprite LoadCharacterBG(string nftCharacterKey)
+    {
+        return ValidateSprite(Resources.Load<Sprite>($"UI/Icons/BG/{nftCharacterKey}"));
+    }
+    public static Sprite ValidateSprite(Sprite sprite)
+    {
+        return sprite == null ? Resources.Load<Sprite>($"UI/Loading") : sprite;
+    }
+}
 }

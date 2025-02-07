@@ -1,48 +1,17 @@
-﻿using Newtonsoft.Json;
-using System.Collections;
-using System.Collections.Generic;
+﻿namespace CosmicraftsSP {
+    using Newtonsoft.Json;
 using UnityEngine;
-
+/*
+ * This is the local data controller
+ * Is used to save information, like the game configuration, on the device
+ */
 public static class SaveData 
 {
-    //the filename where saved data will be stored
+    //The path of the game configuration file
     public readonly static string fullPathConfig = Application.persistentDataPath + "/" + "Config";
 
     public static bool error = false;
+    //Load the configuration data
 
-    public static void LoadGameConfig()
-    {
-        SaveManager.Instance.Load<Config>(fullPathConfig, DataWasLoaded, false);
-    }
-
-    private static void DataWasLoaded(Config data, SaveResult result, string message)
-    {
-        if (result == SaveResult.EmptyData || result == SaveResult.Error)
-        {
-            Config newConfig = new Config();
-            GameData.SetConfig(newConfig);
-            Lang.InitLanguage((Language)newConfig.language);
-            return;
-        }
-
-        if (result == SaveResult.Success)
-        {
-            GameData.SetConfig(data);
-            Lang.InitLanguage((Language)data.language);
-        }
-    }
-
-    public static void SaveGameConfig()
-    {
-        SaveManager.Instance.Save(GameData.GetConfig(), fullPathConfig, DataWasSaved, false);
-        if (GameData.IsProductionWeb())
-        {
-            GameNetwork.JSSavePlayerConfig(JsonConvert.SerializeObject(GameData.GetConfig()));
-        }
-    }
-
-    private static void DataWasSaved(SaveResult result, string message)
-    {
-        error = result == SaveResult.Error;
-    }
+}
 }

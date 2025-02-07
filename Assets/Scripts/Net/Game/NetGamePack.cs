@@ -1,7 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
+/*
+ * Here we save the network data of the master (multiplayer)
+ */
+
+//Enum of the multiplayer status
 public enum NetGameStep
 {
     Waiting,
@@ -11,6 +15,7 @@ public enum NetGameStep
     End
 }
 
+//Package structure for multiplayer comunication
 public class NetGamePack
 {
     public int GameId { get; set; }
@@ -43,13 +48,15 @@ public class NetGamePack
 
     public int ClientAvatar { get; set; }
 
-    public string MasterCharacter { get; set; }
+    public int MasterScore { get; set; }
 
-    public string ClientCharacter { get; set; }
+    public NFTsCharacter MasterCharacter { get; set; }
 
-    public string MasterScore { get; set; }
+    public NFTsCharacter ClientCharacter { get; set; }
 
-    public string ClientScore { get; set; }
+    public List<NetCardNft> MasterDeck { get; set; }
+
+    public List<NetCardNft> ClientDeck { get; set; }
 
     public List<NetUnitPack> Units { get; set; }
 
