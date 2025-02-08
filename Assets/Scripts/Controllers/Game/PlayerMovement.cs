@@ -50,7 +50,7 @@ namespace CosmicraftsSP
 
         void ApplyMovement()
         {
-            if (currentVelocity.magnitude > 0)
+            if (currentVelocity.magnitude > 0.01f) // ✅ Prevent LookRotation error
             {
                 // Move character
                 transform.position += currentVelocity * Time.deltaTime;
