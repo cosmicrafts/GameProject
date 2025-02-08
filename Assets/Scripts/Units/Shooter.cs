@@ -60,13 +60,12 @@ namespace CosmicraftsSP
             if (MyUnit.GetIsDeath() || !CanAttack || !MyUnit.InControl())
                 return;
 
+            // Always clean enemies before checking the target.  This is the key change.
+            CleanEnemies();
+
             if (Target != null)
             {
-                if (Target == null || Target.GetIsDeath())
-                {
-                    RemoveEnemy(Target);
-                    return;
-                }
+                // No need for a separate check here; CleanEnemies() handles validity.
 
                 if (RotateToEnemy)
                 {
@@ -77,7 +76,6 @@ namespace CosmicraftsSP
                 if (DelayShoot <= 0f)
                 {
                     FireProjectiles();
-
                     DelayShoot = CoolDown;
                     MyUnit.GetAnimator().SetTrigger("Attack");
                 }
@@ -86,12 +84,8 @@ namespace CosmicraftsSP
                     DelayShoot -= Time.deltaTime;
                 }
             }
-
-            if (Target == null)
-            {
-                CleanEnemies();
-            }
         }
+
 
         private void FireProjectiles()
         {
@@ -144,10 +138,7 @@ namespace CosmicraftsSP
             if (!InRange.Contains(enemy))
                 InRange.Add(enemy);
 
-            if (Target == null)
-            {
-                CleanEnemies();
-            }
+            //  No need to call CleanEnemies here. We'll do it at the start of ShootTarget.
         }
 
         public void RemoveEnemy(Unit enemy)
@@ -155,29 +146,35 @@ namespace CosmicraftsSP
             if (InRange.Contains(enemy))
                 InRange.Remove(enemy);
 
-            if (Target == null)
+            //  No need to call CleanEnemies here. We'll do it at the start of ShootTarget.
+             if (Target == enemy) // If the removed enemy is our current target, we need to choose another one
             {
-                CleanEnemies();
+                Target = null;
             }
         }
 
+
         public void CleanEnemies()
         {
+            // Remove null and dead units from InRange.
             InRange = InRange.Where(f => f != null && !f.GetIsDeath()).ToList();
 
-            if (Target == null || Target.GetIsDeath())
+            // If the target is null, dead, or no longer in range, pick a new target.
+            if (Target == null || Target.GetIsDeath() || !InRange.Contains(Target))
             {
                 if (InRange.Count == 0)
                 {
-                    SetTarget(null);
+                    SetTarget(null); // No enemies in range.
                 }
                 else
                 {
+                    // Get the closest enemy.
                     Unit closer = InRange.OrderBy(o => Vector3.Distance(transform.position, o.transform.position)).FirstOrDefault();
                     SetTarget(closer);
                 }
             }
         }
+
 
         public void StopAttack()
         {
