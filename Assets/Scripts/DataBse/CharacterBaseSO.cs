@@ -7,6 +7,13 @@ namespace CosmicraftsSP
     public class CharacterBaseSO : ScriptableObject
     {
         #region DataBase
+        [Header("Movement Settings")]
+        [SerializeField] private float baseMoveSpeed = 5f;
+        [SerializeField] private float baseRotationSpeed = 10f;
+
+        // Add to Variables de Lectura
+        public float BaseMoveSpeed => baseMoveSpeed;
+        public float BaseRotationSpeed => baseRotationSpeed;
 
         //----Prefab-----------------------------------------------------------
         [Tooltip("Reference to the base prefab")]

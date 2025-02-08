@@ -50,6 +50,7 @@
 
         private void Start()
         {
+            
             Debug.Log("--GAME MANAGER START--");
 
             BOT = Instantiate(BotPrefab).GetComponent<BotEnemy>();

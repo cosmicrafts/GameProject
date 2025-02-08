@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 2198226034328220054}
   - component: {fileID: 2198226034328220042}
   - component: {fileID: 2198226034328220043}
+  - component: {fileID: 2626629409652689757}
   m_Layer: 3
   m_Name: BS_Chr_4
   m_TagString: Unit
@@ -479,6 +480,22 @@ MonoBehaviour:
   MinimumVisibility: 0.5
   LineOfSightUpdateMode: 0
   CheckLineOfSightInterval: 1
+--- !u!114 &2626629409652689757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2198226034328220048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d895adfde111ab048b5a25475843b885, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 80
+  rotationSpeed: 12
+  acceleration: 5
+  deceleration: 8
 --- !u!1 &5020579175167568611
 GameObject:
   m_ObjectHideFlags: 0
